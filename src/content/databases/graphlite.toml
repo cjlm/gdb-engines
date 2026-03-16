@@ -1,0 +1,12 @@
+name = "GraphLite"
+vendor = "DeepGraph AI"
+slug = "graphlite"
+description = "A lightweight embedded property graph database with full ISO GQL 2024 standard support and ACID transactions. Aims to be the SQLite equivalent for graph data."
+url = "https://github.com/GraphLite-AI/GraphLite"
+github_url = "https://github.com/GraphLite-AI/GraphLite"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["ISO GQL"]
+kind = "embedded"
+category = "Emerging"
+gdotv_support = false

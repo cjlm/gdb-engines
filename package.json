@@ -1,0 +1,16 @@
+{
+  "name": "gdb-engines",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@11ty/eleventy-fetch": "^5.1.1",
+    "astro": "^5.17.1",
+    "microtip": "^0.2.2"
+  }
+}

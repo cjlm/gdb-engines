@@ -1,0 +1,12 @@
+name = "Apache AGE"
+vendor = "Apache Software Foundation"
+slug = "apache-age"
+description = "PostgreSQL extension providing graph database functionality with openCypher query support, enabling graph and relational queries on the same data."
+url = "https://age.apache.org/"
+github_url = "https://github.com/apache/age"
+license = "Apache-2.0"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["openCypher", "SQL"]
+category = "Established"
+gdotv_support = true

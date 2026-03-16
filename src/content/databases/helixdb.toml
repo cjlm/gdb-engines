@@ -1,0 +1,12 @@
+name = "HelixDB"
+vendor = "HelixDB"
+slug = "helixdb"
+description = "An open-source graph-vector database combining graph traversals with vector and keyword search, targeting AI and RAG applications."
+url = "https://www.helix-db.com/"
+github_url = "https://github.com/HelixDB/helix-db"
+license = "AGPL-3.0"
+type = "Other"
+query_languages = ["HelixQL"]
+kind = "database"
+category = "Emerging"
+gdotv_support = false

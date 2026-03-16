@@ -1,0 +1,10 @@
+name = "GraphBase"
+vendor = "FactNexus"
+slug = "graphbase"
+description = "A property graph database that uses the graph as its unit of work, focused on knowledge graph management at scale."
+url = "https://factnexus.com/graphbase/"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["GraphQL"]
+category = "Enterprise"
+gdotv_support = false

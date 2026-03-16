@@ -1,0 +1,14 @@
+name = "Apache Giraph"
+vendor = "Apache Software Foundation"
+slug = "apache-giraph"
+description = "An iterative graph processing system built for high scalability, inspired by Google's Pregel model. Runs on Apache Hadoop using a bulk-synchronous parallel computing model where vertices exchange messages during computation supersteps. Originally developed at Yahoo and later used at scale by Facebook."
+url = "https://giraph.apache.org/"
+github_url = "https://github.com/apache/giraph"
+license = "Apache-2.0"
+type = "Property Graph"
+kind = "query-engine"
+query_languages = ["Java API"]
+category = "Established"
+status = "inactive"
+status_note = "Retired to the Apache Attic in October 2023. Repository is archived and read-only."
+gdotv_support = false

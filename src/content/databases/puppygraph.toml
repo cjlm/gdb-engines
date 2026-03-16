@@ -1,0 +1,11 @@
+name = "PuppyGraph"
+vendor = "PuppyQuery Inc"
+slug = "puppygraph"
+description = "A graph query engine that runs analytics on existing relational databases, data lakes, and warehouses without data migration."
+url = "https://www.puppygraph.com/"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["Gremlin", "openCypher"]
+kind = "query-engine"
+category = "Growing"
+gdotv_support = true

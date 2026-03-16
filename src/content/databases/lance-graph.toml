@@ -1,0 +1,12 @@
+name = "Lance Graph"
+vendor = "LanceDB Inc"
+slug = "lance-graph"
+description = "A graph query engine built on the Lance columnar format, supporting multimodal knowledge graphs in serverless environments."
+url = "https://lancedb.com/"
+github_url = "https://github.com/lance-format/lance-graph"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["SQL"]
+kind = "query-engine"
+category = "Emerging"
+gdotv_support = false

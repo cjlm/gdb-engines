@@ -1,0 +1,13 @@
+name = "Graph Engine"
+vendor = "Microsoft"
+slug = "graph-engine"
+description = "A distributed, in-memory graph processing engine developed by Microsoft Research, originally known as Trinity. Supports large-scale graph computation on a memory cloud architecture."
+url = "https://github.com/microsoft/GraphEngine"
+github_url = "https://github.com/microsoft/GraphEngine"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["LIKQ"]
+category = "Enterprise"
+status = "inactive"
+status_note = "Microsoft Research project. Limited recent activity."
+gdotv_support = false

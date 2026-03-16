@@ -1,0 +1,11 @@
+name = "RDFox"
+vendor = "Samsung"
+previous_vendors = ["Oxford Semantic Technologies"]
+slug = "rdfox"
+description = "An in-memory knowledge graph and semantic reasoning engine. Acquired by Samsung Electronics in 2024."
+url = "https://www.oxfordsemantic.tech"
+license = "Proprietary"
+type = "RDF"
+query_languages = ["SPARQL", "Datalog"]
+category = "Enterprise"
+gdotv_support = true

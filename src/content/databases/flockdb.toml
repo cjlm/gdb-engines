@@ -1,0 +1,13 @@
+name = "FlockDB"
+vendor = "Twitter (now X)"
+slug = "flockdb"
+description = "A distributed graph database built by Twitter for storing adjacency lists, optimized for wide and shallow social graphs like follower relationships. Supports set arithmetic queries but intentionally avoids multi-hop graph traversal."
+url = "https://github.com/twitter-archive/flockdb"
+github_url = "https://github.com/twitter-archive/flockdb"
+license = "Apache-2.0"
+type = "Other"
+query_languages = ["Thrift API"]
+category = "Established"
+status = "inactive"
+status_note = "Archived and unmaintained since 2017. Twitter is no longer responding to issues or PRs."
+gdotv_support = false

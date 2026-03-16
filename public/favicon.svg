@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <style>
+    :root { --bg: #f2ede6; --fg: #5a2028; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #1a1216; --fg: #cc8090; } }
+  </style>
+  <circle cx="100" cy="100" r="70" fill="var(--bg)" stroke="var(--fg)" stroke-width="16"/>
+  <circle cx="100" cy="100" r="24" fill="var(--fg)"/>
+</svg>

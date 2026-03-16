@@ -1,0 +1,15 @@
+name = "Kuzu"
+vendor = "Kuzu Inc (acquired by Apple)"
+slug = "kuzu"
+description = "An embedded property graph database built for fast analytical workloads, developed as the successor to Graphflow. Archived in October 2025 after acquisition by Apple. Forked as LadybugDB and Bighorn."
+url = "https://kuzudb.com"
+github_url = "https://github.com/kuzudb/kuzu"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["openCypher"]
+kind = "embedded"
+category = "Emerging"
+status = "deprecated"
+status_note = "Acquired by Apple in October 2025. Repository archived. Continued as LadybugDB and Bighorn forks."
+gdotv_support = true
+gdotv_url = "https://gdotv.com/blog/fast-scalable-graph-querying-and-visualization-with-kuzu-and-g-v/"

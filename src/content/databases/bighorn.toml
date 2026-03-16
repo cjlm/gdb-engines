@@ -1,0 +1,12 @@
+name = "Bighorn"
+vendor = "Kineviz"
+slug = "bighorn"
+description = "A community fork of Kuzu maintained by Kineviz. An embedded property graph database with openCypher support, adding vector search and full-text search capabilities. Integrates with GraphXR visualization."
+url = "https://kineviz.github.io/bighorndb-docs/"
+github_url = "https://github.com/Kineviz/bighorn"
+license = "MIT"
+type = "Property Graph"
+kind = "embedded"
+query_languages = ["openCypher"]
+category = "Emerging"
+gdotv_support = false

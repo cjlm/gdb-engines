@@ -1,0 +1,11 @@
+name = "TuringDB"
+vendor = "Turing Biosystems"
+slug = "turingdb"
+description = "An in-memory, column-oriented property graph database engine focused on analytical and read-intensive workloads over large graphs."
+url = "https://www.turingdb.ai/"
+github_url = "https://github.com/turing-db/turingdb"
+license = "BSL-1.1"
+type = "Property Graph"
+query_languages = ["openCypher"]
+category = "Emerging"
+gdotv_support = false

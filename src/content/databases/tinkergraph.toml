@@ -1,0 +1,12 @@
+name = "TinkerGraph"
+vendor = "Apache TinkerPop"
+slug = "tinkergraph"
+description = "A lightweight, in-memory property graph engine serving as the reference implementation of the Apache TinkerPop Gremlin graph computing framework."
+url = "https://tinkerpop.apache.org"
+github_url = "https://github.com/apache/tinkerpop"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["Gremlin"]
+kind = "embedded"
+category = "Established"
+gdotv_support = false

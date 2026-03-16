@@ -1,0 +1,11 @@
+name = "Grafeo"
+vendor = "GrafeoDB"
+slug = "grafeo"
+description = "An embeddable graph database supporting both property graph and RDF data models with in-memory or persistent storage. Features ACID transactions via MVCC, vector search with HNSW indexing, and a cost-based query optimizer."
+url = "https://github.com/GrafeoDB/grafeo"
+github_url = "https://github.com/GrafeoDB/grafeo"
+license = "Apache-2.0"
+type = "Multiple"
+query_languages = ["GQL", "Cypher", "SPARQL", "Gremlin", "GraphQL", "SQL/PGQ"]
+category = "Emerging"
+gdotv_support = false

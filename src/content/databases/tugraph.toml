@@ -1,0 +1,11 @@
+name = "TuGraph"
+vendor = "Ant Group"
+slug = "tugraph"
+description = "A property graph database developed by Ant Group and Tsinghua University, supporting both transactional lookups and graph analytics. Implements openCypher and ISO GQL query languages."
+url = "https://www.tugraph.org/"
+github_url = "https://github.com/TuGraph-family/tugraph-db"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["openCypher", "ISO GQL"]
+category = "Established"
+gdotv_support = false

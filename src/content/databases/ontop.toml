@@ -1,0 +1,12 @@
+name = "Ontop"
+vendor = "Ontopic"
+slug = "ontop"
+description = "A Virtual Knowledge Graph system that exposes relational databases as RDF knowledge graphs, translating SPARQL queries into SQL without moving data. Uses R2RML mappings and lightweight ontologies."
+url = "https://ontop-vkg.org/"
+github_url = "https://github.com/ontop/ontop"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+kind = "query-engine"
+category = "Established"
+gdotv_support = false

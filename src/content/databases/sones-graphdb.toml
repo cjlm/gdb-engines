@@ -1,0 +1,13 @@
+name = "Sones GraphDB"
+vendor = "sones GmbH"
+slug = "sones-graphdb"
+description = "An object-oriented graph database for the .NET platform, with its own query language (GQL, unrelated to Facebook's GraphQL or ISO GQL) and ACID transactions."
+url = "https://github.com/sones/sones"
+github_url = "https://github.com/sones/sones"
+license = "AGPL-3.0"
+type = "Property Graph"
+query_languages = ["GQL (Sones)"]
+category = "Emerging"
+status = "inactive"
+status_note = "No development activity since 2012. Company appears defunct."
+gdotv_support = false

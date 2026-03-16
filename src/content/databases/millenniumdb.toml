@@ -1,0 +1,11 @@
+name = "MillenniumDB"
+vendor = "IMFD Chile"
+slug = "millenniumdb"
+description = "An open-source, multi-model graph database supporting property graphs, RDF, and a multilayered graph format. Built on relational storage techniques and worst-case optimal join algorithms, with query support via SPARQL 1.1, GQL, and a proprietary Cypher-like language."
+url = "https://github.com/MillenniumDB/MillenniumDB"
+github_url = "https://github.com/MillenniumDB/MillenniumDB"
+license = "GPL-2.0"
+type = "Multiple"
+query_languages = ["GQL", "SPARQL"]
+category = "Emerging"
+gdotv_support = false

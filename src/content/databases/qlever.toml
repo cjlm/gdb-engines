@@ -1,0 +1,11 @@
+name = "QLever"
+vendor = "University of Freiburg"
+slug = "qlever"
+description = "A SPARQL engine capable of querying very large knowledge graphs (including complete Wikidata) on a single machine. Implements full SPARQL 1.1 with autocompletion and text search."
+url = "https://qlever.cs.uni-freiburg.de/"
+github_url = "https://github.com/ad-freiburg/qlever"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+gdotv_support = true

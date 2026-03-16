@@ -1,0 +1,12 @@
+name = "LadybugDB"
+vendor = "LadybugDB"
+slug = "ladybugdb"
+description = "A community fork of Kuzu. An embedded columnar property graph database for analytical workloads, with openCypher support, vector indices, and full-text search."
+url = "https://ladybugdb.com/"
+github_url = "https://github.com/LadybugDB/ladybug"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["openCypher"]
+kind = "embedded"
+category = "Growing"
+gdotv_support = true

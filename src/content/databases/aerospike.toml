@@ -1,0 +1,12 @@
+name = "Aerospike Graph"
+vendor = "Aerospike"
+slug = "aerospike"
+description = "A multi-model database with property graph capabilities built on top of Aerospike's key-value and document store. Uses Apache TinkerPop for graph traversal, supporting distributed graphs at terabyte scale."
+url = "https://aerospike.com/"
+github_url = "https://github.com/aerospike/aerospike-server"
+license = "AGPL-3.0"
+type = "Property Graph"
+query_languages = ["Gremlin"]
+category = "Enterprise"
+gdotv_support = true
+gdotv_url = "https://gdotv.com/blog/aerospike-graph-gv/"

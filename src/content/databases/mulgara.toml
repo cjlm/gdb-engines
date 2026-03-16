@@ -1,0 +1,13 @@
+name = "Mulgara"
+vendor = "Mulgara Project"
+slug = "mulgara"
+description = "An RDF triplestore written in Java, supporting semantic web data management with both SPARQL and the iTQL query language."
+url = "http://mulgara.org/"
+github_url = "https://github.com/quoll/mulgara"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL", "iTQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "No significant development activity in recent years."
+gdotv_support = false

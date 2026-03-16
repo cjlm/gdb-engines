@@ -1,0 +1,11 @@
+name = "GUN"
+vendor = "GUN"
+slug = "gun"
+description = "An open-source, offline-first, decentralized graph database with real-time peer-to-peer synchronization. Uses a custom CRDT conflict resolution algorithm (HAM) for multi-master replication across browsers and servers."
+url = "https://gun.eco/"
+github_url = "https://github.com/amark/gun"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["Custom API"]
+category = "Established"
+gdotv_support = false

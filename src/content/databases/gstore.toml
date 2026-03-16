@@ -1,0 +1,11 @@
+name = "gStore"
+vendor = "Peking University"
+slug = "gstore"
+description = "A native graph-based RDF triple store for storing and querying large-scale RDF datasets. Uses a graph-based storage model rather than relational tables for SPARQL evaluation."
+url = "https://en.gstore.cn"
+github_url = "https://github.com/pkumod/gStore"
+license = "BSD-3-Clause"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+gdotv_support = false

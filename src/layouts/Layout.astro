@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  jsonLd?: string;
+}
+const { title, jsonLd } = Astro.props;
+const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Compare features across 80+ graph databases, extensions, and query engines. Open Source data from academic research." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Compare features across 80+ graph databases, extensions, and query engines. Open Source data from academic research." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gdb-engines.com" />
+    <meta property="og:image" content="https://gdb-engines.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Compare features across 80+ graph databases, extensions, and query engines." />
+    <meta name="twitter:image" content="https://gdb-engines.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="GDB Engines" />
+    <meta property="og:locale" content="en_US" />
+    <title>{title}</title>
+    <!-- Favicons: SVG with dark mode support, PNG fallbacks -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-dark.png" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16-dark.png" media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#cc8090" />
+    <link rel="stylesheet" href="https://unpkg.com/microtip/microtip.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd.replace(/<\//g, '<\\/')} />}
+    {selineToken && (
+      <script
+        src="https://cdn.seline.so/seline.js"
+        data-token={selineToken}
+        async
+      />
+    )}
+    <script is:inline>
+      (function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script src="../scripts/table.ts"></script>
+  </body>
+</html>

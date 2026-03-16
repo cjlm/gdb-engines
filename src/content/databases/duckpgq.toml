@@ -1,0 +1,12 @@
+name = "DuckPGQ"
+vendor = "CWI Database Architectures Group"
+slug = "duckpgq"
+description = "DuckDB community extension adding SQL/PGQ (SQL:2023 standard) graph pattern matching and graph algorithms to DuckDB's analytical engine."
+url = "https://duckpgq.org/"
+github_url = "https://github.com/cwida/duckpgq-extension"
+license = "MIT"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["SQL/PGQ"]
+category = "Emerging"
+gdotv_support = false

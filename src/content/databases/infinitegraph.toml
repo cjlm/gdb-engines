@@ -1,0 +1,12 @@
+name = "InfiniteGraph"
+vendor = "Objectivity Inc"
+slug = "infinitegraph"
+description = "A distributed property graph database built on Objectivity's object database technology, focused on navigating and analyzing complex relationships across large datasets."
+url = "https://objectivity.com/infinitegraph/"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["DO Query Language"]
+category = "Enterprise"
+gdotv_support = false
+status = "inactive"
+status_note = "Objectivity Inc ceased operations in late 2023."
