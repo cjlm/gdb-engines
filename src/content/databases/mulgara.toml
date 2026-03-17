@@ -1,5 +1,6 @@
 name = "Mulgara"
 vendor = "Mulgara Project"
+previous_vendors = ["Tucana Technologies"]
 slug = "mulgara"
 description = "An RDF triplestore written in Java, supporting semantic web data management with both SPARQL and the iTQL query language."
 url = "http://mulgara.org/"

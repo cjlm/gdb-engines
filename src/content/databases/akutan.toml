@@ -1,0 +1,13 @@
+name = "Akutan"
+vendor = "eBay"
+slug = "akutan"
+description = "A distributed knowledge graph store built by eBay for storing and querying billions of facts. Uses a centralized log for serializing transactional updates across a cluster."
+url = "https://github.com/eBay/akutan"
+github_url = "https://github.com/eBay/akutan"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["Custom API"]
+category = "Emerging"
+status = "inactive"
+status_note = "Repository archived February 2022. Never reached production readiness."
+gdotv_support = false

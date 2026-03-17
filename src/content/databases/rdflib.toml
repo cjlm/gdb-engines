@@ -1,0 +1,12 @@
+name = "RDFLib"
+vendor = "RDFLib Community"
+slug = "rdflib"
+description = "The de facto standard Python library for working with RDF graphs. Provides pluggable storage backends, a SPARQL query interface, and extensive serialization format support."
+url = "https://rdflib.readthedocs.io/"
+github_url = "https://github.com/RDFLib/rdflib"
+license = "BSD-3-Clause"
+type = "RDF"
+kind = "embedded"
+query_languages = ["SPARQL"]
+category = "Established"
+gdotv_support = true
