@@ -1,0 +1,12 @@
+name = "GFQL"
+vendor = "Graphistry"
+slug = "gfql"
+description = "A dataframe-native graph query language with vectorized processing and optional GPU acceleration. Supports Cypher-like syntax, embedded within the PyGraphistry library."
+url = "https://pygraphistry.readthedocs.io/en/latest/gfql/"
+github_url = "https://github.com/graphistry/pygraphistry"
+license = "BSD-3-Clause"
+type = "Property Graph"
+kind = "query-engine"
+query_languages = ["GFQL", "Cypher"]
+category = "Growing"
+gdotv_support = false
