@@ -1,0 +1,12 @@
+name = "Eclipse RDF4J"
+previous_names = ["Sesame"]
+vendor = "Eclipse Foundation"
+slug = "eclipse-rdf4j"
+description = "A Java-based RDF framework and triple store supporting both in-memory and persistent storage. Provides SPARQL query endpoints over HTTP and a pluggable storage architecture (SAIL API) used by other triple store implementations including Ontotext GraphDB."
+url = "https://rdf4j.org/"
+github_url = "https://github.com/eclipse-rdf4j/rdf4j"
+license = "BSD-3-Clause"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Established"
+gdotv_support = true
