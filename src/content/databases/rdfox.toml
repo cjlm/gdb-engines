@@ -6,6 +6,6 @@ description = "An in-memory knowledge graph and semantic reasoning engine. Acqui
 url = "https://www.oxfordsemantic.tech"
 license = "Proprietary"
 type = "RDF"
-query_languages = ["SPARQL", "Datalog"]
+query_languages = ["SPARQL"]
 category = "Enterprise"
 gdotv_support = true
