@@ -6,7 +6,7 @@ export const columnTooltips: Record<string, string> = {
   kind: 'Product type: database, extension (e.g. PostGIS for Postgres), query engine, or embedded library',
   category: 'Market position: Established (widely adopted), Enterprise (major vendor platform), Growing (active with users, not yet widely adopted), or Emerging (new/experimental)',
   status: 'Active, Inactive (no recent development), or Deprecated (officially discontinued)',
-  gdotv: 'Supported by G.V() graph visualization tool (gdotv.com)',
+  gdotv: 'Supported by gdotv graph visualization tool (gdotv.com)',
   license: 'Software license (SPDX identifier or Proprietary)',
   query_languages: 'Query languages supported by this database',
 };
