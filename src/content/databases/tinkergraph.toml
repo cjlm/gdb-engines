@@ -9,4 +9,4 @@ type = "Property Graph"
 query_languages = ["Gremlin"]
 kind = "embedded"
 category = "Established"
-gdotv_support = false
+gdotv_support = true

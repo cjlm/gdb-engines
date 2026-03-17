@@ -1,6 +1,7 @@
-name = "Oracle Spatial and Graph"
+name = "Oracle Graph"
+previous_names = ["Oracle Spatial and Graph"]
 vendor = "Oracle"
-slug = "oracle-spatial-graph"
+slug = "oracle-graph"
 description = "Oracle's graph database capabilities within Oracle Database, supporting both property graphs (SQL/PGQ and PGQL) and RDF/SPARQL. Includes in-memory graph analytics with 60+ built-in algorithms."
 url = "https://www.oracle.com/database/graph/"
 license = "Proprietary"
