@@ -190,7 +190,7 @@ const jsonLd = JSON.stringify({
           <td>
             {db.data.query_languages?.length ? (
               <div class="query-langs">
-                {db.data.query_languages.map(lang => (
+                {[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).map(lang => (
                   <span class="badge badge-query-lang">{lang}</span>
                 ))}
               </div>
