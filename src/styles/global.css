@@ -657,6 +657,10 @@ a.has-tooltip {
 }
 
 /* Microtip overrides */
+[role="tooltip"]::before,
+[role="tooltip"]::after {
+  z-index: 100;
+}
 [role="tooltip"]::after,
 [data-microtip-size]::after {
   white-space: pre-line !important;
