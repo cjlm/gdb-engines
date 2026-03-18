@@ -676,3 +676,58 @@ a.has-tooltip {
   max-width: 28rem;
 }
 
+/* About page */
+.about-page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 2rem) 1.5rem 3rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.about-page h1 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+.about-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.about-page p, .about-page ul, .about-page dl {
+  margin-bottom: 0.75rem;
+}
+.about-page .code-block {
+  padding: 0.875rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  margin-bottom: 0.75rem;
+}
+.about-page code {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+}
+.about-page .back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+.about-page .changelog dt {
+  font-weight: 500;
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+.about-page .changelog dd {
+  margin-left: 0;
+  color: var(--color-text-secondary);
+}
+
