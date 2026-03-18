@@ -7,6 +7,24 @@ interface Props {
 }
 const { title, description = 'Compare features across 90+ graph databases, extensions, and query engines. Open Source data from academic research.', jsonLd = [], canonical = 'https://gdb-engines.com/' } = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
+
+const siteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GDB-Engines",
+  "url": "https://gdb-engines.com",
+  "description": description,
+  "publisher": {
+    "@type": "Organization",
+    "name": "GDB-Engines",
+    "url": "https://gdb-engines.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gdb-engines.com/og.png"
+    },
+    "sameAs": ["https://github.com/cjlm/gdb-engines"]
+  }
+});
 ---
 <!doctype html>
 <html lang="en">
@@ -38,6 +56,7 @@ const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#cc8090" />
+    <script type="application/ld+json" set:html={siteSchema.replace(/<\//g, '<\\/')} />
     {jsonLd.map(ld => (
       <script type="application/ld+json" set:html={ld.replace(/<\//g, '<\\/')} />
     ))}

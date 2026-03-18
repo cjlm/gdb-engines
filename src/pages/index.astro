@@ -30,13 +30,14 @@ const jsonLd = JSON.stringify({
   "description": `Compare features across ${databases.length}+ graph databases, extensions, and query engines.`,
   "url": "https://gdb-engines.com",
   "numberOfItems": databases.length,
+  "dateModified": new Date().toISOString().split('T')[0],
   "itemListElement": databases.map((db, i) => ({
     "@type": "ListItem",
     "position": i + 1,
     "item": {
       "@type": "SoftwareApplication",
       "name": db.data.name,
-      ...(db.data.url && { "url": db.data.url }),
+      ...((db.data.url || db.data.github_url) && { "url": db.data.url || db.data.github_url }),
       ...(db.data.description && { "description": db.data.description }),
       ...(db.data.vendor && { "author": {
         "@type": "Organization",
@@ -44,15 +45,44 @@ const jsonLd = JSON.stringify({
         ...(db.data.previous_vendors?.length && { "alternateName": db.data.previous_vendors }),
       } }),
       "applicationCategory": `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : 'Embedded Database'}`,
+      ...((db.data.features?.operating_on_linux || db.data.features?.operating_on_windows) && {
+        "operatingSystem": [
+          ...(db.data.features?.operating_on_linux ? ["Linux"] : []),
+          ...(db.data.features?.operating_on_windows ? ["Windows"] : []),
+        ]
+      }),
       ...(db.data.license && db.data.license !== 'Proprietary' && { "license": `https://spdx.org/licenses/${db.data.license}` }),
+      ...(db.data.license && db.data.license !== 'Proprietary' && {
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }),
       ...(db.data.github_url && { "codeRepository": db.data.github_url }),
     },
   })),
 });
+
+const datasetSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Graph Database Comparison Dataset",
+  "description": `Structured comparison data for ${databases.length} graph databases, extensions, and query engines.`,
+  "url": "https://gdb-engines.com",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": new Date().toISOString().split('T')[0],
+  "creator": {
+    "@type": "Organization",
+    "name": "GDB-Engines",
+    "url": "https://gdb-engines.com"
+  },
+  "distribution": {
+    "@type": "DataDownload",
+    "encodingFormat": "application/json",
+    "contentUrl": "https://gdb-engines.com/api.json"
+  }
+});
 ---
 <Layout
   title="GDB-Engines — Graph Database Comparison"
-  jsonLd={[jsonLd]}
+  jsonLd={[jsonLd, datasetSchema]}
   description={`Compare features across ${databases.length}+ graph databases, extensions, and query engines. Open Source data from academic research.`}
 >
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
