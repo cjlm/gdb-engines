@@ -1,7 +1,7 @@
 {
   "name": "GDB Engines",
   "short_name": "GDB Engines",
-  "description": "Compare features across 80+ graph databases, extensions, and query engines.",
+  "description": "Compare features across 90+ graph databases, extensions, and query engines.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -27,7 +27,7 @@ const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Graph Database Comparison",
-  "description": "Compare features across 80+ graph databases, extensions, and query engines.",
+  "description": `Compare features across ${databases.length}+ graph databases, extensions, and query engines.`,
   "url": "https://gdb-engines.com",
   "numberOfItems": databases.length,
   "itemListElement": databases.map((db, i) => ({
@@ -50,7 +50,11 @@ const jsonLd = JSON.stringify({
   })),
 });
 ---
-<Layout title="GDB-Engines — Graph Database Comparison" jsonLd={jsonLd}>
+<Layout
+  title="GDB-Engines — Graph Database Comparison"
+  jsonLd={[jsonLd]}
+  description={`Compare features across ${databases.length}+ graph databases, extensions, and query engines. Open Source data from academic research.`}
+>
   <header>
     <div class="left">
       <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
@@ -256,4 +260,5 @@ const jsonLd = JSON.stringify({
       <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
     </div>
   </dialog>
+  <script src="../scripts/table.ts"></script>
 </Layout>

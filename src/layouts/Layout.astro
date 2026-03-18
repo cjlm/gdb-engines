@@ -1,9 +1,11 @@
 ---
 interface Props {
   title: string;
-  jsonLd?: string;
+  description?: string;
+  jsonLd?: string[];
+  canonical?: string;
 }
-const { title, jsonLd } = Astro.props;
+const { title, description = 'Compare features across 90+ graph databases, extensions, and query engines. Open Source data from academic research.', jsonLd = [], canonical = 'https://gdb-engines.com/' } = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
 ---
 <!doctype html>
@@ -11,15 +13,16 @@ const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Compare features across 80+ graph databases, extensions, and query engines. Open Source data from academic research." />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="Compare features across 80+ graph databases, extensions, and query engines. Open Source data from academic research." />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gdb-engines.com" />
     <meta property="og:image" content="https://gdb-engines.com/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="Compare features across 80+ graph databases, extensions, and query engines." />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://gdb-engines.com/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -39,7 +42,9 @@ const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
-    {jsonLd && <script type="application/ld+json" set:html={jsonLd.replace(/<\//g, '<\\/')} />}
+    {jsonLd.map(ld => (
+      <script type="application/ld+json" set:html={ld.replace(/<\//g, '<\\/')} />
+    ))}
     {selineToken && (
       <script
         src="https://cdn.seline.so/seline.js"
@@ -53,6 +58,5 @@ const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
   </head>
   <body>
     <slot />
-    <script src="../scripts/table.ts"></script>
   </body>
 </html>
