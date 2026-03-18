@@ -676,6 +676,19 @@ a.has-tooltip {
   max-width: 28rem;
 }
 
+/* Site footer */
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+.site-footer a {
+  color: var(--color-text-tertiary);
+}
+
 /* About page */
 .about-page {
   max-width: 40rem;
