@@ -38,9 +38,6 @@ const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#cc8090" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
     {jsonLd.map(ld => (
       <script type="application/ld+json" set:html={ld.replace(/<\//g, '<\\/')} />
     ))}
