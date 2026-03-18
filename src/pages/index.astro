@@ -16,7 +16,7 @@ await Promise.all(
     if (db.data.icon) {
       faviconMap.set(db.data.slug, { url: `/logos/${db.data.icon}`, source: 'custom' });
     } else if (db.data.url) {
-      faviconMap.set(db.data.slug, await fetchFavicon(db.data.url, db.data.github_url));
+      faviconMap.set(db.data.slug, await fetchFavicon(db.data.slug, db.data.url, db.data.github_url));
     } else {
       faviconMap.set(db.data.slug, { url: '/favicon.svg', source: 'fallback' });
     }

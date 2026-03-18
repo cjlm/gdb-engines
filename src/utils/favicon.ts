@@ -1,4 +1,11 @@
 import EleventyFetch from '@11ty/eleventy-fetch';
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const LOGOS_DIR = join(process.cwd(), 'public', 'logos');
+if (!existsSync(LOGOS_DIR)) {
+  mkdirSync(LOGOS_DIR, { recursive: true });
+}
 
 // Fetch known default favicons once for comparison
 let defaultFaviconBytes: Buffer | null = null;
@@ -72,20 +79,24 @@ export interface FaviconResult {
   source: 'site' | 'github' | 'custom' | 'fallback';
 }
 
-export async function fetchFavicon(url: string, githubUrl?: string): Promise<FaviconResult> {
-  const toDataUri = (buf: Buffer) => `data:image/png;base64,${buf.toString('base64')}`;
+function saveToFile(slug: string, buf: Buffer): string {
+  const filename = `${slug}.png`;
+  writeFileSync(join(LOGOS_DIR, filename), buf);
+  return `/logos/${filename}`;
+}
 
+export async function fetchFavicon(slug: string, url: string, githubUrl?: string): Promise<FaviconResult> {
   try {
     const hostname = new URL(url).hostname;
     const googleFavicon = await fetchGoogleFavicon(hostname);
-    if (googleFavicon) return { url: toDataUri(googleFavicon), source: 'site' };
+    if (googleFavicon) return { url: saveToFile(slug, googleFavicon), source: 'site' };
   } catch {
     // Invalid URL — skip Google favicon lookup
   }
 
   if (githubUrl) {
     const ghAvatar = await fetchGitHubAvatar(githubUrl);
-    if (ghAvatar) return { url: toDataUri(ghAvatar), source: 'github' };
+    if (ghAvatar) return { url: saveToFile(slug, ghAvatar), source: 'github' };
   }
 
   return { url: '/favicon.svg', source: 'fallback' };
