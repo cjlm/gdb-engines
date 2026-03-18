@@ -225,7 +225,7 @@ const datasetSchema = JSON.stringify({
               )
             ) : ''}
           </td>
-          <td>{db.data.gdotv_support ? <a href={db.data.gdotv_url || 'https://gdotv.com'} target="_blank" rel="noopener noreferrer">Yes</a> : 'No'}</td>
+          <td>{db.data.gdotv_support ? <a href={`${db.data.gdotv_url || 'https://gdotv.com'}${(db.data.gdotv_url || 'https://gdotv.com').includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Yes</a> : 'No'}</td>
           <td>{db.data.license ?? '-'}</td>
           <td>
             {db.data.query_languages?.length ? (
