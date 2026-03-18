@@ -2,6 +2,7 @@ name = "Objectivity/DB"
 vendor = "Objectivity Inc"
 slug = "objectivity-db"
 description = "A distributed object-oriented database with graph capabilities via InfiniteGraph and the ThingSpan analytics platform. Vendor ceased operations in late 2023."
+url = "https://www.objectivity.com/products/objectivitydb/"
 type = "Other"
 query_languages = ["DO Query Language"]
 category = "Enterprise"

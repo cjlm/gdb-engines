@@ -2,6 +2,7 @@ name = "Graphflow"
 vendor = "University of Waterloo"
 slug = "graphflow"
 description = "A research prototype in-memory property graph database supporting both one-time and continuous subgraph queries. Extends openCypher with trigger support. Succeeded by Kuzu."
+github_url = "https://github.com/graphflow/graphflow-columnar-techniques"
 license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["openCypher"]
