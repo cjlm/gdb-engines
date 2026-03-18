@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-fetch": "^5.1.1",
+    "@astrojs/sitemap": "^3.7.1",
     "astro": "^5.17.1"
   }
 }
