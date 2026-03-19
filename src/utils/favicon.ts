@@ -46,12 +46,10 @@ async function fetchGoogleFavicon(hostname: string): Promise<Buffer | null> {
       { duration: '30d', type: 'buffer', directory: '.cache/favicons' }
     );
     const defaultIcon = await getDefaultFavicon();
-    if (defaultIcon.length > 0 && buffer.equals(defaultIcon)) {
-      return null;
-    }
-    // Reject GitHub's own favicon (octocat) — sites hosted on github.com
+    const isDefault = defaultIcon.length > 0 && buffer.equals(defaultIcon);
     const ghIcon = await getGitHubFavicon();
-    if (ghIcon.length > 0 && buffer.equals(ghIcon)) {
+    const isGithub = ghIcon.length > 0 && buffer.equals(ghIcon);
+    if (isDefault || isGithub) {
       return null;
     }
     return buffer;
