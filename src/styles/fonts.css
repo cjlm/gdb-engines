@@ -2,21 +2,7 @@
 @font-face {
   font-family: 'Familjen Grotesk';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/familjen-grotesk-latin.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Familjen Grotesk';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/familjen-grotesk-latin.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Familjen Grotesk';
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 400 600;
   font-display: swap;
   src: url('/fonts/familjen-grotesk-latin.woff2') format('woff2');
 }
@@ -25,21 +11,7 @@
 @font-face {
   font-family: 'Rubik';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/rubik-latin.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/rubik-latin.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 400 600;
   font-display: swap;
   src: url('/fonts/rubik-latin.woff2') format('woff2');
 }
