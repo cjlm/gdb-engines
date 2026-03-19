@@ -1,3 +1,6 @@
+@import './microtip.css';
+@import './fonts.css';
+
 /* CSS Reset */
 * {
   margin: 0;
@@ -440,7 +443,10 @@ dialog {
 .database-cell .icon-placeholder {
   width: 1.25rem;
   height: 1.25rem;
-  flex: 0 0 auto;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  aspect-ratio: 1;
+  flex: 0 0 1.25rem;
 }
 .database-cell {
   justify-content: flex-start;
@@ -486,7 +492,13 @@ dialog {
 .badge-inactive { background: #F5F5F5; color: #6B6B6B; }
 .badge-deprecated { background: #FFEBEE; color: #C62828; }
 
-/* Dim inactive/deprecated rows */
+/* Hide inactive/deprecated rows by default (JS reveals via toggle) */
+tr.row-inactive,
+tr.row-deprecated {
+  display: none;
+}
+
+/* Dim inactive/deprecated rows when visible */
 tr.row-inactive td,
 tr.row-deprecated td {
   color: var(--color-text-tertiary);
@@ -672,8 +684,157 @@ a.has-tooltip {
   color: var(--color-background);
   max-width: 24rem;
 }
+thead [role="tooltip"]::after {
+  min-width: 12rem;
+}
 [data-microtip-size="medium"]::after {
   min-width: 18rem;
   max-width: 28rem;
+}
+
+/* Site footer */
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+.site-footer a {
+  color: var(--color-text-tertiary);
+}
+
+/* About page */
+.about-page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 2rem) 1.5rem 3rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.about-page h1 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+.about-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.about-page p, .about-page ul, .about-page dl {
+  margin-bottom: 0.75rem;
+}
+.about-page .code-block {
+  padding: 0.875rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-surface);
+  margin-bottom: 0.75rem;
+}
+.about-page code {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+}
+.about-page .back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+.about-page .changelog dt {
+  font-weight: 500;
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+.about-page .changelog dd {
+  margin-left: 0;
+  color: var(--color-text-secondary);
+}
+
+/* Database detail page */
+.db-page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 2rem) 1.5rem 3rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.db-page h1 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.db-page h1 img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.db-page .description {
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+}
+.db-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.db-page h3 {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.db-page .meta-grid {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.375rem 1rem;
+}
+.db-page .meta-grid dt {
+  color: var(--color-text-tertiary);
+}
+.db-page .meta-grid dd {
+  margin: 0;
+}
+.db-page .feature-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+.db-page .feature-name {
+  min-width: 12rem;
+  color: var(--color-text-tertiary);
+}
+.db-page .feature-meaning {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+.db-page .back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+.db-page .db-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /*?sort=
+Disallow: /*?search=
+Disallow: /*?features=
+Disallow: /*?inactive=
+
+Sitemap: https://gdb-engines.com/sitemap-index.xml

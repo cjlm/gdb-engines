@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "About GDB-Engines",
+  "url": "https://gdb-engines.com/about",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gdb-engines.com" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gdb-engines.com/about" }
+    ]
+  }
+});
+---
+<Layout title="About — GDB-Engines" description="About GDB-Engines: methodology, changelog, and contributing guidelines for the open source graph database comparison." jsonLd={[jsonLd]} canonical="https://gdb-engines.com/about">
+  <main class="about-page">
+    <a href="/" class="back-link">&larr; Back to comparison</a>
+    <h1>About GDB-Engines</h1>
+
+    <h2>What is GDB-Engines?</h2>
+    <p>GDB-Engines is an open source comparison of graph databases, query engines, extensions, and embedded libraries. It covers property graph (LPG), RDF, and multi-model databases, providing a comprehensive reference for developers, researchers, and architects evaluating graph technology.</p>
+    <p>The project aims to maintain an accurate, up-to-date catalog of every notable graph database — from established industry leaders to emerging experimental projects — with structured metadata and quantitative feature scores derived from academic research.</p>
+
+    <h2>Methodology</h2>
+    <p>Databases are included based on community contributions and editorial review. The catalog is open to additions via pull request. Each database is classified along several dimensions:</p>
+    <p><b>Categories:</b></p>
+    <ul>
+      <li><b>Established</b> — Widely adopted databases with large user bases and mature ecosystems.</li>
+      <li><b>Enterprise</b> — Major vendor platforms typically backed by large organizations.</li>
+      <li><b>Growing</b> — Actively developed databases with a growing user community.</li>
+      <li><b>Emerging</b> — New or experimental projects in early stages of development.</li>
+    </ul>
+    <p><b>Types:</b></p>
+    <ul>
+      <li><b>Property Graph</b> — Databases using the labeled property graph model.</li>
+      <li><b>RDF</b> — Databases built on the Resource Description Framework and SPARQL.</li>
+      <li><b>Multiple</b> — Multi-model databases supporting more than one graph paradigm.</li>
+      <li><b>Extension</b> — Graph capabilities added to an existing database system.</li>
+      <li><b>Query Engine</b> — Standalone engines that query graph data from external sources.</li>
+      <li><b>Embedded</b> — Libraries designed for in-process graph storage and querying.</li>
+    </ul>
+    <p><b>Status:</b></p>
+    <ul>
+      <li><b>Active</b> — Under active development and maintenance.</li>
+      <li><b>Inactive</b> — No longer actively maintained but still available.</li>
+      <li><b>Deprecated</b> — Officially end-of-life or superseded.</li>
+    </ul>
+
+    <h2>Research Features</h2>
+    <p>Feature scores are derived from: <em>Coimbra, M. E., Svitakova, L., Francisco, A. P., &amp; Veiga, L. (2025). Survey: Graph Databases. arXiv:2505.24758.</em></p>
+    <p>The study evaluates 43 features across categories including data model capabilities, query language support, scalability, and administration. Each score ranges from 0 to 1, where 0 indicates no support, 1 indicates full support, and intermediate values reflect partial or conditional support as assessed by the survey authors.</p>
+
+    <h2>API</h2>
+    <p>A JSON API is available at <code>/api.json</code> containing all database entries and their metadata. Example usage:</p>
+    <div class="code-block"><code>curl https://gdb-engines.com/api.json</code></div>
+
+    <h2>Changelog</h2>
+    <dl class="changelog">
+      <dt>2026-03-18</dt>
+      <dd>SEO improvements: self-hosted fonts and CSS, individual database pages, security headers.</dd>
+      <dt>2026-03-17</dt>
+      <dd>Added GFQL, Lance Graph openCypher support, additional graph databases.</dd>
+      <dt>2026-03-16</dt>
+      <dd>Removed reasoning languages that can't be used for querying, added SQL for Stardog.</dd>
+    </dl>
+
+    <h2>Contributing</h2>
+    <p>GDB-Engines is open source. Database entries are stored as TOML files in the <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">GitHub repository</a>. To add or update a database, open a pull request with changes to the relevant TOML file. Contributions for new databases, corrections, and feature improvements are welcome.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:contact@gdb-engines.com">contact@gdb-engines.com</a></p>
+  </main>
+</Layout>

@@ -1,0 +1,28 @@
+# GDB-Engines
+
+> Compare features across 90+ graph databases, extensions, and query engines. Open source data from academic research.
+
+## About
+
+GDB-Engines is an open source comparison tool for graph databases. It covers property graph databases (LPG), RDF triple stores, multi-model databases, query engines, extensions, and embedded graph libraries.
+
+## Data
+
+- Comparison table: https://gdb-engines.com
+- JSON API: https://gdb-engines.com/api.json
+- Source data (TOML): https://github.com/cjlm/gdb-engines/tree/main/src/content/databases
+
+## Research Features
+
+43 feature scores sourced from: Coimbra, M. E., Svitakova, L., Francisco, A. P., & Veiga, L. (2025). Survey: Graph Databases. arXiv:2505.24758.
+
+## Categories
+
+- Type: Property Graph (LPG), RDF, Multiple, Other
+- Kind: Database, Extension, Query Engine, Embedded
+- Category: Established, Enterprise, Growing, Emerging
+- Status: Active, Inactive, Deprecated
+
+## Preferred citation
+
+GDB-Engines - Graph Database Comparison. https://gdb-engines.com

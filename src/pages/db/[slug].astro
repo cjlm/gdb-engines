@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
+import { fetchFavicon } from '../../utils/favicon';
+
+export async function getStaticPaths() {
+  const databases = await getCollection('databases');
+  return databases.map(db => ({
+    params: { slug: db.data.slug },
+    props: { db },
+  }));
+}
+
+const { db } = Astro.props;
+
+// Resolve favicon
+let faviconUrl: string | null = null;
+if (db.data.icon) {
+  faviconUrl = `/logos/${db.data.icon}`;
+} else if (db.data.url) {
+  const result = await fetchFavicon(db.data.slug, db.data.url, db.data.github_url);
+  if (result.source === 'site' || result.source === 'github' || result.source === 'custom') {
+    faviconUrl = result.url;
+  }
+}
+
+const categoryLabel = `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : 'Embedded Database'}`;
+
+const pageJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": db.data.name,
+  ...((db.data.url || db.data.github_url) && { "url": db.data.url || db.data.github_url }),
+  "description": db.data.description,
+  ...(db.data.vendor && {
+    "author": {
+      "@type": "Organization",
+      "name": db.data.vendor,
+    }
+  }),
+  "applicationCategory": categoryLabel,
+  ...(db.data.license && db.data.license !== 'Proprietary' && {
+    "license": `https://spdx.org/licenses/${db.data.license}`,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }),
+  ...(db.data.github_url && { "codeRepository": db.data.github_url }),
+  "dateModified": new Date().toISOString().split('T')[0],
+});
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gdb-engines.com" },
+    { "@type": "ListItem", "position": 2, "name": db.data.name, "item": `https://gdb-engines.com/db/${db.data.slug}` }
+  ]
+});
+
+const title = `${db.data.name} — ${categoryLabel} | GDB-Engines`;
+const description = db.data.description;
+---
+<Layout
+  title={title}
+  description={description}
+  jsonLd={[pageJsonLd, breadcrumbJsonLd]}
+  canonical={`https://gdb-engines.com/db/${db.data.slug}`}
+>
+  <main class="db-page">
+    <a href="/" class="back-link">&larr; Back to comparison</a>
+
+    <h1>
+      {faviconUrl && (
+        <img src={faviconUrl} alt="" width="24" height="24" />
+      )}
+      {db.data.name}
+    </h1>
+
+    <p class="description">{db.data.description}</p>
+
+    <h2>Details</h2>
+    <dl class="meta-grid">
+      {db.data.vendor && (
+        <>
+          <dt>Vendor</dt>
+          <dd>{db.data.vendor}</dd>
+        </>
+      )}
+      <dt>Type</dt>
+      <dd>
+        <span class={`badge badge-${db.data.type.toLowerCase().replace(/ /g, '-')}`}>
+          {db.data.type}
+        </span>
+      </dd>
+      {db.data.kind !== 'database' && (
+        <>
+          <dt>Kind</dt>
+          <dd>
+            <span class={`badge badge-${db.data.kind}`}>
+              {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : 'Embedded'}
+            </span>
+          </dd>
+        </>
+      )}
+      <dt>Category</dt>
+      <dd>
+        <span class={`badge badge-${db.data.category.toLowerCase()}`}>
+          {db.data.category}
+        </span>
+      </dd>
+      {db.data.status !== 'active' && (
+        <>
+          <dt>Status</dt>
+          <dd>
+            <span class={`badge badge-${db.data.status}`}>
+              {db.data.status === 'inactive' ? 'Inactive' : 'Deprecated'}
+            </span>
+            {db.data.status_note && <span> — {db.data.status_note}</span>}
+          </dd>
+        </>
+      )}
+      <dt>License</dt>
+      <dd>{db.data.license ?? '-'}</dd>
+      {db.data.query_languages?.length > 0 && (
+        <>
+          <dt>Query Languages</dt>
+          <dd>{db.data.query_languages.join(', ')}</dd>
+        </>
+      )}
+    </dl>
+
+    {(db.data.url || db.data.github_url) && (
+      <>
+        <h2>Links</h2>
+        <div class="db-links">
+          {db.data.url && (
+            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Official website</a>
+          )}
+          {db.data.github_url && (
+            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">GitHub</a>
+          )}
+        </div>
+      </>
+    )}
+
+    {db.data.features && (
+      <>
+        <h2>Feature Scores</h2>
+        {featureGroups.map(group => {
+          const groupFeatures = group.features.filter(key => {
+            const val = db.data.features?.[key as keyof typeof db.data.features];
+            return val !== undefined;
+          });
+          if (groupFeatures.length === 0) return null;
+          return (
+            <>
+              <h3>{group.name}</h3>
+              {groupFeatures.map(key => {
+                const value = db.data.features![key as keyof typeof db.data.features] as number;
+                const meaning = scoreMeanings[key]?.[String(value)] ?? '';
+                return (
+                  <div class="feature-row">
+                    <span class="feature-name">{featureDisplayNames[key] ?? key}</span>
+                    <div class="bar-indicator">
+                      <div class="bar-fill" style={`width: ${value * 100}%`} data-score={value}></div>
+                    </div>
+                    <span class="feature-meaning">{meaning}</span>
+                  </div>
+                );
+              })}
+            </>
+          );
+        })}
+      </>
+    )}
+  </main>
+</Layout>
