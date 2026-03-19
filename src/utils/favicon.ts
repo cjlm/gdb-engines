@@ -86,10 +86,24 @@ function saveToFile(slug: string, buf: Buffer): string {
 }
 
 export async function fetchFavicon(slug: string, url: string, githubUrl?: string): Promise<FaviconResult> {
-  // Check if prebuild script already extracted this favicon
+  // Use committed/prebuild PNG if available
   const logoPath = join(LOGOS_DIR, `${slug}.png`);
   if (existsSync(logoPath)) {
     return { url: `/logos/${slug}.png`, source: 'site' };
+  }
+
+  // Fallback: fetch at build time and save to public/logos/ for Astro to copy
+  try {
+    const hostname = new URL(url).hostname;
+    const googleFavicon = await fetchGoogleFavicon(hostname);
+    if (googleFavicon) return { url: saveToFile(slug, googleFavicon), source: 'site' };
+  } catch {
+    // Invalid URL
+  }
+
+  if (githubUrl) {
+    const ghAvatar = await fetchGitHubAvatar(githubUrl);
+    if (ghAvatar) return { url: saveToFile(slug, ghAvatar), source: 'github' };
   }
 
   return { url: '/favicon.svg', source: 'fallback' };
