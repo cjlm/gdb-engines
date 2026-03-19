@@ -9,19 +9,16 @@ const databases = (await getCollection('databases')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
 
-// Fetch and cache all favicons at build time
+// Check for favicons extracted by prebuild script
 const faviconMap = new Map<string, { url: string; source: string }>();
-await Promise.all(
-  databases.map(async (db) => {
-    if (db.data.icon) {
-      faviconMap.set(db.data.slug, { url: `/logos/${db.data.icon}`, source: 'custom' });
-    } else if (db.data.url) {
-      faviconMap.set(db.data.slug, await fetchFavicon(db.data.slug, db.data.url, db.data.github_url));
-    } else {
-      faviconMap.set(db.data.slug, { url: '/favicon.svg', source: 'fallback' });
-    }
-  })
-);
+for (const db of databases) {
+  if (db.data.icon) {
+    faviconMap.set(db.data.slug, { url: `/logos/${db.data.icon}`, source: 'custom' });
+  } else {
+    const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
+    faviconMap.set(db.data.slug, result);
+  }
+}
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
