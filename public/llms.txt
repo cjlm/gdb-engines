@@ -25,4 +25,4 @@ GDB-Engines is an open source comparison tool for graph databases. It covers pro
 
 ## Preferred citation
 
-GDB-Engines — Graph Database Comparison. https://gdb-engines.com
+GDB-Engines - Graph Database Comparison. https://gdb-engines.com
