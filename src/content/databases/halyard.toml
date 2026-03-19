@@ -1,0 +1,13 @@
+name = "Halyard"
+vendor = "Merck"
+slug = "halyard"
+description = "An RDF triple store built on Apache HBase and Hadoop using the Eclipse RDF4J framework. Distributes triple storage across an HBase cluster with support for named graphs and SPARQL 1.1 federation."
+url = "https://merck.github.io/Halyard/"
+github_url = "https://github.com/Merck/Halyard"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "No development activity since mid-2022."
+gdotv_support = false

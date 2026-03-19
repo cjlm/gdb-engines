@@ -1,0 +1,13 @@
+name = "Strabon"
+vendor = "University of Athens"
+slug = "strabon"
+description = "A spatiotemporal RDF store extending RDF4J with support for stRDF data and stSPARQL queries. Uses PostgreSQL/PostGIS as a backend for geospatial operations including spatial joins, distance calculations, and temporal reasoning with Allen's interval algebra."
+url = "https://strabon.di.uoa.gr"
+github_url = "https://github.com/AI-team-UoA/Strabon"
+license = "MPL-2.0"
+type = "RDF"
+query_languages = ["SPARQL", "stSPARQL", "GeoSPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Minimal development activity in recent years."
+gdotv_support = false

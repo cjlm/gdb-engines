@@ -1,0 +1,12 @@
+name = "Rocketgraph"
+vendor = "Rocketgraph (formerly Trovares)"
+slug = "rocketgraph"
+previous_names = ["Trovares xGT"]
+description = "An in-memory property graph engine using multithreaded parallelism on a single node for graph analytics and pattern matching. Supports parallel breadth-first search integrated into Cypher queries."
+url = "https://rocketgraph.com/"
+github_url = "https://github.com/trovares/pyxgt"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["Cypher"]
+category = "Emerging"
+gdotv_support = false
