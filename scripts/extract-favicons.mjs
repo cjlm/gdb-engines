@@ -62,8 +62,9 @@ for (const file of files) {
         `https://www.google.com/s2/favicons?sz=32&domain=${hostname}`,
         { duration: '30d', type: 'buffer', directory: '.cache/favicons' }
       );
-      if (buf && defaultFaviconBytes.length > 0 && !buf.equals(defaultFaviconBytes) &&
-          githubFaviconBytes.length > 0 && !buf.equals(githubFaviconBytes)) {
+      const isDefault = defaultFaviconBytes.length > 0 && buf.equals(defaultFaviconBytes);
+      const isGithub = githubFaviconBytes.length > 0 && buf.equals(githubFaviconBytes);
+      if (buf && !isDefault && !isGithub) {
         writeFileSync(outPath, buf);
         fetched++;
         continue;

@@ -1,0 +1,13 @@
+name = "Parliament"
+vendor = "Raytheon BBN Technologies"
+slug = "parliament"
+description = "An RDF triple store and OWL reasoner originally developed with DARPA funding as DAML DB. Supports SWRL rules for inference, configurable global caching across named graphs, and query timeouts."
+url = "https://github.com/raytheonbbn/parliament"
+github_url = "https://github.com/raytheonbbn/parliament"
+license = "BSD-3-Clause"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Last release v2.8.1 in June 2022. Limited recent activity."
+gdotv_support = false

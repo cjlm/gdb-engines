@@ -1,0 +1,11 @@
+name = "NornicDB"
+vendor = "orneryd"
+slug = "nornicdb"
+description = "A hybrid graph and vector database written in Go with Neo4j compatibility via the Bolt protocol. Supports Cypher queries, native vector search with GPU acceleration, and a tiered memory system with episodic, semantic, and procedural decay. Includes a versioned graph ledger with temporal validity and as-of reads."
+url = "https://github.com/orneryd/NornicDB"
+github_url = "https://github.com/orneryd/NornicDB"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["Cypher", "GraphQL"]
+category = "Emerging"
+gdotv_support = false

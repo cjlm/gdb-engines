@@ -1,0 +1,13 @@
+name = "Apache Marmotta KiWi"
+vendor = "Apache Software Foundation"
+slug = "marmotta-kiwi"
+description = "An RDF triple store backend for Apache Marmotta that translates SPARQL directly to SQL for execution against PostgreSQL, MySQL, or H2. Built on the Sesame/RDF4J Sail API with support for named graphs, versioning, and rule-based reasoning via sKWRL."
+url = "https://marmotta.apache.org/kiwi/"
+github_url = "https://github.com/apache/marmotta"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Project retired to the Apache Attic. Repository archived in May 2021."
+gdotv_support = false
