@@ -1,0 +1,10 @@
+name = "MarkLogic"
+vendor = "Progress Software"
+slug = "marklogic"
+description = "A multi-model NoSQL database with native RDF triple storage, SPARQL support, and semantic reasoning. Combines JSON, XML, and RDF data models with ACID transactions and integrated full-text search."
+url = "https://www.progress.com/marklogic"
+license = "Proprietary"
+type = "Multiple"
+query_languages = ["SPARQL", "XQuery", "SQL"]
+category = "Enterprise"
+gdotv_support = true

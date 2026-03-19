@@ -1,0 +1,11 @@
+name = "Oxigraph"
+vendor = "Oxigraph Community"
+slug = "oxigraph"
+description = "An RDF triple store written in Rust and built on RocksDB. Available as a standalone server, embeddable library, and via Python and JavaScript bindings."
+url = "https://github.com/oxigraph/oxigraph"
+github_url = "https://github.com/oxigraph/oxigraph"
+license = "Apache-2.0 OR MIT"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+gdotv_support = true
