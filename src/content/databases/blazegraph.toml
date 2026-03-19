@@ -1,6 +1,5 @@
 name = "BlazeGraph"
-vendor = "Amazon"
-previous_vendors = ["SYSTAP"]
+vendor = "SYSTAP"
 previous_names = ["Bigdata"]
 slug = "blazegraph"
 description = "An RDF database supporting billions of edges on a single machine. Uses an alternative approach to RDF reification that enables property graph-like capabilities. Notable as the backend for Wikidata's query service."

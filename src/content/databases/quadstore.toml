@@ -1,0 +1,12 @@
+name = "Quadstore"
+vendor = "Jacopo Scazzosi"
+slug = "quadstore"
+description = "An RDF quad store for JavaScript runtimes including Node.js, Deno, Bun, and browsers. Implements RDF/JS interfaces with pluggable AbstractLevel storage backends and SPARQL support via the Comunica engine."
+url = "https://github.com/quadstorejs/quadstore"
+github_url = "https://github.com/quadstorejs/quadstore"
+license = "MIT"
+type = "RDF"
+kind = "embedded"
+query_languages = ["SPARQL"]
+category = "Emerging"
+gdotv_support = false

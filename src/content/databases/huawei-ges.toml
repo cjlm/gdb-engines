@@ -1,0 +1,9 @@
+name = "Huawei Graph Engine Service"
+vendor = "Huawei Cloud"
+slug = "huawei-ges"
+description = "A fully managed cloud graph database service built on Huawei's EYWA kernel. Supports graphs with tens of billions of vertices with built-in graph algorithms for path finding, community detection, and link prediction."
+url = "https://www.huaweicloud.com/intl/en-us/product/ges.html"
+type = "Property Graph"
+query_languages = ["Gremlin", "openCypher"]
+category = "Enterprise"
+gdotv_support = true

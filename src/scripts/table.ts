@@ -234,6 +234,11 @@ function applyTheme(theme: string | null) {
     document.documentElement.removeAttribute('data-theme');
     localStorage.removeItem('theme');
   }
+  // Swap favicon PNGs to match theme
+  const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelectorAll<HTMLLinkElement>('link[rel="icon"][type="image/png"]').forEach(link => {
+    link.href = link.href.replace(isDark ? '.png' : '-dark.png', isDark ? '-dark.png' : '.png');
+  });
 }
 
 // Restore saved theme on load

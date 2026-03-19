@@ -1,11 +1,11 @@
 name = "Stardog"
 vendor = "Stardog Union"
 slug = "stardog"
-description = "An RDF-based knowledge graph database with property graph extensions. Supports ACID transactions, horizontal scaling, and multiple query interfaces including SPARQL and GraphQL."
+description = "An RDF-based knowledge graph database with OWL 2 reasoning and property graph extensions. Includes Voicebox, an OpenAI-compatible natural language query interface via LLM integration."
 url = "https://www.stardog.com/"
 license = "Proprietary"
 type = "RDF"
-query_languages = ["SPARQL", "GraphQL"]
+query_languages = ["SPARQL", "SQL", "GraphQL"]
 category = "Enterprise"
 gdotv_support = true
 

@@ -1,0 +1,11 @@
+name = "Apache Jena Fuseki"
+vendor = "Apache Software Foundation"
+slug = "apache-jena-fuseki"
+description = "An open-source RDF triple store and SPARQL server built on the Apache Jena framework. Uses the TDB2 native storage engine with support for GeoSPARQL spatial queries."
+url = "https://jena.apache.org/"
+github_url = "https://github.com/apache/jena"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Established"
+gdotv_support = true

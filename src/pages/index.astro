@@ -230,11 +230,11 @@ const datasetSchema = JSON.stringify({
           <td>
             {db.data.query_languages?.length ? (
               <div class="query-langs">
-                {db.data.query_languages.slice(0, 3).map(lang => (
+                {[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(0, 3).map(lang => (
                   <span class="badge badge-query-lang">{lang}</span>
                 ))}
                 {db.data.query_languages.length > 3 && (
-                  <span class="badge badge-query-lang has-tooltip" aria-label={db.data.query_languages.slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
+                  <span class="badge badge-query-lang has-tooltip" aria-label={[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
                 )}
               </div>
             ) : '-'}
