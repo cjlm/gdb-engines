@@ -443,7 +443,10 @@ dialog {
 .database-cell .icon-placeholder {
   width: 1.25rem;
   height: 1.25rem;
-  flex: 0 0 auto;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  aspect-ratio: 1;
+  flex: 0 0 1.25rem;
 }
 .database-cell {
   justify-content: flex-start;
@@ -489,7 +492,13 @@ dialog {
 .badge-inactive { background: #F5F5F5; color: #6B6B6B; }
 .badge-deprecated { background: #FFEBEE; color: #C62828; }
 
-/* Dim inactive/deprecated rows */
+/* Hide inactive/deprecated rows by default (JS reveals via toggle) */
+tr.row-inactive,
+tr.row-deprecated {
+  display: none;
+}
+
+/* Dim inactive/deprecated rows when visible */
 tr.row-inactive td,
 tr.row-deprecated td {
   color: var(--color-text-tertiary);
@@ -670,6 +679,9 @@ a.has-tooltip {
   background: var(--color-text);
   color: var(--color-background);
   max-width: 24rem;
+}
+thead [role="tooltip"]::after {
+  min-width: 12rem;
 }
 [data-microtip-size="medium"]::after {
   min-width: 18rem;

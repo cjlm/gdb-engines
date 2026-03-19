@@ -181,7 +181,7 @@ const datasetSchema = JSON.stringify({
                   </a>
                 ) : null}
                 {db.data.url ? (
-                  <a href={db.data.url} target="_blank" rel="noopener noreferrer" title={db.data.url}>
+                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={db.data.url}>
                     <svg width="14" height="14"><use href="#icon-external" /></svg>
                   </a>
                 ) : null}
@@ -230,9 +230,12 @@ const datasetSchema = JSON.stringify({
           <td>
             {db.data.query_languages?.length ? (
               <div class="query-langs">
-                {db.data.query_languages.map(lang => (
+                {db.data.query_languages.slice(0, 3).map(lang => (
                   <span class="badge badge-query-lang">{lang}</span>
                 ))}
+                {db.data.query_languages.length > 3 && (
+                  <span class="badge badge-query-lang has-tooltip" aria-label={db.data.query_languages.slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
+                )}
               </div>
             ) : '-'}
           </td>

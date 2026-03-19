@@ -135,7 +135,7 @@ const description = db.data.description;
         <h2>Links</h2>
         <div class="db-links">
           {db.data.url && (
-            <a href={db.data.url} target="_blank" rel="noopener noreferrer">Official website</a>
+            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Official website</a>
           )}
           {db.data.github_url && (
             <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">GitHub</a>
