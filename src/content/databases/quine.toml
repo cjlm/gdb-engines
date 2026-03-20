@@ -1,0 +1,11 @@
+name = "Quine"
+vendor = "thatDot"
+slug = "quine"
+description = "A streaming graph engine written in Scala that ingests event streams and builds them into a stateful graph in real time. Uses standing queries to continuously match patterns and trigger actions as data arrives. Supports pluggable persistence via RocksDB, Cassandra, and ScyllaDB."
+url = "https://quine.io"
+github_url = "https://github.com/thatdot/quine"
+license = "MIT + Commons Clause"
+type = "Property Graph"
+query_languages = ["openCypher", "Gremlin"]
+category = "Emerging"
+gdotv_support = false

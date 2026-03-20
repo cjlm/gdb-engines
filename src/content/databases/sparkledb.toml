@@ -1,0 +1,12 @@
+name = "SparkleDB"
+vendor = "SysSurge"
+slug = "sparkledb"
+previous_names = ["Meronymy SPARQL Database Server"]
+description = "A distributed RDF triplestore written in C++ with full ACID compliance. Uses a master/slave architecture with transparent addition and removal of database nodes. Includes a built-in query optimizer and multi-threaded web server."
+license = "Proprietary"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "No evidence of activity since approximately 2018. Website defunct."
+gdotv_support = false

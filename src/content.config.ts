@@ -14,7 +14,7 @@ const databases = defineCollection({
     github_url: z.string().url().optional(),
     license: z.string().optional(),
     type: z.enum(['Property Graph', 'RDF', 'Multiple', 'Other']),
-    kind: z.enum(['database', 'extension', 'query-engine', 'embedded']).default('database'),
+    kind: z.enum(['database', 'extension', 'query-engine', 'embedded', 'library']).default('database'),
     category: z.enum(['Established', 'Enterprise', 'Growing', 'Emerging']),
     status: z.enum(['active', 'inactive', 'deprecated']).default('active'),
     status_note: z.string().optional(),

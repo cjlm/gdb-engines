@@ -1,0 +1,11 @@
+name = "Raphtory"
+vendor = "Pometry"
+slug = "raphtory"
+description = "An in-memory temporal graph database written in Rust with Python and Rust APIs. Tracks graph changes over time with time-traveling queries across historical states. Supports multilayer graph modeling, built-in graph algorithms, and full-text search. Includes a GraphQL server with a bundled exploration UI."
+url = "https://pometry.com/"
+github_url = "https://github.com/Pometry/Raphtory"
+license = "GPL-3.0"
+type = "Property Graph"
+query_languages = ["GraphQL"]
+category = "Emerging"
+gdotv_support = false
