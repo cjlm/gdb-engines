@@ -1,0 +1,12 @@
+name = "Comunica"
+vendor = "Comunica Association"
+slug = "comunica"
+description = "A modular SPARQL query engine written in TypeScript that federates queries across heterogeneous linked data sources including SPARQL endpoints, RDF files, HDT archives, and Solid data pods. Runs in both Node.js and browsers."
+url = "https://comunica.dev/"
+github_url = "https://github.com/comunica/comunica"
+license = "MIT"
+type = "RDF"
+kind = "query-engine"
+query_languages = ["SPARQL", "GraphQL"]
+category = "Emerging"
+gdotv_support = false
