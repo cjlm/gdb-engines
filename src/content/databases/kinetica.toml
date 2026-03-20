@@ -1,0 +1,10 @@
+name = "Kinetica"
+vendor = "Kinetica"
+slug = "kinetica"
+description = "A GPU-accelerated analytical database with a graph solver component for shortest path, pattern matching, and geospatial network analysis. Uses proprietary SQL extensions for graph operations on weighted and directed graphs. Also supports spatial, time-series, and vector search workloads."
+url = "https://www.kinetica.com/"
+license = "Proprietary"
+type = "Multiple"
+query_languages = ["SQL"]
+category = "Established"
+gdotv_support = false

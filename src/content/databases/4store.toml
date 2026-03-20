@@ -1,0 +1,13 @@
+name = "4store"
+vendor = "Garlik"
+slug = "4store"
+description = "An RDF triple store written in C, originally developed at Garlik for identity protection workloads. Supports single-machine and clustered deployments using the Raptor and Rasqal RDF libraries for parsing and query processing."
+url = "https://github.com/4store/4store"
+github_url = "https://github.com/4store/4store"
+license = "GPL-3.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Sporadic maintenance only. Originally developed circa 2009."
+gdotv_support = false

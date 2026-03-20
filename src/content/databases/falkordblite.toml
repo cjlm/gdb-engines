@@ -1,0 +1,12 @@
+name = "FalkorDBLite"
+vendor = "FalkorDB"
+slug = "falkordblite"
+description = "An embedded property graph database for Python that bundles a Redis server with the FalkorDB module into a zero-configuration package. Provides the same GraphBLAS-based query engine as FalkorDB with data persistence, sync and async APIs, and support for multiple independent graphs per instance."
+url = "https://github.com/FalkorDB/falkordblite"
+github_url = "https://github.com/FalkorDB/falkordblite"
+license = "SSPL-1.0"
+type = "Property Graph"
+kind = "embedded"
+query_languages = ["openCypher"]
+category = "Emerging"
+gdotv_support = false

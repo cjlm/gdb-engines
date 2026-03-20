@@ -1,0 +1,13 @@
+name = "RedStore"
+vendor = "Nicholas Humfrey"
+slug = "redstore"
+description = "A lightweight RDF triplestore with a built-in HTTP server and SPARQL endpoint, written in C on top of the Redland RDF libraries. Supports pluggable storage backends including Berkeley DB, PostgreSQL, MySQL, and SQLite via Redland's storage modules."
+url = "https://www.aelius.com/njh/redstore/"
+github_url = "https://github.com/njh/redstore"
+license = "GPL-3.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Mature project with minimal recent activity."
+gdotv_support = false

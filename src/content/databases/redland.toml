@@ -1,0 +1,14 @@
+name = "Redland"
+vendor = "Dave Beckett"
+slug = "redland"
+description = "A modular C library suite for RDF storage, parsing, and querying. Comprises Raptor (parser/serializer), Rasqal (query engine), and librdf (storage API) with pluggable backends including Berkeley DB, PostgreSQL, MySQL, and SQLite. Provides bindings for Perl, Python, Ruby, and PHP."
+url = "http://librdf.org/"
+github_url = "https://github.com/dajobe/librdf"
+license = "LGPL-2.1"
+type = "RDF"
+kind = "library"
+query_languages = ["SPARQL"]
+category = "Established"
+status = "inactive"
+status_note = "Mature project with periodic maintenance. Last release 2.0.18 in October 2024."
+gdotv_support = false
