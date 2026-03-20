@@ -170,7 +170,7 @@ const datasetSchema = JSON.stringify({
                   <span class="icon-placeholder" />
                 );
               })()}
-              <span class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</span>
+              <a href={`/db/${db.data.slug}`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
               <span class="db-links">
                 {db.data.github_url ? (
                   <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" title={db.data.github_url}>
@@ -200,7 +200,7 @@ const datasetSchema = JSON.stringify({
           <td>
             {db.data.kind !== 'database' ? (
               <span class={`badge badge-${db.data.kind}`}>
-                {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : 'Embedded'}
+                {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
               </span>
             ) : ''}
           </td>
