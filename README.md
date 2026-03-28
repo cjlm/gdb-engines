@@ -1,5 +1,7 @@
 # gdb-engines.com
 
+[![gitcgr](https://gitcgr.com/badge/cjlm/gdb-engines.svg)](https://gitcgr.com/cjlm/gdb-engines)
+
 An Open Source comparison of graph database features and capabilities.
 
 ## Overview
