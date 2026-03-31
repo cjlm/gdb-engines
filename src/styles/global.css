@@ -492,12 +492,6 @@ dialog {
 .badge-inactive { background: #F5F5F5; color: #6B6B6B; }
 .badge-deprecated { background: #FFEBEE; color: #C62828; }
 
-/* Hide inactive/deprecated rows by default (JS reveals via toggle) */
-tr.row-inactive,
-tr.row-deprecated {
-  display: none;
-}
-
 /* Dim inactive/deprecated rows when visible */
 tr.row-inactive td,
 tr.row-deprecated td {

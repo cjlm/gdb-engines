@@ -3,11 +3,46 @@ const modalClose = document.getElementById("close")!;
 const help = document.getElementById("help")!;
 const search = document.getElementById("search")! as HTMLInputElement;
 const dbCount = document.getElementById("db-count");
+const inactiveToggle = document.getElementById('toggle-inactive') as HTMLInputElement | null;
+const totalCount = document.querySelectorAll("table tbody tr").length;
+// Column indices to search (Name, Vendor, Type, Kind, Category, Status, Query Languages)
+const SEARCHABLE_COLUMNS = [0, 1, 2, 3, 4, 5, 8];
+let inactiveAutoEnabled = false;
 
 function updateCount() {
   if (!dbCount) return;
   const visible = document.querySelectorAll("table tbody tr:not([style*='display: none'])").length;
-  dbCount.textContent = String(visible);
+  dbCount.textContent = visible === totalCount ? String(totalCount) : `${visible} / ${totalCount}`;
+}
+
+function updateRowVisibility() {
+  const showInactive = inactiveToggle?.checked ?? false;
+  const searchValue = search.value.toLowerCase();
+  const searchTerms = searchValue.split(",").map(s => s.trim()).filter(s => s !== "");
+  const rows = document.querySelectorAll("table tbody tr") as NodeListOf<HTMLTableRowElement>;
+
+  rows.forEach((row) => {
+    const isInactive = row.classList.contains('row-inactive') || row.classList.contains('row-deprecated');
+    const hasSearch = searchTerms.length > 0;
+
+    let matchesSearch = true;
+    if (hasSearch) {
+      const searchableTexts = SEARCHABLE_COLUMNS.map((i) =>
+        row.cells[i]?.textContent?.toLowerCase() || ""
+      );
+      const previousVendors = row.getAttribute('data-previous-vendors')?.toLowerCase() || '';
+      if (previousVendors) searchableTexts.push(previousVendors);
+      const previousNames = row.getAttribute('data-previous-names')?.toLowerCase() || '';
+      if (previousNames) searchableTexts.push(previousNames);
+
+      matchesSearch = searchTerms.some((term) => searchableTexts.some((text) => text.includes(term)));
+    }
+
+    const hiddenByInactive = isInactive && !showInactive;
+    row.style.display = matchesSearch && !hiddenByInactive ? '' : 'none';
+  });
+
+  updateCount();
 }
 
 /////////////////////////
@@ -162,31 +197,21 @@ document.querySelectorAll("th.sortable").forEach((header, index) => {
 ///////////////////
 // Handle Search
 ///////////////////
-// Column indices to search (Name, Vendor, Type, Kind, Category, Status, Query Languages)
-const SEARCHABLE_COLUMNS = [0, 1, 2, 3, 4, 5, 8];
-
 function filterTable(value: string) {
-  const lowerCaseValues = value.toLowerCase().split(",").filter(str => str.trim() !== "");
-  const rows = document.querySelectorAll(
-    "table tbody tr"
-  ) as NodeListOf<HTMLTableRowElement>;
-
-  rows.forEach((row) => {
-    const searchableTexts = SEARCHABLE_COLUMNS.map((i) =>
-      row.cells[i]?.textContent?.toLowerCase() || ""
-    );
-    // Also search previous vendor names
-    const previousVendors = row.getAttribute('data-previous-vendors')?.toLowerCase() || '';
-    if (previousVendors) searchableTexts.push(previousVendors);
-    const previousNames = row.getAttribute('data-previous-names')?.toLowerCase() || '';
-    if (previousNames) searchableTexts.push(previousNames);
-    const isVisible = lowerCaseValues.length === 0 ||
-     lowerCaseValues.some((lowerCaseValue) => searchableTexts.some((text) => text.includes(lowerCaseValue.trim())));
-    row.style.display = isVisible ? "" : "none";
-  });
-
   updateQueryParams({ search: value || null });
-  updateCount();
+
+  if (inactiveToggle) {
+    const hasSearch = value.trim() !== "";
+    if (hasSearch && !inactiveToggle.checked) {
+      inactiveToggle.checked = true;
+      inactiveAutoEnabled = true;
+    } else if (!hasSearch && inactiveAutoEnabled) {
+      inactiveToggle.checked = false;
+      inactiveAutoEnabled = false;
+    }
+  }
+
+  updateRowVisibility();
 }
 
 search.addEventListener("input", () => {
@@ -273,19 +298,15 @@ if (menuToggle && menuDropdown) {
 /////////////////////////////////////
 // Handle Inactive Toggle
 /////////////////////////////////////
-const inactiveToggle = document.getElementById('toggle-inactive') as HTMLInputElement | null;
-
 function setInactiveVisibility(show: boolean) {
-  document.querySelectorAll('tr.row-inactive, tr.row-deprecated').forEach(el => {
-    (el as HTMLElement).style.display = show ? 'table-row' : 'none';
-  });
   if (inactiveToggle) inactiveToggle.checked = show;
   updateQueryParams({ inactive: show ? '1' : null });
-  updateCount();
+  updateRowVisibility();
 }
 
 if (inactiveToggle) {
   inactiveToggle.addEventListener('change', () => {
+    inactiveAutoEnabled = false;
     setInactiveVisibility(inactiveToggle.checked);
   });
 }
@@ -315,8 +336,6 @@ if (featureToggle) {
 function resetState() {
   // Clear search
   search.value = "";
-  const rows = document.querySelectorAll("table tbody tr") as NodeListOf<HTMLTableRowElement>;
-  rows.forEach((row) => (row.style.display = ""));
 
   // Remove sort indicators
   currentSort = { column: -1, direction: "asc" };
@@ -324,10 +343,9 @@ function resetState() {
     ind.textContent = "";
   });
 
-  // Hide inactive/deprecated rows by default
-  setInactiveVisibility(false);
-
-  // Collapse all features
+  // Reset toggles to defaults
+  if (inactiveToggle) inactiveToggle.checked = false;
+  inactiveAutoEnabled = false;
   setFeatureVisibility(false);
 }
 
@@ -335,13 +353,12 @@ function initializeFromURL() {
   resetState();
   const params = getQueryParams();
 
-  // Restore search
-  (() => {
-    const searchQuery = params.get("search");
-    if (!searchQuery) return;
+  // Restore search (set value without triggering updateRowVisibility yet)
+  const searchQuery = params.get("search");
+  if (searchQuery) {
     search.value = searchQuery;
-    filterTable(searchQuery);
-  })();
+    updateQueryParams({ search: searchQuery });
+  }
 
   // Restore sort
   (() => {
@@ -361,15 +378,23 @@ function initializeFromURL() {
     }
   })();
 
-  // Restore inactive visibility
-  if (params.get('inactive') === '1') {
-    setInactiveVisibility(true);
+  // Restore inactive visibility (set checkbox without triggering updateRowVisibility yet)
+  if (params.get('inactive') === '1' && inactiveToggle) {
+    inactiveToggle.checked = true;
+    updateQueryParams({ inactive: '1' });
+  } else if (searchQuery && !params.has('inactive') && inactiveToggle) {
+    // Auto-enable inactive when search is present but inactive wasn't explicitly set
+    inactiveToggle.checked = true;
+    inactiveAutoEnabled = true;
   }
 
   // Restore feature visibility
   if (params.get('features') === '1') {
     setFeatureVisibility(true);
   }
+
+  // Single pass to apply search + inactive state together
+  updateRowVisibility();
 }
 
 // Astro module scripts run after DOM is ready, so call directly
