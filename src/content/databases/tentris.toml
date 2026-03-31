@@ -9,3 +9,4 @@ type = "RDF"
 query_languages = ["SPARQL"]
 category = "Emerging"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/tentris-ide-graph-visualization-tool/"

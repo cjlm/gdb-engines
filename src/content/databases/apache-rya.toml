@@ -1,0 +1,13 @@
+name = "Apache Rya"
+vendor = "Apache Software Foundation"
+slug = "apache-rya"
+description = "An RDF triple store built on Apache Accumulo for scalable storage and retrieval of RDF data in cloud environments. Uses column-oriented storage with three index tables for subject, predicate, and object lookups."
+url = "https://rya.apache.org/"
+github_url = "https://github.com/apache/rya"
+license = "Apache-2.0"
+type = "RDF"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "No development activity since December 2020."
+gdotv_support = false

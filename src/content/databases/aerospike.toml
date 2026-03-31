@@ -9,4 +9,4 @@ type = "Property Graph"
 query_languages = ["Gremlin"]
 category = "Enterprise"
 gdotv_support = true
-gdotv_url = "https://gdotv.com/blog/aerospike-graph-gv/"
+gdotv_url = "https://gdotv.com/aerospike-graph-visualization-tool/"

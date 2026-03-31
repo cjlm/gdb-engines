@@ -277,7 +277,7 @@ const inactiveToggle = document.getElementById('toggle-inactive') as HTMLInputEl
 
 function setInactiveVisibility(show: boolean) {
   document.querySelectorAll('tr.row-inactive, tr.row-deprecated').forEach(el => {
-    (el as HTMLElement).style.display = show ? '' : 'none';
+    (el as HTMLElement).style.display = show ? 'table-row' : 'none';
   });
   if (inactiveToggle) inactiveToggle.checked = show;
   updateQueryParams({ inactive: show ? '1' : null });

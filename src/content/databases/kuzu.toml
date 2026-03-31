@@ -12,4 +12,4 @@ category = "Emerging"
 status = "deprecated"
 status_note = "Acquired by Apple in October 2025. Repository archived. Continued as LadybugDB and Bighorn forks."
 gdotv_support = true
-gdotv_url = "https://gdotv.com/blog/fast-scalable-graph-querying-and-visualization-with-kuzu-and-g-v/"
+gdotv_url = "https://gdotv.com/kuzu-graph-visualization-tool/"

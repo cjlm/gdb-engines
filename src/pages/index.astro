@@ -78,9 +78,9 @@ const datasetSchema = JSON.stringify({
 });
 ---
 <Layout
-  title="GDB-Engines — Compare Graph Databases"
+  title="GDB-Engines — Graph Database List and Comparison"
   jsonLd={[jsonLd, datasetSchema]}
-  description={`Compare features across ${databases.length}+ graph databases, extensions, and query engines. Open Source data from academic research.`}
+  description={`A comprehensive list of ${databases.length}+ graph databases, extensions, and query engines with feature comparison. Open Source data from academic research.`}
 >
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="icon-github" viewBox="0 0 24 24">
@@ -96,7 +96,7 @@ const datasetSchema = JSON.stringify({
       <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
       <h1>GDB-Engines</h1>
       <span class="slash"></span>
-      <p>An Open Source comparison of <span id="db-count">{databases.length}</span> graph databases</p>
+      <p>An Open Source list and comparison of <span id="db-count">{databases.length}</span> graph databases</p>
     </div>
     <div class="right">
       <a

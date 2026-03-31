@@ -12,6 +12,7 @@ category = "Established"
 status = "inactive"
 status_note = "Last release in 2019. Project largely dormant, though still used by Wikidata."
 gdotv_support = true
+gdotv_url = "https://gdotv.com/blazegraph-ide-graph-visualization-tool/"
 
 [features]
 active_development = 0.0

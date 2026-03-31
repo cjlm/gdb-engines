@@ -9,3 +9,4 @@ type = "RDF"
 query_languages = ["SPARQL"]
 category = "Enterprise"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/rdfox-ide-graph-visualization-tool/"
