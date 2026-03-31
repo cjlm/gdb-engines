@@ -503,6 +503,10 @@ tr.row-inactive td,
 tr.row-deprecated td {
   color: var(--color-text-tertiary);
 }
+tr.row-inactive a,
+tr.row-deprecated a {
+  color: inherit;
+}
 tr.row-inactive:hover td,
 tr.row-deprecated:hover td {
   color: var(--color-text-secondary);

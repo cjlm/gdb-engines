@@ -10,3 +10,4 @@ query_languages = ["openCypher"]
 kind = "embedded"
 category = "Growing"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/ladybugdb-ide-graph-visualization-tool/"

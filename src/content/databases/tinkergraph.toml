@@ -10,3 +10,4 @@ query_languages = ["Gremlin"]
 kind = "embedded"
 category = "Established"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/tinkerpop-gremlin-server-graph-visualization-tool/"

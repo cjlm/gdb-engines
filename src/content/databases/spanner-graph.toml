@@ -8,3 +8,4 @@ type = "Property Graph"
 query_languages = ["GQL", "SQL/PGQ"]
 category = "Enterprise"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/google-cloud-spanner-graph-visualization-tool/"

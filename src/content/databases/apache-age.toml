@@ -10,3 +10,4 @@ kind = "extension"
 query_languages = ["openCypher", "SQL"]
 category = "Established"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/apache-age-ide-graph-visualization-tool/"

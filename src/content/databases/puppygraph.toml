@@ -9,3 +9,4 @@ query_languages = ["Gremlin", "openCypher"]
 kind = "query-engine"
 category = "Growing"
 gdotv_support = true
+gdotv_url = "https://gdotv.com/puppygraph-ide-graph-visualization-tool/"

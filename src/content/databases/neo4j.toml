@@ -9,7 +9,7 @@ type = "Property Graph"
 query_languages = ["Cypher", "GQL"]
 category = "Established"
 gdotv_support = true
-gdotv_url = "https://gdotv.com/neo4j-auradb-graph-visualization-tool/"
+gdotv_url = "https://gdotv.com/neo4j-ide-graph-visualization-tool/"
 
 [features]
 active_development = 1.0
