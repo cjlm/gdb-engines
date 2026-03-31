@@ -1,0 +1,12 @@
+name = "DozerDB"
+vendor = "Graph Foundation"
+slug = "dozerdb"
+description = "A Neo4j Community Edition plugin that adds enterprise features including multi-database support, enterprise authentication and authorization, and backup/restore capabilities. Tracks Neo4j 5.x releases."
+url = "https://dozerdb.org/"
+github_url = "https://github.com/DozerDB/dozerdb-plugin"
+license = "GPL-3.0"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["Cypher"]
+category = "Emerging"
+gdotv_support = false

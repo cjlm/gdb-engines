@@ -1,0 +1,12 @@
+name = "Attean"
+vendor = "Gregory Todd Williams"
+slug = "attean"
+description = "A Perl semantic web framework providing a SPARQL 1.1 query engine, in-memory triple/quad store, and parsers for multiple RDF serialization formats including Turtle, N-Triples, RDF/XML, and TriG."
+url = "https://metacpan.org/pod/Attean"
+github_url = "https://github.com/kasei/attean"
+license = "Artistic-2.0"
+type = "RDF"
+kind = "library"
+query_languages = ["SPARQL"]
+category = "Emerging"
+gdotv_support = false

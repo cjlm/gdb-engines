@@ -1,0 +1,14 @@
+name = "RDF::Trine"
+vendor = "Gregory Todd Williams"
+slug = "rdf-trine"
+description = "A Perl RDF framework providing triple store abstractions with in-memory and DBI-backed (MySQL, PostgreSQL, SQLite) storage backends, plus parsers for RDF/XML, Turtle, RDFa, and RDF/JSON."
+url = "https://metacpan.org/pod/RDF::Trine"
+github_url = "https://github.com/kasei/perlrdf"
+license = "Artistic-2.0"
+type = "RDF"
+kind = "library"
+query_languages = ["SPARQL"]
+category = "Emerging"
+status = "inactive"
+status_note = "Deprecated in favour of the Attean framework. Last release was v1.019 in January 2018."
+gdotv_support = false

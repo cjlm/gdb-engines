@@ -1,0 +1,12 @@
+name = "agdb"
+vendor = "Agnesoft"
+slug = "agdb"
+description = "An application-native graph database written in Rust using programmatic query builders instead of a text-based query language. Features ACID transactions, memory-mapped persistent storage, and client libraries for Rust, Python, TypeScript, PHP, Java, C, C++, and C#."
+url = "https://agdb.agnesoft.com/"
+github_url = "https://github.com/agnesoft/agdb"
+license = "Apache-2.0"
+type = "Property Graph"
+kind = "embedded"
+query_languages = ["Custom API"]
+category = "Emerging"
+gdotv_support = false
