@@ -1,0 +1,11 @@
+name = "MemGQL"
+vendor = "Memgraph"
+slug = "memgql"
+description = "A federated GQL query engine from Memgraph that translates GQL into backend-native queries across heterogeneous sources including Memgraph, Neo4j, PostgreSQL, and DuckDB. Clients connect over the Bolt protocol and see a unified semantic layer across multiple databases."
+url = "https://memgraph.com/docs/memgraph-zero/memgql"
+license = "Proprietary"
+type = "Multiple"
+kind = "query-engine"
+query_languages = ["GQL"]
+category = "Emerging"
+gdotv_support = false
