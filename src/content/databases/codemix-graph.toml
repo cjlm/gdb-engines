@@ -1,0 +1,12 @@
+name = "CodeMix Graph"
+vendor = "Codemix"
+slug = "codemix-graph"
+description = "A real-time, type-safe property graph database in TypeScript built on CRDTs via Yjs for offline-first synchronization. Defines schemas with Standard Schema libraries (Zod, Valibot, ArkType) and queries them via a Gremlin-style traversal API or a Cypher-compatible string language. Includes pluggable storage and full-text search."
+url = "https://codemix.com/graph"
+github_url = "https://github.com/codemix/graph"
+license = "MIT"
+type = "Property Graph"
+kind = "library"
+query_languages = ["Gremlin", "Cypher"]
+category = "Emerging"
+gdotv_support = false

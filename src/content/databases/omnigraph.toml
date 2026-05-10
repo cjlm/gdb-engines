@@ -1,0 +1,11 @@
+name = "OmniGraph"
+vendor = "ModernRelay"
+slug = "omnigraph"
+description = "A lakehouse-native graph engine in Rust that adds git-style branching, commits, and merges to typed graph data. Built on Apache Arrow, DataFusion, and Lance. Combines graph traversal with text, fuzzy, vector, and BM25 search, and ships as a CLI tool and HTTP server."
+url = "https://github.com/ModernRelay/omnigraph"
+github_url = "https://github.com/ModernRelay/omnigraph"
+license = "MIT"
+type = "Property Graph"
+query_languages = ["Custom API"]
+category = "Emerging"
+gdotv_support = false

@@ -1,0 +1,11 @@
+name = "TribleSpace"
+slug = "triblespace"
+description = "An embedded knowledge graph in Rust with content-addressed storage and built-in version control. Stores datasets as composable, append-only values backed by a single file or S3 endpoint, with CRDT semantics for distributed eventual consistency. Queries are written as compile-time-typed Rust macros."
+url = "https://github.com/triblespace/triblespace-rs"
+github_url = "https://github.com/triblespace/triblespace-rs"
+license = "MIT OR Apache-2.0"
+type = "Other"
+kind = "embedded"
+query_languages = ["Custom API"]
+category = "Emerging"
+gdotv_support = false

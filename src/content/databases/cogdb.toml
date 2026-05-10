@@ -1,0 +1,11 @@
+name = "CogDB"
+slug = "cogdb"
+description = "A persistent, embedded graph database for Python that runs entirely in-process with no server. Stores Node-Edge-Node triples and exposes Torque, a fluent chainable Python API for graph traversal. Designed to run in notebooks, applications, and the browser."
+url = "https://github.com/arun1729/cog"
+github_url = "https://github.com/arun1729/cog"
+license = "MIT"
+type = "Other"
+kind = "embedded"
+query_languages = ["Custom API"]
+category = "Emerging"
+gdotv_support = false

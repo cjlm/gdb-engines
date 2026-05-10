@@ -1,0 +1,11 @@
+name = "GraphScope"
+vendor = "Alibaba"
+slug = "graphscope"
+description = "A distributed graph computing platform from Alibaba combining three engines: GRAPE for analytics, an interactive engine for traversals, and Graph-Learn for graph neural networks. Exposes a unified Python interface that runs across a cluster of machines and supports both Gremlin and Cypher."
+url = "https://graphscope.io/"
+github_url = "https://github.com/alibaba/GraphScope"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["Gremlin", "openCypher"]
+category = "Growing"
+gdotv_support = false
