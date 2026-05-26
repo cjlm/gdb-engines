@@ -43,6 +43,31 @@ function updateRowVisibility() {
   });
 
   updateCount();
+  updateColumnVisibility();
+}
+
+// Hide base columns that have no data across the currently visible rows (e.g.
+// Status when no inactive/deprecated rows are shown). Feature columns are left
+// to the feature toggle.
+function updateColumnVisibility() {
+  const headerRow = document.querySelector("table thead tr");
+  if (!headerRow) return;
+  const headers = Array.from(headerRow.children) as HTMLElement[];
+  const rows = Array.from(document.querySelectorAll("table tbody tr")) as HTMLTableRowElement[];
+  const visibleRows = rows.filter((row) => row.style.display !== "none");
+
+  headers.forEach((header, colIndex) => {
+    if (colIndex === 0 || header.classList.contains("feature-col")) return;
+    const hasData = visibleRows.some((row) => {
+      const text = row.cells[colIndex]?.textContent?.trim() || "";
+      return text !== "" && text !== "-";
+    });
+    header.style.display = hasData ? "" : "none";
+    rows.forEach((row) => {
+      const cell = row.cells[colIndex];
+      if (cell) cell.style.display = hasData ? "" : "none";
+    });
+  });
 }
 
 /////////////////////////
