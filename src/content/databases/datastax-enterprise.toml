@@ -6,6 +6,7 @@ description = "A property graph database built on Apache Cassandra, forked from 
 url = "https://www.datastax.com/products/datastax-enterprise"
 type = "Property Graph"
 query_languages = ["Gremlin", "CQL"]
+released = "2016"
 category = "Established"
 gdotv_support = true
 

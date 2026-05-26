@@ -6,6 +6,7 @@ github_url = "https://github.com/graphflow/graphflow-columnar-techniques"
 license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["openCypher"]
+released = "2017"
 category = "Emerging"
 status = "deprecated"
 status_note = "Research prototype from University of Waterloo. Succeeded by Kuzu."

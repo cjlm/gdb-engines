@@ -7,6 +7,7 @@ license = "Apache-2.0"
 type = "Other"
 query_languages = ["Java API"]
 kind = "embedded"
+released = "2007"
 category = "Emerging"
 status = "inactive"
 status_note = "Sporadic maintenance only since 2024"

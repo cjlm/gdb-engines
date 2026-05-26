@@ -5,6 +5,7 @@ description = "A distributed object-oriented database with graph capabilities vi
 url = "https://www.objectivity.com/products/objectivitydb/"
 type = "Other"
 query_languages = ["DO Query Language"]
+released = "1990"
 category = "Enterprise"
 status = "inactive"
 status_note = "Objectivity Inc ceased operations in late 2023."

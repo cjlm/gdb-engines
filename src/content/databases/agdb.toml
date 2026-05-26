@@ -8,5 +8,6 @@ license = "Apache-2.0"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["Custom API"]
+released = "2023-06"
 category = "Emerging"
 gdotv_support = false

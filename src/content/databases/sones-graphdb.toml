@@ -7,6 +7,7 @@ github_url = "https://github.com/sones/sones"
 license = "AGPL-3.0"
 type = "Property Graph"
 query_languages = ["GQL (Sones)"]
+released = "2010"
 category = "Emerging"
 status = "inactive"
 status_note = "No development activity since 2012. Company appears defunct."

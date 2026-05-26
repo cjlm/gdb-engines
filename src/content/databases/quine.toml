@@ -7,5 +7,6 @@ github_url = "https://github.com/thatdot/quine"
 license = "MIT + Commons Clause"
 type = "Property Graph"
 query_languages = ["openCypher", "Gremlin"]
+released = "2022-02"
 category = "Emerging"
 gdotv_support = false

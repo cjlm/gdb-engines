@@ -7,5 +7,6 @@ github_url = "https://github.com/oxigraph/oxigraph"
 license = "Apache-2.0 OR MIT"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2020-08"
 category = "Emerging"
 gdotv_support = true

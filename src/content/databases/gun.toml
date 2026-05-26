@@ -7,5 +7,6 @@ github_url = "https://github.com/amark/gun"
 license = "MIT"
 type = "Property Graph"
 query_languages = ["Custom API"]
+released = "2014"
 category = "Established"
 gdotv_support = false

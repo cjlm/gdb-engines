@@ -8,5 +8,6 @@ license = "AGPL-3.0"
 type = "Other"
 query_languages = ["HelixQL"]
 kind = "database"
+released = "2025-02"
 category = "Emerging"
 gdotv_support = false

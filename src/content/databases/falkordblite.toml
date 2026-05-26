@@ -8,5 +8,6 @@ license = "SSPL-1.0"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher"]
+released = "2025"
 category = "Emerging"
 gdotv_support = false

@@ -7,6 +7,7 @@ github_url = "https://github.com/ArcadeData/arcadedb"
 license = "Apache-2.0"
 type = "Multiple"
 query_languages = ["SQL", "openCypher", "Gremlin", "GraphQL"]
+released = "2021-09"
 category = "Growing"
 gdotv_support = true
 

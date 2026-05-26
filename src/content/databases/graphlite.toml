@@ -8,5 +8,6 @@ license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["ISO GQL"]
 kind = "embedded"
+released = "2025"
 category = "Emerging"
 gdotv_support = false

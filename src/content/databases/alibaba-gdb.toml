@@ -4,6 +4,7 @@ slug = "alibaba-gdb"
 description = "A managed cloud graph database service on Alibaba Cloud, using the property graph model with TinkerPop support. Provides ACID transactions and horizontal scalability. Also available as TuGraph in open-source form."
 url = "https://www.alibabacloud.com/product/graph-database"
 type = "Property Graph"
+released = "2019-03"
 category = "Enterprise"
 gdotv_support = true
 

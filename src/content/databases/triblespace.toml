@@ -7,5 +7,6 @@ license = "MIT OR Apache-2.0"
 type = "Other"
 kind = "embedded"
 query_languages = ["Custom API"]
+released = "2020"
 category = "Emerging"
 gdotv_support = false

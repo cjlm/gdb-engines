@@ -7,5 +7,6 @@ github_url = "https://github.com/orneryd/NornicDB"
 license = "MIT"
 type = "Property Graph"
 query_languages = ["Cypher", "GraphQL"]
+released = "2025-12"
 category = "Emerging"
 gdotv_support = false

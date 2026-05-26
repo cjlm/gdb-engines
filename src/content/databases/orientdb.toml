@@ -8,6 +8,7 @@ github_url = "https://github.com/orientechnologies/orientdb"
 license = "Apache-2.0"
 type = "Multiple"
 query_languages = ["SQL", "Gremlin"]
+released = "2010"
 category = "Enterprise"
 gdotv_support = false
 

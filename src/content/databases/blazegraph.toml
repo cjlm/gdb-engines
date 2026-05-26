@@ -8,6 +8,7 @@ github_url = "https://github.com/blazegraph/database"
 license = "GPL-2.0"
 type = "RDF"
 query_languages = ["SPARQL", "Gremlin"]
+released = "2007"
 category = "Established"
 status = "inactive"
 status_note = "Last release in 2019. Project largely dormant, though still used by Wikidata."

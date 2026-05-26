@@ -7,6 +7,7 @@ github_url = "https://github.com/surrealdb/surrealdb"
 license = "BSL-1.1"
 type = "Multiple"
 query_languages = ["SurrealQL"]
+released = "2022"
 category = "Growing"
 gdotv_support = false
 

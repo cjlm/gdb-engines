@@ -7,5 +7,6 @@ github_url = "https://github.com/TuGraph-family/tugraph-db"
 license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["openCypher", "ISO GQL"]
+released = "2022"
 category = "Established"
 gdotv_support = false

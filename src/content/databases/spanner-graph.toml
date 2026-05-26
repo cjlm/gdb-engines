@@ -6,6 +6,7 @@ url = "https://cloud.google.com/spanner/docs/graph/overview"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL", "SQL/PGQ"]
+released = "2024-08"
 category = "Enterprise"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/google-cloud-spanner-graph-visualization-tool/"

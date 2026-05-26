@@ -7,6 +7,7 @@ license = "Apache-2.0"
 type = "Other"
 query_languages = ["Custom API"]
 kind = "embedded"
+released = "2020"
 category = "Emerging"
 status = "inactive"
 status_note = "Academic research prototype. No active development."

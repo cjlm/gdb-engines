@@ -5,6 +5,7 @@ description = "A multi-model in-memory database with built-in graph engine suppo
 type = "Multiple"
 query_languages = ["SQL", "openCypher", "GraphScript"]
 url = "https://www.sap.com/products/technology-platform/hana.html"
+released = "2010"
 category = "Enterprise"
 gdotv_support = false
 

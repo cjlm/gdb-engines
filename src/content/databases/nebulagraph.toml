@@ -7,6 +7,7 @@ github_url = "https://github.com/vesoft-inc/nebula"
 license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["nGQL"]
+released = "2019-05"
 category = "Established"
 gdotv_support = false
 

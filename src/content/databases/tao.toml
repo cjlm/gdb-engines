@@ -5,6 +5,7 @@ description = "A distributed graph store built by Meta (Facebook) for serving th
 url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-graph/"
 type = "Other"
 query_languages = ["TAO API"]
+released = "2012"
 category = "Established"
 gdotv_support = false
 

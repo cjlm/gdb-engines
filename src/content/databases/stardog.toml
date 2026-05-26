@@ -6,6 +6,7 @@ url = "https://www.stardog.com/"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL", "SQL", "GraphQL"]
+released = "2011"
 category = "Enterprise"
 gdotv_support = true
 

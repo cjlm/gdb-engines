@@ -5,6 +5,7 @@ url = "https://github.com/yaobaiwei/GTran"
 github_url = "https://github.com/yaobaiwei/GTran"
 type = "Other"
 query_languages = ["Gremlin"]
+released = "2021"
 category = "Emerging"
 status = "inactive"
 status_note = "Academic research prototype. No active development."

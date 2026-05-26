@@ -7,5 +7,6 @@ github_url = "https://github.com/ad-freiburg/qlever"
 license = "Apache-2.0"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2017"
 category = "Emerging"
 gdotv_support = true

@@ -6,6 +6,7 @@ description = "An RDF triple store built for Cray/HPE supercomputer systems. Use
 url = "https://www.cray.com/"
 type = "Other"
 query_languages = ["SPARQL"]
+released = "2016"
 category = "Enterprise"
 status = "deprecated"
 status_note = "Discontinued after HPE acquired Cray in 2019. Product was not carried forward."

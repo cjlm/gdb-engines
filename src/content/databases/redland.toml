@@ -8,6 +8,7 @@ license = "LGPL-2.1"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+released = "2000"
 category = "Established"
 status = "inactive"
 status_note = "Mature project with periodic maintenance. Last release 2.0.18 in October 2024."

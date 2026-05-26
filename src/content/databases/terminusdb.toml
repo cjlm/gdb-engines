@@ -8,6 +8,7 @@ github_url = "https://github.com/terminusdb/terminusdb"
 license = "Apache-2.0"
 type = "Multiple"
 query_languages = ["WOQL", "GraphQL"]
+released = "2019"
 category = "Emerging"
 gdotv_support = false
 

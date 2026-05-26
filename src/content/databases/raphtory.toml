@@ -7,5 +7,6 @@ github_url = "https://github.com/Pometry/Raphtory"
 license = "GPL-3.0"
 type = "Property Graph"
 query_languages = ["GraphQL"]
+released = "2020-12"
 category = "Emerging"
 gdotv_support = false

@@ -7,5 +7,6 @@ license = "Apache-2.0"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+released = "2026-01"
 category = "Emerging"
 gdotv_support = false

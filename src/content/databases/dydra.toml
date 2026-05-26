@@ -6,6 +6,7 @@ url = "https://dydra.com/"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL", "GraphQL"]
+released = "2011"
 category = "Emerging"
 status = "inactive"
 status_note = "Public SDK last updated 2012. Core engine is closed-source with limited visibility."

@@ -6,6 +6,7 @@ github_url = "https://github.com/grapheco/pandadb-v0.3"
 license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["openCypher"]
+released = "2019"
 category = "Emerging"
 status = "inactive"
 status_note = "No development activity since 2022"

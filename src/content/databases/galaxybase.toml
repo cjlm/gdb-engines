@@ -5,6 +5,7 @@ description = "A distributed property graph database with native graph storage, 
 url = "https://www.galaxybase.com/"
 type = "Property Graph"
 query_languages = ["openCypher"]
+released = "2020"
 category = "Emerging"
 gdotv_support = false
 

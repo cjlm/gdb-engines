@@ -7,5 +7,6 @@ license = "MIT"
 type = "Other"
 kind = "embedded"
 query_languages = ["Custom API"]
+released = "2019-10"
 category = "Emerging"
 gdotv_support = false

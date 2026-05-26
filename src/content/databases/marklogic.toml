@@ -6,5 +6,6 @@ url = "https://www.progress.com/marklogic"
 license = "Proprietary"
 type = "Multiple"
 query_languages = ["SPARQL", "XQuery", "SQL"]
+released = "2001"
 category = "Enterprise"
 gdotv_support = true

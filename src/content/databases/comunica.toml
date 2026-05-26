@@ -8,5 +8,6 @@ license = "MIT"
 type = "RDF"
 kind = "query-engine"
 query_languages = ["SPARQL", "GraphQL"]
+released = "2018"
 category = "Emerging"
 gdotv_support = false

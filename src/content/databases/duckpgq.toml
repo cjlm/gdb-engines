@@ -8,5 +8,6 @@ license = "MIT"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["SQL/PGQ"]
+released = "2023"
 category = "Emerging"
 gdotv_support = false

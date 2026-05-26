@@ -8,5 +8,6 @@ license = "Apache-2.0"
 type = "RDF"
 query_languages = ["SPARQL"]
 kind = "query-engine"
+released = "2009"
 category = "Established"
 gdotv_support = false

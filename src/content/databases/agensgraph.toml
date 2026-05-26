@@ -9,6 +9,7 @@ license = "Apache-2.0"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]
+released = "2017-01"
 category = "Growing"
 gdotv_support = false
 

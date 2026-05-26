@@ -7,5 +7,6 @@ github_url = "https://github.com/ModernRelay/omnigraph"
 license = "MIT"
 type = "Property Graph"
 query_languages = ["Custom API"]
+released = "2026"
 category = "Emerging"
 gdotv_support = false

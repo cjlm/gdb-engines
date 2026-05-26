@@ -5,6 +5,7 @@ description = "A distributed multi-model database with document and graph capabi
 url = "https://fauna.com/"
 type = "Multiple"
 query_languages = ["FQL", "GraphQL"]
+released = "2016"
 category = "Emerging"
 status = "deprecated"
 status_note = "Service shut down in 2025."

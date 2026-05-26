@@ -6,5 +6,6 @@ url = "https://www.kinetica.com/"
 license = "Proprietary"
 type = "Multiple"
 query_languages = ["SQL"]
+released = "2009"
 category = "Established"
 gdotv_support = false

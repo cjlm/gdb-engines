@@ -7,5 +7,6 @@ github_url = "https://github.com/apache/jena"
 license = "Apache-2.0"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2011-12"
 category = "Established"
 gdotv_support = true

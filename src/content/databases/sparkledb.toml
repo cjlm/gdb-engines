@@ -6,6 +6,7 @@ description = "A distributed RDF triplestore written in C++ with full ACID compl
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2012"
 category = "Emerging"
 status = "inactive"
 status_note = "No evidence of activity since approximately 2018. Website defunct."
