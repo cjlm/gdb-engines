@@ -7,6 +7,4 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL"]
 category = "Enterprise"
-status = "active"
-status_note = "Public preview"
 gdotv_support = false

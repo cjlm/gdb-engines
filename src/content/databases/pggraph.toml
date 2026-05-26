@@ -9,6 +9,4 @@ type = "Property Graph"
 query_languages = ["SQL"]
 kind = "extension"
 category = "Emerging"
-status = "active"
-status_note = "Alpha; not recommended for production use"
 gdotv_support = false
