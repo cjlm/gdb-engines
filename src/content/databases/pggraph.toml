@@ -8,5 +8,6 @@ license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["SQL"]
 kind = "extension"
+released = "2026-05"
 category = "Emerging"
 gdotv_support = false

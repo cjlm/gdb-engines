@@ -7,5 +7,6 @@ license = "Proprietary"
 type = "Other"
 query_languages = ["Vadalog"]
 kind = "query-engine"
+released = "2022"
 category = "Growing"
 gdotv_support = false

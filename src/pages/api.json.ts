@@ -13,6 +13,7 @@ export const GET: APIRoute = async () => {
       url: db.data.url ?? null,
       type: db.data.type,
       category: db.data.category,
+      released: db.data.released ?? null,
       gdotv_support: db.data.gdotv_support,
       features: db.data.features ?? null,
     }));

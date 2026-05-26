@@ -15,6 +15,13 @@ export async function getStaticPaths() {
 
 const { db } = Astro.props;
 
+function formatReleased(value: string): string {
+  const match = value.match(/^(\d{4})-(\d{2})$/);
+  if (!match) return value;
+  const monthName = new Date(`${value}-01T00:00:00Z`).toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+  return `${monthName} ${match[1]}`;
+}
+
 // Resolve favicon
 let faviconUrl: string | null = null;
 if (db.data.icon) {
@@ -109,6 +116,12 @@ const description = db.data.description;
           {db.data.category}
         </span>
       </dd>
+      {db.data.released && (
+        <>
+          <dt>Released</dt>
+          <dd>{formatReleased(db.data.released)}</dd>
+        </>
+      )}
       {db.data.status !== 'active' && (
         <>
           <dt>Status</dt>

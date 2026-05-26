@@ -6,6 +6,7 @@ url = "https://cloud.google.com/bigquery/docs/reference/standard-sql/graph-intro
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL", "SQL/PGQ"]
+released = "2026-04"
 category = "Enterprise"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/google-cloud-bigquery-graph-ide-graph-visualization-tool/"
