@@ -1,0 +1,12 @@
+name = "Microsoft Fabric Graph"
+vendor = "Microsoft"
+slug = "fabric-graph"
+description = "A graph engine within Microsoft Fabric that builds a read-optimized property graph from lakehouse tables stored in OneLake, queried with GQL or a visual builder. Reads directly from Delta Lake tables without a separate ETL pipeline."
+url = "https://learn.microsoft.com/en-us/fabric/graph/how-graph-works"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["GQL"]
+category = "Enterprise"
+status = "active"
+status_note = "Public preview"
+gdotv_support = false

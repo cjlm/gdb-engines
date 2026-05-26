@@ -1,0 +1,14 @@
+name = "pgGraph"
+vendor = "Evokoa"
+slug = "pggraph"
+description = "A PostgreSQL extension that adds graph search, bounded traversal, and shortest-path queries over ordinary tables through SQL functions in a graph schema. Builds a derived in-memory graph index while PostgreSQL tables remain the source of truth, with no new query language."
+url = "https://www.evokoa.com/"
+github_url = "https://github.com/Evokoa/pgGraph"
+license = "Apache-2.0"
+type = "Property Graph"
+query_languages = ["SQL"]
+kind = "extension"
+category = "Emerging"
+status = "active"
+status_note = "Alpha; not recommended for production use"
+gdotv_support = false

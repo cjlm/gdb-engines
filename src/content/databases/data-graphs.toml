@@ -1,0 +1,10 @@
+name = "Data Graphs"
+vendor = "Data Language"
+slug = "data-graphs"
+description = "A proprietary graph database built in Rust with a hybrid model combining labeled property graph and RDF/OWL ontology semantics, queried with openCypher and ISO GQL. Sits within an agentic AI data platform offering governance, GraphRAG, and MCP-native access; deployable as SaaS, on-premises, or on-device."
+url = "https://datagraphs.com/"
+license = "Proprietary"
+type = "Multiple"
+query_languages = ["openCypher", "GQL"]
+category = "Emerging"
+gdotv_support = false

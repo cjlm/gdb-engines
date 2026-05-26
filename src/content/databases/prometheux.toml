@@ -1,0 +1,11 @@
+name = "Prometheux"
+vendor = "Prometheux"
+slug = "prometheux"
+description = "An ontology engine that runs graph analytics and logical reasoning over existing data sources without moving data, using the Vadalog (Datalog+/-) reasoning language. Produces deterministic, fully traceable results with row-level provenance across sources such as Snowflake, Databricks, PostgreSQL, and Neo4j."
+url = "https://www.prometheux.ai/"
+license = "Proprietary"
+type = "Other"
+query_languages = ["Vadalog"]
+kind = "query-engine"
+category = "Growing"
+gdotv_support = false
