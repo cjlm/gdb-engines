@@ -8,6 +8,7 @@ license = "MIT"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "embedded"
+released = "2022-11"
 category = "Emerging"
 status = "deprecated"
 status_note = "Acquired by Apple in October 2025. Repository archived. Continued as LadybugDB and Bighorn forks."

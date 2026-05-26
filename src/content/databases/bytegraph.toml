@@ -5,6 +5,7 @@ description = "An internal ByteDance distributed graph database using a two-tier
 url = "https://www.bytedance.com/"
 type = "Other"
 query_languages = ["Gremlin"]
+released = "2022"
 category = "Enterprise"
 status = "inactive"
 status_note = "ByteDance internal system. Not publicly available."

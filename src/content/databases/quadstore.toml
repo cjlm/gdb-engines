@@ -8,5 +8,6 @@ license = "MIT"
 type = "RDF"
 kind = "embedded"
 query_languages = ["SPARQL"]
+released = "2017-03"
 category = "Emerging"
 gdotv_support = false

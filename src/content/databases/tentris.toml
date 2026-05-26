@@ -7,6 +7,7 @@ github_url = "https://github.com/tentris"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2020"
 category = "Emerging"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/tentris-ide-graph-visualization-tool/"

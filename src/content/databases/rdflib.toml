@@ -8,5 +8,6 @@ license = "BSD-3-Clause"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+released = "2002"
 category = "Established"
 gdotv_support = true

@@ -8,6 +8,7 @@ github_url = "https://github.com/eclipse-rdf4j/rdf4j"
 license = "BSD-3-Clause"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2016"
 category = "Established"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/eclipse-rdf4j-ide-graph-visualization-tool/"

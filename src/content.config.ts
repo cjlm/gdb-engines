@@ -20,6 +20,7 @@ const databases = defineCollection({
     status_note: z.string().optional(),
     previous_vendors: z.array(z.string()).optional(),
     previous_names: z.array(z.string()).optional(),
+    released: z.string().regex(/^\d{4}(-\d{2})?$/).optional(),
     query_languages: z.array(z.string()).optional(),
     icon: z.string().optional(),
     gdotv_support: z.boolean(),

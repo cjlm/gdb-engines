@@ -7,6 +7,7 @@ github_url = "https://github.com/KatanaGraph/katana"
 license = "BSD-3-Clause"
 type = "Other"
 query_languages = ["openCypher"]
+released = "2021"
 category = "Emerging"
 kind = "embedded"
 status = "inactive"

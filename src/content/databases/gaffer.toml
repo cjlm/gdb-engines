@@ -8,6 +8,7 @@ license = "Apache-2.0"
 type = "Other"
 query_languages = ["Custom API"]
 kind = "query-engine"
+released = "2015"
 category = "Established"
 gdotv_support = false
 

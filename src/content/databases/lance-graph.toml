@@ -8,5 +8,6 @@ license = "Apache-2.0"
 type = "Property Graph"
 query_languages = ["SQL", "openCypher"]
 kind = "query-engine"
+released = "2025-09"
 category = "Emerging"
 gdotv_support = false

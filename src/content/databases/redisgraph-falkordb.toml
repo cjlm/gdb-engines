@@ -9,6 +9,7 @@ github_url = "https://github.com/FalkorDB/FalkorDB"
 license = "SSPL-1.0"
 type = "Property Graph"
 query_languages = ["openCypher"]
+released = "2018"
 category = "Established"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/falkordb-ide-graph-visualization-tool/"

@@ -7,6 +7,7 @@ github_url = "https://github.com/openlink/virtuoso-opensource"
 license = "GPL-2.0"
 type = "Multiple"
 query_languages = ["SQL", "SPARQL"]
+released = "1998"
 category = "Enterprise"
 gdotv_support = true
 

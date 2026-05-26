@@ -6,6 +6,7 @@ url = "https://objectivity.com/infinitegraph/"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["DO Query Language"]
+released = "2010-05"
 category = "Enterprise"
 gdotv_support = false
 status = "inactive"

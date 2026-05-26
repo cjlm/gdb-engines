@@ -8,5 +8,6 @@ license = "Artistic-2.0"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+released = "2014-09"
 category = "Emerging"
 gdotv_support = false

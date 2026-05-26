@@ -5,6 +5,7 @@ description = "A discontinued IBM Research graph platform supporting both proper
 url = "https://researcher.watson.ibm.com/researcher/view_group.php?id=7131"
 type = "Other"
 query_languages = ["Gremlin"]
+released = "2013"
 category = "Enterprise"
 status = "deprecated"
 status_note = "IBM discontinued System G. No longer available."

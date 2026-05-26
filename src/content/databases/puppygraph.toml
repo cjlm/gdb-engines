@@ -7,6 +7,7 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
 kind = "query-engine"
+released = "2024-03"
 category = "Growing"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/puppygraph-ide-graph-visualization-tool/"

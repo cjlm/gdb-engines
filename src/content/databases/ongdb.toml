@@ -7,5 +7,6 @@ github_url = "https://github.com/graphfoundation/ongdb"
 license = "GPL-3.0 OR AGPL-3.0"
 type = "Property Graph"
 query_languages = ["Cypher"]
+released = "2018"
 category = "Emerging"
 gdotv_support = false

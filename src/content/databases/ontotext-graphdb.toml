@@ -6,6 +6,7 @@ url = "https://www.ontotext.com/products/graphdb/"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL"]
+released = "2005"
 category = "Enterprise"
 gdotv_support = true
 

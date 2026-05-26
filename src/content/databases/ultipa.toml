@@ -6,6 +6,7 @@ url = "https://www.ultipa.com/"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["UQL"]
+released = "2019"
 category = "Growing"
 gdotv_support = true
 

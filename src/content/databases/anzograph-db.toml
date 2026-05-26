@@ -7,6 +7,7 @@ description = "An RDF graph OLAP database (formerly AnzoGraph DB) using massivel
 url = "https://altair.com/altair-graph-lakehouse"
 type = "RDF"
 query_languages = ["SPARQL", "openCypher"]
+released = "2018-10"
 category = "Enterprise"
 gdotv_support = false
 

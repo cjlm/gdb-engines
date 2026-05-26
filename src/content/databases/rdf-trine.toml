@@ -8,6 +8,7 @@ license = "Artistic-2.0"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+released = "2008"
 category = "Emerging"
 status = "inactive"
 status_note = "Deprecated in favour of the Attean framework. Last release was v1.019 in January 2018."

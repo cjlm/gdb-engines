@@ -8,5 +8,6 @@ license = "MIT"
 type = "Property Graph"
 kind = "library"
 query_languages = ["Gremlin", "Cypher"]
+released = "2026-04"
 category = "Emerging"
 gdotv_support = false

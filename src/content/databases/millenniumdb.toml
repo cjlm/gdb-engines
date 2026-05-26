@@ -7,5 +7,6 @@ github_url = "https://github.com/MillenniumDB/MillenniumDB"
 license = "GPL-2.0"
 type = "Multiple"
 query_languages = ["GQL", "SPARQL"]
+released = "2021"
 category = "Emerging"
 gdotv_support = false

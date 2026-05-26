@@ -5,6 +5,7 @@ description = "A globally distributed multi-model database service on Microsoft 
 url = "https://azure.microsoft.com/en-us/products/cosmos-db"
 type = "Multiple"
 query_languages = ["Gremlin", "SQL"]
+released = "2017-05"
 category = "Enterprise"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/azure-cosmos-db-graph-visualization-tool/"

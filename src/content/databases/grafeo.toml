@@ -7,5 +7,6 @@ github_url = "https://github.com/GrafeoDB/grafeo"
 license = "Apache-2.0"
 type = "Multiple"
 query_languages = ["GQL", "Cypher", "SPARQL", "Gremlin", "GraphQL", "SQL/PGQ"]
+released = "2026"
 category = "Emerging"
 gdotv_support = false

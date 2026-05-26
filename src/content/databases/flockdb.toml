@@ -7,6 +7,7 @@ github_url = "https://github.com/twitter-archive/flockdb"
 license = "Apache-2.0"
 type = "Other"
 query_languages = ["Thrift API"]
+released = "2010"
 category = "Established"
 status = "inactive"
 status_note = "Archived and unmaintained since 2017. Twitter is no longer responding to issues or PRs."

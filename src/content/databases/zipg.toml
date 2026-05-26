@@ -5,6 +5,7 @@ url = "https://github.com/pdclab/zipg"
 github_url = "https://github.com/amplab/zipg"
 type = "Other"
 query_languages = ["Custom API"]
+released = "2017"
 category = "Emerging"
 kind = "embedded"
 status = "inactive"

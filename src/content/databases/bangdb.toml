@@ -8,6 +8,7 @@ license = "BSD-3-Clause"
 type = "Other"
 kind = "embedded"
 query_languages = ["openCypher"]
+released = "2021-11"
 category = "Emerging"
 gdotv_support = false
 

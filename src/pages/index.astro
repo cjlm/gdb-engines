@@ -137,6 +137,7 @@ const datasetSchema = JSON.stringify({
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.type} data-microtip-position="bottom" role="tooltip">Type</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.kind} data-microtip-position="bottom" role="tooltip">Kind</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.category} data-microtip-position="bottom" role="tooltip">Category</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.released} data-microtip-position="bottom" role="tooltip">Released</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="boolean"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.gdotv} data-microtip-position="bottom" role="tooltip">GdotV</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
@@ -209,6 +210,7 @@ const datasetSchema = JSON.stringify({
               {db.data.category}
             </span>
           </td>
+          <td>{db.data.released ? db.data.released.slice(0, 4) : '-'}</td>
           <td>
             {db.data.status !== 'active' ? (
               db.data.status_note ? (

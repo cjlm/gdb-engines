@@ -7,6 +7,7 @@ github_url = "https://github.com/eBay/akutan"
 license = "Apache-2.0"
 type = "RDF"
 query_languages = ["Custom API"]
+released = "2019-04"
 category = "Emerging"
 status = "inactive"
 status_note = "Repository archived February 2022. Never reached production readiness."

@@ -8,6 +8,7 @@ license = "Apache-2.0"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["Java API"]
+released = "2012-02"
 category = "Established"
 status = "inactive"
 status_note = "Retired to the Apache Attic in October 2023. Repository is archived and read-only."

@@ -6,6 +6,7 @@ github_url = "https://github.com/dubey/weaver"
 license = "BSD-3-Clause"
 type = "Other"
 query_languages = ["Custom API"]
+released = "2014"
 category = "Emerging"
 status = "inactive"
 status_note = "Academic research prototype. No active development."

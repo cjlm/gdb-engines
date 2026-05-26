@@ -6,6 +6,7 @@ url = "https://allegrograph.com/"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL", "Prolog"]
+released = "2004"
 category = "Established"
 gdotv_support = true
 

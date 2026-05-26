@@ -8,5 +8,6 @@ license = "ELv2"
 type = "Property Graph"
 query_languages = ["Custom API"]
 kind = "database"
+released = "2024-12"
 category = "Emerging"
 gdotv_support = false

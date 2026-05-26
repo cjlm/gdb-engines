@@ -9,6 +9,7 @@ license = "MIT"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["LINQ"]
+released = "2013"
 category = "Emerging"
 status = "inactive"
 status_note = "Last updated April 2021; single-person project with no recent activity"

@@ -5,6 +5,7 @@ export const columnTooltips: Record<string, string> = {
   type: 'Graph data model: LPG (Labeled Property Graph), RDF (Resource Description Framework), Multiple (supports both LPG and RDF), or Other',
   kind: 'Product type: database, extension (e.g. PostGIS for Postgres), query engine, or embedded library',
   category: 'Market position: Established (widely adopted), Enterprise (major vendor platform), Growing (active with users, not yet widely adopted), or Emerging (new/experimental)',
+  released: 'Year the product was first publicly released',
   status: 'Active, Inactive (no recent development), or Deprecated (officially discontinued)',
   gdotv: 'Supported by gdotv graph visualization tool (gdotv.com)',
   license: 'Software license (SPDX identifier or Proprietary)',

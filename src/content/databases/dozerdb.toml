@@ -8,5 +8,6 @@ license = "GPL-3.0"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["Cypher"]
+released = "2023"
 category = "Emerging"
 gdotv_support = false

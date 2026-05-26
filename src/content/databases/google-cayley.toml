@@ -8,6 +8,7 @@ github_url = "https://github.com/cayleygraph/cayley"
 license = "Apache-2.0"
 type = "RDF"
 query_languages = ["Gizmo", "GraphQL", "MQL"]
+released = "2014"
 category = "Emerging"
 status = "inactive"
 status_note = "No significant development activity since 2020."

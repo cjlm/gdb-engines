@@ -1,0 +1,12 @@
+name = "Google Cloud BigQuery Graph"
+vendor = "Google"
+slug = "bigquery-graph"
+description = "A graph layer within Google Cloud BigQuery that runs property graph queries over warehouse tables using GQL, without a separate graph store. Property graphs are defined as views over existing tables and queried at analytical scale."
+url = "https://cloud.google.com/bigquery/docs/reference/standard-sql/graph-intro"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["GQL", "SQL/PGQ"]
+released = "2026-04"
+category = "Enterprise"
+gdotv_support = true
+gdotv_url = "https://gdotv.com/google-cloud-bigquery-graph-ide-graph-visualization-tool/"

@@ -7,6 +7,7 @@ license = "MIT"
 type = "RDF"
 kind = "embedded"
 query_languages = ["SPARQL", "LINQ"]
+released = "2012-02"
 category = "Emerging"
 status = "inactive"
 status_note = "No active development since 2015."

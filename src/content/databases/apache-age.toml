@@ -8,6 +8,7 @@ license = "Apache-2.0"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]
+released = "2021-04"
 category = "Established"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/apache-age-ide-graph-visualization-tool/"

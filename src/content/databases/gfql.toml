@@ -8,5 +8,6 @@ license = "BSD-3-Clause"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["GFQL", "Cypher"]
+released = "2023"
 category = "Growing"
 gdotv_support = false
