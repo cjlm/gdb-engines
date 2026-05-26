@@ -31,7 +31,7 @@ gdotv_support = false
 - `status` — one of `active` (default), `inactive`, or `deprecated`
 - `status_note` — explanation for non-active status
 - `query_languages` — array of supported query languages (e.g. `["openCypher", "SPARQL"]`)
-- `released` — original public release date, as a year (`"2007"`) or year-month (`"2025-01"`); omit when genuinely unknown
+- `released` — date first publicly available, as a year (`"2007"`) or year-month (`"2025-01"`); omit when genuinely unknown. Use earliest public availability (including preview or announcement), not general availability (GA)
 - `previous_vendors` — ordered array of previous vendor names, oldest first
 - `license` — SPDX identifier (e.g. `Apache-2.0`, `MIT`, `Proprietary`)
 - `gdotv_support` — whether the database is supported by G.V()
