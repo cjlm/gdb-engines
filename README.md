@@ -26,8 +26,8 @@ gdotv_support = false
 
 **Field reference:**
 - `type` — one of `Property Graph`, `RDF`, `Multiple`, or `Other`
-- `category` — one of `Established`, `Enterprise`, or `Emerging`
-- `kind` — one of `database` (default), `extension`, `query-engine`, or `embedded`
+- `category` — one of `Established`, `Enterprise`, `Growing`, or `Emerging`
+- `kind` — one of `database` (default), `extension`, `query-engine`, `embedded`, or `library`
 - `status` — one of `active` (default), `inactive`, or `deprecated`
 - `status_note` — explanation for non-active status
 - `query_languages` — array of supported query languages (e.g. `["openCypher", "SPARQL"]`)
