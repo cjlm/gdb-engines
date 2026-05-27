@@ -5,6 +5,7 @@ description = "An object-oriented graph database for the .NET platform, with its
 url = "https://github.com/sones/sones"
 github_url = "https://github.com/sones/sones"
 license = "AGPL-3.0"
+implementation_language = "C#"
 type = "Property Graph"
 query_languages = ["GQL (Sones)"]
 released = "2010"

@@ -5,6 +5,7 @@ description = "A community fork of Kuzu. An embedded columnar property graph dat
 url = "https://ladybugdb.com/"
 github_url = "https://github.com/LadybugDB/ladybug"
 license = "MIT"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "embedded"

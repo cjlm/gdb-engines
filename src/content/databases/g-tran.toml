@@ -4,6 +4,7 @@ description = "A research prototype for graph transaction processing. Supports A
 url = "https://github.com/yaobaiwei/GTran"
 github_url = "https://github.com/yaobaiwei/GTran"
 license = "Apache-2.0"
+implementation_language = "C++"
 type = "Other"
 query_languages = ["Gremlin"]
 released = "2021"

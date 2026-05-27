@@ -5,6 +5,7 @@ description = "A lightweight embedded property graph database with full ISO GQL 
 url = "https://github.com/GraphLite-AI/GraphLite"
 github_url = "https://github.com/GraphLite-AI/GraphLite"
 license = "Apache-2.0"
+implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["ISO GQL"]
 kind = "embedded"

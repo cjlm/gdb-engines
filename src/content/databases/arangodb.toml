@@ -5,6 +5,7 @@ description = "A multi-model database supporting graphs, key-value pairs, and do
 url = "https://www.arangodb.com/"
 github_url = "https://github.com/arangodb/arangodb"
 license = "BSL-1.1"
+implementation_language = "C++"
 type = "Multiple"
 query_languages = ["AQL"]
 released = "2012-03"

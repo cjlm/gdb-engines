@@ -5,6 +5,7 @@ description = "DuckDB community extension adding SQL/PGQ (SQL:2023 standard) gra
 url = "https://duckpgq.org/"
 github_url = "https://github.com/cwida/duckpgq-extension"
 license = "MIT"
+implementation_language = "C++"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["SQL/PGQ"]

@@ -4,6 +4,7 @@ slug = "bytegraph"
 description = "An internal ByteDance distributed graph database using a two-tier architecture with durable storage and cache layers. Optimizes for social graph workloads with an edge-tree data structure and adaptive caching. Not publicly available."
 url = "https://www.bytedance.com/"
 license = "Proprietary"
+implementation_language = "C++"
 type = "Other"
 query_languages = ["Gremlin"]
 released = "2022"

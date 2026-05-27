@@ -6,6 +6,7 @@ description = "An RDF triplestore written in Java, supporting semantic web data 
 url = "http://mulgara.org/"
 github_url = "https://github.com/quoll/mulgara"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "iTQL"]
 released = "2006"

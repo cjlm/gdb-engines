@@ -5,6 +5,7 @@ description = "A distributed graph computing platform from Alibaba combining thr
 url = "https://graphscope.io/"
 github_url = "https://github.com/alibaba/GraphScope"
 license = "Apache-2.0"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
 released = "2021"

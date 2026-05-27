@@ -5,6 +5,7 @@ description = "An RDF triple store that represents knowledge graphs as sparse te
 url = "https://tentris.dice-research.org/"
 github_url = "https://github.com/tentris"
 license = "Proprietary"
+implementation_language = "C++"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2020"

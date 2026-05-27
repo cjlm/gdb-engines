@@ -3,6 +3,7 @@ slug = "zipg"
 description = "A research prototype graph store that executes queries directly on a compressed graph representation for memory efficiency. Lacks traditional database features such as transactions and replication."
 url = "https://github.com/pdclab/zipg"
 github_url = "https://github.com/amplab/zipg"
+implementation_language = "Java"
 type = "Other"
 query_languages = ["Custom API"]
 released = "2017"

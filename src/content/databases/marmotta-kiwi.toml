@@ -5,6 +5,7 @@ description = "An RDF triple store backend for Apache Marmotta that translates S
 url = "https://marmotta.apache.org/kiwi/"
 github_url = "https://github.com/apache/marmotta"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2012"

@@ -5,6 +5,7 @@ slug = "oracle-graph"
 description = "Oracle's graph database capabilities within Oracle Database, supporting both property graphs (SQL/PGQ and PGQL) and RDF/SPARQL. Includes in-memory graph analytics with 60+ built-in algorithms."
 url = "https://www.oracle.com/database/graph/"
 license = "Proprietary"
+implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL/PGQ", "PGQL", "SPARQL"]
 released = "2005"

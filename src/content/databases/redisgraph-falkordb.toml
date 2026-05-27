@@ -7,6 +7,7 @@ description = "A property graph database that runs as a Redis module, formerly R
 url = "https://www.falkordb.com/"
 github_url = "https://github.com/FalkorDB/FalkorDB"
 license = "SSPL-1.0"
+implementation_language = "C"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2018"

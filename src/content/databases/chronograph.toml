@@ -4,6 +4,7 @@ description = "A TinkerPop-compliant embedded graph database with system-time co
 url = "https://github.com/MartinHaeusler/chronos"
 github_url = "https://github.com/MartinHaeusler/chronos"
 license = "AGPL-3.0"
+implementation_language = "Java"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["Gremlin"]

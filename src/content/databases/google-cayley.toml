@@ -6,6 +6,7 @@ url = "https://cayley.io/"
 description = "An open-source RDF graph database inspired by the graph database behind Google's Knowledge Graph (Freebase). Features pluggable backend storage and multiple query language support."
 github_url = "https://github.com/cayleygraph/cayley"
 license = "Apache-2.0"
+implementation_language = "Go"
 type = "RDF"
 query_languages = ["Gizmo", "GraphQL", "MQL"]
 released = "2014"

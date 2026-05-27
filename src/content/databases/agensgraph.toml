@@ -6,6 +6,7 @@ description = "A multi-model graph database built on PostgreSQL, supporting prop
 url = "https://tech.skaiworldwide.com/downloads/"
 github_url = "https://github.com/skaiworldwide-oss/agensgraph"
 license = "Apache-2.0"
+implementation_language = "C"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]

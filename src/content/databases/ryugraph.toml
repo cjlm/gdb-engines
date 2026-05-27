@@ -5,6 +5,7 @@ description = "An embedded property graph database forked from Kuzu. Features co
 url = "https://www.ryugraph.io/"
 github_url = "https://github.com/predictable-labs/ryugraph"
 license = "MIT"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2025-10"

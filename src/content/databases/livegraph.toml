@@ -4,6 +4,7 @@ description = "An academic research prototype for graph storage using a Transact
 url = "https://github.com/thu-pacman/LiveGraph"
 github_url = "https://github.com/thu-pacman/LiveGraph"
 license = "Apache-2.0"
+implementation_language = "C++"
 type = "Other"
 query_languages = ["Custom API"]
 kind = "embedded"

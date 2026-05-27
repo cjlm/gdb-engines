@@ -5,6 +5,7 @@ description = "An in-memory temporal graph database written in Rust with Python 
 url = "https://pometry.com/"
 github_url = "https://github.com/Pometry/Raphtory"
 license = "GPL-3.0"
+implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["GraphQL"]
 released = "2020-12"

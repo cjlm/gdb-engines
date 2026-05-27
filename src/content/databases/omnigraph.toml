@@ -5,6 +5,7 @@ description = "A lakehouse-native graph engine in Rust that adds git-style branc
 url = "https://github.com/ModernRelay/omnigraph"
 github_url = "https://github.com/ModernRelay/omnigraph"
 license = "MIT"
+implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["Custom API"]
 released = "2026"

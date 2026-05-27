@@ -5,6 +5,7 @@ description = "A community fork of Neo4j Enterprise Edition 3.4 maintained by th
 url = "https://www.graphfoundation.org/projects/ongdb/"
 github_url = "https://github.com/graphfoundation/ongdb"
 license = "GPL-3.0 OR AGPL-3.0"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Cypher"]
 released = "2018"

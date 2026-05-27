@@ -5,6 +5,7 @@ description = "A real-time, type-safe property graph database in TypeScript buil
 url = "https://codemix.com/graph"
 github_url = "https://github.com/codemix/graph"
 license = "MIT"
+implementation_language = "TypeScript"
 type = "Property Graph"
 kind = "library"
 query_languages = ["Gremlin", "Cypher"]

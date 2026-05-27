@@ -5,6 +5,7 @@ description = "A distributed graph database built by Twitter for storing adjacen
 url = "https://github.com/twitter-archive/flockdb"
 github_url = "https://github.com/twitter-archive/flockdb"
 license = "Apache-2.0"
+implementation_language = "Scala"
 type = "Other"
 query_languages = ["Thrift API"]
 released = "2010"

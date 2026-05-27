@@ -5,6 +5,7 @@ description = "A SPARQL engine capable of querying very large knowledge graphs (
 url = "https://qlever.cs.uni-freiburg.de/"
 github_url = "https://github.com/ad-freiburg/qlever"
 license = "Apache-2.0"
+implementation_language = "C++"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2017"

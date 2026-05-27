@@ -6,6 +6,7 @@ description = "A graph database and document store that builds knowledge graphs 
 url = "https://terminusdb.com/"
 github_url = "https://github.com/terminusdb/terminusdb"
 license = "Apache-2.0"
+implementation_language = "Prolog"
 type = "Multiple"
 query_languages = ["WOQL", "GraphQL"]
 released = "2019"

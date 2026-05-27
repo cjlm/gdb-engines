@@ -5,6 +5,7 @@ description = "A modular SPARQL query engine written in TypeScript that federate
 url = "https://comunica.dev/"
 github_url = "https://github.com/comunica/comunica"
 license = "MIT"
+implementation_language = "TypeScript"
 type = "RDF"
 kind = "query-engine"
 query_languages = ["SPARQL", "GraphQL"]

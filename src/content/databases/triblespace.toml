@@ -4,6 +4,7 @@ description = "An embedded knowledge graph in Rust with content-addressed storag
 url = "https://github.com/triblespace/triblespace-rs"
 github_url = "https://github.com/triblespace/triblespace-rs"
 license = "MIT OR Apache-2.0"
+implementation_language = "Rust"
 type = "Other"
 kind = "embedded"
 query_languages = ["Custom API"]

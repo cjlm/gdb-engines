@@ -5,6 +5,7 @@ description = "A Perl RDF framework providing triple store abstractions with in-
 url = "https://metacpan.org/pod/RDF::Trine"
 github_url = "https://github.com/kasei/perlrdf"
 license = "Artistic-2.0"
+implementation_language = "Perl"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]

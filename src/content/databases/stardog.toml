@@ -4,6 +4,7 @@ slug = "stardog"
 description = "An RDF-based knowledge graph database with OWL 2 reasoning and property graph extensions. Includes Voicebox, an OpenAI-compatible natural language query interface via LLM integration."
 url = "https://www.stardog.com/"
 license = "Proprietary"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "SQL", "GraphQL"]
 released = "2011"

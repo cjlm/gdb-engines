@@ -5,6 +5,7 @@ description = "A property graph database that stores data as fixed-size records 
 url = "https://neo4j.com/"
 github_url = "https://github.com/neo4j/neo4j"
 license = "GPL-3.0"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Cypher", "GQL"]
 released = "2007"

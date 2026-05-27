@@ -5,6 +5,7 @@ description = "An embedded property graph database built for fast analytical wor
 url = "https://kuzudb.com"
 github_url = "https://github.com/kuzudb/kuzu"
 license = "MIT"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "embedded"

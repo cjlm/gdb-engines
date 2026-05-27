@@ -4,6 +4,7 @@ slug = "faunadb"
 description = "A distributed multi-model database with document and graph capabilities, accessed via its custom Fauna Query Language (FQL). Supported ACID transactions and global distribution. Service was shut down in 2025."
 url = "https://fauna.com/"
 license = "Proprietary"
+implementation_language = "Scala"
 type = "Multiple"
 query_languages = ["FQL", "GraphQL"]
 released = "2016"

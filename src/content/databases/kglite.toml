@@ -5,6 +5,7 @@ description = "An embedded knowledge graph for Python written in Rust. Speaks op
 url = "https://kglite.readthedocs.io"
 github_url = "https://github.com/kkollsga/kglite"
 license = "MIT"
+implementation_language = "Rust"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher", "Custom API"]

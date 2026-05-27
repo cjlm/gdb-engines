@@ -5,6 +5,7 @@ description = "An open-source distributed property graph database forked from th
 url = "https://janusgraph.org/"
 github_url = "https://github.com/JanusGraph/janusgraph"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin"]
 released = "2017-04"

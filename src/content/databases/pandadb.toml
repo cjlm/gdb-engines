@@ -4,6 +4,7 @@ description = "A distributed property graph database built on Neo4j, extending i
 url = "https://github.com/grapheco/pandadb-v0.3"
 github_url = "https://github.com/grapheco/pandadb-v0.3"
 license = "Apache-2.0"
+implementation_language = "Scala"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2019"

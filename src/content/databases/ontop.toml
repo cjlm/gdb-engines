@@ -5,6 +5,7 @@ description = "A Virtual Knowledge Graph system that exposes relational database
 url = "https://ontop-vkg.org/"
 github_url = "https://github.com/ontop/ontop"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 kind = "query-engine"

@@ -5,6 +5,7 @@ description = "A dataframe-native graph query language with vectorized processin
 url = "https://pygraphistry.readthedocs.io/en/latest/gfql/"
 github_url = "https://github.com/graphistry/pygraphistry"
 license = "BSD-3-Clause"
+implementation_language = "Python"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["GFQL", "Cypher"]

@@ -6,6 +6,7 @@ description = "A distributed graph database with horizontal scaling and ACID tra
 url = "https://dgraph.io/"
 github_url = "https://github.com/hypermodeinc/dgraph"
 license = "Apache-2.0"
+implementation_language = "Go"
 type = "Property Graph"
 query_languages = ["DQL", "GraphQL"]
 released = "2015"

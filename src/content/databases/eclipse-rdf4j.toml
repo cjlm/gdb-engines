@@ -6,6 +6,7 @@ description = "A Java-based RDF framework and triple store supporting both in-me
 url = "https://rdf4j.org/"
 github_url = "https://github.com/eclipse-rdf4j/rdf4j"
 license = "BSD-3-Clause"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2016"

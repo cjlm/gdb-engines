@@ -5,6 +5,7 @@ description = "A lightweight RDF triplestore with a built-in HTTP server and SPA
 url = "https://www.aelius.com/njh/redstore/"
 github_url = "https://github.com/njh/redstore"
 license = "GPL-3.0"
+implementation_language = "C"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2010"

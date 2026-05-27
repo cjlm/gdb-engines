@@ -13,6 +13,7 @@ const databases = defineCollection({
     url: z.string().url().optional(),
     github_url: z.string().url().optional(),
     license: z.string().optional(),
+    implementation_language: z.string().optional(),
     type: z.enum(['Property Graph', 'RDF', 'Multiple', 'Other']),
     kind: z.enum(['database', 'extension', 'query-engine', 'embedded', 'library']).default('database'),
     category: z.enum(['Established', 'Enterprise', 'Growing', 'Emerging']),

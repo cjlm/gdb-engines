@@ -4,6 +4,7 @@ slug = "allegrograph"
 description = "An RDF triple store with built-in ontology reasoning capabilities. Supports OWL2 RL materialized reasoning for inferring new triples and federated queries across distributed stores."
 url = "https://allegrograph.com/"
 license = "Proprietary"
+implementation_language = "Common Lisp"
 type = "RDF"
 query_languages = ["SPARQL", "Prolog"]
 released = "2004"

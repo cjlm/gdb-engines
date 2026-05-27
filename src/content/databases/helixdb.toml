@@ -5,6 +5,7 @@ description = "An open-source graph-vector database combining graph traversals w
 url = "https://www.helix-db.com/"
 github_url = "https://github.com/HelixDB/helix-db"
 license = "AGPL-3.0"
+implementation_language = "Rust"
 type = "Other"
 query_languages = ["HelixQL"]
 kind = "database"
