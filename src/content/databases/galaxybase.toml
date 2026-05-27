@@ -3,6 +3,7 @@ vendor = "CreateLink"
 slug = "galaxybase"
 description = "A distributed property graph database with native graph storage, focused on real-time deep link analytics across large-scale datasets."
 url = "https://www.galaxybase.com/"
+license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2020"

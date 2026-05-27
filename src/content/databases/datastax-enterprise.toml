@@ -4,6 +4,7 @@ previous_vendors = ["DataStax"]
 slug = "datastax-enterprise"
 description = "A property graph database built on Apache Cassandra, forked from the Titan graph database. Uses TinkerPop for graph traversal and includes DataStax Studio for interactive querying and visualization."
 url = "https://www.datastax.com/products/datastax-enterprise"
+license = "Proprietary"
 type = "Property Graph"
 query_languages = ["Gremlin", "CQL"]
 released = "2016"

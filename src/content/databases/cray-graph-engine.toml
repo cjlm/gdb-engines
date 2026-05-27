@@ -4,6 +4,7 @@ previous_vendors = ["Cray"]
 slug = "cray-graph-engine"
 description = "An RDF triple store built for Cray/HPE supercomputer systems. Uses a shared global address space across compute nodes for distributed graph analytics with pre-built graph algorithms."
 url = "https://www.cray.com/"
+license = "Proprietary"
 type = "Other"
 query_languages = ["SPARQL"]
 released = "2016"

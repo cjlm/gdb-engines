@@ -3,6 +3,7 @@ vendor = "Microsoft"
 slug = "cosmos-db"
 description = "A globally distributed multi-model database service on Microsoft Azure with property graph support through the Apache Gremlin API. Offers multi-region replication and multiple consistency models."
 url = "https://azure.microsoft.com/en-us/products/cosmos-db"
+license = "Proprietary"
 type = "Multiple"
 query_languages = ["Gremlin", "SQL"]
 released = "2017-05"

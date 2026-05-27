@@ -4,6 +4,7 @@ previous_vendors = ["Huawei"]
 slug = "stellardb"
 description = "A distributed property graph database using compressed storage with partitioning strategies. Supports openCypher and SQL queries with a parallel graph algorithms library and built-in 2D/3D visualization."
 url = "https://www.transwarp.cn/en/product/stellardb"
+license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher", "SQL"]
 category = "Emerging"

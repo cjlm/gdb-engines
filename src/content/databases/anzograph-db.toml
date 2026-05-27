@@ -5,6 +5,7 @@ previous_names = ["SPARQLVerse", "AnzoGraph DB"]
 slug = "altair-graph-lakehouse"
 description = "An RDF graph OLAP database (formerly AnzoGraph DB) using massively parallel processing (MPP) for analytical workloads. Rebranded under Altair, it supports SPARQL 1.1 with extensions for window aggregates and advanced grouping, plus openCypher query support."
 url = "https://altair.com/altair-graph-lakehouse"
+license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL", "openCypher"]
 released = "2018-10"

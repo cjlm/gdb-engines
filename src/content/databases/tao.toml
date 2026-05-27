@@ -3,6 +3,7 @@ vendor = "Meta"
 slug = "tao"
 description = "A distributed graph store built by Meta (Facebook) for serving the social graph at scale. Shards data across MySQL instances with a caching layer, later extended with the RAMP-TAO protocol for geo-distributed atomic visibility. Not available as a standalone product."
 url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-graph/"
+license = "Proprietary"
 type = "Other"
 query_languages = ["TAO API"]
 released = "2012"
