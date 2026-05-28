@@ -34,6 +34,7 @@ gdotv_support = false
 - `released` — date first publicly available, as a year (`"2007"`) or year-month (`"2025-01"`); omit when unknown. Use earliest public availability (including preview or announcement), not general availability (GA)
 - `previous_vendors` — ordered array of previous vendor names, oldest first
 - `license` — SPDX identifier (e.g. `Apache-2.0`, `MIT`, `Proprietary`)
+- `implementation_language` — primary programming language the engine is written in (e.g. `Rust`, `Java`, `C++`); omit when unknown
 - `gdotv_support` — whether the database is supported by G.V()
 - `icon` — optional custom favicon filename in `public/logos/`
 
