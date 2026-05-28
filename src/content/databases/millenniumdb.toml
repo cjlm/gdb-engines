@@ -5,6 +5,7 @@ description = "An open-source, multi-model graph database supporting property gr
 url = "https://github.com/MillenniumDB/MillenniumDB"
 github_url = "https://github.com/MillenniumDB/MillenniumDB"
 license = "GPL-2.0"
+implementation_language = "C++"
 type = "Multiple"
 query_languages = ["GQL", "SPARQL"]
 released = "2021"

@@ -5,6 +5,7 @@ previous_names = ["GraphSQL"]
 description = "A distributed property graph database (formerly GraphSQL) built for massively parallel processing and graph analytics. Uses the SQL-like GSQL query language and supports ACID transactions. Available in developer, cloud, and enterprise editions."
 url = "https://www.tigergraph.com/"
 license = "Proprietary"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["GSQL"]
 released = "2017"

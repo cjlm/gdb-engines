@@ -5,6 +5,7 @@ description = "A Perl semantic web framework providing a SPARQL 1.1 query engine
 url = "https://metacpan.org/pod/Attean"
 github_url = "https://github.com/kasei/attean"
 license = "Artistic-2.0"
+implementation_language = "Perl"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]

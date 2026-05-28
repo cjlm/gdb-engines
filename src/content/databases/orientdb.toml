@@ -6,6 +6,7 @@ description = "A distributed multi-model database combining graph and document m
 url = "https://orientdb.dev/"
 github_url = "https://github.com/orientechnologies/orientdb"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL", "Gremlin"]
 released = "2010"

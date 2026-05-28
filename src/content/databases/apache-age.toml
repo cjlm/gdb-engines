@@ -5,6 +5,7 @@ description = "PostgreSQL extension providing graph database functionality with 
 url = "https://age.apache.org/"
 github_url = "https://github.com/apache/age"
 license = "Apache-2.0"
+implementation_language = "C"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]

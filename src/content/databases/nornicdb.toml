@@ -5,6 +5,7 @@ description = "A hybrid graph and vector database written in Go with Neo4j compa
 url = "https://github.com/orneryd/NornicDB"
 github_url = "https://github.com/orneryd/NornicDB"
 license = "MIT"
+implementation_language = "Go"
 type = "Property Graph"
 query_languages = ["Cypher", "GraphQL"]
 released = "2025-12"

@@ -4,6 +4,7 @@ description = "A modular Rust toolkit for RDF and SPARQL providing a Jena TDB-co
 url = "https://github.com/cool-japan/oxirs"
 github_url = "https://github.com/cool-japan/oxirs"
 license = "Apache-2.0"
+implementation_language = "Rust"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]

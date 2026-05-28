@@ -5,6 +5,7 @@ description = "A PostgreSQL extension that adds graph search, bounded traversal,
 url = "https://www.evokoa.com/"
 github_url = "https://github.com/Evokoa/pgGraph"
 license = "Apache-2.0"
+implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["SQL"]
 kind = "extension"

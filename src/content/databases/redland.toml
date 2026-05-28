@@ -5,6 +5,7 @@ description = "A modular C library suite for RDF storage, parsing, and querying.
 url = "http://librdf.org/"
 github_url = "https://github.com/dajobe/librdf"
 license = "LGPL-2.1"
+implementation_language = "C"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]

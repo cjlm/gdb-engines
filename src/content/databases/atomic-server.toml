@@ -5,6 +5,7 @@ description = "A lightweight Rust graph database built around the Atomic Data sp
 url = "https://atomicserver.eu/"
 github_url = "https://github.com/ontola/atomic-server"
 license = "MIT"
+implementation_language = "Rust"
 type = "Other"
 query_languages = ["Custom API"]
 released = "2020-09"

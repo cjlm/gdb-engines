@@ -5,6 +5,7 @@ description = "An in-memory, column-oriented property graph database engine focu
 url = "https://www.turingdb.ai/"
 github_url = "https://github.com/turing-db/turingdb"
 license = "BSL-1.1"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2025"

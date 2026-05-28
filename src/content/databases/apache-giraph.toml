@@ -5,6 +5,7 @@ description = "An iterative graph processing system built for high scalability, 
 url = "https://giraph.apache.org/"
 github_url = "https://github.com/apache/giraph"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["Java API"]

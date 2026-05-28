@@ -4,6 +4,7 @@ description = "A .NET-native RDF store with SPARQL support and binding of RDF re
 url = "https://github.com/BrightstarDB/BrightstarDB"
 github_url = "https://github.com/BrightstarDB/BrightstarDB"
 license = "MIT"
+implementation_language = "C#"
 type = "RDF"
 kind = "embedded"
 query_languages = ["SPARQL", "LINQ"]

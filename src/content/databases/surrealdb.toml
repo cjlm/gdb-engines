@@ -5,6 +5,7 @@ description = "A multi-model database written in Rust that combines document, gr
 url = "https://surrealdb.com/"
 github_url = "https://github.com/surrealdb/surrealdb"
 license = "BSL-1.1"
+implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["SurrealQL"]
 released = "2022"

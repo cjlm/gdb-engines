@@ -5,6 +5,7 @@ description = "A distributed, in-memory graph processing engine developed by Mic
 url = "https://github.com/microsoft/GraphEngine"
 github_url = "https://github.com/microsoft/GraphEngine"
 license = "MIT"
+implementation_language = "C#"
 type = "Property Graph"
 query_languages = ["LIKQ"]
 released = "2015"

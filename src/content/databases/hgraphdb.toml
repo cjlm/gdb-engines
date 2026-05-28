@@ -4,6 +4,7 @@ description = "A TinkerPop 3 graph layer on top of HBase, enabling property grap
 url = "https://github.com/rayokota/hgraphdb"
 github_url = "https://github.com/rayokota/hgraphdb"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Other"
 query_languages = ["Gremlin"]
 kind = "extension"

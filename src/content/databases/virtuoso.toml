@@ -5,6 +5,7 @@ description = "A multi-model database supporting relational, RDF, and property g
 url = "https://virtuoso.openlinksw.com/"
 github_url = "https://github.com/openlink/virtuoso-opensource"
 license = "GPL-2.0"
+implementation_language = "C"
 type = "Multiple"
 query_languages = ["SQL", "SPARQL"]
 released = "1998"

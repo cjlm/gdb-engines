@@ -5,6 +5,7 @@ description = "An open-source RDF triple store and SPARQL server built on the Ap
 url = "https://jena.apache.org/"
 github_url = "https://github.com/apache/jena"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2011-12"

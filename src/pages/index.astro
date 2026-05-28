@@ -141,6 +141,7 @@ const datasetSchema = JSON.stringify({
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="boolean"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.gdotv} data-microtip-position="bottom" role="tooltip">GdotV</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.implementation_language} data-microtip-position="bottom" role="tooltip">Language</span> <span class="sort-indicator"></span></div></th>
         <th><span class="has-tooltip" aria-label={columnTooltips.query_languages} data-microtip-position="bottom" role="tooltip">Query Languages</span></th>
         {featureGroups.map((group, gi) =>
           group.features.map(key => (
@@ -226,6 +227,7 @@ const datasetSchema = JSON.stringify({
           </td>
           <td>{db.data.gdotv_support ? <a href={`${db.data.gdotv_url || 'https://gdotv.com'}${(db.data.gdotv_url || 'https://gdotv.com').includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Yes</a> : 'No'}</td>
           <td>{db.data.license ?? '-'}</td>
+          <td>{db.data.implementation_language ?? '-'}</td>
           <td>
             {db.data.query_languages?.length ? (
               <div class="query-langs">

@@ -5,6 +5,7 @@ description = "A multi-model database with property graph capabilities built on 
 url = "https://aerospike.com/"
 github_url = "https://github.com/aerospike/aerospike-server"
 license = "AGPL-3.0"
+implementation_language = "C"
 type = "Property Graph"
 query_languages = ["Gremlin"]
 released = "2023-06"

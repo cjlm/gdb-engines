@@ -4,6 +4,7 @@ slug = "infinitegraph"
 description = "A distributed property graph database built on Objectivity's object database technology, focused on navigating and analyzing complex relationships across large datasets."
 url = "https://objectivity.com/infinitegraph/"
 license = "Proprietary"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["DO Query Language"]
 released = "2010-05"

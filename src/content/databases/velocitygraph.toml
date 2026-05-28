@@ -6,6 +6,7 @@ description = "An open-source .NET property graph layer built on top of the Velo
 url = "https://velocitydb.com"
 github_url = "https://github.com/VelocityDB/VelocityDB"
 license = "MIT"
+implementation_language = "C#"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["LINQ"]

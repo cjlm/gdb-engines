@@ -5,6 +5,7 @@ previous_names = ["DEX"]
 description = "A property graph database (formerly DEX) that stores graphs as labelled multigraphs using bitmap data structures for compact representation. Supports ACID transactions and offers free licenses for evaluation and research use."
 url = "https://www.sparsity-technologies.com/"
 license = "Proprietary"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2008"

@@ -5,6 +5,7 @@ description = "An open-source, offline-first, decentralized graph database with 
 url = "https://gun.eco/"
 github_url = "https://github.com/amark/gun"
 license = "MIT"
+implementation_language = "JavaScript"
 type = "Property Graph"
 query_languages = ["Custom API"]
 released = "2014"

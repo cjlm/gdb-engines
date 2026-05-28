@@ -4,6 +4,7 @@ slug = "postgresql-sql-pgq"
 description = "Native SQL:2023 property graph query support coming to PostgreSQL, exposing graph pattern matching through the GRAPH_TABLE construct over property graphs defined on existing tables. Property graphs are processed like views and executed as standard relational queries by the existing planner."
 url = "https://www.postgresql.org/docs/devel/queries-graph.html"
 license = "PostgreSQL"
+implementation_language = "C"
 type = "Property Graph"
 query_languages = ["SQL/PGQ"]
 category = "Emerging"

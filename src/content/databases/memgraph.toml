@@ -5,6 +5,7 @@ description = "An in-memory property graph database with ACID transactions and s
 url = "https://memgraph.com/"
 github_url = "https://github.com/memgraph/memgraph"
 license = "BSL-1.1"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 released = "2018"

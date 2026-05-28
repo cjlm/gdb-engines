@@ -5,6 +5,7 @@ description = "An embeddable graph database supporting both property graph and R
 url = "https://github.com/GrafeoDB/grafeo"
 github_url = "https://github.com/GrafeoDB/grafeo"
 license = "Apache-2.0"
+implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["GQL", "Cypher", "SPARQL", "Gremlin", "GraphQL", "SQL/PGQ"]
 released = "2026"

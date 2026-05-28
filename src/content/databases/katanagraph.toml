@@ -5,6 +5,7 @@ description = "A graph computation library focused on parallel analytics and mac
 url = "https://katanagraph.ai/"
 github_url = "https://github.com/KatanaGraph/katana"
 license = "BSD-3-Clause"
+implementation_language = "C++"
 type = "Other"
 query_languages = ["openCypher"]
 released = "2021"

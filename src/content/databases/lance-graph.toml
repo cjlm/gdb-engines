@@ -5,6 +5,7 @@ description = "A graph query engine built on the Lance columnar format, supporti
 url = "https://lancedb.com/"
 github_url = "https://github.com/lance-format/lance-graph"
 license = "Apache-2.0"
+implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["SQL", "openCypher"]
 kind = "query-engine"

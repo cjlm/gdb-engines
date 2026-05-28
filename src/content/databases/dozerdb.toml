@@ -5,6 +5,7 @@ description = "A Neo4j Community Edition plugin that adds enterprise features in
 url = "https://dozerdb.org/"
 github_url = "https://github.com/DozerDB/dozerdb-plugin"
 license = "GPL-3.0"
+implementation_language = "Java"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["Cypher"]

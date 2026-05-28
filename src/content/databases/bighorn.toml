@@ -5,6 +5,7 @@ description = "A community fork of Kuzu maintained by Kineviz. An embedded prope
 url = "https://kineviz.github.io/bighorndb-docs/"
 github_url = "https://github.com/Kineviz/bighorn"
 license = "MIT"
+implementation_language = "C++"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher"]

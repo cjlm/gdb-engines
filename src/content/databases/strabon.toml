@@ -5,6 +5,7 @@ description = "A spatiotemporal RDF store extending RDF4J with support for stRDF
 url = "https://strabon.di.uoa.gr"
 github_url = "https://github.com/AI-team-UoA/Strabon"
 license = "MPL-2.0"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "stSPARQL", "GeoSPARQL"]
 released = "2011"

@@ -5,6 +5,7 @@ description = "A multi-model database inspired by OrientDB, supporting graphs, d
 url = "https://arcadedb.com/"
 github_url = "https://github.com/ArcadeData/arcadedb"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL", "openCypher", "Gremlin", "GraphQL"]
 released = "2021-09"

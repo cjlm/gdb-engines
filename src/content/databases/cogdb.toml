@@ -4,6 +4,7 @@ description = "A persistent, embedded graph database for Python that runs entire
 url = "https://github.com/arun1729/cog"
 github_url = "https://github.com/arun1729/cog"
 license = "MIT"
+implementation_language = "Python"
 type = "Other"
 kind = "embedded"
 query_languages = ["Custom API"]

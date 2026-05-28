@@ -5,6 +5,7 @@ description = "A TinkerPop 3-compliant property graph database with a pluggable 
 url = "https://hugegraph.apache.org/"
 github_url = "https://github.com/apache/incubator-hugegraph"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
 released = "2018-08"

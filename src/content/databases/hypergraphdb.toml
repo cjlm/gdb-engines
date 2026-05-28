@@ -4,6 +4,7 @@ description = "An open-source embedded database for storing hypergraphs, where e
 url = "http://www.hypergraphdb.org/"
 github_url = "https://github.com/hypergraphdb/hypergraphdb"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Other"
 query_languages = ["Java API"]
 kind = "embedded"

@@ -5,6 +5,7 @@ description = "A lightweight, in-memory property graph engine serving as the ref
 url = "https://tinkerpop.apache.org"
 github_url = "https://github.com/apache/tinkerpop"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin"]
 kind = "embedded"

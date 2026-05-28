@@ -5,6 +5,7 @@ description = "A graph database framework with pluggable storage backends (Accum
 url = "https://github.com/gchq/Gaffer"
 github_url = "https://github.com/gchq/Gaffer"
 license = "Apache-2.0"
+implementation_language = "Java"
 type = "Other"
 query_languages = ["Custom API"]
 kind = "query-engine"

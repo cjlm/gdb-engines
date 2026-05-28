@@ -9,6 +9,7 @@ export const columnTooltips: Record<string, string> = {
   status: 'Active, Inactive (no recent development), or Deprecated (officially discontinued)',
   gdotv: 'Supported by gdotv graph visualization tool (gdotv.com)',
   license: 'Software license (SPDX identifier or Proprietary)',
+  implementation_language: 'Primary programming language the engine is written in',
   query_languages: 'Query languages supported by this database',
 };
 

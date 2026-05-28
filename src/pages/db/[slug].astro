@@ -135,6 +135,12 @@ const description = db.data.description;
       )}
       <dt>License</dt>
       <dd>{db.data.license ?? '-'}</dd>
+      {db.data.implementation_language && (
+        <>
+          <dt>Language</dt>
+          <dd>{db.data.implementation_language}</dd>
+        </>
+      )}
       {db.data.query_languages?.length > 0 && (
         <>
           <dt>Query Languages</dt>

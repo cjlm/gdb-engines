@@ -4,6 +4,7 @@ slug = "ontotext-graphdb"
 description = "An RDF triplestore with ACID transactions, available in free, standard, and enterprise editions. Supports semantic reasoning and inference with configurable rule sets."
 url = "https://www.ontotext.com/products/graphdb/"
 license = "Proprietary"
+implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 released = "2005"

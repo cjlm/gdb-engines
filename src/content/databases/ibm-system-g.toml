@@ -3,6 +3,8 @@ vendor = "IBM"
 slug = "ibm-system-g"
 description = "A discontinued IBM Research graph platform supporting both property graph and RDF models. Used compressed sparse vector storage with temporal offsets and included visual query tools."
 url = "https://researcher.watson.ibm.com/researcher/view_group.php?id=7131"
+license = "Proprietary"
+implementation_language = "C++"
 type = "Other"
 query_languages = ["Gremlin"]
 released = "2013"

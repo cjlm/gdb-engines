@@ -5,6 +5,7 @@ description = "An embedded property graph database for Python that bundles a Red
 url = "https://github.com/FalkorDB/falkordblite"
 github_url = "https://github.com/FalkorDB/falkordblite"
 license = "SSPL-1.0"
+implementation_language = "Python"
 type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher"]

@@ -5,6 +5,7 @@ description = "The de facto standard Python library for working with RDF graphs.
 url = "https://rdflib.readthedocs.io/"
 github_url = "https://github.com/RDFLib/rdflib"
 license = "BSD-3-Clause"
+implementation_language = "Python"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]

@@ -5,6 +5,7 @@ description = "A property graph database developed by Ant Group and Tsinghua Uni
 url = "https://www.tugraph.org/"
 github_url = "https://github.com/TuGraph-family/tugraph-db"
 license = "Apache-2.0"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher", "ISO GQL"]
 released = "2022"

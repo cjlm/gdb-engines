@@ -6,6 +6,7 @@ description = "A polymorphic database that natively models inheritance hierarchi
 url = "https://typedb.com/"
 github_url = "https://github.com/typedb/typedb"
 license = "MPL-2.0"
+implementation_language = "Rust"
 type = "Other"
 query_languages = ["TypeQL"]
 released = "2016"
