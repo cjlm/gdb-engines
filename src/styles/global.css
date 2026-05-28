@@ -193,7 +193,8 @@ header {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
 
-  button {
+  button,
+  a.header-link {
     flex: 0 0 auto;
     cursor: pointer;
     border: none;
@@ -204,6 +205,9 @@ header {
     height: 2rem;
     padding: 0.5rem 0.75rem;
     border-radius: 0.25rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
   }
 
   @media (max-width: 32rem) {
@@ -224,6 +228,68 @@ header {
       }
     }
   }
+}
+
+/* Ranks block on /db/{slug} detail pages */
+.ranks-block { margin: 1.5rem 0; }
+.ranks-block h2 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.ranks-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ranks-list a {
+  display: inline-flex; align-items: baseline; gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  border: 1px solid var(--color-border);
+  transition: background-color 120ms ease;
+}
+.ranks-list a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
+.ranks-list .rank { font-weight: 600; color: var(--color-brand); font-variant-numeric: tabular-nums; }
+.ranks-list .label { color: var(--color-text-secondary); }
+
+/* Rankings cross-links from the comparison table */
+.rank-col { text-align: right; font-variant-numeric: tabular-nums; min-width: 3rem; }
+.rank-link, .value-link { color: inherit; text-decoration: none; }
+.rank-link:hover, .value-link:hover, .badge-link:hover { text-decoration: underline; }
+.rank-empty { color: var(--color-text-tertiary); }
+.badge-link { cursor: pointer; }
+.rank-delta { margin-left: 0.35rem; font-size: 0.7rem; font-weight: 500; }
+.rank-delta.delta-up { color: #2b8a3e; }
+.rank-delta.delta-down { color: #c92a2a; }
+.rank-delta.delta-new { color: var(--color-brand); }
+@media (prefers-color-scheme: dark) {
+  .rank-delta.delta-up { color: #80c889; }
+  .rank-delta.delta-down { color: #ff7a7a; }
+}
+
+/* Rankings entry-point link in the LHS of the header */
+.rankings-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--color-brand) 14%, transparent);
+  color: var(--color-brand);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+.rankings-link:hover {
+  background-color: color-mix(in srgb, var(--color-brand) 22%, transparent);
+  transform: translateY(-1px);
+}
+.rankings-link__icon { font-size: 0.875rem; line-height: 1; }
+.rankings-link__arrow { transition: transform 120ms ease; }
+.rankings-link:hover .rankings-link__arrow { transform: translateX(2px); }
+@media (max-width: 45rem) {
+  .rankings-link__label { display: none; }
 }
 
 /* Table */

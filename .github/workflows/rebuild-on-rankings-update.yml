@@ -1,0 +1,24 @@
+name: Rebuild on rankings update
+
+# Triggered by the gdb-engines-rankings monthly workflow via repository_dispatch.
+# Calls the Cloudflare Pages deploy hook so the site picks up the new ranking.json.
+
+on:
+  repository_dispatch:
+    types: [rankings-updated]
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CF_PAGES_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "::error::CF_PAGES_DEPLOY_HOOK_URL secret is not set."
+            exit 1
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK_URL"
+          echo "Cloudflare Pages deploy triggered."

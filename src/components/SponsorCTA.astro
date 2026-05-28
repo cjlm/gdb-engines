@@ -1,0 +1,27 @@
+---
+interface Props {
+  /** When true, uses the per-page wording ("sponsoring this page?"). */
+  perPage?: boolean;
+}
+const { perPage = false } = Astro.props;
+---
+<aside class="sponsor-cta">
+  <strong>GDB-Engines Rankings</strong> is the most detailed monthly graph database ranking.
+  {perPage
+    ? <>Advertising slots on this page are available — <a href="/sponsor/">get in touch →</a></>
+    : <>Sponsorship and advertising enquiries — <a href="/sponsor/">get in touch →</a></>}
+</aside>
+
+<style>
+  .sponsor-cta {
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-border);
+    padding: 0.6rem 1rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    max-width: 70ch;
+  }
+  .sponsor-cta a { color: var(--color-text); text-decoration: none; margin-left: 0.25rem; }
+  .sponsor-cta a:hover { text-decoration: underline; }
+</style>

@@ -4,6 +4,11 @@ import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
 import { fetchFavicon } from '../../utils/favicon';
+import { loadRankings } from '../../lib/rankings';
+import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
+
+const ranking = await loadRankings();
+const boards = ranking ? buildBoards(ranking) : [];
 
 export async function getStaticPaths() {
   const databases = await getCollection('databases');
@@ -14,6 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { db } = Astro.props;
+const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
   const match = value.match(/^(\d{4})-(\d{2})$/);
@@ -85,6 +91,17 @@ const description = db.data.description;
     </h1>
 
     <p class="description">{db.data.description}</p>
+
+    {engineRanks.length > 0 && (
+      <section class="ranks-block">
+        <h2>Rankings</h2>
+        <ul class="ranks-list">
+          {engineRanks.map(({ board, rank }) => (
+            <li><a href={`/rankings/${board.slug}/`}><span class="rank">#{rank}</span> <span class="label">{board.shortLabel}</span></a></li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <h2>Details</h2>
     <dl class="meta-grid">

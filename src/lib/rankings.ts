@@ -70,26 +70,6 @@ function readLocal(): RankingFile | null {
   return JSON.parse(readFileSync(LOCAL_FALLBACK, 'utf8')) as RankingFile;
 }
 
-/** Strips engines flagged 'Insufficient data' from every board. */
-function filterInsufficient(r: RankingFile): RankingFile {
-  const clean = (es: RankedEngine[]): RankedEngine[] => es.filter((e) => e.tier !== 'Insufficient data');
-  const cleanGroup = (g: Record<string, RankedEngine[]>): Record<string, RankedEngine[]> => {
-    const out: Record<string, RankedEngine[]> = {};
-    for (const [k, v] of Object.entries(g)) out[k] = clean(v);
-    return out;
-  };
-  return {
-    ...r,
-    overall: clean(r.overall),
-    byType: cleanGroup(r.byType),
-    byKind: cleanGroup(r.byKind),
-    byLicenseTier: cleanGroup(r.byLicenseTier),
-    byQueryLanguage: cleanGroup(r.byQueryLanguage),
-    byImplementationLanguage: cleanGroup(r.byImplementationLanguage),
-    movers: clean(r.movers),
-  };
-}
-
 let cached: RankingFile | null | undefined;
 
 export async function loadRankings(): Promise<RankingFile | null> {
@@ -97,6 +77,6 @@ export async function loadRankings(): Promise<RankingFile | null> {
   const token = process.env.RANKINGS_TOKEN;
   const raw = token ? await fetchFromGitHub(token) : readLocal();
   if (!raw) { console.warn('[rankings] No ranking data available — /rankings/* pages will not be generated.'); }
-  cached = raw ? filterInsufficient(raw) : null;
+  cached = raw ?? null;
   return cached;
 }

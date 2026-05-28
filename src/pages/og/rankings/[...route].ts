@@ -12,7 +12,10 @@ const ranking = await loadRankings();
 const boards = ranking ? buildBoards(ranking) : [];
 
 const pages = Object.fromEntries(
-  boards.map((b) => [b.slug, { title: b.h1, description: `${b.engines.length} graph engines, ranked monthly` }]),
+  boards.map((b) => {
+    const top = b.engines.slice(0, 3).map((e, i) => `${i + 1}. ${e.name}`).join('   ');
+    return [b.slug, { title: b.h1, description: top || `${b.engines.length} engines ranked` }];
+  }),
 );
 
 export const { getStaticPaths, GET } = await OGImageRoute({
