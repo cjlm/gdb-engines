@@ -4,10 +4,26 @@ import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
 import { fetchFavicon } from '../utils/favicon';
+import { loadRankings } from '../lib/rankings';
+import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 
-const databases = (await getCollection('databases')).sort((a, b) =>
-  a.data.name.localeCompare(b.data.name)
-);
+const ranking = await loadRankings();
+const linkMaps = ranking ? buildLinkMaps(ranking) : null;
+
+const databases = await getCollection('databases');
+
+// Default-sort by overall rank when rankings are loaded (ranked engines first, by rank
+// ascending; unranked/Insufficient engines fall to the end, alphabetically).
+databases.sort((a, b) => {
+  if (linkMaps) {
+    const ra = linkMaps.overallRank.get(a.data.slug);
+    const rb = linkMaps.overallRank.get(b.data.slug);
+    if (ra !== undefined && rb !== undefined) return ra - rb;
+    if (ra !== undefined) return -1;
+    if (rb !== undefined) return 1;
+  }
+  return a.data.name.localeCompare(b.data.name);
+});
 
 // Check for favicons extracted by prebuild script
 const faviconMap = new Map<string, { url: string; source: string }>();
@@ -92,11 +108,22 @@ const datasetSchema = JSON.stringify({
   </svg>
   <header>
     <div class="left">
-      <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
-      <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
-      <h1>GDB-Engines</h1>
+      <a href="/" class="header-home" aria-label="GDB-Engines home">
+        <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
+        <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
+        <h1>GDB-Engines</h1>
+      </a>
       <span class="slash"></span>
       <p>An Open Source list and comparison of <span id="db-count">{databases.length}</span> graph databases</p>
+      <a href="/rankings/" class="rankings-link" aria-label="Monthly graph database popularity rankings">
+        <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <rect x="2" y="9" width="3" height="5" rx="0.5"/>
+          <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
+          <rect x="11" y="2" width="3" height="12" rx="0.5"/>
+        </svg>
+        <span class="rankings-link__label">Rankings</span>
+        <span class="rankings-link__arrow" aria-hidden="true">→</span>
+      </a>
     </div>
     <div class="right">
       <a
@@ -132,13 +159,14 @@ const datasetSchema = JSON.stringify({
   <table>
     <thead>
       <tr>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.vendor} data-microtip-position="bottom" role="tooltip">Vendor</span> <span class="sort-indicator"></span></div></th>
+        {linkMaps && <th class="sortable rank-col" data-type="number"><div class="header-container"><span class="has-tooltip" aria-label="Position in the overall Graph Database Popularity Ranking" data-microtip-position="bottom-right" role="tooltip">Rank</span> <span class="sort-indicator">↑</span></div></th>}
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom-right" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.vendor} data-microtip-position="bottom-right" role="tooltip">Vendor</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.type} data-microtip-position="bottom" role="tooltip">Type</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.kind} data-microtip-position="bottom" role="tooltip">Kind</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.category} data-microtip-position="bottom" role="tooltip">Category</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.released} data-microtip-position="bottom" role="tooltip">Released</span> <span class="sort-indicator"></span></div></th>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text" style="display:none"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="boolean"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.gdotv} data-microtip-position="bottom" role="tooltip">GdotV</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.implementation_language} data-microtip-position="bottom" role="tooltip">Language</span> <span class="sort-indicator"></span></div></th>
@@ -155,6 +183,26 @@ const datasetSchema = JSON.stringify({
     <tbody>
       {databases.map(db => (
         <tr class={db.data.status !== 'active' ? `row-${db.data.status}` : ''} data-previous-vendors={db.data.previous_vendors?.join(',') || ''} data-previous-names={db.data.previous_names?.join(',') || ''}>
+          {linkMaps && (
+            <td class="rank-col">{linkMaps.overallRank.has(db.data.slug)
+              ? (() => {
+                  const rank = linkMaps.overallRank.get(db.data.slug);
+                  const d = linkMaps.overallDelta1m.get(db.data.slug);
+                  const deltaText = d === null || d === undefined ? null
+                    : d === 'new' ? 'new'
+                    : d === 0 ? null
+                    : d < 0 ? `▲${Math.abs(d)}` : `▼${d}`;
+                  const deltaCls = d === 'new' ? 'delta-new'
+                    : typeof d === 'number' && d < 0 ? 'delta-up'
+                    : typeof d === 'number' && d > 0 ? 'delta-down' : '';
+                  return (
+                    <a href="/rankings/overall/" class="rank-link">
+                      {rank}{deltaText && <span class={`rank-delta ${deltaCls}`}>{deltaText}</span>}
+                    </a>
+                  );
+                })()
+              : <span class="rank-empty">—</span>}</td>
+          )}
           <td>
             <div class="database-cell">
               {(() => {
@@ -195,15 +243,27 @@ const datasetSchema = JSON.stringify({
             ) : (db.data.vendor ?? '-')}
           </td>
           <td>
-            <span class={`badge badge-${db.data.type.toLowerCase().replace(/ /g, '-')}`}>
-              {db.data.type === 'Property Graph' ? 'LPG' : db.data.type}
-            </span>
+            {linkMaps?.typeSlug.has(db.data.type) ? (
+              <a href={`/rankings/${linkMaps.typeSlug.get(db.data.type)}/`} class={`badge badge-${db.data.type.toLowerCase().replace(/ /g, '-')} badge-link`}>
+                {db.data.type === 'Property Graph' ? 'LPG' : db.data.type}
+              </a>
+            ) : (
+              <span class={`badge badge-${db.data.type.toLowerCase().replace(/ /g, '-')}`}>
+                {db.data.type === 'Property Graph' ? 'LPG' : db.data.type}
+              </span>
+            )}
           </td>
           <td>
             {db.data.kind !== 'database' ? (
-              <span class={`badge badge-${db.data.kind}`}>
-                {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
-              </span>
+              linkMaps?.kindSlug.has(db.data.kind) ? (
+                <a href={`/rankings/${linkMaps.kindSlug.get(db.data.kind)}/`} class={`badge badge-${db.data.kind} badge-link`}>
+                  {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
+                </a>
+              ) : (
+                <span class={`badge badge-${db.data.kind}`}>
+                  {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
+                </span>
+              )
             ) : ''}
           </td>
           <td>
@@ -212,7 +272,7 @@ const datasetSchema = JSON.stringify({
             </span>
           </td>
           <td>{db.data.released ? db.data.released.slice(0, 4) : '-'}</td>
-          <td>
+          <td style="display:none">
             {db.data.status !== 'active' ? (
               db.data.status_note ? (
                 <span class={`badge badge-${db.data.status} has-tooltip`} aria-label={db.data.status_note} data-microtip-position="top" role="tooltip">
@@ -226,14 +286,28 @@ const datasetSchema = JSON.stringify({
             ) : ''}
           </td>
           <td>{db.data.gdotv_support ? <a href={`${db.data.gdotv_url || 'https://gdotv.com'}${(db.data.gdotv_url || 'https://gdotv.com').includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Yes</a> : 'No'}</td>
-          <td>{db.data.license ?? '-'}</td>
-          <td>{db.data.implementation_language ?? '-'}</td>
+          <td>{db.data.license
+            ? (() => {
+                const tierSlug = linkMaps?.licenseTierSlug(db.data.license);
+                return tierSlug
+                  ? <a href={`/rankings/${tierSlug}/`} class="value-link">{db.data.license}</a>
+                  : db.data.license;
+              })()
+            : '-'}</td>
+          <td>{db.data.implementation_language
+            ? (linkMaps?.implementationLanguageSlug.has(db.data.implementation_language)
+              ? <a href={`/rankings/${linkMaps.implementationLanguageSlug.get(db.data.implementation_language)}/`} class="value-link">{db.data.implementation_language}</a>
+              : db.data.implementation_language)
+            : '-'}</td>
           <td>
             {db.data.query_languages?.length ? (
               <div class="query-langs">
-                {[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(0, 3).map(lang => (
-                  <span class="badge badge-query-lang">{lang}</span>
-                ))}
+                {[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(0, 3).map(lang => {
+                  const slug = linkMaps?.queryLanguageSlug.get(canonicalQueryLanguage(lang));
+                  return slug
+                    ? <a href={`/rankings/${slug}/`} class="badge badge-query-lang badge-link">{lang}</a>
+                    : <span class="badge badge-query-lang">{lang}</span>;
+                })}
                 {db.data.query_languages.length > 3 && (
                   <span class="badge badge-query-lang has-tooltip" aria-label={[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
                 )}
@@ -262,6 +336,7 @@ const datasetSchema = JSON.stringify({
 
   <footer class="site-footer">
     <span>Last updated: {new Date().toISOString().split('T')[0]}</span>
+    <span><a href="/rankings/">Rankings</a></span>
     <span><a href="/about">About & Changelog</a></span>
   </footer>
 
@@ -301,6 +376,7 @@ const datasetSchema = JSON.stringify({
       </p>
     </div>
     <div class="footer">
+      <a href="/rankings/">Rankings</a>
       <a href="/about">About &amp; Changelog</a>
       <a href="mailto:contact@gdb-engines.com">contact@gdb-engines.com</a>
       <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>

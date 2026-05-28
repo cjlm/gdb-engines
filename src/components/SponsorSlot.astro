@@ -1,0 +1,58 @@
+---
+import type { Sponsor } from '../lib/sponsors';
+interface Props { sponsor: Sponsor; }
+const { sponsor } = Astro.props;
+---
+<aside class="sponsor-slot">
+  <div class="sponsor-slot__tag">Sponsored</div>
+  <a class="sponsor-slot__body" href={sponsor.link} target="_blank" rel="noopener noreferrer sponsored">
+    <strong class="sponsor-slot__title">{sponsor.title}</strong>
+    <span class="sponsor-slot__blurb">{sponsor.blurb}</span>
+    <span class="sponsor-slot__arrow" aria-hidden="true">→</span>
+  </a>
+</aside>
+
+<style>
+  .sponsor-slot {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin: 0 0 1.25rem;
+    overflow: hidden;
+    background-color: var(--color-background);
+  }
+  .sponsor-slot__tag {
+    background: var(--color-surface);
+    color: var(--color-text-tertiary);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.4rem 0.6rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--color-border);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 500;
+  }
+  .sponsor-slot__body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background-color 120ms ease;
+  }
+  .sponsor-slot__body:hover { background-color: var(--color-surface); }
+  .sponsor-slot__title { font-weight: 600; white-space: nowrap; }
+  .sponsor-slot__blurb { color: var(--color-text-secondary); font-size: 0.9rem; flex: 1; }
+  .sponsor-slot__arrow { color: var(--color-text-tertiary); transition: transform 120ms ease; }
+  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); color: var(--color-text); }
+  @media (max-width: 32rem) {
+    .sponsor-slot__body { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+    .sponsor-slot__title { white-space: normal; }
+  }
+</style>
