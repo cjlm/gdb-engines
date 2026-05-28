@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RankingTable from '../../components/RankingTable.astro';
+import '../../styles/global.css';
+import { loadRankings } from '../../lib/rankings';
+import { buildBoards } from '../../lib/ranking-boards';
+
+export async function getStaticPaths() {
+  const ranking = await loadRankings();
+  if (!ranking) return [];
+  return buildBoards(ranking).map((board) => ({
+    params: { slug: board.slug },
+    props: { board, generatedAt: ranking.generatedAt },
+  }));
+}
+
+const { board, generatedAt } = Astro.props;
+const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
+const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
+const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+---
+<Layout title={`${board.title} — GDB-Engines Rankings`} description={board.metaDescription} canonical={canonical} ogImage={ogImage}>
+  <main class="ranking-page">
+    <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
+    <h1>{board.h1}</h1>
+    <p class="blurb">{board.blurb}</p>
+    <p class="updated">Updated {updated}. {board.engines.length} engines ranked.</p>
+
+    <RankingTable engines={board.engines} />
+
+    <aside class="sponsor-cta">
+      <strong>GDB-Engines Rankings</strong> is reader-supported. Interested in sponsoring this page?
+      <a href="/sponsor/">Learn more →</a>
+    </aside>
+  </main>
+</Layout>
+
+<style>
+  .ranking-page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .breadcrumb { font-size: 0.85rem; color: #868e96; margin-bottom: 0.5rem; }
+  .breadcrumb a { color: #1971c2; text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  h1 { font-size: 1.75rem; margin: 0 0 0.5rem; line-height: 1.2; }
+  .blurb { color: #495057; max-width: 70ch; line-height: 1.5; margin: 0.5rem 0 0.25rem; }
+  .updated { color: #868e96; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .sponsor-cta { background: #f8f9fa; border-left: 3px solid #adb5bd; padding: 0.75rem 1rem; margin-top: 2rem; font-size: 0.85rem; color: #495057; }
+  .sponsor-cta a { color: #1971c2; text-decoration: none; margin-left: 0.25rem; }
+  .sponsor-cta a:hover { text-decoration: underline; }
+</style>

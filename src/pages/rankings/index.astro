@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { loadRankings } from '../../lib/rankings';
+import { buildBoards, type Board } from '../../lib/ranking-boards';
+
+const ranking = await loadRankings();
+const boards: Board[] = ranking ? buildBoards(ranking) : [];
+const generatedAt = ranking?.generatedAt;
+const updated = generatedAt ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' }) : null;
+
+const groupLabels: Record<Board['group'], string> = {
+  overall: 'Overall',
+  type: 'By Data Model',
+  kind: 'By Engine Kind',
+  license: 'By License',
+  'query-language': 'By Query Language',
+  language: 'By Implementation Language',
+  movers: 'Movers',
+};
+
+const grouped: Partial<Record<Board['group'], Board[]>> = {};
+for (const b of boards) (grouped[b.group] ??= []).push(b);
+const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'license', 'query-language', 'language'];
+---
+<Layout
+  title="GDB-Engines Rankings — Graph Database Popularity"
+  description="Monthly popularity rankings for graph databases across data model, query language, implementation language, license, and more. Compare the best and most-used graph databases."
+  canonical="https://gdb-engines.com/rankings/"
+>
+  <main class="rankings-index">
+    <h1>GDB-Engines Rankings</h1>
+    <p class="blurb">Monthly popularity rankings for graph databases — composite scores across adoption, activity, community and research signals. Pick a board to compare.</p>
+    {updated && <p class="updated">Updated {updated}.</p>}
+
+    {boards.length === 0 ? (
+      <p class="empty">Ranking data isn't available in this build (no <code>RANKINGS_TOKEN</code> set and no local sibling checkout).</p>
+    ) : (
+      groupOrder.map((g) => grouped[g] && (
+        <section>
+          <h2>{groupLabels[g]}</h2>
+          <ul class="board-list">
+            {grouped[g]!.map((b) => (
+              <li><a href={`/rankings/${b.slug}/`}>{b.h1}</a> <span class="count">({b.engines.length})</span></li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )}
+
+    <aside class="sponsor-cta">
+      <strong>GDB-Engines Rankings</strong> is reader-supported. <a href="/sponsor/">Sponsorship enquiries →</a>
+    </aside>
+  </main>
+</Layout>
+
+<style>
+  .rankings-index { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+  .blurb { color: #495057; max-width: 70ch; line-height: 1.5; }
+  .updated { color: #868e96; font-size: 0.85rem; }
+  .empty { background: #fff3bf; border-left: 3px solid #fcc419; padding: 0.75rem 1rem; color: #5c3c00; }
+  section { margin: 1.5rem 0; }
+  h2 { font-size: 1.1rem; border-bottom: 1px solid #dee2e6; padding-bottom: 0.25rem; margin-bottom: 0.5rem; }
+  .board-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.35rem 1rem; }
+  .board-list a { color: #1971c2; text-decoration: none; }
+  .board-list a:hover { text-decoration: underline; }
+  .count { color: #adb5bd; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .sponsor-cta { background: #f8f9fa; border-left: 3px solid #adb5bd; padding: 0.75rem 1rem; margin-top: 2rem; font-size: 0.85rem; color: #495057; }
+  .sponsor-cta a { color: #1971c2; text-decoration: none; margin-left: 0.25rem; }
+</style>

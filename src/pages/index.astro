@@ -132,8 +132,8 @@ const datasetSchema = JSON.stringify({
   <table>
     <thead>
       <tr>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.vendor} data-microtip-position="bottom" role="tooltip">Vendor</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom-right" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.vendor} data-microtip-position="bottom-right" role="tooltip">Vendor</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.type} data-microtip-position="bottom" role="tooltip">Type</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.kind} data-microtip-position="bottom" role="tooltip">Kind</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.category} data-microtip-position="bottom" role="tooltip">Category</span> <span class="sort-indicator"></span></div></th>
@@ -262,6 +262,7 @@ const datasetSchema = JSON.stringify({
 
   <footer class="site-footer">
     <span>Last updated: {new Date().toISOString().split('T')[0]}</span>
+    <span><a href="/rankings/">Rankings</a></span>
     <span><a href="/about">About & Changelog</a></span>
   </footer>
 
@@ -301,6 +302,7 @@ const datasetSchema = JSON.stringify({
       </p>
     </div>
     <div class="footer">
+      <a href="/rankings/">Rankings</a>
       <a href="/about">About &amp; Changelog</a>
       <a href="mailto:contact@gdb-engines.com">contact@gdb-engines.com</a>
       <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>

@@ -1,0 +1,87 @@
+---
+import type { RankedEngine } from '../lib/rankings';
+
+interface Props { engines: RankedEngine[]; }
+const { engines } = Astro.props;
+
+const hasDeltas = engines.some((e) => e.rankDelta1m !== null || e.rankDelta2m !== null);
+const fmtDelta = (d: number | 'new' | null): string => {
+  if (d === null) return '';
+  if (d === 'new') return 'new';
+  if (d === 0) return '=';
+  return d < 0 ? `▲${Math.abs(d)}` : `▼${d}`;
+};
+const deltaClass = (d: number | 'new' | null): string => {
+  if (d === null) return '';
+  if (d === 'new') return 'delta-new';
+  if (d === 0) return 'delta-flat';
+  return d < 0 ? 'delta-up' : 'delta-down';
+};
+---
+<div class="ranking-table-wrap">
+  <table class="ranking-table">
+    <thead>
+      <tr>
+        <th class="rank">#</th>
+        {hasDeltas && <th class="delta">1mo</th>}
+        {hasDeltas && <th class="delta">2mo</th>}
+        <th>Name</th>
+        <th class="score">Score</th>
+        <th class="tier">Tier</th>
+        <th>Type</th>
+        <th>License</th>
+        <th>Language</th>
+        <th>Query Languages</th>
+      </tr>
+    </thead>
+    <tbody>
+      {engines.map((e, i) => (
+        <tr>
+          <td class="rank">{i + 1}</td>
+          {hasDeltas && <td class={`delta ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
+          {hasDeltas && <td class={`delta ${deltaClass(e.rankDelta2m)}`}>{fmtDelta(e.rankDelta2m)}</td>}
+          <td class="name"><a href={`/db/${e.slug}/`}>{e.name}</a></td>
+          <td class="score">{e.score.toFixed(1)}</td>
+          <td class="tier"><span class={`tier-badge tier-${e.tier.toLowerCase().replace(/\s+/g, '-')}`}>{e.tier}</span></td>
+          <td>{e.type}</td>
+          <td>{e.license ?? '—'}</td>
+          <td>{e.implementationLanguage ?? '—'}</td>
+          <td class="qlangs">
+            {e.queryLanguages.length === 0 ? '—' : (
+              <span class="qlang-list">
+                {e.queryLanguages.slice(0, 3).map((ql) => <span class="qlang-pill">{ql}</span>)}
+                {e.queryLanguages.length > 3 && <span class="qlang-more">+{e.queryLanguages.length - 3}</span>}
+              </span>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .ranking-table-wrap { overflow-x: auto; margin: 1rem 0 2rem; border: 1px solid #dee2e6; border-radius: 4px; }
+  .ranking-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .ranking-table th { text-align: left; padding: 0.55rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6; font-weight: 600; white-space: nowrap; }
+  .ranking-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid #f1f3f5; vertical-align: middle; }
+  .ranking-table tr:last-child td { border-bottom: 0; }
+  .ranking-table td.rank, .ranking-table th.rank { text-align: right; font-variant-numeric: tabular-nums; color: #495057; width: 2.5rem; }
+  .ranking-table td.score, .ranking-table th.score { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; width: 3.5rem; }
+  .ranking-table td.delta, .ranking-table th.delta { text-align: center; font-variant-numeric: tabular-nums; font-size: 0.8rem; width: 3rem; }
+  .ranking-table td.name a { color: #0d6efd; text-decoration: none; font-weight: 500; }
+  .ranking-table td.name a:hover { text-decoration: underline; }
+  .ranking-table td.qlangs { max-width: 240px; }
+  .qlang-list { display: inline-flex; flex-wrap: wrap; gap: 0.2rem; }
+  .qlang-pill { display: inline-block; padding: 1px 6px; background: #e7f5ff; color: #1c7ed6; border-radius: 8px; font-size: 0.75rem; }
+  .qlang-more { font-size: 0.75rem; color: #868e96; }
+  .delta-up { color: #2b8a3e; }
+  .delta-down { color: #c92a2a; }
+  .delta-flat { color: #adb5bd; }
+  .delta-new { color: #1c7ed6; font-weight: 500; font-size: 0.7rem; }
+  .tier-badge { padding: 1px 8px; border-radius: 8px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; }
+  .tier-leader { background: #d3f9d8; color: #2b8a3e; }
+  .tier-strong { background: #d0ebff; color: #1971c2; }
+  .tier-growing { background: #fff3bf; color: #e67700; }
+  .tier-emerging { background: #f8f9fa; color: #495057; }
+</style>
