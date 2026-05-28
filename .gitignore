@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 .cache
 public/logos/
+
+# Local dev gallery for OG image inspection
+public/og-gallery.html

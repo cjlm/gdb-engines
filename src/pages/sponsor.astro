@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 ---
 <Layout
@@ -7,28 +8,22 @@ import '../styles/global.css';
   description="Sponsor a GDB-Engines Rankings page. Reach engineers, architects and data leaders evaluating graph databases each month."
   canonical="https://gdb-engines.com/sponsor/"
 >
+  <SiteHeader />
   <main class="sponsor-page">
     <h1>Sponsor GDB-Engines Rankings</h1>
 
-    <p>GDB-Engines Rankings publishes monthly popularity boards covering ~130 graph databases across data model, query language, implementation language and license. They're read by engineers and architects deciding which graph technology to adopt.</p>
+    <p>GDB-Engines Rankings publishes monthly popularity boards covering ~130 graph databases across data model, query language, implementation language and license.</p>
 
-    <p>If you'd like to sponsor a ranking page — for example, the Cypher, RDF, or Rust board — get in touch and we'll arrange the details.</p>
+    <p>If you'd like to sponsor a ranking page please get in touch:</p>
 
     <p class="contact"><a href="mailto:sponsor@gdb-engines.com">sponsor@gdb-engines.com</a></p>
 
-    <hr />
-
-    <h2>What sponsorship looks like</h2>
-    <ul>
-      <li>A clearly-marked sponsor placement on the chosen ranking page.</li>
-      <li>One-month or longer terms.</li>
-      <li>The underlying ranking methodology and scores are never adjusted for sponsors.</li>
-    </ul>
+    <p>Please note, the underlying ranking methodology and scores are never adjusted for sponsors.</p>
   </main>
 </Layout>
 
 <style>
-  .sponsor-page { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
+  .sponsor-page { max-width: 720px; margin: 0 auto; padding: calc(var(--header-height) + 2rem) 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
   h1 { font-size: 1.5rem; margin: 0 0 1rem; color: var(--color-text); }
   h2 { font-size: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.25rem; margin-top: 2rem; color: var(--color-text); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
   .contact { font-size: 1.05rem; margin: 1.5rem 0; }

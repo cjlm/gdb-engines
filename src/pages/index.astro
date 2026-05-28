@@ -108,13 +108,21 @@ const datasetSchema = JSON.stringify({
   </svg>
   <header>
     <div class="left">
-      <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
-      <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
-      <h1>GDB-Engines</h1>
+      <a href="/" class="header-home" aria-label="GDB-Engines home">
+        <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
+        <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
+        <h1>GDB-Engines</h1>
+      </a>
       <span class="slash"></span>
       <p>An Open Source list and comparison of <span id="db-count">{databases.length}</span> graph databases</p>
       <a href="/rankings/" class="rankings-link" aria-label="Monthly graph database popularity rankings">
-        <span class="rankings-link__icon" aria-hidden="true">📊</span><span class="rankings-link__label">Rankings</span><span class="rankings-link__arrow" aria-hidden="true">→</span>
+        <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <rect x="2" y="9" width="3" height="5" rx="0.5"/>
+          <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
+          <rect x="11" y="2" width="3" height="12" rx="0.5"/>
+        </svg>
+        <span class="rankings-link__label">Rankings</span>
+        <span class="rankings-link__arrow" aria-hidden="true">→</span>
       </a>
     </div>
     <div class="right">
@@ -158,7 +166,7 @@ const datasetSchema = JSON.stringify({
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.kind} data-microtip-position="bottom" role="tooltip">Kind</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.category} data-microtip-position="bottom" role="tooltip">Category</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.released} data-microtip-position="bottom" role="tooltip">Released</span> <span class="sort-indicator"></span></div></th>
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
+        <th class="sortable" data-type="text" style="display:none"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.status} data-microtip-position="bottom" role="tooltip">Status</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="boolean"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.gdotv} data-microtip-position="bottom" role="tooltip">GdotV</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.implementation_language} data-microtip-position="bottom" role="tooltip">Language</span> <span class="sort-indicator"></span></div></th>
@@ -264,7 +272,7 @@ const datasetSchema = JSON.stringify({
             </span>
           </td>
           <td>{db.data.released ? db.data.released.slice(0, 4) : '-'}</td>
-          <td>
+          <td style="display:none">
             {db.data.status !== 'active' ? (
               db.data.status_note ? (
                 <span class={`badge badge-${db.data.status} has-tooltip`} aria-label={db.data.status_note} data-microtip-position="top" role="tooltip">

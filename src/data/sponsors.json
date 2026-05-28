@@ -1,9 +1,0 @@
-{
-  "_comment": "Map board slug -> sponsor entry. Keys with leading _ are ignored. Each entry: { title, blurb, link, expires (YYYY-MM-DD, optional) }. Empty by default.",
-  "_example": {
-    "title": "Acme Graph",
-    "blurb": "The fastest Rust graph database for real-time analytics.",
-    "link": "https://example.com",
-    "expires": "2026-12-31"
-  }
-}

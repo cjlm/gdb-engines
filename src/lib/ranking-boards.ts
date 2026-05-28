@@ -156,6 +156,13 @@ function makeBoard(meta: BoardMeta, engines: RankedEngine[]): Board {
   return { ...meta, engines: ranked, insufficientCount };
 }
 
+// Build "{label} Graph Database Popularity Ranking", avoiding the duplicate-word
+// "Property Graph Graph Database" when the label already ends in "Graph".
+function gdbRankingTitle(label: string): string {
+  const trimmed = label.endsWith(' Graph') ? label.slice(0, -' Graph'.length) : label;
+  return `${trimmed} Graph Database Popularity Ranking`;
+}
+
 export function buildBoards(ranking: RankingFile): Board[] {
   const boards: Board[] = [];
 
@@ -173,8 +180,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
     const label = TYPE_LABEL[type] ?? type;
     boards.push(makeBoard({
       slug: slugify(label),
-      title: `${label} Graph Database Popularity Ranking`,
-      h1: `${label} Graph Database Popularity Ranking`,
+      title: gdbRankingTitle(label),
+      h1: gdbRankingTitle(label),
       shortLabel: label,
       blurb: blurbFor(label),
       metaDescription: blurbFor(label),
@@ -200,8 +207,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
     const label = LICENSE_LABEL[tier] ?? tier;
     boards.push(makeBoard({
       slug: slugify(label),
-      title: `${label} Graph Database Popularity Ranking`,
-      h1: `${label} Graph Database Popularity Ranking`,
+      title: gdbRankingTitle(label),
+      h1: gdbRankingTitle(label),
       shortLabel: label,
       blurb: blurbFor(label),
       metaDescription: blurbFor(label),
@@ -212,8 +219,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
   for (const [lang, engines] of Object.entries(ranking.byQueryLanguage)) {
     boards.push(makeBoard({
       slug: slugify(lang),
-      title: `${lang} Graph Database Popularity Ranking`,
-      h1: `${lang} Graph Database Popularity Ranking`,
+      title: gdbRankingTitle(lang),
+      h1: gdbRankingTitle(lang),
       shortLabel: lang,
       blurb: blurbFor(lang),
       metaDescription: blurbFor(lang),
@@ -224,8 +231,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
   for (const [lang, engines] of Object.entries(ranking.byImplementationLanguage)) {
     boards.push(makeBoard({
       slug: slugify(lang),
-      title: `${lang} Graph Database Popularity Ranking`,
-      h1: `${lang} Graph Database Popularity Ranking`,
+      title: gdbRankingTitle(lang),
+      h1: gdbRankingTitle(lang),
       shortLabel: lang,
       blurb: `The best and most popular graph databases written in ${lang}, ranked monthly across adoption, activity, community and research signals. Compare top ${lang} graph database options.`,
       metaDescription: `The best and most popular graph databases written in ${lang}, ranked monthly. Compare top ${lang} graph database options.`,

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
@@ -29,11 +30,12 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   description="Monthly popularity rankings for graph databases across data model, query language, implementation language, license, and more. Compare the best and most-used graph databases."
   canonical="https://gdb-engines.com/rankings/"
 >
+  <SiteHeader />
   <main class="rankings-index">
-    <SponsorCTA />
     <h1>GDB-Engines Rankings</h1>
-    <p class="blurb">Monthly popularity rankings for graph databases — composite scores across adoption, activity, community and research signals. Pick a board to compare.</p>
+    <p class="blurb">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
     {updated && <p class="updated">Updated {updated}.</p>}
+    <SponsorCTA />
 
     {boards.length === 0 ? (
       <p class="empty">Ranking data isn't available in this build (no <code>RANKINGS_TOKEN</code> set and no local sibling checkout).</p>
@@ -53,7 +55,7 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
 </Layout>
 
 <style>
-  .rankings-index { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+  .rankings-index { max-width: 900px; margin: 0 auto; padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
   h1 { font-size: 1.5rem; margin: 0 0 0.5rem; color: var(--color-text); }
   .blurb { color: var(--color-text-secondary); max-width: 70ch; line-height: 1.5; }
   .updated { color: var(--color-text-tertiary); font-size: 0.8rem; }

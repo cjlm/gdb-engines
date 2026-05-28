@@ -51,9 +51,9 @@ const jsonLd = JSON.stringify({
       <li><b>Deprecated</b> — Officially end-of-life or superseded.</li>
     </ul>
 
-    <h2>Research Features</h2>
-    <p>Feature scores are derived from: <em>Coimbra, M. E., Svitakova, L., Francisco, A. P., &amp; Veiga, L. (2025). Survey: Graph Databases. arXiv:2505.24758.</em></p>
-    <p>The study evaluates 43 features across categories including data model capabilities, query language support, scalability, and administration. Each score ranges from 0 to 1, where 0 indicates no support, 1 indicates full support, and intermediate values reflect partial or conditional support as assessed by the survey authors.</p>
+    <h2>Rankings</h2>
+    <p><a href="/rankings/">GDB-Engines Rankings</a> is a separate monthly popularity ranking covering every active engine in the catalog. Engines are ranked overall and across boards split by data model, engine kind, license, query language, and implementation language, plus a movers board surfacing the biggest changes month-on-month.</p>
+    <p>Scores blend signals across four pillars — adoption, activity, community, and research — drawing on public data sources across the web. The methodology is fixed in advance and is not adjusted for sponsors.</p>
 
     <h2>API</h2>
     <p>A JSON API is available at <code>/api.json</code> containing all database entries and their metadata. Example usage:</p>
@@ -61,6 +61,8 @@ const jsonLd = JSON.stringify({
 
     <h2>Changelog</h2>
     <dl class="changelog">
+      <dt>2026-05-28</dt>
+      <dd>Launched <a href="/rankings/">GDB-Engines Rankings</a>: monthly popularity boards across data model, engine kind, license, query language, and implementation language, plus an overall board and a movers board.</dd>
       <dt>2026-05-27</dt>
       <dd>Added a Language column showing each engine's primary implementation language. Filled in missing licenses for 16 proprietary engines (Cosmos DB, Neptune, SAP HANA, DataStax, and others).</dd>
       <dt>2026-05-26</dt>
@@ -81,6 +83,10 @@ const jsonLd = JSON.stringify({
 
     <h2>Contributing</h2>
     <p>GDB-Engines is open source. Database entries are stored as TOML files in the <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">GitHub repository</a>. To add or update a database, open a pull request with changes to the relevant TOML file. Contributions for new databases, corrections, and feature improvements are welcome.</p>
+
+    <h2>Research Features</h2>
+    <p>Feature scores are derived from: <em>Coimbra, M. E., Svitakova, L., Francisco, A. P., &amp; Veiga, L. (2025). Survey: Graph Databases. arXiv:2505.24758.</em></p>
+    <p>The study evaluates 43 features across categories including data model capabilities, query language support, scalability, and administration. Each score ranges from 0 to 1, where 0 indicates no support, 1 indicates full support, and intermediate values reflect partial or conditional support as assessed by the survey authors.</p>
 
     <h2>Contact</h2>
     <p><a href="mailto:contact@gdb-engines.com">contact@gdb-engines.com</a></p>

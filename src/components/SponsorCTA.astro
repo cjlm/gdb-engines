@@ -1,15 +1,8 @@
 ---
-interface Props {
-  /** When true, uses the per-page wording ("sponsoring this page?"). */
-  perPage?: boolean;
-}
-const { perPage = false } = Astro.props;
+// Single sponsorship/advertising blurb shared across the rankings pages.
 ---
 <aside class="sponsor-cta">
-  <strong>GDB-Engines Rankings</strong> is the most detailed monthly graph database ranking.
-  {perPage
-    ? <>Advertising slots on this page are available — <a href="/sponsor/">get in touch →</a></>
-    : <>Sponsorship and advertising enquiries — <a href="/sponsor/">get in touch →</a></>}
+  We strive to be the best resource to compare graph databases. For sponsorship and advertising enquiries: <a href="/sponsor/">get in touch</a>.
 </aside>
 
 <style>

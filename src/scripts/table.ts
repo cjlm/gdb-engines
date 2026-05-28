@@ -265,42 +265,7 @@ search.addEventListener("keydown", (e) => {
   }
 });
 
-/////////////////////////////////////
-// Handle Theme Toggle
-/////////////////////////////////////
-const themeToggle = document.getElementById('theme-toggle');
-
-function getEffectiveTheme(): 'light' | 'dark' {
-  const stored = localStorage.getItem('theme');
-  if (stored === 'dark' || stored === 'light') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
-function applyTheme(theme: string | null) {
-  if (theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.removeItem('theme');
-  }
-  // Swap favicon PNGs to match theme
-  const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  document.querySelectorAll<HTMLLinkElement>('link[rel="icon"][type="image/png"]').forEach(link => {
-    link.href = link.href.replace(isDark ? '.png' : '-dark.png', isDark ? '-dark.png' : '.png');
-  });
-}
-
-// Restore saved theme on load
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) applyTheme(savedTheme);
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const current = getEffectiveTheme();
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  });
-}
+// Theme toggle moved to src/scripts/theme.ts (loaded by Layout, runs on every page).
 
 /////////////////////////////////////
 // Handle Hamburger Menu
@@ -420,6 +385,19 @@ function initializeFromURL() {
 
   // Single pass to apply search + inactive state together
   updateRowVisibility();
+
+  // Server-rendered default: when there's no URL sort param and a Rank column exists,
+  // the page is already sorted by Rank ascending. Restore the indicator + currentSort
+  // so clicking Rank toggles correctly (without re-sorting and shifting rows).
+  if (!params.get("sort")) {
+    const rankIdx = getColumnIndexByUrlName("rank");
+    if (rankIdx !== -1) {
+      currentSort = { column: rankIdx, direction: "asc" };
+      const header = document.querySelectorAll("th.sortable")[rankIdx];
+      const indicator = header?.querySelector(".sort-indicator");
+      if (indicator) indicator.textContent = "↑";
+    }
+  }
 }
 
 // Astro module scripts run after DOM is ready, so call directly

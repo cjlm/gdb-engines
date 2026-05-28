@@ -1,24 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import RankingTable from '../../components/RankingTable.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards } from '../../lib/ranking-boards';
-import { getSponsor } from '../../lib/sponsors';
+import { loadSponsors, getSponsor } from '../../lib/sponsors';
 
 export async function getStaticPaths() {
   const ranking = await loadRankings();
   if (!ranking) return [];
+  const sponsors = await loadSponsors();
   return buildBoards(ranking).map((board) => ({
     params: { slug: board.slug },
-    props: { board, generatedAt: ranking.generatedAt },
+    props: { board, generatedAt: ranking.generatedAt, sponsor: getSponsor(sponsors, board.slug) },
   }));
 }
 
-const { board, generatedAt } = Astro.props;
-const sponsor = getSponsor(board.slug);
+const { board, generatedAt, sponsor } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -39,12 +40,13 @@ const itemListJsonLd = JSON.stringify({
 });
 ---
 <Layout title={`${board.title} — GDB-Engines Rankings`} description={board.metaDescription} canonical={canonical} ogImage={ogImage} jsonLd={[itemListJsonLd]}>
+  <SiteHeader />
   <main class="ranking-page">
-    <SponsorCTA perPage />
     <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
     <h1>{board.h1}</h1>
     <p class="blurb">{board.blurb}</p>
     <p class="updated">Updated {updated}. {board.engines.length} engines ranked.</p>
+    <SponsorCTA />
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
 
@@ -58,7 +60,7 @@ const itemListJsonLd = JSON.stringify({
 </Layout>
 
 <style>
-  .ranking-page { padding: 1.5rem 1.25rem 3rem; }
+  .ranking-page { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
   .breadcrumb { font-size: 0.85rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
   .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
   .breadcrumb a:hover { text-decoration: underline; }
