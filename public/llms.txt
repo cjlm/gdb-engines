@@ -1,28 +1,27 @@
 # GDB-Engines
 
-> Compare features across 90+ graph databases, extensions, and query engines. Open source data from academic research.
+> Open-source comparison and monthly popularity ranking of 130+ graph databases, query engines, extensions, and embedded libraries. Covers property graph (LPG), RDF, and multi-model engines. Feature scores derived from peer-reviewed academic research; popularity rankings blended monthly across adoption, activity, community and research signals from public sources.
 
-## About
+## Comparison
 
-GDB-Engines is an open source comparison tool for graph databases. It covers property graph databases (LPG), RDF triple stores, multi-model databases, query engines, extensions, and embedded graph libraries.
+- [Homepage](https://gdb-engines.com/): Interactive comparison of 130+ graph databases with 43 academic feature scores, license, query languages, implementation language, and overall popularity rank.
+- [About](https://gdb-engines.com/about): Methodology, data model, contribution guidelines, changelog.
+- [JSON API](https://gdb-engines.com/api.json): Full dataset.
 
-## Data
+## Rankings
 
-- Comparison table: https://gdb-engines.com
-- JSON API: https://gdb-engines.com/api.json
-- Source data (TOML): https://github.com/cjlm/gdb-engines/tree/main/src/content/databases
+- [Overall ranking](https://gdb-engines.com/rankings/overall/): Top graph databases by blended score, refreshed monthly.
+- [Movers](https://gdb-engines.com/rankings/movers/): Engines with the fastest-rising momentum month-over-month.
+- [Rankings index](https://gdb-engines.com/rankings/): All boards split by data model, engine kind, license, query language, and implementation language.
 
-## Research Features
+## Source
 
-43 feature scores sourced from: Coimbra, M. E., Svitakova, L., Francisco, A. P., & Veiga, L. (2025). Survey: Graph Databases. arXiv:2505.24758.
+- [GitHub repository](https://github.com/cjlm/gdb-engines): Source TOML data + Astro site, open to contributions.
 
-## Categories
+## Research basis
 
-- Type: Property Graph (LPG), RDF, Multiple, Other
-- Kind: Database, Extension, Query Engine, Embedded
-- Category: Established, Enterprise, Growing, Emerging
-- Status: Active, Inactive, Deprecated
+Feature scores derived from: Coimbra, M. E., Svitakova, L., Francisco, A. P., & Veiga, L. (2025). *Survey: Graph Databases*. arXiv:2505.24758.
 
 ## Preferred citation
 
-GDB-Engines - Graph Database Comparison. https://gdb-engines.com
+GDB-Engines — Graph Database Comparison. https://gdb-engines.com

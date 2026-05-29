@@ -44,59 +44,21 @@ const jsonLd = JSON.stringify({
   "url": "https://gdb-engines.com",
   "numberOfItems": databases.length,
   "dateModified": new Date().toISOString().split('T')[0],
+  // Items point to our own /db/{slug}/ pages (which carry their own SoftwareApplication
+  // schema). This gives crawlers a stitchable chain instead of bouncing off to vendor sites,
+  // and drops a substantial HTML payload from the homepage.
   "itemListElement": databases.map((db, i) => ({
     "@type": "ListItem",
     "position": i + 1,
-    "item": {
-      "@type": "SoftwareApplication",
-      "name": db.data.name,
-      ...((db.data.url || db.data.github_url) && { "url": db.data.url || db.data.github_url }),
-      ...(db.data.description && { "description": db.data.description }),
-      ...(db.data.vendor && { "author": {
-        "@type": "Organization",
-        "name": db.data.vendor,
-        ...(db.data.previous_vendors?.length && { "alternateName": db.data.previous_vendors }),
-      } }),
-      "applicationCategory": `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : 'Embedded Database'}`,
-      ...((db.data.features?.operating_on_linux || db.data.features?.operating_on_windows) && {
-        "operatingSystem": [
-          ...(db.data.features?.operating_on_linux ? ["Linux"] : []),
-          ...(db.data.features?.operating_on_windows ? ["Windows"] : []),
-        ]
-      }),
-      ...(db.data.license && db.data.license !== 'Proprietary' && { "license": `https://spdx.org/licenses/${db.data.license}` }),
-      ...(db.data.license && db.data.license !== 'Proprietary' && {
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-      }),
-      ...(db.data.github_url && { "codeRepository": db.data.github_url }),
-    },
+    "url": `https://gdb-engines.com/db/${db.data.slug}/`,
+    "name": db.data.name,
   })),
-});
-
-const datasetSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Dataset",
-  "name": "Graph Database Comparison Dataset",
-  "description": `Structured comparison data for ${databases.length} graph databases, extensions, and query engines.`,
-  "url": "https://gdb-engines.com",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "dateModified": new Date().toISOString().split('T')[0],
-  "creator": {
-    "@type": "Organization",
-    "name": "GDB-Engines",
-    "url": "https://gdb-engines.com"
-  },
-  "distribution": {
-    "@type": "DataDownload",
-    "encodingFormat": "application/json",
-    "contentUrl": "https://gdb-engines.com/api.json"
-  }
 });
 ---
 <Layout
-  title="GDB-Engines — Graph Database List and Comparison"
-  jsonLd={[jsonLd, datasetSchema]}
-  description={`A comprehensive list of ${databases.length}+ graph databases, extensions, and query engines with feature comparison. Open Source data from academic research.`}
+  title="GDB-Engines — Compare 130+ Graph Databases"
+  jsonLd={[jsonLd]}
+  description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings. Data backed by academic research.`}
 >
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="icon-github" viewBox="0 0 24 24">
@@ -111,7 +73,7 @@ const datasetSchema = JSON.stringify({
       <a href="/" class="header-home" aria-label="GDB-Engines home">
         <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
         <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
-        <h1>GDB-Engines</h1>
+        <span class="header-brand">GDB-Engines</span>
       </a>
       <span class="slash"></span>
       <p>An Open Source list and comparison of <span id="db-count">{databases.length}</span> graph databases</p>
@@ -155,6 +117,8 @@ const datasetSchema = JSON.stringify({
       </div>
     </div>
   </header>
+
+  <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
   <table>
     <thead>

@@ -6,7 +6,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
 }
-const { title, description = 'Compare features across 90+ graph databases, extensions, and query engines. Open Source data from academic research.', jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png' } = Astro.props;
+const { title, description = 'Compare 130+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings. Data backed by academic research.', jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png' } = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
 
 const siteSchema = JSON.stringify({
@@ -14,7 +14,7 @@ const siteSchema = JSON.stringify({
   "@type": "WebSite",
   "name": "GDB-Engines",
   "url": "https://gdb-engines.com",
-  "description": "Compare features across 90+ graph databases, extensions, and query engines. Open Source data from academic research.",
+  "description": "Compare 130+ graph databases side-by-side with monthly popularity rankings. Data backed by academic research.",
   "publisher": {
     "@type": "Organization",
     "name": "GDB-Engines",
@@ -45,7 +45,7 @@ const siteSchema = JSON.stringify({
     <meta name="twitter:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="GDB Engines" />
+    <meta property="og:site_name" content="GDB-Engines" />
     <meta property="og:locale" content="en_US" />
     <title>{title}</title>
     <!-- Favicons: SVG with dark mode support, PNG fallbacks -->
@@ -55,6 +55,7 @@ const siteSchema = JSON.stringify({
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-dark.png" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16-dark.png" media="(prefers-color-scheme: dark)" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#cc8090" />
     <script type="application/ld+json" set:html={siteSchema.replace(/<\//g, '<\\/')} />

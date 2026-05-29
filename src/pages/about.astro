@@ -2,21 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
-const jsonLd = JSON.stringify({
+const pageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "About GDB-Engines",
   "url": "https://gdb-engines.com/about",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gdb-engines.com" },
-      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gdb-engines.com/about" }
-    ]
-  }
+});
+// Separate BreadcrumbList block (Google prefers this over an inline breadcrumb property).
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gdb-engines.com/" },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gdb-engines.com/about/" }
+  ]
 });
 ---
-<Layout title="About — GDB-Engines" description="About GDB-Engines: methodology, changelog, and contributing guidelines for the open source graph database comparison." jsonLd={[jsonLd]} canonical="https://gdb-engines.com/about">
+<Layout title="About — GDB-Engines" description="About GDB-Engines: methodology, changelog, and contributing guidelines for the open source graph database comparison." jsonLd={[pageJsonLd, breadcrumbJsonLd]} canonical="https://gdb-engines.com/about/">
   <main class="about-page">
     <a href="/" class="back-link">&larr; Back to comparison</a>
     <h1>About GDB-Engines</h1>

@@ -67,7 +67,7 @@ const breadcrumbJsonLd = JSON.stringify({
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gdb-engines.com" },
-    { "@type": "ListItem", "position": 2, "name": db.data.name, "item": `https://gdb-engines.com/db/${db.data.slug}` }
+    { "@type": "ListItem", "position": 2, "name": db.data.name, "item": `https://gdb-engines.com/db/${db.data.slug}/` }
   ]
 });
 
@@ -78,7 +78,7 @@ const description = db.data.description;
   title={title}
   description={description}
   jsonLd={[pageJsonLd, breadcrumbJsonLd]}
-  canonical={`https://gdb-engines.com/db/${db.data.slug}`}
+  canonical={`https://gdb-engines.com/db/${db.data.slug}/`}
 >
   <main class="db-page">
     <a href="/" class="back-link">&larr; Back to comparison</a>

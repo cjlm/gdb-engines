@@ -131,7 +131,8 @@ header {
   .light-only { display: block; }
   .dark-only { display: none; }
 
-  h1 {
+  h1,
+  .header-brand {
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
@@ -277,7 +278,8 @@ header {
   text-decoration: none;
   color: inherit;
 }
-.header-home:hover h1 { color: var(--color-brand-accent); }
+.header-home:hover h1,
+.header-home:hover .header-brand { color: var(--color-brand-accent); }
 
 /* Rankings entry-point link in the LHS of the header */
 .rankings-link {
@@ -286,7 +288,7 @@ header {
   gap: 0.35rem;
   margin-left: 0.75rem;
   padding: 0.25rem 0.625rem;
-  border-radius: 999px;
+  border-radius: 0.25rem;
   background-color: color-mix(in srgb, var(--color-brand-accent) 16%, transparent);
   color: var(--color-brand-accent);
   text-decoration: none;
