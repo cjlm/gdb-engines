@@ -6,6 +6,7 @@ url = "https://datagraphs.com/"
 license = "Proprietary"
 type = "Multiple"
 query_languages = ["openCypher", "GQL"]
+implementation_language = "Rust"
 released = "2021-06"
 category = "Emerging"
 gdotv_support = false
