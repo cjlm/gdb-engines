@@ -319,7 +319,9 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
   background-color: color-mix(in srgb, var(--color-brand-accent) 26%, transparent);
 }
 .rankings-link__icon { flex-shrink: 0; }
-.rankings-link:hover .rankings-link__arrow { transform: translateX(2px); }
+/* ↪ glyph sits high on its line — nudge it down to the visual baseline. */
+.rankings-link__arrow { display: inline-block; transform: translateY(2px); font-size: 0.95em; }
+.rankings-link:hover .rankings-link__arrow { transform: translate(2px, 2px); }
 @media (hover: hover) {
   .rankings-link__arrow { transition: transform 120ms ease; }
 }
