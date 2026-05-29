@@ -88,15 +88,6 @@ const jsonLd = JSON.stringify({
       </a>
     </div>
     <div class="right">
-      <a
-        class="github"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/cjlm/gdb-engines"
-        aria-label="View source on GitHub"
-      >
-        <svg width="24" height="24"><use href="#icon-github" /></svg>
-      </a>
       <div class="search-container">
         <input type="text" id="search" placeholder="Search databases" autocomplete="off" />
         <span class="search-shortcut" id="search-shortcut">&#x2318;K</span>
@@ -113,6 +104,10 @@ const jsonLd = JSON.stringify({
         <div class="menu-dropdown" id="menu-dropdown">
           <label><input type="checkbox" id="toggle-inactive" /> Show Inactive</label>
           <label><input type="checkbox" id="toggle-features" /> Research Features</label>
+          <a class="menu-link" href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
+            Source on GitHub
+          </a>
         </div>
       </div>
     </div>

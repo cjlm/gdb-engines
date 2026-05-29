@@ -6,20 +6,43 @@ import SponsorCTA from '../../components/SponsorCTA.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
-import { buildBoards } from '../../lib/ranking-boards';
+import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { getCollection } from 'astro:content';
+import { fetchFavicon } from '../../utils/favicon';
 
 export async function getStaticPaths() {
   const ranking = await loadRankings();
   if (!ranking) return [];
   const sponsors = await loadSponsors();
+  const linkMaps = buildLinkMaps(ranking);
+
+  // Build the favicon map once and share across all board pages (fetchFavicon caches
+  // on disk, but the catalog walk is per-build so we hoist it out of the per-page render).
+  const databases = await getCollection('databases');
+  const faviconMap: Record<string, string> = {};
+  for (const db of databases) {
+    if (db.data.icon) {
+      faviconMap[db.data.slug] = `/logos/${db.data.icon}`;
+    } else {
+      const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
+      faviconMap[db.data.slug] = result.url;
+    }
+  }
+
   return buildBoards(ranking).map((board) => ({
     params: { slug: board.slug },
-    props: { board, generatedAt: ranking.generatedAt, sponsor: getSponsor(sponsors, board.slug) },
+    props: {
+      board,
+      generatedAt: ranking.generatedAt,
+      sponsor: getSponsor(sponsors, board.slug),
+      faviconMap,
+      linkMaps,
+    },
   }));
 }
 
-const { board, generatedAt, sponsor } = Astro.props;
+const { board, generatedAt, sponsor, faviconMap, linkMaps } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -72,7 +95,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
 
-    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} />
+    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} />
     {board.insufficientCount > 0 && (
       <p class="insufficient-note">
         {board.insufficientCount} additional {board.insufficientCount === 1 ? 'engine has' : 'engines have'} too little public signal to be ranked.

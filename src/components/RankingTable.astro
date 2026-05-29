@@ -1,8 +1,22 @@
 ---
 import type { RankedEngine } from '../lib/rankings';
+import { canonicalQueryLanguage } from '../lib/ranking-boards';
 
-interface Props { engines: RankedEngine[]; scoreField?: 'score' | 'momentum'; }
-const { engines, scoreField = 'score' } = Astro.props;
+interface LinkMaps {
+  typeSlug: Map<string, string>;
+  kindSlug: Map<string, string>;
+  licenseTierSlug: (spdx: string | null | undefined) => string | null;
+  queryLanguageSlug: Map<string, string>;
+  implementationLanguageSlug: Map<string, string>;
+}
+
+interface Props {
+  engines: RankedEngine[];
+  scoreField?: 'score' | 'momentum';
+  faviconMap?: Record<string, string>;
+  linkMaps?: LinkMaps;
+}
+const { engines, scoreField = 'score', faviconMap = {}, linkMaps } = Astro.props;
 const scoreLabel = scoreField === 'momentum' ? 'Momentum' : 'Score';
 
 const hasDeltas = engines.some((e) => e.rankDelta1m !== null || e.rankDelta2m !== null);
@@ -27,57 +41,103 @@ const tierClass = (tier: string): string => {
   return 'badge-emerging';
 };
 ---
-<table class="ranking-table">
-  <thead>
-    <tr>
-      <th class="num">#</th>
-      {hasDeltas && <th class="num">1mo</th>}
-      {hasDeltas && <th class="num">2mo</th>}
-      <th>Name</th>
-      <th class="num">{scoreLabel}</th>
-      <th>Tier</th>
-      <th class="hide-mobile">Type</th>
-      <th class="hide-mobile">License</th>
-      <th class="hide-mobile">Language</th>
-      <th class="hide-mobile">Query Languages</th>
-    </tr>
-  </thead>
-  <tbody>
-    {engines.map((e, i) => (
+<div class="ranking-table-wrap">
+  <table class="ranking-table">
+    <thead>
       <tr>
-        <td class="num">{i + 1}</td>
-        {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
-        {hasDeltas && <td class={`num ${deltaClass(e.rankDelta2m)}`}>{fmtDelta(e.rankDelta2m)}</td>}
-        <td><a href={`/db/${e.slug}/`}>{e.name}</a></td>
-        <td class="num">{(scoreField === 'momentum' ? e.momentum : e.score).toFixed(1)}</td>
-        <td><span class={`badge ${tierClass(e.tier)}`}>{e.tier}</span></td>
-        <td class="hide-mobile"><span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span></td>
-        <td class="hide-mobile">{e.license ?? '-'}</td>
-        <td class="hide-mobile">{e.implementationLanguage ?? '-'}</td>
-        <td class="hide-mobile">
-          {e.queryLanguages.length === 0 ? '-' : (
-            <span class="query-langs">
-              {[...e.queryLanguages].sort().slice(0, 3).map((ql) => <span class="badge badge-query-lang">{ql}</span>)}
-              {e.queryLanguages.length > 3 && (
-                <span class="badge badge-query-lang">+{e.queryLanguages.length - 3}</span>
-              )}
-            </span>
-          )}
-        </td>
+        <th class="num rank-cell">#</th>
+        {hasDeltas && <th class="num">1mo</th>}
+        {hasDeltas && <th class="num">2mo</th>}
+        <th>Name</th>
+        <th class="num">{scoreLabel}</th>
+        <th>Tier</th>
+        <th class="hide-mobile">Type</th>
+        <th class="hide-mobile">License</th>
+        <th class="hide-mobile">Language</th>
+        <th class="hide-mobile">Query Languages</th>
       </tr>
-    ))}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {engines.map((e, i) => {
+        const fav = faviconMap[e.slug];
+        const typeSlug = linkMaps?.typeSlug.get(e.type);
+        const licenseSlug = linkMaps?.licenseTierSlug(e.license);
+        const langSlug = e.implementationLanguage ? linkMaps?.implementationLanguageSlug.get(e.implementationLanguage) : null;
+        return (
+          <tr>
+            <td class="num rank-cell">{i + 1}</td>
+            {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
+            {hasDeltas && <td class={`num ${deltaClass(e.rankDelta2m)}`}>{fmtDelta(e.rankDelta2m)}</td>}
+            <td>
+              <a href={`/db/${e.slug}/`} class="name-link">
+                {fav && <img src={fav} alt="" width="16" height="16" class="favicon" loading="lazy" />}
+                <span>{e.name}</span>
+              </a>
+            </td>
+            <td class="num">{(scoreField === 'momentum' ? e.momentum : e.score).toFixed(1)}</td>
+            <td><span class={`badge ${tierClass(e.tier)}`}>{e.tier}</span></td>
+            <td class="hide-mobile">
+              {typeSlug
+                ? <a href={`/rankings/${typeSlug}/`} class="cell-link"><span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span></a>
+                : <span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span>}
+            </td>
+            <td class="hide-mobile">
+              {e.license && licenseSlug
+                ? <a href={`/rankings/${licenseSlug}/`} class="cell-link">{e.license}</a>
+                : (e.license ?? '-')}
+            </td>
+            <td class="hide-mobile">
+              {e.implementationLanguage && langSlug
+                ? <a href={`/rankings/${langSlug}/`} class="cell-link">{e.implementationLanguage}</a>
+                : (e.implementationLanguage ?? '-')}
+            </td>
+            <td class="hide-mobile">
+              {e.queryLanguages.length === 0 ? '-' : (
+                <span class="query-langs">
+                  {[...e.queryLanguages].sort().slice(0, 3).map((ql) => {
+                    const qlSlug = linkMaps?.queryLanguageSlug.get(canonicalQueryLanguage(ql));
+                    const badge = <span class="badge badge-query-lang">{ql}</span>;
+                    return qlSlug ? <a href={`/rankings/${qlSlug}/`} class="cell-link">{badge}</a> : badge;
+                  })}
+                  {e.queryLanguages.length > 3 && (
+                    <span class="badge badge-query-lang">+{e.queryLanguages.length - 3}</span>
+                  )}
+                </span>
+              )}
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
 
 <style>
+  /* Wrap the table so it scrolls horizontally on mobile instead of blowing out the page. */
+  .ranking-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+  }
   /* Inherit the global <table>/<th>/<td> look; only style what's ranking-specific. */
-  .ranking-table { margin-top: 0; }
+  .ranking-table { margin-top: 0; width: 100%; }
   /* No top-level site header on ranking pages, so anchor the sticky header to viewport top. */
   .ranking-table thead th { top: 0; }
   .ranking-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .ranking-table .rank-cell { padding-left: 0.5rem; padding-right: 0.5rem; width: 2.25rem; }
   .ranking-table a { color: inherit; text-decoration: none; }
   .ranking-table a:hover { text-decoration: underline; }
-  .ranking-table tbody td:nth-child(1) { font-variant-numeric: tabular-nums; color: var(--color-text); font-weight: 500; }
+  .ranking-table .name-link { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .ranking-table .favicon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: var(--color-surface);
+  }
+  .ranking-table .cell-link { color: inherit; text-decoration: none; }
+  .ranking-table .cell-link:hover { text-decoration: underline; }
+  .ranking-table tbody td:first-child { color: var(--color-text); font-weight: 500; }
   .ranking-table .query-langs { display: inline-flex; flex-wrap: wrap; gap: 0.2rem; }
   .delta-up { color: #2b8a3e; }
   .delta-down { color: #c92a2a; }
@@ -87,7 +147,8 @@ const tierClass = (tier: string): string => {
     .delta-up { color: #80c889; }
     .delta-down { color: #ff7a7a; }
   }
+  /* On mobile, table can grow past viewport — the wrap container scrolls it. Don't hide cols. */
   @media (max-width: 45rem) {
-    .ranking-table .hide-mobile { display: none; }
+    .ranking-table { min-width: 640px; }
   }
 </style>
