@@ -1,4 +1,6 @@
 ---
+import IconDefs from '../components/IconDefs.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -74,6 +76,7 @@ const siteSchema = JSON.stringify({
     </script>
   </head>
   <body>
+    <IconDefs />
     <slot />
     <script>
       import '../scripts/theme.ts';

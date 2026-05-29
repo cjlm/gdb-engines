@@ -10,13 +10,20 @@ interface LinkMaps {
   implementationLanguageSlug: Map<string, string>;
 }
 
+interface EngineMeta {
+  description: string;
+  githubUrl?: string;
+  url?: string;
+}
+
 interface Props {
   engines: RankedEngine[];
   scoreField?: 'score' | 'momentum';
   faviconMap?: Record<string, string>;
   linkMaps?: LinkMaps;
+  engineMeta?: Record<string, EngineMeta>;
 }
-const { engines, scoreField = 'score', faviconMap = {}, linkMaps } = Astro.props;
+const { engines, scoreField = 'score', faviconMap = {}, linkMaps, engineMeta = {} } = Astro.props;
 const scoreLabel = scoreField === 'momentum' ? 'Momentum' : 'Score';
 
 const hasDeltas = engines.some((e) => e.rankDelta1m !== null || e.rankDelta2m !== null);
@@ -69,10 +76,22 @@ const tierClass = (tier: string): string => {
             {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
             {hasDeltas && <td class={`num ${deltaClass(e.rankDelta2m)}`}>{fmtDelta(e.rankDelta2m)}</td>}
             <td>
-              <a href={`/db/${e.slug}/`} class="name-link">
+              <div class="name-cell">
                 {fav && <img src={fav} alt="" width="16" height="16" class="favicon" loading="lazy" />}
-                <span>{e.name}</span>
-              </a>
+                <a href={`/db/${e.slug}/`} class="has-tooltip" aria-label={engineMeta[e.slug]?.description ?? e.name} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{e.name}</a>
+                <span class="db-links">
+                  {engineMeta[e.slug]?.githubUrl ? (
+                    <a href={engineMeta[e.slug]!.githubUrl} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.githubUrl}>
+                      <svg width="14" height="14"><use href="#icon-github" /></svg>
+                    </a>
+                  ) : null}
+                  {engineMeta[e.slug]?.url ? (
+                    <a href={`${engineMeta[e.slug]!.url}${engineMeta[e.slug]!.url!.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.url}>
+                      <svg width="14" height="14"><use href="#icon-external" /></svg>
+                    </a>
+                  ) : null}
+                </span>
+              </div>
             </td>
             <td class="num">{(scoreField === 'momentum' ? e.momentum : e.score).toFixed(1)}</td>
             <td><span class={`badge ${tierClass(e.tier)}`}>{e.tier}</span></td>
@@ -137,7 +156,9 @@ const tierClass = (tier: string): string => {
   .ranking-table .rank-cell { padding-left: 0.5rem; padding-right: 0.5rem; width: 2.25rem; }
   .ranking-table a { color: inherit; text-decoration: none; }
   .ranking-table a:hover { text-decoration: underline; }
-  .ranking-table .name-link { display: inline-flex; align-items: center; gap: 0.5rem; }
+  /* Match the homepage's Name cell layout — favicon + tooltipped link + db-links
+     icon set. .has-tooltip and .db-links styling lives in global.css already. */
+  .ranking-table .name-cell { display: flex; align-items: center; gap: 0.5rem; }
   .ranking-table .favicon {
     width: 16px;
     height: 16px;

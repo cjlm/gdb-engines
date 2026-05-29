@@ -19,8 +19,11 @@ export async function getStaticPaths() {
 
   // Build the favicon map once and share across all board pages (fetchFavicon caches
   // on disk, but the catalog walk is per-build so we hoist it out of the per-page render).
+  // Same shared pass collects engine descriptions + github/website URLs for tooltips
+  // and link icons on the rankings table — same affordance as the homepage Name column.
   const databases = await getCollection('databases');
   const faviconMap: Record<string, string> = {};
+  const engineMeta: Record<string, { description: string; githubUrl?: string; url?: string }> = {};
   for (const db of databases) {
     if (db.data.icon) {
       faviconMap[db.data.slug] = `/logos/${db.data.icon}`;
@@ -28,6 +31,11 @@ export async function getStaticPaths() {
       const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
       faviconMap[db.data.slug] = result.url;
     }
+    engineMeta[db.data.slug] = {
+      description: db.data.description ?? '',
+      githubUrl: db.data.github_url,
+      url: db.data.url,
+    };
   }
 
   return buildBoards(ranking).map((board) => ({
@@ -38,11 +46,12 @@ export async function getStaticPaths() {
       sponsor: getSponsor(sponsors, board.slug),
       faviconMap,
       linkMaps,
+      engineMeta,
     },
   }));
 }
 
-const { board, generatedAt, sponsor, faviconMap, linkMaps } = Astro.props;
+const { board, generatedAt, sponsor, faviconMap, linkMaps, engineMeta } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -94,7 +103,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
 
-    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} />
+    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} engineMeta={engineMeta} />
     {board.insufficientCount > 0 && (
       <p class="insufficient-note">
         {board.insufficientCount} additional {board.insufficientCount === 1 ? 'engine has' : 'engines have'} too little public signal to be ranked.
