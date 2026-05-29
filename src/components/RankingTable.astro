@@ -145,8 +145,17 @@ const tierClass = (tier: string): string => {
     border-radius: 2px;
     background: var(--color-surface);
   }
-  .ranking-table .cell-link { color: inherit; text-decoration: none; }
-  .ranking-table .cell-link:hover { text-decoration: underline; }
+  /* Plain-text cells (License, Language) get a dotted underline as a "clickable" hint;
+     badge cells (Type) inherit no underline since the badge shape is already an affordance. */
+  .ranking-table .cell-link {
+    color: inherit;
+    text-decoration: underline dotted var(--color-text-tertiary);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1875rem;
+  }
+  .ranking-table .cell-link:hover { text-decoration-color: var(--color-text); }
+  .ranking-table .cell-link:has(.badge) { text-decoration: none; }
+  .ranking-table .cell-link:has(.badge):hover { text-decoration: underline; }
   .ranking-table tbody td:first-child { color: var(--color-text); font-weight: 500; }
   .ranking-table .query-langs { display: inline-flex; flex-wrap: wrap; gap: 0.2rem; }
   .delta-up { color: #2b8a3e; }

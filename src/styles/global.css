@@ -265,8 +265,17 @@ header {
   padding-right: 0.5rem;
 }
 th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
-.rank-link, .value-link { color: inherit; text-decoration: none; }
-.rank-link:hover, .value-link:hover, .badge-link:hover { text-decoration: underline; }
+.rank-link { color: inherit; text-decoration: none; }
+.rank-link:hover { text-decoration: underline; }
+.value-link {
+  color: inherit;
+  text-decoration: underline dotted var(--color-text-tertiary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.1875rem;
+}
+.value-link:hover { text-decoration-color: var(--color-text); }
+.badge-link { text-decoration: none; }
+.badge-link:hover { text-decoration: underline; }
 .rank-empty { color: var(--color-text-tertiary); }
 .badge-link { cursor: pointer; }
 .rank-delta { margin-left: 0.35rem; font-size: 0.7rem; font-weight: 500; }

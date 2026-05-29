@@ -81,15 +81,14 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
   <main class="ranking-page">
     <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
     <h1>{board.h1}</h1>
-    <p class="blurb">{board.blurb}</p>
-    <p class="updated">Updated {updated}. {board.engines.length} engines ranked.</p>
-    {top.length >= 3 && (
+    {top.length >= 3 ? (
       <p class="lead">
-        As of {updated}, <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads with a {scoreLabel} of {(isMovers ? top[0].momentum : top[0].score).toFixed(1)},
+        <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads with a {scoreLabel} of {(isMovers ? top[0].momentum : top[0].score).toFixed(1)},
         followed by <a href={`/db/${top[1].slug}/`}>{top[1].name}</a> ({(isMovers ? top[1].momentum : top[1].score).toFixed(1)}) and
-        <a href={`/db/${top[2].slug}/`}>{top[2].name}</a> ({(isMovers ? top[2].momentum : top[2].score).toFixed(1)}).
-        {board.engines.length} engines compared across adoption, activity, community and research signals.
+        <a href={`/db/${top[2].slug}/`}>{top[2].name}</a> ({(isMovers ? top[2].momentum : top[2].score).toFixed(1)}) — {board.engines.length} engines ranked, {updated}.
       </p>
+    ) : (
+      <p class="lead">{board.engines.length} engines ranked, {updated}.</p>
     )}
     <SponsorCTA />
 

@@ -45,15 +45,15 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   <SiteHeader />
   <main class="rankings-index">
     <h1>GDB-Engines Rankings</h1>
-    <p class="blurb">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
-    {updated && <p class="updated">Updated {updated}.</p>}
-    {topOverall.length >= 3 && (
+    {topOverall.length >= 3 ? (
       <p class="lead">
-        As of {updated}, <a href={`/db/${topOverall[0].slug}/`}>{topOverall[0].name}</a> ({topOverall[0].score.toFixed(1)}),
+        <a href={`/db/${topOverall[0].slug}/`}>{topOverall[0].name}</a> ({topOverall[0].score.toFixed(1)}),
         <a href={`/db/${topOverall[1].slug}/`}>{topOverall[1].name}</a> ({topOverall[1].score.toFixed(1)}) and
-        <a href={`/db/${topOverall[2].slug}/`}>{topOverall[2].name}</a> ({topOverall[2].score.toFixed(1)}) lead the overall ranking.
+        <a href={`/db/${topOverall[2].slug}/`}>{topOverall[2].name}</a> ({topOverall[2].score.toFixed(1)}) lead the overall ranking{updated && `, ${updated}`}.
         Boards below split the same data by data model, engine kind, license, query language and implementation language.
       </p>
+    ) : (
+      <p class="lead">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
     )}
     <SponsorCTA />
 
