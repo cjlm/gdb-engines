@@ -1,0 +1,7 @@
+# Redirects for legacy/brand-friendly URLs not in the build output.
+# Cloudflare Pages format: <source> <destination> <status>
+
+# FalkorDB's catalog slug carries its legacy Redis history (`redisgraph-falkordb`).
+# Searches for "FalkorDB" should land on its page directly.
+/db/falkordb        /db/redisgraph-falkordb/        301
+/db/falkordb/       /db/redisgraph-falkordb/        301

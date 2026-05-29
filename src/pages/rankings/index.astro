@@ -10,6 +10,17 @@ const ranking = await loadRankings();
 const boards: Board[] = ranking ? buildBoards(ranking) : [];
 const generatedAt = ranking?.generatedAt;
 const updated = generatedAt ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' }) : null;
+const overall = boards.find((b) => b.slug === 'overall');
+const topOverall = overall?.engines.slice(0, 3) ?? [];
+
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Rankings', item: 'https://gdb-engines.com/rankings/' },
+  ],
+});
 
 const groupLabels: Record<Board['group'], string> = {
   overall: 'Overall',
@@ -29,12 +40,21 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   title="GDB-Engines Rankings — Graph Database Popularity"
   description="Monthly popularity rankings for graph databases across data model, query language, implementation language, license, and more. Compare the best and most-used graph databases."
   canonical="https://gdb-engines.com/rankings/"
+  jsonLd={[breadcrumbJsonLd]}
 >
   <SiteHeader />
   <main class="rankings-index">
     <h1>GDB-Engines Rankings</h1>
-    <p class="blurb">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
-    {updated && <p class="updated">Updated {updated}.</p>}
+    {topOverall.length >= 3 ? (
+      <p class="lead">
+        <a href={`/db/${topOverall[0].slug}/`}>{topOverall[0].name}</a> ({topOverall[0].score.toFixed(1)}),
+        <a href={`/db/${topOverall[1].slug}/`}>{topOverall[1].name}</a> ({topOverall[1].score.toFixed(1)}) and
+        <a href={`/db/${topOverall[2].slug}/`}>{topOverall[2].name}</a> ({topOverall[2].score.toFixed(1)}) lead the overall ranking{updated && `, ${updated}`}.
+        Boards below split the same data by data model, engine kind, license, query language and implementation language.
+      </p>
+    ) : (
+      <p class="lead">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
+    )}
     <SponsorCTA />
 
     {boards.length === 0 ? (
@@ -59,6 +79,9 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   h1 { font-size: 1.5rem; margin: 0 0 0.5rem; color: var(--color-text); }
   .blurb { color: var(--color-text-secondary); max-width: 70ch; line-height: 1.5; }
   .updated { color: var(--color-text-tertiary); font-size: 0.8rem; }
+  .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .lead a { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-border); text-underline-offset: 2px; }
+  .lead a:hover { text-decoration-color: var(--color-brand-accent); }
   .empty { background: var(--color-surface); border-left: 3px solid var(--color-border); padding: 0.75rem 1rem; color: var(--color-text-secondary); }
   section { margin: 1.5rem 0; }
   h2 { font-size: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.25rem; margin-bottom: 0.5rem; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }

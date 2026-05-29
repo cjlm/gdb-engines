@@ -5,4 +5,23 @@ Disallow: /*?search=
 Disallow: /*?features=
 Disallow: /*?inactive=
 
+# AI search crawlers — explicitly welcomed for citation visibility.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://gdb-engines.com/sitemap-index.xml

@@ -6,20 +6,43 @@ import SponsorCTA from '../../components/SponsorCTA.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
-import { buildBoards } from '../../lib/ranking-boards';
+import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { getCollection } from 'astro:content';
+import { fetchFavicon } from '../../utils/favicon';
 
 export async function getStaticPaths() {
   const ranking = await loadRankings();
   if (!ranking) return [];
   const sponsors = await loadSponsors();
+  const linkMaps = buildLinkMaps(ranking);
+
+  // Build the favicon map once and share across all board pages (fetchFavicon caches
+  // on disk, but the catalog walk is per-build so we hoist it out of the per-page render).
+  const databases = await getCollection('databases');
+  const faviconMap: Record<string, string> = {};
+  for (const db of databases) {
+    if (db.data.icon) {
+      faviconMap[db.data.slug] = `/logos/${db.data.icon}`;
+    } else {
+      const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
+      faviconMap[db.data.slug] = result.url;
+    }
+  }
+
   return buildBoards(ranking).map((board) => ({
     params: { slug: board.slug },
-    props: { board, generatedAt: ranking.generatedAt, sponsor: getSponsor(sponsors, board.slug) },
+    props: {
+      board,
+      generatedAt: ranking.generatedAt,
+      sponsor: getSponsor(sponsors, board.slug),
+      faviconMap,
+      linkMaps,
+    },
   }));
 }
 
-const { board, generatedAt, sponsor } = Astro.props;
+const { board, generatedAt, sponsor, faviconMap, linkMaps } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -38,19 +61,40 @@ const itemListJsonLd = JSON.stringify({
     name: e.name,
   })),
 });
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Rankings', item: 'https://gdb-engines.com/rankings/' },
+    { '@type': 'ListItem', position: 3, name: board.h1, item: canonical },
+  ],
+});
+// Direct-answer summary built from the top three. Gives crawlers + AI systems a
+// quotable passage stating who leads, with the date, instead of a bare table.
+const top = board.engines.slice(0, 3);
+const isMovers = board.group === 'movers';
+const scoreLabel = isMovers ? 'momentum' : 'score';
 ---
-<Layout title={`${board.title} — GDB-Engines Rankings`} description={board.metaDescription} canonical={canonical} ogImage={ogImage} jsonLd={[itemListJsonLd]}>
+<Layout title={`${board.title} — GDB-Engines Rankings`} description={board.metaDescription} canonical={canonical} ogImage={ogImage} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
   <SiteHeader />
   <main class="ranking-page">
     <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
     <h1>{board.h1}</h1>
-    <p class="blurb">{board.blurb}</p>
-    <p class="updated">Updated {updated}. {board.engines.length} engines ranked.</p>
+    {top.length >= 3 ? (
+      <p class="lead">
+        <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads with a {scoreLabel} of {(isMovers ? top[0].momentum : top[0].score).toFixed(1)},
+        followed by <a href={`/db/${top[1].slug}/`}>{top[1].name}</a> ({(isMovers ? top[1].momentum : top[1].score).toFixed(1)}) and
+        <a href={`/db/${top[2].slug}/`}>{top[2].name}</a> ({(isMovers ? top[2].momentum : top[2].score).toFixed(1)}) — {board.engines.length} engines ranked, {updated}.
+      </p>
+    ) : (
+      <p class="lead">{board.engines.length} engines ranked, {updated}.</p>
+    )}
     <SponsorCTA />
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
 
-    <RankingTable engines={board.engines} scoreField={board.group === 'movers' ? 'momentum' : 'score'} />
+    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} />
     {board.insufficientCount > 0 && (
       <p class="insufficient-note">
         {board.insufficientCount} additional {board.insufficientCount === 1 ? 'engine has' : 'engines have'} too little public signal to be ranked.
@@ -67,5 +111,8 @@ const itemListJsonLd = JSON.stringify({
   h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
   .blurb { color: var(--color-text-secondary); max-width: 70ch; line-height: 1.5; margin: 0.5rem 0 0.25rem; }
   .updated { color: var(--color-text-tertiary); font-size: 0.8rem; margin-bottom: 1rem; }
+  .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .lead a { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-border); text-underline-offset: 2px; }
+  .lead a:hover { text-decoration-color: var(--color-brand-accent); }
   .insufficient-note { color: var(--color-text-tertiary); font-size: 0.8rem; margin-top: 1rem; font-style: italic; }
 </style>

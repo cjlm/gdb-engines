@@ -70,10 +70,10 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 const blurbFor = (label: string): string =>
-  `The best and most popular ${label.toLowerCase()} graph databases, ranked monthly across adoption, activity, community and research signals. Compare top ${label.toLowerCase()} graph database options.`;
+  `The most popular ${label.toLowerCase()} graph databases, ranked monthly by adoption, activity, community and research signals.`;
 
 const blurbOverall =
-  'The best and most popular graph databases, ranked monthly across adoption, activity, community and research signals. Compare top graph databases used in production today.';
+  'The most popular graph databases, ranked monthly across adoption, activity, community and research signals.';
 
 const blurbMovers =
   'Graph databases with the fastest-rising momentum this month, based on recent activity, community engagement and adoption signals.';
@@ -153,7 +153,17 @@ export function getEngineRanks(boards: Board[], slug: string): EngineRanking[] {
 type BoardMeta = Omit<Board, 'engines' | 'insufficientCount'>;
 function makeBoard(meta: BoardMeta, engines: RankedEngine[]): Board {
   const { ranked, insufficientCount } = splitInsufficient(engines);
-  return { ...meta, engines: ranked, insufficientCount };
+  // Enrich the meta description with the top-3 engines for this board, so each ranking
+  // page presents a unique summary to search engines and AI systems (anti-boilerplate).
+  // Movers board is momentum-based, not score-based — different framing.
+  const top3 = ranked.slice(0, 3).map((e) => e.name);
+  let metaDescription = meta.metaDescription;
+  if (top3.length >= 3 && meta.group !== 'movers') {
+    metaDescription = `${meta.metaDescription.replace(/\s+Compare top.*$/, '')} Currently led by ${top3[0]}, ${top3[1]}, and ${top3[2]}.`;
+  } else if (top3.length >= 3 && meta.group === 'movers') {
+    metaDescription = `${meta.metaDescription} Top movers: ${top3.join(', ')}.`;
+  }
+  return { ...meta, metaDescription, engines: ranked, insufficientCount };
 }
 
 // Build "{label} Graph Database Popularity Ranking", avoiding the duplicate-word
