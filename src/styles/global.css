@@ -320,8 +320,8 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
 }
 .rankings-link__icon { flex-shrink: 0; }
 /* ↪ glyph sits high on its line — nudge it down to the visual baseline. */
-.rankings-link__arrow { display: inline-block; transform: translateY(2px); font-size: 0.95em; }
-.rankings-link:hover .rankings-link__arrow { transform: translate(2px, 2px); }
+.rankings-link__arrow { display: inline-block; transform: translateY(4px); font-size: 0.95em; }
+.rankings-link:hover .rankings-link__arrow { transform: translate(2px, 4px); }
 @media (hover: hover) {
   .rankings-link__arrow { transition: transform 120ms ease; }
 }
