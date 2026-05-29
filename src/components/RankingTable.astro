@@ -113,14 +113,24 @@ const tierClass = (tier: string): string => {
 </div>
 
 <style>
-  /* Wrap the table so it scrolls horizontally on mobile instead of blowing out the page. */
+  /* Wrap the table so it scrolls horizontally on mobile instead of blowing out the page.
+     Setting min-width: 0 lets the wrap shrink below its content's intrinsic width inside
+     any grid/flex ancestor; max-width: 100% keeps it inside the page padding. */
   .ranking-table-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 1rem;
   }
-  /* Inherit the global <table>/<th>/<td> look; only style what's ranking-specific. */
-  .ranking-table { margin-top: 0; width: 100%; }
+  /* Override the global table { width: 100% } — size to content, but never below
+     100% of the wrap. The wrap then handles horizontal scroll when content overflows. */
+  .ranking-table {
+    margin-top: 0;
+    width: max-content;
+    min-width: 100%;
+  }
   /* No top-level site header on ranking pages, so anchor the sticky header to viewport top. */
   .ranking-table thead th { top: 0; }
   .ranking-table .num { text-align: right; font-variant-numeric: tabular-nums; }
@@ -147,8 +157,9 @@ const tierClass = (tier: string): string => {
     .delta-up { color: #80c889; }
     .delta-down { color: #ff7a7a; }
   }
-  /* On mobile, table can grow past viewport — the wrap container scrolls it. Don't hide cols. */
+  /* Min-content guard so the wrap's overflow-x: auto always has something to scroll
+     past on narrow viewports, rather than letting the table collapse all columns. */
   @media (max-width: 45rem) {
-    .ranking-table { min-width: 640px; }
+    .ranking-table { min-width: max(100%, 640px); }
   }
 </style>
