@@ -78,17 +78,17 @@ const tierClass = (tier: string): string => {
             <td><span class={`badge ${tierClass(e.tier)}`}>{e.tier}</span></td>
             <td class="hide-mobile">
               {typeSlug
-                ? <a href={`/rankings/${typeSlug}/`} class="cell-link"><span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span></a>
+                ? <a href={`/rankings/${typeSlug}/`} class="badge-wrap"><span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span></a>
                 : <span class={`badge badge-${e.type.toLowerCase().replace(/ /g, '-')}`}>{e.type}</span>}
             </td>
             <td class="hide-mobile">
               {e.license && licenseSlug
-                ? <a href={`/rankings/${licenseSlug}/`} class="cell-link">{e.license}</a>
+                ? <a href={`/rankings/${licenseSlug}/`} class="value-link">{e.license}</a>
                 : (e.license ?? '-')}
             </td>
             <td class="hide-mobile">
               {e.implementationLanguage && langSlug
-                ? <a href={`/rankings/${langSlug}/`} class="cell-link">{e.implementationLanguage}</a>
+                ? <a href={`/rankings/${langSlug}/`} class="value-link">{e.implementationLanguage}</a>
                 : (e.implementationLanguage ?? '-')}
             </td>
             <td class="hide-mobile">
@@ -97,7 +97,7 @@ const tierClass = (tier: string): string => {
                   {[...e.queryLanguages].sort().slice(0, 3).map((ql) => {
                     const qlSlug = linkMaps?.queryLanguageSlug.get(canonicalQueryLanguage(ql));
                     const badge = <span class="badge badge-query-lang">{ql}</span>;
-                    return qlSlug ? <a href={`/rankings/${qlSlug}/`} class="cell-link">{badge}</a> : badge;
+                    return qlSlug ? <a href={`/rankings/${qlSlug}/`} class="badge-wrap">{badge}</a> : badge;
                   })}
                   {e.queryLanguages.length > 3 && (
                     <span class="badge badge-query-lang">+{e.queryLanguages.length - 3}</span>
@@ -145,17 +145,21 @@ const tierClass = (tier: string): string => {
     border-radius: 2px;
     background: var(--color-surface);
   }
-  /* Plain-text cells (License, Language) get a dotted underline as a "clickable" hint;
-     badge cells (Type) inherit no underline since the badge shape is already an affordance. */
-  .ranking-table .cell-link {
+  /* Plain-text cells (License, Language) get a dotted underline as a "clickable" hint. */
+  .ranking-table .value-link {
     color: inherit;
     text-decoration: underline dotted var(--color-text-tertiary);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.1875rem;
   }
-  .ranking-table .cell-link:hover { text-decoration-color: var(--color-text); }
-  .ranking-table .cell-link:has(.badge) { text-decoration: none; }
-  .ranking-table .cell-link:has(.badge):hover { text-decoration: underline; }
+  .ranking-table .value-link:hover { text-decoration-color: var(--color-text); }
+  /* Badge wrappers (Type column, query-lang badges): no underline — badge shape is
+     already an affordance — and inline-flex so flex-gap inside .query-langs lines up. */
+  .ranking-table .badge-wrap {
+    display: inline-flex;
+    color: inherit;
+    text-decoration: none;
+  }
   .ranking-table tbody td:first-child { color: var(--color-text); font-weight: 500; }
   .ranking-table .query-langs { display: inline-flex; flex-wrap: wrap; gap: 0.2rem; }
   .delta-up { color: #2b8a3e; }
