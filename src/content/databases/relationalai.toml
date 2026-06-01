@@ -1,0 +1,12 @@
+name = "RelationalAI"
+vendor = "RelationalAI"
+slug = "relationalai"
+description = "A cloud-native relational knowledge graph system (RKGS) that models all data as relations in Graph Normal Form and is queried with Rel, a declarative, Datalog-based modeling language. Positioned as a knowledge graph coprocessor for Snowflake, it runs in-account as a Native App on Snowpark Container Services, adding rule-based reasoning, graph analytics, and predictive and prescriptive analytics over data where it already lives. The engine is built in Julia."
+url = "https://relational.ai/"
+license = "Proprietary"
+implementation_language = "Julia"
+type = "Other"
+query_languages = ["Rel", "SQL"]
+released = "2021"
+category = "Growing"
+gdotv_support = false
