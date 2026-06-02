@@ -1,5 +1,6 @@
 ---
 import IconDefs from '../components/IconDefs.astro';
+import { getDatabaseCount } from '../lib/database-count';
 
 interface Props {
   title: string;
@@ -8,7 +9,8 @@ interface Props {
   canonical?: string;
   ogImage?: string;
 }
-const { title, description = 'Compare 130+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings. Data backed by academic research.', jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png' } = Astro.props;
+const dbCount = await getDatabaseCount();
+const { title, description = `Compare ${dbCount}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`, jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png' } = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
 
 const siteSchema = JSON.stringify({
@@ -16,7 +18,7 @@ const siteSchema = JSON.stringify({
   "@type": "WebSite",
   "name": "GDB-Engines",
   "url": "https://gdb-engines.com",
-  "description": "Compare 130+ graph databases side-by-side with monthly popularity rankings. Data backed by academic research.",
+  "description": `Compare ${dbCount}+ graph databases side-by-side with monthly popularity rankings.`,
   "publisher": {
     "@type": "Organization",
     "name": "GDB-Engines",

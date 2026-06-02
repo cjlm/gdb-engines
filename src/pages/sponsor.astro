@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
+import { getDatabaseCount } from '../lib/database-count';
+
+const dbCount = await getDatabaseCount();
 ---
 <Layout
   title="Sponsor GDB-Engines Rankings"
@@ -12,7 +15,7 @@ import '../styles/global.css';
   <main class="sponsor-page">
     <h1>Sponsor GDB-Engines Rankings</h1>
 
-    <p>GDB-Engines Rankings publishes monthly popularity boards covering ~130 graph databases across data model, query language, implementation language and license.</p>
+    <p>GDB-Engines Rankings publishes monthly popularity boards covering {dbCount}+ graph databases across data model, query language, implementation language and license.</p>
 
     <p>If you'd like to sponsor a ranking page please get in touch:</p>
 

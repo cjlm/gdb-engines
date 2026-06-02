@@ -4,7 +4,7 @@ An Open Source comparison of graph database features and capabilities.
 
 ## Overview
 
-A comprehensive comparison table covering 80+ graph databases, query engines, extensions, and other graph technologies. Each entry includes metadata like vendor, license, query language support, and status. Many entries are also scored across 43 features based on criteria from academic research.
+A comprehensive comparison table covering 131+ graph databases, query engines, extensions, and other graph technologies. Each entry includes metadata like vendor, license, query language support, and status. Many entries are also scored across 43 features based on criteria from academic research.
 
 ## Data format
 
