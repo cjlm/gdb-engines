@@ -1,10 +1,10 @@
 # GDB-Engines
 
-> Open-source comparison and monthly popularity ranking of 130+ graph databases, query engines, extensions, and embedded libraries. Covers property graph (LPG), RDF, and multi-model engines. Feature scores derived from peer-reviewed academic research; popularity rankings blended monthly across adoption, activity, community and research signals from public sources.
+> Open-source comparison and monthly popularity ranking of 131+ graph databases, query engines, extensions, and embedded libraries. Covers property graph (LPG), RDF, and multi-model engines. Feature scores derived from peer-reviewed academic research; popularity rankings blended monthly across adoption, activity, community and research signals from public sources.
 
 ## Comparison
 
-- [Homepage](https://gdb-engines.com/): Interactive comparison of 130+ graph databases with 43 academic feature scores, license, query languages, implementation language, and overall popularity rank.
+- [Homepage](https://gdb-engines.com/): Interactive comparison of 131+ graph databases with 43 academic feature scores, license, query languages, implementation language, and overall popularity rank.
 - [About](https://gdb-engines.com/about): Methodology, data model, contribution guidelines, changelog.
 - [JSON API](https://gdb-engines.com/api.json): Full dataset.
 

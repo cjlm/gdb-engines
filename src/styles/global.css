@@ -253,7 +253,7 @@ header {
   transition: background-color 120ms ease;
 }
 .ranks-list a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
-.ranks-list .rank { font-weight: 600; color: var(--color-brand); font-variant-numeric: tabular-nums; }
+.ranks-list .rank { font-weight: 600; color: var(--color-brand-accent); font-variant-numeric: tabular-nums; }
 .ranks-list .label { color: var(--color-text-secondary); }
 
 /* Rankings cross-links from the comparison table */
@@ -281,7 +281,7 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
 .rank-delta { margin-left: 0.35rem; font-size: 0.7rem; font-weight: 500; }
 .rank-delta.delta-up { color: #2b8a3e; }
 .rank-delta.delta-down { color: #c92a2a; }
-.rank-delta.delta-new { color: var(--color-brand); }
+.rank-delta.delta-new { color: var(--color-brand-accent); }
 @media (prefers-color-scheme: dark) {
   .rank-delta.delta-up { color: #80c889; }
   .rank-delta.delta-down { color: #ff7a7a; }
@@ -319,12 +319,6 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
   background-color: color-mix(in srgb, var(--color-brand-accent) 26%, transparent);
 }
 .rankings-link__icon { flex-shrink: 0; }
-/* ↪ glyph sits high on its line — nudge it down to the visual baseline. */
-.rankings-link__arrow { display: inline-block; transform: translateY(4px); font-size: 0.95em; }
-.rankings-link:hover .rankings-link__arrow { transform: translate(2px, 4px); }
-@media (hover: hover) {
-  .rankings-link__arrow { transition: transform 120ms ease; }
-}
 @media (max-width: 45rem) {
   .rankings-link__label { display: none; }
 }
@@ -624,20 +618,20 @@ tr.row-deprecated:hover td {
 }
 
 /* Dark mode badge colors — use custom properties to avoid duplication */
-.badge-property-graph { --badge-bg-dark: #1A2744; --badge-fg-dark: #64B5F6; }
-.badge-rdf { --badge-bg-dark: #2A1A33; --badge-fg-dark: #CE93D8; }
-.badge-multiple { --badge-bg-dark: #2E1A00; --badge-fg-dark: #FFB74D; }
-.badge-other { --badge-bg-dark: #1A2E0A; --badge-fg-dark: #AED581; }
-.badge-established { --badge-bg-dark: #1A2E1A; --badge-fg-dark: #81C784; }
-.badge-enterprise { --badge-bg-dark: #1A2744; --badge-fg-dark: #64B5F6; }
-.badge-growing { --badge-bg-dark: #0A2E2A; --badge-fg-dark: #80CBC4; }
-.badge-emerging { --badge-bg-dark: #2E2600; --badge-fg-dark: #FFD54F; }
-.badge-extension { --badge-bg-dark: #1A1A3E; --badge-fg-dark: #9FA8DA; }
-.badge-query-engine { --badge-bg-dark: #0A2E2E; --badge-fg-dark: #80CBC4; }
-.badge-embedded { --badge-bg-dark: #2E1A00; --badge-fg-dark: #FFB74D; }
-.badge-query-lang { --badge-bg-dark: #2A2A2A; --badge-fg-dark: #BBB; }
-.badge-inactive { --badge-bg-dark: #333; --badge-fg-dark: #9E9E9E; }
-.badge-deprecated { --badge-bg-dark: #3E1A1A; --badge-fg-dark: #EF9A9A; }
+.badge-property-graph { --badge-bg-dark: #24365E; --badge-fg-dark: #64B5F6; }
+.badge-rdf { --badge-bg-dark: #4A3357; --badge-fg-dark: #CE93D8; }
+.badge-multiple { --badge-bg-dark: #523100; --badge-fg-dark: #FFB74D; }
+.badge-other { --badge-bg-dark: #294612; --badge-fg-dark: #AED581; }
+.badge-established { --badge-bg-dark: #21421F; --badge-fg-dark: #81C784; }
+.badge-enterprise { --badge-bg-dark: #24365E; --badge-fg-dark: #64B5F6; }
+.badge-growing { --badge-bg-dark: #103F39; --badge-fg-dark: #80CBC4; }
+.badge-emerging { --badge-bg-dark: #4A3F00; --badge-fg-dark: #FFD54F; }
+.badge-extension { --badge-bg-dark: #313167; --badge-fg-dark: #9FA8DA; }
+.badge-query-engine { --badge-bg-dark: #103F39; --badge-fg-dark: #80CBC4; }
+.badge-embedded { --badge-bg-dark: #523100; --badge-fg-dark: #FFB74D; }
+.badge-query-lang { --badge-bg-dark: #383838; --badge-fg-dark: #BBB; }
+.badge-inactive { --badge-bg-dark: #383838; --badge-fg-dark: #AAA; }
+.badge-deprecated { --badge-bg-dark: #6B2C2C; --badge-fg-dark: #EF9A9A; }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .badge { background: var(--badge-bg-dark); color: var(--badge-fg-dark); }
@@ -654,7 +648,7 @@ tr.row-deprecated:hover td {
 }
 .bar-fill {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-accent);
   border-radius: 0.25rem;
 }
 
