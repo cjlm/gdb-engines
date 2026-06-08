@@ -1,12 +1,14 @@
 name = "TrustGraph"
-vendor = "Steath"
+vendor = "Stealth"
 slug = "trustgraph"
 description = "A complete holonic system that builds, manages, deploys, and operates holons for a complete neuro-symbolic AI solution."
 url = "https://trustgraph.ai"
+github_url = "https://github.com/trustgraph-ai/trustgraph"
 license = "Apache-2.0"
+implementation_language = "Python"
 type = "Multiple"
+kind = "embedded"
 query_languages = ["SPARQL", "GraphQL"]
 released = "2024-07"
-category = "Growing"
+category = "Emerging"
 gdotv_support = false
-gdotv_url = ""
