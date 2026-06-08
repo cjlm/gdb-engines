@@ -1,0 +1,12 @@
+name = "TrustGraph"
+vendor = "Steath"
+slug = "trustgraph"
+description = "A complete holonic system that builds, manages, deploys, and operates holons for a complete neuro-symbolic AI solution."
+url = "https://trustgraph.ai"
+license = "Apache-2.0"
+type = "Multiple"
+query_languages = ["SPARQL", "GraphQL"]
+released = "2024-07"
+category = "Growing"
+gdotv_support = false
+gdotv_url = ""
