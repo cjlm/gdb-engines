@@ -792,8 +792,11 @@ a.has-tooltip {
 }
 
 /* Microtip overrides */
-[role="tooltip"]::before,
-[role="tooltip"]::after {
+/* Selector must match microtip.css's base specificity ([aria-label][role~="tooltip"])
+   or the z-index:10 there wins and the tooltip renders behind the fixed site header
+   (z-index:20) and sticky thead (z-index:10). */
+[aria-label][role~="tooltip"]::before,
+[aria-label][role~="tooltip"]::after {
   z-index: 100;
 }
 [role="tooltip"]::after,
