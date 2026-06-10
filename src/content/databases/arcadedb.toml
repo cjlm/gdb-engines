@@ -14,7 +14,7 @@ gdotv_support = true
 
 [features]
 active_development = 1.0
-commercial_support = 0.0
+commercial_support = 1.0
 live_community = 1.0
 open_source = 1.0
 pricing = 1.0
@@ -51,11 +51,11 @@ granular_locking = 0.0
 multiple_isolation_levels = 1.0
 read_committed_transaction = 1.0
 transaction_support = 1.0
-constraints = 0.5
+constraints = 1.0
 schema_support = 1.0
 secondary_indexes = 1.0
 server_side_procedures = 1.0
 triggers = 1.0
 authentication = 1.0
 authorization = 1.0
-data_encryption = 0.0
+data_encryption = 1.0
