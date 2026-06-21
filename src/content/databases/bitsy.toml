@@ -1,0 +1,14 @@
+name = "Bitsy"
+vendor = "LambdaZen"
+slug = "bitsy"
+description = "A small, embeddable, durable in-memory property graph database implementing Apache TinkerPop3 (Gremlin), with ACID transactions and optimistic concurrency control aimed at multi-threaded OLTP workloads. It persists data to human-readable JSON transaction logs and runs in-process or behind Gremlin Server."
+url = "https://github.com/lambdazen/bitsy/wiki"
+github_url = "https://github.com/lambdazen/bitsy"
+license = "Apache-2.0"
+implementation_language = "Java"
+type = "Property Graph"
+query_languages = ["Gremlin"]
+kind = "embedded"
+released = "2013"
+category = "Emerging"
+gdotv_support = false

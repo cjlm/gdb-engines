@@ -1,0 +1,14 @@
+name = "GraphQLite"
+vendor = "Colliery IO"
+slug = "graphqlite"
+description = "A loadable SQLite extension that adds property-graph storage and openCypher querying to any SQLite database, keeping graph and relational data together in a single zero-config file. It ships with 15+ built-in graph algorithms—PageRank, Louvain, Dijkstra, centralities—plus Python and Rust bindings, and inherits SQLite's embedded, serverless ACID operation."
+url = "https://colliery-io.github.io/graphqlite/"
+github_url = "https://github.com/colliery-io/graphqlite"
+license = "MIT"
+implementation_language = "C"
+type = "Property Graph"
+query_languages = ["openCypher"]
+kind = "extension"
+released = "2025-07"
+category = "Emerging"
+gdotv_support = false

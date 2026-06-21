@@ -1,0 +1,14 @@
+name = "NodeDB"
+vendor = "NodeDB-Lab"
+slug = "nodedb"
+description = "A multi-model database written in Rust that runs eight engines—including a native property-graph engine—in a single binary over shared storage. Its graph engine uses a CSR adjacency index with 13 built-in algorithms and a Cypher-subset MATCH syntax, and fuses graph traversal with vector search in a single query for GraphRAG."
+url = "https://nodedb.dev"
+github_url = "https://github.com/NodeDB-Lab/nodedb"
+license = "BUSL-1.1"
+implementation_language = "Rust"
+type = "Property Graph"
+query_languages = ["Cypher", "SQL"]
+kind = "database"
+released = "2026-03"
+category = "Emerging"
+gdotv_support = false
