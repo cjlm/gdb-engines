@@ -1,0 +1,14 @@
+name = "TurboLynx"
+vendor = "POSTECH (DSLab)"
+slug = "turbolynx"
+description = "An embedded, schemaless property graph database for analytical (OLAP) workloads that stores data as columnar \"Graphlets\" and answers openCypher queries through a Cascades-style optimizer forked from Greenplum's ORCA. Built on DuckDB's vectorized execution and developed at POSTECH, it ships as a single shared library with no server."
+url = "https://turbolynx.io"
+github_url = "https://github.com/turbolynx-dslab/TurboLynx"
+license = "MIT"
+implementation_language = "C++"
+type = "Property Graph"
+query_languages = ["openCypher"]
+kind = "embedded"
+released = "2025"
+category = "Emerging"
+gdotv_support = false

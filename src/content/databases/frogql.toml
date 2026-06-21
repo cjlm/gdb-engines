@@ -1,0 +1,14 @@
+name = "froGQL"
+vendor = "PLEIAD"
+slug = "frogql"
+description = "An embedded single-file property graph database written in Rust that implements the ISO GQL standard and executes queries with worst-case-optimal Leapfrog Triejoin. It originates from PLEIAD's research on a gradual type system for GQL: its typechecker statically detects queries guaranteed to return no results before they run."
+url = "https://pleiad.github.io/frogql/"
+github_url = "https://github.com/pleiad/frogql"
+license = "MIT"
+implementation_language = "Rust"
+type = "Property Graph"
+query_languages = ["GQL"]
+kind = "embedded"
+released = "2026-05"
+category = "Emerging"
+gdotv_support = false
