@@ -33,7 +33,6 @@ export interface RankedEngine {
   coverage: number;
   pillars: Pillars;
   rankDelta1m: number | 'new' | null;
-  rankDelta2m: number | 'new' | null;
 }
 
 export interface RankingFile {
