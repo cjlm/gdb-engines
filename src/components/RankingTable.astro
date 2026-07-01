@@ -26,7 +26,7 @@ interface Props {
 const { engines, scoreField = 'score', faviconMap = {}, linkMaps, engineMeta = {} } = Astro.props;
 const scoreLabel = scoreField === 'momentum' ? 'Momentum' : 'Score';
 
-const hasDeltas = engines.some((e) => e.rankDelta1m !== null || e.rankDelta2m !== null);
+const hasDeltas = engines.some((e) => e.rankDelta1m !== null);
 const fmtDelta = (d: number | 'new' | null): string => {
   if (d === null) return '';
   if (d === 'new') return 'new';
@@ -54,7 +54,6 @@ const tierClass = (tier: string): string => {
       <tr>
         <th class="num rank-cell">#</th>
         {hasDeltas && <th class="num">1mo</th>}
-        {hasDeltas && <th class="num">2mo</th>}
         <th>Name</th>
         <th class="num">{scoreLabel}</th>
         <th>Tier</th>
@@ -74,7 +73,6 @@ const tierClass = (tier: string): string => {
           <tr>
             <td class="num rank-cell">{i + 1}</td>
             {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
-            {hasDeltas && <td class={`num ${deltaClass(e.rankDelta2m)}`}>{fmtDelta(e.rankDelta2m)}</td>}
             <td>
               <div class="name-cell">
                 {fav && <img src={fav} alt="" width="16" height="16" class="favicon" loading="lazy" />}
