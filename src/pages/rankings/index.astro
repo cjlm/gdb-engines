@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
+import CorrectionNotice from '../../components/CorrectionNotice.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, type Board } from '../../lib/ranking-boards';
@@ -56,6 +57,8 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
       <p class="lead">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
     )}
     <SponsorCTA />
+
+    <CorrectionNotice />
 
     {boards.length === 0 ? (
       <p class="empty">Ranking data isn't available in this build (no <code>RANKINGS_TOKEN</code> set and no local sibling checkout).</p>

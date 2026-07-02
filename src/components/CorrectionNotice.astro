@@ -1,0 +1,30 @@
+---
+// Transient notice about the July 2026 data-collection correction. Self-expires
+// at build time on/after EXPIRES, so a rebuild after that date drops it with no
+// code change needed (remove this component and its usages once past the date).
+const EXPIRES = new Date('2026-07-12T00:00:00Z');
+const show = new Date() < EXPIRES;
+---
+{show && (
+  <aside class="correction-notice" role="note">
+    <strong>Correction — July 2026.</strong> Due to an unforeseen data-provider issue, the July
+    ranking was distorted by missing data. These tables have been recomputed with corrected data.
+  </aside>
+)}
+
+<style>
+  .correction-notice {
+    max-width: 70ch;
+    margin: 0 0 1.25rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-text-tertiary);
+    border-radius: 4px;
+  }
+  .correction-notice strong { color: var(--color-text); font-weight: 600; }
+  .correction-notice a { color: inherit; text-decoration: underline; }
+</style>

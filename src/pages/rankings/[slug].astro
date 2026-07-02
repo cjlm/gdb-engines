@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import RankingTable from '../../components/RankingTable.astro';
+import CorrectionNotice from '../../components/CorrectionNotice.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
@@ -102,6 +103,8 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
     <SponsorCTA />
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
+
+    <CorrectionNotice />
 
     <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} engineMeta={engineMeta} />
     {board.insufficientCount > 0 && (
