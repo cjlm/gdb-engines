@@ -170,7 +170,7 @@ const jsonLd = JSON.stringify({
                   <span class="icon-placeholder" />
                 );
               })()}
-              <a href={`/db/${db.data.slug}`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
+              <a href={`/db/${db.data.slug}/`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
               <span class="db-links">
                 {db.data.github_url ? (
                   <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" title={db.data.github_url}>
@@ -287,7 +287,7 @@ const jsonLd = JSON.stringify({
   <footer class="site-footer">
     <span>Last updated: {new Date().toISOString().split('T')[0]}</span>
     <span><a href="/rankings/">Rankings</a></span>
-    <span><a href="/about">About & Changelog</a></span>
+    <span><a href="/about/">About & Changelog</a></span>
   </footer>
 
   <dialog id="modal">
@@ -327,7 +327,7 @@ const jsonLd = JSON.stringify({
     </div>
     <div class="footer">
       <a href="/rankings/">Rankings</a>
-      <a href="/about">About &amp; Changelog</a>
+      <a href="/about/">About &amp; Changelog</a>
       <a href="mailto:contact@gdb-engines.com">contact@gdb-engines.com</a>
       <a href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
     </div>

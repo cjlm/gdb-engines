@@ -8,6 +8,9 @@ const buildDate = new Date().toISOString().split('T')[0];
 export default defineConfig({
   output: 'static',
   site: 'https://gdb-engines.com',
+  // Canonical URLs carry a trailing slash (directory build format). Enforce it
+  // so a no-slash internal link is a build error, not a silent 301 redirect.
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       serialize(item) {
