@@ -1,6 +1,10 @@
 # Redirects for legacy/brand-friendly URLs not in the build output.
 # Cloudflare Pages format: <source> <destination> <status>
 
+# Canonical host is the apex. Send the www custom domain to it so the two hosts
+# don't split indexing. Requires www.gdb-engines.com to be attached to this project.
+https://www.gdb-engines.com/* https://gdb-engines.com/:splat 301
+
 # FalkorDB's catalog slug carries its legacy Redis history (`redisgraph-falkordb`).
 # Searches for "FalkorDB" should land on its page directly.
 /db/falkordb        /db/redisgraph-falkordb/        301
