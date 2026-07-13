@@ -54,10 +54,30 @@ const jsonLd = JSON.stringify({
     "name": db.data.name,
   })),
 });
+
+// Dataset schema exposes the catalog to Google Dataset Search, with api.json as the
+// machine-readable distribution.
+const datasetJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Graph Database Engines Comparison",
+  "description": `Structured comparison of ${databases.length}+ graph databases, extensions, and query engines — features, licenses, query languages, implementation languages, and monthly popularity rankings.`,
+  "url": "https://gdb-engines.com",
+  "keywords": ["graph database", "database comparison", "query language", "Cypher", "Gremlin", "SPARQL", "GQL", "SQL/PGQ"],
+  "creator": { "@type": "Organization", "name": "GDB-Engines", "url": "https://gdb-engines.com" },
+  "license": "https://github.com/cjlm/gdb-engines/blob/main/LICENSE",
+  "isAccessibleForFree": true,
+  "dateModified": new Date().toISOString().split('T')[0],
+  "distribution": [{
+    "@type": "DataDownload",
+    "encodingFormat": "application/json",
+    "contentUrl": "https://gdb-engines.com/api.json",
+  }],
+});
 ---
 <Layout
   title={`GDB-Engines — Compare ${databases.length}+ Graph Databases`}
-  jsonLd={[jsonLd]}
+  jsonLd={[jsonLd, datasetJsonLd]}
   description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`}
 >
   <header>
