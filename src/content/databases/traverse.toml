@@ -1,0 +1,13 @@
+name = "Traverse"
+vendor = "Truespar"
+slug = "traverse"
+description = "An in-memory property graph database written in Rust, speaking Cypher and GQL over the Bolt protocol for Neo4j driver compatibility. Includes a built-in graph data science library of 36+ algorithms callable from Cypher, and runs as a server, an embedded in-process library, a Cloud Hypervisor/Firecracker unikernel, or entirely in the browser via WebAssembly."
+url = "https://truespar.com/traverse"
+license = "Proprietary"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "database"
+query_languages = ["openCypher", "GQL"]
+released = "2026-03"
+category = "Emerging"
+gdotv_support = false

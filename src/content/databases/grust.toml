@@ -1,0 +1,13 @@
+name = "Grust"
+vendor = "QueryGraph"
+slug = "grust"
+description = "A backend-neutral property graph API for Rust that models graphs as labeled nodes and edges with typed properties, expressing traversals as an intermediate representation rather than a query-language string. Ships an async GraphStore trait with adapters for SurrealDB, HelixDB, FalkorDB, LanceDB, PostgreSQL, Turso, and Spark, plus a deterministic in-memory store."
+github_url = "https://github.com/querygraph/grust"
+license = "Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "library"
+query_languages = ["Custom API"]
+released = "2026-05"
+category = "Emerging"
+gdotv_support = false
