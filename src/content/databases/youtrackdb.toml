@@ -1,0 +1,14 @@
+name = "YouTrackDB"
+vendor = "JetBrains"
+slug = "youtrackdb"
+description = "An object-oriented graph database that models data as classes with inheritance and polymorphism and resolves link traversals in O(1) without runtime joins. Forked from OrientDB by one of its former lead developers and maintained by JetBrains, it is queried with Gremlin over the TinkerPop stack and runs the same code embedded in-process or as a server."
+url = "https://youtrackdb.io"
+github_url = "https://github.com/JetBrains/youtrackdb"
+license = "Apache-2.0"
+implementation_language = "Java"
+type = "Property Graph"
+query_languages = ["Gremlin", "SQL"]
+kind = "database"
+released = "2024-02"
+category = "Emerging"
+gdotv_support = false
