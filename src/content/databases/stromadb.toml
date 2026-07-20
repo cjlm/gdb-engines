@@ -1,0 +1,14 @@
+name = "StromaDB"
+vendor = "Katsuhide Tsuruta"
+slug = "stromadb"
+description = "A source-available property graph engine written in Rust that combines typed edges, vector search, and bitemporal facts for retrieval-augmented generation workloads. Queried through a composable operator API over CLI, HTTP, and MCP rather than a graph query language."
+url = "https://stromadb.com/"
+github_url = "https://github.com/katsut/stromadb"
+license = "Elastic-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "database"
+query_languages = ["Custom API"]
+released = "2026-06"
+category = "Emerging"
+gdotv_support = false
