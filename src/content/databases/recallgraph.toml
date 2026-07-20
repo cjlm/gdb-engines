@@ -1,0 +1,17 @@
+name = "RecallGraph"
+vendor = "RecallGraph"
+slug = "recallgraph"
+description = "A versioned property graph store built as an ArangoDB Foxx microservice, retaining every change to vertices and edges for point-in-time traversals and diffs through a REST API. First released as CivicGraph in 2019; archived in 2026 with the Rust-based Minigraf named as its successor."
+url = "https://github.com/RecallGraph/RecallGraph"
+github_url = "https://github.com/RecallGraph/RecallGraph"
+license = "Apache-2.0"
+implementation_language = "JavaScript"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["Custom API"]
+released = "2019-04"
+category = "Emerging"
+status = "deprecated"
+status_note = "Repository archived; development moved to the successor project Minigraf."
+previous_names = ["CivicGraph"]
+gdotv_support = false

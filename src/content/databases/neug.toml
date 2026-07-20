@@ -1,0 +1,14 @@
+name = "NeuG"
+vendor = "Alibaba"
+slug = "neug"
+description = "An embedded property graph database for combined analytical and transactional workloads, developed by the GraphScope team at Alibaba on the GraphScope Flex engine. Runs in-process from Python or Node.js or as a network service on the same core, with Cypher queries and a DuckDB-inspired extension system for graph algorithms."
+url = "https://graphscope.io/neug/"
+github_url = "https://github.com/alibaba/neug"
+license = "Apache-2.0"
+implementation_language = "C++"
+type = "Property Graph"
+kind = "embedded"
+query_languages = ["Cypher"]
+released = "2026-03"
+category = "Emerging"
+gdotv_support = false

@@ -1,0 +1,14 @@
+name = "YugabyteDB MAGE"
+vendor = "Yugabyte"
+slug = "yugabytedb-mage"
+description = "A multi-tenant graph engine for YugabyteDB based on a port of Apache AGE, storing property graphs alongside relational data in the distributed PostgreSQL-compatible YSQL layer and queried with openCypher embedded in SQL. Introduced as a technical preview in YugabyteDB 2026.1 (June 2026)."
+url = "https://www.yugabyte.com/blog/a-postgresql-database-for-every-agent/"
+github_url = "https://github.com/yugabyte/yugabyte-db"
+license = "Apache-2.0"
+implementation_language = "C"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["openCypher", "SQL"]
+released = "2026-06"
+category = "Emerging"
+gdotv_support = false
