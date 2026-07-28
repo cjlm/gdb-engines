@@ -1,0 +1,39 @@
+---
+/**
+ * Custom 404. Cloudflare Pages only returns a real 404 status when the build
+ * output contains `404.html` — without it, unmatched paths fall back to
+ * `index.html` with a 200, turning every typo into a soft 404 duplicate of the
+ * homepage.
+ */
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+---
+<Layout
+  title="Page not found — GDB-Engines"
+  description="This page does not exist. Browse the graph database comparison instead."
+  noindex
+>
+  <SiteHeader />
+  <main class="notfound-page">
+    <p class="code">404</p>
+    <h1>Page not found</h1>
+    <p>That URL isn't part of the catalog. It may have been renamed, or the engine may never have had a page here.</p>
+    <ul class="links">
+      <li><a href="/">Compare all graph databases</a></li>
+      <li><a href="/rankings/">Monthly popularity rankings</a></li>
+      <li><a href="/about/">About &amp; methodology</a></li>
+    </ul>
+    <p class="note">Think an engine is missing? <a href="https://github.com/cjlm/gdb-engines/issues" target="_blank" rel="noopener noreferrer">Open an issue</a>.</p>
+  </main>
+</Layout>
+
+<style>
+  .notfound-page { max-width: 720px; margin: 0 auto; padding: calc(var(--header-height) + 4rem) 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
+  .code { font-size: 3rem; font-weight: 600; margin: 0; color: var(--color-border); line-height: 1; }
+  h1 { font-size: 1.5rem; margin: 0.5rem 0 1rem; color: var(--color-text); }
+  .links { list-style: none; padding: 0; margin: 1.5rem 0; }
+  .links li { margin-bottom: 0.5rem; }
+  .links a { color: var(--color-text); font-weight: 500; }
+  .note { font-size: 0.9rem; margin-top: 2rem; }
+</style>
