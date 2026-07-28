@@ -14,7 +14,8 @@
 /db/falkordb        /db/redisgraph-falkordb/        301
 /db/falkordb/       /db/redisgraph-falkordb/        301
 
-# Unmatched comparison URLs (reverse order, or a pair outside the pre-generated set)
-# fall through to the noindex builder. Cloudflare Pages serves a matching static asset in
-# preference to a `_redirects` rule, so this never shadows a generated pair or roundup.
-/compare/:pair/     /compare/custom/?pair=:pair     302
+# NOTE: no `/compare/:pair/` splat here. Cloudflare Pages evaluates `_redirects`
+# BEFORE serving static assets (verified on a preview deploy, 2026-07-28: the splat
+# 302'd every pre-generated pair, every roundup, and the builder itself — the latter
+# in an infinite loop). Unmatched comparison URLs are instead recovered client-side
+# by 404.astro, which forwards `-vs-` paths to the builder.

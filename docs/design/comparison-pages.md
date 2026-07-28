@@ -179,29 +179,23 @@ which the schema already constrains to `^[a-z0-9-]+$`, so no escaping is needed.
 slugs contain `-` but none contain the literal token `-vs-`, so parsing by splitting on
 `-vs-` is unambiguous; the build asserts this and fails loudly if a future slug breaks it.
 
-**Unmatched pair URLs** (reverse order, or a pair outside the pre-generated set). Add one
-splat rule to the existing `public/_redirects`:
+**Unmatched pair URLs** (reverse order, or a pair outside the pre-generated set). A
+`_redirects` splat (`/compare/:pair/ → /compare/custom/?pair=:pair 302`) was the first
+choice, on the belief that Cloudflare Pages serves a matching static asset in preference
+to a `_redirects` rule. **Preview-deploy verification (2026-07-28) disproved that**: the
+splat fired before assets, 302ing every pre-generated pair, every roundup, and the builder
+itself (in a loop, since `custom` matches `:pair`). The splat is gone; the shipped
+mechanism is the fallback:
 
-```
-/compare/:pair/   /compare/custom/?pair=:pair   302
-```
+`404.astro` returns a real 404 and carries a small inline script that recognises a
+`/compare/<a>-vs-<b>/` path and `location.replace()`s to `/compare/custom/?pair=…`. The
+status stays 404 (correct — we do not want it indexed) and the visitor still lands on a
+working comparison.
 
-Cloudflare Pages serves a matching static asset in preference to a `_redirects` rule, so
-this only fires for URLs that were not pre-generated — which means it never shadows a
-roundup page either. **Verify this precedence on a preview deployment before relying on
-it** — if static assets do not win, drop the splat and use the fallback below instead. A
-302 to a noindex page is the correct SEO outcome for a zero-demand pair: the visitor gets
-their comparison, the index does not grow.
-
-Because the splat is untyped it will also forward genuine typos (`/compare/embeded-graph-databases/`).
-The builder therefore validates `?pair=`: it must split on `-vs-` into exactly two known
-slugs. Anything else renders the builder's empty state — `Pick two databases to compare.` —
-rather than an error.
-
-*Fallback if the splat misbehaves:* `404.astro` already returns a real 404. Add a small
-inline script there that recognises a `/compare/<a>-vs-<b>/` path and `location.replace()`s
-to the builder. The status stays 404 (correct — we do not want it indexed) and the visitor
-still lands on a working comparison.
+Because the forward is untyped it also carries genuine typos. The builder therefore
+validates `?pair=`: it must split on `-vs-` into exactly two known slugs. Anything else
+renders the builder's empty state — `Pick two databases to compare.` — rather than an
+error.
 
 **Reverse-order and near-miss recovery.** `/compare/custom/` ships with the pre-generated
 manifest (§4.1). On load it sorts the requested slugs; if the sorted pair is in the
@@ -1053,5 +1047,6 @@ assumption taken and why.
    the site reads.
 10. **`/compare/` hub does not compete with the homepage for "compare graph databases".**
     Assumed separable by title and content type; needs a Search Console check.
-11. **Cloudflare Pages serves static assets in preference to `_redirects` splats.** Believed
-    correct, flagged for verification on a preview deploy, with a documented fallback.
+11. **Cloudflare Pages serves static assets in preference to `_redirects` splats.**
+    Disproved on the preview deploy (2026-07-28): redirects preempt assets. The splat was
+    dropped for the documented 404-page fallback (§1.4).

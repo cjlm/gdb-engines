@@ -47,8 +47,8 @@ async function mount(root: HTMLElement): Promise<void> {
 
   const params = new URLSearchParams(location.search);
   let selected = params.getAll('db').filter((s) => bySlug.has(s));
-  // The `_redirects` splat forwards unmatched pair URLs here, typos included: a `?pair=`
-  // that is not exactly two known slugs falls through to the empty state.
+  // 404.astro forwards unmatched pair URLs here, typos included: a `?pair=` that is
+  // not exactly two known slugs falls through to the empty state.
   const pair = params.get('pair');
   if (!selected.length && pair) {
     const parts = pair.split('-vs-');
