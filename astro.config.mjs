@@ -75,12 +75,23 @@ export default defineConfig({
           // Pair pages are numerous and individually low-value, so they sit below engine
           // pages; the hub is the distributor and sits above both. The rank block
           // regenerates monthly, so the build date is honest here too.
-          const pairSlugs = path.match(/^\/compare\/(.+)\/$/)?.[1]?.split('-vs-') ?? [];
+          const slug = path.match(/^\/compare\/(.+)\/$/)?.[1];
+          const pairSlugs = slug?.split('-vs-') ?? [];
           if (pairSlugs.length === 2) {
             const dates = pairSlugs.map((s) => dbDates.get(s)).filter(Boolean);
             item.lastmod = dates.length ? [...dates, buildDate].sort().at(-1) : buildDate;
             item.changefreq = 'monthly';
             item.priority = 0.5;
+          } else if (slug) {
+            // Roundups are hand-maintained and few, so they outrank pair pages; their
+            // content moves when either the roundup TOML or the member data moves.
+            const dates = [
+              gitDate(`src/content/roundups/${slug}.toml`),
+              gitDate('src/content/databases'),
+            ].filter(Boolean);
+            item.lastmod = [...dates, buildDate].sort().at(-1);
+            item.changefreq = 'monthly';
+            item.priority = 0.7;
           } else {
             item.lastmod = gitDate('src/pages/compare') ?? buildDate;
             item.changefreq = 'weekly';
