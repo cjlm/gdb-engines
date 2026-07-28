@@ -12,9 +12,9 @@
 import type { RankingFile } from './rankings';
 
 /** All-pairs among the top N engines by overall rank. */
-export const PEER_DEPTH = 24;
+export const PEER_DEPTH = 40;
 /** Top M engines paired against the whole catalogue. */
-export const ANCHOR_DEPTH = 0;
+export const ANCHOR_DEPTH = 10;
 /** The token that separates the two slugs in a pair slug. */
 export const VS = '-vs-';
 

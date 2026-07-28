@@ -14,6 +14,26 @@
 - [Movers](https://gdb-engines.com/rankings/movers/): Engines with the fastest-rising momentum month-over-month.
 - [Rankings index](https://gdb-engines.com/rankings/): All boards split by data model, engine kind, license, query language, and implementation language.
 
+## Comparisons
+
+Side-by-side comparisons: catalogue fields, monthly rank and the 43 survey feature scores. No winner is declared and no score is summed into a verdict.
+
+- [Comparison directory](https://gdb-engines.com/compare/): All published comparisons, by segment and by pair.
+- [Open source graph databases compared](https://gdb-engines.com/compare/open-source-graph-databases/)
+- [Open source Cypher graph databases compared](https://gdb-engines.com/compare/open-source-cypher-databases/)
+- [C++ graph databases compared](https://gdb-engines.com/compare/cpp-graph-databases/)
+- [Rust graph databases compared](https://gdb-engines.com/compare/rust-graph-databases/)
+- [Enterprise graph platforms compared](https://gdb-engines.com/compare/enterprise-graph-platforms/)
+- [Established graph databases compared](https://gdb-engines.com/compare/established-graph-databases/)
+- [RDF triplestores compared](https://gdb-engines.com/compare/rdf-triplestores/)
+- [Java graph databases compared](https://gdb-engines.com/compare/java-graph-databases/)
+- [Gremlin graph databases compared](https://gdb-engines.com/compare/gremlin-graph-databases/)
+- [Multi-model graph databases compared](https://gdb-engines.com/compare/multi-model-graph-databases/)
+- [Embedded graph databases compared](https://gdb-engines.com/compare/embedded-graph-databases/)
+- [GQL graph databases compared](https://gdb-engines.com/compare/gql-graph-databases/)
+- [Graph query engines compared](https://gdb-engines.com/compare/graph-query-engines/)
+- [Graph database extensions compared](https://gdb-engines.com/compare/graph-database-extensions/)
+
 ## Source
 
 - [GitHub repository](https://github.com/cjlm/gdb-engines): Source TOML data + Astro site, open to contributions.

@@ -52,9 +52,31 @@ export async function getStaticPaths() {
     generatedAt: ranking?.generatedAt ?? null,
   };
 
-  const pairs = selectPairs(ranking, comparable).map((pair) => ({
+  const selected = selectPairs(ranking, comparable);
+  // Reverse index so each pair page can offer siblings sharing one of its engines — this
+  // is what turns the set into a connected graph instead of hundreds of leaves.
+  const pairsByEngine = new Map<string, string[]>();
+  for (const pair of selected) {
+    for (const slug of [pair.a, pair.b]) {
+      const list = pairsByEngine.get(slug) ?? [];
+      list.push(pair.slug);
+      pairsByEngine.set(slug, list);
+    }
+  }
+  const label = (slug: string): string =>
+    slug.split('-vs-').map((s) => bySlug.get(s)?.name ?? s).join(' vs ');
+
+  const pairs = selected.map((pair) => ({
     params: { entry: pair.slug },
-    props: { kind: 'pair' as const, engines: [bySlug.get(pair.a)!, bySlug.get(pair.b)!], ...shared },
+    props: {
+      kind: 'pair' as const,
+      engines: [bySlug.get(pair.a)!, bySlug.get(pair.b)!],
+      related: [...(pairsByEngine.get(pair.a) ?? []), ...(pairsByEngine.get(pair.b) ?? [])]
+        .filter((s) => s !== pair.slug)
+        .slice(0, 6)
+        .map((s) => ({ slug: s, label: label(s) })),
+      ...shared,
+    },
   }));
 
   const catalogue = databases.map((d) => d.data);
@@ -102,6 +124,7 @@ const {
   surveyedCount = 0,
   columnsSurveyedCount = 0,
   siblings = [],
+  related = [],
 } = Astro.props;
 
 const isPair = kind === 'pair';
@@ -371,9 +394,14 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
           : isPair
             ? <span class="differ-count">— not surveyed for {unsurveyed.map((e) => e.name).join(' or ')}</span>
             : null}
+        {showMatrix && (
+          <label class="differ-toggle">
+            <input type="checkbox" data-differ-toggle /> Show only differing rows
+          </label>
+        )}
       </h2>
       {showMatrix ? (
-        <div class="matrix-scroll">
+        <div class="matrix-scroll" data-feature-matrix>
           <table class="compare-table">
             <thead>
               <tr>
@@ -472,6 +500,15 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
       </section>
     )}
 
+    {isPair && related.length > 0 && (
+      <section class="related">
+        <h2>Related comparisons</h2>
+        <ul class="link-grid">
+          {related.map((r) => <li><a href={`/compare/${r.slug}/`}>{r.label}</a></li>)}
+        </ul>
+      </section>
+    )}
+
     {isPair && (
       <section class="links">
         <h2>Links</h2>
@@ -489,6 +526,15 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
     )}
   </main>
 </Layout>
+
+<script>
+  // JS-only and default off, so the full matrix is always in the served HTML.
+  const toggle = document.querySelector<HTMLInputElement>('[data-differ-toggle]');
+  const matrix = document.querySelector<HTMLElement>('[data-feature-matrix]');
+  toggle?.addEventListener('change', () => {
+    matrix?.classList.toggle('only-differing', toggle.checked);
+  });
+</script>
 
 <style>
   .compare-page { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
@@ -518,6 +564,7 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
 
   .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
   .desc { color: var(--color-text-secondary); max-width: 40ch; }
+  .differ-toggle { font-family: 'Rubik', sans-serif; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--color-text-secondary); margin-left: 0.75rem; font-size: 0.75rem; }
   .differ-count { font-family: 'IBM Plex Mono', monospace; text-transform: none; letter-spacing: 0; color: var(--color-text-tertiary); margin-left: 0.5rem; }
   .feature-cell { text-align: center; }
   .cell-no, .cell-unassessed { color: var(--color-text-tertiary); }
@@ -529,5 +576,6 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
   .link-grid a:hover { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
   .links ul { list-style: none; padding: 0; margin: 0; color: var(--color-text-secondary); line-height: 1.8; }
   .links a { color: var(--color-text); }
+  .only-differing tbody tr:not(.differs):not(.group-head) { display: none; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
