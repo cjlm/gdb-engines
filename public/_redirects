@@ -13,3 +13,8 @@
 # Searches for "FalkorDB" should land on its page directly.
 /db/falkordb        /db/redisgraph-falkordb/        301
 /db/falkordb/       /db/redisgraph-falkordb/        301
+
+# Unmatched comparison URLs (reverse order, or a pair outside the pre-generated set)
+# fall through to the noindex builder. Cloudflare Pages serves a matching static asset in
+# preference to a `_redirects` rule, so this never shadows a generated pair or roundup.
+/compare/:pair/     /compare/custom/?pair=:pair     302

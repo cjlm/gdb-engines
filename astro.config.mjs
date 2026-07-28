@@ -54,6 +54,9 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
+      // /compare/custom/ is noindex; listing a noindex URL in a sitemap is a
+      // contradictory signal.
+      filter: (page) => !page.includes('/compare/custom/'),
       // Report an honest per-page lastmod so unchanged pages don't claim freshness
       // on every rebuild (which trains Google to ignore lastmod entirely).
       serialize(item) {
