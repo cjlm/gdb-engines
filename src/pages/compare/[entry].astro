@@ -149,8 +149,13 @@ const score = (engine: (typeof engines)[number], key: string): number | null => 
   const value = engine.features?.[key as keyof NonNullable<typeof engine.features>];
   return typeof value === 'number' ? value : null;
 };
-const featureDiffers = (key: string): boolean =>
-  showMatrix && new Set(engines.map((e) => score(e, key))).size > 1;
+// Unsurveyed columns are absence of data, not a different answer: a row where every
+// surveyed column agrees does not differ, however many columns are un-surveyed.
+const featureDiffers = (key: string): boolean => {
+  if (!showMatrix) return false;
+  const surveyed = engines.map((e) => score(e, key)).filter((v): v is number => v !== null);
+  return new Set(surveyed).size > 1;
+};
 
 const differingFeatures = showMatrix ? featureKeys.filter(featureDiffers) : [];
 const differCount = differingFeatures.length;
