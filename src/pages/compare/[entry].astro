@@ -14,6 +14,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
+import CompareCombobox from '../../components/CompareCombobox.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { loadRankings } from '../../lib/rankings';
@@ -352,6 +353,8 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
         </ul>
       </section>
     )}
+
+    <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />
 
     <div class="matrix-scroll">
       <table class="compare-table">

@@ -1,0 +1,66 @@
+---
+/**
+ * The add-database combobox (§4). One implementation, two mounts:
+ *
+ * - `mode="builder"` on `/compare/custom/`, where the script also renders the columns.
+ * - `mode="static"` on the pre-generated pair and roundup pages, where the comparison is
+ *   already server-rendered and a selection change navigates instead (§4.4).
+ *
+ * The root is `hidden` in the HTML and unhidden by the script, so a page without JS is
+ * exactly the page it was before the combobox existed (§4.5).
+ */
+interface Props {
+  /** Slugs to pre-seed the selection with — the engines this page already compares. */
+  seed?: string[];
+  mode?: 'builder' | 'static';
+}
+
+const { seed = [], mode = 'builder' } = Astro.props;
+---
+
+<div class="builder" data-compare-builder data-mode={mode} data-seed={seed.join(' ')} hidden>
+  <div class="combobox-chips" data-combobox-chips></div>
+  <label class="visually-hidden" for="compare-combobox">Add a database</label>
+  <input
+    id="compare-combobox"
+    class="combobox-input"
+    type="text"
+    role="combobox"
+    autocomplete="off"
+    aria-expanded="false"
+    aria-controls="compare-listbox"
+    aria-autocomplete="list"
+    placeholder="Add a database"
+    data-combobox-input
+  />
+  <ul id="compare-listbox" role="listbox" aria-label="Databases" class="combobox-list" data-combobox-list hidden></ul>
+  {mode === 'builder' && <p class="empty" data-compare-empty>Pick two databases to compare.</p>}
+  {mode === 'builder' && <div data-compare-result></div>}
+  <div class="visually-hidden" aria-live="polite" data-combobox-live></div>
+</div>
+
+<script>
+  import '../scripts/compare-builder.ts';
+</script>
+
+<style>
+  .builder { position: relative; }
+  /* `hidden` is display:none, so the margin costs a no-JS page nothing. */
+  .builder[data-mode='static'] { margin: 0 0 1.25rem; }
+  .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg); color: var(--color-text); font: inherit; }
+  .empty { color: var(--color-text-secondary); font-size: 0.9rem; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<style is:global>
+  /* The chips and options are written by the script, so they sit outside the scope hash. */
+  .combobox-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+  .combobox-chip { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--color-border); border-radius: 999px; padding: 0.15rem 0.5rem; font-size: 0.85rem; }
+  .combobox-chip button { background: none; border: 0; color: var(--color-text-tertiary); cursor: pointer; font-size: 1rem; line-height: 1; }
+  .combobox-list { list-style: none; margin: 0.25rem 0 0; padding: 0.25rem; max-width: 24rem; max-height: 18rem; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-surface); position: absolute; z-index: 5; width: 100%; }
+  .combobox-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.4rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+  .combobox-option.is-active { background: var(--color-border); }
+  .combobox-option[aria-disabled='true'] { color: var(--color-text-tertiary); cursor: default; }
+  .combobox-selected { margin-left: auto; font-size: 0.75rem; color: var(--color-text-tertiary); }
+  .combobox-monogram { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: var(--color-surface); border: 1px solid var(--color-border); font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; font-size: 0.6rem; }
+</style>

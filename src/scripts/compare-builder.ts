@@ -41,6 +41,10 @@ async function mount(root: HTMLElement): Promise<void> {
   const bySlug = new Map(engines.map((e) => [e.slug, e]));
   const pregeneratedSet = new Set(pregenerated);
 
+  // A pre-generated pair or roundup page renders its comparison server-side; the combobox
+  // there is a navigation control, not a renderer (§4.4).
+  const staticPage = root.dataset.mode === 'static';
+
   const params = new URLSearchParams(location.search);
   let selected = params.getAll('db').filter((s) => bySlug.has(s));
   // The `_redirects` splat forwards unmatched pair URLs here, typos included: a `?pair=`
@@ -49,6 +53,10 @@ async function mount(root: HTMLElement): Promise<void> {
   if (!selected.length && pair) {
     const parts = pair.split('-vs-');
     if (parts.length === 2 && parts.every((p) => bySlug.has(p))) selected = parts;
+  }
+  // Pre-seed with the engines this page already compares.
+  if (!selected.length) {
+    selected = (root.dataset.seed ?? '').split(' ').filter((s) => bySlug.has(s));
   }
   selected = selected.slice(0, MAX_COLUMNS);
 
@@ -71,6 +79,16 @@ async function mount(root: HTMLElement): Promise<void> {
     const canonical = canonicalPair(selected);
     if (canonical && location.pathname !== canonical) {
       location.assign(canonical);
+      return;
+    }
+    if (staticPage) {
+      // Already on the canonical page for this selection — nothing to navigate to. A
+      // half-finished swap (one column removed, none added yet) waits for the next add
+      // rather than dumping the visitor in the builder.
+      if (canonical || selected.length < 2) return;
+      const query = new URLSearchParams();
+      for (const slug of [...selected].sort()) query.append('db', slug);
+      location.assign(`/compare/custom/?${query}`);
       return;
     }
     const next = new URLSearchParams();
@@ -313,7 +331,7 @@ async function mount(root: HTMLElement): Promise<void> {
   // A visitor who typed a pair backwards, or landed via the `_redirects` splat, is sent
   // straight to the canonical pre-generated page.
   const canonical = canonicalPair(selected);
-  if (canonical) {
+  if (canonical && location.pathname !== canonical) {
     location.replace(canonical);
     return;
   }
