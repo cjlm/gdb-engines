@@ -330,7 +330,9 @@ const columnPairs = !isPair
       })
     )
   : [];
-const tableMembers = !isPair ? members.slice(engines.length) : [];
+// Columns are picked survey-first, not in rank order, so the segment table is every
+// member that is not already a column — not the tail of the member list.
+const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug === m.slug)) : [];
 ---
 <Layout title={title} description={description} canonical={canonical} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
   <SiteHeader />
