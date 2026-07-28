@@ -10,11 +10,14 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
+import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
-import { selectPairs, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
+import { selectPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
 
 const ranking = await loadRankings();
 const databases = await getCollection('databases');
+const roundupDefs = await getCollection('roundups');
+const faviconMap = await buildFaviconMap(databases);
 const byslug = new Map(databases.map((d) => [d.data.slug, d.data]));
 const pregenerated = new Set(
   selectPairs(
@@ -57,6 +60,21 @@ const groups = [
   ...(anchor ? [{ heading: `Compared with ${byslug.get(anchor)?.name}`, pairs: withAnchor }] : []),
 ].filter((g) => g.pairs.length > 0);
 
+// Roundups are the browsable surface and the strongest pages in the set, so they sit at
+// the top of the hub.
+const segments = roundupDefs
+  .map((entry) => {
+    const resolved = resolveRoundup(entry.data, databases.map((d) => d.data), ranking);
+    return {
+      slug: entry.data.slug,
+      h1: entry.data.h1,
+      lede: entry.data.lede,
+      count: resolved.members.length,
+      columns: resolved.columns,
+    };
+  })
+  .sort((x, y) => y.count - x.count);
+
 const canonical = 'https://gdb-engines.com/compare/';
 const title = 'Compare Graph Databases Side by Side — GDB-Engines';
 const description = `Head-to-head comparisons of graph databases: feature scores, licenses, query languages and monthly popularity rankings across ${pregenerated.size} pre-built comparisons.`;
@@ -79,6 +97,25 @@ const breadcrumbJsonLd = JSON.stringify({
       scores in one table.
     </p>
 
+    <section class="group">
+      <h2>Browse by segment</h2>
+      <ul class="segment-cards">
+        {segments.map((segment) => (
+          <li>
+            <a href={`/compare/${segment.slug}/`}>
+              <span class="segment-name">{segment.h1}</span>
+              <span class="segment-count num">{segment.count} engines</span>
+            </a>
+            <span class="segment-logos">
+              {segment.columns.map((c) => (
+                <img src={faviconMap[c.slug] ?? '/favicon.svg'} alt="" width="16" height="16" loading="lazy" />
+              ))}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
     {groups.map((group) => (
       <section class="group">
         <h2>{group.heading}</h2>
@@ -97,5 +134,10 @@ const breadcrumbJsonLd = JSON.stringify({
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
   .group ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.35rem 1rem; }
   .group a { color: var(--color-text); text-decoration: none; font-size: 0.9rem; }
+  .segment-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 0.75rem; }
+  .segment-cards li { border: 1px solid var(--color-border); border-radius: 6px; padding: 0.6rem 0.75rem; }
+  .segment-cards a { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
+  .segment-count { color: var(--color-text-tertiary); font-size: 0.75rem; }
+  .segment-logos { display: flex; gap: 0.25rem; margin-top: 0.4rem; }
   .group a:hover { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
 </style>

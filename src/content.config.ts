@@ -77,4 +77,36 @@ const databases = defineCollection({
   }),
 });
 
-export const collections = { databases };
+/**
+ * Curated multi-way comparisons over catalogue segments. Hand-maintained rather than
+ * generated per field value: auto-generating one per value would produce ~60 pages, most of
+ * them slices with 1–4 members. Bad entries fail the build rather than shipping.
+ */
+const roundups = defineCollection({
+  loader: glob({ pattern: '**/*.toml', base: './src/content/roundups' }),
+  schema: z.object({
+    // `-vs-` is the pair-URL separator; a roundup carrying it would be ambiguous.
+    slug: z.string().regex(/^[a-z0-9-]+$/).refine((s) => !s.includes('-vs-'), {
+      message: 'Roundup slug must not contain "-vs-" — that token is reserved for pair pages.',
+    }),
+    title: z.string().min(1),
+    h1: z.string().min(1),
+    lede: z.string().min(1),
+    filter: z.object({
+      type: z.array(z.string()).optional(),
+      kind: z.array(z.string()).optional(),
+      category: z.array(z.string()).optional(),
+      license: z.array(z.string()).optional(),
+      license_not: z.array(z.string()).optional(),
+      query_languages: z.array(z.string()).optional(),
+      implementation_language: z.array(z.string()).optional(),
+    }),
+    include: z.array(z.string()).default([]),
+    exclude: z.array(z.string()).default([]),
+    ranking_board: z.string().default(''),
+  }).refine((r) => !/ranking|popularity|top |most popular/i.test(r.title), {
+    message: 'Roundup titles must not use the ranking boards’ vocabulary (§3.1).',
+  }),
+});
+
+export const collections = { databases, roundups };

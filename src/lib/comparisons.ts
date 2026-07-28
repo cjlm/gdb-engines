@@ -139,6 +139,108 @@ export function selectPairs(
   return [...bySlug.values()].sort((p, q) => p.slug.localeCompare(q.slug));
 }
 
+/** Minimum active members for a roundup to be worth a page (§3.2). */
+export const MIN_ROUNDUP_MEMBERS = 6;
+/** Columns in a roundup's tier-1 comparison table. */
+export const ROUNDUP_COLUMNS = 6;
+/** Column engines that must carry survey scores before the feature matrix renders. */
+export const ROUNDUP_MATRIX_MIN_SURVEYED = 4;
+
+export interface RoundupFilter {
+  type?: string[];
+  kind?: string[];
+  category?: string[];
+  license?: string[];
+  license_not?: string[];
+  query_languages?: string[];
+  implementation_language?: string[];
+}
+
+export interface RoundupDef {
+  slug: string;
+  title: string;
+  h1: string;
+  lede: string;
+  filter: RoundupFilter;
+  include: string[];
+  exclude: string[];
+  ranking_board: string;
+}
+
+interface RoundupDb {
+  slug: string;
+  status: string;
+  type: string;
+  kind: string;
+  category: string;
+  license?: string;
+  implementation_language?: string;
+  query_languages?: string[];
+  features?: unknown;
+}
+
+function matchesFilter(db: RoundupDb, filter: RoundupFilter): boolean {
+  if (filter.type && !filter.type.includes(db.type)) return false;
+  if (filter.kind && !filter.kind.includes(db.kind)) return false;
+  if (filter.category && !filter.category.includes(db.category)) return false;
+  if (filter.license && !(db.license && filter.license.includes(db.license))) return false;
+  if (filter.license_not && (!db.license || filter.license_not.includes(db.license))) return false;
+  if (filter.implementation_language && !(db.implementation_language && filter.implementation_language.includes(db.implementation_language))) {
+    return false;
+  }
+  if (filter.query_languages && !(db.query_languages ?? []).some((l) => filter.query_languages!.includes(l))) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Members of a roundup: filter applied, include/exclude honoured, ordered by overall rank
+ * with unranked last and alphabetical within that — the ordering the homepage already uses.
+ *
+ * Inactive and deprecated matches are returned separately rather than dropped silently: an
+ * embedded roundup that quietly omits an archived-but-widely-searched engine looks wrong.
+ */
+export function resolveRoundup<T extends RoundupDb>(
+  def: RoundupDef,
+  databases: T[],
+  ranking: RankingFile | null
+): { members: T[]; columns: T[]; inactive: T[]; surveyedCount: number; columnsSurveyedCount: number } {
+  const bySlug = new Map(databases.map((d) => [d.slug, d]));
+  for (const slug of [...def.include, ...def.exclude]) {
+    if (!bySlug.has(slug)) {
+      throw new Error(`Roundup "${def.slug}" references unknown database slug "${slug}".`);
+    }
+  }
+
+  const excluded = new Set(def.exclude);
+  const matched = databases.filter((d) => !excluded.has(d.slug) && matchesFilter(d, def.filter));
+  for (const slug of def.include) {
+    const db = bySlug.get(slug)!;
+    if (!matched.includes(db)) matched.push(db);
+  }
+
+  const ranks = buildOverallRankMap(ranking);
+  const order = (x: T, y: T): number => {
+    const rx = ranks.get(x.slug) ?? Number.POSITIVE_INFINITY;
+    const ry = ranks.get(y.slug) ?? Number.POSITIVE_INFINITY;
+    if (rx !== ry) return rx - ry;
+    return x.slug.localeCompare(y.slug);
+  };
+
+  const members = matched.filter((d) => d.status === 'active').sort(order);
+  const inactive = matched.filter((d) => d.status !== 'active').sort(order);
+  const columns = members.slice(0, ROUNDUP_COLUMNS);
+
+  return {
+    members,
+    columns,
+    inactive,
+    surveyedCount: members.filter((d) => d.features).length,
+    columnsSurveyedCount: columns.filter((d) => d.features).length,
+  };
+}
+
 /** slug -> 1-based overall rank, excluding engines with insufficient data. */
 export function buildOverallRankMap(ranking: RankingFile | null): Map<string, number> {
   const map = new Map<string, number>();

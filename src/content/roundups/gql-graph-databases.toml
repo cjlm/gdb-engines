@@ -1,0 +1,13 @@
+slug = "gql-graph-databases"
+title = "GQL Graph Databases Compared"
+h1 = "GQL graph databases compared"
+lede = "Graph databases that implement the ISO GQL standard query language."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+query_languages = ["GQL"]
+
+include = []
+exclude = []
+ranking_board = "gql"
