@@ -6,9 +6,51 @@ import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/fe
 import { fetchFavicon } from '../../utils/favicon';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
+import { selectPairs, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
 
 const ranking = await loadRankings();
 const boards = ranking ? buildBoards(ranking) : [];
+
+// Pre-generated pair set, resolved once per build rather than per page. Every pre-generated
+// pair is reachable from at least one engine page by construction.
+const allDatabases = await getCollection('databases');
+const pregenerated = new Set(
+  selectPairs(
+    ranking,
+    allDatabases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  ).map((p) => p.slug)
+);
+const overallRanks = buildOverallRankMap(ranking);
+const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
+const nameBySlug = new Map(allDatabases.map((d) => [d.data.slug, d.data.name]));
+const languagesBySlug = new Map(allDatabases.map((d) => [d.data.slug, d.data.query_languages ?? []]));
+
+/** Deterministic peers: nearest-ranked, then rank-sharing a query language, then the top two. */
+function compareLinks(slug: string): { slug: string; name: string; href: string }[] {
+  const rank = overallRanks.get(slug);
+  const candidates: string[] = [];
+  if (rank !== undefined) {
+    const i = rank - 1;
+    candidates.push(...[rankOrder[i - 2], rankOrder[i - 1], rankOrder[i + 1], rankOrder[i + 2]].filter(Boolean) as string[]);
+  }
+  const own = languagesBySlug.get(slug) ?? [];
+  if (own.length) {
+    candidates.push(...rankOrder.filter((s) => (languagesBySlug.get(s) ?? []).some((l) => own.includes(l))).slice(0, 4));
+  }
+  candidates.push(...rankOrder.slice(0, 2));
+
+  const seen = new Set<string>();
+  const links: { slug: string; name: string; href: string }[] = [];
+  for (const other of candidates) {
+    if (other === slug || seen.has(other)) continue;
+    seen.add(other);
+    const pair = pairSlug(slug, other);
+    if (!pregenerated.has(pair)) continue;
+    links.push({ slug: other, name: nameBySlug.get(other) ?? other, href: `/compare/${pair}/` });
+    if (links.length === 8) break;
+  }
+  return links;
+}
 
 export async function getStaticPaths() {
   const databases = await getCollection('databases');
@@ -208,6 +250,17 @@ const description = db.data.description;
             </>
           );
         })}
+      </>
+    )}
+
+    {compareLinks(db.data.slug).length > 0 && (
+      <>
+        <h2>Compare with</h2>
+        <ul class="compare-with">
+          {compareLinks(db.data.slug).map((link) => (
+            <li><a href={link.href}>{db.data.name} vs {link.name}</a></li>
+          ))}
+        </ul>
       </>
     )}
   </main>

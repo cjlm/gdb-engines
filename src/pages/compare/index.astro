@@ -1,0 +1,101 @@
+---
+/**
+ * `/compare/` — the hub, and the main distributor of internal links into the pair set.
+ *
+ * A link directory, not another table: the homepage already owns the big-table treatment,
+ * and the two pages have to be obviously different page types to avoid competing for the
+ * same query.
+ */
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+import { loadRankings } from '../../lib/rankings';
+import { selectPairs, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
+
+const ranking = await loadRankings();
+const databases = await getCollection('databases');
+const byslug = new Map(databases.map((d) => [d.data.slug, d.data]));
+const pregenerated = new Set(
+  selectPairs(
+    ranking,
+    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  ).map((p) => p.slug)
+);
+const ranks = buildOverallRankMap(ranking);
+const rankOrder = [...ranks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
+
+/** Pre-generated pairs among the top-ranked members of a slice, capped for the directory. */
+function pairsWithin(slugs: string[], limit: number): { slug: string; label: string }[] {
+  const out: { slug: string; label: string }[] = [];
+  for (let i = 0; i < slugs.length && out.length < limit; i += 1) {
+    for (let j = i + 1; j < slugs.length && out.length < limit; j += 1) {
+      const slug = pairSlug(slugs[i]!, slugs[j]!);
+      if (!pregenerated.has(slug)) continue;
+      out.push({ slug, label: `${byslug.get(slugs[i]!)?.name} vs ${byslug.get(slugs[j]!)?.name}` });
+    }
+  }
+  return out;
+}
+
+const rankedOfType = (type: string) => rankOrder.filter((s) => byslug.get(s)?.type === type);
+const rankedWithLanguage = (language: string) =>
+  rankOrder.filter((s) => (byslug.get(s)?.query_languages ?? []).includes(language));
+
+const anchor = rankOrder[0];
+const withAnchor = anchor
+  ? rankOrder
+      .filter((s) => s !== anchor && pregenerated.has(pairSlug(anchor, s)))
+      .slice(0, 12)
+      .map((s) => ({ slug: pairSlug(anchor, s), label: `${byslug.get(anchor)?.name} vs ${byslug.get(s)?.name}` }))
+  : [];
+
+const groups = [
+  { heading: 'Property graph', pairs: pairsWithin(rankedOfType('Property Graph').slice(0, 8), 10) },
+  { heading: 'RDF', pairs: pairsWithin(rankedOfType('RDF').slice(0, 8), 8) },
+  { heading: 'By query language', pairs: pairsWithin(rankedWithLanguage('Cypher').slice(0, 6), 6) },
+  ...(anchor ? [{ heading: `Compared with ${byslug.get(anchor)?.name}`, pairs: withAnchor }] : []),
+].filter((g) => g.pairs.length > 0);
+
+const canonical = 'https://gdb-engines.com/compare/';
+const title = 'Compare Graph Databases Side by Side — GDB-Engines';
+const description = `Head-to-head comparisons of graph databases: feature scores, licenses, query languages and monthly popularity rankings across ${pregenerated.size} pre-built comparisons.`;
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Comparisons', item: canonical },
+  ],
+});
+---
+<Layout title={title} description={description} canonical={canonical} jsonLd={[breadcrumbJsonLd]}>
+  <SiteHeader />
+  <main class="compare-hub">
+    <h1>Compare graph databases side by side</h1>
+    <p class="lead">
+      {pregenerated.size} pre-built comparisons across {databases.length} catalogue engines. Each one
+      shows rank, license, query languages, implementation language and the {43} survey feature
+      scores in one table.
+    </p>
+
+    {groups.map((group) => (
+      <section class="group">
+        <h2>{group.heading}</h2>
+        <ul>
+          {group.pairs.map((pair) => <li><a href={`/compare/${pair.slug}/`}>{pair.label}</a></li>)}
+        </ul>
+      </section>
+    ))}
+  </main>
+</Layout>
+
+<style>
+  .compare-hub { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; max-width: 70rem; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
+  h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
+  .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .group ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.35rem 1rem; }
+  .group a { color: var(--color-text); text-decoration: none; font-size: 0.9rem; }
+  .group a:hover { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
+</style>
