@@ -247,7 +247,16 @@ export function resolveRoundup<T extends RoundupDb>(
 
   const members = matched.filter((d) => d.status === 'active').sort(order);
   const inactive = matched.filter((d) => d.status !== 'active').sort(order);
-  const columns = members.slice(0, ROUNDUP_COLUMNS);
+  // Columns prefer surveyed members, rank-ordered within each group. Taking the plain
+  // rank-order top 6 left segments whose leaders are unsurveyed below the matrix threshold
+  // and rendering no feature table at all, which is not what §3.4 predicts. The full-segment
+  // table below still uses `members`, so the segment's own ordering is untouched.
+  const columns = [
+    ...members.filter((d) => d.features),
+    ...members.filter((d) => !d.features),
+  ]
+    .slice(0, ROUNDUP_COLUMNS)
+    .sort(order);
 
   return {
     members,
