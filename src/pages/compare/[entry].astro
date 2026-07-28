@@ -141,9 +141,14 @@ const updated = generatedAt
 const featureKeys = featureGroups.flatMap((g) => g.features);
 const unsurveyed = engines.filter((e) => !e.features);
 const allSurveyed = unsurveyed.length === 0;
-// A pair needs both sides; a roundup needs enough of its columns that the matrix is not a
-// wall of dashes making un-surveyed data look like missing data.
-const showMatrix = isPair ? allSurveyed : columnsSurveyedCount >= ROUNDUP_MATRIX_MIN_SURVEYED;
+// A pair needs one surveyed side — the other renders as a band of em-dashes (§2.4); a
+// roundup needs enough of its columns that the matrix is not a wall of dashes making
+// un-surveyed data look like missing data.
+const anySurveyed = unsurveyed.length < engines.length;
+const showMatrix = isPair ? anySurveyed : columnsSurveyedCount >= ROUNDUP_MATRIX_MIN_SURVEYED;
+// The count is a claim about difference; with a column un-surveyed there is nothing to
+// compare against, so it is suppressed rather than reported as a difference.
+const showDifferCount = showMatrix && (isPair ? allSurveyed : true);
 
 const score = (engine: (typeof engines)[number], key: string): number | null => {
   const value = engine.features?.[key as keyof NonNullable<typeof engine.features>];
@@ -152,12 +157,12 @@ const score = (engine: (typeof engines)[number], key: string): number | null => 
 // Unsurveyed columns are absence of data, not a different answer: a row where every
 // surveyed column agrees does not differ, however many columns are un-surveyed.
 const featureDiffers = (key: string): boolean => {
-  if (!showMatrix) return false;
+  if (!showDifferCount) return false;
   const surveyed = engines.map((e) => score(e, key)).filter((v): v is number => v !== null);
   return new Set(surveyed).size > 1;
 };
 
-const differingFeatures = showMatrix ? featureKeys.filter(featureDiffers) : [];
+const differingFeatures = showDifferCount ? featureKeys.filter(featureDiffers) : [];
 const differCount = differingFeatures.length;
 
 /** Unambiguous presence/absence differences only — a graded score is not a key difference. */
@@ -394,12 +399,12 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
     <section class="features">
       <h2>
         Feature scores
-        {showMatrix
+        {showDifferCount
           ? <span class="differ-count num">{differCount} of {featureKeys.length} rows differ</span>
           : isPair
             ? <span class="differ-count">— not surveyed for {unsurveyed.map((e) => e.name).join(' or ')}</span>
             : null}
-        {showMatrix && (
+        {showDifferCount && (
           <label class="differ-toggle">
             <input type="checkbox" data-differ-toggle /> Show only differing rows
           </label>
