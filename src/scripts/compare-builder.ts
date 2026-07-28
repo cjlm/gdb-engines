@@ -6,12 +6,27 @@
  * search — it exists so a visitor whose combination was not pre-generated still gets a
  * comparison.
  */
+import { featureGroups, featureDisplayNames, featureKeys } from '../data/feature-metadata';
+
 interface Engine {
   slug: string;
   name: string;
   aliases: string[];
   icon: string;
   rank: number | null;
+  score?: number;
+  vendor?: string;
+  type?: string;
+  kind?: string;
+  category?: string;
+  released?: number | string;
+  status?: string;
+  status_note?: string;
+  license?: string;
+  implementation_language?: string;
+  query_languages?: string[];
+  gdotv_support?: boolean;
+  features?: Record<string, number | undefined>;
 }
 
 const MAX_COLUMNS = 4;
@@ -167,7 +182,37 @@ async function mount(root: HTMLElement): Promise<void> {
     renderColumns();
   }
 
-  /** The builder links out to a rendered comparison rather than re-implementing the table. */
+  function esc(value: unknown): string {
+    return String(value ?? '').replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+  }
+
+  const EM_DASH = '—';
+
+  function scoreOf(engine: Engine, key: string): number | null {
+    const value = engine.features?.[key];
+    return typeof value === 'number' ? value : null;
+  }
+
+  /** The three states §2.4 keeps apart: scored, assessed-absent, never assessed. */
+  function cell(engine: Engine, key: string): string {
+    const value = scoreOf(engine, key);
+    if (value === null) return `<td class="cell-unassessed">${EM_DASH}</td>`;
+    if (value === 1) return '<td class="cell-yes">&#10003;</td>';
+    if (value === 0) return '<td class="cell-no">&#183;</td>';
+    return `<td class="cell-partial">${value}</td>`;
+  }
+
+  function factRow(label: string, values: (string | null | undefined)[], mono = false): string {
+    const cells = values.map((v) => `<td${mono ? ' class="num"' : ''}>${esc(v || EM_DASH)}</td>`).join('');
+    const differs = new Set(values.map((v) => v || EM_DASH)).size > 1;
+    return `<tr class="${differs ? 'differs' : ''}"><th scope="row">${esc(label)}</th>${cells}</tr>`;
+  }
+
+  /**
+   * A real 2–4 column comparison, same shape and same missing-data rules as the
+   * pre-generated pair pages (§2.4, §4.3): unsurveyed engines render a full band of
+   * em-dashes, and the difference count is suppressed unless every column is surveyed.
+   */
   function renderColumns(): void {
     const target = root.querySelector<HTMLElement>('[data-compare-result]');
     if (!target) return;
@@ -175,9 +220,69 @@ async function mount(root: HTMLElement): Promise<void> {
       target.innerHTML = '';
       return;
     }
-    target.innerHTML = `<ul class="combobox-result">${selected
-      .map((slug) => `<li><a href="/db/${slug}/">${bySlug.get(slug)!.name}</a></li>`)
-      .join('')}</ul>`;
+    const cols = selected.map((slug) => bySlug.get(slug)!);
+    const unsurveyed = cols.filter((e) => !e.features);
+    const allSurveyed = unsurveyed.length === 0;
+    const anySurveyed = unsurveyed.length < cols.length;
+
+    const head = `<thead><tr><th scope="col">Feature</th>${cols
+      .map((e) => `<th scope="col"><a href="/db/${esc(e.slug)}/">${esc(e.name)}</a></th>`)
+      .join('')}</tr></thead>`;
+
+    const fundamentals = [
+      factRow('Rank', cols.map((e) => (e.rank ? `#${e.rank}` : null)), true),
+      factRow('Score', cols.map((e) => (typeof e.score === 'number' ? e.score.toFixed(1) : null)), true),
+      factRow('Vendor', cols.map((e) => e.vendor)),
+      factRow('Model', cols.map((e) => e.type)),
+      factRow('Kind', cols.map((e) => e.kind)),
+      factRow('Category', cols.map((e) => e.category)),
+      factRow('First released', cols.map((e) => (e.released == null ? null : String(e.released))), true),
+      factRow('Status', cols.map((e) => (e.status === 'active' ? 'active' : [e.status, e.status_note].filter(Boolean).join(` ${EM_DASH} `)))),
+      factRow('License', cols.map((e) => e.license)),
+      factRow('Written in', cols.map((e) => e.implementation_language)),
+      factRow('Query languages', cols.map((e) => (e.query_languages ?? []).join(', '))),
+      factRow('gdotv support', cols.map((e) => (e.gdotv_support == null ? null : e.gdotv_support ? 'yes' : 'no'))),
+    ].join('');
+
+    const differs = (key: string): boolean => {
+      if (!allSurveyed) return false;
+      const scores = cols.map((e) => scoreOf(e, key)).filter((v): v is number => v !== null);
+      return new Set(scores).size > 1;
+    };
+    const differCount = allSurveyed ? featureKeys.filter(differs).length : 0;
+
+    const featureBody = featureGroups
+      .map((group) => {
+        const rows = group.features
+          .map(
+            (key) =>
+              `<tr class="${differs(key) ? 'differs' : ''}"><th scope="row">${esc(
+                featureDisplayNames[key] ?? key
+              )}</th>${cols.map((e) => cell(e, key)).join('')}</tr>`
+          )
+          .join('');
+        return `<tr class="group-row"><th scope="row" colspan="${cols.length + 1}">${esc(group.name)}</th></tr>${rows}`;
+      })
+      .join('');
+
+    const countLabel = allSurveyed
+      ? `<span class="differ-count num">${differCount} of ${featureKeys.length} rows differ</span>`
+      : `<span class="differ-count">${EM_DASH} not surveyed for ${esc(unsurveyed.map((e) => e.name).join(' or '))}</span>`;
+
+    target.innerHTML = `
+      <table class="compare-table">
+        ${head}
+        <tbody>
+          <tr class="group-row"><th scope="row" colspan="${cols.length + 1}">Fundamentals</th></tr>
+          ${fundamentals}
+        </tbody>
+      </table>
+      <h2 class="feature-heading">Feature scores ${countLabel}</h2>
+      ${
+        anySurveyed
+          ? `<table class="compare-table"><tbody>${featureBody}</tbody></table>`
+          : `<p class="empty">No survey feature scores for ${esc(cols.map((e) => e.name).join(' or '))}.</p>`
+      }`;
   }
 
   input.addEventListener('input', () => {
