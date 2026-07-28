@@ -351,3 +351,9 @@ export const featureGroups: { name: string; features: string[] }[] = [
     features: ["constraints", "schema_support", "secondary_indexes", "server_side_procedures", "triggers", "authentication", "authorization", "data_encryption"],
   },
 ];
+
+/** Every surveyed feature key, in group order — the single source of the feature count. */
+export const featureKeys: string[] = featureGroups.flatMap((g) => g.features);
+
+/** How many features the survey scores. Never hardcode this number in copy. */
+export const featureCount = featureKeys.length;

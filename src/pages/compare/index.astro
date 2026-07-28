@@ -13,6 +13,7 @@ import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { selectPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
+import { featureCount } from '../../data/feature-metadata';
 
 const ranking = await loadRankings();
 const databases = await getCollection('databases');
@@ -93,7 +94,7 @@ const breadcrumbJsonLd = JSON.stringify({
     <h1>Compare graph databases side by side</h1>
     <p class="lead">
       {pregenerated.size} pre-built comparisons across {databases.length} catalogue engines. Each one
-      shows rank, license, query languages, implementation language and the {43} survey feature
+      shows rank, license, query languages, implementation language and the {featureCount} survey feature
       scores in one table.
     </p>
 

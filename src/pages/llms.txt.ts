@@ -1,10 +1,16 @@
-# GDB-Engines
+import type { APIRoute } from 'astro';
+import { featureCount } from '../data/feature-metadata';
+
+/** `/llms.txt` — generated so the feature count can never drift from the survey data. */
+export const GET: APIRoute = () =>
+  new Response(
+    `# GDB-Engines
 
 > Open-source comparison and monthly popularity ranking of 131+ graph databases, query engines, extensions, and embedded libraries. Covers property graph (LPG), RDF, and multi-model engines. Feature scores derived from peer-reviewed academic research; popularity rankings blended monthly across adoption, activity, community and research signals from public sources.
 
 ## Comparison
 
-- [Homepage](https://gdb-engines.com/): Interactive comparison of 131+ graph databases with 43 academic feature scores, license, query languages, implementation language, and overall popularity rank.
+- [Homepage](https://gdb-engines.com/): Interactive comparison of 131+ graph databases with ${featureCount} academic feature scores, license, query languages, implementation language, and overall popularity rank.
 - [About](https://gdb-engines.com/about): Methodology, data model, contribution guidelines, changelog.
 - [JSON API](https://gdb-engines.com/api.json): Full dataset.
 
@@ -16,7 +22,7 @@
 
 ## Comparisons
 
-Side-by-side comparisons: catalogue fields, monthly rank and the 43 survey feature scores. No winner is declared and no score is summed into a verdict.
+Side-by-side comparisons: catalogue fields, monthly rank and the ${featureCount} survey feature scores. No winner is declared and no score is summed into a verdict.
 
 - [Comparison directory](https://gdb-engines.com/compare/): All published comparisons, by segment and by pair.
 - [Open source graph databases compared](https://gdb-engines.com/compare/open-source-graph-databases/)
@@ -45,3 +51,6 @@ Feature scores derived from: Coimbra, M. E., Svitakova, L., Francisco, A. P., & 
 ## Preferred citation
 
 GDB-Engines — Graph Database Comparison. https://gdb-engines.com
+`,
+    { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
+  );

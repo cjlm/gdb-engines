@@ -27,7 +27,7 @@ import {
   MIN_ROUNDUP_MEMBERS,
   ROUNDUP_MATRIX_MIN_SURVEYED,
 } from '../../lib/comparisons';
-import { featureGroups, featureDisplayNames, featureDescriptions } from '../../data/feature-metadata';
+import { featureGroups, featureKeys, featureDisplayNames, featureDescriptions } from '../../data/feature-metadata';
 
 export async function getStaticPaths() {
   const [ranking, sponsors, databases, roundupDefs] = await Promise.all([
@@ -138,7 +138,6 @@ const updated = generatedAt
   : null;
 
 // --- Feature matrix -------------------------------------------------------------------
-const featureKeys = featureGroups.flatMap((g) => g.features);
 const unsurveyed = engines.filter((e) => !e.features);
 const allSurveyed = unsurveyed.length === 0;
 // A pair needs one surveyed side — the other renders as a band of em-dashes (§2.4); a
