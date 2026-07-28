@@ -10,7 +10,7 @@ import { loadRankings } from '../../lib/rankings';
 import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { getCollection } from 'astro:content';
-import { fetchFavicon } from '../../utils/favicon';
+import { buildFaviconMap } from '../../lib/favicon-map';
 
 export async function getStaticPaths() {
   const ranking = await loadRankings();
@@ -23,15 +23,9 @@ export async function getStaticPaths() {
   // Same shared pass collects engine descriptions + github/website URLs for tooltips
   // and link icons on the rankings table — same affordance as the homepage Name column.
   const databases = await getCollection('databases');
-  const faviconMap: Record<string, string> = {};
+  const faviconMap = await buildFaviconMap(databases);
   const engineMeta: Record<string, { description: string; githubUrl?: string; url?: string }> = {};
   for (const db of databases) {
-    if (db.data.icon) {
-      faviconMap[db.data.slug] = `/logos/${db.data.icon}`;
-    } else {
-      const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
-      faviconMap[db.data.slug] = result.url;
-    }
     engineMeta[db.data.slug] = {
       description: db.data.description ?? '',
       githubUrl: db.data.github_url,

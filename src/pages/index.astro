@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
-import { fetchFavicon } from '../utils/favicon';
+import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 
@@ -25,16 +25,8 @@ databases.sort((a, b) => {
   return a.data.name.localeCompare(b.data.name);
 });
 
-// Check for favicons extracted by prebuild script
-const faviconMap = new Map<string, { url: string; source: string }>();
-for (const db of databases) {
-  if (db.data.icon) {
-    faviconMap.set(db.data.slug, { url: `/logos/${db.data.icon}`, source: 'custom' });
-  } else {
-    const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
-    faviconMap.set(db.data.slug, result);
-  }
-}
+// Slugs with a real logo; a fallback lookup leaves the slug absent (see buildFaviconMap).
+const faviconMap = await buildFaviconMap(databases);
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -176,11 +168,10 @@ const datasetJsonLd = JSON.stringify({
           <td>
             <div class="database-cell">
               {(() => {
-                const fav = faviconMap.get(db.data.slug);
-                const showIcon = fav && (fav.source === 'site' || fav.source === 'custom' || fav.source === 'github');
-                return showIcon ? (
+                const fav = faviconMap[db.data.slug];
+                return fav ? (
                   <img
-                    src={fav.url}
+                    src={fav}
                     alt=""
                     width="20"
                     height="20"

@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
-import { fetchFavicon } from '../../utils/favicon';
+import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { pregeneratedPairs, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
@@ -22,6 +22,7 @@ export async function getStaticPaths() {
   );
   const overallRanks = buildOverallRankMap(rankingFile);
   const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
+  const faviconMap = await buildFaviconMap(databases);
   const nameBySlug = new Map(databases.map((d) => [d.data.slug, d.data.name]));
   const languagesBySlug = new Map(databases.map((d) => [d.data.slug, d.data.query_languages ?? []]));
 
@@ -54,11 +55,11 @@ export async function getStaticPaths() {
 
   return databases.map(db => ({
     params: { slug: db.data.slug },
-    props: { db, compareLinks: compareLinks(db.data.slug) },
+    props: { db, compareLinks: compareLinks(db.data.slug), faviconUrl: faviconMap[db.data.slug] ?? null },
   }));
 }
 
-const { db, compareLinks: comparePeers } = Astro.props;
+const { db, compareLinks: comparePeers, faviconUrl } = Astro.props;
 const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
@@ -68,16 +69,6 @@ function formatReleased(value: string): string {
   return `${monthName} ${match[1]}`;
 }
 
-// Resolve favicon
-let faviconUrl: string | null = null;
-if (db.data.icon) {
-  faviconUrl = `/logos/${db.data.icon}`;
-} else if (db.data.url) {
-  const result = await fetchFavicon(db.data.slug, db.data.url, db.data.github_url);
-  if (result.source === 'site' || result.source === 'github' || result.source === 'custom') {
-    faviconUrl = result.url;
-  }
-}
 
 const categoryLabel = `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'library' ? 'Library' : 'Embedded Database'}`;
 
