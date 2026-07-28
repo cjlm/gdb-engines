@@ -1,0 +1,364 @@
+---
+/**
+ * `/compare/<a>-vs-<b>/` — head-to-head comparison of two catalogue engines.
+ *
+ * One route for the whole `/compare/` namespace: pair slugs and (later) roundup slugs
+ * cannot collide because every pair slug carries the `-vs-` token, and Astro would reject
+ * two dynamic routes at the same depth. `props.kind` branches at the top of the template.
+ *
+ * All shared data is assembled once in getStaticPaths and passed through props — at a few
+ * hundred pages, a per-page favicon walk is the difference between a 30-second build and
+ * a multi-minute one.
+ */
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SponsorSlot from '../../components/SponsorSlot.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+import { loadRankings } from '../../lib/rankings';
+import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { buildFaviconMap } from '../../lib/favicon-map';
+import { selectPairs, buildOverallRankMap, buildRankedMap } from '../../lib/comparisons';
+import { featureGroups, featureDisplayNames, featureDescriptions } from '../../data/feature-metadata';
+
+export async function getStaticPaths() {
+  const [ranking, sponsors, databases] = await Promise.all([
+    loadRankings(),
+    loadSponsors(),
+    getCollection('databases'),
+  ]);
+  const bySlug = new Map(databases.map((d) => [d.data.slug, d.data]));
+  const faviconMap = await buildFaviconMap(databases);
+  const rankMap = buildOverallRankMap(ranking);
+  const rankedMap = buildRankedMap(ranking);
+  const sponsor = getSponsor(sponsors, 'compare');
+  const comparable = databases.map((d) => ({ slug: d.data.slug, features: d.data.features }));
+
+  return selectPairs(ranking, comparable).map((pair) => ({
+    params: { entry: pair.slug },
+    props: {
+      kind: 'pair' as const,
+      a: bySlug.get(pair.a)!,
+      b: bySlug.get(pair.b)!,
+      faviconMap,
+      // Maps do not survive Astro's props serialisation, so hand over plain objects.
+      ranks: Object.fromEntries(rankMap),
+      ranked: Object.fromEntries(rankedMap),
+      sponsor,
+      generatedAt: ranking?.generatedAt ?? null,
+    },
+  }));
+}
+
+const { a, b, faviconMap, ranks, ranked, sponsor, generatedAt } = Astro.props;
+const engines = [a, b];
+
+const canonical = `https://gdb-engines.com/compare/${a.slug}-vs-${b.slug}/`;
+const updated = generatedAt
+  ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+  : null;
+
+// --- Feature matrix -------------------------------------------------------------------
+const featureKeys = featureGroups.flatMap((g) => g.features);
+const surveyed = engines.map((e) => Boolean(e.features));
+const bothSurveyed = surveyed.every(Boolean);
+const unsurveyed = engines.filter((e) => !e.features);
+
+const score = (engine: typeof a, key: string): number | null => {
+  const value = engine.features?.[key as keyof NonNullable<typeof engine.features>];
+  return typeof value === 'number' ? value : null;
+};
+
+const differingFeatures = bothSurveyed
+  ? featureKeys.filter((key) => score(a, key) !== score(b, key))
+  : [];
+const differCount = differingFeatures.length;
+
+/** Unambiguous presence/absence differences only — graded scores are not a "key difference". */
+const keyDifferences = bothSurveyed
+  ? differingFeatures
+      .filter((key) => {
+        const sa = score(a, key);
+        const sb = score(b, key);
+        return (sa === 1 && sb === 0) || (sa === 0 && sb === 1);
+      })
+      .slice(0, 5)
+      .map((key) => ({
+        engine: score(a, key) === 1 ? a.name : b.name,
+        label: (featureDisplayNames[key] ?? key).toLowerCase(),
+      }))
+  : [];
+
+// --- Fact summary (§2.5) — every clause is a field lookup, no adjectives, no verdict ----
+const rankOf = (slug: string): number | null => (ranks as Record<string, number>)[slug] ?? null;
+const rankedOf = (slug: string) => (ranked as Record<string, any>)[slug] ?? null;
+
+const sharedLanguages = (a.query_languages ?? []).filter((l: string) => (b.query_languages ?? []).includes(l));
+const sameType = a.type === b.type;
+
+const facts = (engine: typeof a): string => {
+  const bits = [engine.released, engine.license, engine.implementation_language].filter(Boolean);
+  return bits.length ? ` (${bits.join(', ')})` : '';
+};
+const rankClause = (engine: typeof a): string => {
+  const r = rankOf(engine.slug);
+  return r ? `ranks #${r}` : 'is not ranked';
+};
+
+const summarySentences: string[] = [];
+if (sameType && sharedLanguages.length) {
+  summarySentences.push(`Both are ${a.type.toLowerCase()} databases queried with ${sharedLanguages.slice(0, 2).join(' and ')}.`);
+} else if (sameType) {
+  summarySentences.push(`Both are ${a.type.toLowerCase()} databases.`);
+} else {
+  summarySentences.push(`${a.name} is a ${a.type.toLowerCase()} database; ${b.name} is a ${b.type.toLowerCase()} database.`);
+}
+summarySentences.push(
+  `${a.name}${facts(a)} ${rankClause(a)}${updated ? ' this month' : ''}; ${b.name}${facts(b)} ${rankClause(b)}.`
+);
+if (bothSurveyed) {
+  summarySentences.push(`They differ on ${differCount} of ${featureKeys.length} surveyed features.`);
+}
+const summary = summarySentences.join(' ');
+
+const title = `${a.name} vs ${b.name} — Graph Database Comparison | GDB-Engines`;
+const description = bothSurveyed
+  ? `Compare ${a.name} and ${b.name}: ${featureKeys.length} feature scores, licenses, query languages, and ${updated ?? 'monthly'} popularity rankings. They differ on ${differCount} features.`
+  : `Compare ${a.name} and ${b.name}: licenses, query languages, implementation languages, and ${updated ?? 'monthly'} popularity rankings.`;
+
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Comparisons', item: 'https://gdb-engines.com/compare/' },
+    { '@type': 'ListItem', position: 3, name: `${a.name} vs ${b.name}`, item: canonical },
+  ],
+});
+const itemListJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${a.name} vs ${b.name}`,
+  url: canonical,
+  numberOfItems: engines.length,
+  itemListElement: engines.map((e, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://gdb-engines.com/db/${e.slug}/`,
+    name: e.name,
+  })),
+});
+
+// --- Row builders ---------------------------------------------------------------------
+const fmtDelta = (d: number | 'new' | null): string => {
+  if (d === 'new') return 'new';
+  if (d === null || d === undefined) return '';
+  if (d === 0) return '=';
+  return d > 0 ? `▲${d}` : `▼${Math.abs(d)}`;
+};
+const deltaClass = (d: number | 'new' | null): string => {
+  if (d === 'new') return 'delta-new';
+  if (d === null || d === undefined || d === 0) return 'delta-flat';
+  return d > 0 ? 'delta-up' : 'delta-down';
+};
+const tierClass = (tier?: string): string =>
+  tier ? `badge badge-${tier.toLowerCase().replace(/\s+/g, '-')}` : '';
+
+const pillar = (slug: string, key: string): string => {
+  const value = rankedOf(slug)?.pillars?.[key];
+  return typeof value === 'number' ? value.toFixed(1) : '—';
+};
+
+interface Row {
+  label: string;
+  values: string[];
+  mono?: boolean;
+}
+
+const glanceRows: Row[] = [
+  { label: 'Rank', values: engines.map((e) => (rankOf(e.slug) ? `#${rankOf(e.slug)}` : '— Not ranked')), mono: true },
+  { label: 'Score', values: engines.map((e) => (typeof rankedOf(e.slug)?.score === 'number' ? rankedOf(e.slug).score.toFixed(1) : '—')), mono: true },
+  { label: 'Popularity', values: engines.map((e) => pillar(e.slug, 'popularity')), mono: true },
+  { label: 'Activity', values: engines.map((e) => pillar(e.slug, 'activity')), mono: true },
+  { label: 'Community', values: engines.map((e) => pillar(e.slug, 'community')), mono: true },
+  { label: 'Research', values: engines.map((e) => pillar(e.slug, 'research')), mono: true },
+];
+
+const fundamentalRows: Row[] = [
+  { label: 'Vendor', values: engines.map((e) => e.vendor ?? '—') },
+  { label: 'Model', values: engines.map((e) => e.type) },
+  { label: 'Kind', values: engines.map((e) => e.kind) },
+  { label: 'Category', values: engines.map((e) => e.category) },
+  { label: 'First released', values: engines.map((e) => e.released ?? '—'), mono: true },
+  { label: 'Status', values: engines.map((e) => (e.status === 'active' ? 'active' : `${e.status}${e.status_note ? ` — ${e.status_note}` : ''}`)) },
+  { label: 'License', values: engines.map((e) => e.license ?? '—') },
+  { label: 'Written in', values: engines.map((e) => e.implementation_language ?? '—') },
+  { label: 'Query languages', values: engines.map((e) => (e.query_languages ?? []).join(', ') || '—') },
+  { label: 'gdotv support', values: engines.map((e) => (e.gdotv_support ? 'yes' : 'no')) },
+];
+
+const differs = (values: string[]): boolean => values[0] !== values[1];
+
+/** Three render states the homepage collapses into one: scored, assessed-absent, unassessed. */
+const cell = (engine: typeof a, key: string): { text: string; cls: string } => {
+  const value = score(engine, key);
+  if (value === null) return { text: '—', cls: 'cell-unassessed' };
+  if (value === 1) return { text: '✓', cls: 'cell-yes' };
+  if (value === 0) return { text: '·', cls: 'cell-no' };
+  return { text: value.toFixed(2).replace(/0$/, ''), cls: 'cell-partial' };
+};
+
+const utm = (url?: string): string | null =>
+  url ? `${url}${url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral` : null;
+---
+<Layout title={title} description={description} canonical={canonical} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
+  <SiteHeader />
+  <main class="compare-page">
+    <nav class="breadcrumb"><a href="/compare/">Comparisons</a> &rsaquo; {a.name} vs {b.name}</nav>
+    <h1>{a.name} vs {b.name}</h1>
+    <p class="lead">{summary}</p>
+
+    {keyDifferences.length >= 2 && (
+      <section class="key-differences">
+        <h2>Key differences</h2>
+        <ul>
+          {keyDifferences.map((d) => <li>Only {d.engine} offers {d.label}.</li>)}
+        </ul>
+      </section>
+    )}
+
+    <div class="matrix-scroll">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="row-label" scope="col"><span class="visually-hidden">Attribute</span></th>
+            {engines.map((e) => (
+              <th scope="col" class="engine-head">
+                <a href={`/db/${e.slug}/`} class="engine-head__link">
+                  <img src={faviconMap[e.slug] ?? '/favicon.svg'} alt="" width="20" height="20" loading="lazy" />
+                  <span class="engine-head__name">{e.name}</span>
+                </a>
+                <span class="engine-head__meta">
+                  <span class="num">{rankOf(e.slug) ? `#${rankOf(e.slug)}` : '—'}</span>
+                  <span class={`num ${deltaClass(rankedOf(e.slug)?.rankDelta1m ?? null)}`}>{fmtDelta(rankedOf(e.slug)?.rankDelta1m ?? null)}</span>
+                  {rankedOf(e.slug)?.tier && <span class={tierClass(rankedOf(e.slug).tier)}>{rankedOf(e.slug).tier}</span>}
+                </span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="group-head"><th colspan="3" scope="colgroup">At a glance</th></tr>
+          {glanceRows.map((row) => (
+            <tr class={differs(row.values) ? 'differs' : ''}>
+              <th scope="row" class="row-label">{row.label}</th>
+              {row.values.map((v) => <td class={row.mono ? 'num' : ''}>{v}</td>)}
+            </tr>
+          ))}
+
+          <tr class="group-head"><th colspan="3" scope="colgroup">Fundamentals</th></tr>
+          <tr>
+            <th scope="row" class="row-label">Description</th>
+            {engines.map((e) => <td class="desc">{e.description}</td>)}
+          </tr>
+          {fundamentalRows.map((row) => (
+            <tr class={differs(row.values) ? 'differs' : ''}>
+              <th scope="row" class="row-label">{row.label}</th>
+              {row.values.map((v) => <td class={row.mono ? 'num' : ''}>{v}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {sponsor && <SponsorSlot sponsor={sponsor} />}
+
+    <section class="features">
+      <h2>
+        Feature scores
+        {bothSurveyed
+          ? <span class="differ-count num">{differCount} of {featureKeys.length} rows differ</span>
+          : <span class="differ-count">— not surveyed for {unsurveyed.map((e) => e.name).join(' or ')}</span>}
+      </h2>
+      <div class="matrix-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="row-label" scope="col"><span class="visually-hidden">Feature</span></th>
+              {engines.map((e) => <th scope="col" class="engine-head engine-head--compact">{e.name}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {featureGroups.map((group) => (
+              <>
+                <tr class="group-head"><th colspan="3" scope="colgroup">{group.name}</th></tr>
+                {group.features.map((key) => (
+                  <tr class={bothSurveyed && score(a, key) !== score(b, key) ? 'differs' : ''}>
+                    <th scope="row" class="row-label">
+                      <span class="has-tooltip" aria-label={featureDescriptions[key] ?? featureDisplayNames[key] ?? key} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">
+                        {featureDisplayNames[key] ?? key}
+                      </span>
+                    </th>
+                    {engines.map((e) => {
+                      const c = cell(e, key);
+                      return <td class={`feature-cell ${c.cls}`}>{c.text}</td>;
+                    })}
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="links">
+      <h2>Links</h2>
+      <ul>
+        {engines.map((e) => (
+          <li>
+            <strong>{e.name}</strong>
+            {e.url && <> · <a href={utm(e.url)} rel="nofollow noopener" target="_blank">website</a></>}
+            {e.github_url && <> · <a href={e.github_url} rel="nofollow noopener" target="_blank">github</a></>}
+            {' '}· <a href={`/db/${e.slug}/`}>full profile</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .compare-page { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
+  .breadcrumb { font-size: 0.85rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
+  .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
+  h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
+  .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .key-differences ul { margin: 0 0 1.25rem; padding-left: 1.1rem; color: var(--color-text); line-height: 1.6; }
+
+  .matrix-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 6px; }
+  .compare-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  .compare-table td, .compare-table th { border-bottom: 1px solid var(--color-border); padding: 0.4rem 0.65rem; text-align: left; vertical-align: top; }
+  .row-label { position: sticky; left: 0; background: var(--color-bg); color: var(--color-text-secondary); font-weight: 400; white-space: nowrap; }
+  .engine-head { position: sticky; top: var(--header-height); background: var(--color-surface); z-index: 2; }
+  .engine-head--compact { font-weight: 600; }
+  .engine-head__link { display: flex; align-items: center; gap: 0.4rem; color: var(--color-text); text-decoration: none; font-weight: 600; }
+  .engine-head__meta { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.2rem; font-size: 0.75rem; color: var(--color-text-secondary); }
+  .group-head th { font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; font-size: 0.7rem; color: var(--color-text-tertiary); background: var(--color-surface); }
+
+  /* The difference rule: the page's texture is the difference profile. */
+  .differs .row-label { box-shadow: inset 2px 0 0 0 var(--color-brand-accent); }
+
+  .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  .desc { color: var(--color-text-secondary); max-width: 40ch; }
+  .differ-count { font-family: 'IBM Plex Mono', monospace; text-transform: none; letter-spacing: 0; color: var(--color-text-tertiary); margin-left: 0.5rem; }
+  .feature-cell { text-align: center; }
+  .cell-no { color: var(--color-text-tertiary); }
+  .cell-unassessed { color: var(--color-text-tertiary); }
+  .links ul { list-style: none; padding: 0; margin: 0; color: var(--color-text-secondary); line-height: 1.8; }
+  .links a { color: var(--color-text); }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>

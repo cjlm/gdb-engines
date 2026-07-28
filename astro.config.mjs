@@ -68,6 +68,21 @@ export default defineConfig({
           item.lastmod = dbDates.get(dbSlug) ?? buildDate;
           item.changefreq = 'yearly';
           item.priority = 0.6;
+        } else if (path.startsWith('/compare/')) {
+          // Pair pages are numerous and individually low-value, so they sit below engine
+          // pages; the hub is the distributor and sits above both. The rank block
+          // regenerates monthly, so the build date is honest here too.
+          const pairSlugs = path.match(/^\/compare\/(.+)\/$/)?.[1]?.split('-vs-') ?? [];
+          if (pairSlugs.length === 2) {
+            const dates = pairSlugs.map((s) => dbDates.get(s)).filter(Boolean);
+            item.lastmod = dates.length ? [...dates, buildDate].sort().at(-1) : buildDate;
+            item.changefreq = 'monthly';
+            item.priority = 0.5;
+          } else {
+            item.lastmod = gitDate('src/pages/compare') ?? buildDate;
+            item.changefreq = 'weekly';
+            item.priority = 0.8;
+          }
         } else if (path === '/') {
           item.lastmod = homepageDate;
         } else {
