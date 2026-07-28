@@ -356,7 +356,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
       </section>
     )}
 
-    <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />
+    {engines.length <= 4 && <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />}
 
     <div class="matrix-scroll">
       <table class="compare-table">
