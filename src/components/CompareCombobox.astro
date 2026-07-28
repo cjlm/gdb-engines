@@ -44,10 +44,14 @@ const { seed = [], mode = 'builder' } = Astro.props;
 </script>
 
 <style>
-  .builder { position: relative; }
+  /* The open listbox has to clear the comparison table's sticky header row (z-index 10 in
+     global.css, 2 on the pre-generated pages) while staying under the fixed site header
+     (z-index 20). On `/compare/custom/` the table is rendered *inside* this root, so the
+     listbox also carries a z-index above the thead — see `.combobox-list` below. */
+  .builder { position: relative; z-index: 15; }
   /* `hidden` is display:none, so the margin costs a no-JS page nothing. */
   .builder[data-mode='static'] { margin: 0 0 1.25rem; }
-  .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg); color: var(--color-text); font: inherit; }
+  .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); color: var(--color-text); font: inherit; }
   .empty { color: var(--color-text-secondary); font-size: 0.9rem; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
@@ -57,7 +61,10 @@ const { seed = [], mode = 'builder' } = Astro.props;
   .combobox-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
   .combobox-chip { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--color-border); border-radius: 999px; padding: 0.15rem 0.5rem; font-size: 0.85rem; }
   .combobox-chip button { background: none; border: 0; color: var(--color-text-tertiary); cursor: pointer; font-size: 1rem; line-height: 1; }
-  .combobox-list { list-style: none; margin: 0.25rem 0 0; padding: 0.25rem; max-width: 24rem; max-height: 18rem; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-surface); position: absolute; z-index: 5; width: 100%; }
+  /* Opaque background, not the translucent one the sticky thead uses: the list sits over
+     table rows and anything that shows through reads as a rendering fault. z-index clears
+     the thead inside the builder root (10) the way `.builder` clears it outside. */
+  .combobox-list { list-style: none; margin: 0.25rem 0 0; padding: 0.25rem; max-width: 24rem; max-height: 18rem; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); position: absolute; z-index: 30; width: 100%; }
   .combobox-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.4rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
   .combobox-option.is-active { background: var(--color-border); }
   .combobox-option[aria-disabled='true'] { color: var(--color-text-tertiary); cursor: default; }
