@@ -138,6 +138,11 @@ const updated = generatedAt
   : null;
 
 // --- Feature matrix -------------------------------------------------------------------
+// §2.6 rule 2: a sponsor selling one of the engines on this page does not get the slot —
+// a vendor's ad on its own comparison reads as paid influence whether or not it is.
+const sponsoredHere =
+  !!sponsor?.engine_slug && engines.some((e) => e.slug === sponsor.engine_slug);
+
 const unsurveyed = engines.filter((e) => !e.features);
 const allSurveyed = unsurveyed.length === 0;
 // A pair needs one surveyed side — the other renders as a band of em-dashes (§2.4); a
@@ -393,7 +398,7 @@ const tableMembers = !isPair ? members.slice(engines.length) : [];
       </table>
     </div>
 
-    {sponsor && <SponsorSlot sponsor={sponsor} />}
+    {sponsor && !sponsoredHere && <SponsorSlot sponsor={sponsor} />}
 
     <section class="features">
       <h2>
