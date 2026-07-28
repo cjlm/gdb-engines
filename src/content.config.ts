@@ -104,9 +104,17 @@ const roundups = defineCollection({
     include: z.array(z.string()).default([]),
     exclude: z.array(z.string()).default([]),
     ranking_board: z.string().default(''),
-  }).refine((r) => !/ranking|popularity|top |most popular/i.test(r.title), {
-    message: 'Roundup titles must not use the ranking boards’ vocabulary (§3.1).',
-  }),
+  })
+    // The h1 and lede are the text a reader actually sees; checking only `title` let the
+    // ranking boards' vocabulary in through the front door (§3.1).
+    .refine((r) => ![r.title, r.h1, r.lede].some((t) => /ranking|popularity|top |most popular/i.test(t)), {
+      message: 'Roundup title, h1 and lede must not use the ranking boards’ vocabulary (§3.1).',
+    })
+    // `/compare/custom/` is the builder and `/compare/` is the hub; a roundup claiming
+    // either slug would silently shadow a real route.
+    .refine((r) => !['custom', 'index'].includes(r.slug), {
+      message: 'Roundup slug “custom” and “index” are reserved by the /compare/ routes.',
+    }),
 });
 
 export const collections = { databases, roundups };

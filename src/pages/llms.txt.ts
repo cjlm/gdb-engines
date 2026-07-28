@@ -1,8 +1,38 @@
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { featureCount } from '../data/feature-metadata';
+import { loadRankings } from '../lib/rankings';
+import { pregeneratedPairList, buildOverallRankMap } from '../lib/comparisons';
 
-/** `/llms.txt` — generated so the feature count can never drift from the survey data. */
-export const GET: APIRoute = () =>
+/** How many head-to-head pages llms.txt names outright. The set has 1,455. */
+const REPRESENTATIVE_PAIRS = 12;
+
+/**
+ * The pairs most worth naming: lowest combined overall rank, so the list is the dozen
+ * head-to-heads a reader is most likely to want and the shape of the other 1,443 is
+ * obvious from them.
+ */
+async function representativePairs(): Promise<string> {
+  const [ranking, databases] = await Promise.all([loadRankings(), getCollection('databases')]);
+  const ranks = buildOverallRankMap(ranking);
+  const nameBySlug = new Map(databases.map((d) => [d.data.slug, d.data.name]));
+  const rank = (slug: string): number => ranks.get(slug) ?? Number.POSITIVE_INFINITY;
+
+  return pregeneratedPairList(
+    ranking,
+    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  )
+    .filter((p) => Number.isFinite(rank(p.a)) && Number.isFinite(rank(p.b)))
+    .sort((p, q) => rank(p.a) + rank(p.b) - (rank(q.a) + rank(q.b)) || p.slug.localeCompare(q.slug))
+    .slice(0, REPRESENTATIVE_PAIRS)
+    .map(
+      (p) =>
+        `- [${nameBySlug.get(p.a) ?? p.a} vs ${nameBySlug.get(p.b) ?? p.b}](https://gdb-engines.com/compare/${p.slug}/)`
+    )
+    .join('\n');
+}
+
+export const GET: APIRoute = async () =>
   new Response(
     `# GDB-Engines
 
@@ -39,6 +69,11 @@ Side-by-side comparisons: catalogue fields, monthly rank and the ${featureCount}
 - [GQL graph databases compared](https://gdb-engines.com/compare/gql-graph-databases/)
 - [Graph query engines compared](https://gdb-engines.com/compare/graph-query-engines/)
 - [Graph database extensions compared](https://gdb-engines.com/compare/graph-database-extensions/)
+
+Head-to-head pages follow the pattern \`https://gdb-engines.com/compare/<a>-vs-<b>/\` with the
+two catalogue slugs in alphabetical order. The twelve whose two engines rank highest overall:
+
+${await representativePairs()}
 
 ## Source
 
