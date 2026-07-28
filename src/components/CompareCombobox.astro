@@ -68,6 +68,7 @@ const { seed = [], mode = 'builder' } = Astro.props;
   .combobox-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.4rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
   .combobox-option.is-active { background: var(--color-border); }
   .combobox-option[aria-disabled='true'] { color: var(--color-text-tertiary); cursor: default; }
+  .combobox-empty { padding: 0.3rem 0.4rem; font-size: 0.9rem; color: var(--color-text-tertiary); }
   .combobox-selected { margin-left: auto; font-size: 0.75rem; color: var(--color-text-tertiary); }
   .combobox-monogram { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: var(--color-surface); border: 1px solid var(--color-border); font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; font-size: 0.6rem; }
 

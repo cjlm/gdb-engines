@@ -194,6 +194,12 @@ async function mount(root: HTMLElement): Promise<void> {
   function renderList(): void {
     matches = search(input.value);
     if (active >= matches.length) active = 0;
+    if (!matches.length) {
+      listbox.innerHTML = `<li class="combobox-empty" aria-disabled="true">No databases match “${esc(input.value.trim())}”</li>`;
+      announce('No matches');
+      input.setAttribute('aria-activedescendant', '');
+      return;
+    }
     listbox.innerHTML = matches
       .map((engine, i) => {
         const isSelected = selected.includes(engine.slug);
