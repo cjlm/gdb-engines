@@ -359,7 +359,9 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
     {engines.length <= 4 && <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />}
 
     <div class="matrix-scroll">
-      <table class="compare-table">
+      {/* `data-compare-table` is where compare-builder.ts writes the "+" column, when the
+          combobox above is mounted and a column can still be added. */}
+      <table class="compare-table" data-compare-table>
         <thead>
           <tr>
             <th class="row-label" scope="col"><span class="visually-hidden">Attribute</span></th>

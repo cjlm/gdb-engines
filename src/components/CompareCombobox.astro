@@ -70,4 +70,15 @@ const { seed = [], mode = 'builder' } = Astro.props;
   .combobox-option[aria-disabled='true'] { color: var(--color-text-tertiary); cursor: default; }
   .combobox-selected { margin-left: auto; font-size: 0.75rem; color: var(--color-text-tertiary); }
   .combobox-monogram { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: var(--color-surface); border: 1px solid var(--color-border); font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; font-size: 0.6rem; }
+
+  /* The "+" column. The script writes the cell into the header row of both the builder
+     table and the pre-generated ones, so it is styled here rather than in either page's
+     scoped block. It sticks with the header row it belongs to; the body rows simply have
+     no cell in this column, which is what keeps it reading as an affordance. */
+  .add-col { width: 2.75rem; border-bottom: 1px solid var(--color-border); position: sticky; top: var(--header-height); background: var(--color-alpha-background); backdrop-filter: blur(6px); }
+  /* The pre-generated pages give their header row a solid surface instead. */
+  .matrix-scroll .add-col { background: var(--color-surface); backdrop-filter: none; }
+  .add-col-btn { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; padding: 0; border: 1px dashed var(--color-border); border-radius: 0.25rem; background: none; color: var(--color-text-tertiary); font-size: 1rem; line-height: 1; cursor: pointer; }
+  .add-col-btn:hover { border-style: solid; border-color: var(--color-text-tertiary); color: var(--color-text); }
+  .add-col-btn:focus-visible { outline: 2px solid var(--color-brand-accent); outline-offset: 2px; }
 </style>

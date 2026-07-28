@@ -155,6 +155,40 @@ async function mount(root: HTMLElement): Promise<void> {
     input.disabled = selected.length >= MAX_COLUMNS;
     input.placeholder = input.disabled ? 'Remove a database to add another' : 'Add a database';
     if (empty) empty.hidden = selected.length >= 2;
+    syncAddColumn();
+  }
+
+  /**
+   * The "+" affordance, in one place for both surfaces: the header row of every table
+   * marked `data-compare-table`, whether this script rendered it or the page shipped it.
+   *
+   * It is written by the script and never by the server, so a page without JS is unchanged
+   * (§4.5), and it only appears while a column can still be added. A wide roundup mounts no
+   * combobox at all, so this never runs there.
+   */
+  function syncAddColumn(): void {
+    const canAdd = selected.length < MAX_COLUMNS;
+    for (const table of document.querySelectorAll<HTMLTableElement>('[data-compare-table]')) {
+      const row = table.tHead?.rows[0];
+      if (!row) continue;
+      const existing = row.querySelector('.add-col');
+      if (!canAdd) {
+        existing?.remove();
+        continue;
+      }
+      if (existing) continue;
+      const slot = row.insertCell(-1);
+      slot.className = 'add-col';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'add-col-btn';
+      button.title = 'Add a database to compare';
+      button.setAttribute('aria-label', 'Add a database to compare');
+      button.innerHTML = '<span aria-hidden="true">+</span>';
+      // focus() scrolls the combobox back into view, and its focus handler opens the list.
+      button.addEventListener('click', () => input.focus());
+      slot.append(button);
+    }
   }
 
   function renderList(): void {
@@ -288,7 +322,7 @@ async function mount(root: HTMLElement): Promise<void> {
       : `<span class="differ-count">${EM_DASH} not surveyed for ${esc(unsurveyed.map((e) => e.name).join(' or '))}</span>`;
 
     target.innerHTML = `
-      <table class="compare-table">
+      <table class="compare-table" data-compare-table>
         ${head}
         <tbody>
           <tr class="group-row"><th scope="row" colspan="${cols.length + 1}">Fundamentals</th></tr>
@@ -301,6 +335,8 @@ async function mount(root: HTMLElement): Promise<void> {
           ? `<table class="compare-table"><tbody>${featureBody}</tbody></table>`
           : `<p class="empty">No survey feature scores for ${esc(cols.map((e) => e.name).join(' or '))}.</p>`
       }`;
+    // innerHTML replaced the table this was written into.
+    syncAddColumn();
   }
 
   input.addEventListener('input', () => {
