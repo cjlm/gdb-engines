@@ -12,7 +12,7 @@ import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
-import { selectPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
+import { pregeneratedPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
 import { featureCount } from '../../data/feature-metadata';
 
 const ranking = await loadRankings();
@@ -20,11 +20,9 @@ const databases = await getCollection('databases');
 const roundupDefs = await getCollection('roundups');
 const faviconMap = await buildFaviconMap(databases);
 const byslug = new Map(databases.map((d) => [d.data.slug, d.data]));
-const pregenerated = new Set(
-  selectPairs(
-    ranking,
-    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
-  ).map((p) => p.slug)
+const pregenerated = pregeneratedPairs(
+  ranking,
+  databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
 );
 const ranks = buildOverallRankMap(ranking);
 const rankOrder = [...ranks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);

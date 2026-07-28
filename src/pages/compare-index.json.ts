@@ -13,7 +13,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { loadRankings } from '../lib/rankings';
-import { selectPairs, buildOverallRankMap, buildRankedMap } from '../lib/comparisons';
+import { pregeneratedPairs, buildOverallRankMap, buildRankedMap } from '../lib/comparisons';
 
 /** Drops undefined/null entries so the payload carries only facts we hold. */
 function compact<T extends Record<string, unknown>>(object: T): Partial<T> {
@@ -57,10 +57,12 @@ export const GET: APIRoute = async () => {
       };
     });
 
-  const pregenerated = selectPairs(
-    ranking,
-    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
-  ).map((p) => p.slug);
+  const pregenerated = [
+    ...pregeneratedPairs(
+      ranking,
+      databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+    ),
+  ];
 
   return new Response(JSON.stringify({ engines, pregenerated }), {
     headers: { 'Content-Type': 'application/json' },

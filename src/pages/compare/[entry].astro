@@ -20,7 +20,7 @@ import { loadRankings } from '../../lib/rankings';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import {
-  selectPairs,
+  pregeneratedPairList,
   resolveRoundup,
   buildOverallRankMap,
   buildRankedMap,
@@ -52,7 +52,7 @@ export async function getStaticPaths() {
     generatedAt: ranking?.generatedAt ?? null,
   };
 
-  const selected = selectPairs(ranking, comparable);
+  const selected = pregeneratedPairList(ranking, comparable);
   // Reverse index so each pair page can offer siblings sharing one of its engines — this
   // is what turns the set into a connected graph instead of hundreds of leaves.
   const pairsByEngine = new Map<string, string[]>();

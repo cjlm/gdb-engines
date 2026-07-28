@@ -70,13 +70,6 @@ export function pairSlug(x: string, y: string): string {
   return `${a}${VS}${b}`;
 }
 
-/** Splits a pair slug back into its two engine slugs, or null if it is not one. */
-export function parsePairSlug(slug: string): { a: string; b: string } | null {
-  const parts = slug.split(VS);
-  if (parts.length !== 2 || !parts[0] || !parts[1]) return null;
-  return { a: parts[0], b: parts[1] };
-}
-
 function makePair(x: string, y: string): Pair {
   const [a, b] = x < y ? [x, y] : [y, x];
   return { a, b, slug: `${a}${VS}${b}` };
@@ -137,6 +130,30 @@ export function selectPairs(
   }
 
   return [...bySlug.values()].sort((p, q) => p.slug.localeCompare(q.slug));
+}
+
+/**
+ * The pre-generated pair set, resolved once per build.
+ *
+ * Four surfaces need the same answer — the comparison hub, the picker endpoint, every
+ * engine page and every pair page. `selectPairs` is O(catalogue²); recomputing it per
+ * surface bought nothing, and the four copies could drift apart. The cache is keyed on the
+ * ranking object identity, so a build that loads rankings once resolves the set once.
+ */
+let pairSetCache: { ranking: RankingFile | null; pairs: Pair[]; slugs: Set<string> } | null = null;
+
+/** The selected pairs themselves, for surfaces that need both engine slugs. */
+export function pregeneratedPairList(ranking: RankingFile | null, databases: ComparableDb[]): Pair[] {
+  if (pairSetCache && pairSetCache.ranking === ranking) return pairSetCache.pairs;
+  const pairs = selectPairs(ranking, databases);
+  pairSetCache = { ranking, pairs, slugs: new Set(pairs.map((p) => p.slug)) };
+  return pairs;
+}
+
+/** Just the slugs, for the `has` checks the link builders make thousands of times. */
+export function pregeneratedPairs(ranking: RankingFile | null, databases: ComparableDb[]): Set<string> {
+  pregeneratedPairList(ranking, databases);
+  return pairSetCache!.slugs;
 }
 
 /** Minimum active members for a roundup to be worth a page (§3.2). */
