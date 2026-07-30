@@ -43,8 +43,10 @@ export const slugify = (s: string): string =>
 
 // Boards we omit on purpose:
 //   - byKind.database overlaps almost entirely with the overall board
-//   - byImplementationLanguage groups with <3 engines (already filtered upstream)
-const SKIP_KIND = new Set(['database']);
+//   - byKind.library ranks a toolkit set nobody searches as a ranking (90 days of
+//     Search Console to 2026-07-29: zero impressions, zero clicks)
+//   - byImplementationLanguage groups below the upstream MIN_LANGUAGE_ENGINES floor
+const SKIP_KIND = new Set(['database', 'library']);
 
 // type 'Other' and license-tier 'Other' would both want the slug "other"; relabel the
 // license one as "Source-Available" since after the recent metadata fixes it's mostly BSL.
@@ -252,8 +254,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
       title: gdbRankingTitle(lang),
       h1: gdbRankingTitle(lang),
       shortLabel: lang,
-      blurb: `The best and most popular graph databases written in ${lang}, ranked monthly across adoption, activity, community and research signals. Compare top ${lang} graph database options.`,
-      metaDescription: `The best and most popular graph databases written in ${lang}, ranked monthly. Compare top ${lang} graph database options.`,
+      blurb: `Graph databases implemented in ${lang}, ranked monthly across adoption, activity, community and research signals.`,
+      metaDescription: `Graph databases implemented in ${lang}, ranked monthly across adoption, activity, community and research signals.`,
       group: 'language',
     }, engines));
   }
