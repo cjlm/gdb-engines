@@ -18,6 +18,7 @@ import CompareCombobox from '../../components/CompareCombobox.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { loadRankings } from '../../lib/rankings';
+import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import {
@@ -195,7 +196,10 @@ let description: string;
 let h1: string;
 
 if (isPair) {
-  const sharedLanguages = (a.query_languages ?? []).filter((l: string) => (b.query_languages ?? []).includes(l));
+  // Compared canonically: Neo4j ships "Cypher" and Memgraph "openCypher", which are the
+  // same language, so a raw string match wrongly reported no shared query language.
+  const bCanon = new Set((b.query_languages ?? []).map((l: string) => canonicalQueryLanguage(l)));
+  const sharedLanguages = (a.query_languages ?? []).filter((l: string) => bCanon.has(canonicalQueryLanguage(l)));
   const sameType = a.type === b.type;
   const facts = (engine: typeof a): string => {
     const bits = [engine.released, engine.license, engine.implementation_language].filter(Boolean);

@@ -6,7 +6,7 @@ lede = "Graph databases that speak Cypher or openCypher under a non-proprietary 
 # All conditions AND together; list values are OR. Members are always active-only;
 # filtered-out inactive members are listed in the page footnote instead.
 [filter]
-query_languages = ["Cypher", "openCypher"]
+query_languages = ["Cypher"]
 license_not = ["Proprietary"]
 
 include = []

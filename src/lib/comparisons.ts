@@ -9,6 +9,7 @@
  * All three thresholds are constants here. Raising them is the only change needed to grow
  * the surface — see docs/design/comparison-pages.md §1.3.
  */
+import { canonicalQueryLanguage } from './ranking-boards';
 import type { RankingFile } from './rankings';
 
 /** All-pairs among the top N engines by overall rank. */
@@ -205,8 +206,11 @@ function matchesFilter(db: RoundupDb, filter: RoundupFilter): boolean {
   if (filter.implementation_language && !(db.implementation_language && filter.implementation_language.includes(db.implementation_language))) {
     return false;
   }
-  if (filter.query_languages && !(db.query_languages ?? []).some((l) => filter.query_languages!.includes(l))) {
-    return false;
+  // Canonical on both sides: openCypher is the open specification of Cypher, so a
+  // filter naming either spelling matches engines tagged with the other.
+  if (filter.query_languages) {
+    const wanted = new Set(filter.query_languages.map(canonicalQueryLanguage));
+    if (!(db.query_languages ?? []).some((l) => wanted.has(canonicalQueryLanguage(l)))) return false;
   }
   return true;
 }

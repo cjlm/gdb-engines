@@ -15,6 +15,7 @@ import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { pregeneratedPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
 import { featureCount } from '../../data/feature-metadata';
+import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 
 const ranking = await loadRankings();
 const databases = await getCollection('databases');
@@ -42,8 +43,12 @@ function pairsWithin(slugs: string[], limit: number): { slug: string; label: str
 }
 
 const rankedOfType = (type: string) => rankOrder.filter((s) => byslug.get(s)?.type === type);
-const rankedWithLanguage = (language: string) =>
-  rankOrder.filter((s) => (byslug.get(s)?.query_languages ?? []).includes(language));
+const rankedWithLanguage = (language: string) => {
+  const want = canonicalQueryLanguage(language);
+  return rankOrder.filter((s) =>
+    (byslug.get(s)?.query_languages ?? []).some((l: string) => canonicalQueryLanguage(l) === want)
+  );
+};
 
 const anchor = rankOrder[0];
 const withAnchor = anchor
