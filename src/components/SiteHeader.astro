@@ -1,12 +1,9 @@
 ---
-import { getDatabaseCount } from '../lib/database-count';
-
 interface Props {
   comparisonControls?: boolean;
 }
 
 const { comparisonControls = false } = Astro.props;
-const databaseCount = await getDatabaseCount();
 
 // Highlight the nav entry covering the current page, including its sub-pages
 // (/rankings/cypher/ lights up "Rankings").
@@ -43,9 +40,7 @@ const onCompare = path.startsWith('/compare');
       </svg>
       <span class="rankings-link__label">Compare</span>
     </a>
-    <p class="database-summary">
-      Compare <span id="db-count">{databaseCount}</span> graph databases
-    </p>
+    <p class="database-summary">Compare and understand the world of graph technology</p>
   </div>
   <div class="right">
     {comparisonControls && (

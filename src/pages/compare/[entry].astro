@@ -171,20 +171,11 @@ const featureDiffers = (key: string): boolean => {
 const differingFeatures = showDifferCount ? featureKeys.filter(featureDiffers) : [];
 const differCount = differingFeatures.length;
 
-/** Unambiguous presence/absence differences only — a graded score is not a key difference. */
-const keyDifferences = isPair && allSurveyed
-  ? differingFeatures
-      .filter((key) => {
-        const sa = score(a, key);
-        const sb = score(b, key);
-        return (sa === 1 && sb === 0) || (sa === 0 && sb === 1);
-      })
-      .slice(0, 5)
-      .map((key) => ({
-        engine: score(a, key) === 1 ? a.name : b.name,
-        label: (featureDisplayNames[key] ?? key).toLowerCase(),
-      }))
-  : [];
+// A "Key differences" list used to sit here, asserting things like "Only Neo4j offers
+// saas offering". The grammar was broken and, more seriously, the claims were stated as
+// current fact while the underlying scores come from a fixed academic survey — FalkorDB
+// has had SaaS and a GUI since it was assessed. The matrix still shows the scores, where
+// they read as survey data rather than a verdict.
 
 // --- Fact summary (§2.5) — every clause is a field lookup, no adjectives, no verdict ----
 const rankOf = (slug: string): number | null => (ranks as Record<string, number>)[slug] ?? null;
@@ -349,15 +340,6 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
       <p class="cross-link">
         Ranked by popularity: <a href={`/rankings/${def.ranking_board}/`}>{def.h1.replace(/ compared$/, '')} popularity ranking &rarr;</a>
       </p>
-    )}
-
-    {keyDifferences.length >= 2 && (
-      <section class="key-differences">
-        <h2>Key differences</h2>
-        <ul>
-          {keyDifferences.map((d) => <li>Only {d.engine} offers {d.label}.</li>)}
-        </ul>
-      </section>
     )}
 
     {engines.length <= 4 && <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />}
@@ -572,7 +554,6 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
   .cross-link, .note { font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 1rem; }
   .cross-link a { color: var(--color-text); }
-  .key-differences ul { margin: 0 0 1.25rem; padding-left: 1.1rem; color: var(--color-text); line-height: 1.6; }
 
   .matrix-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 6px; }
   .compare-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
