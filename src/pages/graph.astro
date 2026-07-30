@@ -345,7 +345,6 @@ const garphieldOrigin =
           }
           if (version !== loadVersion) return;
           activeDocument = document;
-          status.textContent = 'Loading database icons…';
           await preloadNodeImages(document);
           if (version !== loadVersion) return;
           await renderDocument(document, version);
