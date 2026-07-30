@@ -118,11 +118,12 @@ const datasetJsonLd = JSON.stringify({
                     : typeof d === 'number' && d > 0 ? 'delta-down' : '';
                   return (
                     <a href="/rankings/overall/" class="rank-link">
-                      {rank}{deltaText && <span class={`rank-delta ${deltaCls}`}>{deltaText}</span>}
+                      <span class="rank-num">{rank}</span>
+                      <span class={`rank-delta ${deltaCls}`}>{deltaText}</span>
                     </a>
                   );
                 })()
-              : <span class="rank-empty">—</span>}</td>
+              : <span class="rank-link"><span class="rank-num rank-empty">—</span><span class="rank-delta"></span></span>}</td>
           )}
           <td>
             <div class="database-cell">
