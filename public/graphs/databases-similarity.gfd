@@ -1658,6 +1658,18 @@
             "queryLanguages": "TypeQL"
           },
           {
+            "id": "db:typegraph",
+            "label": "TypeGraph",
+            "image": "https://gdb-engines.com/logos/typegraph.png",
+            "type": "Property Graph",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "TypeScript",
+            "queryLanguages": "Custom API"
+          },
+          {
             "id": "db:ultipa",
             "label": "Ultipa",
             "image": "https://gdb-engines.com/logos/ultipa.png",
@@ -2105,6 +2117,11 @@
           },
           {
             "source": "db:codemix-graph",
+            "target": "db:typegraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:codemix-graph",
             "target": "db:nornicdb",
             "similarity": 0.4
           },
@@ -2112,11 +2129,6 @@
             "source": "db:codemix-graph",
             "target": "db:rocketgraph",
             "similarity": 0.3333
-          },
-          {
-            "source": "db:bighorn",
-            "target": "db:codemix-graph",
-            "similarity": 0.3
           },
           {
             "source": "db:cogdb",
@@ -3114,9 +3126,9 @@
             "similarity": 0.5
           },
           {
-            "source": "db:galaxybase",
-            "target": "db:rushdb",
-            "similarity": 0.375
+            "source": "db:rushdb",
+            "target": "db:typegraph",
+            "similarity": 0.5
           },
           {
             "source": "db:bighorn",
@@ -3292,6 +3304,16 @@
             "source": "db:relationalai",
             "target": "db:typedb",
             "similarity": 0.3
+          },
+          {
+            "source": "db:grust",
+            "target": "db:typegraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "db:typegraph",
+            "similarity": 0.5
           },
           {
             "source": "db:alibaba-gdb",

@@ -1247,6 +1247,15 @@
             "status": "active"
           },
           {
+            "id": "db:typegraph",
+            "label": "TypeGraph",
+            "image": "https://gdb-engines.com/logos/typegraph.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:ultipa",
             "label": "Ultipa",
             "image": "https://gdb-engines.com/logos/ultipa.png",
@@ -2499,6 +2508,11 @@
           {
             "source": "db:typedb",
             "target": "language:TypeQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:typegraph",
+            "target": "language:Custom API",
             "relationship": "supports"
           },
           {
