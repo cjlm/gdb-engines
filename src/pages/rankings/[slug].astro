@@ -10,7 +10,7 @@ import { loadRankings } from '../../lib/rankings';
 import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { getCollection } from 'astro:content';
-import { fetchFavicon } from '../../utils/favicon';
+import { buildFaviconMap } from '../../lib/favicon-map';
 
 export async function getStaticPaths() {
   const ranking = await loadRankings();
@@ -23,15 +23,9 @@ export async function getStaticPaths() {
   // Same shared pass collects engine descriptions + github/website URLs for tooltips
   // and link icons on the rankings table — same affordance as the homepage Name column.
   const databases = await getCollection('databases');
-  const faviconMap: Record<string, string> = {};
+  const faviconMap = await buildFaviconMap(databases);
   const engineMeta: Record<string, { description: string; githubUrl?: string; url?: string }> = {};
   for (const db of databases) {
-    if (db.data.icon) {
-      faviconMap[db.data.slug] = `/logos/${db.data.icon}`;
-    } else {
-      const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
-      faviconMap[db.data.slug] = result.url;
-    }
     engineMeta[db.data.slug] = {
       description: db.data.description ?? '',
       githubUrl: db.data.github_url,
@@ -39,10 +33,18 @@ export async function getStaticPaths() {
     };
   }
 
+  // Reciprocal link to the roundup covering the same engines, keyed by the roundup's
+  // `ranking_board` field so only boards that have one get a link.
+  const roundups = await getCollection('roundups');
+  const roundupByBoard = new Map(
+    roundups.filter((r) => r.data.ranking_board).map((r) => [r.data.ranking_board, { slug: r.data.slug, h1: r.data.h1 }])
+  );
+
   return buildBoards(ranking).map((board) => ({
     params: { slug: board.slug },
     props: {
       board,
+      roundup: roundupByBoard.get(board.slug) ?? null,
       generatedAt: ranking.generatedAt,
       sponsor: getSponsor(sponsors, board.slug),
       faviconMap,
@@ -52,7 +54,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { board, generatedAt, sponsor, faviconMap, linkMaps, engineMeta } = Astro.props;
+const { board, roundup, generatedAt, sponsor, faviconMap, linkMaps, engineMeta } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -100,6 +102,10 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
     ) : (
       <p class="lead">{board.engines.length} engines ranked, {updated}.</p>
     )}
+    {roundup && (
+      <p class="roundup-link">Compare these side by side: <a href={`/compare/${roundup.slug}/`}>{roundup.h1} &rarr;</a></p>
+    )}
+
     <SponsorCTA />
 
     {sponsor && <SponsorSlot sponsor={sponsor} />}
@@ -126,5 +132,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
   .lead a { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-border); text-underline-offset: 2px; }
   .lead a:hover { text-decoration-color: var(--color-brand-accent); }
+  .roundup-link { font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 1rem; }
+  .roundup-link a { color: var(--color-text); }
   .insufficient-note { color: var(--color-text-tertiary); font-size: 0.8rem; margin-top: 1rem; font-style: italic; }
 </style>

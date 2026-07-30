@@ -3,14 +3,20 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import CorrectionNotice from '../../components/CorrectionNotice.astro';
+import CountBadge from '../../components/CountBadge.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, type Board } from '../../lib/ranking-boards';
+import { getCollection } from 'astro:content';
+import { buildFaviconMap } from '../../lib/favicon-map';
 
 const ranking = await loadRankings();
 const boards: Board[] = ranking ? buildBoards(ranking) : [];
 const generatedAt = ranking?.generatedAt;
 const updated = generatedAt ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' }) : null;
+const faviconMap = await buildFaviconMap(await getCollection('databases'));
+// Leaders of each board, logo-bearing only — a slug missing from the map has no logo.
+const leaders = (b: Board) => b.engines.map((e) => faviconMap[e.slug]).filter(Boolean).slice(0, 6);
 const overall = boards.find((b) => b.slug === 'overall');
 const topOverall = overall?.engines.slice(0, 3) ?? [];
 
@@ -66,9 +72,19 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
       groupOrder.map((g) => grouped[g] && (
         <section>
           <h2>{groupLabels[g]}</h2>
-          <ul class="board-list">
+          <ul class="board-cards">
             {grouped[g]!.map((b) => (
-              <li><a href={`/rankings/${b.slug}/`}>{b.h1}</a> <span class="count">({b.engines.length})</span></li>
+              <li>
+                <a href={`/rankings/${b.slug}/`}>
+                  <span class="board-name">{b.h1}</span>
+                  <CountBadge count={b.engines.length} />
+                </a>
+                <span class="board-logos">
+                  {leaders(b).map((src) => (
+                    <img src={src} alt="" width="16" height="16" loading="lazy" />
+                  ))}
+                </span>
+              </li>
             ))}
           </ul>
         </section>
@@ -78,7 +94,7 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
 </Layout>
 
 <style>
-  .rankings-index { max-width: 900px; margin: 0 auto; padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
+  .rankings-index { max-width: var(--content-max-width); margin: 0 auto; padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
   h1 { font-size: 1.5rem; margin: 0 0 0.5rem; color: var(--color-text); }
   .blurb { color: var(--color-text-secondary); max-width: 70ch; line-height: 1.5; }
   .updated { color: var(--color-text-tertiary); font-size: 0.8rem; }
@@ -87,9 +103,11 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   .lead a:hover { text-decoration-color: var(--color-brand-accent); }
   .empty { background: var(--color-surface); border-left: 3px solid var(--color-border); padding: 0.75rem 1rem; color: var(--color-text-secondary); }
   section { margin: 1.5rem 0; }
-  h2 { font-size: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.25rem; margin-bottom: 0.5rem; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-  .board-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.35rem 1rem; }
-  .board-list a { color: var(--color-text); text-decoration: none; }
-  .board-list a:hover { text-decoration: underline; }
-  .count { color: var(--color-text-tertiary); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
+  /* Same card treatment as the /compare/ hub: the two index pages are siblings. */
+  .board-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.15rem; }
+  .board-cards li { border: 1px solid var(--color-border); border-radius: 6px; padding: 0.6rem 0.75rem; display: flex; flex-direction: column; height: 100%; }
+  .board-cards a { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; color: var(--color-text); text-decoration: none; }
+  .board-cards a:hover .board-name { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
+  .board-logos { display: flex; gap: 0.25rem; margin-top: auto; padding-top: 0.5rem; }
 </style>

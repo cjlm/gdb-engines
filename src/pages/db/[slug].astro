@@ -3,22 +3,81 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
-import { fetchFavicon } from '../../utils/favicon';
+import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
+import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 
 const ranking = await loadRankings();
 const boards = ranking ? buildBoards(ranking) : [];
 
 export async function getStaticPaths() {
   const databases = await getCollection('databases');
+  const rankingFile = await loadRankings();
+
+  // Catalogue-wide facts, resolved once for the whole route rather than per page.
+  const pregenerated = pregeneratedPairs(
+    rankingFile,
+    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  );
+  const overallRanks = buildOverallRankMap(rankingFile);
+  const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
+  const faviconMap = await buildFaviconMap(databases);
+
+  // §3.6 reverse index: which roundups each engine belongs to, capped at three. Built once
+  // here rather than re-resolving every roundup on all 143 engine pages.
+  const roundupsByEngine = new Map<string, { slug: string; title: string }[]>();
+  for (const entry of await getCollection('roundups')) {
+    const resolved = resolveRoundup(entry.data, databases.map((d) => d.data), rankingFile);
+    if (resolved.members.length < MIN_ROUNDUP_MEMBERS) continue;
+    for (const member of resolved.members) {
+      const list = roundupsByEngine.get(member.slug) ?? [];
+      if (list.length < 3) list.push({ slug: entry.data.slug, title: entry.data.h1 });
+      roundupsByEngine.set(member.slug, list);
+    }
+  }
+  const nameBySlug = new Map(databases.map((d) => [d.data.slug, d.data.name]));
+  const languagesBySlug = new Map(databases.map((d) => [d.data.slug, d.data.query_languages ?? []]));
+
+  /** Deterministic peers: nearest-ranked, then sharing a query language, then the top two. */
+  function compareLinks(slug: string): { slug: string; name: string; href: string }[] {
+    const rank = overallRanks.get(slug);
+    const candidates: string[] = [];
+    if (rank !== undefined) {
+      const i = rank - 1;
+      candidates.push(...[rankOrder[i - 2], rankOrder[i - 1], rankOrder[i + 1], rankOrder[i + 2]].filter(Boolean) as string[]);
+    }
+    const own = languagesBySlug.get(slug) ?? [];
+    if (own.length) {
+      candidates.push(...rankOrder.filter((s) => (languagesBySlug.get(s) ?? []).some((l) => own.includes(l))).slice(0, 4));
+    }
+    candidates.push(...rankOrder.slice(0, 2));
+
+    const seen = new Set<string>();
+    const links: { slug: string; name: string; href: string }[] = [];
+    for (const other of candidates) {
+      if (other === slug || seen.has(other)) continue;
+      seen.add(other);
+      const pair = pairSlug(slug, other);
+      if (!pregenerated.has(pair)) continue;
+      links.push({ slug: other, name: nameBySlug.get(other) ?? other, href: `/compare/${pair}/` });
+      if (links.length === 8) break;
+    }
+    return links;
+  }
+
   return databases.map(db => ({
     params: { slug: db.data.slug },
-    props: { db },
+    props: {
+      db,
+      compareLinks: compareLinks(db.data.slug),
+      faviconUrl: faviconMap[db.data.slug] ?? null,
+      partOf: roundupsByEngine.get(db.data.slug) ?? [],
+    },
   }));
 }
 
-const { db } = Astro.props;
+const { db, compareLinks: comparePeers, faviconUrl, partOf } = Astro.props;
 const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
@@ -28,16 +87,6 @@ function formatReleased(value: string): string {
   return `${monthName} ${match[1]}`;
 }
 
-// Resolve favicon
-let faviconUrl: string | null = null;
-if (db.data.icon) {
-  faviconUrl = `/logos/${db.data.icon}`;
-} else if (db.data.url) {
-  const result = await fetchFavicon(db.data.slug, db.data.url, db.data.github_url);
-  if (result.source === 'site' || result.source === 'github' || result.source === 'custom') {
-    faviconUrl = result.url;
-  }
-}
 
 const categoryLabel = `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'library' ? 'Library' : 'Embedded Database'}`;
 
@@ -88,16 +137,40 @@ const description = db.data.description;
         <img src={faviconUrl} alt="" width="24" height="24" />
       )}
       {db.data.name}
+      {(db.data.url || db.data.github_url) && (
+        <span class="db-links">
+          {db.data.url && (
+            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20a15.3 15.3 0 0 1 0-20"/></svg>
+              Website
+            </a>
+          )}
+          {db.data.github_url && (
+            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
+              GitHub
+            </a>
+          )}
+        </span>
+      )}
     </h1>
 
     <p class="description">{db.data.description}</p>
 
-    {engineRanks.length > 0 && (
+    {(engineRanks.length > 0 || partOf.length > 0) && (
       <section class="ranks-block">
         <h2>Rankings</h2>
         <ul class="ranks-list">
           {engineRanks.map(({ board, rank }) => (
             <li><a href={`/rankings/${board.slug}/`}><span class="rank">#{rank}</span> <span class="label">{board.shortLabel}</span></a></li>
+          ))}
+          {partOf.map((r) => (
+            <li>
+              <a class="roundup" href={`/compare/${r.slug}/`}>
+                <span class="label">{r.title.replace(/ Compared$/, '')}</span>
+                <span class="chev" aria-hidden="true">&rsaquo;</span>
+              </a>
+            </li>
           ))}
         </ul>
       </section>
@@ -166,20 +239,6 @@ const description = db.data.description;
       )}
     </dl>
 
-    {(db.data.url || db.data.github_url) && (
-      <>
-        <h2>Links</h2>
-        <div class="db-links">
-          {db.data.url && (
-            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Official website</a>
-          )}
-          {db.data.github_url && (
-            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">GitHub</a>
-          )}
-        </div>
-      </>
-    )}
-
     {db.data.features && (
       <>
         <h2>Feature Scores</h2>
@@ -208,6 +267,19 @@ const description = db.data.description;
             </>
           );
         })}
+      </>
+    )}
+
+    {comparePeers.length > 0 && (
+      <>
+        <h2>Compare with</h2>
+        <ul class="compare-with">
+          {comparePeers.map((link) => (
+            /* The engine name stays in the accessible/crawlable label; the visible
+               lozenge drops it because the page is already about this engine. */
+            <li><a href={link.href}><span class="sr-only">{db.data.name} </span>vs {link.name}</a></li>
+          ))}
+        </ul>
       </>
     )}
   </main>

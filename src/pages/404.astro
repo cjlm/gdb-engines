@@ -28,6 +28,15 @@ import '../styles/global.css';
   </main>
 </Layout>
 
+<script>
+  // An unmatched comparison URL (reverse order, or a pair outside the pre-generated
+  // set) lands here: forward it to the builder, whose `?pair=` handling validates the
+  // slugs and redirects a pre-generated pair on to its canonical page. A `_redirects`
+  // splat cannot do this — on Cloudflare Pages it would shadow the generated pages.
+  const pair = location.pathname.match(/^\/compare\/([\w.-]+-vs-[\w.-]+)\/?$/)?.[1];
+  if (pair) location.replace(`/compare/custom/?pair=${encodeURIComponent(pair)}`);
+</script>
+
 <style>
   .notfound-page { max-width: 720px; margin: 0 auto; padding: calc(var(--header-height) + 4rem) 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
   .code { font-size: 3rem; font-weight: 600; margin: 0; color: var(--color-border); line-height: 1; }

@@ -1,0 +1,13 @@
+slug = "multi-model-graph-databases"
+title = "Multi-Model Graph Databases Compared"
+h1 = "Multi-model graph databases compared"
+lede = "Databases that support both property graph and RDF models."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+type = ["Multiple"]
+
+include = []
+exclude = []
+ranking_board = "multi-model"

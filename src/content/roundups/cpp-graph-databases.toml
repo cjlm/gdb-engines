@@ -1,0 +1,13 @@
+slug = "cpp-graph-databases"
+title = "C++ Graph Databases Compared"
+h1 = "C++ graph databases compared"
+lede = "Graph databases implemented in C++."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+implementation_language = ["C++"]
+
+include = []
+exclude = []
+ranking_board = "cpp"

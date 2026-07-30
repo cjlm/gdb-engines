@@ -1,0 +1,13 @@
+slug = "established-graph-databases"
+title = "Established Graph Databases Compared"
+h1 = "Established graph databases compared"
+lede = "Graph databases with wide adoption and a long production track record."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+category = ["Established"]
+
+include = []
+exclude = []
+ranking_board = ""

@@ -1,0 +1,591 @@
+---
+/**
+ * `/compare/<a>-vs-<b>/` and `/compare/<segment>/` — the whole comparison namespace.
+ *
+ * One route for both surfaces: pair slugs and roundup slugs cannot collide because every
+ * pair slug carries the `-vs-` token (asserted at build time), and Astro would reject two
+ * dynamic routes at the same depth. `props.kind` branches once, then both render the same
+ * N-column table.
+ *
+ * All shared data is assembled once in getStaticPaths and passed through props — at a few
+ * hundred pages, a per-page favicon walk is the difference between a 30-second build and
+ * a multi-minute one.
+ */
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SponsorSlot from '../../components/SponsorSlot.astro';
+import CompareCombobox from '../../components/CompareCombobox.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+import { loadRankings } from '../../lib/rankings';
+import { canonicalQueryLanguage } from '../../lib/ranking-boards';
+import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { buildFaviconMap } from '../../lib/favicon-map';
+import {
+  pregeneratedPairList,
+  resolveRoundup,
+  buildOverallRankMap,
+  buildRankedMap,
+  MIN_ROUNDUP_MEMBERS,
+  ROUNDUP_MATRIX_MIN_SURVEYED,
+} from '../../lib/comparisons';
+import { featureGroups, featureKeys, featureDisplayNames, featureDescriptions } from '../../data/feature-metadata';
+
+export async function getStaticPaths() {
+  const [ranking, sponsors, databases, roundupDefs] = await Promise.all([
+    loadRankings(),
+    loadSponsors(),
+    getCollection('databases'),
+    getCollection('roundups'),
+  ]);
+  const bySlug = new Map(databases.map((d) => [d.data.slug, d.data]));
+  const faviconMap = await buildFaviconMap(databases);
+  const rankMap = buildOverallRankMap(ranking);
+  const rankedMap = buildRankedMap(ranking);
+  const sponsor = getSponsor(sponsors, 'compare');
+  const comparable = databases.map((d) => ({ slug: d.data.slug, features: d.data.features }));
+
+  // Maps do not survive Astro's props serialisation, so hand over plain objects.
+  const shared = {
+    faviconMap,
+    ranks: Object.fromEntries(rankMap),
+    ranked: Object.fromEntries(rankedMap),
+    sponsor,
+    generatedAt: ranking?.generatedAt ?? null,
+  };
+
+  const selected = pregeneratedPairList(ranking, comparable);
+  // Reverse index so each pair page can offer siblings sharing one of its engines — this
+  // is what turns the set into a connected graph instead of hundreds of leaves.
+  const pairsByEngine = new Map<string, string[]>();
+  for (const pair of selected) {
+    for (const slug of [pair.a, pair.b]) {
+      const list = pairsByEngine.get(slug) ?? [];
+      list.push(pair.slug);
+      pairsByEngine.set(slug, list);
+    }
+  }
+  const label = (slug: string): string =>
+    slug.split('-vs-').map((s) => bySlug.get(s)?.name ?? s).join(' vs ');
+
+  const pairs = selected.map((pair) => ({
+    params: { entry: pair.slug },
+    props: {
+      kind: 'pair' as const,
+      engines: [bySlug.get(pair.a)!, bySlug.get(pair.b)!],
+      related: [...(pairsByEngine.get(pair.a) ?? []), ...(pairsByEngine.get(pair.b) ?? [])]
+        .filter((s) => s !== pair.slug)
+        .slice(0, 6)
+        .map((s) => ({ slug: s, label: label(s) })),
+      ...shared,
+    },
+  }));
+
+  const catalogue = databases.map((d) => d.data);
+  const roundups = roundupDefs.flatMap((entry) => {
+    const def = entry.data;
+    const resolved = resolveRoundup(def, catalogue, ranking);
+    if (resolved.members.length < MIN_ROUNDUP_MEMBERS) {
+      throw new Error(
+        `Roundup "${def.slug}" resolves to ${resolved.members.length} active members, below the minimum of ${MIN_ROUNDUP_MEMBERS}.`
+      );
+    }
+    return [{
+      params: { entry: def.slug },
+      props: {
+        kind: 'roundup' as const,
+        engines: resolved.columns,
+        def,
+        members: resolved.members,
+        inactive: resolved.inactive,
+        surveyedCount: resolved.surveyedCount,
+        columnsSurveyedCount: resolved.columnsSurveyedCount,
+        siblings: roundupDefs
+          .filter((o) => o.data.slug !== def.slug)
+          .slice(0, 3)
+          .map((o) => ({ slug: o.data.slug, h1: o.data.h1 })),
+        ...shared,
+      },
+    }];
+  });
+
+  return [...pairs, ...roundups];
+}
+
+const {
+  kind,
+  engines,
+  faviconMap,
+  ranks,
+  ranked,
+  sponsor,
+  generatedAt,
+  def,
+  members = [],
+  inactive = [],
+  surveyedCount = 0,
+  columnsSurveyedCount = 0,
+  siblings = [],
+  related = [],
+} = Astro.props;
+
+const isPair = kind === 'pair';
+const [a, b] = engines;
+const colSpan = engines.length + 1;
+
+const slugPath = isPair ? `${a.slug}-vs-${b.slug}` : def.slug;
+const canonical = `https://gdb-engines.com/compare/${slugPath}/`;
+const updated = generatedAt
+  ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+  : null;
+
+// --- Feature matrix -------------------------------------------------------------------
+// §2.6 rule 2: a sponsor selling one of the engines on this page does not get the slot —
+// a vendor's ad on its own comparison reads as paid influence whether or not it is.
+const sponsoredHere =
+  !!sponsor?.engine_slug && engines.some((e) => e.slug === sponsor.engine_slug);
+
+const unsurveyed = engines.filter((e) => !e.features);
+const allSurveyed = unsurveyed.length === 0;
+// A pair needs one surveyed side — the other renders as a band of em-dashes (§2.4); a
+// roundup needs enough of its columns that the matrix is not a wall of dashes making
+// un-surveyed data look like missing data.
+const anySurveyed = unsurveyed.length < engines.length;
+const showMatrix = isPair ? anySurveyed : columnsSurveyedCount >= ROUNDUP_MATRIX_MIN_SURVEYED;
+// The count is a claim about difference; with a column un-surveyed there is nothing to
+// compare against, so it is suppressed rather than reported as a difference.
+const showDifferCount = showMatrix && (isPair ? allSurveyed : true);
+
+const score = (engine: (typeof engines)[number], key: string): number | null => {
+  const value = engine.features?.[key as keyof NonNullable<typeof engine.features>];
+  return typeof value === 'number' ? value : null;
+};
+// Unsurveyed columns are absence of data, not a different answer: a row where every
+// surveyed column agrees does not differ, however many columns are un-surveyed.
+const featureDiffers = (key: string): boolean => {
+  if (!showDifferCount) return false;
+  const surveyed = engines.map((e) => score(e, key)).filter((v): v is number => v !== null);
+  return new Set(surveyed).size > 1;
+};
+
+const differingFeatures = showDifferCount ? featureKeys.filter(featureDiffers) : [];
+const differCount = differingFeatures.length;
+
+// A "Key differences" list used to sit here, asserting things like "Only Neo4j offers
+// saas offering". The grammar was broken and, more seriously, the claims were stated as
+// current fact while the underlying scores come from a fixed academic survey — FalkorDB
+// has had SaaS and a GUI since it was assessed. The matrix still shows the scores, where
+// they read as survey data rather than a verdict.
+
+// --- Fact summary (§2.5) — every clause is a field lookup, no adjectives, no verdict ----
+const rankOf = (slug: string): number | null => (ranks as Record<string, number>)[slug] ?? null;
+const rankedOf = (slug: string) => (ranked as Record<string, any>)[slug] ?? null;
+
+let summary: string;
+let title: string;
+let description: string;
+let h1: string;
+
+if (isPair) {
+  // Compared canonically: Neo4j ships "Cypher" and Memgraph "openCypher", which are the
+  // same language, so a raw string match wrongly reported no shared query language.
+  const bCanon = new Set((b.query_languages ?? []).map((l: string) => canonicalQueryLanguage(l)));
+  const sharedLanguages = (a.query_languages ?? []).filter((l: string) => bCanon.has(canonicalQueryLanguage(l)));
+  const sameType = a.type === b.type;
+  const facts = (engine: typeof a): string => {
+    const bits = [engine.released, engine.license, engine.implementation_language].filter(Boolean);
+    return bits.length ? ` (${bits.join(', ')})` : '';
+  };
+  const rankClause = (engine: typeof a): string => {
+    const r = rankOf(engine.slug);
+    return r ? `ranks #${r}` : 'is not ranked';
+  };
+  const sentences: string[] = [];
+  if (sameType && sharedLanguages.length) {
+    sentences.push(`Both are ${a.type.toLowerCase()} databases queried with ${sharedLanguages.slice(0, 2).join(' and ')}.`);
+  } else if (sameType) {
+    sentences.push(`Both are ${a.type.toLowerCase()} databases.`);
+  } else {
+    sentences.push(`${a.name} is a ${a.type.toLowerCase()} database; ${b.name} is a ${b.type.toLowerCase()} database.`);
+  }
+  sentences.push(`${a.name}${facts(a)} ${rankClause(a)}${updated ? ' this month' : ''}; ${b.name}${facts(b)} ${rankClause(b)}.`);
+  if (allSurveyed) sentences.push(`They differ on ${differCount} of ${featureKeys.length} surveyed features.`);
+  summary = sentences.join(' ');
+  h1 = `${a.name} vs ${b.name}`;
+  title = `${a.name} vs ${b.name} — Graph Database Comparison | GDB-Engines`;
+  description = allSurveyed
+    ? `Compare ${a.name} and ${b.name}: ${featureKeys.length} feature scores, licenses, query languages, and ${updated ?? 'monthly'} popularity rankings. They differ on ${differCount} features.`
+    : `Compare ${a.name} and ${b.name}: licenses, query languages, implementation languages, and ${updated ?? 'monthly'} popularity rankings.`;
+} else {
+  const languages = [...new Set(members.map((m) => m.implementation_language).filter(Boolean))].slice(0, 2);
+  const openSource = members.filter((m) => m.license && m.license !== 'Proprietary').length;
+  const sentences = [
+    `${members.length} active ${def.h1.replace(/ compared$/, '').toLowerCase()} are in the catalogue.`,
+  ];
+  if (languages.length) sentences.push(`They are written mostly in ${languages.join(' and ')}, ${openSource} are open source, and ${surveyedCount} carry survey feature scores.`);
+  if (inactive.length) sentences.push(`${inactive.map((m) => m.name).slice(0, 3).join(', ')} ${inactive.length === 1 ? 'is' : 'are'} no longer active and listed separately below.`);
+  summary = sentences.join(' ');
+  h1 = def.h1;
+  title = `${def.title} — ${members.length} Engines | GDB-Engines`;
+  description = `Compare the ${members.length} ${def.h1.replace(/ compared$/, '').toLowerCase()} in the catalogue: license, query languages, implementation language and feature scores.${updated ? ` Updated ${updated}.` : ''}`;
+}
+
+const listedEngines = isPair ? engines : members;
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Comparisons', item: 'https://gdb-engines.com/compare/' },
+    { '@type': 'ListItem', position: 3, name: h1, item: canonical },
+  ],
+});
+const itemListJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: h1,
+  url: canonical,
+  numberOfItems: listedEngines.length,
+  itemListElement: listedEngines.map((e, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://gdb-engines.com/db/${e.slug}/`,
+    name: e.name,
+  })),
+});
+
+// --- Row builders ---------------------------------------------------------------------
+const fmtDelta = (d: number | 'new' | null): string => {
+  if (d === 'new') return 'new';
+  if (d === null || d === undefined) return '';
+  if (d === 0) return '=';
+  return d > 0 ? `▲${d}` : `▼${Math.abs(d)}`;
+};
+const deltaClass = (d: number | 'new' | null): string => {
+  if (d === 'new') return 'delta-new';
+  if (d === null || d === undefined || d === 0) return 'delta-flat';
+  return d > 0 ? 'delta-up' : 'delta-down';
+};
+const tierClass = (tier?: string): string =>
+  tier ? `badge badge-${tier.toLowerCase().replace(/\s+/g, '-')}` : '';
+const pillar = (slug: string, key: string): string => {
+  const value = rankedOf(slug)?.pillars?.[key];
+  return typeof value === 'number' ? value.toFixed(1) : '—';
+};
+
+interface Row {
+  label: string;
+  values: string[];
+  mono?: boolean;
+}
+
+const glanceRows: Row[] = [
+  { label: 'Rank', values: engines.map((e) => (rankOf(e.slug) ? `#${rankOf(e.slug)}` : '— Not ranked')), mono: true },
+  { label: 'Score', values: engines.map((e) => (typeof rankedOf(e.slug)?.score === 'number' ? rankedOf(e.slug).score.toFixed(1) : '—')), mono: true },
+  { label: 'Popularity', values: engines.map((e) => pillar(e.slug, 'popularity')), mono: true },
+  { label: 'Activity', values: engines.map((e) => pillar(e.slug, 'activity')), mono: true },
+  { label: 'Community', values: engines.map((e) => pillar(e.slug, 'community')), mono: true },
+  { label: 'Research', values: engines.map((e) => pillar(e.slug, 'research')), mono: true },
+];
+
+const fundamentalRows: Row[] = [
+  { label: 'Vendor', values: engines.map((e) => e.vendor ?? '—') },
+  { label: 'Model', values: engines.map((e) => e.type) },
+  { label: 'Kind', values: engines.map((e) => e.kind) },
+  { label: 'Category', values: engines.map((e) => e.category) },
+  { label: 'First released', values: engines.map((e) => e.released ?? '—'), mono: true },
+  { label: 'Status', values: engines.map((e) => (e.status === 'active' ? 'active' : `${e.status}${e.status_note ? ` — ${e.status_note}` : ''}`)) },
+  { label: 'License', values: engines.map((e) => e.license ?? '—') },
+  { label: 'Written in', values: engines.map((e) => e.implementation_language ?? '—') },
+  { label: 'Query languages', values: engines.map((e) => (e.query_languages ?? []).join(', ') || '—') },
+  { label: 'gdotv support', values: engines.map((e) => (e.gdotv_support ? 'yes' : 'no')) },
+];
+
+const differs = (values: string[]): boolean => new Set(values).size > 1;
+
+/** Three states the homepage collapses into one: scored, assessed-absent, never assessed. */
+const cell = (engine: (typeof engines)[number], key: string): { text: string; cls: string } => {
+  const value = score(engine, key);
+  if (value === null) return { text: '—', cls: 'cell-unassessed' };
+  if (value === 1) return { text: '✓', cls: 'cell-yes' };
+  if (value === 0) return { text: '·', cls: 'cell-no' };
+  return { text: String(value), cls: 'cell-partial' };
+};
+
+const utm = (url?: string): string | null =>
+  url ? `${url}${url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral` : null;
+
+// Each column engine links to its pair pages against the others — the main crawl path
+// into the pair set from a browsable page.
+const columnPairs = !isPair
+  ? engines.flatMap((x, i) =>
+      engines.slice(i + 1).map((y) => {
+        const [p, q] = x.slug < y.slug ? [x, y] : [y, x];
+        return { slug: `${p.slug}-vs-${q.slug}`, label: `${p.name} vs ${q.name}` };
+      })
+    )
+  : [];
+// Columns are picked survey-first, not in rank order, so the segment table is every
+// member that is not already a column — not the tail of the member list.
+const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug === m.slug)) : [];
+---
+<Layout title={title} description={description} canonical={canonical} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
+  <SiteHeader />
+  <main class="compare-page">
+    <nav class="breadcrumb"><a href="/compare/">Comparisons</a> &rsaquo; {h1}</nav>
+    <h1>{h1}</h1>
+    {!isPair && <p class="lede">{def.lede}</p>}
+    <p class="lead">{summary}</p>
+    {!isPair && def.ranking_board && (
+      <p class="cross-link">
+        Ranked by popularity: <a href={`/rankings/${def.ranking_board}/`}>{def.h1.replace(/ compared$/, '')} popularity ranking &rarr;</a>
+      </p>
+    )}
+
+    {engines.length <= 4 && <CompareCombobox seed={engines.map((e) => e.slug)} mode="static" />}
+
+    <div class="matrix-scroll">
+      {/* `data-compare-table` is where compare-builder.ts writes the "+" column, when the
+          combobox above is mounted and a column can still be added. */}
+      <table class="compare-table" data-compare-table>
+        <thead>
+          <tr>
+            <th class="row-label" scope="col"><span class="visually-hidden">Attribute</span></th>
+            {engines.map((e) => (
+              <th scope="col" class="engine-head">
+                <a href={`/db/${e.slug}/`} class="engine-head__link">
+                  <img src={faviconMap[e.slug] ?? '/favicon.svg'} alt="" width="20" height="20" loading="lazy" />
+                  <span class="engine-head__name">{e.name}</span>
+                </a>
+                <span class="engine-head__meta">
+                  <span class="num">{rankOf(e.slug) ? `#${rankOf(e.slug)}` : '—'}</span>
+                  <span class={`num ${deltaClass(rankedOf(e.slug)?.rankDelta1m ?? null)}`}>{fmtDelta(rankedOf(e.slug)?.rankDelta1m ?? null)}</span>
+                  {rankedOf(e.slug)?.tier && <span class={tierClass(rankedOf(e.slug).tier)}>{rankedOf(e.slug).tier}</span>}
+                </span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="group-head"><th colspan={colSpan} scope="colgroup">At a glance</th></tr>
+          {glanceRows.map((row) => (
+            <tr class={differs(row.values) ? 'differs' : ''}>
+              <th scope="row" class="row-label">{row.label}</th>
+              {row.values.map((v) => <td class={row.mono ? 'num' : ''}>{v}</td>)}
+            </tr>
+          ))}
+
+          <tr class="group-head"><th colspan={colSpan} scope="colgroup">Fundamentals</th></tr>
+          <tr>
+            <th scope="row" class="row-label">Description</th>
+            {engines.map((e) => <td class="desc">{e.description}</td>)}
+          </tr>
+          {fundamentalRows.map((row) => (
+            <tr class={differs(row.values) ? 'differs' : ''}>
+              <th scope="row" class="row-label">{row.label}</th>
+              {row.values.map((v) => <td class={row.mono ? 'num' : ''}>{v}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {sponsor && !sponsoredHere && <SponsorSlot sponsor={sponsor} />}
+
+    <section class="features">
+      <h2>
+        Feature scores
+        {showDifferCount
+          ? <span class="differ-count num">{differCount} of {featureKeys.length} rows differ</span>
+          : isPair
+            ? <span class="differ-count">— not surveyed for {unsurveyed.map((e) => e.name).join(' or ')}</span>
+            : null}
+        {showDifferCount && (
+          <label class="differ-toggle">
+            <input type="checkbox" data-differ-toggle /> Show only differing rows
+          </label>
+        )}
+      </h2>
+      {showMatrix ? (
+        <div class="matrix-scroll" data-feature-matrix>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="row-label" scope="col"><span class="visually-hidden">Feature</span></th>
+                {engines.map((e) => <th scope="col" class="engine-head engine-head--compact">{e.name}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {featureGroups.map((group) => (
+                <>
+                  <tr class="group-head"><th colspan={colSpan} scope="colgroup">{group.name}</th></tr>
+                  {group.features.map((key) => (
+                    <tr class={featureDiffers(key) ? 'differs' : ''}>
+                      <th scope="row" class="row-label">
+                        <span class="has-tooltip" aria-label={featureDescriptions[key] ?? featureDisplayNames[key] ?? key} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">
+                          {featureDisplayNames[key] ?? key}
+                        </span>
+                      </th>
+                      {engines.map((e) => {
+                        const c = cell(e, key);
+                        return <td class={`feature-cell ${c.cls}`}>{c.text}</td>;
+                      })}
+                    </tr>
+                  ))}
+                </>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        !isPair && (
+          <p class="note">
+            Survey feature scores are available for {surveyedCount} of these {members.length} engines. See each engine's page.
+          </p>
+        )
+      )}
+    </section>
+
+    {!isPair && tableMembers.length > 0 && (
+      <section class="segment">
+        <h2>All {members.length} engines</h2>
+        <div class="matrix-scroll">
+          <table class="compare-table segment-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th><th scope="col">Vendor</th><th scope="col">Model</th>
+                <th scope="col">Category</th><th scope="col">License</th><th scope="col">Written in</th>
+                <th scope="col">Query languages</th><th scope="col">Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableMembers.map((m) => (
+                <tr>
+                  <th scope="row"><a href={`/db/${m.slug}/`}>{m.name}</a></th>
+                  <td>{m.vendor ?? '—'}</td>
+                  <td>{m.type}</td>
+                  <td>{m.category}</td>
+                  <td>{m.license ?? '—'}</td>
+                  <td>{m.implementation_language ?? '—'}</td>
+                  <td>{(m.query_languages ?? []).join(', ') || '—'}</td>
+                  <td class="num">{rankOf(m.slug) ? `#${rankOf(m.slug)}` : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    {!isPair && inactive.length > 0 && (
+      <section class="inactive">
+        <h2>No longer active</h2>
+        <ul>
+          {inactive.map((m) => (
+            <li><a href={`/db/${m.slug}/`}>{m.name}</a>{m.status_note ? ` — ${m.status_note}` : ` — ${m.status}`}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {!isPair && columnPairs.length > 0 && (
+      <section class="related">
+        <h2>Head to head</h2>
+        <ul class="link-grid">
+          {columnPairs.map((p) => <li><a href={`/compare/${p.slug}/`}>{p.label}</a></li>)}
+        </ul>
+      </section>
+    )}
+
+    {!isPair && siblings.length > 0 && (
+      <section class="related">
+        <h2>Related comparisons</h2>
+        <ul class="link-grid">
+          {siblings.map((s) => <li><a href={`/compare/${s.slug}/`}>{s.h1}</a></li>)}
+        </ul>
+      </section>
+    )}
+
+    {isPair && related.length > 0 && (
+      <section class="related">
+        <h2>Related comparisons</h2>
+        <ul class="link-grid">
+          {related.map((r) => <li><a href={`/compare/${r.slug}/`}>{r.label}</a></li>)}
+        </ul>
+      </section>
+    )}
+
+    {isPair && (
+      <section class="links">
+        <h2>Links</h2>
+        <ul>
+          {engines.map((e) => (
+            <li>
+              <strong>{e.name}</strong>
+              {e.url && <> · <a href={utm(e.url)} rel="nofollow noopener" target="_blank">website</a></>}
+              {e.github_url && <> · <a href={e.github_url} rel="nofollow noopener" target="_blank">github</a></>}
+              {' '}· <a href={`/db/${e.slug}/`}>full profile</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </main>
+</Layout>
+
+<script>
+  // JS-only and default off, so the full matrix is always in the served HTML.
+  const toggle = document.querySelector<HTMLInputElement>('[data-differ-toggle]');
+  const matrix = document.querySelector<HTMLElement>('[data-feature-matrix]');
+  toggle?.addEventListener('change', () => {
+    matrix?.classList.toggle('only-differing', toggle.checked);
+  });
+</script>
+
+<style>
+  .compare-page { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; }
+  .breadcrumb { font-size: 0.85rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
+  .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
+  h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
+  .lede { color: var(--color-text-secondary); margin: 0 0 0.5rem; max-width: 90ch; }
+  .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .cross-link, .note { font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 1rem; }
+  .cross-link a { color: var(--color-text); }
+
+  .matrix-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 6px; }
+  .compare-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  .compare-table td, .compare-table th { border-bottom: 1px solid var(--color-border); padding: 0.4rem 0.65rem; text-align: left; vertical-align: top; }
+  /* global.css sets `th, td { white-space: nowrap }` for the homepage table. This matrix
+     carries prose (descriptions, status notes), which would otherwise render on one line
+     and spill across the neighbouring columns. */
+  .compare-table td { white-space: normal; }
+  .row-label { position: sticky; left: 0; background: var(--color-background); color: var(--color-text-secondary); font-weight: 400; white-space: nowrap; }
+  .engine-head { position: sticky; top: var(--header-height); background: var(--color-surface); z-index: 2; }
+  .engine-head--compact { font-weight: 600; }
+  .engine-head__link { display: flex; align-items: center; gap: 0.4rem; color: var(--color-text); text-decoration: none; font-weight: 600; }
+  .engine-head__meta { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.2rem; font-size: 0.75rem; color: var(--color-text-secondary); }
+  .group-head th { font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; font-size: 0.7rem; color: var(--color-text-tertiary); background: var(--color-surface); }
+
+  /* The difference rule: the left edge becomes the difference profile. */
+  .differs .row-label { box-shadow: inset 2px 0 0 0 var(--color-brand-accent); }
+
+  .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  .desc { color: var(--color-text-secondary); max-width: 40ch; }
+  .differ-toggle { font-family: 'Rubik', sans-serif; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--color-text-secondary); margin-left: 0.75rem; font-size: 0.75rem; }
+  .differ-count { font-family: 'IBM Plex Mono', monospace; text-transform: none; letter-spacing: 0; color: var(--color-text-tertiary); margin-left: 0.5rem; }
+  .feature-cell { text-align: center; }
+  .cell-no, .cell-unassessed { color: var(--color-text-tertiary); }
+  .segment-table a { color: var(--color-text); }
+  .inactive ul { color: var(--color-text-secondary); line-height: 1.7; padding-left: 1.1rem; }
+  .inactive a { color: var(--color-text); }
+  .link-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.35rem 1rem; }
+  .link-grid a { color: var(--color-text); text-decoration: none; font-size: 0.9rem; }
+  .link-grid a:hover { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
+  .links ul { list-style: none; padding: 0; margin: 0; color: var(--color-text-secondary); line-height: 1.8; }
+  .links a { color: var(--color-text); }
+  .only-differing tbody tr:not(.differs):not(.group-head) { display: none; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>

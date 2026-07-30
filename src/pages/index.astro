@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
-import { fetchFavicon } from '../utils/favicon';
+import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 
@@ -25,16 +26,8 @@ databases.sort((a, b) => {
   return a.data.name.localeCompare(b.data.name);
 });
 
-// Check for favicons extracted by prebuild script
-const faviconMap = new Map<string, { url: string; source: string }>();
-for (const db of databases) {
-  if (db.data.icon) {
-    faviconMap.set(db.data.slug, { url: `/logos/${db.data.icon}`, source: 'custom' });
-  } else {
-    const result = await fetchFavicon(db.data.slug, db.data.url ?? '', db.data.github_url);
-    faviconMap.set(db.data.slug, result);
-  }
-}
+// Slugs with a real logo; a fallback lookup leaves the slug absent (see buildFaviconMap).
+const faviconMap = await buildFaviconMap(databases);
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -80,49 +73,7 @@ const datasetJsonLd = JSON.stringify({
   jsonLd={[jsonLd, datasetJsonLd]}
   description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`}
 >
-  <header>
-    <div class="left">
-      <a href="/" class="header-home" aria-label="GDB-Engines home">
-        <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
-        <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
-        <span class="header-brand">GDB-Engines</span>
-      </a>
-      <span class="slash"></span>
-      <p>Compare <span id="db-count">{databases.length}</span> graph databases</p>
-      <a href="/rankings/" class="rankings-link" aria-label="Monthly graph database popularity rankings">
-        <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <rect x="2" y="9" width="3" height="5" rx="0.5"/>
-          <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
-          <rect x="11" y="2" width="3" height="12" rx="0.5"/>
-        </svg>
-        <span class="rankings-link__label">Rankings</span>
-      </a>
-    </div>
-    <div class="right">
-      <div class="search-container">
-        <input type="text" id="search" placeholder="Search databases" autocomplete="off" />
-        <span class="search-shortcut" id="search-shortcut">&#x2318;K</span>
-      </div>
-      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-      <button id="help">About</button>
-      <div class="menu-wrapper">
-        <button id="menu-toggle" class="menu-btn" aria-label="Options">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
-        <div class="menu-dropdown" id="menu-dropdown">
-          <label><input type="checkbox" id="toggle-inactive" /> Show Inactive</label>
-          <label><input type="checkbox" id="toggle-features" /> Research Features</label>
-          <a class="menu-link" href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
-            Source on GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <SiteHeader comparisonControls />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
@@ -167,20 +118,20 @@ const datasetJsonLd = JSON.stringify({
                     : typeof d === 'number' && d > 0 ? 'delta-down' : '';
                   return (
                     <a href="/rankings/overall/" class="rank-link">
-                      {rank}{deltaText && <span class={`rank-delta ${deltaCls}`}>{deltaText}</span>}
+                      <span class="rank-num">{rank}</span>
+                      <span class={`rank-delta ${deltaCls}`}>{deltaText}</span>
                     </a>
                   );
                 })()
-              : <span class="rank-empty">—</span>}</td>
+              : <span class="rank-link"><span class="rank-num rank-empty">—</span><span class="rank-delta"></span></span>}</td>
           )}
           <td>
             <div class="database-cell">
               {(() => {
-                const fav = faviconMap.get(db.data.slug);
-                const showIcon = fav && (fav.source === 'site' || fav.source === 'custom' || fav.source === 'github');
-                return showIcon ? (
+                const fav = faviconMap[db.data.slug];
+                return fav ? (
                   <img
-                    src={fav.url}
+                    src={fav}
                     alt=""
                     width="20"
                     height="20"

@@ -1,19 +1,37 @@
 ---
+import { getDatabaseCount } from '../lib/database-count';
+
+interface Props {
+  comparisonControls?: boolean;
+}
+
+const { comparisonControls = false } = Astro.props;
+// Only the comparison table can be filtered, so only that page shows a live count;
+// table.ts rewrites #db-count to "12 / 145" as rows are hidden.
+const databaseCount = comparisonControls ? await getDatabaseCount() : null;
+
+// Highlight the nav entry covering the current page, including its sub-pages
+// (/rankings/cypher/ lights up "Rankings").
+const path = Astro.url.pathname;
+const onRankings = path.startsWith('/rankings');
+const onCompare = path.startsWith('/compare');
+
 /**
- * Shared site header for pages other than the comparison-table homepage.
- * Matches the visual style of the homepage header — same logo, same brand pill,
- * same theme toggle — minus the search box and About modal (which only make sense
- * on the comparison page).
+ * Shared site navigation. The comparison page opts into its search, modal, and
+ * table controls; the primary navigation stays identical across every page.
+ *
+ * The Compare mark is Phosphor Icons' "scales" (MIT, github.com/phosphor-icons/core);
+ * the two equal bars it replaced read as a pause button.
  */
 ---
 <header>
   <div class="left">
     <a href="/" class="header-home" aria-label="GDB-Engines home">
-      <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" />
-      <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
+      <img src="/graph-icon-light.svg" alt="" class="header-logo light-only" width="28" height="28" />
+      <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" width="28" height="28" />
       <span class="header-brand">GDB-Engines</span>
     </a>
-    <a href="/rankings/" class="rankings-link" aria-label="Monthly graph database popularity rankings">
+    <a href="/rankings/" class:list={['rankings-link', onRankings && 'is-active']} aria-current={onRankings ? 'page' : undefined} aria-label="Monthly graph database popularity rankings">
       <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <rect x="2" y="9" width="3" height="5" rx="0.5"/>
         <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
@@ -21,13 +39,48 @@
       </svg>
       <span class="rankings-link__label">Rankings</span>
     </a>
-    <slot name="left" />
+    <a href="/compare/" class:list={['rankings-link', onCompare && 'is-active']} aria-current={onCompare ? 'page' : undefined} aria-label="Compare graph databases side by side">
+      <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+        <path d="M239.43,133l-32-80h0a8,8,0,0,0-9.16-4.84L136,62V40a8,8,0,0,0-16,0V65.58L54.26,80.19A8,8,0,0,0,48.57,85h0v.06L16.57,165a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32a7.92,7.92,0,0,0-.57-3L66.92,93.77,120,82V208H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16H136V78.42L187,67.1,160.57,133a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32A7.92,7.92,0,0,0,239.43,133ZM56,184c-7.53,0-22.76-3.61-23.93-14.64L56,109.54l23.93,59.82C78.76,180.39,63.53,184,56,184Zm144-32c-7.53,0-22.76-3.61-23.93-14.64L200,77.54l23.93,59.82C222.76,148.39,207.53,152,200,152Z"/>
+      </svg>
+      <span class="rankings-link__label">Compare</span>
+    </a>
+    <p class="database-summary">
+      {comparisonControls
+        ? <>Compare <span id="db-count">{databaseCount}</span> graph databases</>
+        : 'The go-to resource for graph technology details'}
+    </p>
   </div>
   <div class="right">
+    {comparisonControls && (
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search databases" autocomplete="off" />
+        <span class="search-shortcut" id="search-shortcut">&#x2318;K</span>
+      </div>
+    )}
     <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
       <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a href="/about/" class="header-link">About</a>
+    {comparisonControls ? (
+      <>
+        <button id="help">About</button>
+        <div class="menu-wrapper">
+          <button id="menu-toggle" class="menu-btn" aria-label="Options">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="menu-dropdown" id="menu-dropdown">
+            <label><input type="checkbox" id="toggle-inactive" /> Show Inactive</label>
+            <label><input type="checkbox" id="toggle-features" /> Research Features</label>
+            <a class="menu-link" href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
+              Source on GitHub
+            </a>
+          </div>
+        </div>
+      </>
+    ) : (
+      <a href="/about/" class="header-link">About</a>
+    )}
   </div>
 </header>
