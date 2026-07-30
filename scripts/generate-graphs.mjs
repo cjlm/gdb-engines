@@ -4,6 +4,9 @@ import { parse } from "smol-toml";
 
 const SOURCE_DIR = "src/content/databases";
 const OUTPUT_DIR = "public/graphs";
+const SITE_ORIGIN = (
+  process.env.PUBLIC_SITE_ORIGIN ?? "https://gdb-engines.com"
+).replace(/\/+$/, "");
 
 const files = (await readdir(SOURCE_DIR))
   .filter((file) => file.endsWith(".toml"))
@@ -54,14 +57,27 @@ const sizeByDegree = {
   resultType: "num",
 };
 
+const imageByUrl = {
+  channel: "image",
+  source: { kind: "field", id: "image" },
+  resultType: "cat",
+};
+
+function databaseNode(database) {
+  return {
+    id: `db:${database.slug}`,
+    label: database.name,
+    image: `${SITE_ORIGIN}/logos/${encodeURIComponent(database.slug)}.png`,
+  };
+}
+
 function bipartiteDocument() {
   const languageNames = [
     ...new Set(databases.flatMap((database) => database.queryLanguages)),
   ].sort();
   const nodes = [
     ...databases.map((database) => ({
-      id: `db:${database.slug}`,
-      label: database.name,
+      ...databaseNode(database),
       kind: "Database",
       type: database.type,
       category: database.category,
@@ -86,6 +102,7 @@ function bipartiteDocument() {
     layout: "force",
     bindings: [
       sizeByDegree,
+      imageByUrl,
       {
         channel: "color",
         source: { kind: "field", id: "kind" },
@@ -162,8 +179,7 @@ function similarityDocument() {
   }
 
   const nodes = databases.map((database) => ({
-    id: `db:${database.slug}`,
-    label: database.name,
+    ...databaseNode(database),
     type: database.type,
     kind: database.kind,
     category: database.category,
@@ -178,6 +194,7 @@ function similarityDocument() {
     layout: "force",
     bindings: [
       sizeByDegree,
+      imageByUrl,
       {
         channel: "color",
         source: { kind: "field", id: "type" },

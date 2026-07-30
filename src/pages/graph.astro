@@ -147,6 +147,18 @@ const garphieldOrigin =
           const response = await fetch(button.dataset.document);
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const document = await response.json();
+          // Generated documents keep production-absolute asset URLs so they
+          // remain portable. In dev, point those same assets at this local GDB
+          // server; Garphield still receives a valid absolute URL.
+          if (import.meta.env.DEV) {
+            for (const node of document.datasets[0].graph.nodes) {
+              if (typeof node.image !== 'string') continue;
+              const image = new URL(node.image);
+              if (image.origin === 'https://gdb-engines.com') {
+                node.image = new URL(image.pathname, window.location.origin).href;
+              }
+            }
+          }
           await syncTheme();
           await driver.setDocument(document);
           if (version !== loadVersion) return;
@@ -285,13 +297,10 @@ const garphieldOrigin =
     }
 
     @media (max-width: 68rem) {
-      .graph-page {
-        grid-template-rows: auto minmax(34rem, 70vh);
-      }
-
       .graph-intro {
         align-items: stretch;
         flex-direction: column;
+        justify-content: flex-start;
         gap: 0.75rem;
       }
 

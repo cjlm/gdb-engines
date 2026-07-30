@@ -3,10 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "favicons": "node scripts/extract-favicons.mjs",
     "graphs": "node scripts/generate-graphs.mjs",
-    "predev": "npm run graphs",
+    "predev": "npm run favicons && npm run graphs",
     "dev": "astro dev",
-    "prebuild": "node scripts/extract-favicons.mjs && npm run graphs",
+    "prebuild": "npm run favicons && npm run graphs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

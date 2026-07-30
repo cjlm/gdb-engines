@@ -16,6 +16,7 @@
           {
             "id": "db:4store",
             "label": "4store",
+            "image": "https://gdb-engines.com/logos/4store.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -27,6 +28,7 @@
           {
             "id": "db:aerospike",
             "label": "Aerospike Graph",
+            "image": "https://gdb-engines.com/logos/aerospike.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -38,6 +40,7 @@
           {
             "id": "db:agdb",
             "label": "agdb",
+            "image": "https://gdb-engines.com/logos/agdb.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -49,6 +52,7 @@
           {
             "id": "db:agensgraph",
             "label": "AgensGraph",
+            "image": "https://gdb-engines.com/logos/agensgraph.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Growing",
@@ -60,6 +64,7 @@
           {
             "id": "db:akutan",
             "label": "Akutan",
+            "image": "https://gdb-engines.com/logos/akutan.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -71,6 +76,7 @@
           {
             "id": "db:alibaba-gdb",
             "label": "Alibaba GDB",
+            "image": "https://gdb-engines.com/logos/alibaba-gdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -82,6 +88,7 @@
           {
             "id": "db:allegrograph",
             "label": "AllegroGraph",
+            "image": "https://gdb-engines.com/logos/allegrograph.png",
             "type": "RDF",
             "kind": "database",
             "category": "Established",
@@ -93,6 +100,7 @@
           {
             "id": "db:altair-graph-lakehouse",
             "label": "Altair Graph Lakehouse",
+            "image": "https://gdb-engines.com/logos/altair-graph-lakehouse.png",
             "type": "RDF",
             "kind": "database",
             "category": "Enterprise",
@@ -104,6 +112,7 @@
           {
             "id": "db:apache-age",
             "label": "Apache AGE",
+            "image": "https://gdb-engines.com/logos/apache-age.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Established",
@@ -115,6 +124,7 @@
           {
             "id": "db:apache-giraph",
             "label": "Apache Giraph",
+            "image": "https://gdb-engines.com/logos/apache-giraph.png",
             "type": "Property Graph",
             "kind": "query-engine",
             "category": "Established",
@@ -126,6 +136,7 @@
           {
             "id": "db:apache-hugegraph",
             "label": "Apache HugeGraph",
+            "image": "https://gdb-engines.com/logos/apache-hugegraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -137,6 +148,7 @@
           {
             "id": "db:apache-jena-fuseki",
             "label": "Apache Jena Fuseki",
+            "image": "https://gdb-engines.com/logos/apache-jena-fuseki.png",
             "type": "RDF",
             "kind": "database",
             "category": "Established",
@@ -148,6 +160,7 @@
           {
             "id": "db:apache-rya",
             "label": "Apache Rya",
+            "image": "https://gdb-engines.com/logos/apache-rya.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -159,6 +172,7 @@
           {
             "id": "db:arangodb",
             "label": "ArangoDB",
+            "image": "https://gdb-engines.com/logos/arangodb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -170,6 +184,7 @@
           {
             "id": "db:arcadedb",
             "label": "ArcadeDB",
+            "image": "https://gdb-engines.com/logos/arcadedb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Growing",
@@ -181,6 +196,7 @@
           {
             "id": "db:atomic-server",
             "label": "Atomic Server",
+            "image": "https://gdb-engines.com/logos/atomic-server.png",
             "type": "Other",
             "kind": "database",
             "category": "Emerging",
@@ -192,6 +208,7 @@
           {
             "id": "db:attean",
             "label": "Attean",
+            "image": "https://gdb-engines.com/logos/attean.png",
             "type": "RDF",
             "kind": "library",
             "category": "Emerging",
@@ -203,6 +220,7 @@
           {
             "id": "db:bangdb",
             "label": "BangDB",
+            "image": "https://gdb-engines.com/logos/bangdb.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -214,6 +232,7 @@
           {
             "id": "db:bighorn",
             "label": "Bighorn",
+            "image": "https://gdb-engines.com/logos/bighorn.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -225,6 +244,7 @@
           {
             "id": "db:bigquery-graph",
             "label": "Google Cloud BigQuery Graph",
+            "image": "https://gdb-engines.com/logos/bigquery-graph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -236,6 +256,7 @@
           {
             "id": "db:bitsy",
             "label": "Bitsy",
+            "image": "https://gdb-engines.com/logos/bitsy.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -247,6 +268,7 @@
           {
             "id": "db:blazegraph",
             "label": "BlazeGraph",
+            "image": "https://gdb-engines.com/logos/blazegraph.png",
             "type": "RDF",
             "kind": "database",
             "category": "Established",
@@ -258,6 +280,7 @@
           {
             "id": "db:brightstardb",
             "label": "BrightstarDB",
+            "image": "https://gdb-engines.com/logos/brightstardb.png",
             "type": "RDF",
             "kind": "embedded",
             "category": "Emerging",
@@ -269,6 +292,7 @@
           {
             "id": "db:bytegraph",
             "label": "ByteGraph",
+            "image": "https://gdb-engines.com/logos/bytegraph.png",
             "type": "Other",
             "kind": "database",
             "category": "Enterprise",
@@ -280,6 +304,7 @@
           {
             "id": "db:chronograph",
             "label": "ChronoGraph",
+            "image": "https://gdb-engines.com/logos/chronograph.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -291,6 +316,7 @@
           {
             "id": "db:codemix-graph",
             "label": "CodeMix Graph",
+            "image": "https://gdb-engines.com/logos/codemix-graph.png",
             "type": "Property Graph",
             "kind": "library",
             "category": "Emerging",
@@ -302,6 +328,7 @@
           {
             "id": "db:cogdb",
             "label": "CogDB",
+            "image": "https://gdb-engines.com/logos/cogdb.png",
             "type": "RDF",
             "kind": "embedded",
             "category": "Emerging",
@@ -313,6 +340,7 @@
           {
             "id": "db:comunica",
             "label": "Comunica",
+            "image": "https://gdb-engines.com/logos/comunica.png",
             "type": "RDF",
             "kind": "query-engine",
             "category": "Emerging",
@@ -324,6 +352,7 @@
           {
             "id": "db:cosmos-db",
             "label": "Cosmos DB",
+            "image": "https://gdb-engines.com/logos/cosmos-db.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -335,6 +364,7 @@
           {
             "id": "db:cray-graph-engine",
             "label": "Cray Graph Engine",
+            "image": "https://gdb-engines.com/logos/cray-graph-engine.png",
             "type": "Other",
             "kind": "database",
             "category": "Enterprise",
@@ -346,6 +376,7 @@
           {
             "id": "db:data-graphs",
             "label": "Data Graphs",
+            "image": "https://gdb-engines.com/logos/data-graphs.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
@@ -357,6 +388,7 @@
           {
             "id": "db:datastax-enterprise",
             "label": "DataStax Enterprise",
+            "image": "https://gdb-engines.com/logos/datastax-enterprise.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -368,6 +400,7 @@
           {
             "id": "db:dgraph",
             "label": "Dgraph",
+            "image": "https://gdb-engines.com/logos/dgraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -379,6 +412,7 @@
           {
             "id": "db:dozerdb",
             "label": "DozerDB",
+            "image": "https://gdb-engines.com/logos/dozerdb.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -390,6 +424,7 @@
           {
             "id": "db:duckpgq",
             "label": "DuckPGQ",
+            "image": "https://gdb-engines.com/logos/duckpgq.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -401,6 +436,7 @@
           {
             "id": "db:dydra",
             "label": "Dydra",
+            "image": "https://gdb-engines.com/logos/dydra.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -412,6 +448,7 @@
           {
             "id": "db:eclipse-rdf4j",
             "label": "Eclipse RDF4J",
+            "image": "https://gdb-engines.com/logos/eclipse-rdf4j.png",
             "type": "RDF",
             "kind": "database",
             "category": "Established",
@@ -423,6 +460,7 @@
           {
             "id": "db:fabric-graph",
             "label": "Microsoft Fabric Graph",
+            "image": "https://gdb-engines.com/logos/fabric-graph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -434,6 +472,7 @@
           {
             "id": "db:falkordblite",
             "label": "FalkorDBLite",
+            "image": "https://gdb-engines.com/logos/falkordblite.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -445,6 +484,7 @@
           {
             "id": "db:faunadb",
             "label": "FaunaDB",
+            "image": "https://gdb-engines.com/logos/faunadb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
@@ -456,6 +496,7 @@
           {
             "id": "db:flockdb",
             "label": "FlockDB",
+            "image": "https://gdb-engines.com/logos/flockdb.png",
             "type": "Other",
             "kind": "database",
             "category": "Established",
@@ -467,6 +508,7 @@
           {
             "id": "db:fluree",
             "label": "Fluree",
+            "image": "https://gdb-engines.com/logos/fluree.png",
             "type": "RDF",
             "kind": "database",
             "category": "Growing",
@@ -478,6 +520,7 @@
           {
             "id": "db:frogql",
             "label": "froGQL",
+            "image": "https://gdb-engines.com/logos/frogql.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -489,6 +532,7 @@
           {
             "id": "db:g-tran",
             "label": "G-Tran",
+            "image": "https://gdb-engines.com/logos/g-tran.png",
             "type": "Other",
             "kind": "database",
             "category": "Emerging",
@@ -500,6 +544,7 @@
           {
             "id": "db:gaffer",
             "label": "Gaffer",
+            "image": "https://gdb-engines.com/logos/gaffer.png",
             "type": "Other",
             "kind": "query-engine",
             "category": "Established",
@@ -511,6 +556,7 @@
           {
             "id": "db:galaxybase",
             "label": "GalaxyBase",
+            "image": "https://gdb-engines.com/logos/galaxybase.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -522,6 +568,7 @@
           {
             "id": "db:gfql",
             "label": "GFQL",
+            "image": "https://gdb-engines.com/logos/gfql.png",
             "type": "Property Graph",
             "kind": "query-engine",
             "category": "Growing",
@@ -533,6 +580,7 @@
           {
             "id": "db:google-cayley",
             "label": "Google Cayley",
+            "image": "https://gdb-engines.com/logos/google-cayley.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -544,6 +592,7 @@
           {
             "id": "db:grafeo",
             "label": "Grafeo",
+            "image": "https://gdb-engines.com/logos/grafeo.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
@@ -555,6 +604,7 @@
           {
             "id": "db:graph-engine",
             "label": "Graph Engine",
+            "image": "https://gdb-engines.com/logos/graph-engine.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -566,6 +616,7 @@
           {
             "id": "db:graphbase",
             "label": "GraphBase",
+            "image": "https://gdb-engines.com/logos/graphbase.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -577,6 +628,7 @@
           {
             "id": "db:graphflow",
             "label": "Graphflow",
+            "image": "https://gdb-engines.com/logos/graphflow.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -588,6 +640,7 @@
           {
             "id": "db:graphlite",
             "label": "GraphLite",
+            "image": "https://gdb-engines.com/logos/graphlite.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -599,6 +652,7 @@
           {
             "id": "db:graphqlite",
             "label": "GraphQLite",
+            "image": "https://gdb-engines.com/logos/graphqlite.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -610,6 +664,7 @@
           {
             "id": "db:graphscope",
             "label": "GraphScope",
+            "image": "https://gdb-engines.com/logos/graphscope.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Growing",
@@ -621,6 +676,7 @@
           {
             "id": "db:grust",
             "label": "Grust",
+            "image": "https://gdb-engines.com/logos/grust.png",
             "type": "Property Graph",
             "kind": "library",
             "category": "Emerging",
@@ -632,6 +688,7 @@
           {
             "id": "db:gstore",
             "label": "gStore",
+            "image": "https://gdb-engines.com/logos/gstore.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -643,6 +700,7 @@
           {
             "id": "db:gun",
             "label": "GUN",
+            "image": "https://gdb-engines.com/logos/gun.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -654,6 +712,7 @@
           {
             "id": "db:halyard",
             "label": "Halyard",
+            "image": "https://gdb-engines.com/logos/halyard.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -665,6 +724,7 @@
           {
             "id": "db:helixdb",
             "label": "HelixDB",
+            "image": "https://gdb-engines.com/logos/helixdb.png",
             "type": "Other",
             "kind": "database",
             "category": "Emerging",
@@ -676,6 +736,7 @@
           {
             "id": "db:hgraphdb",
             "label": "HGraphDB",
+            "image": "https://gdb-engines.com/logos/hgraphdb.png",
             "type": "Other",
             "kind": "extension",
             "category": "Emerging",
@@ -687,6 +748,7 @@
           {
             "id": "db:huawei-ges",
             "label": "Huawei Graph Engine Service",
+            "image": "https://gdb-engines.com/logos/huawei-ges.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -698,6 +760,7 @@
           {
             "id": "db:hypergraphdb",
             "label": "HyperGraphDB",
+            "image": "https://gdb-engines.com/logos/hypergraphdb.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -709,6 +772,7 @@
           {
             "id": "db:ibm-system-g",
             "label": "IBM System G",
+            "image": "https://gdb-engines.com/logos/ibm-system-g.png",
             "type": "Other",
             "kind": "database",
             "category": "Enterprise",
@@ -720,6 +784,7 @@
           {
             "id": "db:infinitegraph",
             "label": "InfiniteGraph",
+            "image": "https://gdb-engines.com/logos/infinitegraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -731,6 +796,7 @@
           {
             "id": "db:janusgraph",
             "label": "JanusGraph",
+            "image": "https://gdb-engines.com/logos/janusgraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -742,6 +808,7 @@
           {
             "id": "db:katanagraph",
             "label": "KatanaGraph",
+            "image": "https://gdb-engines.com/logos/katanagraph.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -753,6 +820,7 @@
           {
             "id": "db:kglite",
             "label": "KGLite",
+            "image": "https://gdb-engines.com/logos/kglite.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -764,6 +832,7 @@
           {
             "id": "db:kinetica",
             "label": "Kinetica",
+            "image": "https://gdb-engines.com/logos/kinetica.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Established",
@@ -775,6 +844,7 @@
           {
             "id": "db:kuzu",
             "label": "Kuzu",
+            "image": "https://gdb-engines.com/logos/kuzu.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -786,6 +856,7 @@
           {
             "id": "db:ladybugdb",
             "label": "LadybugDB",
+            "image": "https://gdb-engines.com/logos/ladybugdb.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Growing",
@@ -797,6 +868,7 @@
           {
             "id": "db:lance-graph",
             "label": "Lance Graph",
+            "image": "https://gdb-engines.com/logos/lance-graph.png",
             "type": "Property Graph",
             "kind": "query-engine",
             "category": "Emerging",
@@ -808,6 +880,7 @@
           {
             "id": "db:livegraph",
             "label": "LiveGraph",
+            "image": "https://gdb-engines.com/logos/livegraph.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -819,6 +892,7 @@
           {
             "id": "db:marklogic",
             "label": "MarkLogic",
+            "image": "https://gdb-engines.com/logos/marklogic.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -830,6 +904,7 @@
           {
             "id": "db:marmotta-kiwi",
             "label": "Apache Marmotta KiWi",
+            "image": "https://gdb-engines.com/logos/marmotta-kiwi.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -841,6 +916,7 @@
           {
             "id": "db:memgql",
             "label": "MemGQL",
+            "image": "https://gdb-engines.com/logos/memgql.png",
             "type": "Multiple",
             "kind": "query-engine",
             "category": "Emerging",
@@ -852,6 +928,7 @@
           {
             "id": "db:memgraph",
             "label": "Memgraph",
+            "image": "https://gdb-engines.com/logos/memgraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -863,6 +940,7 @@
           {
             "id": "db:millenniumdb",
             "label": "MillenniumDB",
+            "image": "https://gdb-engines.com/logos/millenniumdb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
@@ -874,6 +952,7 @@
           {
             "id": "db:minigraf",
             "label": "Minigraf",
+            "image": "https://gdb-engines.com/logos/minigraf.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -885,6 +964,7 @@
           {
             "id": "db:mulgara",
             "label": "Mulgara",
+            "image": "https://gdb-engines.com/logos/mulgara.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -896,6 +976,7 @@
           {
             "id": "db:nebulagraph",
             "label": "NebulaGraph",
+            "image": "https://gdb-engines.com/logos/nebulagraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -907,6 +988,7 @@
           {
             "id": "db:neo4j",
             "label": "Neo4j",
+            "image": "https://gdb-engines.com/logos/neo4j.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -918,6 +1000,7 @@
           {
             "id": "db:neptune",
             "label": "Neptune",
+            "image": "https://gdb-engines.com/logos/neptune.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -929,6 +1012,7 @@
           {
             "id": "db:neug",
             "label": "NeuG",
+            "image": "https://gdb-engines.com/logos/neug.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -940,17 +1024,19 @@
           {
             "id": "db:nodedb",
             "label": "NodeDB",
-            "type": "Property Graph",
+            "image": "https://gdb-engines.com/logos/nodedb.png",
+            "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
             "status": "active",
             "license": "BUSL-1.1",
             "implementationLanguage": "Rust",
-            "queryLanguages": "Cypher, SQL"
+            "queryLanguages": "SQL, openCypher"
           },
           {
             "id": "db:nornicdb",
             "label": "NornicDB",
+            "image": "https://gdb-engines.com/logos/nornicdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -962,6 +1048,7 @@
           {
             "id": "db:objectivity-db",
             "label": "Objectivity/DB",
+            "image": "https://gdb-engines.com/logos/objectivity-db.png",
             "type": "Other",
             "kind": "database",
             "category": "Enterprise",
@@ -973,6 +1060,7 @@
           {
             "id": "db:omnigraph",
             "label": "OmniGraph",
+            "image": "https://gdb-engines.com/logos/omnigraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -984,6 +1072,7 @@
           {
             "id": "db:ongdb",
             "label": "ONgDB",
+            "image": "https://gdb-engines.com/logos/ongdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -995,6 +1084,7 @@
           {
             "id": "db:ontop",
             "label": "Ontop",
+            "image": "https://gdb-engines.com/logos/ontop.png",
             "type": "RDF",
             "kind": "query-engine",
             "category": "Established",
@@ -1006,6 +1096,7 @@
           {
             "id": "db:ontotext-graphdb",
             "label": "Ontotext GraphDB",
+            "image": "https://gdb-engines.com/logos/ontotext-graphdb.png",
             "type": "RDF",
             "kind": "database",
             "category": "Enterprise",
@@ -1017,6 +1108,7 @@
           {
             "id": "db:oracle-graph",
             "label": "Oracle Graph",
+            "image": "https://gdb-engines.com/logos/oracle-graph.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -1028,6 +1120,7 @@
           {
             "id": "db:orientdb",
             "label": "OrientDB",
+            "image": "https://gdb-engines.com/logos/orientdb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -1039,6 +1132,7 @@
           {
             "id": "db:oxigraph",
             "label": "Oxigraph",
+            "image": "https://gdb-engines.com/logos/oxigraph.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1050,6 +1144,7 @@
           {
             "id": "db:oxirs",
             "label": "OxiRS",
+            "image": "https://gdb-engines.com/logos/oxirs.png",
             "type": "RDF",
             "kind": "library",
             "category": "Emerging",
@@ -1061,6 +1156,7 @@
           {
             "id": "db:pandadb",
             "label": "PandaDB",
+            "image": "https://gdb-engines.com/logos/pandadb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1072,6 +1168,7 @@
           {
             "id": "db:parliament",
             "label": "Parliament",
+            "image": "https://gdb-engines.com/logos/parliament.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1083,6 +1180,7 @@
           {
             "id": "db:pggraph",
             "label": "pgGraph",
+            "image": "https://gdb-engines.com/logos/pggraph.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -1094,6 +1192,7 @@
           {
             "id": "db:postgresql-sql-pgq",
             "label": "PostgreSQL SQL/PGQ",
+            "image": "https://gdb-engines.com/logos/postgresql-sql-pgq.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1105,6 +1204,7 @@
           {
             "id": "db:prometheux",
             "label": "Prometheux",
+            "image": "https://gdb-engines.com/logos/prometheux.png",
             "type": "Other",
             "kind": "query-engine",
             "category": "Growing",
@@ -1116,6 +1216,7 @@
           {
             "id": "db:puppygraph",
             "label": "PuppyGraph",
+            "image": "https://gdb-engines.com/logos/puppygraph.png",
             "type": "Property Graph",
             "kind": "query-engine",
             "category": "Growing",
@@ -1127,6 +1228,7 @@
           {
             "id": "db:qlever",
             "label": "QLever",
+            "image": "https://gdb-engines.com/logos/qlever.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1138,6 +1240,7 @@
           {
             "id": "db:quadstore",
             "label": "Quadstore",
+            "image": "https://gdb-engines.com/logos/quadstore.png",
             "type": "RDF",
             "kind": "embedded",
             "category": "Emerging",
@@ -1149,6 +1252,7 @@
           {
             "id": "db:quine",
             "label": "Quine",
+            "image": "https://gdb-engines.com/logos/quine.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1160,6 +1264,7 @@
           {
             "id": "db:raphtory",
             "label": "Raphtory",
+            "image": "https://gdb-engines.com/logos/raphtory.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1171,6 +1276,7 @@
           {
             "id": "db:rdf-trine",
             "label": "RDF::Trine",
+            "image": "https://gdb-engines.com/logos/rdf-trine.png",
             "type": "RDF",
             "kind": "library",
             "category": "Emerging",
@@ -1182,6 +1288,7 @@
           {
             "id": "db:rdflib",
             "label": "RDFLib",
+            "image": "https://gdb-engines.com/logos/rdflib.png",
             "type": "RDF",
             "kind": "library",
             "category": "Established",
@@ -1193,6 +1300,7 @@
           {
             "id": "db:rdfox",
             "label": "RDFox",
+            "image": "https://gdb-engines.com/logos/rdfox.png",
             "type": "RDF",
             "kind": "database",
             "category": "Enterprise",
@@ -1204,6 +1312,7 @@
           {
             "id": "db:recallgraph",
             "label": "RecallGraph",
+            "image": "https://gdb-engines.com/logos/recallgraph.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -1215,6 +1324,7 @@
           {
             "id": "db:redisgraph-falkordb",
             "label": "FalkorDB",
+            "image": "https://gdb-engines.com/logos/redisgraph-falkordb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -1226,6 +1336,7 @@
           {
             "id": "db:redland",
             "label": "Redland",
+            "image": "https://gdb-engines.com/logos/redland.png",
             "type": "RDF",
             "kind": "library",
             "category": "Established",
@@ -1237,6 +1348,7 @@
           {
             "id": "db:redstore",
             "label": "RedStore",
+            "image": "https://gdb-engines.com/logos/redstore.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1248,6 +1360,7 @@
           {
             "id": "db:relationalai",
             "label": "RelationalAI",
+            "image": "https://gdb-engines.com/logos/relationalai.png",
             "type": "Other",
             "kind": "database",
             "category": "Growing",
@@ -1259,6 +1372,7 @@
           {
             "id": "db:rocketgraph",
             "label": "Rocketgraph",
+            "image": "https://gdb-engines.com/logos/rocketgraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1270,6 +1384,7 @@
           {
             "id": "db:rushdb",
             "label": "RushDB",
+            "image": "https://gdb-engines.com/logos/rushdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1281,6 +1396,7 @@
           {
             "id": "db:ryugraph",
             "label": "RyuGraph",
+            "image": "https://gdb-engines.com/logos/ryugraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1292,6 +1408,7 @@
           {
             "id": "db:sap-hana",
             "label": "SAP Hana",
+            "image": "https://gdb-engines.com/logos/sap-hana.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -1303,6 +1420,7 @@
           {
             "id": "db:sones-graphdb",
             "label": "Sones GraphDB",
+            "image": "https://gdb-engines.com/logos/sones-graphdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1314,6 +1432,7 @@
           {
             "id": "db:spanner-graph",
             "label": "Google Cloud Spanner Graph",
+            "image": "https://gdb-engines.com/logos/spanner-graph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Enterprise",
@@ -1325,6 +1444,7 @@
           {
             "id": "db:sparkledb",
             "label": "SparkleDB",
+            "image": "https://gdb-engines.com/logos/sparkledb.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1336,6 +1456,7 @@
           {
             "id": "db:sparksee",
             "label": "Sparksee",
+            "image": "https://gdb-engines.com/logos/sparksee.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -1347,6 +1468,7 @@
           {
             "id": "db:stardog",
             "label": "Stardog",
+            "image": "https://gdb-engines.com/logos/stardog.png",
             "type": "RDF",
             "kind": "database",
             "category": "Enterprise",
@@ -1358,6 +1480,7 @@
           {
             "id": "db:stellardb",
             "label": "StellarDB",
+            "image": "https://gdb-engines.com/logos/stellardb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1369,6 +1492,7 @@
           {
             "id": "db:strabon",
             "label": "Strabon",
+            "image": "https://gdb-engines.com/logos/strabon.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1380,6 +1504,7 @@
           {
             "id": "db:stromadb",
             "label": "StromaDB",
+            "image": "https://gdb-engines.com/logos/stromadb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1391,6 +1516,7 @@
           {
             "id": "db:surrealdb",
             "label": "SurrealDB",
+            "image": "https://gdb-engines.com/logos/surrealdb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Growing",
@@ -1402,6 +1528,7 @@
           {
             "id": "db:tao",
             "label": "TAO",
+            "image": "https://gdb-engines.com/logos/tao.png",
             "type": "Other",
             "kind": "database",
             "category": "Established",
@@ -1413,6 +1540,7 @@
           {
             "id": "db:tentris",
             "label": "Tentris",
+            "image": "https://gdb-engines.com/logos/tentris.png",
             "type": "RDF",
             "kind": "database",
             "category": "Emerging",
@@ -1424,6 +1552,7 @@
           {
             "id": "db:terminusdb",
             "label": "TerminusDB",
+            "image": "https://gdb-engines.com/logos/terminusdb.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Emerging",
@@ -1435,6 +1564,7 @@
           {
             "id": "db:tigergraph",
             "label": "TigerGraph",
+            "image": "https://gdb-engines.com/logos/tigergraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -1446,6 +1576,7 @@
           {
             "id": "db:tinkergraph",
             "label": "TinkerGraph",
+            "image": "https://gdb-engines.com/logos/tinkergraph.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Established",
@@ -1457,6 +1588,7 @@
           {
             "id": "db:traverse",
             "label": "Traverse",
+            "image": "https://gdb-engines.com/logos/traverse.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1468,6 +1600,7 @@
           {
             "id": "db:triblespace",
             "label": "TribleSpace",
+            "image": "https://gdb-engines.com/logos/triblespace.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -1479,6 +1612,7 @@
           {
             "id": "db:tugraph",
             "label": "TuGraph",
+            "image": "https://gdb-engines.com/logos/tugraph.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Established",
@@ -1490,6 +1624,7 @@
           {
             "id": "db:turbolynx",
             "label": "TurboLynx",
+            "image": "https://gdb-engines.com/logos/turbolynx.png",
             "type": "Property Graph",
             "kind": "embedded",
             "category": "Emerging",
@@ -1501,6 +1636,7 @@
           {
             "id": "db:turingdb",
             "label": "TuringDB",
+            "image": "https://gdb-engines.com/logos/turingdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1512,6 +1648,7 @@
           {
             "id": "db:typedb",
             "label": "TypeDB",
+            "image": "https://gdb-engines.com/logos/typedb.png",
             "type": "Other",
             "kind": "database",
             "category": "Growing",
@@ -1523,6 +1660,7 @@
           {
             "id": "db:ultipa",
             "label": "Ultipa",
+            "image": "https://gdb-engines.com/logos/ultipa.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Growing",
@@ -1534,6 +1672,7 @@
           {
             "id": "db:velocitygraph",
             "label": "VelocityGraph",
+            "image": "https://gdb-engines.com/logos/velocitygraph.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -1545,6 +1684,7 @@
           {
             "id": "db:virtuoso",
             "label": "Virtuoso",
+            "image": "https://gdb-engines.com/logos/virtuoso.png",
             "type": "Multiple",
             "kind": "database",
             "category": "Enterprise",
@@ -1556,6 +1696,7 @@
           {
             "id": "db:weaver",
             "label": "Weaver",
+            "image": "https://gdb-engines.com/logos/weaver.png",
             "type": "Other",
             "kind": "database",
             "category": "Emerging",
@@ -1567,6 +1708,7 @@
           {
             "id": "db:youtrackdb",
             "label": "YouTrackDB",
+            "image": "https://gdb-engines.com/logos/youtrackdb.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Emerging",
@@ -1578,6 +1720,7 @@
           {
             "id": "db:yugabytedb-mage",
             "label": "YugabyteDB MAGE",
+            "image": "https://gdb-engines.com/logos/yugabytedb-mage.png",
             "type": "Property Graph",
             "kind": "extension",
             "category": "Emerging",
@@ -1589,6 +1732,7 @@
           {
             "id": "db:zipg",
             "label": "ZipG",
+            "image": "https://gdb-engines.com/logos/zipg.png",
             "type": "Other",
             "kind": "embedded",
             "category": "Emerging",
@@ -2031,12 +2175,12 @@
           },
           {
             "source": "db:data-graphs",
-            "target": "db:galaxybase",
-            "similarity": 0.5
+            "target": "db:nodedb",
+            "similarity": 0.5556
           },
           {
             "source": "db:data-graphs",
-            "target": "db:memgql",
+            "target": "db:galaxybase",
             "similarity": 0.5
           },
           {
@@ -2550,6 +2694,11 @@
             "similarity": 0.8571
           },
           {
+            "source": "db:data-graphs",
+            "target": "db:memgql",
+            "similarity": 0.5
+          },
+          {
             "source": "db:faunadb",
             "target": "db:memgql",
             "similarity": 0.3333
@@ -2646,18 +2795,13 @@
           },
           {
             "source": "db:nodedb",
-            "target": "db:rocketgraph",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:nodedb",
-            "target": "db:omnigraph",
+            "target": "db:stellardb",
             "similarity": 0.4444
           },
           {
-            "source": "db:nodedb",
-            "target": "db:ongdb",
-            "similarity": 0.4444
+            "source": "db:lance-graph",
+            "target": "db:nodedb",
+            "similarity": 0.4
           },
           {
             "source": "db:nornicdb",
@@ -2860,7 +3004,7 @@
             "similarity": 0.5
           },
           {
-            "source": "db:nodedb",
+            "source": "db:nornicdb",
             "target": "db:raphtory",
             "similarity": 0.4444
           },
@@ -3224,6 +3368,14 @@
           "id": "degree"
         },
         "resultType": "num"
+      },
+      {
+        "channel": "image",
+        "source": {
+          "kind": "field",
+          "id": "image"
+        },
+        "resultType": "cat"
       },
       {
         "channel": "color",

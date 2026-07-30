@@ -10,6 +10,11 @@
   Access-Control-Allow-Origin: https://garphield.com
   Cache-Control: public, max-age=3600
 
+/logos/*
+  Access-Control-Allow-Origin: https://garphield.com
+  Cross-Origin-Resource-Policy: cross-origin
+  Cache-Control: public, max-age=86400
+
 # Content-hashed Astro bundles never change at the same URL — long-cache.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
