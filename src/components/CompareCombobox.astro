@@ -18,6 +18,7 @@ interface Props {
 const { seed = [], mode = 'builder' } = Astro.props;
 ---
 
+<div class="builder-slot" data-slot-mode={mode}>
 <div class="builder" data-compare-builder data-mode={mode} data-seed={seed.join(' ')} hidden>
   <div class="combobox-chips" data-combobox-chips></div>
   <label class="visually-hidden" for="compare-combobox">Add a database</label>
@@ -38,6 +39,7 @@ const { seed = [], mode = 'builder' } = Astro.props;
   {mode === 'builder' && <div data-compare-result></div>}
   <div class="visually-hidden" aria-live="polite" data-combobox-live></div>
 </div>
+</div>
 
 <script>
   import '../scripts/compare-builder.ts';
@@ -49,6 +51,14 @@ const { seed = [], mode = 'builder' } = Astro.props;
      (z-index 20). On `/compare/custom/` the table is rendered *inside* this root, so the
      listbox also carries a z-index above the thead — see `.combobox-list` below. */
   .builder { position: relative; z-index: 15; }
+  /* The widget ships `hidden` and is unhidden by the script. Without a reserved box the
+     page reflowed the moment the script ran; these floors match the rendered heights
+     (input 42px, plus the hint line in builder mode, which wraps on narrow screens). */
+  .builder-slot[data-slot-mode='builder'] { min-height: 4.6rem; }
+  .builder-slot[data-slot-mode='static'] { min-height: 2.6rem; }
+  @media (max-width: 30rem) {
+    .builder-slot[data-slot-mode='builder'] { min-height: 6rem; }
+  }
   /* `hidden` is display:none, so the margin costs a no-JS page nothing. */
   .builder[data-mode='static'] { margin: 0 0 1.25rem; }
   .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); color: var(--color-text); font: inherit; }
