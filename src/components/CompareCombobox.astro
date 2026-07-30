@@ -35,7 +35,6 @@ const { seed = [], mode = 'builder' } = Astro.props;
     data-combobox-input
   />
   <ul id="compare-listbox" role="listbox" aria-label="Databases" class="combobox-list" data-combobox-list hidden></ul>
-  {mode === 'builder' && <p class="empty" data-compare-empty>The comparison table appears once you have added two.</p>}
   {mode === 'builder' && <div data-compare-result></div>}
   <div class="visually-hidden" aria-live="polite" data-combobox-live></div>
 </div>
@@ -52,17 +51,11 @@ const { seed = [], mode = 'builder' } = Astro.props;
      listbox also carries a z-index above the thead — see `.combobox-list` below. */
   .builder { position: relative; z-index: 15; }
   /* The widget ships `hidden` and is unhidden by the script. Without a reserved box the
-     page reflowed the moment the script ran; these floors match the rendered heights
-     (input 42px, plus the hint line in builder mode, which wraps on narrow screens). */
-  .builder-slot[data-slot-mode='builder'] { min-height: 4.6rem; }
-  .builder-slot[data-slot-mode='static'] { min-height: 2.6rem; }
-  @media (max-width: 30rem) {
-    .builder-slot[data-slot-mode='builder'] { min-height: 6rem; }
-  }
+     page reflowed the moment the script ran; this floor matches the input's height. */
+  .builder-slot { min-height: 2.6rem; }
   /* `hidden` is display:none, so the margin costs a no-JS page nothing. */
   .builder[data-mode='static'] { margin: 0 0 1.25rem; }
   .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); color: var(--color-text); font: inherit; }
-  .empty { color: var(--color-text-secondary); font-size: 0.9rem; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
 

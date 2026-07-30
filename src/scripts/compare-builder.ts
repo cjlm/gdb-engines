@@ -64,7 +64,6 @@ async function mount(root: HTMLElement): Promise<void> {
   const listbox = root.querySelector<HTMLElement>('[data-combobox-list]')!;
   const chips = root.querySelector<HTMLElement>('[data-combobox-chips]')!;
   const live = root.querySelector<HTMLElement>('[data-combobox-live]')!;
-  const empty = root.querySelector<HTMLElement>('[data-compare-empty]');
   let active = 0;
   let matches: Engine[] = [];
 
@@ -154,7 +153,6 @@ async function mount(root: HTMLElement): Promise<void> {
     }
     input.disabled = selected.length >= MAX_COLUMNS;
     input.placeholder = input.disabled ? 'Remove a database to add another' : 'Add a database';
-    if (empty) empty.hidden = selected.length >= 2;
     syncAddColumn();
   }
 
