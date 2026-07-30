@@ -1,0 +1,13 @@
+name = "Minigraf"
+slug = "minigraf"
+description = "An embedded, single-file graph database with Datalog queries over entity-attribute-value facts and bi-temporal time travel via per-fact transaction and valid time. Written in Rust with WebAssembly and mobile builds, targeting AI-agent memory. Successor to the archived RecallGraph."
+url = "https://github.com/project-minigraf/minigraf"
+github_url = "https://github.com/project-minigraf/minigraf"
+license = "MIT OR Apache-2.0"
+implementation_language = "Rust"
+type = "Other"
+kind = "embedded"
+query_languages = ["Datalog"]
+released = "2026-04"
+category = "Emerging"
+gdotv_support = false
