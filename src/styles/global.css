@@ -11,6 +11,9 @@
 :root {
   --icon-opacity: 0.85;
   --header-height: 56px;
+  /* Content width for centred index/hub pages. Table-bearing detail pages
+     (ranking boards, comparison matrices) stay full-bleed so wide tables fit. */
+  --content-max-width: 70rem;
   --font-heading: 'Familjen Grotesk', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
