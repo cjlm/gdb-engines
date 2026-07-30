@@ -204,8 +204,15 @@ function getCellValue(
   }
 
   const text = cell.textContent?.trim() || "";
-  if (text === "-") return undefined;
-  if (type === "number") return parseFloat(text.replace(/[$,]/g, "")) || 0;
+  // Empty cells render an em-dash. The original check looked for a plain hyphen, so it
+  // never matched and unranked rows fell through to `parseFloat("—") || 0`, sorting them
+  // above rank 1. `undefined` is what the comparator sends to the bottom in both
+  // directions, so anything unparseable returns it rather than collapsing to zero.
+  if (text === "" || text === "-" || text === "\u2014") return undefined;
+  if (type === "number") {
+    const value = parseFloat(text.replace(/[$,]/g, ""));
+    return Number.isNaN(value) ? undefined : value;
+  }
   return text;
 }
 
