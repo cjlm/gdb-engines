@@ -152,7 +152,7 @@ header {
     font-variant-numeric: tabular-nums;
   }
 
-  .slash {
+  .database-summary-divider {
     margin-left: 0.625rem;
     margin-right: 0.25rem;
     display: block;
@@ -217,11 +217,11 @@ header {
     align-items: center;
   }
 
-  @media (max-width: 32rem) {
+  @media (max-width: 45rem) {
     div.left {
 
-      p,
-      span.slash {
+      .database-summary,
+      .database-summary-divider {
         display: none;
       }
     }

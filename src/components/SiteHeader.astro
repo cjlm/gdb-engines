@@ -1,9 +1,16 @@
 ---
+import { getDatabaseCount } from '../lib/database-count';
+
+interface Props {
+  comparisonControls?: boolean;
+}
+
+const { comparisonControls = false } = Astro.props;
+const databaseCount = await getDatabaseCount();
+
 /**
- * Shared site header for pages other than the comparison-table homepage.
- * Matches the visual style of the homepage header — same logo, same brand pill,
- * same theme toggle — minus the search box and About modal (which only make sense
- * on the comparison page).
+ * Shared site navigation. The comparison page opts into its search, modal, and
+ * table controls; the primary navigation stays identical across every page.
  */
 ---
 <header>
@@ -28,13 +35,41 @@
       </svg>
       <span class="rankings-link__label">Compare</span>
     </a>
-    <slot name="left" />
+    <span class="database-summary-divider" aria-hidden="true"></span>
+    <p class="database-summary">
+      Compare <span id="db-count">{databaseCount}</span> graph databases
+    </p>
   </div>
   <div class="right">
+    {comparisonControls && (
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search databases" autocomplete="off" />
+        <span class="search-shortcut" id="search-shortcut">&#x2318;K</span>
+      </div>
+    )}
     <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
       <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a href="/about/" class="header-link">About</a>
+    {comparisonControls ? (
+      <>
+        <button id="help">About</button>
+        <div class="menu-wrapper">
+          <button id="menu-toggle" class="menu-btn" aria-label="Options">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="menu-dropdown" id="menu-dropdown">
+            <label><input type="checkbox" id="toggle-inactive" /> Show Inactive</label>
+            <label><input type="checkbox" id="toggle-features" /> Research Features</label>
+            <a class="menu-link" href="https://github.com/cjlm/gdb-engines" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
+              Source on GitHub
+            </a>
+          </div>
+        </div>
+      </>
+    ) : (
+      <a href="/about/" class="header-link">About</a>
+    )}
   </div>
 </header>
