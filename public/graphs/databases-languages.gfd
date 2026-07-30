@@ -1707,7 +1707,7 @@
           },
           {
             "source": "db:codemix-graph",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -1862,7 +1862,7 @@
           },
           {
             "source": "db:gfql",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -1887,7 +1887,7 @@
           },
           {
             "source": "db:grafeo",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -2137,7 +2137,7 @@
           },
           {
             "source": "db:neug",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -2152,7 +2152,7 @@
           },
           {
             "source": "db:nornicdb",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -2327,7 +2327,7 @@
           },
           {
             "source": "db:rocketgraph",
-            "target": "language:Cypher",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
