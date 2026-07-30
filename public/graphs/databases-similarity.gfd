@@ -1,0 +1,3247 @@
+{
+  "info": {
+    "version": 1,
+    "name": "Database similarity"
+  },
+  "datasets": [
+    {
+      "id": "main",
+      "graph": {
+        "directed": false,
+        "multigraph": false,
+        "graph": {
+          "name": "Database similarity"
+        },
+        "nodes": [
+          {
+            "id": "db:4store",
+            "label": "4store",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "GPL-3.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:aerospike",
+            "label": "Aerospike Graph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:agdb",
+            "label": "agdb",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:agensgraph",
+            "label": "AgensGraph",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Growing",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher, SQL"
+          },
+          {
+            "id": "db:akutan",
+            "label": "Akutan",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Go",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:alibaba-gdb",
+            "label": "Alibaba GDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": ""
+          },
+          {
+            "id": "db:allegrograph",
+            "label": "AllegroGraph",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Common Lisp",
+            "queryLanguages": "SPARQL, Prolog"
+          },
+          {
+            "id": "db:altair-graph-lakehouse",
+            "label": "Altair Graph Lakehouse",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL, openCypher"
+          },
+          {
+            "id": "db:apache-age",
+            "label": "Apache AGE",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher, SQL"
+          },
+          {
+            "id": "db:apache-giraph",
+            "label": "Apache Giraph",
+            "type": "Property Graph",
+            "kind": "query-engine",
+            "category": "Established",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Java API"
+          },
+          {
+            "id": "db:apache-hugegraph",
+            "label": "Apache HugeGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin, openCypher"
+          },
+          {
+            "id": "db:apache-jena-fuseki",
+            "label": "Apache Jena Fuseki",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:apache-rya",
+            "label": "Apache Rya",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:arangodb",
+            "label": "ArangoDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "BSL-1.1",
+            "implementationLanguage": "C++",
+            "queryLanguages": "AQL"
+          },
+          {
+            "id": "db:arcadedb",
+            "label": "ArcadeDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SQL, openCypher, Gremlin, GraphQL"
+          },
+          {
+            "id": "db:atomic-server",
+            "label": "Atomic Server",
+            "type": "Other",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:attean",
+            "label": "Attean",
+            "type": "RDF",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Artistic-2.0",
+            "implementationLanguage": "Perl",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:bangdb",
+            "label": "BangDB",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:bighorn",
+            "label": "Bighorn",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:bigquery-graph",
+            "label": "Google Cloud BigQuery Graph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GQL, SQL/PGQ"
+          },
+          {
+            "id": "db:bitsy",
+            "label": "Bitsy",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:blazegraph",
+            "label": "BlazeGraph",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Established",
+            "status": "inactive",
+            "license": "GPL-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL, Gremlin"
+          },
+          {
+            "id": "db:brightstardb",
+            "label": "BrightstarDB",
+            "type": "RDF",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "MIT",
+            "implementationLanguage": "C#",
+            "queryLanguages": "SPARQL, LINQ"
+          },
+          {
+            "id": "db:bytegraph",
+            "label": "ByteGraph",
+            "type": "Other",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "inactive",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:chronograph",
+            "label": "ChronoGraph",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:codemix-graph",
+            "label": "CodeMix Graph",
+            "type": "Property Graph",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "TypeScript",
+            "queryLanguages": "Gremlin, Cypher"
+          },
+          {
+            "id": "db:cogdb",
+            "label": "CogDB",
+            "type": "RDF",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Python",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:comunica",
+            "label": "Comunica",
+            "type": "RDF",
+            "kind": "query-engine",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "TypeScript",
+            "queryLanguages": "SPARQL, GraphQL"
+          },
+          {
+            "id": "db:cosmos-db",
+            "label": "Cosmos DB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Gremlin, SQL"
+          },
+          {
+            "id": "db:cray-graph-engine",
+            "label": "Cray Graph Engine",
+            "type": "Other",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "deprecated",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:data-graphs",
+            "label": "Data Graphs",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "openCypher, GQL"
+          },
+          {
+            "id": "db:datastax-enterprise",
+            "label": "DataStax Enterprise",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin, CQL"
+          },
+          {
+            "id": "db:dgraph",
+            "label": "Dgraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Go",
+            "queryLanguages": "DQL, GraphQL"
+          },
+          {
+            "id": "db:dozerdb",
+            "label": "DozerDB",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "GPL-3.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Cypher"
+          },
+          {
+            "id": "db:duckpgq",
+            "label": "DuckPGQ",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SQL/PGQ"
+          },
+          {
+            "id": "db:dydra",
+            "label": "Dydra",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "SPARQL, GraphQL"
+          },
+          {
+            "id": "db:eclipse-rdf4j",
+            "label": "Eclipse RDF4J",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:fabric-graph",
+            "label": "Microsoft Fabric Graph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GQL"
+          },
+          {
+            "id": "db:falkordblite",
+            "label": "FalkorDBLite",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "SSPL-1.0",
+            "implementationLanguage": "Python",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:faunadb",
+            "label": "FaunaDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "deprecated",
+            "license": "Proprietary",
+            "implementationLanguage": "Scala",
+            "queryLanguages": "FQL, GraphQL"
+          },
+          {
+            "id": "db:flockdb",
+            "label": "FlockDB",
+            "type": "Other",
+            "kind": "database",
+            "category": "Established",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Scala",
+            "queryLanguages": "Thrift API"
+          },
+          {
+            "id": "db:fluree",
+            "label": "Fluree",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "EPL-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "FlureeQL, SPARQL, GraphQL"
+          },
+          {
+            "id": "db:frogql",
+            "label": "froGQL",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GQL"
+          },
+          {
+            "id": "db:g-tran",
+            "label": "G-Tran",
+            "type": "Other",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:gaffer",
+            "label": "Gaffer",
+            "type": "Other",
+            "kind": "query-engine",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:galaxybase",
+            "label": "GalaxyBase",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:gfql",
+            "label": "GFQL",
+            "type": "Property Graph",
+            "kind": "query-engine",
+            "category": "Growing",
+            "status": "active",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "Python",
+            "queryLanguages": "GFQL, Cypher"
+          },
+          {
+            "id": "db:google-cayley",
+            "label": "Google Cayley",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Go",
+            "queryLanguages": "Gizmo, GraphQL, MQL"
+          },
+          {
+            "id": "db:grafeo",
+            "label": "Grafeo",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GQL, Cypher, SPARQL, Gremlin, GraphQL, SQL/PGQ"
+          },
+          {
+            "id": "db:graph-engine",
+            "label": "Graph Engine",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "inactive",
+            "license": "MIT",
+            "implementationLanguage": "C#",
+            "queryLanguages": "LIKQ"
+          },
+          {
+            "id": "db:graphbase",
+            "label": "GraphBase",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GraphQL"
+          },
+          {
+            "id": "db:graphflow",
+            "label": "Graphflow",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "deprecated",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:graphlite",
+            "label": "GraphLite",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GQL"
+          },
+          {
+            "id": "db:graphqlite",
+            "label": "GraphQLite",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:graphscope",
+            "label": "GraphScope",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Gremlin, openCypher"
+          },
+          {
+            "id": "db:grust",
+            "label": "Grust",
+            "type": "Property Graph",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:gstore",
+            "label": "gStore",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:gun",
+            "label": "GUN",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "JavaScript",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:halyard",
+            "label": "Halyard",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:helixdb",
+            "label": "HelixDB",
+            "type": "Other",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "HelixQL"
+          },
+          {
+            "id": "db:hgraphdb",
+            "label": "HGraphDB",
+            "type": "Other",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:huawei-ges",
+            "label": "Huawei Graph Engine Service",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Gremlin, openCypher"
+          },
+          {
+            "id": "db:hypergraphdb",
+            "label": "HyperGraphDB",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Java API"
+          },
+          {
+            "id": "db:ibm-system-g",
+            "label": "IBM System G",
+            "type": "Other",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "deprecated",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:infinitegraph",
+            "label": "InfiniteGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "inactive",
+            "license": "Proprietary",
+            "implementationLanguage": "Java",
+            "queryLanguages": "DO Query Language"
+          },
+          {
+            "id": "db:janusgraph",
+            "label": "JanusGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:katanagraph",
+            "label": "KatanaGraph",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:kglite",
+            "label": "KGLite",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "openCypher, Custom API"
+          },
+          {
+            "id": "db:kinetica",
+            "label": "Kinetica",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SQL"
+          },
+          {
+            "id": "db:kuzu",
+            "label": "Kuzu",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "deprecated",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:ladybugdb",
+            "label": "LadybugDB",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Growing",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:lance-graph",
+            "label": "Lance Graph",
+            "type": "Property Graph",
+            "kind": "query-engine",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SQL, openCypher"
+          },
+          {
+            "id": "db:livegraph",
+            "label": "LiveGraph",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:marklogic",
+            "label": "MarkLogic",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL, XQuery, SQL"
+          },
+          {
+            "id": "db:marmotta-kiwi",
+            "label": "Apache Marmotta KiWi",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:memgql",
+            "label": "MemGQL",
+            "type": "Multiple",
+            "kind": "query-engine",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GQL"
+          },
+          {
+            "id": "db:memgraph",
+            "label": "Memgraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "BSL-1.1",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:millenniumdb",
+            "label": "MillenniumDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "GPL-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "GQL, SPARQL"
+          },
+          {
+            "id": "db:minigraf",
+            "label": "Minigraf",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT OR Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Datalog"
+          },
+          {
+            "id": "db:mulgara",
+            "label": "Mulgara",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL, iTQL"
+          },
+          {
+            "id": "db:nebulagraph",
+            "label": "NebulaGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "nGQL"
+          },
+          {
+            "id": "db:neo4j",
+            "label": "Neo4j",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "GPL-3.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Cypher, GQL"
+          },
+          {
+            "id": "db:neptune",
+            "label": "Neptune",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Gremlin, SPARQL, openCypher"
+          },
+          {
+            "id": "db:neug",
+            "label": "NeuG",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Cypher"
+          },
+          {
+            "id": "db:nodedb",
+            "label": "NodeDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "BUSL-1.1",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Cypher, SQL"
+          },
+          {
+            "id": "db:nornicdb",
+            "label": "NornicDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Go",
+            "queryLanguages": "Cypher, GraphQL"
+          },
+          {
+            "id": "db:objectivity-db",
+            "label": "Objectivity/DB",
+            "type": "Other",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "inactive",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "DO Query Language"
+          },
+          {
+            "id": "db:omnigraph",
+            "label": "OmniGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:ongdb",
+            "label": "ONgDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "GPL-3.0 OR AGPL-3.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Cypher"
+          },
+          {
+            "id": "db:ontop",
+            "label": "Ontop",
+            "type": "RDF",
+            "kind": "query-engine",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:ontotext-graphdb",
+            "label": "Ontotext GraphDB",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:oracle-graph",
+            "label": "Oracle Graph",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SQL/PGQ, PGQL, SPARQL"
+          },
+          {
+            "id": "db:orientdb",
+            "label": "OrientDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SQL, Gremlin"
+          },
+          {
+            "id": "db:oxigraph",
+            "label": "Oxigraph",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0 OR MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:oxirs",
+            "label": "OxiRS",
+            "type": "RDF",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:pandadb",
+            "label": "PandaDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Scala",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:parliament",
+            "label": "Parliament",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:pggraph",
+            "label": "pgGraph",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SQL"
+          },
+          {
+            "id": "db:postgresql-sql-pgq",
+            "label": "PostgreSQL SQL/PGQ",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "PostgreSQL",
+            "implementationLanguage": "C",
+            "queryLanguages": "SQL/PGQ"
+          },
+          {
+            "id": "db:prometheux",
+            "label": "Prometheux",
+            "type": "Other",
+            "kind": "query-engine",
+            "category": "Growing",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Vadalog"
+          },
+          {
+            "id": "db:puppygraph",
+            "label": "PuppyGraph",
+            "type": "Property Graph",
+            "kind": "query-engine",
+            "category": "Growing",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Gremlin, openCypher"
+          },
+          {
+            "id": "db:qlever",
+            "label": "QLever",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:quadstore",
+            "label": "Quadstore",
+            "type": "RDF",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "TypeScript",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:quine",
+            "label": "Quine",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT + Commons Clause",
+            "implementationLanguage": "Scala",
+            "queryLanguages": "openCypher, Gremlin"
+          },
+          {
+            "id": "db:raphtory",
+            "label": "Raphtory",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "GPL-3.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GraphQL"
+          },
+          {
+            "id": "db:rdf-trine",
+            "label": "RDF::Trine",
+            "type": "RDF",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Artistic-2.0",
+            "implementationLanguage": "Perl",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:rdflib",
+            "label": "RDFLib",
+            "type": "RDF",
+            "kind": "library",
+            "category": "Established",
+            "status": "active",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "Python",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:rdfox",
+            "label": "RDFox",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:recallgraph",
+            "label": "RecallGraph",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "deprecated",
+            "license": "Apache-2.0",
+            "implementationLanguage": "JavaScript",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:redisgraph-falkordb",
+            "label": "FalkorDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "SSPL-1.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:redland",
+            "label": "Redland",
+            "type": "RDF",
+            "kind": "library",
+            "category": "Established",
+            "status": "inactive",
+            "license": "LGPL-2.1",
+            "implementationLanguage": "C",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:redstore",
+            "label": "RedStore",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "GPL-3.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:relationalai",
+            "label": "RelationalAI",
+            "type": "Other",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Julia",
+            "queryLanguages": "Rel, SQL"
+          },
+          {
+            "id": "db:rocketgraph",
+            "label": "Rocketgraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "Cypher"
+          },
+          {
+            "id": "db:rushdb",
+            "label": "RushDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "ELv2",
+            "implementationLanguage": "TypeScript",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:ryugraph",
+            "label": "RyuGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:sap-hana",
+            "label": "SAP Hana",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SQL, openCypher, GraphScript"
+          },
+          {
+            "id": "db:sones-graphdb",
+            "label": "Sones GraphDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "C#",
+            "queryLanguages": "GQL (Sones)"
+          },
+          {
+            "id": "db:spanner-graph",
+            "label": "Google Cloud Spanner Graph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GQL, SQL/PGQ"
+          },
+          {
+            "id": "db:sparkledb",
+            "label": "SparkleDB",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:sparksee",
+            "label": "Sparksee",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:stardog",
+            "label": "Stardog",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL, SQL, GraphQL"
+          },
+          {
+            "id": "db:stellardb",
+            "label": "StellarDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "openCypher, SQL"
+          },
+          {
+            "id": "db:strabon",
+            "label": "Strabon",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "MPL-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "SPARQL, stSPARQL, GeoSPARQL"
+          },
+          {
+            "id": "db:stromadb",
+            "label": "StromaDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Elastic-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:surrealdb",
+            "label": "SurrealDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "BSL-1.1",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SurrealQL, GraphQL, GQL"
+          },
+          {
+            "id": "db:tao",
+            "label": "TAO",
+            "type": "Other",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "TAO API"
+          },
+          {
+            "id": "db:tentris",
+            "label": "Tentris",
+            "type": "RDF",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:terminusdb",
+            "label": "TerminusDB",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Prolog",
+            "queryLanguages": "WOQL, GraphQL"
+          },
+          {
+            "id": "db:tigergraph",
+            "label": "TigerGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "C++",
+            "queryLanguages": "GSQL"
+          },
+          {
+            "id": "db:tinkergraph",
+            "label": "TinkerGraph",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin"
+          },
+          {
+            "id": "db:traverse",
+            "label": "Traverse",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "openCypher, GQL"
+          },
+          {
+            "id": "db:triblespace",
+            "label": "TribleSpace",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT OR Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:tugraph",
+            "label": "TuGraph",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Established",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher, GQL"
+          },
+          {
+            "id": "db:turbolynx",
+            "label": "TurboLynx",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:turingdb",
+            "label": "TuringDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "BSL-1.1",
+            "implementationLanguage": "C++",
+            "queryLanguages": "openCypher"
+          },
+          {
+            "id": "db:typedb",
+            "label": "TypeDB",
+            "type": "Other",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "MPL-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "TypeQL"
+          },
+          {
+            "id": "db:ultipa",
+            "label": "Ultipa",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "UQL"
+          },
+          {
+            "id": "db:velocitygraph",
+            "label": "VelocityGraph",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "MIT",
+            "implementationLanguage": "C#",
+            "queryLanguages": "LINQ"
+          },
+          {
+            "id": "db:virtuoso",
+            "label": "Virtuoso",
+            "type": "Multiple",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "GPL-2.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "SQL, SPARQL"
+          },
+          {
+            "id": "db:weaver",
+            "label": "Weaver",
+            "type": "Other",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": "BSD-3-Clause",
+            "implementationLanguage": "C++",
+            "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:youtrackdb",
+            "label": "YouTrackDB",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Java",
+            "queryLanguages": "Gremlin, SQL"
+          },
+          {
+            "id": "db:yugabytedb-mage",
+            "label": "YugabyteDB MAGE",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher, SQL"
+          },
+          {
+            "id": "db:zipg",
+            "label": "ZipG",
+            "type": "Other",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "inactive",
+            "license": null,
+            "implementationLanguage": "Java",
+            "queryLanguages": "Custom API"
+          }
+        ],
+        "links": [
+          {
+            "source": "db:4store",
+            "target": "db:redstore",
+            "similarity": 1
+          },
+          {
+            "source": "db:4store",
+            "target": "db:sparkledb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:4store",
+            "target": "db:apache-rya",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:huawei-ges",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:alibaba-gdb",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:fabric-graph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:graphlite",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:grust",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:kglite",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:agensgraph",
+            "target": "db:apache-age",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:agensgraph",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:agensgraph",
+            "target": "db:graphqlite",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:akutan",
+            "target": "db:google-cayley",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:akutan",
+            "target": "db:apache-rya",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:akutan",
+            "target": "db:halyard",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:fabric-graph",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:graphbase",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:bigquery-graph",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:allegrograph",
+            "target": "db:sparkledb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:allegrograph",
+            "target": "db:apache-jena-fuseki",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:allegrograph",
+            "target": "db:dydra",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:rdfox",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:cray-graph-engine",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:ontotext-graphdb",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-age",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:apache-age",
+            "target": "db:graphqlite",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:apache-giraph",
+            "target": "db:gaffer",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-giraph",
+            "target": "db:janusgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-giraph",
+            "target": "db:ontop",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:janusgraph",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:graphflow",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:tinkergraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:apache-rya",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:eclipse-rdf4j",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:halyard",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:halyard",
+            "similarity": 1
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:marmotta-kiwi",
+            "similarity": 1
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:mulgara",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:arangodb",
+            "target": "db:memgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:arangodb",
+            "target": "db:marklogic",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:arangodb",
+            "target": "db:sap-hana",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "db:orientdb",
+            "similarity": 0.6
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:arcadedb",
+            "similarity": 0.4545
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "db:graphscope",
+            "similarity": 0.4545
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:omnigraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:helixdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:stromadb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:attean",
+            "target": "db:rdf-trine",
+            "similarity": 1
+          },
+          {
+            "source": "db:attean",
+            "target": "db:oxirs",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:attean",
+            "target": "db:sparkledb",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:bangdb",
+            "target": "db:katanagraph",
+            "similarity": 1
+          },
+          {
+            "source": "db:bangdb",
+            "target": "db:bighorn",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bangdb",
+            "target": "db:kuzu",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:kuzu",
+            "similarity": 1
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:turbolynx",
+            "similarity": 1
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:ladybugdb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bigquery-graph",
+            "target": "db:spanner-graph",
+            "similarity": 1
+          },
+          {
+            "source": "db:bigquery-graph",
+            "target": "db:fabric-graph",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:chronograph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:tinkergraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:youtrackdb",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:blazegraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "db:eclipse-rdf4j",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:blazegraph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:quadstore",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:cogdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:velocitygraph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:ibm-system-g",
+            "similarity": 1
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:cray-graph-engine",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:objectivity-db",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:chronograph",
+            "target": "db:tinkergraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:chronograph",
+            "target": "db:youtrackdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:codemix-graph",
+            "target": "db:nornicdb",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:codemix-graph",
+            "target": "db:rocketgraph",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:codemix-graph",
+            "similarity": 0.3
+          },
+          {
+            "source": "db:cogdb",
+            "target": "db:quadstore",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:cogdb",
+            "target": "db:kglite",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:comunica",
+            "target": "db:quadstore",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:comunica",
+            "target": "db:dydra",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:comunica",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:neptune",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:orientdb",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:marklogic",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:ibm-system-g",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:objectivity-db",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:traverse",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:galaxybase",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:memgql",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:datastax-enterprise",
+            "target": "db:janusgraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:datastax-enterprise",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:datastax-enterprise",
+            "target": "db:huawei-ges",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:dgraph",
+            "target": "db:graphbase",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:dgraph",
+            "target": "db:nornicdb",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:dgraph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:dozerdb",
+            "target": "db:ongdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:dozerdb",
+            "target": "db:neo4j",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:dozerdb",
+            "target": "db:rocketgraph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:duckpgq",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:duckpgq",
+            "target": "db:graphqlite",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:duckpgq",
+            "target": "db:kuzu",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:sparkledb",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:tentris",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:stardog",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:parliament",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:spanner-graph",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:falkordblite",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:falkordblite",
+            "target": "db:kuzu",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:falkordblite",
+            "target": "db:turbolynx",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:faunadb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:faunadb",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:faunadb",
+            "target": "db:terminusdb",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:flockdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:flockdb",
+            "target": "db:g-tran",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:flockdb",
+            "target": "db:gaffer",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:fluree",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:fluree",
+            "target": "db:oxigraph",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:fluree",
+            "target": "db:stardog",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:graphlite",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:kglite",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:frogql",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:g-tran",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:hgraphdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:ibm-system-g",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:gaffer",
+            "target": "db:ontop",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:gaffer",
+            "target": "db:zipg",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:stellardb",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:traverse",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:rocketgraph",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:gfql",
+            "target": "db:puppygraph",
+            "similarity": 0.3
+          },
+          {
+            "source": "db:gfql",
+            "target": "db:prometheux",
+            "similarity": 0.2
+          },
+          {
+            "source": "db:gfql",
+            "target": "db:rocketgraph",
+            "similarity": 0.2
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:google-cayley",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:dydra",
+            "target": "db:google-cayley",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:grafeo",
+            "similarity": 0.3846
+          },
+          {
+            "source": "db:grafeo",
+            "target": "db:millenniumdb",
+            "similarity": 0.3846
+          },
+          {
+            "source": "db:grafeo",
+            "target": "db:terminusdb",
+            "similarity": 0.3846
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:graph-engine",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:graph-engine",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:graph-engine",
+            "target": "db:graphbase",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:graphbase",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:bigquery-graph",
+            "target": "db:graphbase",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:pandadb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:youtrackdb",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:graphlite",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphqlite",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:graphqlite",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:graphscope",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:graphscope",
+            "target": "db:tugraph",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:graphlite",
+            "target": "db:grust",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:grust",
+            "target": "db:omnigraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:gstore",
+            "target": "db:parliament",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:gstore",
+            "target": "db:qlever",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:gstore",
+            "target": "db:tentris",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:gun",
+            "target": "db:omnigraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:gun",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:graph-engine",
+            "target": "db:gun",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:marmotta-kiwi",
+            "similarity": 1
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:mulgara",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:helixdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:helixdb",
+            "target": "db:minigraf",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:hgraphdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:hgraphdb",
+            "target": "db:hypergraphdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:huawei-ges",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:huawei-ges",
+            "target": "db:neptune",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:huawei-ges",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:hypergraphdb",
+            "target": "db:zipg",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:hypergraphdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:ibm-system-g",
+            "target": "db:objectivity-db",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:infinitegraph",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:infinitegraph",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:graphbase",
+            "target": "db:infinitegraph",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "db:tinkergraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:katanagraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:katanagraph",
+            "target": "db:kuzu",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:kglite",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:kinetica",
+            "target": "db:marklogic",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:kinetica",
+            "target": "db:sap-hana",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:kinetica",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:turbolynx",
+            "similarity": 1
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:ladybugdb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "db:turbolynx",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "db:pggraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:lance-graph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:livegraph",
+            "target": "db:zipg",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:livegraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bangdb",
+            "target": "db:livegraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:marklogic",
+            "target": "db:sap-hana",
+            "similarity": 0.6
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:marklogic",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:marmotta-kiwi",
+            "target": "db:mulgara",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:faunadb",
+            "target": "db:memgql",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:memgql",
+            "target": "db:millenniumdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:memgraph",
+            "target": "db:turingdb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:huawei-ges",
+            "target": "db:memgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:gstore",
+            "target": "db:millenniumdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:millenniumdb",
+            "target": "db:qlever",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:millenniumdb",
+            "target": "db:tentris",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:minigraf",
+            "target": "db:triblespace",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:minigraf",
+            "target": "db:zipg",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:minigraf",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:nebulagraph",
+            "target": "db:tugraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "db:nebulagraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nebulagraph",
+            "target": "db:sparksee",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "db:neo4j",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:neo4j",
+            "target": "db:ongdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:neptune",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:neug",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:neug",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bitsy",
+            "target": "db:neug",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nodedb",
+            "target": "db:rocketgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nodedb",
+            "target": "db:omnigraph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:nodedb",
+            "target": "db:ongdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:nornicdb",
+            "target": "db:rocketgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nornicdb",
+            "target": "db:omnigraph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:nornicdb",
+            "target": "db:ongdb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "db:stromadb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:kglite",
+            "target": "db:omnigraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:ongdb",
+            "target": "db:rocketgraph",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:ongdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:ontop",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:ontop",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:ontotext-graphdb",
+            "target": "db:stardog",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:ontotext-graphdb",
+            "target": "db:rdfox",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:ontotext-graphdb",
+            "target": "db:oracle-graph",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:neptune",
+            "target": "db:oracle-graph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:marklogic",
+            "target": "db:oracle-graph",
+            "similarity": 0.4545
+          },
+          {
+            "source": "db:orientdb",
+            "target": "db:youtrackdb",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:oxigraph",
+            "target": "db:sparkledb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:4store",
+            "target": "db:oxigraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:oxigraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:oxirs",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:grust",
+            "target": "db:oxirs",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:pandadb",
+            "target": "db:quine",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:pandadb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:parliament",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:pggraph",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:pggraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:postgresql-sql-pgq",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:postgresql-sql-pgq",
+            "target": "db:rocketgraph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:4store",
+            "target": "db:postgresql-sql-pgq",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:prometheux",
+            "target": "db:puppygraph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:prometheux",
+            "target": "db:relationalai",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:memgql",
+            "target": "db:prometheux",
+            "similarity": 0.25
+          },
+          {
+            "source": "db:huawei-ges",
+            "target": "db:puppygraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphscope",
+            "target": "db:puppygraph",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:puppygraph",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:qlever",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:qlever",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:quine",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:quine",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "db:raphtory",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:raphtory",
+            "target": "db:stromadb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nodedb",
+            "target": "db:raphtory",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:oxirs",
+            "target": "db:rdf-trine",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:rdf-trine",
+            "target": "db:sparkledb",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:rdflib",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:rdflib",
+            "target": "db:redland",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:rdflib",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:rdfox",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:recallgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:grust",
+            "target": "db:recallgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:pggraph",
+            "target": "db:recallgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:redisgraph-falkordb",
+            "target": "db:sparksee",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-age",
+            "target": "db:redisgraph-falkordb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:redisgraph-falkordb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:4store",
+            "target": "db:redland",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:redland",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:redstore",
+            "target": "db:sparkledb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:redstore",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:relationalai",
+            "target": "db:ultipa",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:relationalai",
+            "similarity": 0.3
+          },
+          {
+            "source": "db:rocketgraph",
+            "target": "db:stellardb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "db:rushdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:rushdb",
+            "target": "db:stromadb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:rushdb",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:ryugraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:ryugraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "db:turbolynx",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:sap-hana",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:sones-graphdb",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:rocketgraph",
+            "target": "db:sones-graphdb",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:sones-graphdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:spanner-graph",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:sparkledb",
+            "target": "db:tentris",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:sparksee",
+            "target": "db:tigergraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:sparksee",
+            "target": "db:tugraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:sparksee",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:rdfox",
+            "target": "db:stardog",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:stellardb",
+            "target": "db:traverse",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "db:strabon",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:strabon",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:marmotta-kiwi",
+            "target": "db:strabon",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:stromadb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:data-graphs",
+            "target": "db:surrealdb",
+            "similarity": 0.3636
+          },
+          {
+            "source": "db:grafeo",
+            "target": "db:surrealdb",
+            "similarity": 0.3571
+          },
+          {
+            "source": "db:fluree",
+            "target": "db:surrealdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:bytegraph",
+            "target": "db:tao",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:tao",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:ibm-system-g",
+            "target": "db:tao",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:google-cayley",
+            "target": "db:terminusdb",
+            "similarity": 0.3636
+          },
+          {
+            "source": "db:kinetica",
+            "target": "db:tigergraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:nebulagraph",
+            "target": "db:tigergraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:triblespace",
+            "target": "db:zipg",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:triblespace",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:tugraph",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "db:turingdb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:turingdb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:typedb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:helixdb",
+            "target": "db:typedb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:relationalai",
+            "target": "db:typedb",
+            "similarity": 0.3
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:ultipa",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:ultipa",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:ultipa",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:duckpgq",
+            "target": "db:velocitygraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphqlite",
+            "target": "db:velocitygraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:marklogic",
+            "target": "db:virtuoso",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:virtuoso",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:millenniumdb",
+            "target": "db:virtuoso",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:weaver",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bangdb",
+            "target": "db:weaver",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:weaver",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "db:youtrackdb",
+            "similarity": 0.625
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "version": 1,
+    "layout": "force",
+    "bindings": [
+      {
+        "channel": "size",
+        "source": {
+          "kind": "algorithm",
+          "id": "degree"
+        },
+        "resultType": "num"
+      },
+      {
+        "channel": "color",
+        "source": {
+          "kind": "field",
+          "id": "type"
+        },
+        "resultType": "cat"
+      },
+      {
+        "channel": "edgeWidth",
+        "source": {
+          "kind": "field",
+          "id": "similarity",
+          "target": "edge"
+        },
+        "resultType": "num"
+      }
+    ]
+  }
+}

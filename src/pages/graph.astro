@@ -1,0 +1,315 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { getDatabaseCount } from '../lib/database-count';
+import '../styles/global.css';
+
+const databaseCount = await getDatabaseCount();
+const garphieldOrigin =
+  import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
+---
+<Layout
+  title="Explore the graph database landscape — GDB-Engines"
+  description={`Explore relationships among ${databaseCount} graph databases by query-language support and catalog similarity.`}
+  canonical="https://gdb-engines.com/graph/"
+>
+  <SiteHeader />
+
+  <main class="graph-page" data-garphield-origin={garphieldOrigin}>
+    <section class="graph-intro">
+      <div>
+        <h1>Graph Database Map</h1>
+        <p id="model-description">
+          Connect databases to the query languages they support. Larger nodes
+          participate in more relationships.
+        </p>
+      </div>
+      <div class="model-switcher" role="group" aria-label="Graph model">
+        <button
+          type="button"
+          class="model-button active"
+          data-document="/graphs/databases-languages.gfd"
+          data-description="Connect databases to the query languages they support. Larger nodes participate in more relationships."
+          aria-pressed="true"
+        >
+          Query languages
+        </button>
+        <button
+          type="button"
+          class="model-button"
+          data-document="/graphs/databases-similarity.gfd"
+          data-description="Connect each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+          aria-pressed="false"
+        >
+          Similarity
+        </button>
+      </div>
+    </section>
+
+    <section class="graph-stage" aria-label="Interactive graph visualization">
+      <div class="graph-status-row">
+        <p id="graph-status" role="status">Starting visualization…</p>
+        <p id="graph-selection">Click a node to inspect it.</p>
+      </div>
+      <iframe
+        id="garphield-frame"
+        title="Graph database landscape visualization"
+        loading="eager"
+      ></iframe>
+    </section>
+
+    <noscript>
+      <p class="graph-fallback">
+        JavaScript is required for the interactive view. The underlying
+        <a href="/graphs/databases-languages.gfd">query-language graph</a> and
+        <a href="/graphs/databases-similarity.gfd">similarity graph</a> are
+        available as structured Garphield documents.
+      </p>
+    </noscript>
+  </main>
+
+  <script>
+    import { createGarphield } from 'garphield';
+
+    const page = document.querySelector('.graph-page');
+    const frame = document.querySelector('#garphield-frame');
+    const status = document.querySelector('#graph-status');
+    const selection = document.querySelector('#graph-selection');
+    const description = document.querySelector('#model-description');
+    const buttons = [...document.querySelectorAll('.model-button')];
+
+    if (
+      page instanceof HTMLElement &&
+      frame instanceof HTMLIFrameElement &&
+      status instanceof HTMLElement &&
+      selection instanceof HTMLElement &&
+      description instanceof HTMLElement
+    ) {
+      const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
+      const driver = createGarphield(frame, {
+        embedUrl: new URL('/embed', origin),
+        timeoutMs: 30_000,
+      });
+      let labels = new Map();
+      let loadVersion = 0;
+
+      driver.on('nodeClick', (payload) => {
+        selection.textContent = `Selected: ${labels.get(payload.nodeId) ?? payload.nodeId}`;
+      });
+      driver.on('error', (payload) => {
+        status.textContent = `Visualization error: ${payload.message}`;
+      });
+
+      const ready = driver.ready();
+      const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function effectiveTheme(): 'light' | 'dark' {
+        const explicit = document.documentElement.dataset.theme;
+        if (explicit === 'light' || explicit === 'dark') return explicit;
+        return colorScheme.matches ? 'dark' : 'light';
+      }
+
+      async function syncTheme() {
+        await ready;
+        await driver.setTheme({ colorScheme: effectiveTheme() });
+      }
+
+      function reportThemeError(error: unknown) {
+        status.textContent = `Could not match visualization theme: ${String(error)}`;
+      }
+
+      const themeObserver = new MutationObserver(() => {
+        void syncTheme().catch(reportThemeError);
+      });
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
+      const systemThemeListener = () => {
+        if (!document.documentElement.dataset.theme) {
+          void syncTheme().catch(reportThemeError);
+        }
+      };
+      colorScheme.addEventListener('change', systemThemeListener);
+
+      async function loadDocument(button) {
+        const version = ++loadVersion;
+        for (const candidate of buttons) {
+          const active = candidate === button;
+          candidate.classList.toggle('active', active);
+          candidate.setAttribute('aria-pressed', String(active));
+        }
+        description.textContent = button.dataset.description ?? '';
+        selection.textContent = 'Click a node to inspect it.';
+        status.textContent = `Loading ${button.textContent.trim()}…`;
+
+        try {
+          const response = await fetch(button.dataset.document);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const document = await response.json();
+          await syncTheme();
+          await driver.setDocument(document);
+          if (version !== loadVersion) return;
+          const graph = document.datasets[0].graph;
+          labels = new Map(
+            graph.nodes.map((node) => [
+              String(node.id),
+              String(node.label ?? node.id),
+            ]),
+          );
+          status.textContent = `${button.textContent.trim()} · ${graph.nodes.length} nodes · ${graph.links.length} relationships`;
+        } catch (error) {
+          if (version !== loadVersion) return;
+          status.textContent = `Could not load visualization: ${String(error)}`;
+        }
+      }
+
+      for (const button of buttons) {
+        button.addEventListener('click', () => loadDocument(button));
+      }
+      loadDocument(buttons[0]);
+      window.addEventListener(
+        'pagehide',
+        () => {
+          themeObserver.disconnect();
+          colorScheme.removeEventListener('change', systemThemeListener);
+          driver.destroy();
+        },
+        { once: true },
+      );
+    }
+  </script>
+
+  <style>
+    .graph-page {
+      min-height: 100vh;
+      padding: calc(var(--header-height) + 1rem) 1rem 1rem;
+      display: grid;
+      grid-template-rows: auto minmax(34rem, 1fr);
+      gap: 1rem;
+      background:
+        radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--color-brand) 14%, transparent), transparent 28rem),
+        var(--color-background);
+    }
+
+    .graph-intro {
+      width: min(100%, 92rem);
+      margin: 0 auto;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .graph-intro > div:first-child {
+      min-width: 0;
+    }
+
+    .graph-intro h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.5rem;
+    }
+
+    #model-description {
+      max-width: 54rem;
+      color: var(--color-text-secondary);
+    }
+
+    .model-switcher {
+      display: flex;
+      padding: 0.25rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.5rem;
+      background: var(--color-surface);
+      flex: 0 0 auto;
+    }
+
+    .model-button {
+      border: 0;
+      border-radius: 0.35rem;
+      padding: 0.55rem 0.8rem;
+      background: transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font-size: 0.8125rem;
+    }
+
+    .model-button.active {
+      background: var(--color-background);
+      color: var(--color-text);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .graph-stage {
+      width: min(100%, 92rem);
+      min-height: 34rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-background);
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
+    }
+
+    .graph-status-row {
+      min-height: 2.75rem;
+      padding: 0.6rem 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+    }
+
+    #garphield-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 31rem;
+      border: 0;
+      background: var(--color-background);
+    }
+
+    .graph-fallback {
+      width: min(100%, 92rem);
+      margin: 0 auto;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 68rem) {
+      .graph-page {
+        grid-template-rows: auto minmax(34rem, 70vh);
+      }
+
+      .graph-intro {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .model-switcher {
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 48rem) {
+      .graph-page {
+        padding-inline: 0.5rem;
+      }
+
+      .graph-status-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+    }
+  </style>
+</Layout>

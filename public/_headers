@@ -4,7 +4,11 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://sln.gdb-engines.com; connect-src 'self' https://sln.gdb-engines.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://sln.gdb-engines.com; connect-src 'self' https://sln.gdb-engines.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src https://garphield.com; frame-ancestors 'none'
+
+/graphs/*
+  Access-Control-Allow-Origin: https://garphield.com
+  Cache-Control: public, max-age=3600
 
 # Content-hashed Astro bundles never change at the same URL — long-cache.
 /_astro/*
