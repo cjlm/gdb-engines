@@ -1,0 +1,14 @@
+name = "TypeGraph"
+vendor = "Nicia AI"
+slug = "typegraph"
+description = "An embedded graph library for TypeScript applications that keeps property graph data in an existing SQLite or PostgreSQL database, compiling typed traversals to SQL rather than running a separate graph service. Node and edge schemas are declared with Zod and carry ontology relations such as subClassOf and inverseOf, alongside vector and keyword search through pgvector, sqlite-vec, and libSQL."
+url = "https://typegraph.dev"
+github_url = "https://github.com/nicia-ai/typegraph"
+license = "MIT"
+implementation_language = "TypeScript"
+type = "Property Graph"
+kind = "library"
+query_languages = ["Custom API"]
+released = "2026-02"
+category = "Emerging"
+gdotv_support = false
