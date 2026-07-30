@@ -34,7 +34,7 @@ const { seed = [], mode = 'builder' } = Astro.props;
     data-combobox-input
   />
   <ul id="compare-listbox" role="listbox" aria-label="Databases" class="combobox-list" data-combobox-list hidden></ul>
-  {mode === 'builder' && <p class="empty" data-compare-empty>Pick two databases to compare.</p>}
+  {mode === 'builder' && <p class="empty" data-compare-empty>The comparison table appears once you have added two.</p>}
   {mode === 'builder' && <div data-compare-result></div>}
   <div class="visually-hidden" aria-live="polite" data-combobox-live></div>
 </div>
