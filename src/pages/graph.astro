@@ -49,18 +49,24 @@ const garphieldOrigin =
               Similarity
             </button>
           </div>
-          <label id="similarity-control" hidden>
-            <span>Min similarity</span>
-            <input
-              id="similarity-threshold"
-              type="range"
-              min="0.2"
-              max="0.8"
-              value="0.2"
-              step="0.05"
-            />
-            <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
-          </label>
+          <div id="similarity-control" hidden>
+            <label class="similarity-threshold-control">
+              <span>Min similarity</span>
+              <input
+                id="similarity-threshold"
+                type="range"
+                min="0.2"
+                max="0.8"
+                value="0.2"
+                step="0.05"
+              />
+              <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
+            </label>
+            <label class="hull-control">
+              <input id="similarity-hulls" type="checkbox" />
+              <span>Type hulls</span>
+            </label>
+          </div>
         </div>
         <div class="graph-status-right">
           <p id="graph-selection" aria-live="polite" hidden></p>
@@ -96,6 +102,7 @@ const garphieldOrigin =
     const similarityControl = document.querySelector('#similarity-control');
     const similarityThreshold = document.querySelector('#similarity-threshold');
     const similarityValue = document.querySelector('#similarity-value');
+    const similarityHulls = document.querySelector('#similarity-hulls');
     const buttons = [...document.querySelectorAll('.model-button')];
 
     if (
@@ -105,9 +112,10 @@ const garphieldOrigin =
       status instanceof HTMLElement &&
       selection instanceof HTMLElement &&
       description instanceof HTMLElement &&
-      similarityControl instanceof HTMLLabelElement &&
+      similarityControl instanceof HTMLElement &&
       similarityThreshold instanceof HTMLInputElement &&
-      similarityValue instanceof HTMLOutputElement
+      similarityValue instanceof HTMLOutputElement &&
+      similarityHulls instanceof HTMLInputElement
     ) {
       const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
       const driver = createGarphield(frame, {
@@ -119,6 +127,8 @@ const garphieldOrigin =
       let activeButton = null;
       let hasRendered = false;
       let loadVersion = 0;
+      let similarityFilterFrame = 0;
+      let similarityFilterVersion = 0;
 
       function clearSelection() {
         selection.replaceChildren();
@@ -199,18 +209,51 @@ const garphieldOrigin =
         similarityValue.value = `≥ ${Math.round(Number(similarityThreshold.value) * 100)}%`;
       }
 
-      function documentForCurrentView(source) {
-        const document = structuredClone(source);
+      function updateGraphStatus(graph, visibleLinks = graph.links.length) {
+        const databaseCount = graph.nodes.filter((node) =>
+          String(node.id).startsWith('db:'),
+        ).length;
         if (activeButton?.dataset.document?.includes('similarity')) {
-          const threshold = Number(similarityThreshold.value);
-          const graph = document.datasets[0].graph;
-          graph.links = graph.links.filter(
-            (link) =>
-              typeof link.similarity === 'number' &&
-              link.similarity >= threshold,
-          );
+          status.textContent = `${databaseCount} databases · ${visibleLinks} similar database pairs`;
+          return;
         }
-        return document;
+        const queryLanguageCount = graph.nodes.length - databaseCount;
+        status.textContent = `${databaseCount} databases · ${queryLanguageCount} query languages · ${visibleLinks} supported database–language pairings`;
+      }
+
+      async function applySimilarityFilter() {
+        if (
+          !activeDocument ||
+          !activeButton?.dataset.document?.includes('similarity')
+        ) {
+          return;
+        }
+        const version = ++similarityFilterVersion;
+        const threshold = Number(similarityThreshold.value);
+        const graph = activeDocument.datasets[0].graph;
+        const visibleLinks = graph.links.filter(
+          (link) =>
+            typeof link.similarity === 'number' &&
+            link.similarity >= threshold,
+        ).length;
+        updateGraphStatus(graph, visibleLinks);
+        try {
+          await driver.call('setEdgeFilter', {
+            field: 'similarity',
+            min: threshold,
+          });
+        } catch (error) {
+          if (version !== similarityFilterVersion) return;
+          status.textContent = `Could not filter similarity relationships: ${String(error)}`;
+        }
+      }
+
+      function scheduleSimilarityFilter() {
+        if (similarityFilterFrame !== 0) return;
+        similarityFilterFrame = requestAnimationFrame(() => {
+          similarityFilterFrame = 0;
+          void applySimilarityFilter();
+        });
       }
 
       async function renderDocument(source, version) {
@@ -220,7 +263,7 @@ const garphieldOrigin =
           await new Promise((resolve) => window.setTimeout(resolve, 180));
         }
 
-        const document = documentForCurrentView(source);
+        const document = structuredClone(source);
         await syncTheme();
         await driver.setDocument(document);
         if (version !== loadVersion) return;
@@ -229,15 +272,7 @@ const garphieldOrigin =
         nodes = new Map(
           graph.nodes.map((node) => [String(node.id), node]),
         );
-        const databaseCount = graph.nodes.filter((node) =>
-          String(node.id).startsWith('db:'),
-        ).length;
-        if (activeButton?.dataset.document?.includes('similarity')) {
-          status.textContent = `${databaseCount} databases · ${graph.links.length} similar database pairs`;
-        } else {
-          const queryLanguageCount = graph.nodes.length - databaseCount;
-          status.textContent = `${databaseCount} databases · ${queryLanguageCount} query languages · ${graph.links.length} supported database–language pairings`;
-        }
+        updateGraphStatus(graph);
         await new Promise((resolve) =>
           requestAnimationFrame(() => requestAnimationFrame(resolve)),
         );
@@ -257,6 +292,7 @@ const garphieldOrigin =
         description.textContent = button.dataset.description ?? '';
         similarityControl.hidden =
           !button.dataset.document?.includes('similarity');
+        similarityHulls.checked = false;
         clearSelection();
         status.textContent = 'Loading…';
 
@@ -279,6 +315,7 @@ const garphieldOrigin =
           if (version !== loadVersion) return;
           activeDocument = document;
           await renderDocument(document, version);
+          await applySimilarityFilter();
         } catch (error) {
           if (version !== loadVersion) return;
           graphStage.classList.remove('switching');
@@ -287,22 +324,19 @@ const garphieldOrigin =
       }
 
       updateSimilarityLabel();
-      similarityThreshold.addEventListener('input', updateSimilarityLabel);
-      similarityThreshold.addEventListener('change', () => {
-        if (
-          !activeDocument ||
-          !activeButton?.dataset.document?.includes('similarity')
-        ) {
-          return;
-        }
-        const version = ++loadVersion;
-        clearSelection();
-        status.textContent = 'Updating…';
-        void renderDocument(activeDocument, version).catch((error) => {
-          if (version !== loadVersion) return;
-          graphStage.classList.remove('switching');
-          status.textContent = `Could not update visualization: ${String(error)}`;
-        });
+      similarityThreshold.addEventListener('input', () => {
+        updateSimilarityLabel();
+        scheduleSimilarityFilter();
+      });
+      similarityHulls.addEventListener('change', () => {
+        void driver
+          .call('setBindingEnabled', {
+            channel: 'hull',
+            enabled: similarityHulls.checked,
+          })
+          .catch((error) => {
+            status.textContent = `Could not toggle type hulls: ${String(error)}`;
+          });
       });
 
       for (const button of buttons) {
@@ -314,6 +348,9 @@ const garphieldOrigin =
         () => {
           themeObserver.disconnect();
           colorScheme.removeEventListener('change', systemThemeListener);
+          if (similarityFilterFrame !== 0) {
+            cancelAnimationFrame(similarityFilterFrame);
+          }
           driver.destroy();
         },
         { once: true },
@@ -428,12 +465,27 @@ const garphieldOrigin =
     #similarity-control {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.8rem;
       white-space: nowrap;
     }
 
     #similarity-control[hidden] {
       display: none;
+    }
+
+    .similarity-threshold-control,
+    .hull-control {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hull-control {
+      cursor: pointer;
+    }
+
+    .hull-control input {
+      accent-color: var(--color-brand);
     }
 
     #similarity-threshold {
@@ -514,8 +566,15 @@ const garphieldOrigin =
       }
 
       .graph-status-left {
+        width: 100%;
         flex-wrap: wrap;
         gap: 0.4rem 0.65rem;
+      }
+
+      #similarity-control {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
       }
 
       .graph-status-right {
@@ -527,7 +586,11 @@ const garphieldOrigin =
       }
 
       #similarity-threshold {
-        width: 6rem;
+        width: 5.5rem;
+      }
+
+      #similarity-value {
+        min-width: 2.75rem;
       }
     }
 

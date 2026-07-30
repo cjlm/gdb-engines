@@ -3378,6 +3378,15 @@
         "resultType": "cat"
       },
       {
+        "channel": "hull",
+        "source": {
+          "kind": "field",
+          "id": "type"
+        },
+        "resultType": "cat",
+        "enabled": false
+      },
+      {
         "channel": "color",
         "source": {
           "kind": "field",

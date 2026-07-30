@@ -63,6 +63,13 @@ const imageByUrl = {
   resultType: "cat",
 };
 
+const hullByType = {
+  channel: "hull",
+  source: { kind: "field", id: "type" },
+  resultType: "cat",
+  enabled: false,
+};
+
 function databaseNode(database) {
   return {
     id: `db:${database.slug}`,
@@ -103,6 +110,7 @@ function bipartiteDocument() {
     bindings: [
       sizeByDegree,
       imageByUrl,
+      hullByType,
       {
         channel: "color",
         source: { kind: "field", id: "kind" },
@@ -195,6 +203,7 @@ function similarityDocument() {
     bindings: [
       sizeByDegree,
       imageByUrl,
+      hullByType,
       {
         channel: "color",
         source: { kind: "field", id: "type" },
