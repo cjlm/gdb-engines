@@ -152,20 +152,6 @@ header {
     font-variant-numeric: tabular-nums;
   }
 
-  .database-summary-divider {
-    margin-left: 0.625rem;
-    margin-right: 0.25rem;
-    display: block;
-    position: relative;
-    top: 1px;
-    width: 0;
-    line-height: 1;
-    height: 0.75rem;
-    border-right: 2px solid var(--color-border);
-    transform: translateX(-50%) rotate(20deg);
-    transform-origin: top center;
-  }
-
   .search-container {
     position: relative;
     flex: 1 1 auto;
@@ -220,8 +206,7 @@ header {
   @media (max-width: 45rem) {
     div.left {
 
-      .database-summary,
-      .database-summary-divider {
+      .database-summary {
         display: none;
       }
     }
