@@ -129,6 +129,44 @@ const garphieldOrigin =
       let loadVersion = 0;
       let similarityFilterFrame = 0;
       let similarityFilterVersion = 0;
+      const imageLoads = new Map<string, Promise<void>>();
+
+      function preloadImage(url: string): Promise<void> {
+        const existing = imageLoads.get(url);
+        if (existing) return existing;
+
+        const pending = new Promise<void>((resolve) => {
+          const image = new Image();
+          let settled = false;
+          const finish = () => {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(timeout);
+            resolve();
+          };
+          const timeout = window.setTimeout(finish, 8_000);
+          image.crossOrigin = 'anonymous';
+          image.decoding = 'async';
+          image.onerror = finish;
+          image.onload = () => {
+            void image.decode().catch(() => undefined).then(finish);
+          };
+          image.src = url;
+        });
+        imageLoads.set(url, pending);
+        return pending;
+      }
+
+      async function preloadNodeImages(document) {
+        const urls = [
+          ...new Set(
+            document.datasets[0].graph.nodes
+              .map((node) => node.image)
+              .filter((image): image is string => typeof image === 'string'),
+          ),
+        ];
+        await Promise.all(urls.map(preloadImage));
+      }
 
       function clearSelection() {
         selection.replaceChildren();
@@ -314,6 +352,9 @@ const garphieldOrigin =
           }
           if (version !== loadVersion) return;
           activeDocument = document;
+          status.textContent = 'Loading database icons…';
+          await preloadNodeImages(document);
+          if (version !== loadVersion) return;
           await renderDocument(document, version);
           await applySimilarityFilter();
         } catch (error) {
@@ -365,9 +406,6 @@ const garphieldOrigin =
       display: grid;
       grid-template-rows: auto minmax(34rem, 1fr);
       gap: 1rem;
-      background:
-        radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--color-brand) 14%, transparent), transparent 28rem),
-        var(--color-background);
     }
 
     .graph-intro {

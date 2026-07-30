@@ -33,6 +33,13 @@
   --color-text-invert: #FFF;
   --color-text-secondary: #666;
   --color-text-tertiary: #767676;
+  --site-background:
+    radial-gradient(
+      circle at 15% 10%,
+      color-mix(in srgb, var(--color-brand) 14%, transparent),
+      transparent 28rem
+    ),
+    var(--color-background);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,7 +77,12 @@ body {
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
   color: var(--color-text);
-  background-color: var(--color-background);
+  background: var(--site-background);
+  background-attachment: fixed;
+}
+
+body {
+  min-height: 100vh;
 }
 
 body:has(dialog[open]) {
@@ -103,7 +115,9 @@ header {
   align-items: center;
   height: var(--header-height);
   padding: 0 0.75rem;
-  background-color: var(--color-background);
+  background-color: color-mix(in srgb, var(--color-background) 78%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+  backdrop-filter: blur(16px) saturate(1.1);
   position: fixed;
   width: 100%;
   z-index: 20;
@@ -368,6 +382,8 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
   color: var(--color-background);
 }
 .rankings-link__icon { flex-shrink: 0; }
+.graph-link { gap: 0.35rem; }
+.graph-link__icon { flex-shrink: 0; }
 @media (max-width: 45rem) {
   .rankings-link__label { display: none; }
 }
