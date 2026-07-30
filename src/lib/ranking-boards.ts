@@ -1,7 +1,7 @@
 /**
  * Turns a RankingFile into the flat list of pages to generate. Each board becomes a page at
- * /rankings/{slug}. Titles use the "X Graph Database Popularity Ranking" convention; meta
- * descriptions include "best / most popular / top" for long-tail SEO.
+ * /rankings/{slug}. Only /rankings/overall/ targets the generic head terms; sub-boards lead
+ * with their qualifier so they stop competing with it, and with each other.
  */
 import type { RankingFile, RankedEngine } from './rankings';
 
@@ -72,7 +72,7 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 const blurbFor = (label: string): string =>
-  `The most popular ${label.toLowerCase()} graph databases, ranked monthly by adoption, activity, community and research signals.`;
+  `${label} graph databases, ranked monthly by adoption, activity, community and research signals.`;
 
 const blurbOverall =
   'The most popular graph databases, ranked monthly across adoption, activity, community and research signals.';
@@ -110,23 +110,32 @@ export function buildLinkMaps(ranking: RankingFile): {
   overallRank: Map<string, number>;
   overallDelta1m: Map<string, number | 'new' | null>;
 } {
-  const typeSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byType)) typeSlug.set(k, slugify(TYPE_LABEL[k] ?? k));
-  const kindSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byKind)) {
-    if (SKIP_KIND.has(k)) continue;
-    kindSlug.set(k, slugify(KIND_LABEL[k] ?? k));
-  }
-  const licenseTierSlugMap = new Map<string, string>();
-  for (const k of Object.keys(ranking.byLicenseTier)) licenseTierSlugMap.set(k, slugify(LICENSE_LABEL[k] ?? k));
+  // Only link to boards that survive the group and size gates in buildBoards, so a
+  // retired board never leaves a dangling /rankings/<slug>/ link behind on a value.
+  const live = new Set(buildBoards(ranking).map((b) => b.slug));
+  const linkable = (label: string): string | null => {
+    const slug = slugify(label);
+    return live.has(slug) ? slug : null;
+  };
+  const mapFor = (keys: string[], label: (k: string) => string): Map<string, string> => {
+    const out = new Map<string, string>();
+    for (const k of keys) {
+      const slug = linkable(label(k));
+      if (slug) out.set(k, slug);
+    }
+    return out;
+  };
+  const typeSlug = mapFor(Object.keys(ranking.byType), (k) => TYPE_LABEL[k] ?? k);
+  const kindSlug = mapFor(
+    Object.keys(ranking.byKind).filter((k) => !SKIP_KIND.has(k)),
+    (k) => KIND_LABEL[k] ?? k
+  );
   const licenseTierSlug = (spdx: string | null | undefined): string | null => {
     const tier = licenseTierLabel(spdx);
-    return licenseTierSlugMap.get(tier) ?? null;
+    return linkable(LICENSE_LABEL[tier] ?? tier);
   };
-  const queryLanguageSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byQueryLanguage)) queryLanguageSlug.set(k, slugify(k));
-  const implementationLanguageSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byImplementationLanguage)) implementationLanguageSlug.set(k, slugify(k));
+  const queryLanguageSlug = mapFor(Object.keys(ranking.byQueryLanguage), (k) => k);
+  const implementationLanguageSlug = mapFor(Object.keys(ranking.byImplementationLanguage), (k) => k);
   const overallRank = new Map<string, number>();
   const overallDelta1m = new Map<string, number | 'new' | null>();
   // Rank among engines that actually appear on the public board (Insufficient stripped).
@@ -178,10 +187,20 @@ function makeBoard(meta: BoardMeta, engines: RankedEngine[]): Board {
 
 // Build "{label} Graph Database Popularity Ranking", avoiding the duplicate-word
 // "Property Graph Graph Database" when the label already ends in "Graph".
+//
+// Sub-boards lead with their qualifier and end "Ranked Monthly" rather than
+// repeating "Graph Database Popularity Ranking", which 30 pages were bidding for
+// against /rankings/overall/. Search Console showed nine of them splitting the
+// impressions for "graph database ranking" while overall (position 4) got two.
 function gdbRankingTitle(label: string): string {
   const trimmed = label.endsWith(' Graph') ? label.slice(0, -' Graph'.length) : label;
-  return `${trimmed} Graph Database Popularity Ranking`;
+  return `${trimmed} Graph Databases, Ranked Monthly`;
 }
+
+// A board needs enough engines for the ordering to mean anything. Query language is
+// the exception: it is how people shop for an engine, and it carries the best-performing
+// board on the site, so emerging standards stay in below the floor.
+const MIN_BOARD_ENGINES = 10;
 
 export function buildBoards(ranking: RankingFile): Board[] {
   const boards: Board[] = [];
@@ -223,18 +242,10 @@ export function buildBoards(ranking: RankingFile): Board[] {
     }, engines));
   }
 
-  for (const [tier, engines] of Object.entries(ranking.byLicenseTier)) {
-    const label = LICENSE_LABEL[tier] ?? tier;
-    boards.push(makeBoard({
-      slug: slugify(label),
-      title: gdbRankingTitle(label),
-      h1: gdbRankingTitle(label),
-      shortLabel: label,
-      blurb: blurbFor(label),
-      metaDescription: blurbFor(label),
-      group: 'license',
-    }, engines));
-  }
+  // The license group is retired: four boards, 71 impressions and zero clicks over the
+  // 90 days to 2026-07-29. Ranking 71 of 143 engines by "permissive licence" was never a
+  // question anyone asked, and the pages competed with the overall board for head terms.
+  // License remains a sortable column on the homepage.
 
   for (const [lang, engines] of Object.entries(ranking.byQueryLanguage)) {
     boards.push(makeBoard({
@@ -273,11 +284,13 @@ export function buildBoards(ranking: RankingFile): Board[] {
   // De-duplicate any accidental slug collisions across categories (last wins isn't ideal —
   // but with our current label maps there shouldn't be any).
   const seen = new Set<string>();
+  const exemptFromFloor = new Set(['overall', 'movers', 'query-language']);
   return boards.filter((b) => {
     if (seen.has(b.slug)) {
       console.warn(`[rankings] dropping board with duplicate slug "${b.slug}" (group=${b.group})`);
       return false;
     }
+    if (!exemptFromFloor.has(b.group) && b.engines.length < MIN_BOARD_ENGINES) return false;
     seen.add(b.slug);
     return true;
   });

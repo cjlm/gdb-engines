@@ -9,11 +9,36 @@
 # conventional /sitemap.xml. Without this it hits the 404 handler.
 /sitemap.xml        /sitemap-index.xml              301
 
-# The library board was retired (zero Search Console impressions over 90 days).
-# Cloudflare Pages evaluates _redirects before static assets, so this entry can only
-# be added once the board itself stops being generated.
+# Retired ranking boards. Safe to list here only because the same commit stops
+# generating them — Cloudflare Pages evaluates _redirects before static assets, so an
+# entry for a live path would shadow the page.
+# Language boards below the ten-engine floor:
+/rankings/go                /rankings/                      301
+/rankings/go/               /rankings/                      301
+/rankings/csharp            /rankings/                      301
+/rankings/csharp/           /rankings/                      301
+/rankings/typescript        /rankings/                      301
+/rankings/typescript/       /rankings/                      301
+/rankings/python            /rankings/                      301
+/rankings/python/           /rankings/                      301
+/rankings/scala             /rankings/                      301
+/rankings/scala/            /rankings/                      301
+# Kind boards below the floor:
 /rankings/graph-library     /rankings/                      301
 /rankings/graph-library/    /rankings/                      301
+/rankings/graph-extension   /rankings/                      301
+/rankings/graph-extension/  /rankings/                      301
+/rankings/graph-query-engine   /rankings/                   301
+/rankings/graph-query-engine/  /rankings/                   301
+# Retired license group:
+/rankings/copyleft          /rankings/                      301
+/rankings/copyleft/         /rankings/                      301
+/rankings/permissive-licensed   /rankings/                  301
+/rankings/permissive-licensed/  /rankings/                  301
+/rankings/proprietary       /rankings/                      301
+/rankings/proprietary/      /rankings/                      301
+/rankings/source-available  /rankings/                      301
+/rankings/source-available/ /rankings/                      301
 
 # FalkorDB's catalog slug carries its legacy Redis history (`redisgraph-falkordb`).
 # Searches for "FalkorDB" should land on its page directly.
