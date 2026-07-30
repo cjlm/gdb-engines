@@ -1,0 +1,40 @@
+---
+interface Props {
+  count: number;
+  /** Read out after the figure; the visible badge shows the number alone. */
+  label?: string;
+}
+
+const { count, label = 'engines' } = Astro.props;
+
+/**
+ * Engine-count badge. The node-and-edge glyph echoes the site icon so a bare
+ * figure still reads as "graph databases" without spelling it out.
+ */
+---
+<span class="count-badge num">
+  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M5.2 7.2 10.8 4.4M5.2 8.8 10.8 11.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <circle cx="3.4" cy="8" r="2.1" fill="currentColor"/>
+    <circle cx="12.4" cy="3.8" r="1.8" fill="currentColor"/>
+    <circle cx="12.4" cy="12.2" r="1.8" fill="currentColor"/>
+  </svg>
+  {count}<span class="sr-only"> {label}</span>
+</span>
+
+<style>
+  .count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 0 0 auto;
+    padding: 0.1rem 0.45rem 0.1rem 0.35rem;
+    border-radius: 999px;
+    background-color: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+    color: var(--color-brand-accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .count-badge svg { width: 12px; height: 12px; flex: 0 0 auto; }
+</style>
