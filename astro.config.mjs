@@ -4,6 +4,8 @@ import { execSync } from 'node:child_process';
 
 // Fallback for pages whose real change date can't be derived from git.
 const buildDate = new Date().toISOString().split('T')[0];
+const garphieldOrigin =
+  process.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
 
 /** Last git commit date (YYYY-MM-DD) touching any of `paths`, or null if unavailable. */
 function gitDate(...paths) {
@@ -52,6 +54,17 @@ export default defineConfig({
   // Canonical URLs carry a trailing slash (directory build format). Enforce it
   // so a no-slash internal link is a build error, not a silent 301 redirect.
   trailingSlash: 'always',
+  // Sigma loads node images into a WebGL texture atlas with anonymous CORS.
+  // Production mirrors these headers in public/_headers; this keeps local
+  // GDB + local Garphield development working with the same generated docs.
+  vite: {
+    server: {
+      headers: {
+        'Access-Control-Allow-Origin': garphieldOrigin,
+        'Cross-Origin-Resource-Policy': 'cross-origin',
+      },
+    },
+  },
   integrations: [
     sitemap({
       // /compare/custom/ is noindex; listing a noindex URL in a sitemap is a

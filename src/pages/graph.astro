@@ -1,0 +1,615 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { getDatabaseCount } from '../lib/database-count';
+import '../styles/global.css';
+
+const databaseCount = await getDatabaseCount();
+const garphieldOrigin =
+  import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
+---
+<Layout
+  title="Explore the graph database landscape — GDB-Engines"
+  description={`Explore relationships among ${databaseCount} graph databases by query-language support and catalog similarity.`}
+  canonical="https://gdb-engines.com/graph/"
+>
+  <SiteHeader />
+
+  <main class="graph-page" data-garphield-origin={garphieldOrigin}>
+    <section class="graph-intro">
+      <div>
+        <h1>Graph Database Map</h1>
+        <p id="model-description">
+          Databases linked via query languages supported.
+        </p>
+      </div>
+    </section>
+
+    <section class="graph-stage" aria-label="Interactive graph visualization">
+      <div class="graph-status-row">
+        <div class="graph-status-left">
+          <div class="model-switcher" role="group" aria-label="Graph model">
+            <button
+              type="button"
+              class="model-button active"
+              data-document="/graphs/databases-languages.gfd"
+              data-description="Databases linked via query languages supported."
+              aria-pressed="true"
+            >
+              Query languages
+            </button>
+            <button
+              type="button"
+              class="model-button"
+              data-document="/graphs/databases-similarity.gfd"
+              data-description="Link each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+              aria-pressed="false"
+            >
+              Similarity
+            </button>
+          </div>
+          <div id="similarity-control" hidden>
+            <label class="similarity-threshold-control">
+              <span>Min similarity</span>
+              <input
+                id="similarity-threshold"
+                type="range"
+                min="0.2"
+                max="0.8"
+                value="0.2"
+                step="0.05"
+              />
+              <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
+            </label>
+          </div>
+        </div>
+        <div class="graph-status-right">
+          <p id="graph-selection" aria-live="polite" hidden></p>
+          <p id="graph-status" role="status">Starting visualization…</p>
+        </div>
+      </div>
+      <iframe
+        id="garphield-frame"
+        title="Graph database landscape visualization"
+        loading="eager"
+      ></iframe>
+    </section>
+
+    <noscript>
+      <p class="graph-fallback">
+        JavaScript is required for the interactive view. The underlying
+        <a href="/graphs/databases-languages.gfd">query-language graph</a> and
+        <a href="/graphs/databases-similarity.gfd">similarity graph</a> are
+        available as structured Garphield documents.
+      </p>
+    </noscript>
+  </main>
+
+  <script>
+    import { createGarphield } from 'garphield';
+
+    const page = document.querySelector('.graph-page');
+    const graphStage = document.querySelector('.graph-stage');
+    const frame = document.querySelector('#garphield-frame');
+    const status = document.querySelector('#graph-status');
+    const selection = document.querySelector('#graph-selection');
+    const description = document.querySelector('#model-description');
+    const similarityControl = document.querySelector('#similarity-control');
+    const similarityThreshold = document.querySelector('#similarity-threshold');
+    const similarityValue = document.querySelector('#similarity-value');
+    const buttons = [...document.querySelectorAll('.model-button')];
+
+    if (
+      page instanceof HTMLElement &&
+      graphStage instanceof HTMLElement &&
+      frame instanceof HTMLIFrameElement &&
+      status instanceof HTMLElement &&
+      selection instanceof HTMLElement &&
+      description instanceof HTMLElement &&
+      similarityControl instanceof HTMLElement &&
+      similarityThreshold instanceof HTMLInputElement &&
+      similarityValue instanceof HTMLOutputElement
+    ) {
+      const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
+      const driver = createGarphield(frame, {
+        embedUrl: new URL('/embed', origin),
+        timeoutMs: 30_000,
+      });
+      let nodes = new Map();
+      let activeDocument = null;
+      let activeButton = null;
+      let hasRendered = false;
+      let loadVersion = 0;
+      let similarityFilterFrame = 0;
+      let similarityFilterVersion = 0;
+      const imageLoads = new Map<string, Promise<void>>();
+
+      function preloadImage(url: string): Promise<void> {
+        const existing = imageLoads.get(url);
+        if (existing) return existing;
+
+        const pending = new Promise<void>((resolve) => {
+          const image = new Image();
+          let settled = false;
+          const finish = () => {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(timeout);
+            resolve();
+          };
+          const timeout = window.setTimeout(finish, 8_000);
+          image.crossOrigin = 'anonymous';
+          image.decoding = 'async';
+          image.onerror = finish;
+          image.onload = () => {
+            void image.decode().catch(() => undefined).then(finish);
+          };
+          image.src = url;
+        });
+        imageLoads.set(url, pending);
+        return pending;
+      }
+
+      async function preloadNodeImages(document) {
+        const urls = [
+          ...new Set(
+            document.datasets[0].graph.nodes
+              .map((node) => node.image)
+              .filter((image): image is string => typeof image === 'string'),
+          ),
+        ];
+        await Promise.all(urls.map(preloadImage));
+      }
+
+      function clearSelection() {
+        selection.replaceChildren();
+        selection.hidden = true;
+      }
+
+      driver.on('nodeClick', (payload) => {
+        if (!payload.nodeId) {
+          clearSelection();
+          return;
+        }
+        const node = nodes.get(payload.nodeId);
+        if (!node) {
+          clearSelection();
+          return;
+        }
+
+        const label = String(node.label ?? node.id);
+        const content = document.createDocumentFragment();
+        if (typeof node.image === 'string') {
+          const image = document.createElement('img');
+          image.src = node.image;
+          image.alt = '';
+          image.width = 18;
+          image.height = 18;
+          content.append(image);
+        }
+        if (String(node.id).startsWith('db:')) {
+          const link = document.createElement('a');
+          link.href = `/db/${encodeURIComponent(String(node.id).slice(3))}/`;
+          link.textContent = label;
+          content.append(link);
+        } else {
+          const text = document.createElement('span');
+          text.textContent = label;
+          content.append(text);
+        }
+        selection.replaceChildren(content);
+        selection.hidden = false;
+      });
+      driver.on('error', (payload) => {
+        status.textContent = `Visualization error: ${payload.message}`;
+      });
+
+      const ready = driver.ready();
+      const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function effectiveTheme(): 'light' | 'dark' {
+        const explicit = document.documentElement.dataset.theme;
+        if (explicit === 'light' || explicit === 'dark') return explicit;
+        return colorScheme.matches ? 'dark' : 'light';
+      }
+
+      async function syncTheme() {
+        await ready;
+        await driver.setTheme({ colorScheme: effectiveTheme() });
+      }
+
+      function reportThemeError(error: unknown) {
+        status.textContent = `Could not match visualization theme: ${String(error)}`;
+      }
+
+      const themeObserver = new MutationObserver(() => {
+        void syncTheme().catch(reportThemeError);
+      });
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
+      const systemThemeListener = () => {
+        if (!document.documentElement.dataset.theme) {
+          void syncTheme().catch(reportThemeError);
+        }
+      };
+      colorScheme.addEventListener('change', systemThemeListener);
+
+      function updateSimilarityLabel() {
+        similarityValue.value = `≥ ${Math.round(Number(similarityThreshold.value) * 100)}%`;
+      }
+
+      function updateGraphStatus(graph, visibleLinks = graph.links.length) {
+        const databaseCount = graph.nodes.filter((node) =>
+          String(node.id).startsWith('db:'),
+        ).length;
+        if (activeButton?.dataset.document?.includes('similarity')) {
+          status.textContent = `${databaseCount} databases · ${visibleLinks} similar database pairs`;
+          return;
+        }
+        const queryLanguageCount = graph.nodes.length - databaseCount;
+        status.textContent = `${databaseCount} databases · ${queryLanguageCount} query languages · ${visibleLinks} supported database–language pairings`;
+      }
+
+      async function applySimilarityFilter() {
+        if (
+          !activeDocument ||
+          !activeButton?.dataset.document?.includes('similarity')
+        ) {
+          return;
+        }
+        const version = ++similarityFilterVersion;
+        const threshold = Number(similarityThreshold.value);
+        const graph = activeDocument.datasets[0].graph;
+        const visibleLinks = graph.links.filter(
+          (link) =>
+            typeof link.similarity === 'number' &&
+            link.similarity >= threshold,
+        ).length;
+        updateGraphStatus(graph, visibleLinks);
+        try {
+          await driver.call('setEdgeFilter', {
+            field: 'similarity',
+            min: threshold,
+          });
+        } catch (error) {
+          if (version !== similarityFilterVersion) return;
+          status.textContent = `Could not filter similarity relationships: ${String(error)}`;
+        }
+      }
+
+      function scheduleSimilarityFilter() {
+        if (similarityFilterFrame !== 0) return;
+        similarityFilterFrame = requestAnimationFrame(() => {
+          similarityFilterFrame = 0;
+          void applySimilarityFilter();
+        });
+      }
+
+      async function renderDocument(source, version) {
+        const shouldFade = hasRendered;
+        if (shouldFade) {
+          graphStage.classList.add('switching');
+          await new Promise((resolve) => window.setTimeout(resolve, 180));
+        }
+
+        const document = structuredClone(source);
+        await syncTheme();
+        await driver.setDocument(document);
+        if (version !== loadVersion) return;
+
+        const graph = document.datasets[0].graph;
+        nodes = new Map(
+          graph.nodes.map((node) => [String(node.id), node]),
+        );
+        updateGraphStatus(graph);
+        await new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        );
+        if (version !== loadVersion) return;
+        graphStage.classList.remove('switching');
+        hasRendered = true;
+      }
+
+      async function loadDocument(button) {
+        const version = ++loadVersion;
+        activeButton = button;
+        for (const candidate of buttons) {
+          const active = candidate === button;
+          candidate.classList.toggle('active', active);
+          candidate.setAttribute('aria-pressed', String(active));
+        }
+        description.textContent = button.dataset.description ?? '';
+        similarityControl.hidden =
+          !button.dataset.document?.includes('similarity');
+        clearSelection();
+        status.textContent = 'Loading…';
+
+        try {
+          const response = await fetch(button.dataset.document);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const document = await response.json();
+          // Generated documents keep production-absolute asset URLs so they
+          // remain portable. In dev, point those same assets at this local GDB
+          // server; Garphield still receives a valid absolute URL.
+          if (import.meta.env.DEV) {
+            for (const node of document.datasets[0].graph.nodes) {
+              if (typeof node.image !== 'string') continue;
+              const image = new URL(node.image);
+              if (image.origin === 'https://gdb-engines.com') {
+                node.image = new URL(image.pathname, window.location.origin).href;
+              }
+            }
+          }
+          if (version !== loadVersion) return;
+          activeDocument = document;
+          await preloadNodeImages(document);
+          if (version !== loadVersion) return;
+          await renderDocument(document, version);
+          await applySimilarityFilter();
+        } catch (error) {
+          if (version !== loadVersion) return;
+          graphStage.classList.remove('switching');
+          status.textContent = `Could not load visualization: ${String(error)}`;
+        }
+      }
+
+      updateSimilarityLabel();
+      similarityThreshold.addEventListener('input', () => {
+        updateSimilarityLabel();
+        scheduleSimilarityFilter();
+      });
+      for (const button of buttons) {
+        button.addEventListener('click', () => loadDocument(button));
+      }
+      loadDocument(buttons[0]);
+      window.addEventListener(
+        'pagehide',
+        () => {
+          themeObserver.disconnect();
+          colorScheme.removeEventListener('change', systemThemeListener);
+          if (similarityFilterFrame !== 0) {
+            cancelAnimationFrame(similarityFilterFrame);
+          }
+          driver.destroy();
+        },
+        { once: true },
+      );
+    }
+  </script>
+
+  <style>
+    .graph-page {
+      min-height: 100vh;
+      padding: calc(var(--header-height) + 1.5rem) 0 1.25rem;
+      display: grid;
+      grid-template-rows: auto minmax(34rem, 1fr);
+      gap: 0;
+    }
+
+    .graph-intro {
+      width: 100%;
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding-inline: 1.25rem;
+    }
+
+    .graph-intro > div {
+      min-width: 0;
+    }
+
+    .graph-intro h1 {
+      font-size: 1.5rem;
+      color: var(--color-text);
+      margin: 0 0 0.5rem;
+    }
+
+    #model-description {
+      height: 1.55em;
+      margin: 0.75rem 0 1.25rem;
+      overflow: hidden;
+      max-width: 90ch;
+      color: var(--color-text);
+      line-height: 1.55;
+    }
+
+    .model-switcher {
+      display: flex;
+      padding: 0.15rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.5rem;
+      background: var(--color-surface);
+      flex: 0 0 auto;
+    }
+
+    .model-button {
+      border: 0;
+      border-radius: 0.35rem;
+      padding: 0.4rem 0.7rem;
+      background: transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font-size: 0.8125rem;
+    }
+
+    .model-button.active {
+      background: var(--color-background);
+      color: var(--color-text);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .graph-stage {
+      width: min(calc(100% - 2.5rem), 92rem);
+      min-height: 34rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-background);
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
+    }
+
+    .graph-status-row {
+      min-height: 2.75rem;
+      padding: 0.6rem 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+    }
+
+    .graph-status-left {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .graph-status-right {
+      min-width: 0;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    #similarity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      white-space: nowrap;
+    }
+
+    #similarity-control[hidden] {
+      display: none;
+    }
+
+    .similarity-threshold-control {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    #similarity-threshold {
+      width: 7rem;
+      accent-color: var(--color-brand);
+    }
+
+    #similarity-value {
+      min-width: 3.25rem;
+      color: var(--color-text);
+    }
+
+    #graph-status,
+    #graph-selection {
+      margin: 0;
+    }
+
+    #graph-selection {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    #graph-selection[hidden] {
+      display: none;
+    }
+
+    #graph-selection img {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: white;
+    }
+
+    #graph-selection a {
+      color: var(--color-text);
+      text-underline-offset: 0.18em;
+    }
+
+    #garphield-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 31rem;
+      border: 0;
+      background: var(--color-background);
+      opacity: 1;
+      transition: opacity 180ms ease;
+    }
+
+    .graph-stage.switching #garphield-frame {
+      opacity: 0;
+    }
+
+    .graph-fallback {
+      width: min(calc(100% - 2.5rem), 92rem);
+      margin: 0 auto;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 68rem) {
+      #model-description {
+        height: 4.65em;
+      }
+    }
+
+    @media (max-width: 48rem) {
+      .graph-status-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .graph-status-left {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.65rem;
+      }
+
+      #similarity-control {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .graph-status-right {
+        width: 100%;
+        margin-left: 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      #similarity-threshold {
+        width: 5.5rem;
+      }
+
+      #similarity-value {
+        min-width: 2.75rem;
+      }
+    }
+
+    @media (max-width: 30rem) {
+      #model-description {
+        height: 6.2em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #garphield-frame {
+        transition: none;
+      }
+    }
+  </style>
+</Layout>
