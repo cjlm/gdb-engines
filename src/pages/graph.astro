@@ -49,7 +49,6 @@ const garphieldOrigin =
               Similarity
             </button>
           </div>
-          <p id="graph-status" role="status">Starting visualization…</p>
           <label id="similarity-control" hidden>
             <span>Min similarity</span>
             <input
@@ -63,7 +62,10 @@ const garphieldOrigin =
             <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
           </label>
         </div>
-        <p id="graph-selection" aria-live="polite" hidden></p>
+        <div class="graph-status-right">
+          <p id="graph-selection" aria-live="polite" hidden></p>
+          <p id="graph-status" role="status">Starting visualization…</p>
+        </div>
       </div>
       <iframe
         id="garphield-frame"
@@ -227,7 +229,15 @@ const garphieldOrigin =
         nodes = new Map(
           graph.nodes.map((node) => [String(node.id), node]),
         );
-        status.textContent = `${graph.nodes.length} nodes · ${graph.links.length} relationships`;
+        const databaseCount = graph.nodes.filter((node) =>
+          String(node.id).startsWith('db:'),
+        ).length;
+        if (activeButton?.dataset.document?.includes('similarity')) {
+          status.textContent = `${databaseCount} databases · ${graph.links.length} similar database pairs`;
+        } else {
+          const queryLanguageCount = graph.nodes.length - databaseCount;
+          status.textContent = `${databaseCount} databases · ${queryLanguageCount} query languages · ${graph.links.length} supported database–language pairings`;
+        }
         await new Promise((resolve) =>
           requestAnimationFrame(() => requestAnimationFrame(resolve)),
         );
@@ -406,6 +416,15 @@ const garphieldOrigin =
       gap: 0.75rem;
     }
 
+    .graph-status-right {
+      min-width: 0;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
     #similarity-control {
       display: flex;
       align-items: center;
@@ -497,6 +516,14 @@ const garphieldOrigin =
       .graph-status-left {
         flex-wrap: wrap;
         gap: 0.4rem 0.65rem;
+      }
+
+      .graph-status-right {
+        width: 100%;
+        margin-left: 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.3rem;
       }
 
       #similarity-threshold {
