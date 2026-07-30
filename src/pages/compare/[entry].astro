@@ -573,6 +573,10 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
   .matrix-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 6px; }
   .compare-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
   .compare-table td, .compare-table th { border-bottom: 1px solid var(--color-border); padding: 0.4rem 0.65rem; text-align: left; vertical-align: top; }
+  /* global.css sets `th, td { white-space: nowrap }` for the homepage table. This matrix
+     carries prose (descriptions, status notes), which would otherwise render on one line
+     and spill across the neighbouring columns. */
+  .compare-table td { white-space: normal; }
   .row-label { position: sticky; left: 0; background: var(--color-background); color: var(--color-text-secondary); font-weight: 400; white-space: nowrap; }
   .engine-head { position: sticky; top: var(--header-height); background: var(--color-surface); z-index: 2; }
   .engine-head--compact { font-weight: 600; }
