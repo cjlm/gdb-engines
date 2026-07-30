@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { blogPosts, formatBlogDate } from '../../lib/blog';
+import '../../styles/global.css';
+
+const posts = await blogPosts();
+const pageJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'GDB-Engines Blog',
+  description: 'The GDB-Engines blog.',
+  url: 'https://gdb-engines.com/blog/',
+});
+---
+
+<Layout
+  title="Blog — GDB-Engines"
+  description="The GDB-Engines blog."
+  canonical="https://gdb-engines.com/blog/"
+  jsonLd={[pageJsonLd]}
+>
+  <SiteHeader />
+  <main class="blog-index">
+    <div class="blog-masthead">
+      <h1>Blog</h1>
+      <div class="blog-dotline" aria-hidden="true"></div>
+    </div>
+
+    <section aria-label="Posts">
+      <ol class="blog-post-list">
+        {posts.map((post) => (
+          <li>
+            <p class="blog-post-meta">
+              <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                {formatBlogDate(post.data.date)}
+              </time>
+              {post.data.draft && <span class="draft-badge">Draft</span>}
+            </p>
+            <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+            <p class="blog-post-description">{post.data.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .blog-index {
+    width: min(100% - 2.5rem, 42rem);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 2.5rem) 0 5rem;
+  }
+  .blog-post-meta {
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .blog-masthead h1 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+  .blog-dotline {
+    height: 3px;
+    margin: 1.25rem 0 3rem;
+    background-image: radial-gradient(circle, var(--color-text-tertiary) 1px, transparent 1.25px);
+    background-position: left center;
+    background-repeat: repeat-x;
+    background-size: 9px 3px;
+    opacity: 0.55;
+  }
+  .blog-post-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .blog-post-list li + li {
+    margin-top: 3.25rem;
+  }
+  .blog-post-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 0.45rem;
+  }
+  .draft-badge {
+    padding: 0.1rem 0.35rem;
+    border: 1px solid currentColor;
+    border-radius: 0.2rem;
+    color: var(--color-brand-accent);
+    line-height: 1;
+  }
+  .blog-post-list h2 {
+    margin: 0 0 0.45rem;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+  .blog-post-list h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .blog-post-list h2 a:hover {
+    color: var(--color-brand-accent);
+  }
+  .blog-post-description {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  @media (max-width: 48rem) {
+    .blog-index {
+      width: min(100% - 2rem, 42rem);
+      padding-top: calc(var(--header-height) + 2.5rem);
+    }
+    .blog-dotline {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

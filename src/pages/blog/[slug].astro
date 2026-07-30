@@ -1,0 +1,261 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const posts = await blogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const canonical = `https://gdb-engines.com/blog/${post.id}/`;
+const publishedTime = post.data.date.toISOString();
+const postJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: publishedTime,
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'GDB-Engines',
+  },
+  mainEntityOfPage: canonical,
+});
+---
+
+<Layout
+  title={`${post.data.title} — GDB-Engines`}
+  description={post.data.description}
+  canonical={canonical}
+  ogType="article"
+  publishedTime={publishedTime}
+  jsonLd={[postJsonLd]}
+>
+  <SiteHeader />
+  <main class="blog-post">
+    <article>
+      <div class="blog-post-header">
+        <a class="blog-section-link" href="/blog/">GDB-Engines Blog</a>
+        <h1>{post.data.title}</h1>
+        <p class="blog-post-lede">{post.data.description}</p>
+        <p class="blog-post-byline">
+          <time datetime={post.data.date.toISOString().slice(0, 10)}>
+            {formatBlogDate(post.data.date)}
+          </time>
+          <span aria-hidden="true">·</span>
+          <span>{post.data.author}</span>
+          {post.data.draft && <span class="draft-badge">Draft</span>}
+        </p>
+        <div class="blog-dotline" aria-hidden="true"></div>
+      </div>
+
+      <div class="blog-prose">
+        <Content />
+      </div>
+
+      <footer class="blog-post-footer">
+        <a href="/blog/"><span aria-hidden="true">←</span> All posts</a>
+        <a href="/blog/rss.xml">RSS</a>
+      </footer>
+    </article>
+  </main>
+</Layout>
+
+<style is:global>
+  .blog-post {
+    width: min(100% - 2.5rem, 42rem);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 3.5rem) 0 5rem;
+  }
+  .blog-post-header {
+    margin-bottom: 2.5rem;
+  }
+  .blog-section-link {
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .blog-post-header h1 {
+    margin: 1rem 0 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+  .blog-post-lede {
+    margin-top: 1.25rem;
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+  .blog-post-byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1.25rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .draft-badge {
+    padding: 0.1rem 0.35rem;
+    border: 1px solid currentColor;
+    border-radius: 0.2rem;
+    color: var(--color-brand-accent);
+    line-height: 1;
+  }
+  .blog-dotline {
+    height: 3px;
+    margin-top: 2.25rem;
+    background-image: radial-gradient(circle, var(--color-text-tertiary) 1px, transparent 1.25px);
+    background-position: left center;
+    background-repeat: repeat-x;
+    background-size: 9px 3px;
+    opacity: 0.55;
+  }
+  .blog-prose {
+    font-size: 1.03125rem;
+    line-height: 1.75;
+  }
+  .blog-prose > * + * {
+    margin-top: 1.25rem;
+  }
+  .blog-prose h2,
+  .blog-prose h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  .blog-prose h2 {
+    margin-top: 3rem;
+    font-size: 1.65rem;
+  }
+  .blog-prose h3 {
+    margin-top: 2.25rem;
+    font-size: 1.2rem;
+  }
+  .blog-prose p,
+  .blog-prose li {
+    color: var(--color-text);
+  }
+  .blog-prose ul,
+  .blog-prose ol {
+    padding-left: 1.25rem;
+  }
+  .blog-prose li + li {
+    margin-top: 0.45rem;
+  }
+  .blog-prose blockquote {
+    margin-left: 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  .blog-prose code {
+    padding: 0.1rem 0.25rem;
+    border-radius: 0.2rem;
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+  .blog-prose pre {
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background: var(--color-surface);
+  }
+  .blog-prose pre code {
+    padding: 0;
+    background: none;
+  }
+  .blog-prose img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+  }
+  .blog-prose hr {
+    margin: 3rem 0;
+    border: 0;
+    border-top: 1px dotted var(--color-border);
+  }
+  .blog-prose table {
+    display: block;
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .blog-prose th,
+  .blog-prose td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-align: left;
+    white-space: normal;
+  }
+  .blog-prose thead th {
+    position: static;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: inherit;
+    text-transform: none;
+    backdrop-filter: none;
+  }
+  .blog-prose th:first-child,
+  .blog-prose td:first-child {
+    padding-left: 0.75rem;
+  }
+  .blog-post-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px dotted var(--color-border);
+    font-size: 0.8125rem;
+  }
+  .blog-post-footer a {
+    color: var(--color-text-tertiary);
+  }
+  .blog-post-footer a:hover {
+    color: var(--color-brand-accent);
+  }
+  @media (max-width: 40rem) {
+    .blog-post {
+      width: min(100% - 2rem, 42rem);
+      padding-top: calc(var(--header-height) + 2.5rem);
+    }
+    .blog-post-header h1 {
+      letter-spacing: -0.04em;
+    }
+  }
+</style>

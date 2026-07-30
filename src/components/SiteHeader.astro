@@ -5,6 +5,7 @@
  * same theme toggle — minus the search box and About modal (which only make sense
  * on the comparison page).
  */
+const blogIsActive = Astro.url.pathname.startsWith('/blog/');
 ---
 <header>
   <div class="left">
@@ -21,6 +22,7 @@
       </svg>
       <span class="rankings-link__label">Rankings</span>
     </a>
+    <a href="/blog/" class="header-nav-link" aria-current={blogIsActive ? 'page' : undefined}>Blog</a>
     <slot name="left" />
   </div>
   <div class="right">

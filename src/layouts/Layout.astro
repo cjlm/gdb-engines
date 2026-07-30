@@ -8,9 +8,19 @@ interface Props {
   jsonLd?: string[];
   canonical?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
 }
 const dbCount = await getDatabaseCount();
-const { title, description = `Compare ${dbCount}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`, jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png' } = Astro.props;
+const {
+  title,
+  description = `Compare ${dbCount}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`,
+  jsonLd = [],
+  canonical = 'https://gdb-engines.com/',
+  ogImage = 'https://gdb-engines.com/og.png',
+  ogType = 'website',
+  publishedTime,
+} = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
 
 const siteSchema = JSON.stringify({
@@ -40,9 +50,10 @@ const siteSchema = JSON.stringify({
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
