@@ -126,9 +126,12 @@ header {
     }
   }
 
+  /* Fixed box, not width:auto — the icon is square (viewBox 173.8 x 173.8), and
+     reserving the space stops the brand and nav shifting as the SVG decodes. */
   .header-logo {
     height: 1.75rem;
-    width: auto;
+    width: 1.75rem;
+    flex: 0 0 auto;
   }
 
   .light-only { display: block; }
