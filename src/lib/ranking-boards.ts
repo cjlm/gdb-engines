@@ -197,10 +197,17 @@ function gdbRankingTitle(label: string): string {
   return `${trimmed} Graph Databases, Ranked Monthly`;
 }
 
-// A board needs enough engines for the ordering to mean anything. Query language is
-// the exception: it is how people shop for an engine, and it carries the best-performing
-// board on the site, so emerging standards stay in below the floor.
-const MIN_BOARD_ENGINES = 10;
+// A board needs enough engines for the ordering to mean anything. Set at 15 on the
+// evidence rather than by feel: C (10 engines) drew 393 impressions across 52 queries
+// in the 90 days to 2026-07-29 and not one was about C — they were "best graph
+// database", "top graph databases", "db engines ranking", all at position 43-91. It had
+// become the site's generic-head-term page, competing with /rankings/overall/ and
+// winning nothing. Rust (19) is the smallest board that actually wins its own queries
+// ("rust graph database", "graph database rust", positions 9-12).
+//
+// Query language is exempt: it is how people shop for an engine, and it carries the
+// best-performing board on the site, so emerging standards stay in below the floor.
+const MIN_BOARD_ENGINES = 15;
 
 export function buildBoards(ranking: RankingFile): Board[] {
   const boards: Board[] = [];

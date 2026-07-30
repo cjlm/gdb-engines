@@ -12,7 +12,9 @@
 # Retired ranking boards. Safe to list here only because the same commit stops
 # generating them — Cloudflare Pages evaluates _redirects before static assets, so an
 # entry for a live path would shadow the page.
-# Language boards below the ten-engine floor:
+# Language boards below the fifteen-engine floor:
+/rankings/c                 /rankings/                      301
+/rankings/c/                /rankings/                      301
 /rankings/go                /rankings/                      301
 /rankings/go/               /rankings/                      301
 /rankings/csharp            /rankings/                      301
