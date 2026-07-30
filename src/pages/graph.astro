@@ -24,32 +24,46 @@ const garphieldOrigin =
           participate in more relationships.
         </p>
       </div>
-      <div class="model-switcher" role="group" aria-label="Graph model">
-        <button
-          type="button"
-          class="model-button active"
-          data-document="/graphs/databases-languages.gfd"
-          data-description="Connect databases to the query languages they support. Larger nodes participate in more relationships."
-          aria-pressed="true"
-        >
-          Query languages
-        </button>
-        <button
-          type="button"
-          class="model-button"
-          data-document="/graphs/databases-similarity.gfd"
-          data-description="Connect each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
-          aria-pressed="false"
-        >
-          Similarity
-        </button>
-      </div>
     </section>
 
     <section class="graph-stage" aria-label="Interactive graph visualization">
       <div class="graph-status-row">
-        <p id="graph-status" role="status">Starting visualization…</p>
-        <p id="graph-selection">Click a node to inspect it.</p>
+        <div class="graph-status-left">
+          <div class="model-switcher" role="group" aria-label="Graph model">
+            <button
+              type="button"
+              class="model-button active"
+              data-document="/graphs/databases-languages.gfd"
+              data-description="Connect databases to the query languages they support. Larger nodes participate in more relationships."
+              aria-pressed="true"
+            >
+              Query languages
+            </button>
+            <button
+              type="button"
+              class="model-button"
+              data-document="/graphs/databases-similarity.gfd"
+              data-description="Connect each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+              aria-pressed="false"
+            >
+              Similarity
+            </button>
+          </div>
+          <p id="graph-status" role="status">Starting visualization…</p>
+          <label id="similarity-control" hidden>
+            <span>Min similarity</span>
+            <input
+              id="similarity-threshold"
+              type="range"
+              min="0.2"
+              max="0.8"
+              value="0.2"
+              step="0.05"
+            />
+            <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
+          </label>
+        </div>
+        <p id="graph-selection" aria-live="polite" hidden></p>
       </div>
       <iframe
         id="garphield-frame"
@@ -72,29 +86,76 @@ const garphieldOrigin =
     import { createGarphield } from 'garphield';
 
     const page = document.querySelector('.graph-page');
+    const graphStage = document.querySelector('.graph-stage');
     const frame = document.querySelector('#garphield-frame');
     const status = document.querySelector('#graph-status');
     const selection = document.querySelector('#graph-selection');
     const description = document.querySelector('#model-description');
+    const similarityControl = document.querySelector('#similarity-control');
+    const similarityThreshold = document.querySelector('#similarity-threshold');
+    const similarityValue = document.querySelector('#similarity-value');
     const buttons = [...document.querySelectorAll('.model-button')];
 
     if (
       page instanceof HTMLElement &&
+      graphStage instanceof HTMLElement &&
       frame instanceof HTMLIFrameElement &&
       status instanceof HTMLElement &&
       selection instanceof HTMLElement &&
-      description instanceof HTMLElement
+      description instanceof HTMLElement &&
+      similarityControl instanceof HTMLLabelElement &&
+      similarityThreshold instanceof HTMLInputElement &&
+      similarityValue instanceof HTMLOutputElement
     ) {
       const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
       const driver = createGarphield(frame, {
         embedUrl: new URL('/embed', origin),
         timeoutMs: 30_000,
       });
-      let labels = new Map();
+      let nodes = new Map();
+      let activeDocument = null;
+      let activeButton = null;
+      let hasRendered = false;
       let loadVersion = 0;
 
+      function clearSelection() {
+        selection.replaceChildren();
+        selection.hidden = true;
+      }
+
       driver.on('nodeClick', (payload) => {
-        selection.textContent = `Selected: ${labels.get(payload.nodeId) ?? payload.nodeId}`;
+        if (!payload.nodeId) {
+          clearSelection();
+          return;
+        }
+        const node = nodes.get(payload.nodeId);
+        if (!node) {
+          clearSelection();
+          return;
+        }
+
+        const label = String(node.label ?? node.id);
+        const content = document.createDocumentFragment();
+        if (typeof node.image === 'string') {
+          const image = document.createElement('img');
+          image.src = node.image;
+          image.alt = '';
+          image.width = 18;
+          image.height = 18;
+          content.append(image);
+        }
+        if (String(node.id).startsWith('db:')) {
+          const link = document.createElement('a');
+          link.href = `/db/${encodeURIComponent(String(node.id).slice(3))}/`;
+          link.textContent = label;
+          content.append(link);
+        } else {
+          const text = document.createElement('span');
+          text.textContent = label;
+          content.append(text);
+        }
+        selection.replaceChildren(content);
+        selection.hidden = false;
       });
       driver.on('error', (payload) => {
         status.textContent = `Visualization error: ${payload.message}`;
@@ -132,16 +193,62 @@ const garphieldOrigin =
       };
       colorScheme.addEventListener('change', systemThemeListener);
 
+      function updateSimilarityLabel() {
+        similarityValue.value = `≥ ${Math.round(Number(similarityThreshold.value) * 100)}%`;
+      }
+
+      function documentForCurrentView(source) {
+        const document = structuredClone(source);
+        if (activeButton?.dataset.document?.includes('similarity')) {
+          const threshold = Number(similarityThreshold.value);
+          const graph = document.datasets[0].graph;
+          graph.links = graph.links.filter(
+            (link) =>
+              typeof link.similarity === 'number' &&
+              link.similarity >= threshold,
+          );
+        }
+        return document;
+      }
+
+      async function renderDocument(source, version) {
+        const shouldFade = hasRendered;
+        if (shouldFade) {
+          graphStage.classList.add('switching');
+          await new Promise((resolve) => window.setTimeout(resolve, 180));
+        }
+
+        const document = documentForCurrentView(source);
+        await syncTheme();
+        await driver.setDocument(document);
+        if (version !== loadVersion) return;
+
+        const graph = document.datasets[0].graph;
+        nodes = new Map(
+          graph.nodes.map((node) => [String(node.id), node]),
+        );
+        status.textContent = `${graph.nodes.length} nodes · ${graph.links.length} relationships`;
+        await new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        );
+        if (version !== loadVersion) return;
+        graphStage.classList.remove('switching');
+        hasRendered = true;
+      }
+
       async function loadDocument(button) {
         const version = ++loadVersion;
+        activeButton = button;
         for (const candidate of buttons) {
           const active = candidate === button;
           candidate.classList.toggle('active', active);
           candidate.setAttribute('aria-pressed', String(active));
         }
         description.textContent = button.dataset.description ?? '';
-        selection.textContent = 'Click a node to inspect it.';
-        status.textContent = `Loading ${button.textContent.trim()}…`;
+        similarityControl.hidden =
+          !button.dataset.document?.includes('similarity');
+        clearSelection();
+        status.textContent = 'Loading…';
 
         try {
           const response = await fetch(button.dataset.document);
@@ -159,22 +266,34 @@ const garphieldOrigin =
               }
             }
           }
-          await syncTheme();
-          await driver.setDocument(document);
           if (version !== loadVersion) return;
-          const graph = document.datasets[0].graph;
-          labels = new Map(
-            graph.nodes.map((node) => [
-              String(node.id),
-              String(node.label ?? node.id),
-            ]),
-          );
-          status.textContent = `${button.textContent.trim()} · ${graph.nodes.length} nodes · ${graph.links.length} relationships`;
+          activeDocument = document;
+          await renderDocument(document, version);
         } catch (error) {
           if (version !== loadVersion) return;
+          graphStage.classList.remove('switching');
           status.textContent = `Could not load visualization: ${String(error)}`;
         }
       }
+
+      updateSimilarityLabel();
+      similarityThreshold.addEventListener('input', updateSimilarityLabel);
+      similarityThreshold.addEventListener('change', () => {
+        if (
+          !activeDocument ||
+          !activeButton?.dataset.document?.includes('similarity')
+        ) {
+          return;
+        }
+        const version = ++loadVersion;
+        clearSelection();
+        status.textContent = 'Updating…';
+        void renderDocument(activeDocument, version).catch((error) => {
+          if (version !== loadVersion) return;
+          graphStage.classList.remove('switching');
+          status.textContent = `Could not update visualization: ${String(error)}`;
+        });
+      });
 
       for (const button of buttons) {
         button.addEventListener('click', () => loadDocument(button));
@@ -207,13 +326,9 @@ const garphieldOrigin =
     .graph-intro {
       width: min(100%, 92rem);
       margin: 0 auto;
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 1.5rem;
     }
 
-    .graph-intro > div:first-child {
+    .graph-intro > div {
       min-width: 0;
     }
 
@@ -226,13 +341,16 @@ const garphieldOrigin =
     }
 
     #model-description {
+      height: 3rem;
+      margin: 0;
+      overflow: hidden;
       max-width: 54rem;
       color: var(--color-text-secondary);
     }
 
     .model-switcher {
       display: flex;
-      padding: 0.25rem;
+      padding: 0.15rem;
       border: 1px solid var(--color-border);
       border-radius: 0.5rem;
       background: var(--color-surface);
@@ -242,7 +360,7 @@ const garphieldOrigin =
     .model-button {
       border: 0;
       border-radius: 0.35rem;
-      padding: 0.55rem 0.8rem;
+      padding: 0.4rem 0.7rem;
       background: transparent;
       color: var(--color-text-secondary);
       cursor: pointer;
@@ -281,12 +399,75 @@ const garphieldOrigin =
       font-size: 0.72rem;
     }
 
+    .graph-status-left {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    #similarity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    #similarity-control[hidden] {
+      display: none;
+    }
+
+    #similarity-threshold {
+      width: 7rem;
+      accent-color: var(--color-brand);
+    }
+
+    #similarity-value {
+      min-width: 3.25rem;
+      color: var(--color-text);
+    }
+
+    #graph-status,
+    #graph-selection {
+      margin: 0;
+    }
+
+    #graph-selection {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    #graph-selection[hidden] {
+      display: none;
+    }
+
+    #graph-selection img {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: white;
+    }
+
+    #graph-selection a {
+      color: var(--color-text);
+      text-underline-offset: 0.18em;
+    }
+
     #garphield-frame {
       width: 100%;
       height: 100%;
       min-height: 31rem;
       border: 0;
       background: var(--color-background);
+      opacity: 1;
+      transition: opacity 180ms ease;
+    }
+
+    .graph-stage.switching #garphield-frame {
+      opacity: 0;
     }
 
     .graph-fallback {
@@ -297,15 +478,8 @@ const garphieldOrigin =
     }
 
     @media (max-width: 68rem) {
-      .graph-intro {
-        align-items: stretch;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 0.75rem;
-      }
-
-      .model-switcher {
-        align-self: flex-start;
+      #model-description {
+        height: 4.5rem;
       }
     }
 
@@ -317,7 +491,22 @@ const garphieldOrigin =
       .graph-status-row {
         align-items: flex-start;
         flex-direction: column;
-        gap: 0.2rem;
+        gap: 0.4rem;
+      }
+
+      .graph-status-left {
+        flex-wrap: wrap;
+        gap: 0.4rem 0.65rem;
+      }
+
+      #similarity-threshold {
+        width: 6rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #garphield-frame {
+        transition: none;
       }
     }
   </style>
