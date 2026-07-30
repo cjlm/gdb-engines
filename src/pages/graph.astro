@@ -20,8 +20,7 @@ const garphieldOrigin =
       <div>
         <h1>Graph Database Map</h1>
         <p id="model-description">
-          Connect databases to the query languages they support. Larger nodes
-          participate in more relationships.
+          Databases linked via query languages supported.
         </p>
       </div>
     </section>
@@ -34,7 +33,7 @@ const garphieldOrigin =
               type="button"
               class="model-button active"
               data-document="/graphs/databases-languages.gfd"
-              data-description="Connect databases to the query languages they support. Larger nodes participate in more relationships."
+              data-description="Databases linked via query languages supported."
               aria-pressed="true"
             >
               Query languages
@@ -43,7 +42,7 @@ const garphieldOrigin =
               type="button"
               class="model-button"
               data-document="/graphs/databases-similarity.gfd"
-              data-description="Connect each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+              data-description="Link each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
               aria-pressed="false"
             >
               Similarity
@@ -383,15 +382,17 @@ const garphieldOrigin =
   <style>
     .graph-page {
       min-height: 100vh;
-      padding: calc(var(--header-height) + 1rem) 1rem 1rem;
+      padding: calc(var(--header-height) + 1.5rem) 0 1.25rem;
       display: grid;
       grid-template-rows: auto minmax(34rem, 1fr);
-      gap: 1rem;
+      gap: 0;
     }
 
     .graph-intro {
-      width: min(100%, 92rem);
+      width: 100%;
+      max-width: var(--content-max-width);
       margin: 0 auto;
+      padding-inline: 1.25rem;
     }
 
     .graph-intro > div {
@@ -399,19 +400,18 @@ const garphieldOrigin =
     }
 
     .graph-intro h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(1.75rem, 4vw, 3rem);
-      line-height: 1;
-      letter-spacing: -0.03em;
+      font-size: 1.5rem;
+      color: var(--color-text);
       margin: 0 0 0.5rem;
     }
 
     #model-description {
-      height: 3rem;
-      margin: 0;
+      height: 1.55em;
+      margin: 0.75rem 0 1.25rem;
       overflow: hidden;
-      max-width: 54rem;
-      color: var(--color-text-secondary);
+      max-width: 90ch;
+      color: var(--color-text);
+      line-height: 1.55;
     }
 
     .model-switcher {
@@ -440,7 +440,7 @@ const garphieldOrigin =
     }
 
     .graph-stage {
-      width: min(100%, 92rem);
+      width: min(calc(100% - 2.5rem), 92rem);
       min-height: 34rem;
       margin: 0 auto;
       display: grid;
@@ -552,7 +552,7 @@ const garphieldOrigin =
     }
 
     .graph-fallback {
-      width: min(100%, 92rem);
+      width: min(calc(100% - 2.5rem), 92rem);
       margin: 0 auto;
       padding: 1rem;
       border: 1px solid var(--color-border);
@@ -560,15 +560,11 @@ const garphieldOrigin =
 
     @media (max-width: 68rem) {
       #model-description {
-        height: 4.5rem;
+        height: 4.65em;
       }
     }
 
     @media (max-width: 48rem) {
-      .graph-page {
-        padding-inline: 0.5rem;
-      }
-
       .graph-status-row {
         align-items: flex-start;
         flex-direction: column;
@@ -601,6 +597,12 @@ const garphieldOrigin =
 
       #similarity-value {
         min-width: 2.75rem;
+      }
+    }
+
+    @media (max-width: 30rem) {
+      #model-description {
+        height: 6.2em;
       }
     }
 
