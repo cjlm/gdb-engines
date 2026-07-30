@@ -243,6 +243,37 @@ header {
 .ranks-list a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
 .ranks-list .rank { font-weight: 600; color: var(--color-brand-accent); font-variant-numeric: tabular-nums; }
 .ranks-list .label { color: var(--color-text-secondary); }
+/* Roundup membership shares the rail with the rank lozenges but reads quieter:
+   no rank figure, dashed edge, transparent fill. */
+.ranks-list a.roundup {
+  background-color: transparent;
+  border-style: dashed;
+}
+.ranks-list a.roundup:hover {
+  background-color: color-mix(in srgb, var(--color-brand) 8%, transparent);
+}
+.ranks-list a.roundup .chev { color: var(--color-text-tertiary); }
+
+.compare-with {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.compare-with a {
+  display: inline-flex;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  border: 1px solid var(--color-border);
+  transition: background-color 120ms ease;
+}
+.compare-with a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
 
 /* Rankings cross-links from the comparison table */
 .rank-col {
@@ -305,6 +336,13 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
 }
 .rankings-link:hover {
   background-color: color-mix(in srgb, var(--color-brand-accent) 26%, transparent);
+}
+/* Current section. Filling with the accent and painting the label in the page
+   background keeps contrast in both themes, where the accent flips light/dark. */
+.rankings-link.is-active,
+.rankings-link.is-active:hover {
+  background-color: var(--color-brand-accent);
+  color: var(--color-background);
 }
 .rankings-link__icon { flex-shrink: 0; }
 @media (max-width: 45rem) {
@@ -557,11 +595,22 @@ dialog {
   padding-left: 0.5rem;
 }
 .db-links a {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   color: var(--color-text-tertiary);
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  transition: color 120ms ease, border-color 120ms ease;
 }
 .db-links a:hover {
   color: var(--color-text);
+  border-color: var(--color-text-tertiary);
 }
 
 /* GitHub links cell */

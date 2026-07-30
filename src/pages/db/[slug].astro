@@ -137,16 +137,40 @@ const description = db.data.description;
         <img src={faviconUrl} alt="" width="24" height="24" />
       )}
       {db.data.name}
+      {(db.data.url || db.data.github_url) && (
+        <span class="db-links">
+          {db.data.url && (
+            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20a15.3 15.3 0 0 1 0-20"/></svg>
+              Website
+            </a>
+          )}
+          {db.data.github_url && (
+            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
+              GitHub
+            </a>
+          )}
+        </span>
+      )}
     </h1>
 
     <p class="description">{db.data.description}</p>
 
-    {engineRanks.length > 0 && (
+    {(engineRanks.length > 0 || partOf.length > 0) && (
       <section class="ranks-block">
         <h2>Rankings</h2>
         <ul class="ranks-list">
           {engineRanks.map(({ board, rank }) => (
             <li><a href={`/rankings/${board.slug}/`}><span class="rank">#{rank}</span> <span class="label">{board.shortLabel}</span></a></li>
+          ))}
+          {partOf.map((r) => (
+            <li>
+              <a class="roundup" href={`/compare/${r.slug}/`}>
+                <span class="label">{r.title.replace(/ Compared$/, '')}</span>
+                <span class="chev" aria-hidden="true">&rsaquo;</span>
+              </a>
+            </li>
           ))}
         </ul>
       </section>
@@ -215,20 +239,6 @@ const description = db.data.description;
       )}
     </dl>
 
-    {(db.data.url || db.data.github_url) && (
-      <>
-        <h2>Links</h2>
-        <div class="db-links">
-          {db.data.url && (
-            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Official website</a>
-          )}
-          {db.data.github_url && (
-            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">GitHub</a>
-          )}
-        </div>
-      </>
-    )}
-
     {db.data.features && (
       <>
         <h2>Feature Scores</h2>
@@ -260,21 +270,14 @@ const description = db.data.description;
       </>
     )}
 
-    {partOf.length > 0 && (
-      <p class="part-of">
-        Part of{' '}
-        {partOf.map((r, i) => (
-          <>{i > 0 && ', '}<a href={`/compare/${r.slug}/`}>{r.title}</a></>
-        ))}
-      </p>
-    )}
-
     {comparePeers.length > 0 && (
       <>
         <h2>Compare with</h2>
         <ul class="compare-with">
           {comparePeers.map((link) => (
-            <li><a href={link.href}>{db.data.name} vs {link.name}</a></li>
+            /* The engine name stays in the accessible/crawlable label; the visible
+               lozenge drops it because the page is already about this engine. */
+            <li><a href={link.href}><span class="sr-only">{db.data.name} </span>vs {link.name}</a></li>
           ))}
         </ul>
       </>

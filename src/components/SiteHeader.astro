@@ -8,6 +8,12 @@ interface Props {
 const { comparisonControls = false } = Astro.props;
 const databaseCount = await getDatabaseCount();
 
+// Highlight the nav entry covering the current page, including its sub-pages
+// (/rankings/cypher/ lights up "Rankings").
+const path = Astro.url.pathname;
+const onRankings = path.startsWith('/rankings');
+const onCompare = path.startsWith('/compare');
+
 /**
  * Shared site navigation. The comparison page opts into its search, modal, and
  * table controls; the primary navigation stays identical across every page.
@@ -20,7 +26,7 @@ const databaseCount = await getDatabaseCount();
       <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" />
       <span class="header-brand">GDB-Engines</span>
     </a>
-    <a href="/rankings/" class="rankings-link" aria-label="Monthly graph database popularity rankings">
+    <a href="/rankings/" class:list={['rankings-link', onRankings && 'is-active']} aria-current={onRankings ? 'page' : undefined} aria-label="Monthly graph database popularity rankings">
       <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <rect x="2" y="9" width="3" height="5" rx="0.5"/>
         <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
@@ -28,7 +34,7 @@ const databaseCount = await getDatabaseCount();
       </svg>
       <span class="rankings-link__label">Rankings</span>
     </a>
-    <a href="/compare/" class="rankings-link" aria-label="Compare graph databases side by side">
+    <a href="/compare/" class:list={['rankings-link', onCompare && 'is-active']} aria-current={onCompare ? 'page' : undefined} aria-label="Compare graph databases side by side">
       <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <rect x="2" y="2" width="5" height="12" rx="0.5"/>
         <rect x="9" y="2" width="5" height="12" rx="0.5"/>
