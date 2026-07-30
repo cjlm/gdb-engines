@@ -62,10 +62,6 @@ const garphieldOrigin =
               />
               <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
             </label>
-            <label class="hull-control">
-              <input id="similarity-hulls" type="checkbox" />
-              <span>Type hulls</span>
-            </label>
           </div>
         </div>
         <div class="graph-status-right">
@@ -102,7 +98,6 @@ const garphieldOrigin =
     const similarityControl = document.querySelector('#similarity-control');
     const similarityThreshold = document.querySelector('#similarity-threshold');
     const similarityValue = document.querySelector('#similarity-value');
-    const similarityHulls = document.querySelector('#similarity-hulls');
     const buttons = [...document.querySelectorAll('.model-button')];
 
     if (
@@ -114,8 +109,7 @@ const garphieldOrigin =
       description instanceof HTMLElement &&
       similarityControl instanceof HTMLElement &&
       similarityThreshold instanceof HTMLInputElement &&
-      similarityValue instanceof HTMLOutputElement &&
-      similarityHulls instanceof HTMLInputElement
+      similarityValue instanceof HTMLOutputElement
     ) {
       const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
       const driver = createGarphield(frame, {
@@ -330,7 +324,6 @@ const garphieldOrigin =
         description.textContent = button.dataset.description ?? '';
         similarityControl.hidden =
           !button.dataset.document?.includes('similarity');
-        similarityHulls.checked = false;
         clearSelection();
         status.textContent = 'Loading…';
 
@@ -369,17 +362,6 @@ const garphieldOrigin =
         updateSimilarityLabel();
         scheduleSimilarityFilter();
       });
-      similarityHulls.addEventListener('change', () => {
-        void driver
-          .call('setBindingEnabled', {
-            channel: 'hull',
-            enabled: similarityHulls.checked,
-          })
-          .catch((error) => {
-            status.textContent = `Could not toggle type hulls: ${String(error)}`;
-          });
-      });
-
       for (const button of buttons) {
         button.addEventListener('click', () => loadDocument(button));
       }
@@ -511,19 +493,10 @@ const garphieldOrigin =
       display: none;
     }
 
-    .similarity-threshold-control,
-    .hull-control {
+    .similarity-threshold-control {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-    }
-
-    .hull-control {
-      cursor: pointer;
-    }
-
-    .hull-control input {
-      accent-color: var(--color-brand);
     }
 
     #similarity-threshold {
