@@ -10,6 +10,7 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import CountBadge from '../../components/CountBadge.astro';
 import CompareCombobox from '../../components/CompareCombobox.astro';
+import SponsorCTA from '../../components/SponsorCTA.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
@@ -101,6 +102,7 @@ const breadcrumbJsonLd = JSON.stringify({
       shows rank, license, query languages, implementation language and academic research details where
       available.
     </p>
+    <SponsorCTA />
 
     <section class="group build">
       <h2>Build your own</h2>

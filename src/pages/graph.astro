@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SponsorCTA from '../components/SponsorCTA.astro';
 import { getDatabaseCount } from '../lib/database-count';
 import '../styles/global.css';
 
@@ -22,6 +23,7 @@ const garphieldOrigin =
         <p id="model-description">
           Databases linked via query languages supported.
         </p>
+        <SponsorCTA />
       </div>
     </section>
 
@@ -34,6 +36,7 @@ const garphieldOrigin =
               class="model-button active"
               data-document="/graphs/databases-languages.gfd"
               data-description="Databases linked via query languages supported."
+              data-mobile-description="Databases linked via query languages supported."
               aria-pressed="true"
             >
               Query languages
@@ -43,6 +46,7 @@ const garphieldOrigin =
               class="model-button"
               data-document="/graphs/databases-similarity.gfd"
               data-description="Link each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+              data-mobile-description="Databases linked to their nearest catalog peers."
               aria-pressed="false"
             >
               Similarity
@@ -206,6 +210,7 @@ const garphieldOrigin =
 
       const ready = driver.ready();
       const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const compactLayout = window.matchMedia('(max-width: 48rem)');
 
       function effectiveTheme(): 'light' | 'dark' {
         const explicit = document.documentElement.dataset.theme;
@@ -238,6 +243,14 @@ const garphieldOrigin =
 
       function updateSimilarityLabel() {
         similarityValue.value = `≥ ${Math.round(Number(similarityThreshold.value) * 100)}%`;
+      }
+
+      function updateDescription() {
+        if (!activeButton) return;
+        description.textContent =
+          (compactLayout.matches
+            ? activeButton.dataset.mobileDescription
+            : activeButton.dataset.description) ?? '';
       }
 
       function updateGraphStatus(graph, visibleLinks = graph.links.length) {
@@ -308,6 +321,7 @@ const garphieldOrigin =
           requestAnimationFrame(() => requestAnimationFrame(resolve)),
         );
         if (version !== loadVersion) return;
+        graphStage.classList.add('ready');
         graphStage.classList.remove('switching');
         hasRendered = true;
       }
@@ -320,7 +334,7 @@ const garphieldOrigin =
           candidate.classList.toggle('active', active);
           candidate.setAttribute('aria-pressed', String(active));
         }
-        description.textContent = button.dataset.description ?? '';
+        updateDescription();
         similarityControl.hidden =
           !button.dataset.document?.includes('similarity');
         clearSelection();
@@ -356,6 +370,7 @@ const garphieldOrigin =
       }
 
       updateSimilarityLabel();
+      compactLayout.addEventListener('change', updateDescription);
       similarityThreshold.addEventListener('input', () => {
         updateSimilarityLabel();
         scheduleSimilarityFilter();
@@ -369,6 +384,7 @@ const garphieldOrigin =
         () => {
           themeObserver.disconnect();
           colorScheme.removeEventListener('change', systemThemeListener);
+          compactLayout.removeEventListener('change', updateDescription);
           if (similarityFilterFrame !== 0) {
             cancelAnimationFrame(similarityFilterFrame);
           }
@@ -543,8 +559,12 @@ const garphieldOrigin =
       min-height: 31rem;
       border: 0;
       background: var(--color-background);
-      opacity: 1;
+      opacity: 0;
       transition: opacity 180ms ease;
+    }
+
+    .graph-stage.ready #garphield-frame {
+      opacity: 1;
     }
 
     .graph-stage.switching #garphield-frame {
@@ -565,6 +585,10 @@ const garphieldOrigin =
     }
 
     @media (max-width: 48rem) {
+      #model-description {
+        height: 3.1em;
+      }
+
       .graph-status-row {
         align-items: flex-start;
         flex-direction: column;
@@ -597,12 +621,6 @@ const garphieldOrigin =
 
       #similarity-value {
         min-width: 2.75rem;
-      }
-    }
-
-    @media (max-width: 30rem) {
-      #model-description {
-        height: 6.2em;
       }
     }
 
