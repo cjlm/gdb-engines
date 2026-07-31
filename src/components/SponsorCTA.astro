@@ -1,10 +1,34 @@
+---
+const pairings = [
+  'GQL from their GraphQL',
+  'Cypher from their Gremlin',
+  'RDF from their LPG',
+  'nodes from their edges',
+  'triplestores from their property graphs',
+  'graph databases from their graph query engines',
+  'SPARQL from their SQL/PGQ',
+];
+---
 <aside class="sponsor-cta" aria-label="Sponsor GDB-Engines">
-  <span>
-    <strong>Reach teams choosing their next graph database.</strong>
-    Put your product in front of the people comparing the market.
+  <span class="sponsor-cta__copy">
+    GDB-Engines provides an independent, evidence-led view of the graph database
+    landscape. Sponsorship helps sustain the project—and connects vendors with
+    users trying to tell their
+    <span
+      class="sponsor-cta__pair"
+      data-sponsor-pairs={JSON.stringify(pairings)}
+    >GQL from their GraphQL</span>.
   </span>
-  <a href="/sponsor/">Sponsor GDB-Engines <span aria-hidden="true">→</span></a>
+  <a href="/sponsor/">Get in touch <span aria-hidden="true">→</span></a>
 </aside>
+
+<script is:inline>
+  for (const element of document.querySelectorAll('[data-sponsor-pairs]')) {
+    const pairings = JSON.parse(element.dataset.sponsorPairs ?? '[]');
+    const pairing = pairings[Math.floor(Math.random() * pairings.length)];
+    if (typeof pairing === 'string') element.textContent = pairing;
+  }
+</script>
 
 <style>
   .sponsor-cta {
@@ -28,10 +52,6 @@
     color: var(--color-text-secondary);
   }
 
-  .sponsor-cta strong {
-    color: var(--color-text);
-  }
-
   .sponsor-cta a {
     flex: 0 0 auto;
     padding: 0.42rem 0.7rem;
@@ -40,6 +60,11 @@
     color: var(--color-background);
     font-weight: 600;
     text-decoration: none;
+  }
+
+  .sponsor-cta__pair {
+    color: var(--color-text);
+    font-weight: 600;
   }
 
   .sponsor-cta a:hover {
