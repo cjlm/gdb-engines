@@ -72,11 +72,23 @@ const garphieldOrigin =
           <p id="graph-status" role="status">Starting visualization…</p>
         </div>
       </div>
-      <iframe
-        id="garphield-frame"
-        title="Graph database landscape visualization"
-        loading="eager"
-      ></iframe>
+      <div class="garphield-frames">
+        <iframe
+          class="garphield-frame active"
+          data-document="/graphs/databases-languages.gfd"
+          title="Graph databases linked by query language"
+          loading="eager"
+          aria-hidden="false"
+        ></iframe>
+        <iframe
+          class="garphield-frame"
+          data-document="/graphs/databases-similarity.gfd"
+          title="Graph databases linked by catalog similarity"
+          loading="eager"
+          aria-hidden="true"
+          tabindex="-1"
+        ></iframe>
+      </div>
     </section>
 
     <noscript>
@@ -94,7 +106,9 @@ const garphieldOrigin =
 
     const page = document.querySelector('.graph-page');
     const graphStage = document.querySelector('.graph-stage');
-    const frame = document.querySelector('#garphield-frame');
+    const frames = [
+      ...document.querySelectorAll<HTMLIFrameElement>('.garphield-frame'),
+    ];
     const status = document.querySelector('#graph-status');
     const selection = document.querySelector('#graph-selection');
     const description = document.querySelector('#model-description');
@@ -106,7 +120,7 @@ const garphieldOrigin =
     if (
       page instanceof HTMLElement &&
       graphStage instanceof HTMLElement &&
-      frame instanceof HTMLIFrameElement &&
+      frames.length === 2 &&
       status instanceof HTMLElement &&
       selection instanceof HTMLElement &&
       description instanceof HTMLElement &&
@@ -115,13 +129,29 @@ const garphieldOrigin =
       similarityValue instanceof HTMLOutputElement
     ) {
       const origin = page.dataset.garphieldOrigin ?? 'https://garphield.com';
-      const driver = createGarphield(frame, {
-        embedUrl: new URL('/embed', origin),
-        timeoutMs: 30_000,
-      });
-      let nodes = new Map();
+      const contexts = new Map(
+        frames.map((frame) => {
+          const driver = createGarphield(frame, {
+            embedUrl: new URL('/embed', origin),
+            timeoutMs: 30_000,
+          });
+          return [
+            frame.dataset.document ?? '',
+            {
+              frame,
+              driver,
+              ready: driver.ready(),
+              nodes: new Map(),
+              loaded: false,
+            },
+          ];
+        }),
+      );
       let activeDocument = null;
       let activeButton = null;
+      let activeContext = contexts.get(
+        buttons[0]?.dataset.document ?? '',
+      );
       let hasRendered = false;
       let loadVersion = 0;
       let similarityFilterFrame = 0;
@@ -170,45 +200,49 @@ const garphieldOrigin =
         selection.hidden = true;
       }
 
-      driver.on('nodeClick', (payload) => {
-        if (!payload.nodeId) {
-          clearSelection();
-          return;
-        }
-        const node = nodes.get(payload.nodeId);
-        if (!node) {
-          clearSelection();
-          return;
-        }
+      for (const context of contexts.values()) {
+        context.driver.on('nodeClick', (payload) => {
+          if (context !== activeContext) return;
+          if (!payload.nodeId) {
+            clearSelection();
+            return;
+          }
+          const node = context.nodes.get(payload.nodeId);
+          if (!node) {
+            clearSelection();
+            return;
+          }
 
-        const label = String(node.label ?? node.id);
-        const content = document.createDocumentFragment();
-        if (typeof node.image === 'string') {
-          const image = document.createElement('img');
-          image.src = node.image;
-          image.alt = '';
-          image.width = 18;
-          image.height = 18;
-          content.append(image);
-        }
-        if (String(node.id).startsWith('db:')) {
-          const link = document.createElement('a');
-          link.href = `/db/${encodeURIComponent(String(node.id).slice(3))}/`;
-          link.textContent = label;
-          content.append(link);
-        } else {
-          const text = document.createElement('span');
-          text.textContent = label;
-          content.append(text);
-        }
-        selection.replaceChildren(content);
-        selection.hidden = false;
-      });
-      driver.on('error', (payload) => {
-        status.textContent = `Visualization error: ${payload.message}`;
-      });
+          const label = String(node.label ?? node.id);
+          const content = document.createDocumentFragment();
+          if (typeof node.image === 'string') {
+            const image = document.createElement('img');
+            image.src = node.image;
+            image.alt = '';
+            image.width = 18;
+            image.height = 18;
+            content.append(image);
+          }
+          if (String(node.id).startsWith('db:')) {
+            const link = document.createElement('a');
+            link.href = `/db/${encodeURIComponent(String(node.id).slice(3))}/`;
+            link.textContent = label;
+            content.append(link);
+          } else {
+            const text = document.createElement('span');
+            text.textContent = label;
+            content.append(text);
+          }
+          selection.replaceChildren(content);
+          selection.hidden = false;
+        });
+        context.driver.on('error', (payload) => {
+          if (context === activeContext) {
+            status.textContent = `Visualization error: ${payload.message}`;
+          }
+        });
+      }
 
-      const ready = driver.ready();
       const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
       const compactLayout = window.matchMedia('(max-width: 48rem)');
 
@@ -218,9 +252,13 @@ const garphieldOrigin =
         return colorScheme.matches ? 'dark' : 'light';
       }
 
+      async function syncContextTheme(context) {
+        await context.ready;
+        await context.driver.setTheme({ colorScheme: effectiveTheme() });
+      }
+
       async function syncTheme() {
-        await ready;
-        await driver.setTheme({ colorScheme: effectiveTheme() });
+        await Promise.all([...contexts.values()].map(syncContextTheme));
       }
 
       function reportThemeError(error: unknown) {
@@ -282,7 +320,7 @@ const garphieldOrigin =
         ).length;
         updateGraphStatus(graph, visibleLinks);
         try {
-          await driver.call('setEdgeFilter', {
+          await activeContext?.driver.call('setEdgeFilter', {
             field: 'similarity',
             min: threshold,
           });
@@ -301,7 +339,7 @@ const garphieldOrigin =
       }
 
       function hideRenderedGraph(): Promise<void> {
-        if (!hasRendered) return Promise.resolve();
+        if (!hasRendered || !activeContext) return Promise.resolve();
 
         graphStage.classList.add('switching');
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -314,14 +352,20 @@ const garphieldOrigin =
             if (settled) return;
             settled = true;
             window.clearTimeout(timeout);
-            frame.removeEventListener('transitionend', handleTransitionEnd);
+            activeContext.frame.removeEventListener(
+              'transitionend',
+              handleTransitionEnd,
+            );
             resolve();
           };
           const handleTransitionEnd = (event: TransitionEvent) => {
             if (event.propertyName === 'opacity') finish();
           };
           const timeout = window.setTimeout(finish, 240);
-          frame.addEventListener('transitionend', handleTransitionEnd);
+          activeContext.frame.addEventListener(
+            'transitionend',
+            handleTransitionEnd,
+          );
         });
       }
 
@@ -334,22 +378,36 @@ const garphieldOrigin =
         await new Promise((resolve) => window.setTimeout(resolve, 100));
       }
 
-      async function renderDocument(source, version, graphHidden) {
+      async function renderDocument(source, version, graphHidden, context) {
+        const document = structuredClone(source);
+        const graph = document.datasets[0].graph;
+
+        if (!context.loaded) {
+          await syncContextTheme(context);
+          await context.driver.setDocument(document);
+          context.nodes = new Map(
+            graph.nodes.map((node) => [String(node.id), node]),
+          );
+          context.loaded = true;
+          await waitForGraphPaint();
+          context.frame.classList.add('ready');
+        }
+
         await graphHidden;
         if (version !== loadVersion) return;
 
-        const document = structuredClone(source);
-        await syncTheme();
-        await driver.setDocument(document);
-        if (version !== loadVersion) return;
-
-        const graph = document.datasets[0].graph;
-        nodes = new Map(
-          graph.nodes.map((node) => [String(node.id), node]),
-        );
+        for (const candidate of contexts.values()) {
+          const active = candidate === context;
+          candidate.frame.classList.toggle('active', active);
+          candidate.frame.setAttribute('aria-hidden', String(!active));
+          if (active) {
+            candidate.frame.removeAttribute('tabindex');
+          } else {
+            candidate.frame.tabIndex = -1;
+          }
+        }
+        activeContext = context;
         updateGraphStatus(graph);
-        await waitForGraphPaint();
-        if (version !== loadVersion) return;
         graphStage.classList.add('ready');
         graphStage.classList.remove('switching');
         graphStage.removeAttribute('aria-busy');
@@ -357,6 +415,8 @@ const garphieldOrigin =
       }
 
       async function loadDocument(button) {
+        if (button === activeButton && hasRendered) return;
+
         const version = ++loadVersion;
         const graphHidden = hideRenderedGraph();
         graphStage.setAttribute('aria-busy', 'true');
@@ -392,7 +452,9 @@ const garphieldOrigin =
           activeDocument = document;
           await preloadNodeImages(document);
           if (version !== loadVersion) return;
-          await renderDocument(document, version, graphHidden);
+          const context = contexts.get(button.dataset.document ?? '');
+          if (!context) throw new Error('No visualization frame for model');
+          await renderDocument(document, version, graphHidden, context);
           await applySimilarityFilter();
         } catch (error) {
           if (version !== loadVersion) return;
@@ -421,7 +483,9 @@ const garphieldOrigin =
           if (similarityFilterFrame !== 0) {
             cancelAnimationFrame(similarityFilterFrame);
           }
-          driver.destroy();
+          for (const context of contexts.values()) {
+            context.driver.destroy();
+          }
         },
         { once: true },
       );
@@ -593,21 +657,32 @@ const garphieldOrigin =
       text-underline-offset: 0.18em;
     }
 
-    #garphield-frame {
+    .garphield-frames {
+      position: relative;
       width: 100%;
       height: 100%;
       min-height: 31rem;
+      background: var(--color-background);
+    }
+
+    .garphield-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       border: 0;
       background: var(--color-background);
       opacity: 0;
+      pointer-events: none;
       transition: opacity 180ms ease;
     }
 
-    .graph-stage.ready #garphield-frame {
+    .garphield-frame.ready.active {
       opacity: 1;
+      pointer-events: auto;
     }
 
-    .graph-stage.switching #garphield-frame {
+    .graph-stage.switching .garphield-frame {
       opacity: 0;
       pointer-events: none;
     }
@@ -680,7 +755,7 @@ const garphieldOrigin =
     }
 
     @media (prefers-reduced-motion: reduce) {
-      #garphield-frame {
+      .garphield-frame {
         transition: none;
       }
     }
