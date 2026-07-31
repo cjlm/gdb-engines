@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SponsorCTA from '../components/SponsorCTA.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -76,6 +77,10 @@ const datasetJsonLd = JSON.stringify({
   <SiteHeader comparisonControls />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
+
+  <div class="home-sponsor">
+    <SponsorCTA />
+  </div>
 
   <table>
     <thead>
@@ -305,3 +310,15 @@ const datasetJsonLd = JSON.stringify({
   </dialog>
   <script src="../scripts/table.ts"></script>
 </Layout>
+
+<style>
+  .home-sponsor {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 1rem) 1.25rem 0;
+  }
+
+  .home-sponsor + table {
+    margin-top: 0;
+  }
+</style>

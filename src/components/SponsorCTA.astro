@@ -1,21 +1,56 @@
----
-// Single sponsorship/advertising blurb shared across the rankings pages.
----
-<aside class="sponsor-cta">
-  We strive to be the best resource to compare graph databases. For sponsorship and advertising enquiries: <a href="/sponsor/">get in touch</a>.
+<aside class="sponsor-cta" aria-label="Sponsor GDB-Engines">
+  <span>
+    <strong>Reach teams choosing their next graph database.</strong>
+    Put your product in front of the people comparing the market.
+  </span>
+  <a href="/sponsor/">Sponsor GDB-Engines <span aria-hidden="true">→</span></a>
 </aside>
 
 <style>
   .sponsor-cta {
-    background: var(--color-surface);
-    border-left: 3px solid var(--color-border);
-    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 90ch;
     margin: 0.5rem 0 1.5rem;
+    padding: 0.8rem 0.9rem 0.8rem 1rem;
+    background:
+      linear-gradient(
+        110deg,
+        color-mix(in srgb, var(--color-brand) 20%, var(--color-surface)),
+        color-mix(in srgb, var(--color-brand) 7%, var(--color-background))
+      );
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 38%, var(--color-border));
+    border-radius: 0.6rem;
     font-size: 0.85rem;
-    line-height: 1.55;
+    line-height: 1.45;
     color: var(--color-text-secondary);
-    max-width: 70ch;
   }
-  .sponsor-cta a { color: var(--color-text); text-decoration: none; margin-left: 0.25rem; }
-  .sponsor-cta a:hover { text-decoration: underline; }
+
+  .sponsor-cta strong {
+    color: var(--color-text);
+  }
+
+  .sponsor-cta a {
+    flex: 0 0 auto;
+    padding: 0.42rem 0.7rem;
+    border-radius: 0.4rem;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .sponsor-cta a:hover {
+    filter: brightness(1.06);
+  }
+
+  @media (max-width: 32rem) {
+    .sponsor-cta {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+  }
 </style>
