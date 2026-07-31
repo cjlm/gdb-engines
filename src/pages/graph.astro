@@ -18,13 +18,13 @@ const garphieldOrigin =
 
   <main class="graph-page" data-garphield-origin={garphieldOrigin}>
     <section class="graph-intro">
-      <div>
+      <div class="graph-heading">
         <h1>Graph Database Map</h1>
         <p id="model-description">
           Databases linked via query languages supported.
         </p>
-        <SponsorCTA />
       </div>
+      <SponsorCTA />
     </section>
 
     <section class="graph-stage" aria-label="Interactive graph visualization">
@@ -300,12 +300,43 @@ const garphieldOrigin =
         });
       }
 
-      async function renderDocument(source, version) {
-        const shouldFade = hasRendered;
-        if (shouldFade) {
-          graphStage.classList.add('switching');
-          await new Promise((resolve) => window.setTimeout(resolve, 180));
+      function hideRenderedGraph(): Promise<void> {
+        if (!hasRendered) return Promise.resolve();
+
+        graphStage.classList.add('switching');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return Promise.resolve();
         }
+
+        return new Promise((resolve) => {
+          let settled = false;
+          const finish = () => {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(timeout);
+            frame.removeEventListener('transitionend', handleTransitionEnd);
+            resolve();
+          };
+          const handleTransitionEnd = (event: TransitionEvent) => {
+            if (event.propertyName === 'opacity') finish();
+          };
+          const timeout = window.setTimeout(finish, 240);
+          frame.addEventListener('transitionend', handleTransitionEnd);
+        });
+      }
+
+      async function waitForGraphPaint() {
+        await new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        );
+        // The embed replies after accepting a document. Give its canvas one
+        // extra beat to paint before the host starts revealing it.
+        await new Promise((resolve) => window.setTimeout(resolve, 100));
+      }
+
+      async function renderDocument(source, version, graphHidden) {
+        await graphHidden;
+        if (version !== loadVersion) return;
 
         const document = structuredClone(source);
         await syncTheme();
@@ -317,17 +348,18 @@ const garphieldOrigin =
           graph.nodes.map((node) => [String(node.id), node]),
         );
         updateGraphStatus(graph);
-        await new Promise((resolve) =>
-          requestAnimationFrame(() => requestAnimationFrame(resolve)),
-        );
+        await waitForGraphPaint();
         if (version !== loadVersion) return;
         graphStage.classList.add('ready');
         graphStage.classList.remove('switching');
+        graphStage.removeAttribute('aria-busy');
         hasRendered = true;
       }
 
       async function loadDocument(button) {
         const version = ++loadVersion;
+        const graphHidden = hideRenderedGraph();
+        graphStage.setAttribute('aria-busy', 'true');
         activeButton = button;
         for (const candidate of buttons) {
           const active = candidate === button;
@@ -360,11 +392,12 @@ const garphieldOrigin =
           activeDocument = document;
           await preloadNodeImages(document);
           if (version !== loadVersion) return;
-          await renderDocument(document, version);
+          await renderDocument(document, version, graphHidden);
           await applySimilarityFilter();
         } catch (error) {
           if (version !== loadVersion) return;
           graphStage.classList.remove('switching');
+          graphStage.removeAttribute('aria-busy');
           status.textContent = `Could not load visualization: ${String(error)}`;
         }
       }
@@ -405,29 +438,36 @@ const garphieldOrigin =
     }
 
     .graph-intro {
-      width: 100%;
-      max-width: var(--content-max-width);
+      width: min(calc(100% - 2.5rem), 92rem);
       margin: 0 auto;
-      padding-inline: 1.25rem;
+      padding-bottom: 1rem;
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.6fr) minmax(0, 1.4fr);
+      align-items: center;
+      gap: clamp(1.25rem, 3vw, 2.5rem);
     }
 
-    .graph-intro > div {
+    .graph-heading {
       min-width: 0;
     }
 
     .graph-intro h1 {
       font-size: 1.5rem;
       color: var(--color-text);
-      margin: 0 0 0.5rem;
+      margin: 0;
     }
 
     #model-description {
-      height: 1.55em;
-      margin: 0.75rem 0 1.25rem;
+      height: 3.1em;
+      margin: 0.35rem 0 0;
       overflow: hidden;
-      max-width: 90ch;
       color: var(--color-text);
       line-height: 1.55;
+    }
+
+    .graph-intro :global(.sponsor-cta) {
+      max-width: none;
+      margin: 0;
     }
 
     .model-switcher {
@@ -569,6 +609,7 @@ const garphieldOrigin =
 
     .graph-stage.switching #garphield-frame {
       opacity: 0;
+      pointer-events: none;
     }
 
     .graph-fallback {
@@ -578,15 +619,29 @@ const garphieldOrigin =
       border: 1px solid var(--color-border);
     }
 
-    @media (max-width: 68rem) {
-      #model-description {
-        height: 4.65em;
-      }
-    }
-
     @media (max-width: 48rem) {
+      .graph-page {
+        padding-top: calc(var(--header-height) + 1rem);
+      }
+
+      .graph-intro {
+        width: calc(100% - 1rem);
+        padding-bottom: 0.75rem;
+        display: block;
+      }
+
+      .graph-intro h1 {
+        margin-bottom: 0.35rem;
+      }
+
       #model-description {
         height: 3.1em;
+        margin: 0 0 0.75rem;
+      }
+
+      .graph-stage,
+      .graph-fallback {
+        width: calc(100% - 1rem);
       }
 
       .graph-status-row {
