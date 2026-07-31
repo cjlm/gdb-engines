@@ -11,9 +11,10 @@ const pairings = [
 ---
 <aside class="sponsor-cta" aria-label="Sponsor GDB-Engines">
   <span class="sponsor-cta__copy">
-    GDB-Engines provides an independent, evidence-led view of the graph database
-    landscape. Sponsorship helps sustain the project—and connects vendors with
-    users trying to tell their
+    <strong>GDB-Engines provides an independent, evidence-led view of the graph
+    database landscape.</strong>
+    Sponsorship helps sustain the project – and connects vendors with users
+    trying to tell their
     <span
       class="sponsor-cta__pair"
       data-sponsor-pairs={JSON.stringify(pairings)}
@@ -52,6 +53,10 @@ const pairings = [
     color: var(--color-text-secondary);
   }
 
+  .sponsor-cta strong {
+    color: var(--color-text);
+  }
+
   .sponsor-cta a {
     flex: 0 0 auto;
     padding: 0.42rem 0.7rem;
@@ -60,11 +65,6 @@ const pairings = [
     color: var(--color-background);
     font-weight: 600;
     text-decoration: none;
-  }
-
-  .sponsor-cta__pair {
-    color: var(--color-text);
-    font-weight: 600;
   }
 
   .sponsor-cta a:hover {
