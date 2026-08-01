@@ -90,7 +90,9 @@ before a quote is called fabricated — a false accusation is worse than a misse
 - every quote for a claim failed verification.
 
 Unverified and unreachable quotes warn rather than fail, so a source going offline doesn't block a
-release.
+release. Re-checking is on demand: run `npm run verify-quotes` locally, or the **Verify evidence**
+workflow from the Actions tab. Nothing re-checks on a schedule — an unchecked or rotted citation
+fails safe, since only `matched` quotes render.
 
 ## Running a collection pass
 

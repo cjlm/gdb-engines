@@ -1,21 +1,14 @@
 name: Verify evidence
 
 # Refetches every cited page and confirms the stored quotes are still on it. Sources move and get
-# rewritten; without this the site keeps citing pages that no longer say what we claim they say.
+# rewritten, and without a re-check the site keeps citing pages that no longer say what we claim.
 #
-# Runs weekly, and on any change to the evidence or the tooling around it. The working tree is left
-# dirty on purpose — the run reports, it does not commit refreshed verdicts.
+# Run on demand — pages rot over months, not days, and an unchecked citation fails safe: only
+# quotes marked `matched` are rendered, so a stale one disappears from the page rather than
+# misleading anyone. The working tree is left dirty on purpose; the run reports, it does not
+# commit refreshed verdicts.
 
 on:
-  schedule:
-    - cron: '23 6 * * 1'
-  pull_request:
-    paths:
-      - 'src/content/evidence/**'
-      - 'src/content/databases/**'
-      - 'scripts/verify-quotes.mjs'
-      - 'scripts/check-evidence.mjs'
-      - 'scripts/lib/evidence-file.mjs'
   workflow_dispatch:
 
 permissions:

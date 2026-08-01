@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import SponsorCTA from '../components/SponsorCTA.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -80,15 +79,11 @@ const datasetJsonLd = JSON.stringify({
   jsonLd={[jsonLd, datasetJsonLd]}
   description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`}
 >
-  <SiteHeader comparisonControls />
+  <SiteHeader comparisonControls sponsorBadge />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
   <div class="comparison-stage">
-    <div class="home-sponsor">
-      <SponsorCTA />
-    </div>
-
     <table>
     <thead>
       <tr>
@@ -376,14 +371,7 @@ const datasetJsonLd = JSON.stringify({
   .comparison-stage {
     width: max-content;
     min-width: 100%;
-  }
-
-  .home-sponsor {
-    position: sticky;
-    left: max(0px, calc((100vw - var(--content-max-width)) / 2));
-    width: min(100vw, var(--content-max-width));
-    margin-left: max(0px, calc((100vw - var(--content-max-width)) / 2));
-    padding: calc(var(--header-height) + 1rem) 1.25rem 0;
+    padding-top: var(--header-height);
   }
 
   .comparison-stage table {
