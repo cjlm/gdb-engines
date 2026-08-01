@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import SponsorCTA from '../components/SponsorCTA.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -9,6 +8,7 @@ import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 import { loadGithubStars, formatGithubStars } from '../lib/github-stars';
+import { sortProtocols } from '../lib/protocols';
 
 const ranking = await loadRankings();
 const linkMaps = ranking ? buildLinkMaps(ranking) : null;
@@ -79,15 +79,11 @@ const datasetJsonLd = JSON.stringify({
   jsonLd={[jsonLd, datasetJsonLd]}
   description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`}
 >
-  <SiteHeader comparisonControls />
+  <SiteHeader comparisonControls sponsorBadge />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
   <div class="comparison-stage">
-    <div class="home-sponsor">
-      <SponsorCTA />
-    </div>
-
     <table>
     <thead>
       <tr>
@@ -113,6 +109,7 @@ const datasetJsonLd = JSON.stringify({
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.implementation_language} data-microtip-position="bottom" role="tooltip">Language</span> <span class="sort-indicator"></span></div></th>
         <th><span class="has-tooltip" aria-label={columnTooltips.query_languages} data-microtip-position="bottom" role="tooltip">Query Languages</span></th>
+        <th><span class="has-tooltip" aria-label={columnTooltips.protocols} data-microtip-position="bottom-left" role="tooltip">Protocols</span></th>
         {featureGroups.map((group, gi) =>
           group.features.map(key => (
             <th class="feature-col sortable" data-group={gi} data-type="score">
@@ -286,6 +283,18 @@ const datasetJsonLd = JSON.stringify({
               </div>
             ) : '-'}
           </td>
+          <td>
+            {db.data.protocols?.length ? (
+              <div class="query-langs">
+                {sortProtocols(db.data.protocols).slice(0, 3).map(p => (
+                  <span class="badge badge-protocol">{p}</span>
+                ))}
+                {db.data.protocols.length > 3 && (
+                  <span class="badge badge-protocol has-tooltip" aria-label={sortProtocols(db.data.protocols).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.protocols.length - 3}</span>
+                )}
+              </div>
+            ) : '-'}
+          </td>
           {featureGroups.map((group, gi) =>
             group.features.map(key => {
               const features = db.data.features;
@@ -362,14 +371,7 @@ const datasetJsonLd = JSON.stringify({
   .comparison-stage {
     width: max-content;
     min-width: 100%;
-  }
-
-  .home-sponsor {
-    position: sticky;
-    left: max(0px, calc((100vw - var(--content-max-width)) / 2));
-    width: min(100vw, var(--content-max-width));
-    margin-left: max(0px, calc((100vw - var(--content-max-width)) / 2));
-    padding: calc(var(--header-height) + 1rem) 1.25rem 0;
+    padding-top: var(--header-height);
   }
 
   .comparison-stage table {

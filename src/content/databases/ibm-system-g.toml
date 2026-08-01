@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
 query_languages = ["Gremlin"]
+protocols = ["HTTP/REST", "Native binary"]
 released = "2013"
 category = "Enterprise"
 status = "deprecated"

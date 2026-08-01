@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "JavaScript"
 type = "Property Graph"
 query_languages = ["Custom API"]
+protocols = ["WebSocket"]
 released = "2014"
 category = "Established"
 gdotv_support = false

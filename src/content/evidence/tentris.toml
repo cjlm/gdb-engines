@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/tentris.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "tentris"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Serves /sparql, /stream, /update, and /graph-store HTTP endpoints implementing the SPARQL 1.1 Protocol and Graph Store HTTP Protocol."
+
+  [[claims.sources]]
+  url = "https://docs.tentris.io/sparql_endpoints.html"
+  title = "SPARQL Endpoints - Tentris Beta Documentation"
+  quote = "Tentris implements the SPARQL 1.1 Protocol and the SPARQL 1.1 Graph Store HTTP Protocol. It makes the following endpoints available."
+  verified = "matched"
+  checked = "2026-08-01"

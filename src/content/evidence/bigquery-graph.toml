@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/bigquery-graph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "bigquery-graph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "gRPC", "JDBC/ODBC"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's general client surface: jobs.query over the REST API, the gRPC-based Storage Read/Write APIs for bulk result transfer and streaming inserts, and Google-documented Simba JDBC/ODBC drivers; no protocol documentation is specific to the Graph feature itself."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/bigquery/docs/reference/rest"
+  title = "BigQuery API | Google Cloud Documentation"
+  quote = "Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/bigquery/docs/write-api"
+  title = "Introduction to the Storage Write API (gRPC) | BigQuery | Google Cloud Documentation"
+  quote = "You can use the BigQuery Storage Write API (gRPC) to stream data into BigQuery."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/bigquery/docs/reference/odbc-jdbc-drivers"
+  title = "Use the Simba ODBC and JDBC drivers for BigQuery | Google Cloud Documentation"
+  quote = "The Simba Open Database Connectivity (ODBC) and Java Database Connectivity (JDBC) drivers for BigQuery connect your applications to BigQuery, letting you use BigQuery features with your preferred tooling and infrastructure."
+  verified = "matched"
+  checked = "2026-08-01"

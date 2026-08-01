@@ -1,0 +1,13 @@
+# Sources for values in src/content/databases/apache-giraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "apache-giraph"
+
+[[claims]]
+field = "protocols"
+value = ["Unknown"]
+confidence = "low"
+method = "web"
+checked = "2026-07-31"
+notes = "Giraph is a retired batch graph-processing library that runs as a Hadoop MapReduce/YARN job (submitted via `hadoop jar`); it is not a standalone server with a documented client wire protocol of its own."

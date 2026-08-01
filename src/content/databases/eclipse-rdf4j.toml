@@ -9,6 +9,7 @@ license = "BSD-3-Clause"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
+protocols = ["HTTP/REST", "SPARQL Protocol"]
 released = "2016"
 category = "Established"
 gdotv_support = true

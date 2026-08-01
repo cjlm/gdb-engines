@@ -6,6 +6,7 @@ url = "https://learn.microsoft.com/en-us/fabric/graph/how-graph-works"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL"]
+protocols = ["HTTP/REST"]
 released = "2025-10"
 category = "Enterprise"
 gdotv_support = false

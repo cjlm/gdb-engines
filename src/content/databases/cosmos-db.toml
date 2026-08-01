@@ -6,6 +6,7 @@ url = "https://azure.microsoft.com/en-us/products/cosmos-db"
 license = "Proprietary"
 type = "Multiple"
 query_languages = ["Gremlin", "SQL"]
+protocols = ["Gremlin (WebSocket)", "HTTP/REST", "Native binary"]
 released = "2017-05"
 category = "Enterprise"
 gdotv_support = true

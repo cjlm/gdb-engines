@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin"]
+protocols = ["Gremlin (WebSocket)", "Gremlin (HTTP)"]
 released = "2017-04"
 category = "Established"
 gdotv_support = true

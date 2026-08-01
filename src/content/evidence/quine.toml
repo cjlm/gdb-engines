@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/quine.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "quine"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "WebSocket"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Cypher and admin operations go through the /api/v2/ JSON REST API; a separate WebSocket standing-query wiretap (ws://{host}/api/v2/graph/{graph}/standingQueries/{name}:tap) streams live results but is explicitly marked experimental/unstable; accepted pass_A's WebSocket tag since the wiretap is a real, documented client-facing channel, not just an internal detail."
+
+  [[claims.sources]]
+  url = "https://quine.io/core-concepts/rest-api/"
+  title = "REST API - Streaming Graph for Data Pipelines"
+  quote = "This page describes the conventions every endpoint shares — URL shape, request and response format, error envelope, and common query parameters."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://quine.io/learn/standing-queries/wiretap/"
+  title = "Standing Query Wiretap - Streaming Graph for Data Pipelines"
+  quote = "The standing query wiretap enables observing a standing query's results in real time over a WebSocket connection."
+  verified = "matched"
+  checked = "2026-08-01"

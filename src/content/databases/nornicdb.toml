@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Go"
 type = "Property Graph"
 query_languages = ["openCypher", "GraphQL"]
+protocols = ["Bolt", "HTTP/REST", "GraphQL (HTTP)", "gRPC"]
 released = "2025-12"
 category = "Emerging"
 gdotv_support = false

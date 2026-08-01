@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/fabric-graph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "fabric-graph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Queries run through a common execution layer with a REST-based GQL query API; the visual Query Builder is a UI over the same layer, not a separate protocol."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/fabric/graph/how-graph-works"
+  title = "How graph in Microsoft Fabric works - Microsoft Fabric | Microsoft Learn"
+  quote = "REST-based execution: Runs queries programmatically by using the GQL query API."
+  verified = "matched"
+  checked = "2026-08-01"

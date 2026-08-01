@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["GQL", "openCypher", "SPARQL", "Gremlin", "GraphQL", "SQL/PGQ"]
+protocols = ["HTTP/REST", "WebSocket", "gRPC", "Bolt"]
 released = "2026"
 category = "Emerging"
 gdotv_support = false

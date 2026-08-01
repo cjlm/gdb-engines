@@ -8,6 +8,7 @@ import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
+import { sortProtocols } from '../../lib/protocols';
 
 const ranking = await loadRankings();
 const boards = ranking ? buildBoards(ranking) : [];
@@ -40,6 +41,9 @@ export async function getStaticPaths() {
       roundupsByEngine.set(member.slug, list);
     }
   }
+  const evidenceBySlug = new Map(
+    (await getCollection('evidence')).map((e) => [e.data.slug, e.data.claims]),
+  );
   const nameBySlug = new Map(databases.map((d) => [d.data.slug, d.data.name]));
   const languagesBySlug = new Map(databases.map((d) => [d.data.slug, d.data.query_languages ?? []]));
 
@@ -77,12 +81,24 @@ export async function getStaticPaths() {
       compareLinks: compareLinks(db.data.slug),
       faviconUrl: faviconMap[db.data.slug] ?? null,
       githubStars: githubStars[db.data.slug] ?? null,
+      evidence: evidenceBySlug.get(db.data.slug) ?? [],
       partOf: roundupsByEngine.get(db.data.slug) ?? [],
     },
   }));
 }
 
-const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf } = Astro.props;
+const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf, evidence } = Astro.props;
+
+// Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
+// is the thing this whole layer exists to avoid publishing.
+const fieldLabels: Record<string, string> = { protocols: 'Protocols' };
+
+const citedClaims = evidence
+  .map((claim) => ({
+    ...claim,
+    sources: claim.sources.filter((s) => s.verified === 'matched' || s.verified === 'matched-archive'),
+  }))
+  .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
@@ -285,6 +301,12 @@ const description = db.data.description;
           <dd>{db.data.query_languages.join(', ')}</dd>
         </>
       )}
+      {db.data.protocols?.length > 0 && (
+        <>
+          <dt>Protocols</dt>
+          <dd>{sortProtocols(db.data.protocols).join(', ')}</dd>
+        </>
+      )}
     </dl>
 
     {db.data.features && (
@@ -331,5 +353,38 @@ const description = db.data.description;
       </>
     )}
 
+    {/* Provenance, not content: last on the page and closed by default. Anyone checking a value
+        goes looking for this; nobody reading about the engine needs it in the way. Kept in the
+        markup rather than loaded on demand so it stays crawlable and Ctrl-F finds it. */}
+    {citedClaims.length > 0 && (
+      <details class="sources">
+        <summary>
+          Sources
+          <span class="sources-count">{citedClaims.reduce((n, c) => n + c.sources.length, 0)} checked</span>
+        </summary>
+        {citedClaims.map((claim) => (
+          <div class="claim">
+            <p class="claim-head">
+              <span class="claim-field">{fieldLabels[claim.field] ?? claim.field}</span>
+              <span class="claim-value">{Array.isArray(claim.value) ? claim.value.join(', ') : String(claim.value)}</span>
+              <span class={`claim-confidence claim-confidence-${claim.confidence}`}>{claim.confidence} confidence</span>
+            </p>
+            {claim.notes && <p class="claim-notes">{claim.notes}</p>}
+            <ul class="claim-sources">
+              {claim.sources.map((source) => (
+                <li>
+                  <blockquote cite={source.url}>{source.quote}</blockquote>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer nofollow"><cite>{source.title}</cite></a>
+                  {source.archive_url && (
+                    <span class="claim-checked"> · via <a href={source.archive_url} target="_blank" rel="noopener noreferrer nofollow">Internet Archive</a></span>
+                  )}
+                  {source.checked && <span class="claim-checked"> · checked {source.checked}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </details>
+    )}
   </main>
 </Layout>

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/neug.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "neug"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Default Embedded Mode is a linked library (Python/Node.js); calling db.serve() switches to Service Mode, which starts a BRPC-based HTTP server exposing POST /cypher and GET /schema, /status."
+
+  [[claims.sources]]
+  url = "https://github.com/alibaba/neug"
+  title = "alibaba/neug"
+  quote = "Embedded Mode: Optimized for analytical workloads including bulk data loading, complex pattern matching, and graph analytics"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://graphscope.io/neug/en/reference/cpp_api/service/"
+  title = "NeugDBService"
+  quote = "NeugDBService provides an HTTP interface layer for the NeuG graph database, enabling remote query execution over HTTP."
+  verified = "matched"
+  checked = "2026-08-01"

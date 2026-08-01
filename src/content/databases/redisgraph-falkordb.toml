@@ -10,6 +10,7 @@ license = "SSPL-1.0"
 implementation_language = "C"
 type = "Property Graph"
 query_languages = ["openCypher"]
+protocols = ["Redis RESP", "Bolt", "HTTP/REST"]
 released = "2018"
 category = "Established"
 gdotv_support = true

@@ -9,6 +9,7 @@ license = "Apache-2.0"
 implementation_language = "Go"
 type = "Property Graph"
 query_languages = ["DQL", "GraphQL"]
+protocols = ["gRPC", "HTTP/REST", "GraphQL (HTTP)"]
 released = "2015"
 category = "Enterprise"
 gdotv_support = true

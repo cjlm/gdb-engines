@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/recallgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "recallgraph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Foxx microservice installed inside ArangoDB; exposes a Swagger/OpenAPI-documented HTTP API, inheriting ArangoDB's HTTP/REST transport. Project is archived; successor Minigraf is embedded and out of scope here."
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph"
+  title = "RecallGraph/RecallGraph"
+  quote = "API documentation is also available directly in the Swagger console once the service is installed (accessed through ArangoDB's web UI)."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph"
+  title = "RecallGraph/RecallGraph"
+  quote = "It is a Foxx Microservice for ArangoDB that features VCS-like semantics in many parts of its interface, and is backed by a transactional event tracker."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/flockdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "flockdb"
+
+[[claims]]
+field = "protocols"
+value = ["Thrift"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Twitter's 'flapp' servers expose a small Thrift API (default port 7915 in the demo); the official Ruby client wraps it, but any Thrift client can talk to it directly."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/twitter-archive/flockdb/master/doc/demo.markdown"
+  title = "Flock demo"
+  quote = "The flockdb interface is thrift, so you can talk to it in many different languages"
+  verified = "matched"
+  checked = "2026-08-01"

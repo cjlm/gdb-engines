@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
 query_languages = ["SPARQL"]
+protocols = ["SPARQL Protocol"]
 released = "2016"
 category = "Enterprise"
 status = "deprecated"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/agensgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "agensgraph"
+
+[[claims]]
+field = "protocols"
+value = ["PostgreSQL wire"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "AgensGraph is a PostgreSQL fork; its JDBC driver connects on the standard Postgres port (5432) and default docker mapping confirms this."
+
+  [[claims.sources]]
+  url = "https://github.com/skaiworldwide-oss/agensgraph-jdbc"
+  title = "skaiworldwide-oss/agensgraph-jdbc: A Java driver for AgensGraph"
+  quote = "AgensGraph JDBC Driver is based on PostgreSQL JDBC Driver and offers additional features to handle graph data."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://pigsty.io/docs/pgsql/kernel/agensgraph/"
+  title = "AgensGraph | PIGSTY"
+  quote = "From the client side, AgensGraph still speaks the PostgreSQL wire protocol, so normal PostgreSQL clients, drivers, and connection pools can connect directly."
+  verified = "matched"
+  checked = "2026-08-01"

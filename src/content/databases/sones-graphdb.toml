@@ -8,6 +8,7 @@ license = "AGPL-3.0"
 implementation_language = "C#"
 type = "Property Graph"
 query_languages = ["GQL (Sones)"]
+protocols = ["HTTP/REST"]
 released = "2010"
 category = "Emerging"
 status = "inactive"

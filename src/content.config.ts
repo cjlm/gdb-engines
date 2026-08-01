@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { PROTOCOLS } from './lib/protocols';
 
 const featureScore = z.number().min(0).max(1);
 
@@ -23,6 +24,8 @@ const databases = defineCollection({
     previous_names: z.array(z.string()).optional(),
     released: z.string().regex(/^\d{4}(-\d{2})?$/).optional(),
     query_languages: z.array(z.string()).optional(),
+    // Closed vocabulary — see src/lib/protocols.ts for why this differs from query_languages.
+    protocols: z.array(z.enum(PROTOCOLS)).nonempty().optional(),
     icon: z.string().optional(),
     gdotv_support: z.boolean(),
     gdotv_url: z.string().url().optional(),
@@ -117,4 +120,43 @@ const roundups = defineCollection({
     }),
 });
 
-export const collections = { databases, roundups };
+/**
+ * Sources backing individual catalogue values, one file per database entry.
+ *
+ * Kept alongside the entry rather than inside it so the catalogue TOML stays readable, and so a
+ * value and its evidence can be diffed separately in review. `scripts/check-evidence.mjs` runs in
+ * `prebuild` and fails the build if a claim's `value` no longer matches the entry it describes —
+ * editing a fact without revisiting its sources is the way this data goes stale silently.
+ *
+ * `quote` is a verbatim substring of the cited page. `scripts/verify-quotes.mjs` refetches each
+ * URL and confirms the quote is really there, which is what separates a source from an assertion
+ * that a source exists.
+ */
+const evidence = defineCollection({
+  loader: glob({ pattern: '**/*.toml', base: './src/content/evidence' }),
+  schema: z.object({
+    slug: z.string().min(1).regex(/^[a-z0-9-]+$/),
+    claims: z.array(z.object({
+      field: z.string().min(1),
+      value: z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]),
+      confidence: z.enum(['high', 'medium', 'low']),
+      // How the value was established, in descending order of trust.
+      method: z.enum(['api', 'repo', 'vendor-docs', 'web']),
+      checked: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      notes: z.string().optional(),
+      sources: z.array(z.object({
+        url: z.string().url(),
+        title: z.string().min(1),
+        quote: z.string().min(1),
+        // Written by verify-quotes.mjs, never by hand. `matched-archive` means the original
+        // wouldn't load but an Internet Archive snapshot carries the quote.
+        verified: z.enum(['matched', 'matched-archive', 'mismatch', 'unreachable', 'unchecked'])
+          .default('unchecked'),
+        archive_url: z.string().url().optional(),
+        checked: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      })).default([]),
+    })).min(1),
+  }),
+});
+
+export const collections = { databases, roundups, evidence };

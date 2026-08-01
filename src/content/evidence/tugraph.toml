@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/tugraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "tugraph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "Bolt", "Native binary"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST on port 7070; Bolt (Neo4j protocol, partial feature support) on port 7687; the RPC service (port 9090) uses the brpc framework's proprietary 'baidu_std' binary protocol, which is not gRPC despite the draft's label."
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/en/latest/5.installation%26running/7.tugraph-running.html"
+  title = "Tugraph Running — TuGraph documentation"
+  quote = "The Port on which the REST server listens. The default port is 7070."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/5.bolt-client.html"
+  title = "Bolt client — TuGraph documentation"
+  quote = "TuGraph implements Neo4j’s bolt protocol, you can use Neo4j’s client to access TuGraph."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/8.rpc-api.html"
+  title = "RPC API — TuGraph documentation"
+  quote = "brpc is an industrial-grade RPC framework written in C++. Based on brpc, TuGraph provides rich RPC APIs."
+  verified = "matched"
+  checked = "2026-08-01"

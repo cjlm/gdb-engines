@@ -6,6 +6,7 @@ url = "https://www.prometheux.ai/"
 license = "Proprietary"
 type = "Other"
 query_languages = ["Vadalog"]
+protocols = ["HTTP/REST"]
 kind = "query-engine"
 released = "2022"
 category = "Growing"

@@ -318,6 +318,74 @@ header {
 .ranks-list a.roundup .chev { color: var(--color-text-tertiary); }
 
 
+/* Provenance footer on an engine page. Deliberately the quietest thing on the page: collapsed by
+   default, set a size down from body copy, and sitting below the comparison links. It exists to be
+   checked, not read. */
+.sources {
+  margin: 2.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+}
+.sources > summary {
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  list-style-position: outside;
+}
+.sources > summary:hover { color: var(--color-text); }
+.sources > summary:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+.sources-count {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+.claim { margin: 0 0 1.25rem; }
+.claim-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.8125rem;
+}
+.claim-field { font-weight: 600; }
+.claim-value { color: var(--color-text-secondary); font-family: var(--font-mono); font-size: 0.75rem; }
+.claim-confidence {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+.claim-confidence-low { color: #C62828; }
+.claim-notes {
+  max-width: 70ch;
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+.claim-sources { list-style: none; padding: 0; margin: 0; }
+.claim-sources li { margin: 0 0 0.75rem; }
+.claim-sources blockquote {
+  max-width: 70ch;
+  margin: 0 0 0.25rem;
+  padding: 0 0 0 0.75rem;
+  border-left: 2px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.claim-sources blockquote::before { content: '\201C'; }
+.claim-sources blockquote::after { content: '\201D'; }
+.claim-sources cite { font-style: normal; }
+.claim-checked { font-size: 0.6875rem; color: var(--color-text-tertiary); }
+
 .compare-with {
   list-style: none;
   padding: 0;
@@ -780,7 +848,11 @@ table .db-links a:focus-visible,
 .badge-extension { background: #E8EAF6; color: #283593; }
 .badge-query-engine { background: #E0F7FA; color: #00695C; }
 .badge-embedded { background: #FFF3E0; color: #B34100; }
-.badge-query-lang { background: #F5F5F5; color: #555; font-size: 0.625rem; text-transform: none; letter-spacing: 0; font-family: var(--font-mono); }
+/* Query languages and protocols sit in adjacent columns and share a treatment: the headers
+   already tell them apart, and giving protocols its own outline only made the quieter column
+   shout. */
+.badge-query-lang,
+.badge-protocol { background: #F5F5F5; color: #555; font-size: 0.625rem; text-transform: none; letter-spacing: 0; font-family: var(--font-mono); }
 .badge-inactive { background: #F5F5F5; color: #6B6B6B; }
 .badge-deprecated { background: #FFEBEE; color: #C62828; }
 
@@ -810,7 +882,8 @@ tr.row-deprecated:hover td {
 .badge-extension { --badge-bg-dark: #313167; --badge-fg-dark: #9FA8DA; }
 .badge-query-engine { --badge-bg-dark: #103F39; --badge-fg-dark: #80CBC4; }
 .badge-embedded { --badge-bg-dark: #523100; --badge-fg-dark: #FFB74D; }
-.badge-query-lang { --badge-bg-dark: #383838; --badge-fg-dark: #BBB; }
+.badge-query-lang,
+.badge-protocol { --badge-bg-dark: #383838; --badge-fg-dark: #BBB; }
 .badge-inactive { --badge-bg-dark: #383838; --badge-fg-dark: #AAA; }
 .badge-deprecated { --badge-bg-dark: #6B2C2C; --badge-fg-dark: #EF9A9A; }
 

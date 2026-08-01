@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/tao.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "tao"
+
+[[claims]]
+field = "protocols"
+value = ["Unknown"]
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Facebook-internal and closed-source; the 2013 USENIX paper describes a custom multiplexed protocol with out-of-order responses between clients and TAO's cache tier but never names a public wire format, so the draft's specific 'Native binary (RPC)' claim goes beyond what's confirmable."
+
+  [[claims.sources]]
+  url = "https://www.usenix.org/system/files/conference/atc13/atc13-bronson.pdf"
+  title = "TAO: Facebook's Distributed Data Store for the Social Graph"
+  quote = "so to avoid head-of-line blocking on multiplexed connections we use a protocol with out-of-order responses."
+  verified = "matched"
+  checked = "2026-08-01"

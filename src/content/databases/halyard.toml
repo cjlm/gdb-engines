@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2016-11"
 category = "Emerging"
 status = "inactive"

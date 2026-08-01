@@ -7,5 +7,6 @@ license = "PostgreSQL"
 implementation_language = "C"
 type = "Property Graph"
 query_languages = ["SQL/PGQ"]
+protocols = ["PostgreSQL wire"]
 category = "Emerging"
 gdotv_support = false

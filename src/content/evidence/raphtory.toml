@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/raphtory.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "raphtory"
+
+[[claims]]
+field = "protocols"
+value = ["GraphQL (HTTP)"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Primarily an embedded Python/Rust library; can also host a GraphQL server (default port 1736) via GraphServer."
+
+  [[claims.sources]]
+  url = "https://github.com/Pometry/Raphtory"
+  title = "GitHub - Pometry/Raphtory: Scalable graph analytics database powered by a multithreaded, vectorized temporal engine, written in Rust"
+  quote = "It can be ran embedded or as a server instance using GraphQL, supports time traveling, full-text search, multilayer modelling, and advanced analytics beyond simple querying"
+  verified = "matched"
+  checked = "2026-08-01"

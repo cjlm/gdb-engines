@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Other"
 kind = "embedded"
 query_languages = ["openCypher"]
+protocols = ["HTTP/REST", "Native binary"]
 released = "2021-11"
 category = "Emerging"
 gdotv_support = false

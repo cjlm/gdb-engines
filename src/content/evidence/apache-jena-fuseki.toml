@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/apache-jena-fuseki.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "apache-jena-fuseki"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Fuseki exposes the SPARQL 1.1 Query/Update and Graph Store protocols over HTTP, plus a separate, distinctly non-SPARQL HTTP Administration Protocol (/$/ping, /$/datasets, /$/backup, /$/stats) for server and dataset management, which justifies keeping HTTP/REST alongside SPARQL Protocol against pass_B's drop of it."
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/fuseki2/"
+  title = "Apache Jena - Apache Jena Fuseki"
+  quote = "Fuseki provides the SPARQL 1.1 protocols for query and update as well as the SPARQL Graph Store protocol."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/fuseki2/fuseki-server-protocol.html"
+  title = "Apache Jena - Fuseki HTTP Administration Protocol"
+  quote = "This page describes the HTTP Protocol used to control an Fuseki server via its administrative interface."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/parliament.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "parliament"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Source confirms two distinct interfaces on the Joseki/Jetty server: ActionRouter implements Joseki's SPARQL query/update processor (SPARQL Protocol), while a separate BulkServlet, described in the same source file as RESTful, handles insert/export/flush over plain HTTP — so pass_A's addition of HTTP/REST is correct and pass_B's SPARQL-only answer misses the bulk-load interface."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/raytheonbbn/parliament/main/jena/JosekiExtensions/src/com/bbn/parliament/jena/joseki/bridge/ActionRouter.java"
+  title = "ActionRouter.java — raytheonbbn/parliament"
+  quote = "Joseki comes packaged with its \"SPARQL\" processor to handle SPARQL queries"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/raytheonbbn/parliament/main/jena/JosekiExtensions/src/com/bbn/parliament/jena/joseki/bridge/ActionRouter.java"
+  title = "ActionRouter.java — raytheonbbn/parliament"
+  quote = "BulkServlet by contrast is RESTful.\n *\n * Bulk operations are handled by the BulkServlet, and include insert, export,\n * and flush.  Delete, and Clear should be handled via SPARQL/Update."
+  verified = "matched"
+  checked = "2026-08-01"

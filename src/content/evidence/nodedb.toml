@@ -1,0 +1,48 @@
+# Sources for values in src/content/databases/nodedb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "nodedb"
+
+[[claims]]
+field = "protocols"
+value = ["PostgreSQL wire", "HTTP/REST", "WebSocket", "Redis RESP", "Native binary"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Own docs confirm five vocabulary-matching wire protocols on distinct ports: pgwire (6432), HTTP/REST + WebSocket JSON-RPC (6480, plus a second WebSocket sync channel on 9090 for NodeDB-Lite/CRDT), RESP2 (6381), and a native MessagePack protocol (6433) with a proprietary versioned handshake (magic bytes, capability bitmask) that is not a re-use of any standard protocol, so it is 'Native binary'. Rejected pass_A's omission of the native protocol, which mistakenly claimed no matching vocabulary tag exists. ILP (InfluxDB line protocol) has no controlled-vocabulary match and is correctly omitted by both passes."
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/connectivity/pgwire"
+  title = "pgwire (PostgreSQL Protocol) - NodeDB"
+  quote = "NodeDB speaks the PostgreSQL wire protocol on port 6432. Any tool that speaks Postgres works."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/connectivity/http-api"
+  title = "HTTP API - NodeDB"
+  quote = "REST API on port 6480 for web clients and services."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/NodeDB-Lab/nodedb/blob/main/docs/real-time.md"
+  title = "docs/real-time.md at main · NodeDB-Lab/nodedb"
+  quote = "JSON-RPC over WebSocket for SQL execution, live query delivery, and session management:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/connectivity/resp"
+  title = "RESP (Redis Protocol) - NodeDB"
+  quote = "NodeDB speaks RESP2 for KV operations. Existing Redis clients work out of the box."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/reference/wire-protocol-specs"
+  title = "Wire Protocol Specs - NodeDB"
+  quote = "Binary MessagePack over TCP (port 6433). Two message types:"
+  verified = "matched"
+  checked = "2026-08-01"

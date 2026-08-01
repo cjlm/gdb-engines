@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/qlever.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "qlever"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "QLever implements SPARQL 1.1 Protocol plus the Graph Store HTTP Protocol; it also exposes a separate, documented non-SPARQL admin HTTP API on the same host:port (e.g. cmd=rebuild-index, cmd=... commands, distinct from query=/update= SPARQL requests), which is genuine HTTP/REST beyond the SPARQL endpoint — pass_B's inclusion of HTTP/REST is correct and pass_A's SPARQL-only answer misses this admin surface."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ad-freiburg/qlever/master/README.md"
+  title = "QLever README"
+  quote = "QLever implements the full SPARQL 1.1 standard, including federated queries,\nnamed graphs, the Graph Store HTTP Protocol, and updates."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.qlever.dev/rebuild-index/"
+  title = "Rebuild index - QLever Documentation"
+  quote = "Alternatively, you can trigger the rebuild via the QLever HTTP API as described\nbelow."
+  verified = "matched"
+  checked = "2026-08-01"

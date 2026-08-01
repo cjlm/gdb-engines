@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/memgql.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "memgql"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Federated GQL engine fronted by its own Bolt server on port 7688 (distinct from Memgraph's own Bolt port 7687)."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/memgraph-zero/memgql"
+  title = "MemGQL"
+  quote = "Clients connect via the Bolt protocol (port 7688) using any Bolt-compatible driver."
+  verified = "matched"
+  checked = "2026-08-01"

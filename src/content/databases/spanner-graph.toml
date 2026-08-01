@@ -6,6 +6,7 @@ url = "https://cloud.google.com/spanner/docs/graph/overview"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL", "SQL/PGQ"]
+protocols = ["gRPC", "HTTP/REST"]
 released = "2024-08"
 category = "Enterprise"
 gdotv_support = true

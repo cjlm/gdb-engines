@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/marmotta-kiwi.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "marmotta-kiwi"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "KiWi itself is an embeddable Sesame Sail library (no wire protocol of its own); the network-facing protocols come from the Apache Marmotta platform that hosts it as its default backend. Accepted pass_A's HTTP/REST because Marmotta's LDP module is a separate, documented, non-SPARQL HTTP API (resource CRUD via POST/GET), not just SPARQL-over-HTTP; rejected pass_B's SPARQL-only list. Both projects are retired to the Apache Attic."
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/apidocs/org/apache/marmotta/platform/sparql/webservices/SparqlWebService.html"
+  title = "SparqlWebService (Apache Marmotta Site 3.3.0 API)"
+  quote = "Execute SPARQL query (both query and update) on the LMF triple store according the SPARQL 1.1 Protocol"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/platform/ldp-module.html"
+  title = "Apache Marmotta - Platform - LDP"
+  quote = "Since 3.2.0 Marmotta provides experimental support for the current working draft of the Linked Data Platform 1.0 specification."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/kiwi/"
+  title = "Apache Marmotta - KiWi Triple Store"
+  quote = "The KiWi triple store is composed of a number of Sesame Sail modules that can be combined and stacked as needed."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -8,6 +8,7 @@ license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["SQL", "openCypher"]
+protocols = ["PostgreSQL wire", "HTTP/REST", "WebSocket", "Redis RESP", "Native binary"]
 kind = "database"
 released = "2026-03"
 category = "Emerging"

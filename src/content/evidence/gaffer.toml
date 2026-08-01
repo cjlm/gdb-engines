@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/gaffer.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "gaffer"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Ships a full REST API for a deployed graph instance, and is equally usable as a Java library (graph module + store module) embedded directly in an application."
+
+  [[claims.sources]]
+  url = "https://gchq.github.io/gaffer-doc/latest/user-guide/apis/rest-api.html"
+  title = "Using the REST API - Gaffer Docs"
+  quote = "When a graph is deployed, a REST (or RESTful) API will be available at a predefined address."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/gchq/Gaffer/master/README.md"
+  title = "Gaffer"
+  quote = "To use Gaffer from the Java API the only required dependencies are the Gaffer graph module and a store module"
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,11 +1,13 @@
 ---
 import { getDatabaseCount } from '../lib/database-count';
+import SponsorBadge from './SponsorBadge.astro';
 
 interface Props {
   comparisonControls?: boolean;
+  sponsorBadge?: boolean;
 }
 
-const { comparisonControls = false } = Astro.props;
+const { comparisonControls = false, sponsorBadge = false } = Astro.props;
 // Only the comparison table can be filtered, so only that page shows a live count;
 // table.ts rewrites #db-count to "12 / 145" as rows are hidden.
 const databaseCount = comparisonControls ? await getDatabaseCount() : null;
@@ -63,6 +65,7 @@ const onCompare = path.startsWith('/compare');
         ? <>Compare <span id="db-count">{databaseCount}</span> graph databases</>
         : 'The go-to resource for graph technology details'}
     </p>
+    {sponsorBadge && <SponsorBadge />}
   </div>
   <div class="right">
     {comparisonControls && (

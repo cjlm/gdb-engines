@@ -8,6 +8,7 @@ license = "AGPL-3.0"
 implementation_language = "Rust"
 type = "Other"
 query_languages = ["HelixQL"]
+protocols = ["HTTP/REST"]
 kind = "database"
 released = "2025-02"
 category = "Emerging"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/typedb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "typedb"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "TypeDB RPC (gRPC) on port 1729 is the primary driver protocol; TypeDB HTTP on port 8000 is a secondary REST endpoint."
+
+  [[claims.sources]]
+  url = "https://typedb.com/docs/core-concepts/drivers/overview/"
+  title = "TypeDB | Docs > Core Concepts > Overview"
+  quote = "High performance: Efficient binary protocol over HTTP2 bidirectional streams"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://typedb.com/docs/core-concepts/drivers/overview/"
+  title = "TypeDB | Docs > Core Concepts > Overview"
+  quote = "The server’s HTTP endpoint may also be abstracted away behind HTTP driver libraries in your language."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -8,6 +8,7 @@ license = "MPL-2.0"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "stSPARQL", "GeoSPARQL"]
+protocols = ["SPARQL Protocol"]
 released = "2011"
 category = "Emerging"
 status = "inactive"

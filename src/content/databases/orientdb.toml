@@ -9,6 +9,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL", "Gremlin"]
+protocols = ["Native binary", "HTTP/REST"]
 released = "2010"
 category = "Enterprise"
 gdotv_support = false

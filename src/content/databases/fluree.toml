@@ -8,6 +8,7 @@ license = "EPL-2.0"
 implementation_language = "Rust"
 type = "RDF"
 query_languages = ["FlureeQL", "SPARQL", "GraphQL"]
+protocols = ["HTTP/REST", "SPARQL Protocol"]
 released = "2018"
 category = "Growing"
 gdotv_support = false

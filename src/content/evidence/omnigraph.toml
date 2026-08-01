@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/omnigraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "omnigraph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Server mode runs an Axum-based HTTP server; a local, no-server embedded mode is also supported for quick tests."
+
+  [[claims.sources]]
+  url = "https://github.com/ModernRelay/omnigraph"
+  title = "ModernRelay/omnigraph"
+  quote = "Axum HTTP server, cluster-first, runs N graphs under /graphs/{id}/…"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/ModernRelay/omnigraph"
+  title = "ModernRelay/omnigraph"
+  quote = "1-min setup to try it: an embedded, local file-backed graph (no server, no object store)."
+  verified = "matched"
+  checked = "2026-08-01"

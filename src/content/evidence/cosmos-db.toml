@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/cosmos-db.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "cosmos-db"
+
+[[claims]]
+field = "protocols"
+value = ["Gremlin (WebSocket)", "HTTP/REST", "Native binary"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Gremlin API is WebSocket (confirmed by the 101-upgrade error path in the Gremlin FAQ) and the default access mode for all APIs is an HTTPS gateway (HTTP/REST); rejected pass_B's justification for Native binary (Cassandra/MongoDB wire compatibility, which explicitly reuse standard, non-proprietary protocols the vocabulary has no tag for) but added Native binary anyway for a different, undisputed reason neither pass raised: the SQL/Core API's proprietary TCP 'direct mode', which only the .NET and Java SDKs support and which Microsoft does not publish a wire spec for; the port table shows direct mode is not offered for the Graph API."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/azure/cosmos-db/gremlin/faq"
+  title = "Frequently asked questions - Azure Cosmos DB for Apache Gremlin | Microsoft Learn"
+  quote = "A Gremlin connection is made through a WebSocket connection."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/rest/api/cosmos-db/"
+  title = "Azure Cosmos DB REST API Reference"
+  quote = "The Azure Cosmos DB REST API provides programmatic access to Azure Cosmos DB resources to create, query, and delete databases, document collections, and documents."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/azure/cosmos-db/sdk-connection-modes"
+  title = "SQL SDK Connectivity Modes - Azure Cosmos DB | Microsoft Learn"
+  quote = "Additionally, it offers an efficient TCP protocol, which is also RESTful in its communication model and uses TLS for initial authentication and encrypting traffic, called direct mode."
+  verified = "matched"
+  checked = "2026-08-01"

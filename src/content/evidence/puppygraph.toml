@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/puppygraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "puppygraph"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "Gremlin (WebSocket)", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "openCypher is served over the Bolt protocol (port 7687), Gremlin over TinkerPop's WebSocket channel (port 8182), and a REST API backs the Web UI/schema metadata (port 8081); no Gremlin HTTP channel is documented, contradicting the draft."
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/querying/querying-using-opencypher/"
+  title = "Querying using openCypher - PuppyGraph Docs"
+  quote = "PuppyGraph supports connecting and executing queries through the Bolt protocol."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/ai/ai-integrations/"
+  title = "AI Integrations - PuppyGraph Docs"
+  quote = "The examples below use PuppyGraph's default local ports: 8081 for the Web UI and REST API, 7687 for openCypher over Bolt, and 8182 for Gremlin WebSocket."
+  verified = "matched"
+  checked = "2026-08-01"

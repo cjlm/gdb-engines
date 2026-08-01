@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/graphscope.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graphscope"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST", "Bolt", "Gremlin (WebSocket)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Python client talks to the coordinator over gRPC for the analytical/learning engines. The Interactive (GIE/Flex) engine additionally exposes an HTTP/REST admin+query API (see graphscope.io/docs/flex/interactive/development/restful_api), a Bolt endpoint for Cypher via standard neo4j drivers, and a Gremlin WebSocket endpoint (ws://.../gremlin) for the GIE Gremlin frontend. Draft only listed gRPC and HTTP/REST."
+
+  [[claims.sources]]
+  url = "https://graphscope.io/docs/deployment/deploy_graphscope_on_self_managed_k8s"
+  title = "Deploy on K8s Cluster - GraphScope documentation"
+  quote = "you could deploy and manage the workloads of GraphScope through a python client, which communicates with the GraphScope engines on the K8s cluster through a gRPC service"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://graphscope.io/docs/latest/flex/interactive/getting_started"
+  title = "Getting Started - GraphScope documentation"
+  quote = "You can establish a connection to the Interactive service using Neo4j’s Bolt connector and execute Cypher queries."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://graphscope.io/docs/flex/interactive/development/restful_api"
+  title = "GraphScope Interactive API v0.3"
+  quote = "AdminService API (with tag AdminService) defines the API for GraphManagement, ProcedureManagement and Service Management."
+  verified = "matched"
+  checked = "2026-08-01"

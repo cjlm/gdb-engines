@@ -6,6 +6,7 @@ github_url = "https://github.com/amplab/zipg"
 implementation_language = "Java"
 type = "Other"
 query_languages = ["Custom API"]
+protocols = ["Thrift"]
 released = "2017"
 category = "Emerging"
 kind = "embedded"

@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Other"
 query_languages = ["Custom API"]
+protocols = ["HTTP/REST"]
 kind = "query-engine"
 released = "2015"
 category = "Established"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/redstore.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "redstore"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Lightweight standalone RDF triplestore built on the Redland library; runs its own built-in HTTP server (default port 8080) implementing SPARQL 1.1 Protocol and the Graph Store HTTP Protocol."
+
+  [[claims.sources]]
+  url = "https://www.aelius.com/njh/redstore/"
+  title = "RedStore"
+  quote = "It has a HTTP interface and supports the following W3C standards:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://www.aelius.com/njh/redstore/"
+  title = "RedStore"
+  quote = "RedStore is a lightweight RDF triplestore written in C using the Redland library."
+  verified = "matched"
+  checked = "2026-08-01"

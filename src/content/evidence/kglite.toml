@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/kglite.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "kglite"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server binary is a sibling crate that serves a loaded graph over the Neo4j Bolt v5 wire protocol on port 7687."
+
+  [[claims.sources]]
+  url = "https://kglite.readthedocs.io/en/latest/"
+  title = "kglite documentation"
+  quote = "Bolt and MCP protocol servers are standalone Rust binaries that wrap the same engine."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/kkollsga/kglite"
+  title = "kkollsga/kglite"
+  quote = "The interactive shell, Bolt-server, and MCP-server binaries are sibling Rust crates wrapping the same engine."
+  verified = "matched"
+  checked = "2026-08-01"

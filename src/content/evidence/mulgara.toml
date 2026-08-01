@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/mulgara.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "mulgara"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST", "Native binary"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Standalone server exposes /sparql (SPARQL 1.1 Protocol over HTTP) and /tql (an HTTP interface for its native TQL/iTQL query language); the underlying Mulgara driver also talks to remote servers via SOAP or RMI (RMI covered here as Native binary; SOAP has no exact match in the controlled vocabulary). Project has been dormant since around 2014."
+
+  [[claims.sources]]
+  url = "https://code.mulgara.org/projects/mulgara/wiki/RESTQueries"
+  title = "RESTQueries - Mulgara - Mulgara Project"
+  quote = "A SPARQL endpoint on Mulgara attempts to conform to the SPARQL protocol definition for HTTP Bindings."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://code.mulgara.org/projects/mulgara/wiki/RESTInterface"
+  title = "RESTInterface - Mulgara - Mulgara Project"
+  quote = "The interfaces provide similar functionality, with the /sparql/ interface accepting SPARQL queries, and the /tql/ interface accepting TQL queries."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "http://docs.mulgara.org/system/driver.html"
+  title = "Mulgara | Semantic Store - Mulgara Driver"
+  quote = "The driver communicates with remote servers via SOAP or RMI."
+  verified = "matched"
+  checked = "2026-08-01"

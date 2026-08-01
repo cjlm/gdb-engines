@@ -9,6 +9,7 @@ implementation_language = "TypeScript"
 type = "RDF"
 kind = "query-engine"
 query_languages = ["SPARQL", "GraphQL"]
+protocols = ["SPARQL Protocol"]
 released = "2018"
 category = "Emerging"
 gdotv_support = false

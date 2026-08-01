@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/helixdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "helixdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "All SDKs (Rust, TypeScript, Go, Python) and curl alike send queries as JSON to POST /v1/query on the default port 6969."
+
+  [[claims.sources]]
+  url = "https://github.com/HelixDB/helix-db"
+  title = "HelixDB/helix-db"
+  quote = "Queries are authored with the Rust, TypeScript, Go, or Python DSL and sent straight to a running instance as dynamic requests against `POST /v1/query` — no build or deploy step."
+  verified = "matched"
+  checked = "2026-08-01"

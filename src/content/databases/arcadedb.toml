@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL", "openCypher", "Gremlin", "GraphQL"]
+protocols = ["HTTP/REST", "PostgreSQL wire", "Bolt", "gRPC", "Redis RESP"]
 released = "2021-09"
 category = "Growing"
 gdotv_support = true

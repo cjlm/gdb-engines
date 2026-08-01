@@ -9,6 +9,7 @@ github_url = "https://github.com/trovares/pyxgt"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher"]
+protocols = ["gRPC"]
 released = "2018-12"
 category = "Emerging"
 gdotv_support = false

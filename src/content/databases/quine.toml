@@ -8,6 +8,7 @@ license = "MIT + Commons Clause"
 implementation_language = "Scala"
 type = "Property Graph"
 query_languages = ["openCypher", "Gremlin"]
+protocols = ["HTTP/REST", "WebSocket"]
 released = "2022-02"
 category = "Emerging"
 gdotv_support = false

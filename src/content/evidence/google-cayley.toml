@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/google-cayley.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "google-cayley"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "All query languages (Gizmo, GraphQL-inspired, MQL) and writes are served over a JSON HTTP API; a Go-library embedding mode also exists per the docs nav ('Quick Start As Go Library') but no citable quote was found for that specific claim."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/cayleygraph/cayley/master/docs/http.md"
+  title = "HTTP Methods"
+  quote = "Unless otherwise noted, all URIs take a POST command."
+  verified = "matched"
+  checked = "2026-08-01"

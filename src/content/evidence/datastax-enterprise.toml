@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/datastax-enterprise.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "datastax-enterprise"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Both the DSE driver's execute_graph() and, in the current DSE 6.9 release, the bundled dse gremlin-console tool itself default to the Cassandra CQL native binary protocol (port 9042) rather than a separate Gremlin Server; the port-8182 TinkerPop Gremlin Server / remote.yaml WebSocket channel pass_A cited belongs to the legacy 'Classic' graph engine superseded by the CQL-native 'Core' engine, so Gremlin (WebSocket) is rejected."
+
+  [[claims.sources]]
+  url = "https://docs.datastax.com/en/developer/python-dse-driver/2.11/graph/index.html"
+  title = "DataStax Enterprise Python Driver - DSE Graph Queries"
+  quote = "The DSE driver executes graph queries over the Cassandra native protocol."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.datastax.com/en/developer/java-driver-dse/1.4/manual/native_protocol/index.html"
+  title = "Java Driver for DataStax Enterprise - Native protocol"
+  quote = "The native protocol defines the format of the binary messages exchanged between the driver and DSE over TCP."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.datastax.com/en/dse/6.9/managing/tools/dse/gremlin-console.html"
+  title = "dse gremlin-console | DataStax Enterprise | DataStax Docs"
+  quote = "Port number of the DSE database port, default is 9042."
+  verified = "matched"
+  checked = "2026-08-01"

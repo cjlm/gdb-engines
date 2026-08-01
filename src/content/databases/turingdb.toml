@@ -8,6 +8,7 @@ license = "BSL-1.1"
 implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
+protocols = ["HTTP/REST"]
 released = "2025"
 category = "Emerging"
 gdotv_support = false

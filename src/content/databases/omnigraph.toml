@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["Custom API"]
+protocols = ["HTTP/REST"]
 released = "2026"
 category = "Emerging"
 gdotv_support = false

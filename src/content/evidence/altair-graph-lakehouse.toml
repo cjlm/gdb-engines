@@ -1,0 +1,36 @@
+# Sources for values in src/content/databases/altair-graph-lakehouse.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "altair-graph-lakehouse"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "SPARQL Protocol", "Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "gRPC (port 5700, used by Altair front-end/console apps) and SPARQL 1.1 HTTP(S) are the primary client protocols; an optional enable_ocx setting also exposes OpenCypher over Bolt, which the draft did not mention."
+
+  [[claims.sources]]
+  url = "https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
+  title = "System Settings Reference"
+  quote = "The Anzo protocol (gRPC) port for secure communication between Graph Lakehouse and other Altair applications."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260315225245/https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/faq.htm"
+  title = "FAQ"
+  quote = "Graph Lakehouse supports the standard W3C SPARQL 1.1 Protocol (SPARQL endpoint) and SPARQL 1.1 Graph Store HTTP Protocol (RDF Graph Store endpoint)."
+  verified = "unreachable"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
+  title = "System Settings Reference"
+  quote = "This setting controls whether support for OpenCypher and BOLT protocol is enabled."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260315225245/https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
+  checked = "2026-08-01"

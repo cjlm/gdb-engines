@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/ibm-system-g.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ibm-system-g"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "Native binary"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Per the architecture paper, RPC is the internal shard-to-shard communication layer, not the client protocol; the client-facing 'query manager' instead exposes REST, nanomsg (native binary), or native C++ as its external interfaces. Discontinued IBM Research project, evidence limited to a single paper."
+
+  [[claims.sources]]
+  url = "https://ar5iv.labs.arxiv.org/html/1802.03057"
+  title = "System G Distributed Graph Database"
+  quote = "For REST interface, a query manager can start an HTTP server and\naccept REST queries from clients that are subsequently mapped into\ngraph operations."
+  verified = "matched"
+  checked = "2026-08-01"

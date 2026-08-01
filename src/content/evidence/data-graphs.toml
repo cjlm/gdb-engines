@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/data-graphs.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "data-graphs"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST API served from api.datagraphs.io; supports JSON-LD content negotiation for RDF interop, but no other client wire protocol is documented."
+
+  [[claims.sources]]
+  url = "https://support.datagraphs.io/api-docs/overview"
+  title = "Data Graphs API docs"
+  quote = "The Data Graphs API is a REST API that allows you to interact with your data, letting you query, retrieve, filter, facet, and sort Concepts from your Datasets."
+  verified = "matched"
+  checked = "2026-08-01"

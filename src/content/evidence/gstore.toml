@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/gstore.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "gstore"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "gRPC", "Native binary"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Three parallel interface services: bin/ghttp (HTTP), bin/grpc (gRPC), bin/gserver (raw socket)."
+
+  [[claims.sources]]
+  url = "https://github.com/pkumod/gStore/blob/1.4/docs/en-us/FAQ.md"
+  title = "docs/en-us/FAQ.md"
+  quote = "gStore currently provides three interface modes: HTTP, RPC, and Socket, corresponding respectively to the three services: bin/ghttp, bin/grpc, and bin/gserver."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://mod.icst.pku.edu.cn/english/gstore_1/mannual/http_api_en/index.htm"
+  title = "HTTP API"
+  quote = "We provide HTTP api(suggested) and socket api, corresponding to ghttp and gserver respectively."
+  verified = "matched"
+  checked = "2026-08-01"

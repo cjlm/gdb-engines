@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/agdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "agdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "agdb_server exposes an OpenAPI/REST HTTP API for remote use; agdb is also usable as an embedded Rust crate with no network protocol."
+
+  [[claims.sources]]
+  url = "https://agdb.agnesoft.com/api-docs/openapi"
+  title = "OpenAPI - agdb - Application Native Database"
+  quote = "The agdb server can be accessed using OpenAPI (REST) via any HTTP client."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/agnesoft/agdb"
+  title = "agnesoft/agdb"
+  quote = "No query language, queries are written in the same language as the application."
+  verified = "matched"
+  checked = "2026-08-01"

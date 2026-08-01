@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/sparkledb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "sparkledb"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Vendor and site are defunct since ~2018; only evidence found is a mirrored, deleted Wikipedia article (thin, dated, unverifiable against a primary source). Disagrees with draft's Unknown."
+
+  [[claims.sources]]
+  url = "https://wikibin.org/articles/sparkledb.html"
+  title = "SparkleDB | Deleted Wikipedia Article | Wikibin"
+  quote = "any programming language or toolkit that can access a SPARQL protocol HTTP endpoint"
+  verified = "matched"
+  checked = "2026-08-01"

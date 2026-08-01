@@ -8,6 +8,7 @@ license = "GPL-3.0"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Cypher", "GQL"]
+protocols = ["Bolt", "HTTP/REST"]
 released = "2007"
 category = "Established"
 gdotv_support = true

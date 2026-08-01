@@ -1,0 +1,39 @@
+name: Verify evidence
+
+# Refetches every cited page and confirms the stored quotes are still on it. Sources move and get
+# rewritten, and without a re-check the site keeps citing pages that no longer say what we claim.
+#
+# Run on demand — pages rot over months, not days, and an unchecked citation fails safe: only
+# quotes marked `matched` are rendered, so a stale one disappears from the page rather than
+# misleading anyone. The working tree is left dirty on purpose; the run reports, it does not
+# commit refreshed verdicts.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
+        with:
+          node-version: '22'
+
+      - name: Install poppler-utils
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refetch cited pages
+        run: node scripts/verify-quotes.mjs
+
+      - name: Check values against their evidence
+        run: node scripts/check-evidence.mjs

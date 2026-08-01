@@ -9,6 +9,7 @@ license = "GPL-2.0"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "Gremlin"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2007"
 category = "Established"
 status = "inactive"

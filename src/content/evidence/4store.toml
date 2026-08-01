@@ -1,0 +1,41 @@
+# Sources for values in src/content/databases/4store.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "4store"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "4s-httpd serves SPARQL query/update at /sparql/ (port 8080, default); its own source (httpd.c) implements a separate /data/ PUT-POST-DELETE graph-load endpoint plus /status/, /status/cache/, /status/size/ and /description/ admin resources, which is the non-SPARQL HTTP API the ruling requires before adding HTTP/REST. Pass A's tag is correct; pass B's rejection doesn't hold against the source."
+
+  [[claims.sources]]
+  url = "https://manpages.org/4storeconf/5"
+  title = "man 4store.conf (5): 4store configuration file"
+  quote = "Port to run HTTP SPARQL daemon (4s-httpd) on. Default is 8080."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://www.semantic-mediawiki.org/wiki/Help:SPARQLStore/DatabaseConnector/4store"
+  title = "Help:SPARQLStore and 4store - semantic-mediawiki.org"
+  quote = "For example, a typical default location for the SPARQL query web service (\"endpoint\") of 4Store on a local machine might be http://localhost:8080/sparql/."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/4store/4store/blob/master/src/http/httpd.c"
+  title = "httpd.c · 4store/4store"
+  quote = "} else if (!strncmp(url, \"/data/\", 6)) { /* pre-SPARQL 1.1 4store way */"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/4store/4store/blob/master/src/http/httpd.c"
+  title = "httpd.c · 4store/4store"
+  quote = "  } else if (!strcmp(path, \"/status/size/\")) {\n    http_size_report(ctxt);\n  } else if (!strcmp(path, \"/description/\")) {\n    http_service_description(ctxt);"
+  verified = "matched"
+  checked = "2026-08-01"

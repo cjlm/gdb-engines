@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "Java"
 type = "Multiple"
 query_languages = ["SQL/PGQ", "PGQL", "SPARQL"]
+protocols = ["JDBC/ODBC", "HTTP/REST", "SPARQL Protocol"]
 released = "2005"
 category = "Enterprise"
 gdotv_support = true

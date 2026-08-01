@@ -1,0 +1,55 @@
+# Sources for values in src/content/databases/marklogic.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "marklogic"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "SPARQL Protocol", "JDBC/ODBC", "PostgreSQL wire", "Native binary"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "MarkLogic ships five distinct client channels, confirmed independently: the generic REST Client API (document CRUD/search); a dedicated W3C SPARQL Protocol endpoint at /v1/graphs/sparql that is separate from the general REST surface; official ODBC and JDBC drivers whose app server (port 5432) literally speaks the PostgreSQL wire protocol; and the still-current XDBC/XCC proprietary wire protocol for Java middleware (confirmed present in the current v12 admin docs, not just legacy v9). pass_A missed SPARQL Protocol and JDBC; pass_B missed PostgreSQL wire and Native binary."
+
+  [[claims.sources]]
+  url = "https://docs.marklogic.com/REST/client"
+  title = "Client API — MarkLogic 12 Product Documentation"
+  quote = "The Client REST API is a REST-based API for creating applications that with document manipulation and search capabilities."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.marklogic.com/REST/GET/v1/graphs/sparql"
+  title = "GET /v1/graphs/sparql — MarkLogic 12 Product Documentation"
+  quote = "This interface implements the GET method of the W3C SPARQL Protocol; for details, see http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321#query-operation."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://developer.marklogic.com/code/jdbc/"
+  title = "MarkLogic JDBC Driver"
+  quote = "The server implements a database native communication protocol that can efficiently support both ODBC and JDBC clients."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.progress.com/bundle/marklogic-server-administrate-12/page/topics/odbc-servers/creating-a-new-odbc-server.html"
+  title = "Creating a New ODBC Server"
+  quote = "The default PostgreSQL listening socket port is 5432."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.marklogic.com/9.0/guide/admin/odbc"
+  title = "ODBC Servers (Administrator's Guide) — MarkLogic 9 Product Documentation"
+  quote = "an ODBC server connects with a PostgreSQL front end on the client by means of the PostgreSQL message protocol"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.progress.com/bundle/marklogic-server-administrate-12/page/topics/xdbc-servers.html"
+  title = "XDBC Servers"
+  quote = "Both XCC and XDBC applications use the same wire protocol."
+  verified = "matched"
+  checked = "2026-08-01"

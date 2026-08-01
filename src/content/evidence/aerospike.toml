@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/aerospike.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "aerospike"
+
+[[claims]]
+field = "protocols"
+value = ["Gremlin (WebSocket)", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Client traversals go over Gremlin/WebSocket to AGS (default port 8182). AGS's own docs also list a genuine second HTTP surface for index, cache and metadata management and most Gremlin call steps (only the bulk loader is excluded), reachable directly by API consumers rather than being internal-only Aerospike-DB traffic, so it meets the admin/graph-management carve-out for HTTP/REST. Pass B's single-protocol answer is too narrow."
+
+  [[claims.sources]]
+  url = "https://aerospike.com/docs/graph/overview/architecture/"
+  title = "Aerospike Graph architecture"
+  quote = "Applications submit Gremlin traversals to AGS over WebSocket, enabling language-agnostic access to the graph while keeping application logic independent of storage and execution details."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://aerospike.com/docs/graph/manage/endpoints.md"
+  title = "HTTP endpoints"
+  quote = "This page lists HTTP endpoints available to Aerospike Graph Service (AGS)."
+  verified = "matched"
+  checked = "2026-08-01"

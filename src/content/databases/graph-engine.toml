@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "C#"
 type = "Property Graph"
 query_languages = ["LIKQ"]
+protocols = ["Native binary", "HTTP/REST"]
 released = "2015"
 category = "Enterprise"
 status = "inactive"

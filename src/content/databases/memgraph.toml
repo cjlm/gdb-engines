@@ -8,6 +8,7 @@ license = "BSL-1.1"
 implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
+protocols = ["Bolt"]
 released = "2018"
 category = "Enterprise"
 gdotv_support = true

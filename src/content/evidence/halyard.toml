@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/halyard.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "halyard"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Halyard is an RDF4J SAIL over HBase; queries reach it through RDF4J Server, which exposes a SPARQL endpoint plus REST repository-management calls."
+
+  [[claims.sources]]
+  url = "https://merck.github.io/Halyard/tools.html"
+  title = "Halyard | Tools"
+  quote = "RDF4J Server is a service server that provides a SPARQL endpoint for each managed repository as well as the REST access to the repository management functions."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -5,9 +5,11 @@
   "scripts": {
     "favicons": "node scripts/extract-favicons.mjs",
     "graphs": "node scripts/generate-graphs.mjs",
+    "check-evidence": "node scripts/check-evidence.mjs",
+    "verify-quotes": "node scripts/verify-quotes.mjs",
     "predev": "npm run favicons && npm run graphs",
     "dev": "astro dev",
-    "prebuild": "npm run favicons && npm run graphs",
+    "prebuild": "npm run favicons && npm run graphs && npm run check-evidence",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -18,6 +20,7 @@
     "astro": "^5.17.1",
     "astro-og-canvas": "^0.11.1",
     "canvaskit-wasm": "^0.41.1",
-    "garphield": "0.1.1"
+    "garphield": "0.1.1",
+    "smol-toml": "1.6.0"
   }
 }

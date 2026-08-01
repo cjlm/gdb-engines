@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "Scala"
 type = "Multiple"
 query_languages = ["FQL", "GraphQL"]
+protocols = ["HTTP/REST"]
 released = "2016"
 category = "Emerging"
 status = "deprecated"

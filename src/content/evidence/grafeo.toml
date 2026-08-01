@@ -1,0 +1,41 @@
+# Sources for values in src/content/databases/grafeo.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "grafeo"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "WebSocket", "gRPC", "Bolt"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Core Grafeo is an embeddable library with no protocol of its own; the separate grafeo-server project adds HTTP/REST (7474, including a generic JSON /graphql and /sparql route that is not a spec-dedicated endpoint so isn't tagged separately), a JSON WebSocket API at /ws, real gRPC for the GWP wire protocol (7688), and Bolt v5.x for Cypher (7687) — pass_A's 3-source cap led it to drop WebSocket."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
+  title = "README.md"
+  quote = "Provides REST API, embedded web UI, GQL Wire Protocol (gRPC), and Bolt v5.x wire protocol access to Grafeo's multi-language query engine."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
+  title = "README.md"
+  quote = "Connect to `ws://localhost:7474/ws` for interactive query execution over a persistent connection."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
+  title = "README.md"
+  quote = "The gwp and full builds include a gRPC-based binary wire protocol on port 7688, fully aligned with the GQL type system"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
+  title = "README.md"
+  quote = "The bolt and full builds include a Bolt v5.x wire protocol on port 7687, compatible with Neo4j drivers."
+  verified = "matched"
+  checked = "2026-08-01"

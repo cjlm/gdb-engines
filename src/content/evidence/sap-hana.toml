@@ -1,0 +1,41 @@
+# Sources for values in src/content/databases/sap-hana.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "sap-hana"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary", "JDBC/ODBC"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "SQL/graph access (openCypher, GraphScript) runs over HANA's proprietary, documented SQL Command Network Protocol; JDBC and ODBC are vendor-shipped standard connectors, while the Python DB API, Node.js, Ruby and Go drivers speak the binary protocol directly rather than through JDBC/ODBC. Rejected HTTP/REST (pass_B): OData/XMLA are optional web interfaces the application developer must build, not a built-in query channel."
+
+  [[claims.sources]]
+  url = "https://help.sap.com/doc/63cef00e229b4010be06cfa01e1d338b/2.0.00/en-US/SAP_HANA_SQL_Command_Network_Protocol_Reference_en.pdf"
+  title = "SAP HANA SQL Command Network Protocol Reference"
+  quote = "This document describes the SQL Command Network Protocol of the SAP HANA database, the protocol used by SAP HANA database clients to communicate with the SAP HANA database."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
+  title = "SAP HANA Client Interface Programming Reference"
+  quote = "SQLDBC is the basis for most interfaces; however, it is not used directly by applications."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
+  title = "SAP HANA Client Interface Programming Reference"
+  quote = "Java Database Connectivity (JDBC) is a Java-based application programming interface (API) which includes a set of functions that enable Java applications to access a data model in a database."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
+  title = "SAP HANA Client Interface Programming Reference"
+  quote = "Open Database Connectivity (ODBC) is a standard application programming interface (API) that provides a set of functions that enable applications to access a data model in a database."
+  verified = "matched"
+  checked = "2026-08-01"

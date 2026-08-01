@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/relationalai.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "relationalai"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Delivered as a Snowflake Native App; the PyRel client connects over HTTP to a 'Direct Access' ingress endpoint, falling back to SQL routed through Snowflake (service functions) when Direct Access is unavailable."
+
+  [[claims.sources]]
+  url = "https://docs.relational.ai/manage/get-started/direct-access"
+  title = "Set Up Direct Access"
+  quote = "Clients using Direct Access connect securely to the RAI Native App’s ingress endpoint over the public internet."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.relational.ai/api/python/v1.5/client/"
+  title = "client | RelationalAI Docs"
+  quote = "The root clients lazily create transports (SQL/HTTP) on first use."
+  verified = "matched"
+  checked = "2026-08-01"

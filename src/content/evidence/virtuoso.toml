@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/virtuoso.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "virtuoso"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "JDBC/ODBC"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "SPARQL Protocol served over HTTP at /sparql; JDBC and ODBC drivers also allow SPARQL and SQL access. Draft's separate 'HTTP/REST' tag not independently confirmed beyond the SPARQL HTTP endpoint itself."
+
+  [[claims.sources]]
+  url = "https://docs.openlinksw.com/virtuoso/rdfsparqlprotocolendpoint/"
+  title = "16.2.3. SPARQL Web Services & APIs"
+  quote = "Virtuoso uses the pre-assigned endpoints \"/sparql\" and \"/SPARQL\" as the defaults for exposing its REST based SPARQL Web Services."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.openlinksw.com/virtuoso/virtuosodriverjdbc/"
+  title = "7.4. Virtuoso Driver for JDBC"
+  quote = "The Virtuoso Drivers for JDBC are available in \"jar\" file formats for JDBC 1.x, JDBC 2.x and JDBC 3.x specifications."
+  verified = "matched"
+  checked = "2026-08-01"

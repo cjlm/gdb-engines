@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL", "SQL", "GraphQL"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2011"
 category = "Enterprise"
 gdotv_support = true

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/g-tran.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "g-tran"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary"]
+confidence = "medium"
+method = "repo"
+checked = "2026-08-01"
+notes = "A separate client executable connects over the network (ZeroMQ-based messaging, optionally RDMA-accelerated per USE_RDMA) to submit Gremlin-like queries to running workers, per the tutorial's client/server session log; this is a genuine but undocumented, non-standard wire format, so Native binary fits better than pass_B's Unknown."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/yaobaiwei/GTran/master/README.md"
+  title = "G-Tran"
+  quote = "a fully decentralized system architecture by leveraging the benefits of RDMA to avoid the bottleneck from centralized transaction coordinating"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/yaobaiwei/GTran/master/docs/Tutorial.md"
+  title = "G-Tran Tutorial"
+  quote = "To start the G-Tran client, the user only needs to execute the script we provide as follow"
+  verified = "matched"
+  checked = "2026-08-01"

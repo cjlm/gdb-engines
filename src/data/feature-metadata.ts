@@ -12,6 +12,7 @@ export const columnTooltips: Record<string, string> = {
   license: 'Software license (SPDX identifier or Proprietary)',
   implementation_language: 'Primary programming language the engine is written in',
   query_languages: 'Query languages supported by this database',
+  protocols: 'Client wire protocols the engine speaks — the transport, not the query language. Engines sharing a protocol can often share client drivers.',
 };
 
 export const featureDisplayNames: Record<string, string> = {

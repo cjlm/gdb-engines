@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/rdfox.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "rdfox"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST API and SPARQL-over-HTTP endpoint served on port 12110 by default; also embeddable via C, C++ and Java APIs."
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/7.6/getting-started.html"
+  title = "3. Getting Started — RDFox documentation"
+  quote = "This starts RDFox’s endpoint which serves the REST API, including a SPARQL over HTTP endpoint, and RDFox’s graphical web console."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/7.6/getting-started.html"
+  title = "3. Getting Started — RDFox documentation"
+  quote = "If you are looking to get started with the Java, or the C or C++ APIs to RDFox, see instead the appropriate demo program"
+  verified = "matched"
+  checked = "2026-08-01"

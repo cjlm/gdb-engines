@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/falkordblite.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "falkordblite"
+
+[[claims]]
+field = "protocols"
+value = ["Redis RESP"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Auto-manages an embedded Redis server with the FalkorDB module (RESP protocol, reachable on a local port); found no evidence of Bolt support specific to falkordblite, unlike the draft."
+
+  [[claims.sources]]
+  url = "https://github.com/FalkorDB/falkordblite"
+  title = "FalkorDB/falkordblite"
+  quote = "It provides a built-in Redis server with FalkorDB module that is automatically installed, configured and managed when the bindings are used."
+  verified = "matched"
+  checked = "2026-08-01"

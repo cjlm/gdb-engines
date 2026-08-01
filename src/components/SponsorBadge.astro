@@ -1,0 +1,120 @@
+<details class="sponsor-badge">
+  <summary>Sponsor us</summary>
+  <div class="sponsor-badge__details">
+    <strong>Support independent graph database research.</strong>
+    <p>
+      Sponsorship sustains GDB-Engines and helps vendors reach people comparing
+      graph databases. Rankings and methodology are never adjusted for sponsors.
+    </p>
+    <a href="/sponsor/">Sponsorship details <span aria-hidden="true">→</span></a>
+  </div>
+</details>
+
+<script>
+  const sponsorBadge = document.querySelector<HTMLDetailsElement>('.sponsor-badge');
+
+  if (sponsorBadge) {
+    document.addEventListener('click', (event) => {
+      if (!sponsorBadge.contains(event.target as Node)) sponsorBadge.open = false;
+    });
+
+    sponsorBadge.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        sponsorBadge.open = false;
+        sponsorBadge.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .sponsor-badge {
+    display: none;
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  @media (min-width: 96rem) {
+    .sponsor-badge {
+      display: block;
+      margin-left: 0.75rem;
+    }
+  }
+
+  .sponsor-badge summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2rem;
+    padding: 0 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 42%, var(--color-border));
+    border-radius: 999px;
+    color: var(--color-brand-accent);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .sponsor-badge summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sponsor-badge summary::before {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    content: '';
+  }
+
+  .sponsor-badge summary:hover,
+  .sponsor-badge[open] summary {
+    background: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  .sponsor-badge summary:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .sponsor-badge__details {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 0;
+    width: min(23rem, calc(100vw - 1.5rem));
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-background);
+    box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 16%);
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    z-index: 30;
+  }
+
+  .sponsor-badge__details strong {
+    color: var(--color-text);
+  }
+
+  .sponsor-badge__details p {
+    margin: 0.35rem 0 0.8rem;
+    color: var(--color-text-secondary);
+    font-size: inherit;
+    line-height: inherit;
+    white-space: normal;
+  }
+
+  .sponsor-badge__details a {
+    color: var(--color-brand-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .sponsor-badge__details a:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Scala"
 type = "Other"
 query_languages = ["Thrift API"]
+protocols = ["Thrift"]
 released = "2010"
 category = "Established"
 status = "inactive"

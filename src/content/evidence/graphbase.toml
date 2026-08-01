@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/graphbase.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graphbase"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "GraphBase is the data store behind FactNexus's EKG platform; EKG's REST API (base URL api.ekg.factnexus.com, e.g. POST /concept, POST /fact, POST/GET /table) is documented with concrete endpoints and gated to Business/Enterprise plans. Rejected pass_B's 'Unknown': ekg.readme.io is FactNexus's own GraphBase-backed product docs, not marketing copy, and not the unrelated Huawei MRS component."
+
+  [[claims.sources]]
+  url = "https://ekg.readme.io/reference/ui-graphs-control-panel"
+  title = "UI - Graphs Control Panel"
+  quote = "The REST API is available to Business and Enterprise plans."
+  verified = "matched"
+  checked = "2026-08-01"
