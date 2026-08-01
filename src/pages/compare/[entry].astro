@@ -341,7 +341,11 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
 ---
 <Layout title={title} description={description} canonical={canonical} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
   <SiteHeader />
-  <main class="compare-page">
+  <main
+    class="compare-page"
+    data-comparison-databases={engines.map((engine) => engine.slug).join(',')}
+    data-comparison-surface={isPair ? 'pair' : 'roundup'}
+  >
     <nav class="breadcrumb"><a href="/compare/">Comparisons</a> &rsaquo; {h1}</nav>
     <h1>{h1}</h1>
     {!isPair && <p class="lede">{def.lede}</p>}
@@ -546,6 +550,15 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
 </Layout>
 
 <script>
+  import { trackDatabaseComparison, type ComparisonSurface } from '../../scripts/seline';
+
+  const comparison = document.querySelector<HTMLElement>('[data-comparison-databases]');
+  if (comparison) {
+    const databases = comparison.dataset.comparisonDatabases?.split(',').filter(Boolean) ?? [];
+    const surface = comparison.dataset.comparisonSurface as ComparisonSurface;
+    trackDatabaseComparison(databases, surface);
+  }
+
   // JS-only and default off, so the full matrix is always in the served HTML.
   const toggle = document.querySelector<HTMLInputElement>('[data-differ-toggle]');
   const matrix = document.querySelector<HTMLElement>('[data-feature-matrix]');

@@ -923,22 +923,32 @@ mechanism is deliberately manual — a monthly read, not a pipeline.
 permits that host in both `script-src` and `connect-src`. Seline supports custom events, so
 no new vendor, no new CSP entry, no cookie banner question to reopen.
 
-**One event.** On `/compare/custom/`, once per page view, debounced 2s after the last
-selection change so intermediate states are not counted:
+**One event schema.** Every rendered comparison sends the same event. Pair and roundup
+pages send it when the page loads; `/compare/custom/` sends it for an initial URL selection
+and then debounces later selection changes by 2s so intermediate states are not counted:
 
 ```js
-seline.track('compare_custom', { engines: sorted.join(','), count: sorted.length });
+seline.track('comparison: viewed', {
+  databases: sorted.join(','),
+  count: sorted.length,
+  surface: 'pair' | 'roundup' | 'custom',
+  database_1: sorted[0],
+  database_2: sorted[1],
+  // database_3 ... database_6 when present
+});
 ```
 
-`engines` is the alphabetically sorted slug list, so `a,b` and `b,a` aggregate to one row.
-Nothing else is collected — no free-text, no partial input from the combobox.
+`databases` is the alphabetically sorted slug list, so `a,b` and `b,a` aggregate to one
+row. The positional properties make individual slugs filterable without parsing the list.
+Nothing else is collected — no free-text, no partial input from the combobox. Calls wait
+for the asynchronous Seline script instead of being dropped when it is still loading.
 
 **Search Console** covers the other half: queries and impressions for `/compare/*`, which
 catches demand for combinations nobody reached the builder to try.
 
 **The monthly review**, done by hand alongside the existing rankings refresh:
 
-1. Top `compare_custom` combinations of `count == 2` → if any sits outside the
+1. Top `comparison: viewed` combinations with `surface == custom` and `count == 2` → if any sits outside the
    pre-generated set with meaningful volume, it is a signal that `peerDepth` or
    `anchorDepth` is set too low. Adjust the constant rather than allowlisting the pair —
    one number is easier to reason about than a growing list of exceptions.
@@ -996,7 +1006,7 @@ should land first within this phase.
 - `_redirects` splat rule, **verified on a preview deployment**.
 - Raise `peerDepth` to 40 and `anchorDepth` to 10 → **1,455 pages** after the gate.
 - Related-comparison cross-links; `llms.txt` section; `Show only differing rows` toggle.
-- The `compare_custom` Seline event (§7).
+- The `comparison: viewed` Seline event across pair, roundup and custom surfaces (§7).
 
 **Phase 3 — conditional on evidence.**
 
