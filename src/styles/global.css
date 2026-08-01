@@ -317,6 +317,7 @@ header {
 }
 .ranks-list a.roundup .chev { color: var(--color-text-tertiary); }
 
+
 /* Provenance footer on an engine page. Deliberately the quietest thing on the page: collapsed by
    default, set a size down from body copy, and sitting below the comparison links. It exists to be
    checked, not read. */
@@ -426,18 +427,10 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
   align-items: center;
   column-gap: 0.45rem;
   min-width: 5.25rem;
-  padding: 0.18rem 0.45rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
   color: var(--color-text-secondary);
   text-decoration: none;
-  transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
 }
-.github-cell:not(.github-cell-empty):hover {
-  color: var(--color-text);
-  border-color: var(--color-border);
-  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
-}
+/* Pill and hover treatment are shared with the in-table website link — see .db-links below. */
 .github-mark,
 .github-mark-slot {
   display: block;
@@ -806,6 +799,30 @@ dialog {
 .db-links a:hover {
   color: var(--color-text);
   border-color: var(--color-text-tertiary);
+}
+
+/* Inside the table, the website link and the GitHub cell are the same kind of thing: a per-row
+   affordance. They get one shared pill, drawn only on hover or keyboard focus — 145 permanently
+   outlined pills is a lot of furniture for something you only reach for occasionally. What's
+   inside stays visible either way; the star count is sortable data, not decoration.
+
+   Detail-page pills deliberately keep their permanent border: there they're primary navigation,
+   not row furniture. */
+table .db-links a,
+.github-cell {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
+}
+table .db-links a:hover,
+table .db-links a:focus-visible,
+.github-cell:not(.github-cell-empty):hover,
+.github-cell:not(.github-cell-empty):focus-visible {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
 }
 
 /* GitHub links cell */
