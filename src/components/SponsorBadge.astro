@@ -34,7 +34,7 @@
     flex: 0 0 auto;
   }
 
-  @media (min-width: 96rem) {
+  @media (min-width: 72rem) {
     .sponsor-badge {
       display: block;
       margin-left: 0.75rem;
@@ -48,7 +48,7 @@
     height: 2rem;
     padding: 0 0.7rem;
     border: 1px solid color-mix(in srgb, var(--color-brand-accent) 42%, var(--color-border));
-    border-radius: 999px;
+    border-radius: 0.35rem;
     color: var(--color-brand-accent);
     cursor: pointer;
     font-size: 0.75rem;
@@ -63,11 +63,9 @@
   }
 
   .sponsor-badge summary::before {
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background: var(--color-brand-accent);
-    content: '';
+    content: '✱';
+    font-size: 0.9rem;
+    line-height: 1;
   }
 
   .sponsor-badge summary:hover,
