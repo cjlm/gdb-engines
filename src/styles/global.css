@@ -345,12 +345,6 @@ header {
   color: var(--color-text-tertiary);
   font-variant-numeric: tabular-nums;
 }
-.sources-intro {
-  max-width: 70ch;
-  margin: 0.85rem 0 1rem;
-  color: var(--color-text-tertiary);
-  font-size: 0.75rem;
-}
 .claim { margin: 0 0 1.25rem; }
 .claim-head {
   display: flex;

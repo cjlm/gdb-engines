@@ -362,7 +362,6 @@ const description = db.data.description;
           Sources
           <span class="sources-count">{citedClaims.reduce((n, c) => n + c.sources.length, 0)} checked</span>
         </summary>
-        <p class="sources-intro">Each quote was confirmed present on the page it cites.</p>
         {citedClaims.map((claim) => (
           <div class="claim">
             <p class="claim-head">

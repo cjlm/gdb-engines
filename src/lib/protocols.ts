@@ -5,8 +5,15 @@
  * speaking Cypher over Bolt has query language "Cypher" and protocol "Bolt". The point of the
  * column is migration compatibility — two engines sharing a protocol share their client drivers.
  *
- * Closed vocabulary, enforced by the content schema. There is no in-process/embedded tag; engines
- * with no network protocol omit the field.
+ * There is deliberately no tag for in-process/embedded use. It isn't a wire protocol, `kind`
+ * already records it, and when it was in the vocabulary it was the single largest source of
+ * disagreement between independent research passes — dual-mode engines like JanusGraph embed
+ * *and* serve network clients, and no consistent rule emerged for them. Engines with no network
+ * protocol simply omit the field.
+ *
+ * Unlike `query_languages` this is a closed vocabulary enforced by the content schema. Query
+ * languages accumulated label variants for years (hence `canonicalQueryLanguage`); starting
+ * closed here avoids repeating that.
  */
 
 export const PROTOCOLS = [
