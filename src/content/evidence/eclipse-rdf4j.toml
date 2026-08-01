@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/eclipse-rdf4j.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "eclipse-rdf4j"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "RDF4J Server speaks the SPARQL 1.1 Protocol plus a Graph Store/transaction REST API; the RDF4J library can also run embedded via a LocalRepositoryManager with no network layer."
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/documentation/reference/rest-api/"
+  title = "RD4J REST API - OpenAPI spec"
+  quote = "The RDF4J REST API is an HTTP protocol that covers a fully compliant implementation of the SPARQL 1.1 Protocol W3C Recommendation."
+  verified = "unreachable"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/documentation/programming/repository/"
+  title = "The Repository API · Eclipse RDF4J™ | The Eclipse Foundation"
+  quote = "The RepositoryManager comes in two flavours: the LocalRepositoryManager and the RemoteRepositoryManager."
+  verified = "matched"
+  checked = "2026-08-01"

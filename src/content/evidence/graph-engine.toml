@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/graph-engine.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graph-engine"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Official TSL docs describe three protocol types: Syn/Asyn (native binary, TCP) for inter-server and client messaging, and HTTP protocols that expose a RESTful JSON endpoint per protocol definition."
+
+  [[claims.sources]]
+  url = "https://microsoft.github.io/GraphEngine/docs/manual/TSL/MPProtocol.html"
+  title = "Message Passing Protocols"
+  quote = "Three types of protocols are supported in GE: synchronous protocols, asynchronous protocols, and HTTP protocols."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://microsoft.github.io/GraphEngine/docs/manual/TSL/MPProtocol.html"
+  title = "Message Passing Protocols"
+  quote = "An HTTP protocol is a synchronous remote call. It is the RESTful version of Syn protocol."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/arcadedb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "arcadedb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "PostgreSQL wire", "Bolt", "gRPC", "Redis RESP"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "ArcadeDB also ships MongoDB BSON-protocol and TinkerPop Gremlin plugins (not in our controlled vocabulary / not independently verified here); default ports: HTTP 2480, Postgres 5432, Bolt 7687, gRPC 50051, Redis 6379."
+
+  [[claims.sources]]
+  url = "https://docs.arcadedb.com/arcadedb/api-integration"
+  title = "API & Integration :: ArcadeDB Documentation"
+  quote = "Reach ArcadeDB through the wire protocol that suits your tooling. The same database speaks Neo4j BOLT, the PostgreSQL wire protocol, HTTP/JSON, gRPC, and the Model Context Protocol — so your existing drivers, BI tools, and AI agents just connect."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://arcadedb.com/client-server.html"
+  title = "Distributed Graph Database Server"
+  quote = "ArcadeDB also speaks the MongoDB BSON protocol on port 27017 and the Redis protocol on port 6379."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -8,6 +8,7 @@ license = "GPL-3.0"
 implementation_language = "C"
 type = "RDF"
 query_languages = ["SPARQL"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2009-10"
 category = "Emerging"
 status = "inactive"

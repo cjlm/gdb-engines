@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/strabon.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "strabon"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Extends RDF4J (Sesame) and is deployed as a Java servlet WAR on Tomcat exposing an HTTP SPARQL/stSPARQL endpoint."
+
+  [[claims.sources]]
+  url = "https://strabon.di.uoa.gr/"
+  title = "Strabon"
+  quote = "Strabon is a spatiotemporal RDF store. You can use it to store linked geospatial data that changes over time and pose queries using two popular extensions of SPARQL."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/AI-team-UoA/Strabon"
+  title = "AI-team-UoA/Strabon"
+  quote = "Deploy the endpoint by placing the .war file that was created inside the webapps folder of your Tomcat installation, e.g.:"
+  verified = "matched"
+  checked = "2026-08-01"

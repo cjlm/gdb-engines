@@ -9,6 +9,7 @@ import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 import { loadGithubStars, formatGithubStars } from '../lib/github-stars';
+import { sortProtocols, protocolDescriptions, type Protocol } from '../lib/protocols';
 
 const ranking = await loadRankings();
 const linkMaps = ranking ? buildLinkMaps(ranking) : null;
@@ -113,6 +114,7 @@ const datasetJsonLd = JSON.stringify({
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.license} data-microtip-position="bottom" role="tooltip">License</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.implementation_language} data-microtip-position="bottom" role="tooltip">Language</span> <span class="sort-indicator"></span></div></th>
         <th><span class="has-tooltip" aria-label={columnTooltips.query_languages} data-microtip-position="bottom" role="tooltip">Query Languages</span></th>
+        <th><span class="has-tooltip" aria-label={columnTooltips.protocols} data-microtip-position="bottom-left" role="tooltip">Protocols</span></th>
         {featureGroups.map((group, gi) =>
           group.features.map(key => (
             <th class="feature-col sortable" data-group={gi} data-type="score">
@@ -282,6 +284,18 @@ const datasetJsonLd = JSON.stringify({
                 })}
                 {db.data.query_languages.length > 3 && (
                   <span class="badge badge-query-lang has-tooltip" aria-label={[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
+                )}
+              </div>
+            ) : '-'}
+          </td>
+          <td>
+            {db.data.protocols?.length ? (
+              <div class="query-langs">
+                {sortProtocols(db.data.protocols).slice(0, 3).map(p => (
+                  <span class="badge badge-protocol has-tooltip" aria-label={protocolDescriptions[p as Protocol]} data-microtip-position="top" role="tooltip">{p}</span>
+                ))}
+                {db.data.protocols.length > 3 && (
+                  <span class="badge badge-protocol has-tooltip" aria-label={sortProtocols(db.data.protocols).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.protocols.length - 3}</span>
                 )}
               </div>
             ) : '-'}

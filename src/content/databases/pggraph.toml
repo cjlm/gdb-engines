@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["SQL"]
+protocols = ["PostgreSQL wire"]
 kind = "extension"
 released = "2026-05"
 category = "Emerging"

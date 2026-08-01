@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/stromadb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "stromadb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Very new, single-maintainer project (repo created 2026-06-23, pre-1.0). stroma-serve exposes an HTTP query/ingest API and an MCP-over-HTTP transport at POST /mcp; the same engine can be embedded directly as a Rust crate without running stroma-serve."
+
+  [[claims.sources]]
+  url = "https://github.com/katsut/stromadb"
+  title = "katsut/stromadb"
+  quote = "stroma-serve exposes the same database over HTTP so an agent or service can query and ingest it without embedding the engine — the intended surface for an LLM caller."
+  verified = "matched"
+  checked = "2026-08-01"

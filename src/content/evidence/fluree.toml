@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/fluree.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "fluree"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "SPARQL Protocol"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "fluree/db is an embeddable Clojure/JS library; Fluree Server wraps it with a JSON-LD/SPARQL HTTP API on default port 8090, and also exposes notify/subscribe endpoints over WebSocket (documented but no clean quotable prose found for that specific claim)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fluree/server/main/README.md"
+  title = "Fluree Server"
+  quote = "Here are examples using curl to demonstrate key Fluree Server features."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fluree/server/main/README.md"
+  title = "Fluree Server"
+  quote = "Fluree also supports SPARQL queries. Put the ledger name in the `FROM` clause:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "Fluree DB"
+  quote = "Docker — pre-configured HTTP server, ready to accept queries on port 8090."
+  verified = "matched"
+  checked = "2026-08-01"

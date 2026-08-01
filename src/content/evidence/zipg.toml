@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/zipg.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "zipg"
+
+[[claims]]
+field = "protocols"
+value = ["Thrift"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Aggregator exposes a GraphQueryAggregatorService via Apache Thrift; the reference Python client connects over TSocket/TBinaryProtocol to port 11001 by default; research prototype, undocumented beyond source."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/rpc/thrift/succinct_graph.thrift"
+  title = "rpc/thrift/succinct_graph.thrift"
+  quote = "Entry point to prepare a cluster.  Performs the following in parallel:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/client/py/preamble.py"
+  title = "client/py/preamble.py"
+  quote = "from thrift import Thrift\nfrom thrift.transport import TSocket\nfrom thrift.transport import TTransport\nfrom thrift.protocol import TBinaryProtocol"
+  verified = "matched"
+  checked = "2026-08-01"

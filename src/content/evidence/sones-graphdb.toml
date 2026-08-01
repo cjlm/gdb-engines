@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/sones-graphdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "sones-graphdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Evidence comes from client libraries (Java, JS, PHP) dated 2010-2011 for a since-abandoned prerelease project; no surviving official docs site to check directly."
+
+  [[claims.sources]]
+  url = "https://github.com/sones/sones-javaclient"
+  title = "sones/sones-javaclient"
+  quote = "simple connection to a GraphDB REST service based on given URI and credentials"
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,36 @@
+# Sources for values in src/content/databases/faunadb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "faunadb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent connections; the Fauna cloud service itself was shut down on 2025-05-30."
+
+  [[claims.sources]]
+  url = "https://fauna.com/"
+  title = "Fauna | The Distributed Serverless Database"
+  quote = "Delivered as an HTTPS API, Fauna offers token-based authentication and eliminates connection pooling or session management."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250618121636/https://fauna.com/"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.fauna.com/fauna/current/"
+  title = "Home - Fauna Docs"
+  quote = "The Fauna service will be ending on May 30, 2025."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250614072336/https://docs.fauna.com/fauna/current/"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fauna/fauna-js/main/README.md"
+  title = "Fauna JavaScript driver"
+  quote = "The HTTP/2 session idle timeout is the time, in milliseconds, that an HTTP/2 session will remain open after there is no more pending communication."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/gun.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "gun"
+
+[[claims]]
+field = "protocols"
+value = ["WebSocket"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "GUN's own gun.js source opens a WebSocket to each configured peer; the 'web' server option is an HTTP listener mainly used to accept and upgrade that WebSocket connection and to serve static files, not a JSON REST query API, so 'HTTP/REST' from the draft is dropped."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amark/gun/master/gun.js"
+  title = "gun.js (raw source)"
+  quote = "var url = peer.url.replace(/^http/, 'ws');\n\t\t\t\tvar wire = peer.wire = new opt.WebSocket(url);"
+  verified = "matched"
+  checked = "2026-08-01"

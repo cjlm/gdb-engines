@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/gfql.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "gfql"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "GFQL runs locally in-process against dataframes (pandas/cuDF) with no server required; gfql_remote()/chain_remote() instead POST a JSON-serialized query to a Graphistry server's REST endpoint and fetch results back."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/graphistry/pygraphistry/master/README.md"
+  title = "PyGraphistry: Leverage the power of graphs & GPUs to visualize, analyze, and scale your data"
+  quote = "Use GFQL, the first fully vectorized dataframe-native graph query language with an open-source GPU runtime, to ask relationship questions that are difficult for tabular tools without requiring a database."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://hub.graphistry.com/docs/GFQL/gfql-api/"
+  title = "REST API Documentation: GFQL Endpoint"
+  quote = "The GFQL (graph dataframe query language) endpoint is a Graphistry server HTTP endpoint for securely dispatching GFQL queries to run over data already uploaded into your server and getting back the results."
+  verified = "matched"
+  checked = "2026-08-01"

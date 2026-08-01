@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/oxirs.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "oxirs"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "GraphQL (HTTP)"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "oxirs-fuseki serves SPARQL 1.1/1.2 over HTTP (Fuseki-compatible), and oxirs-gql exposes a separate GraphQL endpoint over the same dataset. Dropped the draft's generic HTTP/REST tag since no distinct non-SPARQL REST surface was found. Very young project (created mid-2025); claims are extensive and not independently verified beyond the README."
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs"
+  quote = "Expose both SPARQL 1.2 and GraphQL endpoints from the same dataset"
+  verified = "matched"
+  checked = "2026-08-01"

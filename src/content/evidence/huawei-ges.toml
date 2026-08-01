@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/huawei-ges.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "huawei-ges"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "GES's cloud API is a proprietary HTTPS REST API; Gremlin (and Cypher) statements are sent as a string inside a POST body to a REST action endpoint, not through TinkerPop's own Gremlin Server HTTP channel, so 'Gremlin (HTTP)' from the draft is dropped."
+
+  [[claims.sources]]
+  url = "https://support.huaweicloud.com/intl/en-us/api-ges/ges_03_0121.html"
+  title = "Making a Service Plane API Request_Making an API Request_Calling APIs_API Reference_Graph Engine Service-Huawei Cloud"
+  quote = "This section describes the structure of a REST API on the service plane of GES."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://support.huaweicloud.com/intl/en-us/api-ges/ges_03_0029.html"
+  title = "Executing Gremlin Queries (1.0.0)_Gremlin Operation APIs_Memory Edition_Service Plane APIs_API Reference_Graph Engine Service-Huawei Cloud"
+  quote = "This API is used to return the query result of a Gremlin statement."
+  verified = "matched"
+  checked = "2026-08-01"

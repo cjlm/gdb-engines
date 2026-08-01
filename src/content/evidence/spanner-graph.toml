@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/spanner-graph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "spanner-graph"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Client libraries and the RPC API run over gRPC; a REST API is also offered with reduced feature support (e.g. no cancellation, no deadlines, partial streaming)."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/graph/queries-overview"
+  title = "Spanner Graph queries overview"
+  quote = "You can use the Google Cloud console, Google Cloud CLI, client libraries, the REST API, or the RPC API to run a Spanner Graph query."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/api-libraries-overview"
+  title = "Overview of APIs, client libraries, and ORM drivers | Spanner | Google Cloud Documentation"
+  quote = "The Spanner client libraries are available in multiple languages and are built on gRPC."
+  verified = "matched"
+  checked = "2026-08-01"

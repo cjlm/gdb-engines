@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["GSQL"]
+protocols = ["HTTP/REST"]
 released = "2017"
 category = "Established"
 gdotv_support = false

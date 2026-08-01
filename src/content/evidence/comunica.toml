@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/comunica.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "comunica"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Primarily a JS/Node query-engine library; the query-sparql-http command exposes a SPARQL 1.1 Protocol HTTP endpoint."
+
+  [[claims.sources]]
+  url = "https://comunica.dev/docs/query/getting_started/query_app/"
+  title = "Comunica – Querying in a JavaScript app"
+  quote = "In this guide, we will install it as a dependency in a Node.js JavaScript application, and show how it can be used to execute queries."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://comunica.dev/docs/query/getting_started/setup_endpoint/"
+  title = "Comunica – Setting up a SPARQL endpoint"
+  quote = "The SPARQL protocol allows clients to send SPARQL queries to Web servers over HTTP, and query results to be sent back to the client."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/apache-rya.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "apache-rya"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Rya's web.rya WAR exposes ad-hoc /loadrdf and /queryrdf endpoints (plus a sparqlQuery.jsp form) that run SPARQL, but an open Rya ticket (RYA-477) proposes adding a standards-conformant /sparql endpoint and SPARQL Service Description, implying the current endpoint is not a conformant W3C SPARQL 1.1 Protocol implementation; dropped the draft's SPARQL Protocol tag for this reason."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/apache/rya/master/README.md"
+  title = "README.md"
+  quote = "The War sets up a Web REST endpoint at `http://server/web.rya/queryrdf` that allows GET requests with queries."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/bangdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "bangdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "Native binary"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Server defaults to a TCP binary protocol; the -c flag can switch it to HTTP/REST or run both modes (hybrid)."
+
+  [[claims.sources]]
+  url = "https://github.com/sachin-sinha/BangDB"
+  title = "sachin-sinha/BangDB"
+  quote = "defines if server runs as tcp server or http (rest) server or both (hybrid), default is tcp server"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/sachin-sinha/BangDB"
+  title = "sachin-sinha/BangDB"
+  quote = "The core client is written in C++, it uses TCP socket to communicate."
+  verified = "matched"
+  checked = "2026-08-01"

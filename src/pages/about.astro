@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import { getDatabaseCount } from '../lib/database-count';
+
+const databaseCount = await getDatabaseCount();
 
 const pageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -53,6 +56,10 @@ const breadcrumbJsonLd = JSON.stringify({
       <li><b>Deprecated</b> — Officially end-of-life or superseded.</li>
     </ul>
 
+    <h2>Sources</h2>
+    <p>Some values carry their sources. Where they do, the engine page lists them under <b>Sources</b>, each with the passage the value was taken from and the date it was last checked.</p>
+    <p>A quote is only published once a script has refetched the page and confirmed the passage is actually on it. Citations that can't be confirmed are held back rather than shown, so a source listed here is one that has been checked, not merely one that was offered. The <b>Protocols</b> column is the first field collected this way; the rest of the catalog is being backfilled.</p>
+
     <h2>Rankings</h2>
     <p><a href="/rankings/">GDB-Engines Rankings</a> is a separate monthly popularity ranking covering every active engine in the catalog. Engines are ranked overall and across boards split by data model, engine kind, license, query language, and implementation language, plus a movers board surfacing the biggest changes month-on-month.</p>
     <p>Scores blend signals across four pillars — adoption, activity, community, and research — drawing on public data sources across the web. The methodology is fixed in advance and is not adjusted for sponsors.</p>
@@ -63,6 +70,8 @@ const breadcrumbJsonLd = JSON.stringify({
 
     <h2>Changelog</h2>
     <dl class="changelog">
+      <dt>2026-07-31</dt>
+      <dd>Added a Protocols column covering all {databaseCount} entries, with cited sources on each engine page.</dd>
       <dt>2026-07-30</dt>
       <dd>Added TypeGraph.</dd>
       <dt>2026-07-20</dt>

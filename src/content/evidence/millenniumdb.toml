@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/millenniumdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "millenniumdb"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "WebSocket"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "RDF/SPARQL queries go through the SPARQL server implementing the W3C SPARQL Protocol (default port 1234); the official MQL/property-graph drivers (Python, JS) connect over a ws:// WebSocket URL rather than plain HTTP. Draft's generic HTTP/REST tag is corrected to WebSocket for the non-SPARQL client path."
+
+  [[claims.sources]]
+  url = "https://mdb.imfd.cl/doc/docs/client-server.html"
+  title = "Client-Server — MillenniumDB 0.2 documentation"
+  quote = "The MillenniumDB SPARQL server supports all three query operations specified in the SPARQL Protocol:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/MillenniumDB/MillenniumDB-driver-python"
+  title = "MillenniumDB/MillenniumDB-driver-python"
+  quote = "import millenniumdb_driver\n\nurl = 'your-server-url' # e.g. ws://localhost:1234"
+  verified = "matched"
+  checked = "2026-08-01"

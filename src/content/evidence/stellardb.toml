@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/stellardb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "stellardb"
+
+[[claims]]
+field = "protocols"
+value = ["Thrift"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Official Python client PyStellarDB is built on PyHive and connects with host/port arguments matching HiveServer2's default Thrift port (10000); Transwarp's official docs also list a JDBC SDK access page, but that site is JS-rendered and its body text could not be fetched to quote."
+
+  [[claims.sources]]
+  url = "https://github.com/WarpCloud/PyStellarDB"
+  title = "WarpCloud/PyStellarDB"
+  quote = "PyStellarDB is a Python API for executing Transwarp Exetended OpenCypher(TEoC) and Hive query. It could also generate a RDD object which could be used in PySpark."
+  verified = "matched"
+  checked = "2026-08-01"

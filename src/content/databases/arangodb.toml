@@ -8,6 +8,7 @@ license = "BSL-1.1"
 implementation_language = "C++"
 type = "Multiple"
 query_languages = ["AQL"]
+protocols = ["HTTP/REST"]
 released = "2012-03"
 category = "Enterprise"
 gdotv_support = false

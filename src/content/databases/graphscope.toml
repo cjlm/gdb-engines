@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
+protocols = ["gRPC", "HTTP/REST", "Bolt", "Gremlin (WebSocket)"]
 released = "2021"
 category = "Growing"
 gdotv_support = false

@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/kinetica.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "kinetica"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "JDBC/ODBC", "PostgreSQL wire"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Kinetica documents three independent client channels: a REST/JSON API (wrapped by its language SDKs), official ODBC and JDBC drivers, and a separate PostgreSQL Wire Protocol listener on port 5432 for any Postgres-compatible client. pass_A's gap was omitting the documented Postgres wire protocol page."
+
+  [[claims.sources]]
+  url = "https://docs.kinetica.com/7.2/api/concepts/"
+  title = "API Concepts | Kinetica Docs"
+  quote = "The following shows the means of connecting to Kinetica via the various APIs available."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.kinetica.com/7.2/connectors/sql_guide/"
+  title = "ODBC/JDBC Connector Guide | Kinetica Docs"
+  quote = "Kinetica provides a SQL interface through its ODBC & JDBC drivers, which run on Linux, Mac, & Windows."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.kinetica.com/7.2/connectors/psql_wire_protocol/"
+  title = "PostgreSQL Wire Protocol | Kinetica Docs"
+  quote = "Point any client able to make use of PostgreSQL Wire Protocol at Kinetica on port 5432 to connect."
+  verified = "matched"
+  checked = "2026-08-01"

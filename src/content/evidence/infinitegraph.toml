@@ -1,0 +1,13 @@
+# Sources for values in src/content/databases/infinitegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "infinitegraph"
+
+[[claims]]
+field = "protocols"
+value = ["Unknown"]
+confidence = "low"
+method = "web"
+checked = "2026-08-01"
+notes = "Objectivity, Inc. (InfiniteGraph's vendor) ceased operations in late 2023; infinitegraph.com now redirects to a GoDaddy domain-for-sale lander and objectivity.com is unreachable (I confirmed both directly), leaving only decade-old whitepapers, a 2015 product spotlight, and an uncited Wikipedia feature-list bullet ('REST API') with no supporting reference. Neither pass_A's HTTP/REST nor pass_B's Native binary is verifiable from a live primary source, matching the brief's dormant/closed-product rule."

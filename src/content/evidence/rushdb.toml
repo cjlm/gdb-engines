@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/rushdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "rushdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Python and TypeScript SDKs are thin wrappers over the REST API; default endpoint is https://api.rushdb.com/api/v1, configurable via host/port/protocol."
+
+  [[claims.sources]]
+  url = "https://www.npmjs.com/package/@rushdb/javascript-sdk"
+  title = "@rushdb/javascript-sdk v1.19.1"
+  quote = "Default URL is \"https://api.rushdb.com/api/v1\". See SDK Configuration for more options."
+  verified = "unreachable"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/main/docs/docs/connect/index.mdx"
+  title = "RushDB — Connect"
+  quote = "For application code, use the TypeScript SDK, Python SDK, or JSON REST API."
+  verified = "matched"
+  checked = "2026-08-01"

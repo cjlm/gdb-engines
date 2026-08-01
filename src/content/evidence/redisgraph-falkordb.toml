@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/redisgraph-falkordb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "redisgraph-falkordb"
+
+[[claims]]
+field = "protocols"
+value = ["Redis RESP", "Bolt", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Core queries use Redis RESP (port 6379) with experimental, not-production-ready Bolt support (port 7687); accepted pass_B's addition of HTTP/REST since FalkorDB's docs list a REST API as an official integration path recommended for web applications, served by the bundled FalkorDB Browser component (port 3000) rather than the core RESP/Bolt server."
+
+  [[claims.sources]]
+  url = "https://github.com/FalkorDB/FalkorDB"
+  title = "FalkorDB/FalkorDB"
+  quote = "You can call FalkorDB's commands from any Redis client. Here are several methods:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/integration/bolt-support.html"
+  title = "BOLT protocol support | FalkorDB Docs"
+  quote = "FalkorDB provides an experimental support for querying using BOLT drivers. We intend to extend the support in the future versions, the current version is not meant to be used in production."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/integration/"
+  title = "Integration | FalkorDB Docs"
+  quote = "FalkorDB supports multiple integration paths including a REST API, Bolt protocol (experimental), Kafka Connect sink, Apache Jena for RDF/SPARQL, Spring Data for Java applications, Snowflake native app"
+  verified = "matched"
+  checked = "2026-08-01"

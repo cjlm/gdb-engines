@@ -6,6 +6,7 @@ url = "https://www.puppygraph.com/"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
+protocols = ["Bolt", "Gremlin (WebSocket)", "HTTP/REST"]
 kind = "query-engine"
 released = "2024-03"
 category = "Growing"

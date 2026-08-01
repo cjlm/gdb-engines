@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/apache-hugegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "apache-hugegraph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "Gremlin (HTTP)", "Gremlin (WebSocket)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "HugeGraphServer's shipped gremlin-server.yaml sets channelizer to TinkerPop's WsAndHttpChannelizer, and the docs state GremlinServer supports both WebSocket and HTTP client channels; the separate RestServer additionally exposes a gremlin resource over its own RESTful API. All three tags apply, matching pass A over pass B's HTTP-only Gremlin channel claim."
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/docs/config/config-guide/"
+  title = "Server Startup Guide | HugeGraph"
+  quote = "The GremlinServer supports two communication modes with clients: WebSocket and HTTP (default)."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/docs/clients/restful-api/gremlin/"
+  title = "Gremlin API - Apache HugeGraph"
+  quote = "Gremlin REST API: Execute Gremlin graph traversal language scripts via HTTP interface."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/docs/quickstart/hugegraph-server/"
+  title = "HugeGraph-Server Quick Start | HugeGraph"
+  quote = "The RESTful API of HugeGraphServer includes various types of resources, typically including graph, schema, gremlin, traverser and task."
+  verified = "matched"
+  checked = "2026-08-01"

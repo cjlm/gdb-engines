@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/surrealdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "surrealdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "GraphQL, previously behind an experimental flag, became stable and enabled by default in SurrealDB 3.0 (Feb 2026), served at POST /graphql; this confirms and strengthens pass_B's addition over pass_A. The shared RPC protocol runs over both HTTP and WebSocket, with WebSocket adding live queries and stateful sessions; embedding as a library is not a network protocol and gets no tag."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/docs/reference/rest-api/rpc-protocol"
+  title = "RPC protocol | SurrealDB Docs"
+  quote = "It is used internally by our client SDKs, and supports both HTTP and WebSocket based communication."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/docs/reference/rest-api/http-protocol"
+  title = "HTTP protocol"
+  quote = "The GraphQL endpoint enables use of GraphQL queries to interact with your data."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/blog/introducing-surrealdb-3-0--the-future-of-ai-agent-memory"
+  title = "Introducing SurrealDB 3.0 - the future of AI agent memory | Blog | SurrealDB"
+  quote = "Previously gated behind an experimental flag, the GraphQL interface has undergone a comprehensive overhaul to meet real-world requirements"
+  verified = "matched"
+  checked = "2026-08-01"

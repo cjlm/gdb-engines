@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/tigergraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "tigergraph"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST++ and GSQL servers both speak HTTP; as of 4.1 self-managed installs route all API requests through the GSQL/Nginx server on port 14240 (443 on TigerGraph Cloud), with the old RESTPP port 9000 now internal-only."
+
+  [[claims.sources]]
+  url = "https://docs.tigergraph.com/tigergraph-server/4.3/API/"
+  title = "REST Endpoints :: TigerGraph DB"
+  quote = "To submit a request, send an HTTP request to the REST++ server or the GSQL server."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.tigergraph.com/tigergraph-server/4.2/installation/change-port"
+  title = "Changing Ports :: TigerGraph DB"
+  quote = "Use the GSQL server (port 14240) for API requests on self-managed systems."
+  verified = "matched"
+  checked = "2026-08-01"

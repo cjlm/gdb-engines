@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/oxigraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "oxigraph"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "The CLI/server implements SPARQL 1.1 Protocol plus the SPARQL 1.1 Graph Store Protocol over HTTP; the core is also a Rust library shipped with Python (pyoxigraph) and JS/WASM bindings for embedded use. Dropped the draft's generic HTTP/REST tag since the only HTTP surface is the SPARQL/Graph Store protocol, and added Embedded (in-process) for the library form."
+
+  [[claims.sources]]
+  url = "https://github.com/oxigraph/oxigraph"
+  title = "GitHub - oxigraph/oxigraph: SPARQL graph database"
+  quote = "Oxigraph binary that provides a standalone command-line tool allowing to manipulate RDF data and spawn a web server implementing the SPARQL 1.1 Protocol and the SPARQL 1.1 Graph Store Protocol."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/oxigraph/oxigraph"
+  title = "GitHub - oxigraph/oxigraph: SPARQL graph database"
+  quote = "JavaScript bindings for Oxigraph. WebAssembly is used to package Oxigraph into a NodeJS compatible NPM package."
+  verified = "matched"
+  checked = "2026-08-01"

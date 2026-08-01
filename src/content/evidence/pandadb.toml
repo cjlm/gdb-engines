@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/pandadb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "pandadb"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Server source shows the panda:// listener is built on a proprietary RPC framework (net.neoremind.kraps / org.grapheco.hippo, message types like CypherRequest/SayHelloRequest), not the Bolt protocol; the java driver only reuses Neo4j driver class names/API shape while its transport layer imports the same Hippo/Kraps RPC client. This directly refutes pass_A's Bolt guess."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/grapheco/pandadb-v0.3/master/driver1.x/src/main/scala/cn/pandadb/driver/rpc/PandaRpcClient.scala"
+  title = "PandaRpcClient.scala — grapheco/pandadb-v0.3"
+  quote = "import net.neoremind.kraps.rpc.netty.HippoRpcEnvFactory\nimport net.neoremind.kraps.rpc.{RpcAddress, RpcEnvClientConfig}\nimport org.neo4j.driver.v1.exceptions.SessionExpiredException"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/grapheco/pandadb-v0.3/master/server/src/main/scala/cn/pandadb/server/rpc/PandaRpcServer.scala"
+  title = "PandaRpcServer.scala — grapheco/pandadb-v0.3"
+  quote = "class PandaEndpoint(override val rpcEnv: HippoRpcEnv) extends RpcEndpoint with LazyLogging {"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/grapheco/pandadb-java-driver/ce5ae3c2e0b2f9a9c004ef7410074f8544ba709a/README.md"
+  title = "PandaDB-Java-Driver"
+  quote = "pandadb-java-driver can easily switch to neo4j driver or pandadb driver, all the user needs to do is change the connection schema to `bolt` or `panda`."
+  verified = "matched"
+  checked = "2026-08-01"

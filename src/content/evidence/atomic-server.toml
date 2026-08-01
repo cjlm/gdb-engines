@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/atomic-server.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "atomic-server"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "WebSocket"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST/HTTP is used for one-off resource fetches; the WebSocket protocol (atomicdata-ws) is the primary channel for real-time sync and subscriptions."
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/atomicserver/api"
+  title = "API - Atomic Data Docs"
+  quote = "All Atomic Data resources have a unique URL, which can be fetched using HTTP."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/websockets"
+  title = "Atomic Data WebSocket Protocol — sync, real-time collaboration, and offline-first"
+  quote = "The WebSocket protocol is the primary communication channel for Atomic Data synchronization."
+  verified = "matched"
+  checked = "2026-08-01"

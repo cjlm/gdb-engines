@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/nebulagraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "nebulagraph"
+
+[[claims]]
+field = "protocols"
+value = ["Thrift"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Client<->graphd RPC runs on fbthrift; found no evidence of a client-facing gRPC channel, so dropped from draft."
+
+  [[claims.sources]]
+  url = "https://nebula-graph.io/posts/nebula-graph-source-code-reading-07"
+  title = "NebulaGraph Source Code Explained: fbthrift"
+  quote = "as the RPC framework for service communication between servers and clients to implement cross-language interaction"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/vesoft-inc/nebula-go/blob/master/README.md"
+  title = "README.md at master · vesoft-inc/nebula-go"
+  quote = "Official Nebula go client which communicates with the server using fbthrift."
+  verified = "matched"
+  checked = "2026-08-01"

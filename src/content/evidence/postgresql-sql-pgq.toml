@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/postgresql-sql-pgq.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "postgresql-sql-pgq"
+
+[[claims]]
+field = "protocols"
+value = ["PostgreSQL wire"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "SQL/PGQ (GRAPH_TABLE) is core PostgreSQL SQL syntax executed like any other query over the standard Postgres wire protocol; no separate transport."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/docs/devel/queries-graph.html"
+  title = "PostgreSQL: Documentation: devel: 7.9. Graph Queries"
+  quote = "The graph query part happens inside the GRAPH_TABLE construct. As far as the rest of the query is concerned, this acts like a table function in that it produces a computed table as output."
+  verified = "matched"
+  checked = "2026-08-01"

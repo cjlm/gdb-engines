@@ -8,6 +8,7 @@ license = "BSL-1.1"
 implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["SurrealQL", "GraphQL", "GQL"]
+protocols = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
 released = "2022"
 category = "Growing"
 gdotv_support = false

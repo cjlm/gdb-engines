@@ -9,6 +9,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "RDF"
 query_languages = ["SPARQL", "openCypher"]
+protocols = ["gRPC", "SPARQL Protocol", "Bolt"]
 released = "2018-10"
 category = "Enterprise"
 gdotv_support = false

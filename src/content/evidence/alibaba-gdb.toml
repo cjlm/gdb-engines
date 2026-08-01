@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/alibaba-gdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "alibaba-gdb"
+
+[[claims]]
+field = "protocols"
+value = ["Gremlin (WebSocket)", "Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Gremlin access is documented only over WebSocket (port 8182), not HTTP; Cypher access is documented as bolt-v3 via the neo4j-java-driver, which the draft omitted, so this disagrees with the draft."
+
+  [[claims.sources]]
+  url = "https://help.aliyun.com/en/gdb/developer-reference/python"
+  title = "Connect to and manage a Graph Database instance in a Python environment-Graph Database(Graph Database)-阿里云帮助中心"
+  quote = "from gremlin_python.driver import client\nclient = client.Client('ws://${your-gdb-endpoint}:8182/gremlin', 'g', username=\"${username}\", password=\"${password}\")"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://help.aliyun.com/en/gdb/developer-reference/compatibility-of-gdb-cypher"
+  title = "Compatibility of GDB Cypher-Graph Database(Graph Database)-阿里云帮助中心"
+  quote = "GDB supports the bolt-v3 protocol. We recommend using version 4.0.0 of the neo4j-java-driver."
+  verified = "matched"
+  checked = "2026-08-01"

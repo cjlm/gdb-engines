@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/bitsy.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "bitsy"
+
+[[claims]]
+field = "protocols"
+value = ["Gremlin (WebSocket)"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Primarily an embedded Tinkerpop3 library; can also be loaded into Gremlin Server for remote/network access."
+
+  [[claims.sources]]
+  url = "https://github.com/lambdazen/bitsy/wiki"
+  title = "Home · lambdazen/bitsy Wiki · GitHub"
+  quote = "Bitsy is a small, fast, embeddable, durable in-memory graph database that implements Apache Tinkerpop."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/lambdazen/bitsy/wiki"
+  title = "Home · lambdazen/bitsy Wiki · GitHub"
+  quote = "You can run Bitsy in the Gremlin Server as follows:"
+  verified = "matched"
+  checked = "2026-08-01"

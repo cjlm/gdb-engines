@@ -6,6 +6,7 @@ url = "https://dydra.com/"
 license = "Proprietary"
 type = "RDF"
 query_languages = ["SPARQL", "GraphQL"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2011"
 category = "Emerging"
 status = "inactive"

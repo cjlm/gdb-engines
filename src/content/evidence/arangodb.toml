@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/arangodb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "arangodb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "VelocyStream (VST) binary protocol was removed in 3.12; HTTP/REST is now the only wire protocol."
+
+  [[claims.sources]]
+  url = "https://docs.arango.ai/arangodb/stable/develop/http-api/"
+  title = "HTTP API Documentation | Arango Documentation"
+  quote = "All interactions with a server are ultimately carried out via this HTTP API."
+  verified = "unreachable"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/arangodb/arangojs/main/README.md"
+  title = "ArangoDB JavaScript Driver"
+  quote = "If the server responded with a non-2xx status code, this `NetworkError` will be an `HttpError` with a `code` property indicating the HTTP status code of the response"
+  verified = "matched"
+  checked = "2026-08-01"

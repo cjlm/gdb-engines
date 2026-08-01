@@ -9,6 +9,7 @@ implementation_language = "Rust"
 type = "Property Graph"
 kind = "database"
 query_languages = ["Custom API"]
+protocols = ["HTTP/REST"]
 released = "2026-06"
 category = "Emerging"
 gdotv_support = false

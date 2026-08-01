@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/dozerdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "dozerdb"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "DozerDB is Neo4j Community compiled from source with the plugin dropped in lib/, so it inherits Neo4j's unmodified Bolt (7687) and HTTP (7474) protocols."
+
+  [[claims.sources]]
+  url = "https://dozerdb.org/"
+  title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
+  quote = "The packaged distribution is Neo4j Community compiled from source with the DozerDB plugin already in lib/ and the classpath configured, with nothing extra to wire up."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://dozerdb.org/"
+  title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
+  quote = "Open http://localhost:7474 and log in with neo4j/neo4j, and you'll be prompted to set a new password."
+  verified = "matched"
+  checked = "2026-08-01"

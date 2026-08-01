@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/janusgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "janusgraph"
+
+[[claims]]
+field = "protocols"
+value = ["Gremlin (WebSocket)", "Gremlin (HTTP)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "JanusGraph Server wraps Gremlin Server; default channelizer is WebSocket, HttpChannelizer or WsAndHttpChannelizer enable HTTP access on the same port 8182."
+
+  [[claims.sources]]
+  url = "https://docs.janusgraph.org/operations/server/"
+  title = "JanusGraph Server - JanusGraph"
+  quote = "This section will describe how to use the WebSocket configuration, as well as describe how to configure JanusGraph Server to handle HTTP endpoint interactions."
+  verified = "matched"
+  checked = "2026-08-01"

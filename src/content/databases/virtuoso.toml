@@ -8,6 +8,7 @@ license = "GPL-2.0"
 implementation_language = "C"
 type = "Multiple"
 query_languages = ["SQL", "SPARQL"]
+protocols = ["SPARQL Protocol", "JDBC/ODBC"]
 released = "1998"
 category = "Enterprise"
 gdotv_support = true

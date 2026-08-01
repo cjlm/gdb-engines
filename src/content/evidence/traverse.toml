@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/traverse.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "traverse"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "Bolt", "gRPC", "WebSocket"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Opt-in HTTP API (port 7691, --http-listen) with a REST /api/query endpoint plus a raw /ws streaming endpoint; Bolt on port 7690 (Neo4j-driver compatible); separate gRPC service on port 50051."
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse/docs/v1/http-api"
+  title = "HTTP API - Traverse Docs"
+  quote = "The Traverse HTTP API provides RESTful endpoints for queries, database management, import/export, and Studio integration."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse/docs/v1/bolt-protocol"
+  title = "Bolt Protocol - Traverse Docs"
+  quote = "Traverse implements the Bolt protocol (versions 5.1 through 6.0) for binary client-server communication."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse/docs/v1/grpc"
+  title = "gRPC API — Traverse Docs"
+  quote = "Traverse provides a gRPC service for high-performance, language-neutral access to the graph database."
+  verified = "matched"
+  checked = "2026-08-01"

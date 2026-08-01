@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/blazegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "blazegraph"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Default HTTP/SPARQL service at http://localhost:9999/blazegraph/; also exposes a Blueprints/Tinkerpop3 API."
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database"
+  title = "blazegraph/database"
+  quote = "Blazegraph™ DB is a ultra high-performance graph database supporting Blueprints and RDF/SPARQL APIs."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database"
+  title = "blazegraph/database"
+  quote = "You can setup an http or https reverse proxy configuration that has authentication and forward requests to the local Blazegraph instance (typically running on localhost:9999)."
+  verified = "matched"
+  checked = "2026-08-01"

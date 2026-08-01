@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/neo4j.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "neo4j"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Bolt is the primary driver protocol; the transactional HTTP API on port 7474/7473 is deprecated (replaced by the Query API) but still present."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/bolt/current/bolt/"
+  title = "Bolt Protocol - Bolt Protocol"
+  quote = "Bolt is an application protocol for the execution of database queries via a database query language, such as Cypher."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/http-api/current/"
+  title = "Introduction - HTTP API"
+  quote = "By default, the API uses port 7474 for HTTP and port 7473 for HTTPS."
+  verified = "matched"
+  checked = "2026-08-01"

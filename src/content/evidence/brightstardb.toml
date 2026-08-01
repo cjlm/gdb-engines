@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/brightstardb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "brightstardb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST", "SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "REST(JSON) and SPARQL 1.1 Protocol (query/update/graph-store) are both served from the same BrightstarDB HTTP service (:8090/brightstar). Older v1.3 docs additionally listed WCF net.tcp and named-pipe connection types; current docs no longer list them."
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/latest/Connection_Strings/"
+  title = "Connection Strings — BrightstarDB documentation"
+  quote = "Uses the embedded BrightstarDB server to directly open stores from the local file system."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/1.13.3/HTTP_API/"
+  title = "HTTP API — BrightstarDB 1.13.3 documentation"
+  quote = "The HTTP API is the network interface to a BrightstarDB server. It allows access to BrightstarDB from just about any programming language using basic HTTP operations and JSON data structures."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/1.13.3/HTTP_API/"
+  title = "HTTP API — BrightstarDB 1.13.3 documentation"
+  quote = "This endpoint implements the query operations defined in the W3C SPARQL 1.1 Protocol specification."
+  verified = "matched"
+  checked = "2026-08-01"

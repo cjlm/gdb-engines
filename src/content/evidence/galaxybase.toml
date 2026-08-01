@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/galaxybase.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "galaxybase"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Bolt (port 7687, bolt/bolt+routing URIs) is documented and used by the official Python and Java drivers, high confidence. A Cypher-over-REST interface is referenced by a third-party support post citing a 'Galaxybase RESTful API documentation', but the official REST doc page itself could not be located, so that half of the claim is medium confidence only."
+
+  [[claims.sources]]
+  url = "https://www.galaxybase.com/public/doc-galaxybase/com/galaxybase/driver/v1/Driver.html"
+  title = "Driver"
+  quote = "Direct driver: connects directly to the host and port specified in the URI."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://devsolus.com/will-too-frequent-creation-of-bolt-connections-in-actual-use-affect-the-performance-of-galaxybase/"
+  title = "Will too frequent creation of Bolt connections in actual use affect the performance of Galaxybase? - Dev solutions"
+  quote = "In the subsection`Cypher rest call` in the`Galaxybase RESTful API documentation`, it is described how to call the cypher statement through the rest"
+  verified = "matched"
+  checked = "2026-08-01"

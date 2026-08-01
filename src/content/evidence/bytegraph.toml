@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/bytegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "bytegraph"
+
+[[claims]]
+field = "protocols"
+value = ["Unknown"]
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "ByteDance-internal system; the VLDB paper describes Gremlin as the query language and RPC-based communication between internal BGE/BGS layers, but does not document an external client wire protocol."
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/pvldb/vol15/p3306-li.pdf"
+  title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
+  quote = "ByteGraph uses Gremlin [7] as the query language as most of the applications built on ByteGraph are based on navigational queries."
+  verified = "unreachable"
+  checked = "2026-08-01"

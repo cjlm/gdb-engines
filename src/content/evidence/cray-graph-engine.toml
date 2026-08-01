@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/cray-graph-engine.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "cray-graph-engine"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Disagrees with draft: dropped HTTP/REST — the only documented client interface is the CGE GUI acting as a SPARQL 1.1 endpoint, no general REST API found. Source is a third-party PDF mirror, not an official HPE/Cray domain, and the product is discontinued."
+
+  [[claims.sources]]
+  url = "https://audentia-gestion.fr/CRAY/PDF/Cray__Graph_Engine_User_Guide__3.1UP00__S-3014.pdf"
+  title = "Cray® Graph Engine User Guide (3.1UP00) S-3014"
+  quote = "The CGE graphical user interface, which acts as a SPARQL 1.1 end point."
+  verified = "unreachable"
+  checked = "2026-08-01"

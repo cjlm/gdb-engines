@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/weaver.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "weaver"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary"]
+confidence = "medium"
+method = "repo"
+checked = "2026-08-01"
+notes = "Dormant since 2016 (last GitHub push 2016-11-14; weaver.systems now just redirects to a placeholder lander page), but unlike a marketing-only case, the client source itself (client/comm_wrapper.h) shows the client library holds a busybee_st handle and sends/receives raw e::buffer messages directly to servers — the same undocumented TCP messaging/binary-framing layer used by sibling project HyperDex, with no public wire-protocol spec. Agrees with pass_A's Native binary over pass_B's Unknown, since primary source code (not just a dead domain or old blog post) settles what the client actually spoke."
+
+  [[claims.sources]]
+  url = "https://github.com/rescrv/busybee"
+  title = "rescrv/busybee"
+  quote = "It exposes a \"messaging\" abstraction on top of TCP and automatically packs/unpacks messages on the wire."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/dubey/weaver/master/client/comm_wrapper.h"
+  title = "dubey/weaver — client/comm_wrapper.h (raw source)"
+  quote = "std::unique_ptr<weaver_mapper> wmap;\n        std::unique_ptr<busybee_st> bb;\n        uint64_t bb_id;\n        uint64_t recv_from;"
+  verified = "matched"
+  checked = "2026-08-01"

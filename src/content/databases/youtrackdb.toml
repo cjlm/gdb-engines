@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin", "SQL"]
+protocols = ["Gremlin (WebSocket)"]
 kind = "database"
 released = "2024-02"
 category = "Emerging"

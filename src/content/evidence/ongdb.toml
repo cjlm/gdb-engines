@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/ongdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ongdb"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Docker image binds 7474 (HTTP) and 7687 (Bolt), matching its Neo4j 3.4 lineage."
+
+  [[claims.sources]]
+  url = "https://hub.docker.com/r/graphfoundation/ongdb/"
+  title = "graphfoundation/ongdb - Docker Image"
+  quote = "for HTTP and Bolt access to the ONgDB API."
+  verified = "matched"
+  checked = "2026-08-01"

@@ -16,6 +16,7 @@ export const GET: APIRoute = async () => {
       github_url: db.data.github_url ?? null,
       github_stars: githubStars[db.data.slug] ?? null,
       type: db.data.type,
+      protocols: db.data.protocols ?? null,
       category: db.data.category,
       released: db.data.released ?? null,
       gdotv_support: db.data.gdotv_support,

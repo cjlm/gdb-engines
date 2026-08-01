@@ -9,6 +9,7 @@ implementation_language = "Python"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["GFQL", "openCypher"]
+protocols = ["HTTP/REST"]
 released = "2023"
 category = "Growing"
 gdotv_support = false

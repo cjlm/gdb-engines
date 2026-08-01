@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/ontop.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ontop"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Ontop only exposes a standard SPARQL 1.1 HTTP endpoint (e.g. /sparql); no separate generic REST management API was found, so HTTP/REST was dropped from the draft."
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/tutorial/interact/cli.html"
+  title = "Interact with an Ontop SPARQL Endpoint | Ontop"
+  quote = "You can use POST or GET requests carrying the SPARQL query to evaluate (as per SPARQL HTTP protocol)."
+  verified = "matched"
+  checked = "2026-08-01"

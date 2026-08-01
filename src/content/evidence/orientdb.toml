@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/orientdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "orientdb"
+
+[[claims]]
+field = "protocols"
+value = ["Native binary", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Binary protocol (port 2424) is the primary high-performance client protocol; a RESTful HTTP/JSON API (port 2480) is also available."
+
+  [[claims.sources]]
+  url = "https://orientdb.dev/docs/develop/internals/Network-Binary-Protocol.html"
+  title = "Binary Protocol - OrientDB"
+  quote = "The OrientDB binary protocol is the fastest way to interface a client application to an OrientDB Server instance."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://orientdb.dev/docs/develop/misc/OrientDB-REST.html"
+  title = "Rest API - OrientDB"
+  quote = "OrientDB RESTful HTTP protocol allows to talk with a OrientDB Server instance using the HTTP protocol and JSON."
+  verified = "matched"
+  checked = "2026-08-01"

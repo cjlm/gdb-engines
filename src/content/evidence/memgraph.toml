@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/memgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "memgraph"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Bolt server defaults to port 7687. Separate HTTP metrics (9091) and WebSocket log-monitoring (7444) servers exist but are observability-only, not query interfaces."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/database-management/configuration"
+  title = "Configuration"
+  quote = "This section contains the list of flags that are used to configure the Bolt protocol used by Memgraph."
+  verified = "matched"
+  checked = "2026-08-01"

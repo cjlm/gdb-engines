@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/cogdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "cogdb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-07-31"
+notes = "Primarily an embedded Python library; g.serve() exposes an HTTP endpoint that remote clients query via Graph.connect()."
+
+  [[claims.sources]]
+  url = "https://cogdb.io"
+  title = "CogDB – Embedded Graph Database for Python | Graphs, Vectors, Search | Open Source"
+  quote = "No server. No config. Runs in notebooks, apps, even your browser."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/arun1729/cog"
+  title = "arun1729/cog"
+  quote = "Serve a graph over HTTP and query it from another process or machine:"
+  verified = "matched"
+  checked = "2026-08-01"

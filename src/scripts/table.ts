@@ -7,7 +7,7 @@ const inactiveToggle = document.getElementById('toggle-inactive') as HTMLInputEl
 const totalCount = document.querySelectorAll("table tbody tr").length;
 // Search by semantic columns rather than fixed indices: Rank and GitHub are optional/derived,
 // so inserting either must not shift the fields visitors expect search to cover.
-const SEARCHABLE_HEADERS = ['Name', 'Vendor', 'Type', 'Kind', 'Category', 'Status', 'Query Languages'];
+const SEARCHABLE_HEADERS = ['Name', 'Vendor', 'Type', 'Kind', 'Category', 'Status', 'Query Languages', 'Protocols'];
 const headerCells = Array.from(document.querySelectorAll('table thead th')) as HTMLTableCellElement[];
 const SEARCHABLE_COLUMNS = headerCells
   .map((header, index) => ({ index, label: header.textContent?.replace(/[↑↓]/g, '').trim() ?? '' }))

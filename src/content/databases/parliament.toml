@@ -8,6 +8,7 @@ license = "BSD-3-Clause"
 implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
+protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2009"
 category = "Emerging"
 status = "inactive"

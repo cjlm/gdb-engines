@@ -9,6 +9,7 @@ implementation_language = "C"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]
+protocols = ["PostgreSQL wire"]
 released = "2021-04"
 category = "Established"
 gdotv_support = true

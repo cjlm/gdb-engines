@@ -9,6 +9,7 @@ license = "Apache-2.0"
 implementation_language = "Prolog"
 type = "Multiple"
 query_languages = ["WOQL", "GraphQL"]
+protocols = ["HTTP/REST", "GraphQL (HTTP)"]
 released = "2019"
 category = "Emerging"
 gdotv_support = false

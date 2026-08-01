@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
 query_languages = ["DO Query Language"]
+protocols = ["JDBC/ODBC"]
 released = "1990"
 category = "Enterprise"
 status = "inactive"

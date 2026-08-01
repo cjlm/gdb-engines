@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/dgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "dgraph"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST", "GraphQL (HTTP)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "DQL runs over HTTP on 8080 and gRPC on 9080 (same payload, two transports); once a GraphQL schema is deployed, Dgraph also serves a separate spec-compliant GraphQL-over-HTTP API at /graphql, which pass_A omitted."
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/dql/dql-endpoints/"
+  title = "Endpoints | Dgraph Documentation"
+  quote = "You can interact with Dgraph using HTTP on port 8080 (plus optional port offset) or gRPC on port 9080"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
+  title = "/graphql endpoint | Dgraph Documentation"
+  quote = "Dgraph serves the corresponding spec-compliant GraphQL API at the HTTP endpoint /graphql"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
+  title = "/graphql endpoint | Dgraph Documentation"
+  quote = "GraphQL requests can be sent via HTTP POST or HTTP GET requests."
+  verified = "matched"
+  checked = "2026-08-01"

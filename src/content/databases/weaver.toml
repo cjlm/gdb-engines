@@ -7,6 +7,7 @@ license = "BSD-3-Clause"
 implementation_language = "C++"
 type = "Other"
 query_languages = ["Custom API"]
+protocols = ["Native binary"]
 released = "2014"
 category = "Emerging"
 status = "inactive"

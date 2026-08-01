@@ -1,0 +1,55 @@
+# Sources for values in src/content/databases/neptune.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "neptune"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "Gremlin (WebSocket)", "Gremlin (HTTP)", "SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "Bolt is TCP-only on Neptune (the WebSocket variant of the spec is not supported); Gremlin has both a WebSocket driver channel and a separately documented HTTPS REST endpoint; SPARQL is served over its own 1.1 Protocol HTTP endpoint. Kept HTTP/REST because it is independently justified by the openCypher HTTPS endpoint (a generic REST channel with no more specific vocabulary tag) and by the separate Loader/management HTTP API, not just as a stand-in for SPARQL or Gremlin. Rejected pass_B's drop of Gremlin (HTTP) and HTTP/REST."
+
+  [[claims.sources]]
+  url = "https://aws.amazon.com/neptune/faqs/"
+  title = "Managed Graph Database – Amazon Neptune FAQs – AWS"
+  quote = "Neptune provides a Gremlin endpoint (HTTPS and WebSocket), openCypher endpoint (HTTPS and Bolt), and a SPARQL 1.1 Protocol REST endpoint"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-bolt.html"
+  title = "Using the Bolt protocol to make openCypher queries to Neptune"
+  quote = "Althought the Bolt spec states that Bolt can connect using either TCP or WebSockets, Neptune only supports TCP connections for Bolt."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/lambda-functions-websocket-connections.html"
+  title = "Managing Gremlin WebSocket connections in AWS Lambda functions"
+  quote = "If you use a Gremlin language variant to query Neptune, the driver connects to the database using a WebSocket connection."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html"
+  title = "Using the HTTPS REST endpoint to connect to a Neptune DB instance"
+  quote = "Amazon Neptune provides an HTTPS endpoint for Gremlin queries. The REST interface is compatible with whatever Gremlin version your DB cluster is using"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html"
+  title = "Using the HTTP REST endpoint to connect to a Neptune DB instance"
+  quote = "Amazon Neptune provides an HTTP endpoint for SPARQL queries. The REST interface is compatible with SPARQL version 1.1."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-queries.html"
+  title = "The Amazon Neptune OpenCypher HTTPS endpoint"
+  quote = "Neptune does not currently support HTTP/2 for REST API requests. Clients must use HTTP/1.1 when connecting to endpoints."
+  verified = "matched"
+  checked = "2026-08-01"

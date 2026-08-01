@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/ultipa.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ultipa"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-01"
+notes = "Current v6 GQLDB standalone server mode is documented by the vendor as exposing both gRPC and REST; official Node.js and Go driver docs confirm gRPC/Protocol Buffer client SDKs are the default. Rejects pass_A's gRPC-only read; agrees with pass_B that REST is also real (a separate documented deploy mode, not just a driver quirk)."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/drivers/nodejs-quick-start"
+  title = "Quick Start - Ultipa Drivers"
+  quote = "The GQLDB Node.js driver is a gRPC-based client library for interacting with GQLDB graph database."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://github.com/ultipa/ultipa-go-sdk"
+  title = "ultipa/ultipa-go-sdk"
+  quote = "This sdk depends on Protocol Buffer and grpc, so we need to compile the proto file first:"
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/products/gqldb"
+  title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
+  quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
+  verified = "matched"
+  checked = "2026-08-01"

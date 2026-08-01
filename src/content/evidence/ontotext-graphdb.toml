@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/ontotext-graphdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ontotext-graphdb"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST", "JDBC/ODBC", "GraphQL (HTTP)"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "RDF4J REST API serves W3C SPARQL query/update and Graph Store HTTP Protocol; a separate GraphDB REST API handles admin/cluster management; JDBC driver (Apache Calcite-based) and generated GraphQL endpoints are also offered."
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.4/rdf4j-rest-api.html"
+  title = "Using the RDF4J REST API — GraphDB 11.4 documentation"
+  quote = "This RDF4J REST API support also includes support for W3C standard SPARQL query and update endpoints; this is described further below."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.4/sql-access-over-jdbc.html"
+  title = "SQL access over JDBC — GraphDB 11.4 documentation"
+  quote = "This support is based on the Apache Calcite protocol and on performing optimizations and mappings."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.4/graphql.html"
+  title = "GraphQL — GraphDB 11.4 documentation"
+  quote = "Usage of GraphQL is done through GraphQL endpoints which provide API access to a repository’s data."
+  verified = "matched"
+  checked = "2026-08-01"

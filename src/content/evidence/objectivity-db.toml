@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/objectivity-db.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "objectivity-db"
+
+[[claims]]
+field = "protocols"
+value = ["JDBC/ODBC"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "ODBC/SQL access is corroborated across independent sources spanning more than a decade (Objectivity's own 1998 VLDB conference material, a 1990s OO FAQ mirror, and a 2010 ODBMS.org TechView report all reachable and quoted directly), so treated as a real, long-standing feature rather than a single stale claim -- accepted pass_B over pass_A. The proprietary AMS (Advanced Multithreaded Server) page-fetch RPC that pass_A tagged 'Native binary' is an internal storage-tier transport behind the linked-in kernel library, not a documented client wire protocol, and its only evidence is a 2006 paper and a slide deck, so it was not tagged per the dormant/thin-evidence rule. Objectivity, Inc. ceased operations in 2023 and current vendor docs are unavailable."
+
+  [[claims.sources]]
+  url = "https://www.odbms.org/wp-content/uploads/2014/02/TechViewObjectivity2010.pdf"
+  title = "TechView Product Report: Objectivity/DB"
+  quote = "There is also an ODBC interface, making it possible to access Objectivity/DB databases with standard SQL tools."
+  verified = "unreachable"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://amisha.pragmaticdata.com/doc/OO/OOFAQ/oo-faq-S-8.13.0.4.html"
+  title = "Object-Orientation FAQ -- Objectivity/DB (Objectivity)"
+  quote = "The ODBC and SQL Access Group (SAG) protocols are supported."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/conf/1998/p705.pdf"
+  title = "The 24th International Conference on Very Large Databases. New York, USA, August 24-27, 1998. Objectivity, Inc."
+  quote = "Programming interfaces are available for Java, C++, Smalltalk and SQL (ODBC)."
+  verified = "unreachable"
+  checked = "2026-08-01"

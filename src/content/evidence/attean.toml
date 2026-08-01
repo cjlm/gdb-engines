@@ -1,0 +1,28 @@
+# Sources for values in src/content/databases/attean.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "attean"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Core Attean is a Perl library used embedded; SPARQL 1.1 Protocol server support comes via the separate companion module AtteanX::Endpoint, not the base distribution."
+
+  [[claims.sources]]
+  url = "https://metacpan.org/pod/Attean"
+  title = "Attean - A Semantic Web Framework - metacpan.org"
+  quote = "Attean provides APIs for parsing, storing, querying, and serializing Semantic Web (RDF and SPARQL) data."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260507123725/https://metacpan.org/pod/Attean"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://hexmos.com/freedevtools/man-pages/library-functions/string-manipulation/atteanx-endpoint/"
+  title = "AtteanX::Endpoint - SPARQL 1.1 Protocol Endpoint - Manual Page | Free DevTools by Hexmos"
+  quote = "The AtteanX::Endpoint class implements a PSGI SPARQL Protocol endpoint."
+  verified = "matched"
+  checked = "2026-08-01"

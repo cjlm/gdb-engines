@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "RDF"
 query_languages = ["SPARQL"]
+protocols = ["HTTP/REST", "SPARQL Protocol"]
 released = "2017"
 category = "Enterprise"
 gdotv_support = true

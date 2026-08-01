@@ -1,0 +1,20 @@
+# Sources for values in src/content/databases/prometheux.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "prometheux"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Versioned REST API under /api/v1 drives the platform; MCP (local stdio server and remote OAuth-based server) is layered on top for agent access rather than being a distinct wire protocol."
+
+  [[claims.sources]]
+  url = "https://docs.prometheux.ai/integrations/rest-api"
+  title = "REST API - Prometheux"
+  quote = "The Prometheux platform exposes a REST API that lets you drive every part of the platform from your own application"
+  verified = "matched"
+  checked = "2026-08-01"

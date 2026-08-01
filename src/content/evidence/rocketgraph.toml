@@ -1,0 +1,27 @@
+# Sources for values in src/content/databases/rocketgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "rocketgraph"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "gRPC, with a co-located Arrow Flight endpoint, is the sole client protocol on the default port 4367; rejected pass_A's HTTP/REST tag because the changelog shows REST was deprecated in v1.0.0 (Dec 2018) as gRPC became the default, then fully removed from the client, server, and docs in v1.1.0 (Feb 2019) — years before the current 2.6.1 release pass_A cites."
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/launch_notes/index.html"
+  title = "Launch Notes — Rocketgraph 2.6.1 documentation"
+  quote = "Removed the REST API from the Python library, server, and documentation."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/launch_notes/index.html"
+  title = "Launch Notes — Rocketgraph 2.6.1 documentation"
+  quote = "Improved stability and performance of connection between Python client and xgtd server by switching to using gRPC instead of REST as the default communication protocol."
+  verified = "matched"
+  checked = "2026-08-01"

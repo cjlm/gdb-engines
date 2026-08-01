@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/stardog.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "stardog"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-01"
+notes = "SNARL, Stardog's proprietary RPC-over-Protobuf wire protocol, was disabled in 4.2.4 and removed in 5.0, so pass_A's Native binary tag is stale for current versions. The Stardog HTTP Protocol extends the standard SPARQL 1.1 HTTP/Graph Store bindings with its own non-SPARQL resource endpoints, which justifies HTTP/REST alongside SPARQL Protocol (agreeing with pass_B)."
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/developing/http-api"
+  title = "HTTP API | Stardog Documentation Latest"
+  quote = "Stardog supports the SPARQL 1.1 HTTP Protocol; the SPARQL 1.1 Graph Store HTTP Protocol; and the Stardog HTTP Protocol."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/developing/http-api"
+  title = "HTTP API | Stardog Documentation Latest"
+  quote = "In addition to the support for the standard protocols such as SPARQL 1.1, the Stardog HTTP protocol adds additional resource representations and capabilities."
+  verified = "matched"
+  checked = "2026-08-01"
+
+  [[claims.sources]]
+  url = "https://community.stardog.com/t/error-trying-to-begin-transaction-while-trying-gremlin-on-stardog/322"
+  title = "Error trying to begin Transaction while trying gremlin on Stardog - Support"
+  quote = "The SNARL protocol is disabled in 4.2.4 and removed in 5.0."
+  verified = "matched"
+  checked = "2026-08-01"
