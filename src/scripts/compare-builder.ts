@@ -8,6 +8,7 @@
  */
 import { featureGroups, featureDisplayNames, featureKeys } from '../data/feature-metadata';
 import { formatCompactCount } from '../lib/format-number';
+import { trackDatabaseComparison } from './seline';
 
 interface Engine {
   slug: string;
@@ -102,10 +103,7 @@ async function mount(root: HTMLElement): Promise<void> {
   function track(): void {
     window.clearTimeout(trackTimer);
     trackTimer = window.setTimeout(() => {
-      const seline = (window as unknown as { seline?: { track: (n: string, p: unknown) => void } }).seline;
-      if (!seline || selected.length < 2) return;
-      const sorted = [...selected].sort();
-      seline.track('compare_custom', { engines: sorted.join(','), count: sorted.length });
+      trackDatabaseComparison(selected, 'custom');
     }, 2000);
   }
 
@@ -385,4 +383,5 @@ async function mount(root: HTMLElement): Promise<void> {
   renderChips();
   renderList();
   renderColumns();
+  if (!staticPage) track();
 }
