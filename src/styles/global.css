@@ -577,6 +577,44 @@ table thead th {
   z-index: 10;
 }
 
+/* Keep the identifying columns in view while wide tables scroll horizontally.
+   Each table can override --sticky-name-left to match its rank-column width. */
+table {
+  --sticky-name-left: 4.5rem;
+}
+
+/* Table layout may otherwise grow the rank column to accommodate spare width,
+   which would make the name column's fixed sticky offset overlap it. */
+table .rank-col {
+  width: 4.5rem;
+  min-width: 4.5rem;
+  max-width: 4.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+table tbody .sticky-rank-column,
+table tbody .sticky-name-column {
+  position: sticky;
+  z-index: 2;
+  background-color: var(--color-background);
+}
+
+table .sticky-rank-column {
+  left: 0;
+}
+
+table .sticky-name-column {
+  left: var(--sticky-name-left);
+  box-shadow: 1px 0 0 var(--color-border);
+}
+
+table thead th.sticky-rank-column,
+table thead th.sticky-name-column {
+  z-index: 11;
+  background-color: var(--color-background);
+}
+
 table thead th .header-container {
   display: flex;
   align-items: center;

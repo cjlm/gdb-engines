@@ -87,8 +87,8 @@ const datasetJsonLd = JSON.stringify({
     <table>
     <thead>
       <tr>
-        {linkMaps && <th class="sortable rank-col" data-type="number"><div class="header-container"><span class="has-tooltip" aria-label="Position in the overall Graph Database Popularity Ranking" data-microtip-position="bottom-right" role="tooltip">Rank</span> <span class="sort-indicator">↑</span></div></th>}
-        <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom-right" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
+        {linkMaps && <th class="sortable rank-col sticky-rank-column" data-type="number"><div class="header-container"><span class="has-tooltip" aria-label="Position in the overall Graph Database Popularity Ranking" data-microtip-position="bottom-right" role="tooltip">Rank</span> <span class="sort-indicator">↑</span></div></th>}
+        <th class:list={["sortable", linkMaps && "sticky-name-column"]} data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom-right" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
         {hasGithubRepositories && (
           <th class="sortable github-col" data-type="number">
             <div class="header-container">
@@ -123,7 +123,7 @@ const datasetJsonLd = JSON.stringify({
       {databases.map(db => (
         <tr class={db.data.status !== 'active' ? `row-${db.data.status}` : ''} data-previous-vendors={db.data.previous_vendors?.join(',') || ''} data-previous-names={db.data.previous_names?.join(',') || ''}>
           {linkMaps && (
-            <td class="rank-col">{linkMaps.overallRank.has(db.data.slug)
+            <td class="rank-col sticky-rank-column">{linkMaps.overallRank.has(db.data.slug)
               ? (() => {
                   const rank = linkMaps.overallRank.get(db.data.slug);
                   const d = linkMaps.overallDelta1m.get(db.data.slug);
@@ -143,7 +143,7 @@ const datasetJsonLd = JSON.stringify({
                 })()
               : <span class="rank-link"><span class="rank-num rank-empty">—</span><span class="rank-delta"></span></span>}</td>
           )}
-          <td>
+          <td class:list={[linkMaps && "sticky-name-column"]}>
             <div class="database-cell">
               {(() => {
                 const fav = faviconMap[db.data.slug];

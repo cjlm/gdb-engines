@@ -52,9 +52,9 @@ const tierClass = (tier: string): string => {
   <table class="ranking-table">
     <thead>
       <tr>
-        <th class="num rank-cell">#</th>
+        <th class="num rank-cell sticky-rank-column">#</th>
         {hasDeltas && <th class="num">1mo</th>}
-        <th>Name</th>
+        <th class="sticky-name-column">Name</th>
         <th class="num">{scoreLabel}</th>
         <th>Tier</th>
         <th class="hide-mobile">Type</th>
@@ -71,9 +71,9 @@ const tierClass = (tier: string): string => {
         const langSlug = e.implementationLanguage ? linkMaps?.implementationLanguageSlug.get(e.implementationLanguage) : null;
         return (
           <tr>
-            <td class="num rank-cell">{i + 1}</td>
+            <td class="num rank-cell sticky-rank-column">{i + 1}</td>
             {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
-            <td>
+            <td class="sticky-name-column">
               <div class="name-cell">
                 {fav && <img src={fav} alt="" width="16" height="16" class="favicon" loading="lazy" />}
                 <a href={`/db/${e.slug}/`} class="has-tooltip" aria-label={engineMeta[e.slug]?.description ?? e.name} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{e.name}</a>
@@ -147,11 +147,18 @@ const tierClass = (tier: string): string => {
     margin-top: 0;
     width: max-content;
     min-width: 100%;
+    --sticky-name-left: 2.25rem;
   }
   /* No top-level site header on ranking pages, so anchor the sticky header to viewport top. */
   .ranking-table thead th { top: 0; }
   .ranking-table .num { text-align: right; font-variant-numeric: tabular-nums; }
-  .ranking-table .rank-cell { padding-left: 0.5rem; padding-right: 0.5rem; width: 2.25rem; }
+  .ranking-table .rank-cell {
+    width: 2.25rem;
+    min-width: 2.25rem;
+    max-width: 2.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
   .ranking-table a { color: inherit; text-decoration: none; }
   .ranking-table a:hover { text-decoration: underline; }
   /* Match the homepage's Name cell layout — favicon + tooltipped link + db-links
