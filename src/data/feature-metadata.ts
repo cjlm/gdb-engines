@@ -1,6 +1,7 @@
 // Column definitions for table headers
 export const columnTooltips: Record<string, string> = {
   name: 'Graph database, engine, or extension name',
+  github_stars: 'Current GitHub repository stars, refreshed at most once per day',
   vendor: 'Company or organization developing the product',
   type: 'Graph data model: LPG (Labeled Property Graph), RDF (Resource Description Framework), Multiple (supports both LPG and RDF), or Other',
   kind: 'Product type: database, extension (e.g. PostGIS for Postgres), query engine, or embedded library',

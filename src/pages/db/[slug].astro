@@ -7,6 +7,7 @@ import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
+import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 
 const ranking = await loadRankings();
 const boards = ranking ? buildBoards(ranking) : [];
@@ -22,7 +23,10 @@ export async function getStaticPaths() {
   );
   const overallRanks = buildOverallRankMap(rankingFile);
   const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
-  const faviconMap = await buildFaviconMap(databases);
+  const [faviconMap, githubStars] = await Promise.all([
+    buildFaviconMap(databases),
+    loadGithubStars(databases),
+  ]);
 
   // §3.6 reverse index: which roundups each engine belongs to, capped at three. Built once
   // here rather than re-resolving every roundup on all 143 engine pages.
@@ -72,12 +76,13 @@ export async function getStaticPaths() {
       db,
       compareLinks: compareLinks(db.data.slug),
       faviconUrl: faviconMap[db.data.slug] ?? null,
+      githubStars: githubStars[db.data.slug] ?? null,
       partOf: roundupsByEngine.get(db.data.slug) ?? [],
     },
   }));
 }
 
-const { db, compareLinks: comparePeers, faviconUrl, partOf } = Astro.props;
+const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf } = Astro.props;
 const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
@@ -146,9 +151,27 @@ const description = db.data.description;
             </a>
           )}
           {db.data.github_url && (
-            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">
+            <a
+              class="db-github-link"
+              href={db.data.github_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={typeof githubStars === 'number'
+                ? `GitHub repository, ${githubStars.toLocaleString('en-US')} stars`
+                : 'GitHub repository'}
+              title={typeof githubStars === 'number'
+                ? `${githubStars.toLocaleString('en-US')} GitHub stars — ${db.data.github_url}`
+                : db.data.github_url}
+            >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-github" /></svg>
-              GitHub
+              {typeof githubStars === 'number' ? (
+                <span class="github-star-group">
+                  <svg class="github-star" width="12" height="12" aria-hidden="true"><use href="#icon-star" /></svg>
+                  <span class="github-star-count">{formatGithubStars(githubStars)}</span>
+                </span>
+              ) : (
+                <span>GitHub</span>
+              )}
             </a>
           )}
         </span>
@@ -210,6 +233,31 @@ const description = db.data.description;
         <>
           <dt>Released</dt>
           <dd>{formatReleased(db.data.released)}</dd>
+        </>
+      )}
+      {db.data.github_url && (
+        <>
+          <dt>GitHub</dt>
+          <dd>
+            <a
+              class="github-cell db-github-detail"
+              href={db.data.github_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={typeof githubStars === 'number'
+                ? `${githubStars.toLocaleString('en-US')} GitHub stars — ${db.data.github_url}`
+                : db.data.github_url}
+            >
+              <svg class="github-mark" width="16" height="16" aria-hidden="true"><use href="#icon-github" /></svg>
+              <span class="sr-only">GitHub repository</span>
+              <span class={`github-star-group ${typeof githubStars === 'number' ? '' : 'github-stars-missing'}`}>
+                {typeof githubStars === 'number'
+                  ? <svg class="github-star" width="12" height="12" aria-hidden="true"><use href="#icon-star" /></svg>
+                  : <span class="github-star-slot" aria-hidden="true" />}
+                <span class="github-star-count">{typeof githubStars === 'number' ? formatGithubStars(githubStars) : '—'}</span>
+              </span>
+            </a>
+          </dd>
         </>
       )}
       {db.data.status !== 'active' && (
@@ -282,5 +330,6 @@ const description = db.data.description;
         </ul>
       </>
     )}
+
   </main>
 </Layout>

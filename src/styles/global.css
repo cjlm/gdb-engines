@@ -33,6 +33,7 @@
   --color-text-invert: #FFF;
   --color-text-secondary: #666;
   --color-text-tertiary: #767676;
+  --color-star: #9a6700;
   --site-background:
     radial-gradient(
       circle at 15% 10%,
@@ -55,6 +56,7 @@
     --color-text-invert: #333;
     --color-text-secondary: #AAA;
     --color-text-tertiary: #8A8A8A;
+    --color-star: #e3b341;
   }
 }
 
@@ -70,6 +72,7 @@
   --color-text-invert: #333;
   --color-text-secondary: #AAA;
   --color-text-tertiary: #8A8A8A;
+  --color-star: #e3b341;
 }
 
 html,
@@ -140,9 +143,15 @@ header {
     }
   }
 
-  /* Brand sits slightly apart from the nav pills, which group tightly together. */
+  /* Brand, primary navigation, and the page summary are distinct visual groups. */
   .header-home {
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
   }
 
   /* Fixed box, not width:auto — the icon is square (viewBox 173.8 x 173.8), and
@@ -174,7 +183,7 @@ header {
   }
 
   .database-summary {
-    margin-left: 0.25rem;
+    margin-left: 0.5rem;
   }
 
   #db-count {
@@ -246,6 +255,10 @@ header {
         margin-right: 0;
       }
 
+      .primary-nav {
+        gap: 0.25rem;
+      }
+
       .header-brand {
         display: none;
       }
@@ -304,6 +317,7 @@ header {
 }
 .ranks-list a.roundup .chev { color: var(--color-text-tertiary); }
 
+
 .compare-with {
   list-style: none;
   padding: 0;
@@ -337,6 +351,57 @@ header {
   padding-right: 0.5rem;
 }
 th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
+.github-col { white-space: nowrap; }
+.github-col .header-container { justify-content: flex-start; }
+.github-cell {
+  display: inline-grid;
+  grid-template-columns: 1rem auto;
+  align-items: center;
+  column-gap: 0.45rem;
+  min-width: 5.25rem;
+  padding: 0.18rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
+}
+.github-cell:not(.github-cell-empty):hover {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
+}
+.github-mark,
+.github-mark-slot {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+.github-star-group {
+  display: inline-grid;
+  grid-template-columns: 0.75rem minmax(5ch, max-content);
+  align-items: center;
+  column-gap: 0.24rem;
+  color: var(--color-star);
+}
+.github-star,
+.github-star-slot {
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+.github-star-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+}
+.github-cell-empty { color: var(--color-text-tertiary); }
+.github-stars-missing {
+  color: var(--color-text-tertiary);
+  opacity: 0.65;
+}
 .rank-link {
   color: inherit;
   text-decoration: none;
@@ -999,6 +1064,7 @@ thead [role="tooltip"]::after {
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
@@ -1062,4 +1128,38 @@ thead [role="tooltip"]::after {
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+.db-page .db-links .db-github-link {
+  gap: 0.45rem;
+}
+.db-page .db-github-link .github-star-group {
+  grid-template-columns: 0.75rem minmax(4.5ch, max-content);
+  color: inherit;
+}
+.db-page .meta-grid .db-github-detail {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--color-text-secondary);
+  vertical-align: middle;
+}
+.db-page .meta-grid .db-github-detail .github-star-group {
+  color: inherit;
+}
+.db-page .meta-grid .db-github-detail:hover {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-text);
+}
+
+@media (max-width: 32rem) {
+  .db-page h1 {
+    align-items: flex-start;
+  }
+  .db-page .db-links {
+    flex-basis: 100%;
+    margin-left: 0;
+    padding-left: 0;
+  }
 }

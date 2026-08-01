@@ -5,8 +5,14 @@ const search = document.getElementById("search")! as HTMLInputElement;
 const dbCount = document.getElementById("db-count");
 const inactiveToggle = document.getElementById('toggle-inactive') as HTMLInputElement | null;
 const totalCount = document.querySelectorAll("table tbody tr").length;
-// Column indices to search (Name, Vendor, Type, Kind, Category, Status, Query Languages)
-const SEARCHABLE_COLUMNS = [0, 1, 2, 3, 4, 5, 8];
+// Search by semantic columns rather than fixed indices: Rank and GitHub are optional/derived,
+// so inserting either must not shift the fields visitors expect search to cover.
+const SEARCHABLE_HEADERS = ['Name', 'Vendor', 'Type', 'Kind', 'Category', 'Status', 'Query Languages'];
+const headerCells = Array.from(document.querySelectorAll('table thead th')) as HTMLTableCellElement[];
+const SEARCHABLE_COLUMNS = headerCells
+  .map((header, index) => ({ index, label: header.textContent?.replace(/[↑↓]/g, '').trim() ?? '' }))
+  .filter(({ label }) => SEARCHABLE_HEADERS.includes(label))
+  .map(({ index }) => index);
 let inactiveAutoEnabled = false;
 
 function updateCount() {
@@ -201,6 +207,14 @@ function getCellValue(
   if (type === "score") {
     const bar = cell.querySelector('.bar-fill');
     return bar ? parseFloat(bar.getAttribute('data-score') || '0') : -1;
+  }
+
+  // Human-readable numeric cells (for example, 14.2k GitHub stars) retain the
+  // exact value here so compact display formatting never compromises sorting.
+  const sortValue = cell.dataset.sortValue;
+  if (sortValue !== undefined && type === "number") {
+    const value = Number(sortValue);
+    return Number.isNaN(value) ? undefined : value;
   }
 
   const text = cell.textContent?.trim() || "";

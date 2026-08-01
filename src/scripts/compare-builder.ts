@@ -7,6 +7,7 @@
  * comparison.
  */
 import { featureGroups, featureDisplayNames, featureKeys } from '../data/feature-metadata';
+import { formatCompactCount } from '../lib/format-number';
 
 interface Engine {
   slug: string;
@@ -26,6 +27,7 @@ interface Engine {
   implementation_language?: string;
   query_languages?: string[];
   gdotv_support?: boolean;
+  github_stars?: number;
   features?: Record<string, number | undefined>;
 }
 
@@ -288,6 +290,9 @@ async function mount(root: HTMLElement): Promise<void> {
     const fundamentals = [
       factRow('Rank', cols.map((e) => (e.rank ? `#${e.rank}` : null)), true),
       factRow('Score', cols.map((e) => (typeof e.score === 'number' ? e.score.toFixed(1) : null)), true),
+      ...(cols.some((e) => typeof e.github_stars === 'number')
+        ? [factRow('GitHub stars', cols.map((e) => (typeof e.github_stars === 'number' ? formatCompactCount(e.github_stars) : null)), true)]
+        : []),
       factRow('Vendor', cols.map((e) => e.vendor)),
       factRow('Model', cols.map((e) => e.type)),
       factRow('Kind', cols.map((e) => e.kind)),

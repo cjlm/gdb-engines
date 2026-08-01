@@ -21,6 +21,7 @@ import { loadRankings } from '../../lib/rankings';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
+import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import {
   pregeneratedPairList,
   resolveRoundup,
@@ -39,7 +40,10 @@ export async function getStaticPaths() {
     getCollection('roundups'),
   ]);
   const bySlug = new Map(databases.map((d) => [d.data.slug, d.data]));
-  const faviconMap = await buildFaviconMap(databases);
+  const [faviconMap, githubStars] = await Promise.all([
+    buildFaviconMap(databases),
+    loadGithubStars(databases),
+  ]);
   const rankMap = buildOverallRankMap(ranking);
   const rankedMap = buildRankedMap(ranking);
   const sponsor = getSponsor(sponsors, 'compare');
@@ -48,6 +52,7 @@ export async function getStaticPaths() {
   // Maps do not survive Astro's props serialisation, so hand over plain objects.
   const shared = {
     faviconMap,
+    githubStars,
     ranks: Object.fromEntries(rankMap),
     ranked: Object.fromEntries(rankedMap),
     sponsor,
@@ -116,6 +121,7 @@ const {
   kind,
   engines,
   faviconMap,
+  githubStars,
   ranks,
   ranked,
   sponsor,
@@ -272,6 +278,7 @@ const pillar = (slug: string, key: string): string => {
   const value = rankedOf(slug)?.pillars?.[key];
   return typeof value === 'number' ? value.toFixed(1) : '—';
 };
+const hasGithubStars = Object.keys(githubStars).length > 0;
 
 interface Row {
   label: string;
@@ -282,6 +289,9 @@ interface Row {
 const glanceRows: Row[] = [
   { label: 'Rank', values: engines.map((e) => (rankOf(e.slug) ? `#${rankOf(e.slug)}` : '— Not ranked')), mono: true },
   { label: 'Score', values: engines.map((e) => (typeof rankedOf(e.slug)?.score === 'number' ? rankedOf(e.slug).score.toFixed(1) : '—')), mono: true },
+  ...(hasGithubStars
+    ? [{ label: 'GitHub stars', values: engines.map((e) => (typeof githubStars[e.slug] === 'number' ? formatGithubStars(githubStars[e.slug]) : '—')), mono: true }]
+    : []),
   { label: 'Popularity', values: engines.map((e) => pillar(e.slug, 'popularity')), mono: true },
   { label: 'Activity', values: engines.map((e) => pillar(e.slug, 'activity')), mono: true },
   { label: 'Community', values: engines.map((e) => pillar(e.slug, 'community')), mono: true },
@@ -455,7 +465,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
             <thead>
               <tr>
                 <th scope="col">Name</th><th scope="col">Vendor</th><th scope="col">Model</th>
-                <th scope="col">Category</th><th scope="col">License</th><th scope="col">Written in</th>
+                <th scope="col">Category</th>{hasGithubStars && <th scope="col">GitHub stars</th>}<th scope="col">License</th><th scope="col">Written in</th>
                 <th scope="col">Query languages</th><th scope="col">Rank</th>
               </tr>
             </thead>
@@ -466,6 +476,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
                   <td>{m.vendor ?? '—'}</td>
                   <td>{m.type}</td>
                   <td>{m.category}</td>
+                  {hasGithubStars && <td class="num">{typeof githubStars[m.slug] === 'number' ? formatGithubStars(githubStars[m.slug]) : '—'}</td>}
                   <td>{m.license ?? '—'}</td>
                   <td>{m.implementation_language ?? '—'}</td>
                   <td>{(m.query_languages ?? []).join(', ') || '—'}</td>
