@@ -10,17 +10,16 @@ const pairings = [
 ];
 ---
 <aside class="sponsor-cta" aria-label="Sponsor GDB-Engines">
-  <div class="sponsor-cta__copy">
-    <strong>GDB-Engines provides an independent, evidence-led view of the graph database landscape.</strong>
-    <span>
-      Sponsorship helps sustain the project – and connects vendors with users
-      trying to tell their
-      <span
-        class="sponsor-cta__pair"
-        data-sponsor-pairs={JSON.stringify(pairings)}
-      >GQL from their GraphQL</span>.
-    </span>
-  </div>
+  <span class="sponsor-cta__copy">
+    <strong>GDB-Engines provides an independent, evidence-led view of the graph
+    database landscape.</strong>
+    Sponsorship helps sustain the project – and connects vendors with users
+    trying to tell their
+    <span
+      class="sponsor-cta__pair"
+      data-sponsor-pairs={JSON.stringify(pairings)}
+    >GQL from their GraphQL</span>.
+  </span>
   <a href="/sponsor/">Get in touch <span aria-hidden="true">→</span></a>
 </aside>
 
@@ -34,13 +33,13 @@ const pairings = [
 
 <style>
   .sponsor-cta {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 1.5rem);
+    justify-content: space-between;
+    gap: 1rem;
     max-width: 90ch;
-    margin: 0.5rem auto 1.5rem;
-    padding: 0.95rem 1rem 0.95rem 1.1rem;
+    margin: 0.5rem 0 1.5rem;
+    padding: 0.8rem 0.9rem 0.8rem 1rem;
     background:
       linear-gradient(
         110deg,
@@ -54,20 +53,12 @@ const pairings = [
     color: var(--color-text-secondary);
   }
 
-  .sponsor-cta__copy {
-    display: grid;
-    gap: 0.1rem;
-    min-width: 0;
-  }
-
   .sponsor-cta strong {
-    display: block;
-    line-height: 1.35;
     color: var(--color-text);
   }
 
   .sponsor-cta a {
-    justify-self: end;
+    flex: 0 0 auto;
     padding: 0.42rem 0.7rem;
     border-radius: 0.4rem;
     background: var(--color-brand-accent);
@@ -80,14 +71,11 @@ const pairings = [
     filter: brightness(1.06);
   }
 
-  @media (max-width: 48rem) {
+  @media (max-width: 32rem) {
     .sponsor-cta {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .sponsor-cta a {
-      justify-self: start;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.65rem;
     }
   }
 </style>
