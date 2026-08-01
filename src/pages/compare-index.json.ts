@@ -14,6 +14,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { loadRankings } from '../lib/rankings';
 import { pregeneratedPairs, buildOverallRankMap, buildRankedMap } from '../lib/comparisons';
+import { loadGithubStars } from '../lib/github-stars';
 
 /** Drops undefined/null entries so the payload carries only facts we hold. */
 function compact<T extends Record<string, unknown>>(object: T): Partial<T> {
@@ -26,6 +27,7 @@ function compact<T extends Record<string, unknown>>(object: T): Partial<T> {
 
 export const GET: APIRoute = async () => {
   const [databases, ranking] = await Promise.all([getCollection('databases'), loadRankings()]);
+  const githubStars = await loadGithubStars(databases);
   const ranks = buildOverallRankMap(ranking);
   const ranked = buildRankedMap(ranking);
 
@@ -52,6 +54,7 @@ export const GET: APIRoute = async () => {
           implementation_language: db.data.implementation_language,
           query_languages: db.data.query_languages,
           gdotv_support: db.data.gdotv_support,
+          github_stars: githubStars[db.data.slug],
           features: db.data.features,
         }),
       };

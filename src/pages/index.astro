@@ -8,6 +8,7 @@ import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feat
 import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
+import { loadGithubStars, formatGithubStars } from '../lib/github-stars';
 
 const ranking = await loadRankings();
 const linkMaps = ranking ? buildLinkMaps(ranking) : null;
@@ -28,7 +29,11 @@ databases.sort((a, b) => {
 });
 
 // Slugs with a real logo; a fallback lookup leaves the slug absent (see buildFaviconMap).
-const faviconMap = await buildFaviconMap(databases);
+const [faviconMap, githubStars] = await Promise.all([
+  buildFaviconMap(databases),
+  loadGithubStars(databases),
+]);
+const hasGithubRepositories = databases.some((db) => Boolean(db.data.github_url));
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -78,15 +83,26 @@ const datasetJsonLd = JSON.stringify({
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
-  <div class="home-sponsor">
-    <SponsorCTA />
-  </div>
+  <div class="comparison-stage">
+    <div class="home-sponsor">
+      <SponsorCTA />
+    </div>
 
-  <table>
+    <table>
     <thead>
       <tr>
         {linkMaps && <th class="sortable rank-col" data-type="number"><div class="header-container"><span class="has-tooltip" aria-label="Position in the overall Graph Database Popularity Ranking" data-microtip-position="bottom-right" role="tooltip">Rank</span> <span class="sort-indicator">↑</span></div></th>}
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.name} data-microtip-position="bottom-right" role="tooltip">Name</span> <span class="sort-indicator"></span></div></th>
+        {hasGithubRepositories && (
+          <th class="sortable github-col" data-type="number">
+            <div class="header-container">
+              <span class="github-header has-tooltip" aria-label={columnTooltips.github_stars} data-microtip-position="bottom" role="tooltip">
+                GitHub
+              </span>
+              <span class="sort-indicator"></span>
+            </div>
+          </th>
+        )}
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.vendor} data-microtip-position="bottom-right" role="tooltip">Vendor</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.type} data-microtip-position="bottom" role="tooltip">Type</span> <span class="sort-indicator"></span></div></th>
         <th class="sortable" data-type="text"><div class="header-container"><span class="has-tooltip" aria-label={columnTooltips.kind} data-microtip-position="bottom" role="tooltip">Kind</span> <span class="sort-indicator"></span></div></th>
@@ -147,20 +163,50 @@ const datasetJsonLd = JSON.stringify({
                 );
               })()}
               <a href={`/db/${db.data.slug}/`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
-              <span class="db-links">
-                {db.data.github_url ? (
-                  <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" title={db.data.github_url}>
-                    <svg width="14" height="14"><use href="#icon-github" /></svg>
-                  </a>
-                ) : null}
-                {db.data.url ? (
+              {db.data.url && (
+                <span class="db-links">
                   <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={db.data.url}>
                     <svg width="14" height="14"><use href="#icon-external" /></svg>
                   </a>
-                ) : null}
-              </span>
+                </span>
+              )}
             </div>
           </td>
+          {hasGithubRepositories && (
+            <td
+              class="github-col"
+              data-sort-value={typeof githubStars[db.data.slug] === 'number' ? githubStars[db.data.slug] : undefined}
+            >
+              {db.data.github_url ? (
+                <a
+                  class="github-cell"
+                  href={db.data.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={typeof githubStars[db.data.slug] === 'number'
+                    ? `${githubStars[db.data.slug]!.toLocaleString('en-US')} GitHub stars — ${db.data.github_url}`
+                    : db.data.github_url}
+                >
+                  <svg class="github-mark" width="16" height="16" aria-hidden="true"><use href="#icon-github" /></svg>
+                  <span class="sr-only">GitHub repository</span>
+                  <span class={`github-star-group ${typeof githubStars[db.data.slug] === 'number' ? '' : 'github-stars-missing'}`}>
+                    {typeof githubStars[db.data.slug] === 'number'
+                      ? <svg class="github-star" width="12" height="12" aria-hidden="true"><use href="#icon-star" /></svg>
+                      : <span class="github-star-slot" aria-hidden="true" />}
+                    <span class="github-star-count">{typeof githubStars[db.data.slug] === 'number' ? formatGithubStars(githubStars[db.data.slug]!) : '—'}</span>
+                  </span>
+                </a>
+              ) : (
+                <span class="github-cell github-cell-empty" aria-label="No GitHub repository">
+                  <span class="github-mark-slot" aria-hidden="true" />
+                  <span class="github-star-group github-stars-missing">
+                    <span class="github-star-slot" aria-hidden="true" />
+                    <span class="github-star-count">—</span>
+                  </span>
+                </span>
+              )}
+            </td>
+          )}
           <td>
             {db.data.previous_vendors?.length ? (
               <span class="has-tooltip" aria-label={`Previously: ${db.data.previous_vendors.join(' → ')}`} data-microtip-position="top" role="tooltip">
@@ -258,7 +304,8 @@ const datasetJsonLd = JSON.stringify({
         </tr>
       ))}
     </tbody>
-  </table>
+    </table>
+  </div>
 
   <footer class="site-footer">
     <span>Last updated: {new Date().toISOString().split('T')[0]}</span>
@@ -312,13 +359,20 @@ const datasetJsonLd = JSON.stringify({
 </Layout>
 
 <style>
+  .comparison-stage {
+    width: max-content;
+    min-width: 100%;
+  }
+
   .home-sponsor {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
+    position: sticky;
+    left: max(0px, calc((100vw - var(--content-max-width)) / 2));
+    width: min(100vw, var(--content-max-width));
+    margin-left: max(0px, calc((100vw - var(--content-max-width)) / 2));
     padding: calc(var(--header-height) + 1rem) 1.25rem 0;
   }
 
-  .home-sponsor + table {
+  .comparison-stage table {
     margin-top: 0;
   }
 </style>

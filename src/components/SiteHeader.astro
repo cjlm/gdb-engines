@@ -32,30 +32,32 @@ const onCompare = path.startsWith('/compare');
       <img src="/graph-icon-dark.svg" alt="" class="header-logo dark-only" width="28" height="28" />
       <span class="header-brand">GDB-Engines</span>
     </a>
-    <a href="/rankings/" class:list={['rankings-link', onRankings && 'is-active']} aria-current={onRankings ? 'page' : undefined} aria-label="Monthly graph database popularity rankings">
-      <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <rect x="2" y="9" width="3" height="5" rx="0.5"/>
-        <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
-        <rect x="11" y="2" width="3" height="12" rx="0.5"/>
-      </svg>
-      <span class="rankings-link__label">Rankings</span>
-    </a>
-    <a href="/graph/" class:list={['rankings-link', 'graph-link', onGraph && 'is-active']} aria-current={onGraph ? 'page' : undefined}>
-      <svg class="rankings-link__icon graph-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-        <path d="M4 4.5 8 7m0 0 4-3M8 7l1.5 4.5"/>
-        <circle cx="3" cy="3.75" r="1.75"/>
-        <circle cx="13" cy="3.25" r="1.75"/>
-        <circle cx="10" cy="13" r="1.75"/>
-        <circle cx="8" cy="7" r="1.5"/>
-      </svg>
-      <span class="rankings-link__label">Graph</span>
-    </a>
-    <a href="/compare/" class:list={['rankings-link', onCompare && 'is-active']} aria-current={onCompare ? 'page' : undefined} aria-label="Compare graph databases side by side">
-      <svg class="rankings-link__icon" width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
-        <path d="M239.43,133l-32-80h0a8,8,0,0,0-9.16-4.84L136,62V40a8,8,0,0,0-16,0V65.58L54.26,80.19A8,8,0,0,0,48.57,85h0v.06L16.57,165a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32a7.92,7.92,0,0,0-.57-3L66.92,93.77,120,82V208H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16H136V78.42L187,67.1,160.57,133a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32A7.92,7.92,0,0,0,239.43,133ZM56,184c-7.53,0-22.76-3.61-23.93-14.64L56,109.54l23.93,59.82C78.76,180.39,63.53,184,56,184Zm144-32c-7.53,0-22.76-3.61-23.93-14.64L200,77.54l23.93,59.82C222.76,148.39,207.53,152,200,152Z"/>
-      </svg>
-      <span class="rankings-link__label">Compare</span>
-    </a>
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a href="/rankings/" class:list={['rankings-link', onRankings && 'is-active']} aria-current={onRankings ? 'page' : undefined} aria-label="Monthly graph database popularity rankings">
+        <svg class="rankings-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <rect x="2" y="9" width="3" height="5" rx="0.5"/>
+          <rect x="6.5" y="5" width="3" height="9" rx="0.5"/>
+          <rect x="11" y="2" width="3" height="12" rx="0.5"/>
+        </svg>
+        <span class="rankings-link__label">Rankings</span>
+      </a>
+      <a href="/graph/" class:list={['rankings-link', 'graph-link', onGraph && 'is-active']} aria-current={onGraph ? 'page' : undefined}>
+        <svg class="rankings-link__icon graph-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M4 4.5 8 7m0 0 4-3M8 7l1.5 4.5"/>
+          <circle cx="3" cy="3.75" r="1.75"/>
+          <circle cx="13" cy="3.25" r="1.75"/>
+          <circle cx="10" cy="13" r="1.75"/>
+          <circle cx="8" cy="7" r="1.5"/>
+        </svg>
+        <span class="rankings-link__label">Graph</span>
+      </a>
+      <a href="/compare/" class:list={['rankings-link', onCompare && 'is-active']} aria-current={onCompare ? 'page' : undefined} aria-label="Compare graph databases side by side">
+        <svg class="rankings-link__icon" width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+          <path d="M239.43,133l-32-80h0a8,8,0,0,0-9.16-4.84L136,62V40a8,8,0,0,0-16,0V65.58L54.26,80.19A8,8,0,0,0,48.57,85h0v.06L16.57,165a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32a7.92,7.92,0,0,0-.57-3L66.92,93.77,120,82V208H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16H136V78.42L187,67.1,160.57,133a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32A7.92,7.92,0,0,0,239.43,133ZM56,184c-7.53,0-22.76-3.61-23.93-14.64L56,109.54l23.93,59.82C78.76,180.39,63.53,184,56,184Zm144-32c-7.53,0-22.76-3.61-23.93-14.64L200,77.54l23.93,59.82C222.76,148.39,207.53,152,200,152Z"/>
+        </svg>
+        <span class="rankings-link__label">Compare</span>
+      </a>
+    </nav>
     <p class="database-summary">
       {comparisonControls
         ? <>Compare <span id="db-count">{databaseCount}</span> graph databases</>
