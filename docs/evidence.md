@@ -61,9 +61,8 @@ Verdicts:
   research.
 - **mismatch** — the page loaded and does not contain the quote. Treat the claim as unsourced and
   research it again; do not reword the quote to fit.
-- **unreachable** — the fetch failed and no snapshot has the quote either, or the source is a PDF
-  (their text lives in compressed streams and isn't scannable here). Not a verdict on the quote —
-  it needs a human.
+- **unreachable** — the fetch failed and no snapshot has the quote either. Not a verdict on the
+  quote — it needs a human.
 
 Both matched states are published. Anything else is held back.
 
@@ -73,7 +72,9 @@ before treating as real. A quote that fails twice is a genuine failure.
 
 Comparison is on words alone, with punctuation and markup dropped. GitHub `/blob/` URLs resolve to
 `raw.githubusercontent.com`, since GitHub renders file contents client-side and quoting a line of
-source is legitimate evidence. Stripping a `<code>` tag turns
+source is legitimate evidence. PDFs are extracted with `pdftotext`, rejoining line-ending hyphens
+first so a paper breaking "protocol" across two lines doesn't fail an accurate quote. Without
+poppler on PATH, PDFs degrade to `unreachable` rather than failing every quote in a paper. Stripping a `<code>` tag turns
 "the SPARQL Protocol; the Graph Store Protocol" into "protocol ; the", and an accurately copied
 quote would otherwise fail. Pages that refuse a non-browser user agent get one retry as a browser
 before a quote is called fabricated — a false accusation is worse than a missed check.
@@ -117,8 +118,7 @@ release.
 
 ## Known gaps
 
-- PDF sources can't be verified here, so papers and vendor manuals stay `unreachable`. Six entries
-  rest on them: Cray Graph Engine, Objectivity/DB, SAP HANA, and the `Unknown` values for ByteGraph,
-  TAO and Apache Giraph (the last three need no source — `Unknown` is the absence of a finding).
+- Four citations remain unverifiable: pages that refuse automated fetches and have no archive
+  snapshot.
 - Only `protocols` is covered. Licence, release date, implementation language and the feature
   scores are still unsourced.

@@ -16,7 +16,7 @@ notes = "ODBC/SQL access is corroborated across independent sources spanning mor
   url = "https://www.odbms.org/wp-content/uploads/2014/02/TechViewObjectivity2010.pdf"
   title = "TechView Product Report: Objectivity/DB"
   quote = "There is also an ODBC interface, making it possible to access Objectivity/DB databases with standard SQL tools."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"
 
   [[claims.sources]]
@@ -30,5 +30,5 @@ notes = "ODBC/SQL access is corroborated across independent sources spanning mor
   url = "https://www.vldb.org/conf/1998/p705.pdf"
   title = "The 24th International Conference on Very Large Databases. New York, USA, August 24-27, 1998. Objectivity, Inc."
   quote = "Programming interfaces are available for Java, C++, Smalltalk and SQL (ODBC)."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"

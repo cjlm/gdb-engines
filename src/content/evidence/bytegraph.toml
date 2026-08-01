@@ -16,5 +16,5 @@ notes = "ByteDance-internal system; the VLDB paper describes Gremlin as the quer
   url = "https://www.vldb.org/pvldb/vol15/p3306-li.pdf"
   title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
   quote = "ByteGraph uses Gremlin [7] as the query language as most of the applications built on ByteGraph are based on navigational queries."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"

@@ -14,12 +14,18 @@
  *   unreachable     — the fetch failed and no snapshot has the quote either. Not a verdict on the
  *                     quote; needs a human look.
  *
+ * PDFs are extracted with pdftotext (poppler). Without it on PATH they fall back to unreachable
+ * rather than failing every quote in a paper.
+ *
  * Usage: node scripts/verify-quotes.mjs [slug ...]     (all slugs when none given)
  */
-import { readdirSync, existsSync } from 'node:fs';
+import { readdirSync, existsSync, writeFileSync, unlinkSync } from 'node:fs';
 import { parse } from 'smol-toml';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { randomUUID } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { EVIDENCE_DIR, writeEvidence } from './lib/evidence-file.mjs';
 
 const CONCURRENCY = 5;
@@ -42,6 +48,40 @@ const USER_AGENT =
 const BROWSER_USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' +
   'Chrome/126.0.0.0 Safari/537.36';
+
+let pdftotextChecked;
+function hasPdftotext() {
+  if (pdftotextChecked === undefined) {
+    try {
+      execFileSync('pdftotext', ['-v'], { stdio: 'ignore' });
+      pdftotextChecked = true;
+    } catch {
+      pdftotextChecked = false;
+    }
+  }
+  return pdftotextChecked;
+}
+
+/**
+ * Papers and vendor manuals are legitimate sources, so extract their text rather than declaring
+ * PDFs unverifiable. Line-ending hyphens are rejoined first: a PDF breaking "protocol" across
+ * lines would otherwise read as two words and fail an accurate quote.
+ */
+function pdfText(buffer) {
+  const path = join(tmpdir(), `gdb-evidence-${randomUUID()}.pdf`);
+  try {
+    writeFileSync(path, buffer);
+    const raw = execFileSync('pdftotext', ['-q', '-enc', 'UTF-8', path, '-'], {
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+    });
+    return raw.replace(/-\r?\n/g, '');
+  } catch {
+    return null;
+  } finally {
+    try { unlinkSync(path); } catch { /* already gone */ }
+  }
+}
 
 /** Strips markup, leaving a space where each tag was so adjacent words don't weld together. */
 function pageText(html) {
@@ -102,10 +142,11 @@ async function fetchText(rawUrl, userAgent = USER_AGENT) {
     });
     if (!res.ok) return { ok: false, reason: `HTTP ${res.status}` };
     const type = res.headers.get('content-type') ?? '';
-    // PDF text lives in compressed streams; scanning the raw bytes would fail every quote and
-    // report it as a fabrication. Papers and vendor manuals get flagged for a human instead.
     if (type.includes('pdf') || new URL(url).pathname.toLowerCase().endsWith('.pdf')) {
-      return { ok: false, reason: 'PDF — not machine-readable here' };
+      if (!hasPdftotext()) return { ok: false, reason: 'PDF — pdftotext not on PATH' };
+      const text = pdfText(Buffer.from(await res.arrayBuffer()));
+      if (text === null) return { ok: false, reason: 'PDF — text extraction failed' };
+      return { ok: true, text: normalize(text) };
     }
     const body = await res.text();
     return { ok: true, text: normalize(type.includes('html') ? pageText(body) : body) };

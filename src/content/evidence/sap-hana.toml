@@ -16,26 +16,26 @@ notes = "SQL/graph access (openCypher, GraphScript) runs over HANA's proprietary
   url = "https://help.sap.com/doc/63cef00e229b4010be06cfa01e1d338b/2.0.00/en-US/SAP_HANA_SQL_Command_Network_Protocol_Reference_en.pdf"
   title = "SAP HANA SQL Command Network Protocol Reference"
   quote = "This document describes the SQL Command Network Protocol of the SAP HANA database, the protocol used by SAP HANA database clients to communicate with the SAP HANA database."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "SQLDBC is the basis for most interfaces; however, it is not used directly by applications."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "Java Database Connectivity (JDBC) is a Java-based application programming interface (API) which includes a set of functions that enable Java applications to access a data model in a database."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "Open Database Connectivity (ODBC) is a standard application programming interface (API) that provides a set of functions that enable applications to access a data model in a database."
-  verified = "unreachable"
+  verified = "matched"
   checked = "2026-08-01"

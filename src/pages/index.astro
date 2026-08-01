@@ -9,7 +9,7 @@ import { buildFaviconMap } from '../lib/favicon-map';
 import { loadRankings } from '../lib/rankings';
 import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 import { loadGithubStars, formatGithubStars } from '../lib/github-stars';
-import { sortProtocols, protocolDescriptions, type Protocol } from '../lib/protocols';
+import { sortProtocols } from '../lib/protocols';
 
 const ranking = await loadRankings();
 const linkMaps = ranking ? buildLinkMaps(ranking) : null;
@@ -292,7 +292,7 @@ const datasetJsonLd = JSON.stringify({
             {db.data.protocols?.length ? (
               <div class="query-langs">
                 {sortProtocols(db.data.protocols).slice(0, 3).map(p => (
-                  <span class="badge badge-protocol has-tooltip" aria-label={protocolDescriptions[p as Protocol]} data-microtip-position="top" role="tooltip">{p}</span>
+                  <span class="badge badge-protocol">{p}</span>
                 ))}
                 {db.data.protocols.length > 3 && (
                   <span class="badge badge-protocol has-tooltip" aria-label={sortProtocols(db.data.protocols).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.protocols.length - 3}</span>
