@@ -572,8 +572,10 @@ table thead th {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-text-secondary);
-  backdrop-filter: blur(6px);
-  background-color: var(--color-alpha-background);
+  /* Anchor the entire header band to the page wash, including columns that
+     continue scrolling horizontally past the sticky identity columns. */
+  background: var(--site-background);
+  background-attachment: fixed;
   z-index: 10;
 }
 
@@ -597,7 +599,10 @@ table tbody .sticky-rank-column,
 table tbody .sticky-name-column {
   position: sticky;
   z-index: 2;
-  background-color: var(--color-background);
+  /* Keep the page wash visible while still masking cells that scroll underneath.
+     The fixed attachment aligns every cell's gradient with the body's gradient. */
+  background: var(--site-background);
+  background-attachment: fixed;
 }
 
 table .sticky-rank-column {
@@ -612,7 +617,6 @@ table .sticky-name-column {
 table thead th.sticky-rank-column,
 table thead th.sticky-name-column {
   z-index: 11;
-  background-color: var(--color-background);
 }
 
 table thead th .header-container {
