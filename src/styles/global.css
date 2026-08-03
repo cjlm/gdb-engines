@@ -572,8 +572,10 @@ table thead th {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-text-secondary);
-  backdrop-filter: blur(6px);
-  background-color: var(--color-alpha-background);
+  /* Anchor the entire header band to the page wash, including columns that
+     continue scrolling horizontally past the sticky identity columns. */
+  background: var(--site-background);
+  background-attachment: fixed;
   z-index: 10;
 }
 
@@ -615,8 +617,6 @@ table .sticky-name-column {
 table thead th.sticky-rank-column,
 table thead th.sticky-name-column {
   z-index: 11;
-  background: var(--site-background);
-  background-attachment: fixed;
 }
 
 table thead th .header-container {
