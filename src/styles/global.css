@@ -605,6 +605,13 @@ table tbody .sticky-name-column {
   background-attachment: fixed;
 }
 
+/* A tooltip cannot escape the stacking context created by its sticky cell. Raise
+   the active Name cell above the sticky cells in later rows so they do not mask it. */
+table tbody .sticky-name-column:hover,
+table tbody .sticky-name-column:focus-within {
+  z-index: 3;
+}
+
 table .sticky-rank-column {
   left: 0;
 }
