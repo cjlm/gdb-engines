@@ -597,7 +597,10 @@ table tbody .sticky-rank-column,
 table tbody .sticky-name-column {
   position: sticky;
   z-index: 2;
-  background-color: var(--color-background);
+  /* Keep the page wash visible while still masking cells that scroll underneath.
+     The fixed attachment aligns every cell's gradient with the body's gradient. */
+  background: var(--site-background);
+  background-attachment: fixed;
 }
 
 table .sticky-rank-column {
@@ -612,7 +615,8 @@ table .sticky-name-column {
 table thead th.sticky-rank-column,
 table thead th.sticky-name-column {
   z-index: 11;
-  background-color: var(--color-background);
+  background: var(--site-background);
+  background-attachment: fixed;
 }
 
 table thead th .header-container {
