@@ -17,4 +17,49 @@ notes = "SQL/PGQ (GRAPH_TABLE) is core PostgreSQL SQL syntax executed like any o
   title = "PostgreSQL: Documentation: devel: 7.9. Graph Queries"
   quote = "The graph query part happens inside the GRAPH_TABLE construct. As far as the rest of the query is concerned, this acts like a table function in that it produces a computed table as output."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "PostgreSQL"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. SQL/PGQ is a built-in feature of core PostgreSQL, so it carries the same PostgreSQL License as the rest of the project."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/about/licence/"
+  title = "PostgreSQL: License"
+  quote = "PostgreSQL is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-03"
+confidence = "medium"
+method = "web"
+checked = "2026-08-02"
+notes = "Date the SQL/PGQ patch was committed to PostgreSQL master, not a stable release: the feature is absent from the PostgreSQL 18 release notes and CREATE PROPERTY GRAPH has no page in the current documentation, so it ships in a future major version."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/message-id/E1w247I-0000Tk-2Y%40gemulon.postgresql.org"
+  title = "pgsql-committers: SQL Property Graph Queries (SQL/PGQ)"
+  quote = "Subject: pgsql: SQL Property Graph Queries (SQL/PGQ) Date: 2026-03-16"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/docs/16/xfunc-c.html"
+  title = "PostgreSQL: Documentation: 16: 38.10. C-Language Functions"
+  quote = "Although the PostgreSQL backend is written in C, it is possible to write extensions in C++ if these guidelines are followed:"
+  verified = "matched"
+  checked = "2026-08-02"

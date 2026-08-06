@@ -17,4 +17,49 @@ notes = "ByteDance-internal system; the VLDB paper describes Gremlin as the quer
   title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
   quote = "ByteGraph uses Gremlin [7] as the query language as most of the applications built on ByteGraph are based on navigational queries."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; ByteGraph has no public repository and the authors describe it as not yet open source as of the 2022 paper."
+
+  [[claims.sources]]
+  url = "https://vldb.org/pvldb/vol15/p3306-li.pdf"
+  title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
+  quote = "We discuss some implementation details of ByteGraph in this Section. We will also open source ByteGraph in due course."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018"
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from the current value of 2022, which is the VLDB paper's publication year, not first availability. ByteDance's own engineering blog dates the start of ByteGraph's development to August 2018; since ByteGraph is an internal system with no public release, this is the best available anchor for when it came into existence, but it is a development-start date rather than confirmed production/public availability."
+
+  [[claims.sources]]
+  url = "https://developer.volcengine.com/articles/7316457383340245002"
+  title = "字节跳动自研万亿级图数据库 & 图计算实践"
+  quote = "我们在 18 年 8 月份，开始从第一行代码开始踏上图数据库的漫漫征程，从解决一个最核心的抖音社交关系问题入手"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value, though ByteGraph is split across two layers: ByteDance's engineering blog states the stateless query layer (bgdb) is written in Go, while the storage/transaction engine (bgkv), where performance and memory efficiency are most critical, is written in C++."
+
+  [[claims.sources]]
+  url = "https://developer.volcengine.com/articles/7316457383340245002"
+  title = "字节跳动自研万亿级图数据库 & 图计算实践"
+  quote = "从上述描述可以看出，bgkv 的性能和内存使用效率是非常关键的，因此 采用 C++ 编写。"
+  verified = "matched"
+  checked = "2026-08-02"

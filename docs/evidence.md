@@ -1,10 +1,11 @@
 # Evidence
 
 Catalogue values used to be unsourced assertions. This is the layer that fixes that: every value
-collected under it carries the pages it came from, and every one of those citations has been
-mechanically confirmed before it ships.
+collected under it carries the pages it came from, every citation is mechanically checked, and only
+confirmed sources are published.
 
-`protocols` is the first field collected this way. The rest of the catalogue is not yet covered.
+`protocols`, `license`, `released` and `implementation_language` are covered across the catalogue.
+Feature scores are not yet covered.
 
 ## Where things live
 
@@ -13,9 +14,12 @@ mechanically confirmed before it ships.
 | `src/content/databases/<slug>.toml` | the catalogue entry — the values themselves |
 | `src/content/evidence/<slug>.toml` | the sources behind particular values |
 | `src/lib/protocols.ts` | the closed protocol vocabulary |
-| `scripts/import-research.mjs` | turns a research pass into entries + evidence |
+| `scripts/collect-github-facts.mjs` | what the GitHub API can settle without a model |
+| `scripts/import-research.mjs` | turns a protocols research pass into entries + evidence |
+| `scripts/import-claims.mjs` | same, for multi-field passes (licence, released, language) |
 | `scripts/verify-quotes.mjs` | refetches cited pages and confirms the quotes |
 | `scripts/check-evidence.mjs` | build gate: values and evidence must agree |
+| `scripts/check-links.mjs` | report: outbound links that are broken or have moved |
 
 Evidence sits beside the entry rather than inside it so the catalogue TOML stays readable and so a
 value and its provenance can be reviewed as separate diffs.
@@ -90,8 +94,11 @@ before a quote is called fabricated — a false accusation is worse than a misse
 - every quote for a claim failed verification.
 
 Unverified and unreachable quotes warn rather than fail, so a source going offline doesn't block a
-release. Re-checking is on demand: run `npm run verify-quotes` locally, or the **Verify evidence**
-workflow from the Actions tab. Nothing re-checks on a schedule — an unchecked or rotted citation
+release. Re-checking is on demand: run `GITHUB_TOKEN=$(gh auth token) npm run verify-quotes`
+locally, or the **Verify evidence** workflow from the Actions tab. The token matters: licence
+claims cite `api.github.com`, which allows 60 unauthenticated requests an hour — fewer than the
+catalogue has repositories, so without one most GitHub-cited claims report as unreachable and it
+looks like mass link rot. Nothing re-checks on a schedule — an unchecked or rotted citation
 fails safe, since only `matched` quotes render.
 
 ## Running a collection pass
@@ -118,9 +125,23 @@ fails safe, since only `matched` quotes render.
 7. **Read the `neither` rulings yourself.** They are where both passes missed something. MarkLogic
    turned out to speak five client protocols where each pass had found three different ones.
 
+## Link rot is a separate check
+
+`npm run check-links` fetches every `url` and `github_url` in the catalogue and reports what's
+broken or redirecting off-domain. It is report-only and never gates a build — external sites time
+out for reasons that have nothing to do with this repository.
+
+Off-domain redirects are worth reading as more than link maintenance. `altair.com` answering as
+`siemens.com`, or `ontotext.com` as `graphwise.ai`, is usually the first sign a product changed
+hands, and the `vendor` field is stale before anyone notices. Both of those were found this way.
+
+For a product whose vendor has gone, an Internet Archive snapshot is a better `url` than a dead
+domain — a reader can still see what the thing was.
+
 ## Known gaps
 
-- Four citations remain unverifiable: pages that refuse automated fetches and have no archive
-  snapshot.
-- Only `protocols` is covered. Licence, release date, implementation language and the feature
-  scores are still unsourced.
+- A small number of low-confidence claims have no source because the research found no reliable
+  answer. Their notes record the gap instead of presenting a guess as evidence.
+- Some cited pages refuse automated fetches or have since moved. The verifier records those sources
+  as unreachable, and they are not published unless an archived snapshot contains the quote.
+- Feature scores are still unsourced.

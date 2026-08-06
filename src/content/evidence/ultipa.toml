@@ -17,18 +17,55 @@ notes = "Current v6 GQLDB standalone server mode is documented by the vendor as 
   title = "Quick Start - Ultipa Drivers"
   quote = "The GQLDB Node.js driver is a gRPC-based client library for interacting with GQLDB graph database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/ultipa/ultipa-go-sdk"
   title = "ultipa/ultipa-go-sdk"
   quote = "This sdk depends on Protocol Buffer and grpc, so we need to compile the proto file first:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://www.ultipa.com/products/gqldb"
   title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
   quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value; no source repository or open licence exists, and Ultipa's own docs describe a closed, per-deployment commercial license (server + algo licenses issued on request)."
+
+  [[claims.sources]]
+  url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
+  title = "License - Operations & Maintenance"
+  quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2019"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No specific first-release announcement found; Ultipa's own site schema.org markup and its 2021 copyright notice both give 2019 as the company's founding year, corroborating the current value."
+
+  [[claims.sources]]
+  url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
+  title = "License - Operations & Maintenance"
+  quote = "\"foundingDate\":\"2019\""
+  verified = "mismatch"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "http://web.archive.org/web/20211129022106/https://www.ultipa.com/about"
+  title = "About - Ultipa"
+  quote = "Copyright © 2019-2021 Ultipa Inc. – All Rights Reserved"
+  verified = "matched"
+  checked = "2026-08-02"

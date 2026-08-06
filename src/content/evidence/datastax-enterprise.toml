@@ -17,18 +17,63 @@ notes = "Both the DSE driver's execute_graph() and, in the current DSE 6.9 relea
   title = "DataStax Enterprise Python Driver - DSE Graph Queries"
   quote = "The DSE driver executes graph queries over the Cassandra native protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.datastax.com/en/developer/java-driver-dse/1.4/manual/native_protocol/index.html"
   title = "Java Driver for DataStax Enterprise - Native protocol"
   quote = "The native protocol defines the format of the binary messages exchanged between the driver and DSE over TCP."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.datastax.com/en/dse/6.9/managing/tools/dse/gremlin-console.html"
   title = "dse gremlin-console | DataStax Enterprise | DataStax Docs"
   quote = "Port number of the DSE database port, default is 9042."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "DataStax Enterprise is distributed under a commercial subscription agreement, not an open source license; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://www.dlt.com/sites/default/files/documents/2021-03/DataStax-EULA.pdf"
+  title = "Enterprise Agreement"
+  quote = "The Software is licensed, not sold. As between the parties, all intellectual property rights in the Software shall remain with DataStax or its licensors."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016-04"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from the catalogue's year-only '2016' to month precision: DataStax Enterprise Graph, the graph capability this entry covers, launched April 12, 2016 after beta testing with 10 customers."
+
+  [[claims.sources]]
+  url = "https://techcrunch.com/2016/04/12/datastax-adds-graph-databases-to-enterprise-cassandra-product-set/"
+  title = "DataStax adds graph databases to enterprise Cassandra product set | TechCrunch"
+  quote = "it was clear it wanted to add graph database functionality to its DataStax Enterprise product, and today it achieved that goal when it announced the release of DataStax Enterprise Graph."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "DataStax Enterprise nodes run as Java virtual machines on top of Apache Cassandra, which is itself a Java codebase; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://docs.datastax.com/en/dse/6.9/architecture/database-architecture/architecture-introduction.html"
+  title = "Architecture in brief | DataStax Enterprise | DataStax Docs"
+  quote = "Nodes store your data. They are the basic database infrastructure component. Technically, they are Java virtual machines running an instance of the DSE software."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,39 +17,84 @@ notes = "MarkLogic ships five distinct client channels, confirmed independently:
   title = "Client API — MarkLogic 12 Product Documentation"
   quote = "The Client REST API is a REST-based API for creating applications that with document manipulation and search capabilities."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.marklogic.com/REST/GET/v1/graphs/sparql"
   title = "GET /v1/graphs/sparql — MarkLogic 12 Product Documentation"
   quote = "This interface implements the GET method of the W3C SPARQL Protocol; for details, see http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321#query-operation."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://developer.marklogic.com/code/jdbc/"
   title = "MarkLogic JDBC Driver"
   quote = "The server implements a database native communication protocol that can efficiently support both ODBC and JDBC clients."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.progress.com/bundle/marklogic-server-administrate-12/page/topics/odbc-servers/creating-a-new-odbc-server.html"
   title = "Creating a New ODBC Server"
   quote = "The default PostgreSQL listening socket port is 5432."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.marklogic.com/9.0/guide/admin/odbc"
   title = "ODBC Servers (Administrator's Guide) — MarkLogic 9 Product Documentation"
   quote = "an ODBC server connects with a PostgreSQL front end on the client by means of the PostgreSQL message protocol"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.progress.com/bundle/marklogic-server-administrate-12/page/topics/xdbc-servers.html"
   title = "XDBC Servers"
   quote = "Both XCC and XDBC applications use the same wire protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value. MarkLogic is distributed as binary executable software under a commercial license, with no source code disclosure."
+
+  [[claims.sources]]
+  url = "https://developer.marklogic.com/eula/"
+  title = "EULA - MarkLogic Community"
+  quote = "Licensor grants to You a limited, non-transferable, non-exclusive, internal use license to install, access, start and use Licensor software in binary executable form"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2001"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value. MarkLogic's first product, Cerisent XQE 1, shipped in 2001 under the company's original name, Cerisent."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/MarkLogic_Server"
+  title = "MarkLogic Server"
+  quote = "2001 – Cerisent XQE 1: ACID transactions, Full-text search, XML Storage, XQuery, Role-based security"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value. MarkLogic's own technical documentation attributes its performance to the core engine's native C++ code; Wikipedia's infobox additionally lists C and JavaScript, but JavaScript there refers to the embedded V8 engine used for user application code, not the storage/query kernel."
+
+  [[claims.sources]]
+  url = "https://www.progress.com/docs/default-source/marklogic-docs/inside-marklogic-server.pdf"
+  title = "Inside MarkLogic Server"
+  quote = "Speed and scale are an obsession for MarkLogic. They're not features you can add after the fact; they have to be part of the core design. And they are, from the highly optimized native C++ code to the algorithms we'll discuss later."
+  verified = "matched"
+  checked = "2026-08-02"

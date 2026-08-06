@@ -17,18 +17,77 @@ notes = "Gremlin API is WebSocket (confirmed by the 101-upgrade error path in th
   title = "Frequently asked questions - Azure Cosmos DB for Apache Gremlin | Microsoft Learn"
   quote = "A Gremlin connection is made through a WebSocket connection."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://learn.microsoft.com/en-us/rest/api/cosmos-db/"
   title = "Azure Cosmos DB REST API Reference"
   quote = "The Azure Cosmos DB REST API provides programmatic access to Azure Cosmos DB resources to create, query, and delete databases, document collections, and documents."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://learn.microsoft.com/en-us/azure/cosmos-db/sdk-connection-modes"
   title = "SQL SDK Connectivity Modes - Azure Cosmos DB | Microsoft Learn"
   quote = "Additionally, it offers an efficient TCP protocol, which is also RESTful in its communication model and uses TLS for initial authentication and encrypting traffic, called direct mode."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value. Cosmos DB is a closed-source, commercially licensed Microsoft cloud service; no source or license file is published."
+
+  [[claims.sources]]
+  url = "https://azure.microsoft.com/en-us/products/cosmos-db"
+  title = "Azure Cosmos DB | Microsoft Azure"
+  quote = "Azure Cosmos DB is a fully managed, cloud-native NoSQL database designed to deliver ultra-low latency and elastic scalability at a global scale."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/cosmos-db/revisions/10"
+  title = "Cosmos DB · Database of Databases"
+  quote = "Written in C++ Supported Languages C#, Go, Java, JavaScript, Python Operating System Windows License Proprietary"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2014-08"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from 2017-05. That date is Cosmos DB's rebrand/GA, but Microsoft's own account is that the same underlying engine (\"Project Florence\", 2010) first reached the public as Azure DocumentDB, in preview, in August 2014; DocumentDB became generally available in 2015 and was renamed/expanded into Cosmos DB in May 2017. Treated as a rename per the brief's guidance rather than a new product."
+
+  [[claims.sources]]
+  url = "https://weblogs.asp.net/scottgu/azure-new-documentdb-nosql-service-new-search-service-new-sql-alwayson-vm-template-and-more"
+  title = "Azure: New DocumentDB NoSQL Service, New Search Service, New SQL AlwaysOn VM Template, and more"
+  quote = "I’m excited to announce the preview of our new DocumentDB service - a NoSQL document database service designed for scalable and high performance modern applications."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://azure.microsoft.com/en-us/blog/a-technical-overview-of-azure-cosmos-db/"
+  title = "A technical overview of Azure Cosmos DB"
+  quote = "Azure Cosmos DB started as “Project Florence” in late 2010, which eventually grew into Azure DocumentDB before expanding and blossoming into its current form."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No primary Microsoft source discloses the implementation language of this closed-source service. Only a third-party database encyclopedia was found; treat as a lead rather than a confirmed fact."
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/cosmos-db/revisions/10"
+  title = "Cosmos DB · Database of Databases"
+  quote = "Written in C++ Supported Languages C#, Go, Java, JavaScript, Python Operating System Windows License Proprietary"
+  verified = "matched"
+  checked = "2026-08-02"

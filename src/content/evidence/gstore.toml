@@ -17,11 +17,71 @@ notes = "Three parallel interface services: bin/ghttp (HTTP), bin/grpc (gRPC), b
   title = "docs/en-us/FAQ.md"
   quote = "gStore currently provides three interface modes: HTTP, RPC, and Socket, corresponding respectively to the three services: bin/ghttp, bin/grpc, and bin/gserver."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://mod.icst.pku.edu.cn/english/gstore_1/mannual/http_api_en/index.htm"
   title = "HTTP API"
   quote = "We provide HTTP api(suggested) and socket api, corresponding to ghttp and gserver respectively."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/pkumod/gStore/license"
+  title = "GitHub licence API — pkumod/gStore"
+  quote = "\"spdx_id\": \"BSD-3-Clause\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2015"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Project's own chronology file confirms open-sourcing on GitHub in 2015, matching the current value. A later gstore.cn history page vaguely credits 2017, but that entry refers to the v0.5 milestone, not the first release."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/pkumod/gStore/1.4/docs/en-us/CHRONOLOGY.md"
+  title = "CHRONOLOGY.md"
+  quote = "gStore code is officially open source on Github, version 0.1"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Stated directly in the project README."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/pkumod/gStore/master/README.md"
+  title = "pkumod/gStore README"
+  quote = "This project is written in C++, with the help of some libraries such as readline, antlr, and so on."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://mod.icst.pku.edu.cn/english/gstore_1/introduction_1/index.htm"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "en.gstore.cn and www.gstore.cn are both serving an expired TLS certificate right now, which is what breaks the connection for most clients; the content itself is unchanged. The Peking University Data Management Lab's own page describes the same project and loads with a valid certificate."
+
+  [[claims.sources]]
+  url = "https://mod.icst.pku.edu.cn/english/gstore_1/introduction_1/index.htm"
+  title = "北京大学王选所数据管理实验室"
+  quote = "Different from the traditional relational database-based knowledge graph data management, gStore is a native RDF data management system based on the Native Graph Model"
+  verified = "matched"
+  checked = "2026-08-02"

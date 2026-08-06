@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/bighorn.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "bighorn"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Kineviz/bighorn/license"
+  title = "GitHub licence API — Kineviz/bighorn"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value; Bighorn is Kineviz's fork of the archived KuzuDB project, created in October 2025 after Kuzu Inc. abandoned active development."
+
+  [[claims.sources]]
+  url = "https://www.theregister.com/software/2025/10/14/kuzudb-graph-database-abandoned-community-mulls-options/1142229"
+  title = "KuzuDB graph database abandoned, community mulls options"
+  quote = "As an open source project, Kuzu can be forked, and one company, Kineviz, has already done so, under the name bighorn."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms the current value; Bighorn inherits Kuzu's C++ codebase, and GitHub reports C++ as the repository's primary language."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Kineviz/bighorn"
+  title = "Kineviz/bighorn (GitHub API repository object)"
+  quote = "\"watchers_count\": 132,\n  \"language\": \"C++\",\n  \"has_issues\": false,"
+  verified = "matched"
+  checked = "2026-08-02"

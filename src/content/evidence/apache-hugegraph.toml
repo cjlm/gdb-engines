@@ -17,18 +17,63 @@ notes = "HugeGraphServer's shipped gremlin-server.yaml sets channelizer to Tinke
   title = "Server Startup Guide | HugeGraph"
   quote = "The GremlinServer supports two communication modes with clients: WebSocket and HTTP (default)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://hugegraph.apache.org/docs/clients/restful-api/gremlin/"
   title = "Gremlin API - Apache HugeGraph"
   quote = "Gremlin REST API: Execute Gremlin graph traversal language scripts via HTTP interface."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://hugegraph.apache.org/docs/quickstart/hugegraph-server/"
   title = "HugeGraph-Server Quick Start | HugeGraph"
   quote = "The RESTful API of HugeGraphServer includes various types of resources, typically including graph, schema, gremlin, traverser and task."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018-08"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Baidu Security's own announcement of HugeGraph's open sourcing is dated August 3, 2018, one month after the GitHub repository was created (2018-07-18); matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://shadu.baidu.com/article/195"
+  title = "百度安全开源大规模图数据库HugeGraph - 百度安全社区"
+  quote = "今天我们很高兴的宣布HugeGraph开源，更好的为网络安全、机器学习等社区服务。"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "HugeGraph-Server requires Java 11 to build and run, and its source tree (e.g. org.apache.hugegraph packages) is Java; GitHub's language stats confirm Java as dominant. Matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/docs/quickstart/hugegraph-server/"
+  title = "HugeGraph-Server Quick Start | HugeGraph"
+  quote = "You need to use Java 11 to run HugeGraph-Server (compatible with Java 8 before 1.5.0, but not recommended to use), and configure by yourself."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/incubator-hugegraph/license"
+  title = "GitHub licence API — apache/incubator-hugegraph"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

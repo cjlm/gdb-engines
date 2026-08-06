@@ -17,11 +17,56 @@ notes = "Fuseki exposes the SPARQL 1.1 Query/Update and Graph Store protocols ov
   title = "Apache Jena - Apache Jena Fuseki"
   quote = "Fuseki provides the SPARQL 1.1 protocols for query and update as well as the SPARQL Graph Store protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://jena.apache.org/documentation/fuseki2/fuseki-server-protocol.html"
   title = "Apache Jena - Fuseki HTTP Administration Protocol"
   quote = "This page describes the HTTP Protocol used to control an Fuseki server via its administrative interface."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-10"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Fuseki's first preview release predates the current value's 2011-12 date, which reflects Jena's Apache incubation announcement rather than Fuseki's own first release. Corrected."
+
+  [[claims.sources]]
+  url = "https://www.lotico.com/index.php/Apache_Jena"
+  title = "Apache Jena"
+  quote = "The first SPARQL Server called Fuseki was mentioned on 12 October 2010 (and with a reference on 9 October 2010 on jena-devel@lists.sourceforge.net) as a preview release for a SPARQL 1.1 server."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Fuseki ships as a module of the Java-based Jena framework; confirms current value."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/semantic-web/2013Sep/0040.html"
+  title = "[ANNOUNCE] Apache Jena 2.11.0 Released"
+  quote = "Apache Jena is Java-based framework for building Semantic Web and Linked Data applications with RDF and SPARQL."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/jena/license"
+  title = "GitHub licence API — apache/jena"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

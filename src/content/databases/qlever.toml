@@ -9,6 +9,6 @@ implementation_language = "C++"
 type = "RDF"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
-released = "2017"
+released = "2017-11"
 category = "Emerging"
 gdotv_support = true

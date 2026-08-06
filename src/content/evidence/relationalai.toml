@@ -17,11 +17,63 @@ notes = "Delivered as a Snowflake Native App; the PyRel client connects over HTT
   title = "Set Up Direct Access"
   quote = "Clients using Direct Access connect securely to the RAI Native App’s ingress endpoint over the public internet."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.relational.ai/api/python/v1.5/client/"
   title = "client | RelationalAI Docs"
   quote = "The root clients lazily create transports (SQL/HTTP) on first use."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; RelationalAI is a hosted commercial service with no open-source engine repository, only client SDKs."
+
+  [[claims.sources]]
+  url = "https://www.globenewswire.com/news-release/2023/06/27/2695745/0/en/RelationalAI-Unveils-the-AI-Coprocessor-and-Runs-Securely-in-the-Snowflake-Data-Cloud-with-New-Snowpark-Container-Services.html"
+  title = "RelationalAI Unveils the AI Coprocessor and Runs Securely in the Snowflake Data Cloud with New Snowpark Container Services"
+  quote = "RelationalAI has brought to market the industry's first AI coprocessor, based on relational knowledge graphs, enabling teams to efficiently build intelligent apps"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2022"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from current value 2021: RelationalAI's own year-in-review post states the company came out of stealth in 2022, which is the first point the product was publicly known to exist; 2021 saw only a JuliaCon talk and Series A, not public availability."
+
+  [[claims.sources]]
+  url = "https://www.relational.ai/post/relationalai-year-in-review-2022"
+  title = "RelationalAI Year in Review, 2022"
+  quote = "It was a great year for us --- we came out of stealth, grew our team, participated in fantastic conferences and events"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Julia"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; the engine (RKGS) and Rel language are implemented in Julia, distinct from the client SDKs (Python, Java, Go, JavaScript) hosted in the RelationalAI GitHub org."
+
+  [[claims.sources]]
+  url = "https://www.relational.ai/post/relationalai-julia"
+  title = "RelationalAI & Julia – RelationalAI"
+  quote = "highlights how we've used Julia to develop our RKGS and modeling language Rel"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://news.ycombinator.com/item?id=24736328"
+  title = "We use Julia in production at RelationalAI | Hacker News"
+  quote = "our cloud hosted next generation knowledge graph management system is a highly performant database and query optimization engine, and it's written 100% in Julia"
+  verified = "unreachable"
+  checked = "2026-08-02"

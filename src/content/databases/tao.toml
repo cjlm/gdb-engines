@@ -8,7 +8,7 @@ implementation_language = "C++"
 type = "Other"
 query_languages = ["TAO API"]
 protocols = ["Unknown"]
-released = "2012"
+released = "2012-05"
 category = "Established"
 gdotv_support = false
 

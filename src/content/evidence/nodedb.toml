@@ -17,32 +17,84 @@ notes = "Own docs confirm five vocabulary-matching wire protocols on distinct po
   title = "pgwire (PostgreSQL Protocol) - NodeDB"
   quote = "NodeDB speaks the PostgreSQL wire protocol on port 6432. Any tool that speaks Postgres works."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://nodedb.dev/docs/connectivity/http-api"
   title = "HTTP API - NodeDB"
   quote = "REST API on port 6480 for web clients and services."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/NodeDB-Lab/nodedb/blob/main/docs/real-time.md"
   title = "docs/real-time.md at main · NodeDB-Lab/nodedb"
   quote = "JSON-RPC over WebSocket for SQL execution, live query delivery, and session management:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://nodedb.dev/docs/connectivity/resp"
   title = "RESP (Redis Protocol) - NodeDB"
   quote = "NodeDB speaks RESP2 for KV operations. Existing Redis clients work out of the box."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://nodedb.dev/docs/reference/wire-protocol-specs"
   title = "Wire Protocol Specs - NodeDB"
   quote = "Binary MessagePack over TCP (port 6433). Two message types:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. This is an open-core split: the server binary and clustering/replication crates are BUSL-1.1 (converting to Apache-2.0 on 2030-05-01), while the engine libraries and NodeDB-Lite are Apache-2.0."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/NodeDB-Lab/nodedb/main/README.md"
+  title = "NodeDB-Lab/nodedb README"
+  quote = "The server — [Business Source License 1.1](LICENSE).** Only four crates:\n `nodedb` (the server binary), `nodedb-bridge`, `nodedb-raft`, `nodedb-cluster` —\n the three-plane runtime and distribution layer."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-04"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Corrects current value (2026-03, which is the repo's creation date, not a release). The first tagged GitHub release, v0.0.0, was published 2026-04-12."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/NodeDB-Lab/nodedb/releases?per_page=100"
+  title = "NodeDB-Lab/nodedb releases (GitHub API)"
+  quote = "\"tag_name\":\"v0.0.0\",\"target_commitish\":\"main\",\"name\":\"NodeDB 0.0.0\",\"draft\":false,\"immutable\":false,\"prerelease\":false,\"created_at\":\"2026-04-12T02:36:02Z\",\"updated_at\":\"2026-04-12T03:26:32Z\",\"published_at\":\"2026-04-12T03:26:32Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value. GitHub reports the repo as 99.9% Rust, and the project is built and installed via cargo."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/NodeDB-Lab/nodedb/languages"
+  title = "NodeDB-Lab/nodedb languages (GitHub API)"
+  quote = "\"Rust\":36403613,\"Python\":72927,\"Shell\":14836,\"Dockerfile\":3339"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/NodeDB-Lab/nodedb/main/README.md"
+  title = "NodeDB-Lab/nodedb README"
+  quote = "git clone https://github.com/NodeDB-Lab/nodedb.git\ncd nodedb\ncargo build --release\ncargo install cargo-nextest --locked  # one-time\ncargo nextest run --all-features"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,4 +17,49 @@ notes = "PostgreSQL extension; clients connect over the standard Postgres wire p
   title = "Apache AGE"
   quote = "PostgreSQL, a popular relational database, can also function as a graph database through the use of an extension called Apache AGE."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-07"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects the catalogue's '2021-04'. The PostgreSQL.org announcement shows AGE (successor to AgensGraph) already publicly downloadable as v0.2.0 in July 2020; AGE actually entered the Apache Incubator in April 2020, a year earlier than the catalogue's date."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/about/news/announcing-age-a-multi-model-graph-database-extension-for-postgresql-2050/"
+  title = "PostgreSQL: Announcing AGE, a multi-model graph database extension for PostgreSQL"
+  quote = "AGE, a multi-model graph database extension for PostgreSQL has been announced. AGE is the successor to AgensGraph."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value."
+
+  [[claims.sources]]
+  url = "https://github.com/apache/age/discussions/1631"
+  title = "Is age a trusted extension? · apache/age · Discussion #1631 · GitHub"
+  quote = "AGE is not a Trusted Language Extension as it is written in C."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/age/license"
+  title = "GitHub licence API — apache/age"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

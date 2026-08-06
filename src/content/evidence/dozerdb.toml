@@ -17,11 +17,56 @@ notes = "DozerDB is Neo4j Community compiled from source with the plugin dropped
   title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
   quote = "The packaged distribution is Neo4j Community compiled from source with the DozerDB plugin already in lib/ and the classpath configured, with nothing extra to wire up."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://dozerdb.org/"
   title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
   quote = "Open http://localhost:7474 and log in with neo4j/neo4j, and you'll be prompted to set a new password."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/DozerDB/dozerdb-plugin/license"
+  title = "GitHub licence API — DozerDB/dozerdb-plugin"
+  quote = "\"spdx_id\": \"GPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2023"
+confidence = "medium"
+method = "api"
+checked = "2026-08-02"
+notes = "No tagged releases are published through the GitHub API, so this rests on the repository appearing publicly in July 2023 — a floor for first availability rather than a release date."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/DozerDB/dozerdb-plugin"
+  title = "GitHub repository API — DozerDB/dozerdb-plugin"
+  quote = "\"created_at\":\"2023-07-29T01:06:42Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "It is a Neo4j plugin built as a Java uber-jar; matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/DozerDB/dozerdb-plugin"
+  title = "DozerDB/dozerdb-plugin"
+  quote = "Please ensure you use java 17 or above when working on the plugin."
+  verified = "matched"
+  checked = "2026-08-02"

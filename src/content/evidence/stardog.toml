@@ -17,18 +17,63 @@ notes = "SNARL, Stardog's proprietary RPC-over-Protobuf wire protocol, was disab
   title = "HTTP API | Stardog Documentation Latest"
   quote = "Stardog supports the SPARQL 1.1 HTTP Protocol; the SPARQL 1.1 Graph Store HTTP Protocol; and the Stardog HTTP Protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.stardog.com/developing/http-api"
   title = "HTTP API | Stardog Documentation Latest"
   quote = "In addition to the support for the standard protocols such as SPARQL 1.1, the Stardog HTTP protocol adds additional resource representations and capabilities."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://community.stardog.com/t/error-trying-to-begin-transaction-while-trying-gremlin-on-stardog/322"
   title = "Error trying to begin Transaction while trying gremlin on Stardog - Support"
   quote = "The SNARL protocol is disabled in 4.2.4 and removed in 5.0."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Stardog's software license agreement licenses, rather than sells, the software under commercial terms; confirms current value."
+
+  [[claims.sources]]
+  url = "https://www.stardog.com/softwarelicenseagreement/"
+  title = "Software License Agreement | Stardog"
+  quote = "The Stardog software, modifications, enhancements, documentation, and license keys provided to Customer (Software) are licensed and are not sold."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2011"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Clark & Parsia opened invite-only Stardog beta access in January 2011 and were still calling it 'forthcoming' at a March 2011 event, ahead of a May 2011 alpha and June 2012 1.0; confirms the current year-only value, though the exact month of first public availability is unclear."
+
+  [[claims.sources]]
+  url = "https://community.stardog.com/t/invitation-to-stardog-beta/141"
+  title = "Invitation to Stardog Beta - Stardog Blog Discussion - Stardog Community"
+  quote = "Stardog is a fast, lightweight RDF database. Today we’re announcing limited access to our beta testing program, in preparation for the 1.0 release."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Stardog's creators (Clark & Parsia) describe it as a lightweight, pure Java implementation; confirms current value."
+
+  [[claims.sources]]
+  url = "https://www.developerfusion.com/event/114925/stardog/"
+  title = "Stardog - Java event - developer Fusion"
+  quote = "Kendall Clark will present Stardog, the forthcoming commercial RDF database from C&P, featuring full OWL2 reasoning capabilities and fast query performance in a lightweight, pure Java implementation."
+  verified = "matched"
+  checked = "2026-08-02"

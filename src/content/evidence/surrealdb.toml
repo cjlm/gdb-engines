@@ -17,18 +17,63 @@ notes = "GraphQL, previously behind an experimental flag, became stable and enab
   title = "RPC protocol | SurrealDB Docs"
   quote = "It is used internally by our client SDKs, and supports both HTTP and WebSocket based communication."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://surrealdb.com/docs/reference/rest-api/http-protocol"
   title = "HTTP protocol"
   quote = "The GraphQL endpoint enables use of GraphQL queries to interact with your data."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://surrealdb.com/blog/introducing-surrealdb-3-0--the-future-of-ai-agent-memory"
   title = "Introducing SurrealDB 3.0 - the future of AI agent memory | Blog | SurrealDB"
   quote = "Previously gated behind an experimental flag, the GraphQL interface has undergone a comprehensive overhaul to meet real-world requirements"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrects the catalogue's 'BSL-1.1' (the SPDX id for the unrelated Boost license). The repo's LICENSE file is the MariaDB-originated Business Source License 1.1, whose correct SPDX identifier is BUSL-1.1."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/surrealdb/surrealdb/main/LICENSE"
+  title = "LICENSE - surrealdb/surrealdb"
+  quote = "The Business Source License (this document, or the \"License\") is not an Open Source license. However, the Licensed Work will eventually be made available under an Open Source License, as stated in this License."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2022-07"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refines the catalogue's year-only '2022'. SurrealDB's 2021 beta was a private release to select developers and organisations; first public availability was the open beta announced July 20, 2022."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/blog/dreaming-of-something-better"
+  title = "Dreaming of something better | Blog | SurrealDB"
+  quote = "Today we are very, very excited to announce that SurrealDB is now in open beta to the world - SurrealDB 1.0-beta!"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/blog/dreaming-of-something-better"
+  title = "Dreaming of something better | Blog | SurrealDB"
+  quote = "the decision was made to re-build using Rust, in order to enforce data-sharing guarantees"
+  verified = "matched"
+  checked = "2026-08-02"

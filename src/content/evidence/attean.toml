@@ -16,13 +16,57 @@ notes = "Core Attean is a Perl library used embedded; SPARQL 1.1 Protocol server
   url = "https://metacpan.org/pod/Attean"
   title = "Attean - A Semantic Web Framework - metacpan.org"
   quote = "Attean provides APIs for parsing, storing, querying, and serializing Semantic Web (RDF and SPARQL) data."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20260507123725/https://metacpan.org/pod/Attean"
-  checked = "2026-08-01"
+  verified = "matched"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://hexmos.com/freedevtools/man-pages/library-functions/string-manipulation/atteanx-endpoint/"
   title = "AtteanX::Endpoint - SPARQL 1.1 Protocol Endpoint - Manual Page | Free DevTools by Hexmos"
   quote = "The AtteanX::Endpoint class implements a PSGI SPARQL Protocol endpoint."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-1.0-or-later OR Artistic-1.0-Perl"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrects the current value of Artistic-2.0. Attean ships no separate LICENSE file; its README/POD state it is released 'under the same terms as Perl itself,' which is the standard Perl 5 dual license, expressed in SPDX as GPL-1.0-or-later OR Artistic-1.0-Perl (not Artistic-2.0)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kasei/attean/master/README.md"
+  title = "kasei/attean README.md (raw)"
+  quote = "This program is free software; you can redistribute it and/or modify it under\nthe same terms as Perl itself."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2014-09"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value; the CPAN Changes file records version 0.001 as the initial release on 2014-09-27."
+
+  [[claims.sources]]
+  url = "https://fastapi.metacpan.org/source/GWILLIAMS/Attean-0.039/Changes"
+  title = "Attean Changes file (CPAN source)"
+  quote = "0.001  2014-09-27\n\n - (Addition) Initial release."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Perl"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms the current value; Attean is described as a Perl framework and GitHub reports Perl as the repository's primary language."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/kasei/attean"
+  title = "kasei/attean (GitHub API repository object)"
+  quote = "\"watchers_count\": 19,\n  \"language\": \"Perl\",\n  \"has_issues\": true,"
+  verified = "matched"
+  checked = "2026-08-02"

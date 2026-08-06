@@ -17,11 +17,42 @@ notes = "openCypher is served over the Bolt protocol (port 7687), Gremlin over T
   title = "Querying using openCypher - PuppyGraph Docs"
   quote = "PuppyGraph supports connecting and executing queries through the Bolt protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.puppygraph.com/ai/ai-integrations/"
   title = "AI Integrations - PuppyGraph Docs"
   quote = "The examples below use PuppyGraph's default local ports: 8081 for the Web UI and REST API, 7687 for openCypher over Bolt, and 8182 for Gremlin WebSocket."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed by PuppyGraph's own Master Subscription Agreement, which reserves all IP rights in the Service to the company."
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/msa"
+  title = "PuppyQuery Master Subscription Agreement"
+  quote = "The Service and Company Technology are the property of Company and its licensors, and is protected by copyright, patent, trade secret and other intellectual property laws."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2024-03"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value: PuppyGraph's public launch announcement is dated March 14, 2024."
+
+  [[claims.sources]]
+  url = "https://www.businesswire.com/news/home/20240314998086/en/PuppyGraph-Launches-First-and-Only-Graph-Query-Engine"
+  title = "PuppyGraph Launches First and Only Graph Query Engine"
+  quote = "PuppyGraph, a pioneering force in graph analysis, announced today that it has emerged from stealth mode with seed funding and launched the first and only graph query engine, transforming traditional data storage into dynamic graph engines."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20240314145914/https://www.businesswire.com/news/home/20240314998086/en/PuppyGraph-Launches-First-and-Only-Graph-Query-Engine"
+  checked = "2026-08-02"

@@ -17,4 +17,49 @@ notes = "Federated GQL engine fronted by its own Bolt server on port 7688 (disti
   title = "MemGQL"
   quote = "Clients connect via the Bolt protocol (port 7688) using any Bolt-compatible driver."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; MemGQL Community is distributed as a free binary without an open-source licence, and the Enterprise edition is under Memgraph's own commercial licence, so neither edition carries an OSI/SPDX licence."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/memgraph-zero/memgql/licensing"
+  title = "Licensing"
+  quote = "MemGQL Enterprise is licensed under the Memgraph Enterprise License (MEL). If you are interested in MemGQL Enterprise, please contact us."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-03"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the changelog's earliest entry is v0.1.0 on March 29th, 2026. Note the memgraph.com/memgraph-zero landing page separately states 'Launched May 2025', which conflicts with the changelog and could not be reconciled from available sources, so the changelog date is preferred as the more concrete, versioned release record."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/memgraph/documentation/main/pages/memgraph-zero/memgql/changelog.mdx"
+  title = "MemGQL Changelog"
+  quote = "## MemGQL v0.1.0 - March 29th, 2026\n\n- GQL parser with ISO/IEC 39075 standard support including quantified path patterns"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "No current value was set. The memgraph.com/memgraph-zero page states MemGQL is 'Built in Rust', and its third-party attributions list is entirely Rust crates (antlr4rust, tokio, serde, etc.), including one described explicitly as a Rust parser runtime."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/memgraph/documentation/main/pages/memgraph-zero/memgql/licensing.mdx"
+  title = "Licensing"
+  quote = "| [antlr4rust](https://crates.io/crates/antlr4rust)         | ANTLR4 parser runtime for Rust                     | BSD-3-Clause     |"
+  verified = "matched"
+  checked = "2026-08-02"

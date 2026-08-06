@@ -20,8 +20,8 @@ import { parse } from 'smol-toml';
 const DB_DIR = 'src/content/databases';
 const EV_DIR = 'src/content/evidence';
 
-/** Values we won't publish unsourced. Legacy fields are grandfathered in until backfilled. */
-const REQUIRE_EVIDENCE = ['protocols'];
+/** Values we won't publish unsourced. Feature scores remain grandfathered until backfilled. */
+const REQUIRE_EVIDENCE = ['protocols', 'license', 'released', 'implementation_language'];
 
 const errors = [];
 const warnings = [];

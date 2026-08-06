@@ -17,11 +17,56 @@ notes = "Source confirms two distinct interfaces on the Joseki/Jetty server: Act
   title = "ActionRouter.java — raytheonbbn/parliament"
   quote = "Joseki comes packaged with its \"SPARQL\" processor to handle SPARQL queries"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/raytheonbbn/parliament/main/jena/JosekiExtensions/src/com/bbn/parliament/jena/joseki/bridge/ActionRouter.java"
   title = "ActionRouter.java — raytheonbbn/parliament"
   quote = "BulkServlet by contrast is RESTful.\n *\n * Bulk operations are handled by the BulkServlet, and include insert, export,\n * and flush.  Delete, and Clear should be handled via SPARQL/Update."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/raytheonbbn/parliament/license"
+  title = "GitHub licence API — raytheonbbn/parliament"
+  quote = "\"spdx_id\": \"BSD-3-Clause\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2009"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/raytheonbbn/parliament"
+  title = "raytheonbbn/parliament"
+  quote = "BBN released Parliament as an open source project under the BSD license on SemWebCentral in 2009."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from Java. GitHub's raw byte count favors Java (2.2MB vs 740KB for C++) because the Jena/Sesame integration layer and indexes are Java, but BBN's own architecture description states the storage and rule engine itself -- the actual triple-store core -- is implemented in C++, with Java used only for the query-API/JNI layer on top."
+
+  [[claims.sources]]
+  url = "https://www.slideshare.net/slideshow/information-exploitation-at-bbn/45434159"
+  title = "Information Exploitation at BBN"
+  quote = "Storage and Rule engine implemented in C++ for performance"
+  verified = "matched"
+  checked = "2026-08-02"

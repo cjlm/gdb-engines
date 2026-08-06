@@ -10,8 +10,10 @@ type = "Other"
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
 kind = "query-engine"
-released = "2015"
+released = "2015-12"
 category = "Established"
+status = "deprecated"
+status_note = "Repository archived by GCHQ; last change June 2025."
 gdotv_support = false
 
 [features]

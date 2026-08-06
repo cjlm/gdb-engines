@@ -10,6 +10,6 @@ type = "Property Graph"
 kind = "database"
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
-released = "2026-06"
+released = "2026-07"
 category = "Emerging"
 gdotv_support = false

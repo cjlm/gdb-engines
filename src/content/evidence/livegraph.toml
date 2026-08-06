@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/livegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "livegraph"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/thu-pacman/LiveGraph/license"
+  title = "GitHub licence API — thu-pacman/LiveGraph"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the introducing paper was published in March 2020, a year before the GitHub repository (created 2021-02-23) was pushed, so the paper is the correct first-availability marker rather than the repo date."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/thu-pacman/LiveGraph/master/README.md"
+  title = "README.md"
+  quote = "Proc. VLDB Endow. 13, 7 (March 2020), 1020–1034. DOI:https://doi.org/10.14778/3384345.3384351"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the README lists a C++17/TBB/OpenMP build dependency stack, though there is no explicit 'implemented in C++' statement."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/thu-pacman/LiveGraph/master/README.md"
+  title = "README.md"
+  quote = "[CMake](https://gitlab.kitware.com/cmake/cmake)\n - [TBB](https://github.com/oneapi-src/oneTBB) \n - OpenMP and C++17\n - AVX-2"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,11 +17,41 @@ notes = "Bolt (port 7687, bolt/bolt+routing URIs) is documented and used by the 
   title = "Driver"
   quote = "Direct driver: connects directly to the host and port specified in the URI."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://devsolus.com/will-too-frequent-creation-of-bolt-connections-in-actual-use-affect-the-performance-of-galaxybase/"
   title = "Will too frequent creation of Bolt connections in actual use affect the performance of Galaxybase? - Dev solutions"
   quote = "In the subsection`Cypher rest call` in the`Galaxybase RESTful API documentation`, it is described how to call the cypher statement through the rest"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current year-only '2020' to 2020-12: CreateLink (the vendor) publicly launched the Galaxybase developer edition on 5 December 2020, distinct from the company's August 2016 founding date."
+
+  [[claims.sources]]
+  url = "https://www.36kr.com/p/1079383112971140"
+  title = "36氪首发｜一站式原生分布式图平台「创邻科技」完成数千万元A+轮融资"
+  quote = "2020年12月5日，「创邻科技」发布Galaxybase图数据库开发者版，同期发布的Benchmark（中文：基准测试报告）显示其性能强劲，多项技术指标均遥遥领先同业"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Vendor's own English-language product page describes Create Link (GalaxyBase's maker) as a commercial supplier."
+
+  [[claims.sources]]
+  url = "https://www.createlink.com/product"
+  title = "Graph Database - Galaxybase"
+  quote = "Create Link is the first domestic commercial graph database supplier with fully independent intellectual property rights, dedicated to providing world-class graph database products and graph intelligence services."
+  verified = "matched"
+  checked = "2026-08-02"

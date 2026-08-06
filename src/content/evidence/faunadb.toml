@@ -18,7 +18,7 @@ notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent c
   quote = "Delivered as an HTTPS API, Fauna offers token-based authentication and eliminates connection pooling or session management."
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20250618121636/https://fauna.com/"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.fauna.com/fauna/current/"
@@ -26,11 +26,101 @@ notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent c
   quote = "The Fauna service will be ending on May 30, 2025."
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20250614072336/https://docs.fauna.com/fauna/current/"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/fauna/fauna-js/main/README.md"
   title = "Fauna JavaScript driver"
   quote = "The HTTP/2 session idle timeout is the time, in milliseconds, that an HTTP/2 session will remain open after there is no more pending communication."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from 'Proprietary': that was accurate while FaunaDB was Fauna Inc.'s closed hosted service (2016-2025), but Fauna shut the service down in 2025 and the FaunaDB Foundation subsequently open-sourced the core engine under Apache-2.0."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fauna/faunadb/main/LICENSE.txt"
+  title = "LICENSE.txt"
+  quote = "FaunaDB is licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this software except in compliance with the License."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.theregister.com/software/2025/03/24/faunadb-shutters-but-hints-at-open-source-future/"
+  title = "FaunaDB shuts down but hints at open source future"
+  quote = "FaunaDB said it plans to release an open-source version of its core database technology."
+  verified = "unreachable"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; Fauna's own launch announcement describes the database as production-ready and publicly available in managed beta in September 2016."
+
+  [[claims.sources]]
+  url = "https://fauna.com/blog/welcome-to-the-jungle"
+  title = "Welcome to the Jungle"
+  quote = "Fauna is production-ready and available now in managed beta in the cloud, on-premises, and in hybrid deployments."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250615031449/https://fauna.com/blog/welcome-to-the-jungle"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Scala"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the open-sourced repository is 99.2% Scala per GitHub, and its own README describes a JVM/sbt-based build (sbt is the standard Scala build tool)."
+
+  [[claims.sources]]
+  url = "https://github.com/fauna/faunadb"
+  title = "GitHub - fauna/faunadb"
+  quote = "FaunaDB runs on the JVM and requires a JDK version 17 installed. Fauna uses sbt as its build tool."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://web.archive.org/web/20250618121636/https://fauna.com/"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "fauna.com no longer belongs to the database company: the plain-http site now 301-redirects to faunarobotics.com, an unrelated humanoid-robotics startup recently acquired by Amazon. The FaunaDB service itself was sunset May 30, 2025, so the archived snapshot is the best stable link."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20250618121636/https://fauna.com/"
+  title = "Fauna | The Distributed Serverless Database"
+  quote = "The Fauna service will be ending on May 30, 2025. For more information, read the announcement ."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://faunarobotics.com/news/fauna-robotics-joins-amazon"
+  title = "Fauna Robotics joins Amazon"
+  quote = "Fauna Robotics has officially joined Amazon. We will continue selling Sprout Creator Edition robots, supporting existing customers, and building for the future as Fauna Robotics, an Amazon company."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "deprecated"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Fauna Inc. sunset the hosted database service on May 30, 2025 and has not resumed it; this matches the catalogue's existing status."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20250618121636/https://fauna.com/"
+  title = "Fauna | The Distributed Serverless Database"
+  quote = "The Fauna service will be ending on May 30, 2025. For more information, read the announcement ."
+  verified = "matched"
+  checked = "2026-08-02"

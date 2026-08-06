@@ -10,7 +10,7 @@ implementation_language = "Go"
 type = "Property Graph"
 query_languages = ["DQL", "GraphQL"]
 protocols = ["gRPC", "HTTP/REST", "GraphQL (HTTP)"]
-released = "2015"
+released = "2015-12"
 category = "Enterprise"
 gdotv_support = true
 

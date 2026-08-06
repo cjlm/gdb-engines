@@ -8,6 +8,6 @@ implementation_language = "Julia"
 type = "Other"
 query_languages = ["Rel", "SQL"]
 protocols = ["HTTP/REST"]
-released = "2021"
+released = "2022"
 category = "Growing"
 gdotv_support = false

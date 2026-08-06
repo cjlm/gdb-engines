@@ -17,4 +17,26 @@ notes = "GraphBase is the data store behind FactNexus's EKG platform; EKG's REST
   title = "UI - Graphs Control Panel"
   quote = "The REST API is available to Business and Enterprise plans."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Vendor's own Terms of Service asserts full IP ownership with no open-source grant, confirming current value."
+
+  [[claims.sources]]
+  url = "https://factnexus.com/legal/"
+  title = "Terms of Service"
+  quote = "The Services, software, models, workflows, and data sets we create are our intellectual property."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/graphbase"
+  title = "GraphBase · Database of Databases"
+  quote = "Proprietary"
+  verified = "matched"
+  checked = "2026-08-02"

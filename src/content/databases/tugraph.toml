@@ -9,6 +9,6 @@ implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher", "GQL"]
 protocols = ["HTTP/REST", "Bolt", "Native binary"]
-released = "2022"
+released = "2022-09"
 category = "Established"
 gdotv_support = false

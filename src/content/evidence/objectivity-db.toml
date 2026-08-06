@@ -17,18 +17,100 @@ notes = "ODBC/SQL access is corroborated across independent sources spanning mor
   title = "TechView Product Report: Objectivity/DB"
   quote = "There is also an ODBC interface, making it possible to access Objectivity/DB databases with standard SQL tools."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://amisha.pragmaticdata.com/doc/OO/OOFAQ/oo-faq-S-8.13.0.4.html"
   title = "Object-Orientation FAQ -- Objectivity/DB (Objectivity)"
   quote = "The ODBC and SQL Access Group (SAG) protocols are supported."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://www.vldb.org/conf/1998/p705.pdf"
   title = "The 24th International Conference on Very Large Databases. New York, USA, August 24-27, 1998. Objectivity, Inc."
   quote = "Programming interfaces are available for Java, C++, Smalltalk and SQL (ODBC)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. Objectivity/DB is a commercial product sold under license by Objectivity, Inc.; no source-available or open-source distribution exists."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Objectivity/DB"
+  title = "Objectivity/DB — Wikipedia"
+  quote = "Objectivity/DB is a commercial object database produced by Objectivity, Inc."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "1990"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Objectivity/DB"
+  title = "Objectivity/DB — Wikipedia"
+  quote = "Objectivity/DB was first introduced in 1990."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.bloorresearch.com/companies/objectivity/"
+  title = "Objectivity — Bloor Research"
+  quote = "Its object-oriented database Objectivity/DB was first made publicly available in 1990 and it was the first company to claim a petabyte scale (distributed) database implementation"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "low"
+method = "web"
+checked = "2026-08-02"
+notes = "Unsubstantiated. Every available source describes the languages applications can persist objects from — C++, C#, Java, Python — not what the engine itself is written in. C++ is plausible for a database of its era but no source states it, and the value may simply be the client binding list mistaken for an implementation language."
+
+[[claims]]
+field = "url"
+value = "https://web.archive.org/web/20231201063543/https://objectivity.com/"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Objectivity, Inc. ceased operations in late 2023; the live domain now resolves only to a default hosting-provider parking page, so the last full archived homepage is the best stable replacement."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20231201063543/https://objectivity.com/"
+  title = "HOME PAGE | Objectivity"
+  quote = "Objectivity’s NoSQL and graph databases are used to fuse, correlate, connect and present Multi-INT and Big Data for mission critical and operational systems with speed, accuracy and reliability."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Objectivity/DB"
+  title = "Objectivity/DB"
+  quote = "with subsequent additions of C# and Python interfaces. Objectivity, Inc. ceased in late 2023."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "inactive"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the catalogue's existing status. Archive.org snapshots show the full marketing site was still live on 2023-12-01 but had been replaced by a bare, minimal page by 2024-01-31, consistent with the company ceasing operations in late 2023."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Objectivity/DB"
+  title = "Objectivity/DB"
+  quote = "with subsequent additions of C# and Python interfaces. Objectivity, Inc. ceased in late 2023."
+  verified = "matched"
+  checked = "2026-08-02"

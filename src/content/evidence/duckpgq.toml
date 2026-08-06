@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/duckpgq.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "duckpgq"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cwida/duckpgq-extension/license"
+  title = "GitHub licence API — cwida/duckpgq-extension"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2023"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "GitHub repo created 2023-04-05 and the VLDB demo paper citing the artifact was published in 2023; confirms current value."
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/pvldb/vol16/p4034-wolde.pdf"
+  title = "DuckPGQ: Bringing SQL/PGQ to DuckDB"
+  quote = "Daniel ten Wolde, Gábor Szárnyas, and Peter Boncz. DuckPGQ: Bringing SQL/PGQ to DuckDB. PVLDB, 16(12): 4034 - 4037, 2023."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; the VLDB paper describes the extension's UDFs as C++, matching GitHub's per-repo language breakdown (C++ dominant)."
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/pvldb/vol16/p4034-wolde.pdf"
+  title = "DuckPGQ: Bringing SQL/PGQ to DuckDB"
+  quote = "with the help of some scalar User Defined Functions (UDFs) implemented in C++ that the module provides"
+  verified = "matched"
+  checked = "2026-08-02"

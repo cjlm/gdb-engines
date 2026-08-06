@@ -17,11 +17,56 @@ notes = "Aggregator exposes a GraphQueryAggregatorService via Apache Thrift; the
   title = "rpc/thrift/succinct_graph.thrift"
   quote = "Entry point to prepare a cluster.  Performs the following in parallel:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/client/py/preamble.py"
   title = "client/py/preamble.py"
   quote = "from thrift import Thrift\nfrom thrift.transport import TSocket\nfrom thrift.transport import TTransport\nfrom thrift.protocol import TBinaryProtocol"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; first public documentation is the SIGMOD 2017 paper. The GitHub mirror's creation date (2020) postdates this and is not reliable evidence of first availability, and an earlier VLDB 2015 submission (per the repo's default branch name) was reviewer-only, not public."
+
+  [[claims.sources]]
+  url = "https://www.anuragkhandelwal.com/papers/zipg.pdf"
+  title = "ZipG: A Memory-efficient Graph Store for Interactive Queries"
+  quote = "SIGMOD ’17, May 14–19, 2017, Chicago, IL, USA."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current value of Java: the core graph store (SuccinctGraph, GraphSuffixStore, etc.) is implemented in C++; Java/Scala are only the client library and LinkBench benchmark harness."
+
+  [[claims.sources]]
+  url = "https://www.anuragkhandelwal.com/papers/zipg.pdf"
+  title = "ZipG: A Memory-efficient Graph Store for Interactive Queries"
+  quote = "We have implemented ZipG on top of Succinct using roughly 4000 lines of C++ code, as well as a package running atop Apache Spark in Scala."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "github_url"
+value = "https://github.com/amplab/zipg"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "pdclab/zipg returns 404, as does anuragkh/zipg (the account its own README instructs users to clone from). amplab/zipg, under the original AMPLab organization that produced the research, is live and returns 200."
+
+  [[claims.sources]]
+  url = "https://github.com/amplab/zipg"
+  title = "GitHub - amplab/zipg: A Memory-efficient Graph Store for Interactive Queries"
+  quote = "ZipG is a distributed graph store that serves queries on compressed graphs."
+  verified = "matched"
+  checked = "2026-08-02"

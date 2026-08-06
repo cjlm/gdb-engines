@@ -17,18 +17,77 @@ notes = "Every repository has a standard SPARQL 1.1 endpoint; Dydra also documen
   title = "Dydra | SPARQL"
   quote = "SPARQL is the standard query language for RDF. Dydra supports SPARQL 1.1 query and update."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.dydra.com/using-dydra"
   title = "Technical Overview"
   quote = "There are currently two APIs: a standard SPARQL endpoint, and a standard REST API."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://api.dydra.com/administration/resource-management/repository-management.html"
   title = "Repository Management — Dydra Application Programming Interface (API)"
   quote = "In order to create a repository post to the accounts abstract repository resource"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; Dydra is a closed-source hosted service with no public source release."
+
+  [[claims.sources]]
+  url = "http://docs.dydra.com/faq"
+  title = "Dydra | Frequently Asked Questions (FAQ)"
+  quote = "Our proprietary distributed SPARQL query engine, called SPOCQ, is built in Lisp and compiles SPARQL queries to native x86 machine code."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2011"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value's year via an archived landing page and contemporary press coverage from 2011, but the exact public-availability date is unclear: the site was still gated behind a private-beta email signup as late as the December 2013 Wayback snapshot."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20110210164929/http://dydra.com/"
+  title = "Dydra"
+  quote = "Dydra—the product of two years of research—is an RDF cloud service. You provide the data, we provide everything else."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://techcrunch.com/video/dydra-cloud-based-graph-database/"
+  title = "Dydra Cloud Based Graph Database | TechCrunch"
+  quote = "Recorded on October 9, 2011. TechCrunch Interviews Ben Lavender from Dydra, a special cloud based data mining graph service."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Common Lisp"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "The SPARQL query engine SPOCQ (the project's stated core) is built in Lisp; a 2026 Datagraph conference paper confirms Common Lisp tooling specifically. Storage is in C/C++, noted for the split."
+
+  [[claims.sources]]
+  url = "http://docs.dydra.com/faq"
+  title = "Dydra | Frequently Asked Questions (FAQ)"
+  quote = "Our proprietary distributed SPARQL query engine, called SPOCQ, is built in Lisp and compiles SPARQL queries to native x86 machine code."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://dydra.com/data/els2026/els-2026-retzlaff-efficient-range-estimation-with-ndb-ic_slides_20260522T154456-CEST_published__d55fc286.pdf"
+  title = "Efficient range estimation with NDB interpreted code"
+  quote = "cl-ndbapi: Common Lisp bindings for the C++ NDB API of RonDB, published at https://github.com/datagraph/cl-ndbapi"
+  verified = "matched"
+  checked = "2026-08-02"

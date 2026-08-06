@@ -17,11 +17,63 @@ notes = "Default HTTP/SPARQL service at http://localhost:9999/blazegraph/; also 
   title = "blazegraph/database"
   quote = "Blazegraph™ DB is a ultra high-performance graph database supporting Blueprints and RDF/SPARQL APIs."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/blazegraph/database"
   title = "blazegraph/database"
   quote = "You can setup an http or https reverse proxy configuration that has authentication and forward requests to the local Blazegraph instance (typically running on localhost:9999)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/blazegraph/database/license"
+  title = "GitHub licence API — blazegraph/database"
+  quote = "\"spdx_id\": \"GPL-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2007"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. Bigdata (Blazegraph's original name) was under development from 2006, and the SourceForge project through which it was first distributed was registered in March 2007; the 1.0.0 release itself did not follow until 2011."
+
+  [[claims.sources]]
+  url = "https://sourceforge.net/projects/bigdata/"
+  title = "Blazegraph (powered by bigdata) download | SourceForge.net"
+  quote = "Related Categories Java Database Engines Servers, Java Distributed Computing Software, Java Graph Databases Registered 2007-03-21"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database/wiki/About_Blazegraph"
+  title = "About_Blazegraph · blazegraph/database Wiki · GitHub"
+  quote = "The Blazegraph™ open source platform has been under continuous development since 2006."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database/wiki/About_Blazegraph"
+  title = "About_Blazegraph · blazegraph/database Wiki · GitHub"
+  quote = "Blazegraph™ is a standards-based, high-performance, scalable, open-source graph database. Written entirely in Java, the platform supports Blueprints and RDF/ SPARQL 1.1 family of specifications, including Query, Update, Basic Federated Query, and Service Description."
+  verified = "matched"
+  checked = "2026-08-02"

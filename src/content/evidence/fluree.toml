@@ -17,18 +17,63 @@ notes = "fluree/db is an embeddable Clojure/JS library; Fluree Server wraps it w
   title = "Fluree Server"
   quote = "Here are examples using curl to demonstrate key Fluree Server features."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/fluree/server/main/README.md"
   title = "Fluree Server"
   quote = "Fluree also supports SPARQL queries. Put the ledger name in the `FROM` clause:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/fluree/db"
   title = "Fluree DB"
   quote = "Docker — pre-configured HTTP server, ready to accept queries on port 8090."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from the catalogue's current EPL-2.0: the repository's actual LICENSE file is the Business Source License 1.1, converting to Apache-2.0 four years after each version's release."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fluree/db/main/LICENSE"
+  title = "LICENSE"
+  quote = "SPDX-License-Identifier: BUSL-1.1 Business Source License 1.1 Parameters Licensor: Fluree, PBC"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018-08"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "FlureeDB's own production-release announcement is dated August 22, 2018, refining the current year-only value to a month."
+
+  [[claims.sources]]
+  url = "https://medium.com/fluree/flureedb-is-production-ready-and-live-86bce82665dc"
+  title = "FlureeDB is Production-Ready and Live | by Kevin Doubleday | Fluree PBC | Medium"
+  quote = "The beta tag is off. Thanks to a fantastic crowd of developers who provided initial feedback from our late November beta release, FlureeDB is now available and ready to transform application development, power digital transformation"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "The current fluree/db repository's core is Rust; the project's own README documents an embeddable Rust library, confirming the current value."
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db"
+  quote = "**Rust library** — Embed Fluree directly in your application. No server process needed."
+  verified = "matched"
+  checked = "2026-08-02"

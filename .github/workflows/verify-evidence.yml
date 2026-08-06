@@ -33,6 +33,10 @@ jobs:
         run: npm ci
 
       - name: Refetch cited pages
+        # Licence claims cite api.github.com, which allows 60 unauthenticated requests an hour —
+        # fewer than the catalogue has repositories. The workflow token raises that to 5000.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/verify-quotes.mjs
 
       - name: Check values against their evidence

@@ -17,4 +17,63 @@ notes = "MAGE is an in-database graph engine (ported from Apache AGE) inside Yug
   title = "YugabyteDB: The Data Backbone for Thousands of Agents | Yugabyte"
   quote = "You connect to it the way you connect to any Postgres instance. Your ORM, your driver, and your extensions work unchanged."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; MAGE is a renamed, embedded port of Apache AGE (Apache-2.0), shipped inside YugabyteDB's core, which is itself Apache-2.0."
+
+  [[claims.sources]]
+  url = "https://docs.yugabyte.com/stable/releases/ybdb-releases/v2026.1/"
+  title = "What's new in the YugabyteDB v2026.1 STS release series"
+  quote = "Allows users to load the renamed Apache AGE extension as `mage` in YugabyteDB."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/apache/age/master/LICENSE"
+  title = "LICENSE (apache/age)"
+  quote = "TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; introduced as a technical preview in the YugabyteDB 2026.1 release, announced June 2026."
+
+  [[claims.sources]]
+  url = "https://docs.yugabyte.com/stable/releases/ybdb-releases/v2026.1/"
+  title = "What's new in the YugabyteDB v2026.1 STS release series"
+  quote = "Adds support for Apache AGE graph extension to enable graph database capabilities."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.yugabyte.com/blog/a-postgresql-database-for-every-agent/"
+  title = "A PostgreSQL Database for Every Agent"
+  quote = "YugabyteDB MAGE (technical preview): A shared, multi-tenant graph engine so agents can reason over connected data without crossing tenant boundaries."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; Apache AGE, of which MAGE is a renamed port, is written in C, and C is by far its dominant language by byte count."
+
+  [[claims.sources]]
+  url = "https://github.com/apache/age/discussions/1631"
+  title = "Is age a trusted extension? · apache/age · Discussion #1631"
+  quote = "AGE is not a Trusted Language Extension as it is written in C."
+  verified = "matched"
+  checked = "2026-08-02"

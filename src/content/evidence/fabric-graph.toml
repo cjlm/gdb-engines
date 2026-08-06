@@ -17,4 +17,41 @@ notes = "Queries run through a common execution layer with a REST-based GQL quer
   title = "How graph in Microsoft Fabric works - Microsoft Fabric | Microsoft Learn"
   quote = "REST-based execution: Runs queries programmatically by using the GQL query API."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; no source states 'proprietary' outright, but Fabric Graph is a closed-source, capacity-billed Microsoft SaaS feature with no source release."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/fabric/graph/overview"
+  title = "What is graph in Microsoft Fabric? - Microsoft Fabric | Microsoft Learn"
+  quote = "Graph uses the same capacity units (CUs) as other workloads in Microsoft Fabric. You don't need to purchase a separate graph-specific license or SKU."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; public preview rollout began 1 October 2025, announced at FabCon Vienna and confirmed in the Fabric community public-preview post."
+
+  [[claims.sources]]
+  url = "https://www.microsoft.com/en-us/microsoft-fabric/blog/2025/09/16/fabcon-vienna-build-data-rich-agents-on-an-enterprise-ready-foundation/"
+  title = "FabCon Vienna: Build data-rich agents on an enterprise-ready foundation | Microsoft Fabric Blog"
+  quote = "Graph will roll out in various Fabric regions starting on October 1, 2025."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://community.fabric.microsoft.com/t5/Real-Time-Intelligence/Fabric-Graph-is-now-in-Public-Preview/m-p/4847021"
+  title = "Fabric Graph is now in Public Preview! - Microsoft Fabric Community"
+  quote = "Graph lets you model and explore relationships across your organizational data, unlocking powerful insights for scenarios like fraud detection, supply chain optimization, and customer 360° views"
+  verified = "unreachable"
+  checked = "2026-08-02"

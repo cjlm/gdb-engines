@@ -78,7 +78,7 @@
           },
           {
             "id": "db:altair-graph-lakehouse",
-            "label": "Altair Graph Lakehouse",
+            "label": "Rapidminer Graph Lakehouse",
             "image": "https://gdb-engines.com/logos/altair-graph-lakehouse.png",
             "kind": "Database",
             "type": "RDF",
@@ -416,7 +416,7 @@
             "kind": "Database",
             "type": "Other",
             "category": "Established",
-            "status": "active"
+            "status": "deprecated"
           },
           {
             "id": "db:galaxybase",

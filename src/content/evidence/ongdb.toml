@@ -17,4 +17,50 @@ notes = "Docker image binds 7474 (HTTP) and 7687 (Bolt), matching its Neo4j 3.4 
   title = "graphfoundation/ongdb - Docker Image"
   quote = "for HTTP and Bolt access to the ONgDB API."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0 OR AGPL-3.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The repository mixes a GPLv3-licensed Community edition with an AGPLv3-licensed Enterprise edition rather than a single license."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/graphfoundation/ongdb/master/README.asciidoc"
+  title = "README.asciidoc — graphfoundation/ongdb"
+  quote = "Our Community edition (in the link:community/[community/] directory) is GPLv3. Our Enterprise edition (link:enterprise/[enterprise/]) is differently licensed under the AGPLv3."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. Graph Foundation, Inc. was formed around June 2018 specifically to fork Neo4j Enterprise after Neo4j closed its source; ONgDB 3.5 was already public and had reached 1,000 downloads by March 2019 per the Neo4j v. Graph Foundation trademark complaint. The current GitHub repository (created 2018-11-21) reflects a later 'clean slate' 1.0 relaunch in July 2021, not the original release."
+
+  [[claims.sources]]
+  url = "https://casetext.com/case/neo4j-inc-v-graph-found-inc"
+  title = "Neo4j, Inc. v. Graph Found., Inc. — Casetext"
+  quote = "Plaintiff alleges that Defendant GFI was formed on or around June 21, 2018 in response to Plaintiff's decision to cease offering the Enterprise Edition on an open source basis."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20230105175031/https://casetext.com/case/neo4j-inc-v-graph-found-inc"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. No page states 'written in Java' outright, but the project is a Maven-built JVM project (and a direct fork of the Java-based Neo4j Enterprise/Community codebase), with Java the dominant language in the source tree over Scala."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/graphfoundation/ongdb/master/README.asciidoc"
+  title = "README.asciidoc — graphfoundation/ongdb"
+  quote = "ONgDB is built using http://maven.apache.org/[Apache Maven] version 3.6. Maven requires more memory than the standard configuration"
+  verified = "matched"
+  checked = "2026-08-02"

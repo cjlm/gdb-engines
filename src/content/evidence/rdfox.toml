@@ -17,11 +17,57 @@ notes = "REST API and SPARQL-over-HTTP endpoint served on port 12110 by default;
   title = "3. Getting Started — RDFox documentation"
   quote = "This starts RDFox’s endpoint which serves the REST API, including a SPARQL over HTTP endpoint, and RDFox’s graphical web console."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.oxfordsemantic.tech/7.6/getting-started.html"
   title = "3. Getting Started — RDFox documentation"
   quote = "If you are looking to get started with the Java, or the C or C++ APIs to RDFox, see instead the appropriate demo program"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value: RDFox is distributed only under commercial/evaluation license agreements, with no source availability."
+
+  [[claims.sources]]
+  url = "https://www.oxfordsemantic.tech/rdfox-evaluation-license"
+  title = "Oxford Semantic Technologies | Evaluation License Agreement"
+  quote = "OST hereby grants you a non-exclusive, non-assignable, non-sub licensable, non-transferable limited licence to use the Licensed Product solely for the purposes of evaluation."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value: Oxford Semantic Technologies, which commercialised RDFox as this product, was established in 2017 (earlier academic RDFox research at Oxford, from 2011, predates the commercial product and license this catalogue entry covers)."
+
+  [[claims.sources]]
+  url = "https://www.ox.ac.uk/news/2024-07-16-university-spin-out-oxford-semantic-technologies-acquired-samsung-electronics"
+  title = "University spin-out Oxford Semantic Technologies acquired by Samsung Electronics | University of Oxford"
+  quote = "Established in 2017 by three University of Oxford professors — Ian Horrocks, Boris Motik and Bernardo Cuenca Grau — Oxford Semantic Technologies (OST) holds cutting-edge technological capabilities in the areas of knowledge representation and semantic reasoning."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20251007140846/https://www.ox.ac.uk/news/2024-07-16-university-spin-out-oxford-semantic-technologies-acquired-samsung-electronics"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value: RDFox's core is written in C++, with a Java wrapper layered on top."
+
+  [[claims.sources]]
+  url = "https://www.w3.org/2001/sw/wiki/RDFox"
+  title = "RDFox - Semantic Web Standards"
+  quote = "It is cross-platform software written in C++ that comes with a Java wrapper allowing for easy integration with any Java-based solution."
+  verified = "matched"
+  checked = "2026-08-02"

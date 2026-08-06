@@ -17,18 +17,70 @@ notes = "DQL runs over HTTP on 8080 and gRPC on 9080 (same payload, two transpor
   title = "Endpoints | Dgraph Documentation"
   quote = "You can interact with Dgraph using HTTP on port 8080 (plus optional port offset) or gRPC on port 9080"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
   title = "/graphql endpoint | Dgraph Documentation"
   quote = "Dgraph serves the corresponding spec-compliant GraphQL API at the HTTP endpoint /graphql"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
   title = "/graphql endpoint | Dgraph Documentation"
   quote = "GraphQL requests can be sent via HTTP POST or HTTP GET requests."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2015-12"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Refined from year-only '2015': Dgraph's own historical README documents the v0.1 MVP launching in December 2015, corroborated by founder Manish Jain's 2017 retrospective blog post."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/dgraph-io/dgraph/e754a367dab976f2c7d62b5af71a27db40d5bb5a/README.md"
+  title = "README.md"
+  quote = "`MVP launch - Dec 2015 - Branch v0.1`\nThis is a minimum viable product, alpha release of DGraph."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://discuss.dgraph.io/t/releasing-dgraph-1-0-production-ready-graph-database-dgraph-blog/2037"
+  title = "Releasing Dgraph 1.0: Production-Ready Graph Database - Dgraph Blog - Blog - Discuss Dgraph"
+  quote = "Dgraph started around end-August, picked up steam in mid-October, and v0.1 was released in early-December, 2015."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Go"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; stated directly in the project's own README."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/dgraph-io/dgraph/main/README.md"
+  title = "README.md"
+  quote = "Dgraph is written using the Go Programming Language."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hypermodeinc/dgraph/license"
+  title = "GitHub licence API — hypermodeinc/dgraph"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

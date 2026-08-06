@@ -1,0 +1,65 @@
+# Sources for values in src/content/databases/hypergraphdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "hypergraphdb"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hypergraphdb/hypergraphdb/license"
+  title = "GitHub licence API — hypergraphdb/hypergraphdb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2007"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value 2007; the project's own SVN repo (later mirrored to GitHub) contains a first commit dated Aug 2007, though the first packaged 1.0 release wasn't until Dec 2009."
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/hypergraphdb"
+  title = "HyperGraphDB · Database of Databases"
+  quote = "Originated from an AI project called OpenCog in 2007. This project aims to build an open source framework for AGI, and HyperGraphDB is a component of the project that will handle long-term storage of complex representations."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value Java; storage layer is built on Berkeley DB."
+
+  [[claims.sources]]
+  url = "http://kobrix.blogspot.com/2009/12/another-test.html"
+  title = "Kobrix Software, Official Blog: HyperGraphDB 1.0 Released"
+  quote = "HyperGraphDB is a Java based product built on top of the Berkeley DB storage library."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://hypergraphdb.org/"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "The www subdomain 404s and its TLS certificate doesn't even cover 'www'; the bare domain resolves fine and is the address the project's own README names as canonical."
+
+  [[claims.sources]]
+  url = "https://github.com/hypergraphdb/hypergraphdb"
+  title = "GitHub - hypergraphdb/hypergraphdb"
+  quote = "For more information, please visit the official website at: http://hypergraphdb.org"
+  verified = "matched"
+  checked = "2026-08-02"

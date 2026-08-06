@@ -1,0 +1,94 @@
+# Sources for values in src/content/databases/kuzu.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "kuzu"
+
+[[claims]]
+field = "released"
+value = "2022-11"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "First tagged release, 0.0.1, published November 2022."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/kuzudb/kuzu/releases/tags/0.0.1"
+  title = "GitHub release API — Kuzu 0.0.1"
+  quote = "\"published_at\":\"2022-11-15T06:38:14Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Kuzu's README only says it has C++ APIs, not that it's implemented in C++. The CMakeLists.txt build file directly declares the project's languages as CXX (C++) and C."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kuzudb/kuzu/master/CMakeLists.txt"
+  title = "CMakeLists.txt - kuzudb/kuzu"
+  quote = "cmake_minimum_required(VERSION 3.15)\n\nproject(Kuzu VERSION 0.11.2.2 LANGUAGES CXX C)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/kuzudb/kuzu/license"
+  title = "GitHub licence API — kuzudb/kuzu"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "vendor"
+value = "Kuzu Inc (acquired by Apple)"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Apple disclosed the acquisition to EU regulators; it struck the deal to buy all shares of Kuzu in October 2025."
+
+  [[claims.sources]]
+  url = "https://betakit.com/apple-strikes-deal-to-acquire-canadian-database-software-startup-kuzu/"
+  title = "Apple strikes deal to acquire Canadian database software startup Kuzu | BetaKit"
+  quote = "On Oct. 9, 2025, Apple struck an agreement to buy all shares and hire select employees of Kuzu."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://uwaterloo.ca/computer-science/news/waterloo-based-graph-database-start-up-kuzu-acquired-apple"
+  title = "Waterloo-based graph database start-up Kùzu acquired by Apple | Cheriton School of Computer Science | University of Waterloo"
+  quote = "graph database start-up Kùzu has been acquired by tech giant Apple."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "deprecated"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "The vendor's own site and GitHub repo both state active support has ended and the project is archived."
+
+  [[claims.sources]]
+  url = "https://kuzudb.github.io/"
+  title = "Kuzu - Embedded, scalable, blazing fast graph database"
+  quote = "We will no longer be actively supporting KuzuDB. You can access the full archive of KuzuDB here: GitHub"
+  verified = "unreachable"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/kuzudb/kuzu"
+  title = "kuzudb/kuzu"
+  quote = "We are archiving the KuzuDB project here: https://github.com/kuzudb/kuzu/"
+  verified = "matched"
+  checked = "2026-08-02"

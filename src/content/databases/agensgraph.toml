@@ -11,7 +11,7 @@ type = "Property Graph"
 kind = "extension"
 query_languages = ["openCypher", "SQL"]
 protocols = ["PostgreSQL wire"]
-released = "2017-01"
+released = "2016-11"
 category = "Growing"
 gdotv_support = false
 

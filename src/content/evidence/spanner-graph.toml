@@ -17,11 +17,56 @@ notes = "Client libraries and the RPC API run over gRPC; a REST API is also offe
   title = "Spanner Graph queries overview"
   quote = "You can use the Google Cloud console, Google Cloud CLI, client libraries, the REST API, or the RPC API to run a Spanner Graph query."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://cloud.google.com/spanner/docs/api-libraries-overview"
   title = "Overview of APIs, client libraries, and ORM drivers | Spanner | Google Cloud Documentation"
   quote = "The Spanner client libraries are available in multiple languages and are built on gRPC."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No LICENSE file or source repository exists; a Wikipedia comparison table lists it as Proprietary, but the evidence is a table cell rather than prose. Confirms current value."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Graph_database"
+  title = "Graph database - Wikipedia"
+  quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2024-08"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Google's own launch blog post is dated August 1, 2024, matching the current value."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/blog/products/databases/announcing-spanner-graph"
+  title = "Announcing Spanner Graph | Google Cloud Blog"
+  quote = "Today, we are thrilled to announce Spanner Graph, a groundbreaking offering that unites purpose-built graph database capabilities with Spanner, our always-on, globally consistent, and virtually unlimited-scale database."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No public source tree exists for this managed feature. A Wikipedia comparison table attributes it to C++, consistent with Spanner's underlying C++ implementation, but the evidence is a table cell rather than prose."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Graph_database"
+  title = "Graph database - Wikipedia"
+  quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
+  verified = "matched"
+  checked = "2026-08-02"

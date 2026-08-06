@@ -17,11 +17,64 @@ notes = "GES's cloud API is a proprietary HTTPS REST API; Gremlin (and Cypher) s
   title = "Making a Service Plane API Request_Making an API Request_Calling APIs_API Reference_Graph Engine Service-Huawei Cloud"
   quote = "This section describes the structure of a REST API on the service plane of GES."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://support.huaweicloud.com/intl/en-us/api-ges/ges_03_0029.html"
   title = "Executing Gremlin Queries (1.0.0)_Gremlin Operation APIs_Memory Edition_Service Plane APIs_API Reference_Graph Engine Service-Huawei Cloud"
   quote = "This API is used to return the query result of a Gremlin statement."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; a closed commercial cloud service with no source disclosure, gated by an end-user license agreement."
+
+  [[claims.sources]]
+  url = "https://www.huaweicloud.com/intl/en-us/declaration-sg/eula.html"
+  title = "Huawei Cloud End User License Agreement-HUAWEI CLOUD"
+  quote = "we grant you a non-exclusive, non-transferrable, non-sub-licensable and limited right to access and use the Services in accordance with the terms and conditions of this Agreement"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.huaweicloud.com/intl/en-us/declaration-sg/eula.html"
+  title = "Huawei Cloud End User License Agreement-HUAWEI CLOUD"
+  quote = "disassemble, decompile, reverse engineer, reproduce any part of the Services, or apply any other procedure to derive the source code of any software included in the Services"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refines the current year-only value; Huawei's own changelog dates the open-beta launch to December 2017, ahead of the August 2018 general/commercial availability."
+
+  [[claims.sources]]
+  url = "https://support.huaweicloud.com/intl/en-us/wtsnew-ges/index.html"
+  title = "What's New_Graph Engine Service-Huawei Cloud"
+  quote = "GES uses Huawei-developed native graph engine EYWA as its kernel and has multiple proprietary patents."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No official Huawei documentation states the implementation language; this rests on a single third-party technical article describing the EYWA kernel's development."
+
+  [[claims.sources]]
+  url = "https://www.programmersought.com/article/1768563146/"
+  title = "Exclusive Interpretation: Looking at the determination and ambition of Huawei Cloud EI from the technology of graph engine platform - Programmer Sought"
+  quote = "Taking into account the Java GC problem, the graph engine implements the self-developed system in C++, optimizes the segmentation"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20240102012547/https://www.programmersought.com/article/1768563146/"
+  checked = "2026-08-02"

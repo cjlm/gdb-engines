@@ -30,3 +30,6 @@ public/logos/
 # Local dev gallery for OG image inspection
 public/og-gallery.html
 docs/seo/
+
+# Local git worktrees
+.worktrees/

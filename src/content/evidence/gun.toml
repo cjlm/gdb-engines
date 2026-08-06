@@ -17,4 +17,56 @@ notes = "GUN's own gun.js source opens a WebSocket to each configured peer; the 
   title = "gun.js (raw source)"
   quote = "var url = peer.url.replace(/^http/, 'ws');\n\t\t\t\tvar wire = peer.wire = new opt.WebSocket(url);"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Zlib OR MIT OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from MIT. GUN is triple-licensed under the reader's choice of Zlib, MIT, or Apache-2.0; the repository's LICENSE.md contains all three full license texts and package.json declares the same SPDX expression."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amark/gun/master/README.md"
+  title = "amark/gun README"
+  quote = "Designed with ♥ by Mark Nadal, the GUN team, and many amazing contributors.\n\nOpenly licensed under [Zlib / MIT / Apache 2.0](https://github.com/amark/gun/blob/master/LICENSE.md)."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amark/gun/master/LICENSE.md"
+  title = "amark/gun LICENSE.md"
+  quote = "This software is provided 'as-is', without any express or implied\nwarranty. In no event will the authors be held liable for any damages\narising from the use of this software."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2014"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirmed via GUN's own README history section; kept as year-only since sources disagree on the exact month (npm's earliest published version is dated March 2014, while the current GitHub repository shows a July 2014 creation date, which per the repo-creation caveat is not authoritative)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amark/gun/master/README.md"
+  title = "amark/gun README"
+  quote = "[GUN](https://gun.eco) was created by [Mark Nadal](https://twitter.com/marknadal) in 2014 after he had spent 4 years trying to get his collaborative web app to scale up with traditional databases."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "JavaScript"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/GUN_(graph_database)"
+  title = "GUN (graph database)"
+  quote = "GUN (also known as Graph Universe Node, gun.js, and gunDB) is an open source, offline-first, real-time, decentralized, graph database written in JavaScript for the web browser."
+  verified = "matched"
+  checked = "2026-08-02"

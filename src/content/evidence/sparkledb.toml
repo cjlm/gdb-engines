@@ -17,4 +17,27 @@ notes = "Vendor and site are defunct since ~2018; only evidence found is a mirro
   title = "SparkleDB | Deleted Wikipedia Article | Wikibin"
   quote = "any programming language or toolkit that can access a SPARQL protocol HTTP endpoint"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2012"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value under the renaming rule: the project was first publicly announced in February 2012 under its original name 'Meronymy', renamed to SparkleDB in 2013. Archived snapshots as late as May 2015 still describe it as an 'upcoming beta', so it is unclear the product ever reached full public availability beyond this early announcement."
+
+  [[claims.sources]]
+  url = "https://tm.durusau.net/?cat=1109"
+  title = "Meronymy « Another Word For It"
+  quote = "Coming in June from start-up Meronymy is a new RDF enterprise database management system, the Meronymy SPARQL Database Server."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "low"
+method = "web"
+checked = "2026-08-02"
+notes = "Unsubstantiated. No archived snapshot between 2013 and 2015 states a licence; the product appears never to have shipped beyond an announced beta. Proprietary is inferred from it being a closed commercial offering, not from any source saying so."

@@ -17,4 +17,56 @@ notes = "Rya's web.rya WAR exposes ad-hoc /loadrdf and /queryrdf endpoints (plus
   title = "README.md"
   quote = "The War sets up a Web REST endpoint at `http://server/web.rya/queryrdf` that allows GET requests with queries."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/rya/license"
+  title = "GitHub licence API — apache/rya"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value. Rya was built starting in 2010 but was restricted to mostly US-government users until it entered the Apache Incubator; its first public Apache release was version 3.2.10 on 2016-10-28."
+
+  [[claims.sources]]
+  url = "https://incubator.apache.org/projects/rya.html"
+  title = "Rya Incubation Status - Apache Incubator"
+  quote = "2016-10-28 First Apache Incubator Release for Rya (version 3.2.10)."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://cwiki.apache.org/confluence/display/INCUBATOR/RyaProposal"
+  title = "RyaProposal - INCUBATOR - Apache Software Foundation"
+  quote = "From its inception, the project operated with an Apache-style license, but it was open to mostly US government-related projects only."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms the current value; GitHub reports Java as the repository's primary language, matching the README's Java/Maven build instructions."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/rya"
+  title = "apache/rya (GitHub API repository object)"
+  quote = "\"watchers_count\": 115,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,18 +17,63 @@ notes = "Opt-in HTTP API (port 7691, --http-listen) with a REST /api/query endpo
   title = "HTTP API - Traverse Docs"
   quote = "The Traverse HTTP API provides RESTful endpoints for queries, database management, import/export, and Studio integration."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://truespar.com/traverse/docs/v1/bolt-protocol"
   title = "Bolt Protocol - Traverse Docs"
   quote = "Traverse implements the Bolt protocol (versions 5.1 through 6.0) for binary client-server communication."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://truespar.com/traverse/docs/v1/grpc"
   title = "gRPC API — Traverse Docs"
   quote = "Traverse provides a gRPC service for high-performance, language-neutral access to the graph database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Traverse ships under a Truespar Product License with license-key activation for the full server product (a free WASM build is a separate, limited exception); matches current value."
+
+  [[claims.sources]]
+  url = "https://truespar.com/terms"
+  title = "Terms of Service - Truespar"
+  quote = "The Truespar software products - such as Paddock, Traverse, and Torque - are licensed under separate license terms that accompany the software or are agreed with your organisation in writing"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-03"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed by the launch blog post, dated March 4, 2026; matches current value."
+
+  [[claims.sources]]
+  url = "https://truespar.com/blog/introducing-traverse"
+  title = "Introducing Traverse: A Graph DB in Rust - Truespar Blog"
+  quote = "We're releasing Traverse - a graph database we built from scratch because the existing ones were too slow, too heavy, or both."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed by the launch post title and the dedicated Rust driver documentation; matches current value."
+
+  [[claims.sources]]
+  url = "https://truespar.com/blog/introducing-traverse"
+  title = "Introducing Traverse: A Graph DB in Rust - Truespar Blog"
+  quote = "Introducing Traverse: A High-Performance Graph Database Built in Rust"
+  verified = "matched"
+  checked = "2026-08-02"

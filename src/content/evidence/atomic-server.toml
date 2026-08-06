@@ -17,11 +17,56 @@ notes = "REST/HTTP is used for one-off resource fetches; the WebSocket protocol 
   title = "API - Atomic Data Docs"
   quote = "All Atomic Data resources have a unique URL, which can be fetched using HTTP."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.atomicdata.dev/websockets"
   title = "Atomic Data WebSocket Protocol — sync, real-time collaboration, and offline-first"
   quote = "The WebSocket protocol is the primary communication channel for Atomic Data synchronization."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-08"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from 2020-09. The project's own roadmap page dates AtomicServer's first appearance to August 2020, matching the first crates.io publish (2020-08-10); the GitHub repository's July 2020 creation date reflects only the initial commit, not a public release."
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/roadmap.html"
+  title = "Strategy, history and roadmap - Atomic Data Docs"
+  quote = "AtomicServer (2020-08). The server (using the same atomic_lib as the CLI) should be a fast, lightweight server that must be easy to set-up. Functions as a graph database with no dependencies."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value."
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/roadmap.html"
+  title = "Strategy, history and roadmap - Atomic Data Docs"
+  quote = "atomic_lib is the place where most logic resides. Written in Rust."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/ontola/atomic-server/license"
+  title = "GitHub licence API — ontola/atomic-server"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"

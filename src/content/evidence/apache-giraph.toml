@@ -11,3 +11,48 @@ confidence = "low"
 method = "web"
 checked = "2026-07-31"
 notes = "Giraph is a retired batch graph-processing library that runs as a Hadoop MapReduce/YARN job (submitted via `hadoop jar`); it is not a standalone server with a documented client wire protocol of its own."
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/giraph/license"
+  title = "GitHub licence API — apache/giraph"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2012-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value: Giraph's own news page dates its first (incubating) release to February 6, 2012."
+
+  [[claims.sources]]
+  url = "https://giraph.apache.org/"
+  title = "Giraph - Welcome To Apache Giraph!"
+  quote = "February 6, 2012: Giraph 0.1-incubating released. The Giraph PPMC is excited to announce that version 0.1 has been released."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms the current value; GitHub reports Java as the repository's primary language."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/giraph"
+  title = "apache/giraph (GitHub API repository object)"
+  quote = "\"watchers_count\": 620,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
+  verified = "matched"
+  checked = "2026-08-02"

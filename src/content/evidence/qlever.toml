@@ -17,11 +17,56 @@ notes = "QLever implements SPARQL 1.1 Protocol plus the Graph Store HTTP Protoco
   title = "QLever README"
   quote = "QLever implements the full SPARQL 1.1 standard, including federated queries,\nnamed graphs, the Graph Store HTTP Protocol, and updates."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.qlever.dev/rebuild-index/"
   title = "Rebuild index - QLever Documentation"
   quote = "Alternatively, you can trigger the rebuild via the QLever HTTP API as described\nbelow."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refined from year-only 2017 to month: QLever was first published and presented at CIKM'17, held November 6-10, 2017; the GitHub repository's 2014 creation date is only a development floor, not the public release."
+
+  [[claims.sources]]
+  url = "https://ad-publications.informatik.uni-freiburg.de/CIKM_qlever_BB_2017.pdf"
+  title = "QLever: A Query Engine for Efficient SPARQL+Text Search"
+  quote = "CIKM’17, November 6–10, 2017, Singapore. © 2017 Copyright held by the owner/author(s). Publication rights licensed to ACM."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; confirmed by GitHub language statistics (98.1% C++) and the project's own README."
+
+  [[claims.sources]]
+  url = "https://github.com/ad-freiburg/qlever"
+  title = "ad-freiburg/qlever"
+  quote = "QLever can also be used as an embedded database, that is, without the standard client-server setup but running in-process inside your own C++ code."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/ad-freiburg/qlever/license"
+  title = "GitHub licence API — ad-freiburg/qlever"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

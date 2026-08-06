@@ -17,11 +17,56 @@ notes = "GFQL runs locally in-process against dataframes (pandas/cuDF) with no s
   title = "PyGraphistry: Leverage the power of graphs & GPUs to visualize, analyze, and scale your data"
   quote = "Use GFQL, the first fully vectorized dataframe-native graph query language with an open-source GPU runtime, to ask relationship questions that are difficult for tabular tools without requiring a database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://hub.graphistry.com/docs/GFQL/gfql-api/"
   title = "REST API Documentation: GFQL Endpoint"
   quote = "The GFQL (graph dataframe query language) endpoint is a Graphistry server HTTP endpoint for securely dispatching GFQL queries to run over data already uploaded into your server and getting back the results."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2023"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "PyGraphistry's own CHANGELOG first uses the 'GFQL' name in the v0.32.0 entry (2023-12-22); the underlying chain()/hop() traversal API existed earlier but wasn't branded GFQL until then."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/graphistry/pygraphistry/master/CHANGELOG.md"
+  title = "CHANGELOG.md"
+  quote = "## [0.32.0 - 2023-12-22]\n\n### Added\n\n* GFQL `Chain` AST object\n* GFQL query serialization - `Chain`, `ASTObject`, and `ASTPredict` implement `ASTSerializable`"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Python"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. GFQL is a Python library shipped as part of the PyGraphistry package."
+
+  [[claims.sources]]
+  url = "https://pygraphistry.readthedocs.io/en/latest/gfql/index.html"
+  title = "GFQL: The Dataframe-Native Graph Query Language"
+  quote = "By being native to accelerated Python data-science technologies such as Apache Arrow, NumPy, NVIDIA RAPIDS, and Graphistry, it can already handle workloads like 100M+ edges in interactive time on a single machine."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/graphistry/pygraphistry/license"
+  title = "GitHub licence API — graphistry/pygraphistry"
+  quote = "\"spdx_id\": \"BSD-3-Clause\""
+  verified = "matched"
+  checked = "2026-08-02"

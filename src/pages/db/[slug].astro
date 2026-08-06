@@ -91,7 +91,12 @@ const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf, evidenc
 
 // Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
 // is the thing this whole layer exists to avoid publishing.
-const fieldLabels: Record<string, string> = { protocols: 'Protocols' };
+const fieldLabels: Record<string, string> = {
+  protocols: 'Protocols',
+  license: 'License',
+  released: 'Released',
+  implementation_language: 'Language',
+};
 
 const citedClaims = evidence
   .map((claim) => ({

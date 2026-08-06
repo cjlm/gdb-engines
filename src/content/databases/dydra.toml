@@ -4,6 +4,7 @@ slug = "dydra"
 description = "A cloud-hosted RDF triplestore written in Common Lisp with a revisioned graph store that maintains versioned snapshots of previous states, queryable via a REVISION clause in SPARQL. Uses LMDB for storage and RonDB for scaled deployments. Supports MQTT streaming for incremental changes."
 url = "https://dydra.com/"
 license = "Proprietary"
+implementation_language = "Common Lisp"
 type = "RDF"
 query_languages = ["SPARQL", "GraphQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]

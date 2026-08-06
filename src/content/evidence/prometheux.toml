@@ -17,4 +17,34 @@ notes = "Versioned REST API under /api/v1 drives the platform; MCP (local stdio 
   title = "REST API - Prometheux"
   quote = "The Prometheux platform exposes a REST API that lets you drive every part of the platform from your own application"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed as closed-source: NVIDIA's technical blog describes Vadalog Parallel as Prometheux's proprietary system. No open-source license file or repository for the core engine exists."
+
+  [[claims.sources]]
+  url = "https://developer.nvidia.com/blog/accelerating-neurosymbolic-ai-with-rapids-and-vadalog-parallel/"
+  title = "Accelerating Neurosymbolic AI with RAPIDS and Prometheux Vadalog Parallel | NVIDIA Technical Blog"
+  quote = "Prometheux has seamlessly integrated the RAPIDS accelerator for Apache Spark into their proprietary knowledge graph management system, Vadalog Parallel, to leverage NVIDIA GPUs."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2022"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No dated public product-launch announcement for Prometheux could be found (their current website is a 2026 relaunch). Using the official UK company incorporation date as the anchor for '2022' — it agrees with the GitHub org creation date (2022-03-11) and other secondary sources (e.g. The Company Check: 'Prometheux was founded in 2022')."
+
+  [[claims.sources]]
+  url = "https://find-and-update.company-information.service.gov.uk/company/13931965"
+  title = "PROMETHEUX LIMITED - Find and update company information - GOV.UK"
+  quote = "Company type Private limited Company Incorporated on 22 February 2022"
+  verified = "matched"
+  checked = "2026-08-02"

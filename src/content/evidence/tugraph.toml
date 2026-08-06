@@ -17,18 +17,71 @@ notes = "REST on port 7070; Bolt (Neo4j protocol, partial feature support) on po
   title = "Tugraph Running — TuGraph documentation"
   quote = "The Port on which the REST server listens. The default port is 7070."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/5.bolt-client.html"
   title = "Bolt client — TuGraph documentation"
   quote = "TuGraph implements Neo4j’s bolt protocol, you can use Neo4j’s client to access TuGraph."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/8.rpc-api.html"
   title = "RPC API — TuGraph documentation"
   quote = "brpc is an industrial-grade RPC framework written in C++. Based on brpc, TuGraph provides rich RPC APIs."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2022-09"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Adds the month: Ant Group open-sourced TuGraph at the World Artificial Intelligence Conference on September 1, 2022."
+
+  [[claims.sources]]
+  url = "https://www.businesswire.com/news/home/20220903005014/en/Ant-Group-Makes-Trusted-AI-Solutions-More-Accessible-to-Support-Industrial-Collaboration-in-Digital-Economy"
+  title = "Ant Group Makes Trusted AI Solutions More Accessible to Support Industrial Collaboration in Digital Economy"
+  quote = "As part of the actions, Ant Group has also made TuGraph open source for global developers on Github."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250725043114/https://www.businesswire.com/news/home/20220903005014/en/Ant-Group-Makes-Trusted-AI-Solutions-More-Accessible-to-Support-Industrial-Collaboration-in-Digital-Economy"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; core is C++ with a C++/Python stored-procedure API, and GitHub's language stats are dominated by C++."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/TuGraph-family/tugraph-db/master/README.md"
+  title = "README.md (TuGraph-family/tugraph-db)"
+  quote = "Full-Text/Primary/Secondary Index support\n- OpenCypher query API\n- Stored procedure with C++/Python API"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/TuGraph-family/tugraph-db"
+  title = "TuGraph-family/tugraph-db (GitHub API repository resource)"
+  quote = "\"language\": \"C++\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/TuGraph-family/tugraph-db/license"
+  title = "GitHub licence API — TuGraph-family/tugraph-db"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

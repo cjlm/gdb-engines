@@ -17,11 +17,57 @@ notes = "Dormant since 2016 (last GitHub push 2016-11-14; weaver.systems now jus
   title = "rescrv/busybee"
   quote = "It exposes a \"messaging\" abstraction on top of TCP and automatically packs/unpacks messages on the wire."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/dubey/weaver/master/client/comm_wrapper.h"
   title = "dubey/weaver — client/comm_wrapper.h (raw source)"
   quote = "std::unique_ptr<weaver_mapper> wmap;\n        std::unique_ptr<busybee_st> bb;\n        uint64_t bb_id;\n        uint64_t recv_from;"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/dubey/weaver/license"
+  title = "GitHub licence API — dubey/weaver"
+  quote = "\"spdx_id\": \"BSD-3-Clause\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2014-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Public alpha launch announced December 16, 2014; refines the current year-only value of 2014. The GitHub repo dates to 2012 but that predates any public release."
+
+  [[claims.sources]]
+  url = "https://hackingdistributed.com/2014/12/16/introducing-weaver/"
+  title = "Introducing Weaver"
+  quote = "Weaver is currently in alpha. So it's not quite ready for prime time."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20241213223828/https://hackingdistributed.com/2014/12/16/introducing-weaver/"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Matches current value; C++ dominates the repository's language byte counts by roughly 7x over the next largest language (Python)."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/dubey/weaver/languages"
+  title = "dubey/weaver languages (GitHub API)"
+  quote = "\"C++\":1167195,\"Python\":164225"
+  verified = "matched"
+  checked = "2026-08-02"
