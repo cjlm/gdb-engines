@@ -835,22 +835,20 @@ dialog {
   object-fit: contain;
 }
 
-/* Many vendor favicons are transparent black marks intended for a light browser tab.
-   Give every logo a neutral tile in dark mode; the small shadow keeps the inverse case
-   (a transparent white mark) legible on that same tile. */
-:root[data-theme='dark'] .database-logo {
+/* Only transparent, low-contrast marks get a neutral tile in dark mode. */
+:root[data-theme='dark'] .database-logo--needs-backfill {
   background: #f7f7f5;
   box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
 }
-:root[data-theme='dark'] .database-logo img {
+:root[data-theme='dark'] .database-logo--needs-backfill img {
   filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .database-logo {
+  :root:not([data-theme='light']) .database-logo--needs-backfill {
     background: #f7f7f5;
     box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
   }
-  :root:not([data-theme='light']) .database-logo img {
+  :root:not([data-theme='light']) .database-logo--needs-backfill img {
     filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
   }
 }
