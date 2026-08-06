@@ -25,7 +25,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .cache
-public/logos/
+public/logos/*
+!public/logos/objectivity-db.png
 
 # Local dev gallery for OG image inspection
 public/og-gallery.html

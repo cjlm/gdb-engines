@@ -114,8 +114,9 @@ async function mount(root: HTMLElement): Promise<void> {
   function iconHtml(engine: Engine): string {
     // No PNG means fetchFavicon fell back to the site's own icon, which would read as
     // though the engine belonged to GDB-Engines. A monogram is honest and free.
-    return `<img src="${engine.icon}" alt="" width="16" height="16" loading="lazy"
-      onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'combobox-monogram',textContent:'${engine.name.charAt(0).replace(/'/g, '')}'}))" />`;
+    return `<span class="database-logo" style="--database-logo-size:16px" aria-hidden="true"><img
+      src="${engine.icon}" alt="" width="16" height="16" loading="lazy" decoding="async"
+      onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'combobox-monogram',textContent:'${engine.name.charAt(0).replace(/'/g, '')}'}))" /></span>`;
   }
 
   function rank(engine: Engine): number {

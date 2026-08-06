@@ -1,6 +1,7 @@
 ---
 import type { RankedEngine } from '../lib/rankings';
 import { canonicalQueryLanguage } from '../lib/ranking-boards';
+import DatabaseLogo from './DatabaseLogo.astro';
 
 interface LinkMaps {
   typeSlug: Map<string, string>;
@@ -75,7 +76,7 @@ const tierClass = (tier: string): string => {
             {hasDeltas && <td class={`num ${deltaClass(e.rankDelta1m)}`}>{fmtDelta(e.rankDelta1m)}</td>}
             <td class="sticky-name-column">
               <div class="name-cell">
-                {fav && <img src={fav} alt="" width="16" height="16" class="favicon" loading="lazy" />}
+                {fav && <DatabaseLogo src={fav} size={16} loading="lazy" />}
                 <a href={`/db/${e.slug}/`} class="has-tooltip" aria-label={engineMeta[e.slug]?.description ?? e.name} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{e.name}</a>
                 <span class="db-links">
                   {engineMeta[e.slug]?.githubUrl ? (
@@ -164,13 +165,6 @@ const tierClass = (tier: string): string => {
   /* Match the homepage's Name cell layout — favicon + tooltipped link + db-links
      icon set. .has-tooltip and .db-links styling lives in global.css already. */
   .ranking-table .name-cell { display: flex; align-items: center; gap: 0.5rem; }
-  .ranking-table .favicon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    border-radius: 2px;
-    background: var(--color-surface);
-  }
   /* Plain-text cells (License, Language) get a dotted underline as a "clickable" hint. */
   .ranking-table .value-link {
     color: inherit;

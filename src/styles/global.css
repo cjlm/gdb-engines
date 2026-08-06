@@ -110,7 +110,7 @@ a {
 }
 
 /* Header */
-header {
+.site-header {
   top: 0;
   display: flex;
   gap: 0.5rem;
@@ -172,6 +172,7 @@ header {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: -0.5px;
+    white-space: nowrap;
   }
 
   p {
@@ -241,6 +242,12 @@ header {
     align-items: center;
   }
 
+  @media (max-width: 55rem) {
+    .database-summary {
+      display: none;
+    }
+  }
+
   @media (max-width: 45rem) {
     padding-inline: 0.5rem;
 
@@ -256,6 +263,8 @@ header {
       }
 
       .primary-nav {
+        flex: 1 1 auto;
+        justify-content: space-evenly;
         gap: 0.25rem;
       }
 
@@ -288,44 +297,39 @@ header {
   }
 }
 
-/* Ranks block on /db/{slug} detail pages */
-.ranks-block { margin: 1.5rem 0; }
-.ranks-block h2 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-.ranks-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* Related ranks and collections on /db/{slug} detail pages. These are rows rather than
+   lozenges so rank links, roundups, and comparisons share one visual language. */
+.ranks-list { list-style: none; padding: 0; margin: 0; }
+.ranks-list li + li { border-top: 1px solid var(--color-border); }
 .ranks-list a {
-  display: inline-flex; align-items: baseline; gap: 0.3rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.675rem 0;
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.8125rem;
-  border: 1px solid var(--color-border);
-  transition: background-color 120ms ease;
+  transition: color 120ms ease;
 }
-.ranks-list a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
-.ranks-list .rank { font-weight: 600; color: var(--color-brand-accent); font-variant-numeric: tabular-nums; }
+.ranks-list a:hover { color: var(--color-brand-accent); }
+.ranks-list a:hover .label { color: inherit; }
+.ranks-list .rank { font-family: var(--font-mono); font-weight: 600; color: var(--color-brand-accent); font-variant-numeric: tabular-nums; }
 .ranks-list .label { color: var(--color-text-secondary); }
-/* Roundup membership shares the rail with the rank lozenges but reads quieter:
-   no rank figure, dashed edge, transparent fill. */
-.ranks-list a.roundup {
-  background-color: transparent;
-  border-style: dashed;
-}
-.ranks-list a.roundup:hover {
-  background-color: color-mix(in srgb, var(--color-brand) 8%, transparent);
-}
-.ranks-list a.roundup .chev { color: var(--color-text-tertiary); }
+.ranks-list .chev { color: var(--color-text-tertiary); }
 
 
 /* Provenance footer on an engine page. Deliberately the quietest thing on the page: collapsed by
    default, set a size down from body copy, and sitting below the comparison links. It exists to be
    checked, not read. */
 .sources {
-  margin: 2.5rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-border);
+  margin: 2rem 0 0;
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--color-background) 86%, var(--color-surface));
   font-size: 0.8125rem;
+  scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 .sources > summary {
   cursor: pointer;
@@ -346,6 +350,7 @@ header {
   color: var(--color-text-tertiary);
   font-variant-numeric: tabular-nums;
 }
+.sources[open] > summary { margin-bottom: 1.25rem; }
 .claim { margin: 0 0 1.25rem; }
 .claim-head {
   display: flex;
@@ -390,22 +395,25 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
 }
+.compare-with li + li { border-top: 1px solid var(--color-border); }
 .compare-with a {
-  display: inline-flex;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  background-color: var(--color-surface);
-  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.675rem 0;
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 0.8125rem;
-  border: 1px solid var(--color-border);
-  transition: background-color 120ms ease;
+  transition: color 120ms ease;
 }
-.compare-with a:hover { background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface)); }
+.compare-with a:hover { color: var(--color-brand-accent); }
+.compare-with .database-logo {
+  margin-left: auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+}
 
 /* Rankings cross-links from the comparison table.
    Two fixed slots: the figure right-aligns in the first so every rank shares an edge,
@@ -807,13 +815,53 @@ dialog {
   }
 }
 
+/* Database logos share one treatment everywhere, including the comparison picker icons
+   written by client-side JavaScript. */
+.database-logo {
+  display: inline-flex;
+  width: var(--database-logo-size);
+  height: var(--database-logo-size);
+  flex: 0 0 var(--database-logo-size);
+  align-items: center;
+  justify-content: center;
+  border-radius: max(2px, calc(var(--database-logo-size) / 8));
+  vertical-align: middle;
+}
+.database-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: contain;
+}
+
+/* Many vendor favicons are transparent black marks intended for a light browser tab.
+   Give every logo a neutral tile in dark mode; the small shadow keeps the inverse case
+   (a transparent white mark) legible on that same tile. */
+:root[data-theme='dark'] .database-logo {
+  background: #f7f7f5;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
+}
+:root[data-theme='dark'] .database-logo img {
+  filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .database-logo {
+    background: #f7f7f5;
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
+  }
+  :root:not([data-theme='light']) .database-logo img {
+    filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
+  }
+}
+
 /* Database cell */
 .database-cell {
   display: flex;
   align-items: center;
   gap: 0.625rem;
 }
-.database-cell img,
+.database-cell .database-logo,
 .database-cell .icon-placeholder {
   width: 1.25rem;
   height: 1.25rem;
@@ -956,14 +1004,14 @@ tr.row-deprecated:hover td {
 }
 
 /* GitHub link in header */
-header .github {
+.site-header .github {
   display: flex;
   align-items: center;
   color: var(--color-text);
   opacity: var(--icon-opacity);
   text-decoration: none;
 }
-header .github:hover {
+.site-header .github:hover {
   opacity: 1;
 }
 
@@ -986,6 +1034,16 @@ header .github:hover {
 }
 .icon-btn:hover {
   color: var(--color-text);
+}
+.site-header .icon-btn {
+  width: 2.5rem;
+  height: 2rem;
+}
+.site-header .icon-btn .icon-sun,
+.site-header .icon-btn .icon-moon {
+  width: 1.75rem;
+  height: 1.75rem;
+  stroke-width: 2.5;
 }
 
 /* Theme toggle icons */
@@ -1191,113 +1249,366 @@ thead [role="tooltip"]::after {
 
 /* Database detail page */
 .db-page {
-  max-width: 48rem;
+  --db-panel: color-mix(in srgb, var(--color-background) 88%, var(--color-surface));
+  --db-panel-strong: color-mix(in srgb, var(--color-background) 72%, var(--color-surface));
+  --db-soft-accent: color-mix(in srgb, var(--color-brand-accent) 10%, transparent);
+  --db-radius: 0.75rem;
+  max-width: 72rem;
   margin: 0 auto;
-  padding: calc(var(--header-height) + 2rem) 1.5rem 3rem;
+  padding: calc(var(--header-height) + 1.75rem) 1.5rem 3.5rem;
   font-size: 0.875rem;
   line-height: 1.6;
 }
+.db-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.db-page .back-link:hover { color: var(--color-text); }
+
+.db-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3.5vw, 2.25rem);
+  border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+  border-radius: calc(var(--db-radius) + 0.25rem);
+  background:
+    radial-gradient(circle at 92% 12%, var(--db-soft-accent), transparent 17rem),
+    color-mix(in srgb, var(--color-background) 92%, transparent);
+  box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 5%);
+}
+.db-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.db-identity .database-logo {
+  padding: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--color-background);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 7%);
+}
 .db-page h1 {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: clamp(1.75rem, 4vw, 2.625rem);
   font-weight: 600;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-.db-page h1 img {
-  width: 1.5rem;
-  height: 1.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
 }
 .db-page .description {
-  margin-bottom: 2rem;
+  max-width: 68ch;
+  margin: 1.25rem 0 0;
   color: var(--color-text-secondary);
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+  line-height: 1.7;
+}
+.db-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
+}
+.db-action {
+  display: inline-flex;
+  min-height: 2.375rem;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+.db-action:hover {
+  border-color: var(--color-text-tertiary);
+  color: var(--color-text);
+  transform: translateY(-1px);
+}
+.db-action.db-action-primary {
+  border-color: var(--color-brand-accent);
+  background: var(--color-brand-accent);
+  color: var(--color-background);
+}
+.db-action.db-action-primary:hover { color: var(--color-background); }
+.db-action-meta {
+  padding-left: 0.45rem;
+  border-left: 1px solid var(--color-border);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+}
+.db-snapshot {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+.db-snapshot > div {
+  min-width: 0;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+.db-snapshot > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.db-snapshot dt {
+  color: var(--color-text-tertiary);
+  font-size: 0.75rem;
+}
+.db-snapshot dd {
+  margin-top: 0.2rem;
+  overflow: hidden;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.db-snapshot a {
+  color: var(--color-brand-accent);
+  text-decoration: none;
+}
+
+.db-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(15.5rem, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  margin-top: 2.5rem;
+}
+.db-main-column,
+.db-side-column { min-width: 0; }
+.db-section + .db-section { margin-top: 2.75rem; }
+.db-section-heading {
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--color-border);
 }
 .db-page h2 {
   font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 .db-page h3 {
+  margin-bottom: 0.375rem;
+  color: var(--color-text-tertiary);
   font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 .db-page .meta-grid {
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: 0.375rem 1rem;
+  grid-template-columns: 9rem 1fr;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--db-panel);
 }
+.db-page .meta-grid dt,
+.db-page .meta-grid dd {
+  min-width: 0;
+  padding: 0.7rem 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.db-page .meta-grid dt:nth-last-of-type(1),
+.db-page .meta-grid dd:last-child { border-bottom: 0; }
 .db-page .meta-grid dt {
   color: var(--color-text-tertiary);
+  font-size: 0.75rem;
 }
 .db-page .meta-grid dd {
   margin: 0;
+  background: color-mix(in srgb, var(--color-background) 62%, transparent);
+  color: var(--color-text-secondary);
+  font-weight: 500;
 }
-.db-page .feature-row {
+.db-page .meta-list {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.25rem 0;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.75rem;
 }
-.db-page .feature-name {
-  min-width: 12rem;
+.db-page .meta-list span { white-space: nowrap; }
+.db-page .meta-list span + span::before {
+  content: '·';
+  margin-right: 0.75rem;
   color: var(--color-text-tertiary);
 }
-.db-page .feature-meaning {
+.db-status {
+  color: var(--color-brand-accent);
+  font-weight: 600;
+}
+.feature-groups {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--db-panel);
+}
+.feature-group { padding: 1rem; }
+.feature-group + .feature-group { border-top: 1px solid var(--color-border); }
+.feature-group h3 { margin-bottom: 0.6rem; }
+.db-page .feature-row {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 1.2fr) minmax(7rem, 0.8fr) minmax(10rem, 1.4fr);
+  gap: 0.875rem;
+  align-items: center;
+  min-height: 2rem;
+}
+.db-page .feature-name {
   color: var(--color-text-secondary);
   font-size: 0.75rem;
 }
-.db-page .back-link {
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  font-size: 0.8125rem;
-  color: var(--color-text-tertiary);
-}
-.db-page .db-links {
+.db-page .feature-score-visual {
   display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-.db-page .db-links .db-github-link {
-  gap: 0.45rem;
-}
-.db-page .db-github-link .github-star-group {
-  grid-template-columns: 0.75rem minmax(4.5ch, max-content);
-  color: inherit;
-}
-.db-page .meta-grid .db-github-detail {
+  align-items: center;
+  gap: 0.55rem;
   min-width: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  color: var(--color-text-secondary);
-  vertical-align: middle;
 }
-.db-page .meta-grid .db-github-detail .github-star-group {
-  color: inherit;
+.db-page .bar-indicator {
+  width: 100%;
+  min-width: 3.5rem;
 }
-.db-page .meta-grid .db-github-detail:hover {
-  border-color: transparent;
-  background: transparent;
-  color: var(--color-text);
+.db-page .feature-score {
+  flex: 0 0 3rem;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.db-page .feature-check {
+  display: inline-flex;
+  width: 1.35rem;
+  height: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-accent);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.db-page .feature-meaning {
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+  line-height: 1.35;
 }
 
-@media (max-width: 32rem) {
-  .db-page h1 {
-    align-items: flex-start;
+.db-side-column {
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+.db-side-section {
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--db-panel);
+}
+.db-side-section + .db-side-section { margin-top: 0.875rem; }
+.db-side-section h2 {
+  margin-bottom: 0.45rem;
+  color: var(--color-text);
+  font-size: 0.875rem;
+}
+.external-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.external-list li + li { border-top: 1px solid var(--color-border); }
+.external-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.675rem 0;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+.external-list a:hover { color: var(--color-brand-accent); }
+.external-list a > span:first-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+.external-list strong {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.external-list small {
+  overflow: hidden;
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.external-list svg,
+.external-list .chev {
+  flex: 0 0 auto;
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 52rem) {
+  .db-layout { grid-template-columns: 1fr; }
+  .db-side-column {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.875rem;
   }
-  .db-page .db-links {
-    flex-basis: 100%;
-    margin-left: 0;
-    padding-left: 0;
+  .db-side-section + .db-side-section { margin-top: 0; }
+}
+
+@media (max-width: 40rem) {
+  .db-page { padding-inline: 1rem; }
+  .db-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .db-snapshot > div {
+    padding: 0.75rem 0;
+    border-left: 0;
+  }
+  .db-snapshot > div:nth-child(even) {
+    padding-left: 1rem;
+    border-left: 1px solid var(--color-border);
+  }
+  .db-snapshot > div:nth-child(n + 3) { border-top: 1px solid var(--color-border); }
+  .db-page .feature-row {
+    grid-template-columns: minmax(8rem, 1fr) minmax(6rem, 0.8fr);
+    padding: 0.3rem 0;
+  }
+  .db-page .feature-meaning {
+    grid-column: 1 / -1;
+    margin-top: -0.35rem;
+  }
+  .db-side-column { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 30rem) {
+  .db-hero { padding: 1.125rem; }
+  .db-identity { align-items: flex-start; }
+  .db-identity .database-logo {
+    --database-logo-size: 42px !important;
+    padding: 0.3rem;
+  }
+  .db-page .meta-grid { grid-template-columns: 7rem 1fr; }
+  .db-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .db-page .feature-row {
+    grid-template-columns: minmax(6.5rem, 1fr) minmax(5rem, 0.8fr);
   }
 }

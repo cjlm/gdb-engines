@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import DatabaseLogo from '../components/DatabaseLogo.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -148,13 +149,7 @@ const datasetJsonLd = JSON.stringify({
               {(() => {
                 const fav = faviconMap[db.data.slug];
                 return fav ? (
-                  <img
-                    src={fav}
-                    alt=""
-                    width="20"
-                    height="20"
-                    loading="lazy"
-                  />
+                  <DatabaseLogo src={fav} size={20} loading="lazy" />
                 ) : (
                   <span class="icon-placeholder" />
                 );

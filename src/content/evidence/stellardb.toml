@@ -5,6 +5,21 @@
 slug = "stellardb"
 
 [[claims]]
+field = "released"
+value = "2018-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-06"
+notes = "Transwarp's official company history places the StellarDB launch in May 2018."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.cn/en/introduction"
+  title = "Company Profile - Transwarp"
+  quote = "Launched distributed analytical database ArgoDB and distributed graph database StellarDB"
+  verified = "matched"
+  checked = "2026-08-06"
+
+[[claims]]
 field = "protocols"
 value = ["Thrift"]
 confidence = "medium"
