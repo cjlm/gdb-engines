@@ -17,18 +17,63 @@ notes = "Server source shows the panda:// listener is built on a proprietary RPC
   title = "PandaRpcClient.scala — grapheco/pandadb-v0.3"
   quote = "import net.neoremind.kraps.rpc.netty.HippoRpcEnvFactory\nimport net.neoremind.kraps.rpc.{RpcAddress, RpcEnvClientConfig}\nimport org.neo4j.driver.v1.exceptions.SessionExpiredException"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/grapheco/pandadb-v0.3/master/server/src/main/scala/cn/pandadb/server/rpc/PandaRpcServer.scala"
   title = "PandaRpcServer.scala — grapheco/pandadb-v0.3"
   quote = "class PandaEndpoint(override val rpcEnv: HippoRpcEnv) extends RpcEndpoint with LazyLogging {"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/grapheco/pandadb-java-driver/ce5ae3c2e0b2f9a9c004ef7410074f8544ba709a/README.md"
   title = "PandaDB-Java-Driver"
   quote = "pandadb-java-driver can easily switch to neo4j driver or pandadb driver, all the user needs to do is change the connection schema to `bolt` or `panda`."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/grapheco/pandadb-v0.3/license"
+  title = "GitHub licence API — grapheco/pandadb-v0.3"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2019"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The catalogued pandadb-v0.3 repo is a rewrite of the earlier grapheco/pandadb project, whose README names itself 'PandaDB-2019', consistent with the project's origin in 2019; this is an inference from the project's own naming rather than an explicit release announcement."
+
+  [[claims.sources]]
+  url = "https://github.com/grapheco/pandadb"
+  title = "grapheco/pandadb"
+  quote = "PandaDB-2019 is an open source product licensed under GPLv3."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Scala"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The build is a Scala/Maven project using the scala-maven-plugin, and GitHub's language breakdown for pandadb-v0.3 lists only Scala and Shell."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/grapheco/pandadb-v0.3/kv-distributed/pom.xml"
+  title = "pom.xml"
+  quote = "<maven.compiler.target>1.8</maven.compiler.target>\n        <scala.version>2.12.8</scala.version>\n        <scala.binary.version>2.12</scala.binary.version>\n        <scala.compat.version>2.12</scala.compat.version>"
+  verified = "matched"
+  checked = "2026-08-02"

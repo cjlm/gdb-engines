@@ -17,11 +17,63 @@ notes = "The CLI/server implements SPARQL 1.1 Protocol plus the SPARQL 1.1 Graph
   title = "GitHub - oxigraph/oxigraph: SPARQL graph database"
   quote = "Oxigraph binary that provides a standalone command-line tool allowing to manipulate RDF data and spawn a web server implementing the SPARQL 1.1 Protocol and the SPARQL 1.1 Graph Store Protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/oxigraph/oxigraph"
   title = "GitHub - oxigraph/oxigraph: SPARQL graph database"
   quote = "JavaScript bindings for Oxigraph. WebAssembly is used to package Oxigraph into a NodeJS compatible NPM package."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0 OR MIT"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. Repository carries both a LICENSE-APACHE and a LICENSE-MIT file, a standard Rust dual-license setup."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/oxigraph/oxigraph/main/LICENSE-APACHE"
+  title = "LICENSE-APACHE"
+  quote = "Apache License\n Version 2.0, January 2004\n http://www.apache.org/licenses/"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/oxigraph/oxigraph/main/LICENSE-MIT"
+  title = "LICENSE-MIT"
+  quote = "Copyright (c) 2018 Oxigraph developers"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-08"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. Earliest CHANGELOG entry is 0.1.0-rc.1, dated 2020-08-08."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/oxigraph/oxigraph/main/CHANGELOG.md"
+  title = "CHANGELOG.md"
+  quote = "## [0.1.0-rc.1] - 2020-08-08\n\n### Added\n- `oxigraph` Rust library with SPARQL 1.1 query support and memory, Sled and RocksDB stores."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The project's first release describes itself as a Rust library."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/oxigraph/oxigraph/main/CHANGELOG.md"
+  title = "CHANGELOG.md"
+  quote = "`oxigraph` Rust library with SPARQL 1.1 query support and memory, Sled and RocksDB stores."
+  verified = "matched"
+  checked = "2026-08-02"

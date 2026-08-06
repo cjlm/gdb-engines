@@ -18,19 +18,115 @@ notes = "gRPC (port 5700, used by Altair front-end/console apps) and SPARQL 1.1 
   quote = "The Anzo protocol (gRPC) port for secure communication between Graph Lakehouse and other Altair applications."
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20260315225245/https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/faq.htm"
   title = "FAQ"
   quote = "Graph Lakehouse supports the standard W3C SPARQL 1.1 Protocol (SPARQL endpoint) and SPARQL 1.1 Graph Store HTTP Protocol (RDF Graph Store endpoint)."
   verified = "unreachable"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
   title = "System Settings Reference"
   quote = "This setting controls whether support for OpenCypher and BOLT protocol is enabled."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20260315225245/https://docs.cambridgesemantics.com/graphlakehouse/v3.2/userdoc/settings-ref.htm"
-  checked = "2026-08-01"
+  verified = "unreachable"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-08-02"
+notes = "Commercial product with a restricted free edition; sold under Altair Units licensing. The vendor licence page refuses automated fetches, so this cites an archived product page from its Cambridge Semantics era."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20241111082943/https://cambridgesemantics.com/anzograph/"
+  title = "AnzoGraph DB — Cambridge Semantics (archived)"
+  quote = "Download the Free Edition of AnzoGraph for commercial use."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Narrowed from '2018-10' to year-only: Cambridge Semantics first previewed the underlying product (AnzoGraph) in February/May 2018, with the October 2018 date in the current record reflecting the later standalone-download milestone rather than first public availability. The product keeps this original date under its current name, Altair Graph Lakehouse (rebranded 2025)."
+
+  [[claims.sources]]
+  url = "https://www.prweb.com/releases/Cambridge_Semantics_Announces_AnzoGraph_Open_Standards_Graph_Database_for_Analytics_Available_for_Standalone_Use/prweb15833988.htm"
+  title = "Cambridge Semantics Announces AnzoGraph Open-Standards Graph Database for Analytics Available for Standalone Use"
+  quote = "today announced that for the first time, its award-winning AnzoGraph database is now available for download for independent evaluation and usage in customer applications"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20180221100445/https:/www.cambridgesemantics.com/product/anzograph/"
+  title = "AnzoGraph™ - Cambridge Semantics"
+  quote = "AnzoGraph is a massively parallel distributed native graph database built to query and interactively analyze trillions of relationships."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. A third-party technical review states the query engine compiles queries into C++; product documentation likewise offers a C++ API (alongside JVM) for extensions, consistent with a C++ core."
+
+  [[claims.sources]]
+  url = "https://www.bloorresearch.com/solutions/cambridge-semantics-anzograph/"
+  title = "Cambridge Semantics AnzoGraph - Bloor Research"
+  quote = "To support its performance, the database uses various constructs. To begin with, all queries are compiled (into C++)."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "vendor"
+value = "Siemens"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Siemens closed its acquisition of Altair Engineering on March 26, 2025; the graph product now ships under Siemens' Rapidminer brand."
+
+  [[claims.sources]]
+  url = "https://news.siemens.com/en-us/siemens-altair-engineering-closing/"
+  title = "Siemens acquires Altair to create most complete AI-powered portfolio of industrial software"
+  quote = "Siemens announced today that it has completed the acquisition of Altair Engineering Inc., a leading provider of software in the industrial simulation and analysis market, for an enterprise value of approximately USD 10 billion."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Altair Graph Lakehouse is now sold as Rapidminer Graph Lakehouse, a capability of Rapidminer Graph Studio under Siemens; the old altair.com path just redirects to a generic Siemens page."
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Unleash the full potential of your connected data with Rapidminer Graph Lakehouse. Its in-memory MPP architecture delivers blazing-fast loading, querying and transformation across billions of entities"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "name"
+value = "Rapidminer Graph Lakehouse"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acquisition of Altair."
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Unleash the full potential of your connected data with Rapidminer Graph Lakehouse."
+  verified = "matched"
+  checked = "2026-08-02"

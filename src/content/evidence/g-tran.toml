@@ -17,11 +17,56 @@ notes = "A separate client executable connects over the network (ZeroMQ-based me
   title = "G-Tran"
   quote = "a fully decentralized system architecture by leveraging the benefits of RDMA to avoid the bottleneck from centralized transaction coordinating"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/yaobaiwei/GTran/master/docs/Tutorial.md"
   title = "G-Tran Tutorial"
   quote = "To start the G-Tran client, the user only needs to execute the script we provide as follow"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/yaobaiwei/GTran/license"
+  title = "GitHub licence API — yaobaiwei/GTran"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2019-03"
+confidence = "medium"
+method = "api"
+checked = "2026-08-02"
+notes = "Corrects current '2021' (the year of the arXiv paper) to 2019-03: the GitHub repository was created and pushed publicly in March 2019, two years before the paper describing it was written, so the paper year overstates first public availability. Repo creation date is a floor, not a confirmed announcement, hence medium confidence."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/yaobaiwei/GTran"
+  title = "yaobaiwei/GTran — GitHub API repository metadata"
+  quote = "\"pushed_at\":\"2022-04-06T13:46:58Z\",\"git_url\":\"git://github.com/yaobaiwei/GTran.git\",\"ssh_url\":\"git@github.com:yaobaiwei/GTran.git\",\"clone_url\":\"https://github.com/yaobaiwei/GTran.git\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "The GitHub language-stats quote was rejected as non-contiguous; the arXiv paper states the implementation language directly in running prose."
+
+  [[claims.sources]]
+  url = "https://arxiv.org/pdf/2105.04449"
+  title = "G-Tran: Making Distributed Graph Transactions Fast"
+  quote = "G-Tran was implemented in C++, currently with 46K+ lines of code."
+  verified = "matched"
+  checked = "2026-08-02"

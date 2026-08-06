@@ -17,18 +17,70 @@ notes = "KiWi itself is an embeddable Sesame Sail library (no wire protocol of i
   title = "SparqlWebService (Apache Marmotta Site 3.3.0 API)"
   quote = "Execute SPARQL query (both query and update) on the LMF triple store according the SPARQL 1.1 Protocol"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://marmotta.apache.org/platform/ldp-module.html"
   title = "Apache Marmotta - Platform - LDP"
   quote = "Since 3.2.0 Marmotta provides experimental support for the current working draft of the Linked Data Platform 1.0 specification."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://marmotta.apache.org/kiwi/"
   title = "Apache Marmotta - KiWi Triple Store"
   quote = "The KiWi triple store is composed of a number of Sesame Sail modules that can be combined and stacked as needed."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/marmotta/license"
+  title = "GitHub licence API — apache/marmotta"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current value of 2012, which reflects Apache Marmotta's Apache Incubator entry rather than the KiWi triplestore itself. KiWi 1.0, the first public open-source release including the triplestore, launched on 14 October 2010, two years before Marmotta was contributed to Apache."
+
+  [[claims.sources]]
+  url = "https://www.k-jahn.de/2010/10/18/kiwi-release-party/"
+  title = "KiWi Release Party - Karsten Jahn"
+  quote = "The 14th of October 2010 was a very special date for the KiWi project: After more than two and a half years of development version 1.0 of our collaborative knowledge management software was published."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.salzburgresearch.at/wp-content/uploads/2010/12/KiWi_booklet_2010.pdf"
+  title = "KiWi: A Platform for Building Semantic Social Media Applications"
+  quote = "This booklet, accompanying the KiWi 1.0 release, aims to summarize the key features offered by the platform and provide you with background information."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; the Marmotta Platform architecture documentation states the KiWi triplestore is one of the Java libraries providing the model/persistence layer."
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/platform/"
+  title = "Apache Marmotta - Platform"
+  quote = "the model layer offers persistence and data access functionality; this is in most cases provided by normal Java libraries (kiwi, ldcache, ldclient, commons from Marmotta, Sesame Repository, etc)"
+  verified = "matched"
+  checked = "2026-08-02"

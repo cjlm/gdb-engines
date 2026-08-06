@@ -17,11 +17,56 @@ notes = "Bolt is the primary driver protocol; the transactional HTTP API on port
   title = "Bolt Protocol - Bolt Protocol"
   quote = "Bolt is an application protocol for the execution of database queries via a database query language, such as Cypher."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://neo4j.com/docs/http-api/current/"
   title = "Introduction - HTTP API"
   quote = "By default, the API uses port 7474 for HTTP and port 7473 for HTTPS."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2007"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value. Neo4j's own history page dates the open-source 1.0 release to 2007, after seven years of internal development starting in 2000."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/open-source-project/"
+  title = "Neo4j Open Source Project"
+  quote = "Neo4j 1.0 released as open source and commercial packages"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value. Neo4j's own docs name Java as the primary implementation language; Scala is also used within the codebase but Java is the language the project leads with."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/getting-started/whats-neo4j/"
+  title = "What is Neo4j? - Getting Started"
+  quote = "Neo4j is written in Java and Scala. You can check the source code on GitHub."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/neo4j/neo4j/license"
+  title = "GitHub licence API — neo4j/neo4j"
+  quote = "\"spdx_id\": \"GPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"

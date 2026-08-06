@@ -17,18 +17,107 @@ notes = "RDF4J REST API serves W3C SPARQL query/update and Graph Store HTTP Prot
   title = "Using the RDF4J REST API — GraphDB 11.4 documentation"
   quote = "This RDF4J REST API support also includes support for W3C standard SPARQL query and update endpoints; this is described further below."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://graphdb.ontotext.com/documentation/11.4/sql-access-over-jdbc.html"
   title = "SQL access over JDBC — GraphDB 11.4 documentation"
   quote = "This support is based on the Apache Calcite protocol and on performing optimizations and mappings."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://graphdb.ontotext.com/documentation/11.4/graphql.html"
   title = "GraphQL — GraphDB 11.4 documentation"
   quote = "Usage of GraphQL is done through GraphQL endpoints which provide API access to a repository’s data."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. As of GraphDB 11.0.0 even the Free edition requires a vendor-issued license, and GraphDB Enterprise is sold per-core."
+
+  [[claims.sources]]
+  url = "https://graphwise.ai/components/graphdb/"
+  title = "Graphwise GraphDB | Semantic Graph Database (redirected from ontotext.com/products/graphdb/)"
+  quote = "Starting with GraphDB 11.0.0, all editions, including GraphDB Free, require a valid license."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2005"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. GraphDB began as OWLIM; a public OWLIM v2.8 announcement is dated October 2005, meaning the first release predates that and falls in 2005 or earlier — no earlier public announcement was found, so 2005 is treated as the release year rather than an exact first version."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/www-rdf-interest/2005Oct/0026.html"
+  title = "Fw: OWLIM (OWL Semantic Repository) v2.8 released — www-rdf-interest mailing list"
+  quote = "Ontotext is happy to announce ver. 2.8 of its OWLIM semantic repository,"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. GraphDB is packaged as a Storage and Inference Layer for the Java-based RDF4J (formerly Sesame) framework and requires a JDK to run."
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/master/requirements.html"
+  title = "Requirements — GraphDB documentation"
+  quote = "Java SE Development Kit 21 (not required for GraphDB Free desktop installation)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://graphwise.ai/components/graphdb/"
+  title = "Graphwise GraphDB | Semantic Graph Database (redirected from ontotext.com/products/graphdb/)"
+  quote = "For a server environment, we recommend the platform independent GraphDB distribution, which requires separate Java installation."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "vendor"
+value = "Graphwise"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Ontotext merged with Semantic Web Company in October 2024 to form Graphwise; GraphDB is now marketed as a Graphwise product while keeping its original name."
+
+  [[claims.sources]]
+  url = "https://www.ontotext.com/company/news/semantic-web-company-and-ontotext-merge-to-create-knowledge-graph-and-ai-powerhouse-graphwise/"
+  title = "Semantic Web Company and Ontotext Merge to Create Knowledge Graph and AI Powerhouse Graphwise | Ontotext"
+  quote = "Semantic Web Company and Ontotext today announced that the two companies have merged to become the leading Graph AI provider, Graphwise."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://graphwise.ai/faq/"
+  title = "FAQ | Graphwise"
+  quote = "The product brands, GraphDB and PoolParty, will continue to be used – they are strong and well known."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://graphwise.ai/components/graphdb/"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "ontotext.com/products/graphdb/ still resolves but now 301-redirects to this Graphwise-branded page, confirmed by following the redirect chain directly; the old URL is not dead, just superseded."
+
+  [[claims.sources]]
+  url = "https://graphwise.ai/components/graphdb/"
+  title = "Graphwise GraphDB | Semantic Graph Database"
+  quote = "Graphwise GraphDB is an enterprise-grade semantic graph database that supports RDF and SPARQL—providing a highly scalable foundation to link fragmented business data and power real-time AI insights."
+  verified = "matched"
+  checked = "2026-08-02"

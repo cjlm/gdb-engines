@@ -1,0 +1,80 @@
+# Sources for values in src/content/databases/katanagraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "katanagraph"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; GitHub's own licence detector shows NOASSERTION for the repo, but the README states BSD-3-Clause explicitly."
+
+  [[claims.sources]]
+  url = "https://github.com/KatanaGraph/katana"
+  title = "KatanaGraph/katana"
+  quote = "Katana is released under the BSD-3-Clause license."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-11"
+confidence = "medium"
+method = "api"
+checked = "2026-08-02"
+notes = "Repository first published November 2020, months before the company’s Series A. Only development builds existed at that point, so this is first public availability rather than a stable release."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/KatanaGraph/katana"
+  title = "GitHub repository API — KatanaGraph/katana"
+  quote = "\"created_at\":\"2020-11-04T20:19:01Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value C++; GitHub's own language breakdown also shows the repository is 80.5% C++, with Python bindings on top."
+
+  [[claims.sources]]
+  url = "https://github.com/KatanaGraph/katana"
+  title = "KatanaGraph/katana"
+  quote = "A modern C++ compiler compliant with the C++-17 standard (gcc >= 7, Intel >= 19.0.1, clang >= 7.0)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://web.archive.org/web/20241228015629/https://katanagraph.ai/"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "katanagraph.ai now times out with no live replacement; this is the last available Wayback Machine capture of the vendor's marketing site."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20241228015629/https://katanagraph.ai/"
+  title = "Breakthrough Graph Intelligence Platform :: Katana Graph"
+  quote = "A groundbreaking graph intelligence platform means next-level graph query, analytics, AI and mining fueled by an unparalleled combination of novel graph algorithms, graph neural network architectures and hardware acceleration."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "inactive"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "A former Katana Graph engineer reported most of the engineering team was laid off in mid-2023; the company's GitHub development had already stalled and its site is now unreachable. A paid company-data aggregator (PrivCo) lists a 2024 asset acquisition by a PE firm, but its financial figures for this company appear templated/unreliable and are not used as evidence."
+
+  [[claims.sources]]
+  url = "https://www.linkedin.com/posts/sanchayan-sarkar-736b26102_opentowork-largelanguagemodels-machinelearning-activity-7073034515719327744-5sfI"
+  title = "Last month, most of the engineering team was laid off at Katana Graph, because of the economic downturn, and unfortunately I was impacted. | Sanchayan Sarkar"
+  quote = "Last month, most of the engineering team was laid off at Katana Graph, because of the economic downturn, and unfortunately I was impacted."
+  verified = "matched"
+  checked = "2026-08-02"

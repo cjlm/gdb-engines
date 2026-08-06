@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/rdf-trine.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "rdf-trine"
+
+[[claims]]
+field = "license"
+value = "Artistic-1.0-Perl OR GPL-1.0-or-later"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from the current Artistic-2.0: the module is licensed under the standard Perl 5 dual license ('the same terms as Perl itself'), which Debian's packaging maps explicitly to Artistic-1.0-Perl OR GPL-1.0-or-later, not Artistic-2.0."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kasei/perlrdf/master/RDF-Trine/lib/RDF/Trine.pm"
+  title = "Trine.pm"
+  quote = "Copyright (c) 2006-2012 Gregory Todd Williams. This\nprogram is free software; you can redistribute it and/or modify it under\nthe same terms as Perl itself."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://tracker.debian.org/media/packages/libr/librdf-trine-perl/copyright-1.019-2"
+  title = "Copyright 1.019 2"
+  quote = "This program is free software; you can redistribute it and/or modify it\n under the same terms as Perl itself.\nLicense: Artistic or GPL-1+"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2008-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refined from the current year-only 2008: the module's own Changes history explicitly labels version 0.100 (2008-02-18) as the 'Initial public release'."
+
+  [[claims.sources]]
+  url = "http://ftp.jaist.ac.jp/pub/CPAN/modules/by-module/RDF/RDF-Trine-1.019.readme"
+  title = "RDF-Trine-1.019 README"
+  quote = "Version 0.100 (2008-02-18)\n\n * Initial public release."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Perl"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value: RDF::Trine is a CPAN distribution written in and for Perl."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kasei/perlrdf/master/RDF-Trine/lib/RDF/Trine.pm"
+  title = "Trine.pm"
+  quote = "RDF::Trine - An RDF Framework for Perl\n\n=head1 VERSION\n\nThis document describes RDF::Trine version 1.019"
+  verified = "matched"
+  checked = "2026-08-02"

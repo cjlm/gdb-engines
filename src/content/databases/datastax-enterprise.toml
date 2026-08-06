@@ -9,7 +9,7 @@ implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin", "CQL"]
 protocols = ["Native binary"]
-released = "2016"
+released = "2016-04"
 category = "Established"
 gdotv_support = true
 

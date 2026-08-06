@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/turbolynx.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "turbolynx"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/turbolynx-dslab/TurboLynx/license"
+  title = "GitHub licence API — turbolynx-dslab/TurboLynx"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-12"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from '2025' to '2025-12': the project's own CHANGELOG dates v1.0.0, labelled the initial public release, to 2025-12-02."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turbolynx-dslab/TurboLynx/main/CHANGELOG.md"
+  title = "TurboLynx CHANGELOG.md"
+  quote = "Initial public release. State of the codebase at the time of the VLDB 2026\npaper submission"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value; README states the engine core is C++17, and GitHub's byte-count is dominated by C++."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turbolynx-dslab/TurboLynx/main/README.md"
+  title = "TurboLynx README.md"
+  quote = "Fast, scalable OLAP graph database in C++17."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,4 +17,49 @@ notes = "Halyard is an RDF4J SAIL over HBase; queries reach it through RDF4J Ser
   title = "Halyard | Tools"
   quote = "RDF4J Server is a service server that provides a SPARQL endpoint for each managed repository as well as the REST access to the repository management functions."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Merck/Halyard/license"
+  title = "GitHub licence API — Merck/Halyard"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016-11"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "GitHub repo creation date; Halyard had no prior existence before this repo, so it reliably marks first public availability. Confirms current value."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Merck/Halyard"
+  title = "Merck/Halyard"
+  quote = "\"created_at\":\"2016-11-23T21:50:51Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/Merck/Halyard"
+  title = "Merck/Halyard"
+  quote = "Halyard implementation is based on Eclipse RDF4J framework and Apache HBase database, and it is completely written in Java."
+  verified = "matched"
+  checked = "2026-08-02"

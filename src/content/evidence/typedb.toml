@@ -17,11 +17,63 @@ notes = "TypeDB RPC (gRPC) on port 1729 is the primary driver protocol; TypeDB H
   title = "TypeDB | Docs > Core Concepts > Overview"
   quote = "High performance: Efficient binary protocol over HTTP2 bidirectional streams"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://typedb.com/docs/core-concepts/drivers/overview/"
   title = "TypeDB | Docs > Core Concepts > Overview"
   quote = "The server’s HTTP endpoint may also be abstracted away behind HTTP driver libraries in your language."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; TypeDB descends from Grakn, first released in 2016 at the University of Cambridge before being commercialized and later renamed."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/TypeDB"
+  title = "TypeDB"
+  quote = "The initial version of Grakn, version 0.1.1, was released on September 15, 2016."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value. TypeDB (as Grakn/TypeDB 2.x) was originally written in Java; the engine was fully rewritten in Rust for TypeDB 3.0 in December 2024, and Rust remains the primary language today."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/TypeDB"
+  title = "TypeDB"
+  quote = "In December 2024, TypeDB 3.0 was released, with a full rewrite of the original Java-based database to Rust and significant enhancements in TypeQL."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/typedb/typedb"
+  title = "typedb/typedb"
+  quote = "Today TypeDB and TypeQL use RocksDB, Rust, pest, Bazel, gRPC, and ZeroMQ."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MPL-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/typedb/typedb/license"
+  title = "GitHub licence API — typedb/typedb"
+  quote = "\"spdx_id\": \"MPL-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

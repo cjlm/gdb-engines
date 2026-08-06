@@ -17,4 +17,57 @@ notes = "Facebook-internal and closed-source; the 2013 USENIX paper describes a 
   title = "TAO: Facebook's Distributed Data Store for the Social Graph"
   quote = "so to avoid head-of-line blocking on multiplexed connections we use a protocol with out-of-order responses."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "TAO is an internal Facebook/Meta system, never released as source or a product; described only through papers/blog posts, with no public repository or license file."
+
+  [[claims.sources]]
+  url = "https://www.usenix.org/system/files/conference/atc13/atc13-bronson.pdf"
+  title = "TAO: Facebook's Distributed Data Store for the Social Graph (USENIX ATC '13)"
+  quote = "TAO is deployed at Facebook as a single geographically distributed instance."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2012-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value with a month: development started in 2009, but TAO was first publicly disclosed in a SIGMOD industrial talk in May 2012, a year before the fuller USENIX ATC 2013 paper."
+
+  [[claims.sources]]
+  url = "https://dl.acm.org/doi/10.1145/2213836.2213957"
+  title = "TAO: how facebook serves the social graph | SIGMOD '12"
+  quote = "TAO is a distributed implementation of the fbobject and association API that has been serving production traffic at Facebook for more than 2 years."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20240915023028/https://dl.acm.org/doi/10.1145/2213836.2213957"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-graph/"
+  title = "TAO: The power of the graph - Engineering at Meta"
+  quote = "In early 2009, a team of Facebook infrastructure engineers started to work on TAO (“The Associations and Objects”)."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; no primary Facebook/Meta source states the language outright, but a contemporaneous technical report describes the caching daemons as C/C++, and a follow-on VLDB paper's TAO-based prototype is implemented in C++."
+
+  [[claims.sources]]
+  url = "https://www.computerworld.com/article/1404913/the-tao-of-facebook-data-management.html"
+  title = "The TAO of Facebook data management - Computerworld"
+  quote = "The TAO caching layer is run on the servers by a collection of daemons, mostly written in C and C++."
+  verified = "matched"
+  checked = "2026-08-02"

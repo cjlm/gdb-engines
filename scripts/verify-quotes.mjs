@@ -49,6 +49,19 @@ const BROWSER_USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' +
   'Chrome/126.0.0.0 Safari/537.36';
 
+/**
+ * Licence claims cite the GitHub API response directly, and unauthenticated callers get 60
+ * requests an hour — fewer than the catalogue has repositories, so a full run would report most of
+ * them unreachable and look like mass rot. A token raises the ceiling to 5000. Optional: without
+ * one, GitHub-cited claims simply can't be re-checked in bulk.
+ */
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
+
+function authFor(url) {
+  if (!GITHUB_TOKEN) return {};
+  return url.startsWith('https://api.github.com/') ? { authorization: `Bearer ${GITHUB_TOKEN}` } : {};
+}
+
 let pdftotextChecked;
 function hasPdftotext() {
   if (pdftotextChecked === undefined) {
@@ -64,8 +77,10 @@ function hasPdftotext() {
 
 /**
  * Papers and vendor manuals are legitimate sources, so extract their text rather than declaring
- * PDFs unverifiable. Line-ending hyphens are rejoined first: a PDF breaking "protocol" across
- * lines would otherwise read as two words and fail an accurate quote.
+ * PDFs unverifiable.
+ *
+ * Line-ending hyphens are rejoined: a PDF breaking "protocol" across lines would otherwise read
+ * as two words and fail an accurate quote.
  */
 function pdfText(buffer) {
   const path = join(tmpdir(), `gdb-evidence-${randomUUID()}.pdf`);
@@ -83,10 +98,18 @@ function pdfText(buffer) {
   }
 }
 
-/** Strips markup, leaving a space where each tag was so adjacent words don't weld together. */
+
+/**
+ * Strips markup, leaving a space where each tag was so adjacent words don't weld together.
+ *
+ * Superscripts go entirely. Wikipedia renders footnote markers inline — "forked into an Eclipse
+ * project called RDF4J,[4] in recognition of..." — and once punctuation is dropped that stray "4"
+ * reads as a word in the middle of the sentence, so an accurately copied quote fails. Nobody
+ * quotes a footnote marker, so removing them costs nothing.
+ */
 function pageText(html) {
   return html
-    .replace(/<(script|style|noscript|svg)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<(script|style|noscript|svg|sup)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/<[^>]+>/g, ' ');
 }
@@ -103,6 +126,9 @@ function pageText(html) {
  */
 function normalize(text) {
   return text
+    // Compatibility decomposition, mainly for PDFs: pdftotext emits real ligatures, and "ﬂ" is a
+    // single letter, so "workﬂow" would never match a quote typed as "workflow". NFKD splits it.
+    .normalize('NFKD')
     .replace(/&(?:#(\d+)|#x([\da-f]+));/gi, (_, dec, hex) =>
       String.fromCodePoint(parseInt(dec ?? hex, dec ? 10 : 16)))
     // Named entities become a space: decoding "&reg;" to a glyph is pointless once punctuation
@@ -138,7 +164,7 @@ async function fetchText(rawUrl, userAgent = USER_AGENT) {
     const res = await fetch(url, {
       redirect: 'follow',
       signal: controller.signal,
-      headers: { 'user-agent': userAgent, accept: 'text/html,text/plain,*/*' },
+      headers: { 'user-agent': userAgent, accept: 'text/html,text/plain,*/*', ...authFor(url) },
     });
     if (!res.ok) return { ok: false, reason: `HTTP ${res.status}` };
     const type = res.headers.get('content-type') ?? '';
@@ -149,7 +175,11 @@ async function fetchText(rawUrl, userAgent = USER_AGENT) {
       return { ok: true, text: normalize(text) };
     }
     const body = await res.text();
-    return { ok: true, text: normalize(type.includes('html') ? pageText(body) : body) };
+    // JSON responses bypass the length gate below: an API answer can legitimately be a couple of
+    // dozen characters ({"Rust": 128374}), and MIN_PAGE_TEXT exists to catch unrendered HTML
+    // shells, not terse endpoints.
+    const json = type.includes('json');
+    return { ok: true, json, text: normalize(type.includes('html') ? pageText(body) : body) };
   } catch (err) {
     return { ok: false, reason: err.name === 'AbortError' ? 'timeout' : err.message };
   } finally {
@@ -185,6 +215,10 @@ function loadPage(url, userAgent) {
   return pageCache.get(key);
 }
 
+function tooThin(page) {
+  return !page.json && page.text.length < MIN_PAGE_TEXT;
+}
+
 async function pool(items, worker) {
   const queue = [...items];
   const runners = Array.from({ length: Math.min(CONCURRENCY, queue.length) }, async () => {
@@ -217,17 +251,17 @@ for (const file of files) {
     let page = await loadPage(s.url);
 
     // Retry as a browser before calling a quote fabricated — see BROWSER_USER_AGENT.
-    if (!page.ok || page.text.length < MIN_PAGE_TEXT || !contains(page.text, quote)) {
+    if (!page.ok || tooThin(page) || !contains(page.text, quote)) {
       const retry = await loadPage(s.url, BROWSER_USER_AGENT);
-      if (retry.ok && retry.text.length >= MIN_PAGE_TEXT) page = retry;
+      if (retry.ok && !tooThin(retry)) page = retry;
     }
 
-    const liveUnusable = !page.ok || page.text.length < MIN_PAGE_TEXT;
+    const liveUnusable = !page.ok || tooThin(page);
 
     if (liveUnusable) {
       const snapshot = await findSnapshot(s.url);
       const archived = snapshot ? await loadPage(snapshot, BROWSER_USER_AGENT) : null;
-      if (archived?.ok && archived.text.length >= MIN_PAGE_TEXT && contains(archived.text, quote)) {
+      if (archived?.ok && !tooThin(archived) && contains(archived.text, quote)) {
         s.verified = 'matched-archive';
         s.archive_url = snapshot;
       } else {

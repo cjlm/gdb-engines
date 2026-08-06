@@ -17,4 +17,56 @@ notes = "Auto-manages an embedded Redis server with the FalkorDB module (RESP pr
   title = "FalkorDB/falkordblite"
   quote = "It provides a built-in Redis server with FalkorDB module that is automatically installed, configured and managed when the bindings are used."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "SSPL-1.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value for the graph engine itself: falkordblite's own wrapper code (a redislite fork) is BSD-3-Clause per its LICENSE.txt/README, but it downloads and bundles the FalkorDB module, which is licensed under the Server Side Public License (SSPL-1.0); that is what actually implements the graph database."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/FalkorDB/falkordb/master/LICENSE.txt"
+  title = "LICENSE.txt"
+  quote = "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/FalkorDB/falkordblite"
+  title = "FalkorDB/falkordblite"
+  quote = "FalkorDBLite is Free software under the New BSD license, see LICENSE.txt for details."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-10"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; GitHub repo created 2025-10-12, and the first PyPI release (0.1.0) was uploaded 2025-10-14."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/FalkorDB/falkordblite"
+  title = "falkordblite"
+  quote = "\"created_at\": \"2025-10-12T18:35:54Z\","
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Python"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value for the distributed package itself: the falkordblite repo's own authored code is nearly all Python (per GitHub's language breakdown), since it is a Python embedding harness. The actual graph query engine it bundles (FalkorDB) is written in C."
+
+  [[claims.sources]]
+  url = "https://github.com/FalkorDB/falkordblite"
+  title = "FalkorDB/falkordblite"
+  quote = "FalkorDBLite is a self-contained Python interface to the FalkorDB graph database."
+  verified = "matched"
+  checked = "2026-08-02"

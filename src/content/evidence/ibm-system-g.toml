@@ -17,4 +17,64 @@ notes = "Per the architecture paper, RPC is the internal shard-to-shard communic
   title = "System G Distributed Graph Database"
   quote = "For REST interface, a query manager can start an HTTP server and\naccept REST queries from clients that are subsequently mapped into\ngraph operations."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "No open-source licence file was found for the Native Store core; access to the kernel library (IBMPPL) is gated behind a direct trial request to the IBM Research author rather than a public licence grant, consistent with current value Proprietary. GraphBIG and ScaleGraph, adjacent System G ecosystem tools, are separately open-sourced under BSD and EPL respectively, but they are not the core database."
+
+  [[claims.sources]]
+  url = "https://github.com/ibmppl/ibmppl"
+  title = "GitHub - ibmppl/ibmppl: IBM Parallel Programming Library"
+  quote = "The IBMPPL is the kernel part of IBM System G Native Store, which provides high performance C++ graph libraries to help develop various graph applications on sequential, concurrent and/or distributed platforms."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2013"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Earliest found public artifact using the 'System G' name is this IC2E 2013 IEEE paper, matching current value 2013. The underlying IBM Research work dates to 2003, and 'IBM System G' was only made an IBM-approved external product name in April 2014 per a 2015 IBM tutorial deck, so the naming history is genuinely ambiguous; kept current value since 2013 is the earliest dated public artifact under this name."
+
+  [[claims.sources]]
+  url = "https://research.ibm.com/publications/system-g-data-store-big-rich-graph-data-analytics-in-the-cloud"
+  title = "System G data store: Big, rich graph data analytics in the cloud for IC2E 2013 - IBM Research"
+  quote = "This paper presents System G Data Store, a graph data management system that supports rich graph data, accepts online updates, complies with Hadoop, and runs efficiently by minimizing redundant data shuffling."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value C++ for the Native Store core; a Java client layer is exposed via JNI and TinkerPop on top of the C++ engine."
+
+  [[claims.sources]]
+  url = "https://event.cwi.nl/grades2014/10-xia.pdf"
+  title = "A Highly Efficient Runtime and Graph Library for Large Scale Graph Analytics"
+  quote = "Since it is a file-based store implemented using C++, it is not only highly efficient, but also very portable to various file systems and storage hardware."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://web.archive.org/web/20180330025121/http://systemg.research.ibm.com/"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "systemg.research.ibm.com is dead with no live successor page; this is the last full Wayback Machine capture of the project homepage and is the best stable reference."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20180330025121/http://systemg.research.ibm.com/"
+  title = "IBM System G"
+  quote = "IBM System G is a comprehensive set of Graph Computing Tools, Cloud, and Solutions for Big Data."
+  verified = "matched"
+  checked = "2026-08-02"

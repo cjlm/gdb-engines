@@ -11,3 +11,78 @@ confidence = "low"
 method = "web"
 checked = "2026-08-01"
 notes = "Objectivity, Inc. (InfiniteGraph's vendor) ceased operations in late 2023; infinitegraph.com now redirects to a GoDaddy domain-for-sale lander and objectivity.com is unreachable (I confirmed both directly), leaving only decade-old whitepapers, a 2015 product spotlight, and an uncited Wikipedia feature-list bullet ('REST API') with no supporting reference. Neither pass_A's HTTP/REST nor pass_B's Native binary is verifiable from a live primary source, matching the brief's dormant/closed-product rule."
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value Proprietary; matches Objectivity's paid licensing tiers described in its own press materials."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/InfiniteGraph"
+  title = "InfiniteGraph"
+  quote = "Source: Proprietary, with open-source extensions, integrated components, and third-party connectors."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value 2010-05; Objectivity's own press release, dated May 26, 2010, announces the public beta launch. A 1.0 general release followed in July 2010. A secondary academic source (Kolomicenko's graph database comparison thesis) claims InfiniteGraph was 'initially released in 2009', but this conflicts with Objectivity's own dated announcement and is treated as less reliable."
+
+  [[claims.sources]]
+  url = "https://www.prnewswire.com/news-releases/objectivity-inc-launches-infinitegraph-business-unit-94912769.html"
+  title = "Objectivity, Inc. Launches InfiniteGraph Business Unit"
+  quote = "This new graph database, of which a beta version was released today, will provide the ultimate combination of simplicity and distributed scalability and empower organizations to rapidly find, present, and leverage all of the information and relationships in their data."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Language is genuinely split: an academic survey (Kolomicenko, 'Analysis and Experimental Comparison of Graph Databases') describes InfiniteGraph as 'written in Java with a C++ core', with the C++ Objectivity/DB acting as the underlying storage engine. Kept current value Java as the layer the product itself is presented through, noting the C++ storage core here."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/InfiniteGraph"
+  title = "InfiniteGraph"
+  quote = "InfiniteGraph is a distributed graph database implemented in Java and C++ and is from a class of NOSQL"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "url"
+value = "https://web.archive.org/web/20230524090143/https://objectivity.com/INFINITEGRAPH/"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Vendor Objectivity Inc ceased trading in late 2023 and the live product page no longer loads reliably (TLS failure); this archived snapshot is the best stable record of the product page."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20230524090143/https://objectivity.com/INFINITEGRAPH/"
+  title = "InfiniteGraph Product Page | Objectivity"
+  quote = "Advanced Graph Database and Analytics for Enterprises and Government"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "inactive"
+confidence = "high"
+method = "web"
+checked = "2026-08-02"
+notes = "InfiniteGraph’s vendor Objectivity, Inc. ceased operating in late 2023 and objectivity.com no longer serves a valid certificate, so nothing is maintaining the product."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Objectivity/DB"
+  title = "Objectivity/DB — Wikipedia"
+  quote = "Objectivity, Inc. ceased in late 2023."
+  verified = "matched"
+  checked = "2026-08-02"

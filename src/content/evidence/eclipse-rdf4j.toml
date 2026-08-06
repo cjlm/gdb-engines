@@ -17,11 +17,63 @@ notes = "RDF4J Server speaks the SPARQL 1.1 Protocol plus a Graph Store/transact
   title = "RD4J REST API - OpenAPI spec"
   quote = "The RDF4J REST API is an HTTP protocol that covers a fully compliant implementation of the SPARQL 1.1 Protocol W3C Recommendation."
   verified = "unreachable"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://rdf4j.org/documentation/programming/repository/"
   title = "The Repository API · Eclipse RDF4J™ | The Eclipse Foundation"
   quote = "The RepositoryManager comes in two flavours: the LocalRepositoryManager and the RemoteRepositoryManager."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2002"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from current value '2016' (the year Sesame was forked into the Eclipse RDF4J project) to 2002: RDF4J is a rename of the Sesame framework, whose first public release (0.1) was 2002-02-21."
+
+  [[claims.sources]]
+  url = "https://nlnet.nl/project/sesame/20031204-final.html"
+  title = "NLnet; Final report Open Sesame project"
+  quote = "2002-02-21 Sesame 0.1\n\n- First public release of Sesame"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Sesame_(framework)"
+  title = "RDF4J"
+  quote = "In May 2016, Sesame officially forked into an Eclipse project called RDF4J, in recognition of Aduna no longer being involved in its development."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/about/"
+  title = "The Eclipse RDF4J Framework · Eclipse RDF4J™ | The Eclipse Foundation"
+  quote = "Eclipse RDF4J™ is an open source modular Java framework for working with RDF data."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/eclipse-rdf4j/rdf4j/license"
+  title = "GitHub licence API — eclipse-rdf4j/rdf4j"
+  quote = "\"spdx_id\": \"BSD-3-Clause\""
+  verified = "matched"
+  checked = "2026-08-02"

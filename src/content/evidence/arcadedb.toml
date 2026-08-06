@@ -17,11 +17,56 @@ notes = "ArcadeDB also ships MongoDB BSON-protocol and TinkerPop Gremlin plugins
   title = "API & Integration :: ArcadeDB Documentation"
   quote = "Reach ArcadeDB through the wire protocol that suits your tooling. The same database speaks Neo4j BOLT, the PostgreSQL wire protocol, HTTP/JSON, gRPC, and the Model Context Protocol — so your existing drivers, BI tools, and AI agents just connect."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://arcadedb.com/client-server.html"
   title = "Distributed Graph Database Server"
   quote = "ArcadeDB also speaks the MongoDB BSON protocol on port 27017 and the Redis protocol on port 6379."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2021-09"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. First official release tagged 21.9.1, published 2021-09-21."
+
+  [[claims.sources]]
+  url = "https://github.com/ArcadeData/arcadedb/releases/tag/21.9.1"
+  title = "21.9.1"
+  quote = "This is the first official release for ArcadeDB!"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. README describes the engine as low-level Java, requiring Java 21+."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ArcadeData/arcadedb/main/README.md"
+  title = "Readme"
+  quote = "It's written in LLJ: Low Level Java - still Java21+ but only using low level APIs to leverage advanced"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/ArcadeData/arcadedb/license"
+  title = "GitHub licence API — ArcadeData/arcadedb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

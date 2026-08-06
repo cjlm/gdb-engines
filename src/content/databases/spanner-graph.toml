@@ -4,6 +4,7 @@ slug = "spanner-graph"
 description = "A graph layer within Google Cloud Spanner that enables property graph queries over relational data using GQL and SQL/PGQ. Inherits Spanner's global distribution, strong consistency, and ACID transactions."
 url = "https://cloud.google.com/spanner/docs/graph/overview"
 license = "Proprietary"
+implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["GQL", "SQL/PGQ"]
 protocols = ["gRPC", "HTTP/REST"]

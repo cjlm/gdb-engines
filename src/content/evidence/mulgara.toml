@@ -17,18 +17,70 @@ notes = "Standalone server exposes /sparql (SPARQL 1.1 Protocol over HTTP) and /
   title = "RESTQueries - Mulgara - Mulgara Project"
   quote = "A SPARQL endpoint on Mulgara attempts to conform to the SPARQL protocol definition for HTTP Bindings."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://code.mulgara.org/projects/mulgara/wiki/RESTInterface"
   title = "RESTInterface - Mulgara - Mulgara Project"
   quote = "The interfaces provide similar functionality, with the /sparql/ interface accepting SPARQL queries, and the /tql/ interface accepting TQL queries."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "http://docs.mulgara.org/system/driver.html"
   title = "Mulgara | Semantic Store - Mulgara Driver"
   quote = "The driver communicates with remote servers via SOAP or RMI."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "OSL-3.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrects current value (Apache-2.0). The actual LICENCE.txt in the repo is the Open Software License v3.0, matching GitHub's own OSL-3.0 classification; the README's text (which says 'version 1.1') is stale copy left over from the Kowari era."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/quoll/mulgara/master/LICENCE.txt"
+  title = "Mulgara LICENCE.txt"
+  quote = "Licensed under the Open Software License version 3.0"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2006"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. Mulgara's own release notes explicitly label v1.0.0 the initial release of Mulgara, posted August 19, 2006, after forking from the Kowari project (whose own lineage traces back to a 2003 beta) over a trademark dispute with Northrop Grumman."
+
+  [[claims.sources]]
+  url = "http://www.mulgara.org/release.html"
+  title = "Mulgara Project Release Notes"
+  quote = "This is the initial release of Mulgara.\n\nThe initial release is a fork from Kowari v1.1, as of August 1, 2005."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "http://www.mulgara.org/release.html"
+  title = "Mulgara Project Release Notes"
+  quote = "Mulgara has been upgraded to use Java 1.5. It will no longer build or run on Java 1.4 or below.\n\nPosted by Paula on August 19, 2006"
+  verified = "mismatch"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The repo is 95.5% Java by GitHub's byte count, and the project's own install guide has readers install a JDK and run the server as a Java jar."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/quoll/mulgara/master/README.md"
+  title = "Mulgara Semantic Store (Mulgara) Installation Guide"
+  quote = "Download a J2SE 1.5.X (or higher) for your platform from http://java.sun.com/j2se/, and install it."
+  verified = "matched"
+  checked = "2026-08-02"

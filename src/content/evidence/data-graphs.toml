@@ -17,4 +17,49 @@ notes = "REST API served from api.datagraphs.io; supports JSON-LD content negoti
   title = "Data Graphs API docs"
   quote = "The Data Graphs API is a REST API that allows you to interact with your data, letting you query, retrieve, filter, facet, and sort Concepts from your Datasets."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No open-source license found; vendor site describes a proprietary engine sold under enterprise licensing for on-prem deployment, matching current value."
+
+  [[claims.sources]]
+  url = "https://datagraphs.com/graph-database"
+  title = "Graph Database - Data Graphs"
+  quote = "Proprietary query algorithm Graph indexes encoded in hyper-dense bitmaps. Query results generated using bitmap intersection, not graph-walking."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2021-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Vendor's own launch announcement confirms the current value."
+
+  [[claims.sources]]
+  url = "https://datagraphs.com/news/launching-data-graphs"
+  title = "Launching Data Graphs - Our new Knowledge Graph product"
+  quote = "We are very proud to announce the launch of our latest SaaS product: Data Graphs!"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Vendor site states the engine is built in Rust; matches current value."
+
+  [[claims.sources]]
+  url = "https://datagraphs.com/graph-database"
+  title = "Graph Database - Data Graphs"
+  quote = "Built in Rust Ultra-low memory footprint. Compiles natively for any target: cloud, on-prem, mobile, edge devices."
+  verified = "matched"
+  checked = "2026-08-02"

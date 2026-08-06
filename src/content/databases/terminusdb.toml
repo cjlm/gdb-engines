@@ -3,14 +3,14 @@ vendor = "DFRNT"
 previous_vendors = ["TerminusDB"]
 slug = "terminusdb"
 description = "A graph database and document store that builds knowledge graphs from JSON documents. Uses git-like delta encoding with an append-only layered data model, enabling version control and collaboration workflows."
-url = "https://terminusdb.com/"
+url = "https://terminusdb.org/"
 github_url = "https://github.com/terminusdb/terminusdb"
 license = "Apache-2.0"
 implementation_language = "Prolog"
 type = "Multiple"
 query_languages = ["WOQL", "GraphQL"]
 protocols = ["HTTP/REST", "GraphQL (HTTP)"]
-released = "2019"
+released = "2019-10"
 category = "Emerging"
 gdotv_support = false
 

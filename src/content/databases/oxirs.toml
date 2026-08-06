@@ -9,6 +9,6 @@ type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "GraphQL (HTTP)"]
-released = "2026-01"
+released = "2025-09"
 category = "Emerging"
 gdotv_support = false

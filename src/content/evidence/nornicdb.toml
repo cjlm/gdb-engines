@@ -17,11 +17,56 @@ notes = "gRPC surface is Qdrant-compatible (Points.Search/Query) plus an additiv
   title = "orneryd/NornicDB"
   quote = "It speaks Neo4j's language through Bolt and Cypher, exposes REST, GraphQL, and gRPC interfaces, and can preserve Qdrant-style client workflows where that helps migration."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/orneryd/NornicDB"
   title = "orneryd/NornicDB"
   quote = "Qdrant gRPC API Compatible — Works with Qdrant-style gRPC vector workflows"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/orneryd/NornicDB/license"
+  title = "GitHub licence API — orneryd/NornicDB"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-12"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The repo's own pre-1.1 changelog gives v1.0.0 as 'First standalone release (December 6, 2024)', which is an internal typo — the very next line in the same file dates v1.0.6 to 2025-12-12, consistent with a December 2025 first release."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/orneryd/NornicDB/main/docs/changes-before-1.1.x.md"
+  title = "changes-before-1.1.x.md — orneryd/NornicDB"
+  quote = "`v1.0.0` - First standalone release (December 6, 2024)\n- `v1.0.6` - 2025-12-12"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Go"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. Build-from-source instructions use `go build`, and Go is by far the dominant language in the repository's source tree."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/orneryd/NornicDB/main/README.md"
+  title = "README.md — orneryd/NornicDB"
+  quote = "git clone https://github.com/orneryd/NornicDB.git\ncd NornicDB\ngo build -o nornicdb ./cmd/nornicdb"
+  verified = "matched"
+  checked = "2026-08-02"

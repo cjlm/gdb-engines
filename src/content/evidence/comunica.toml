@@ -17,11 +17,56 @@ notes = "Primarily a JS/Node query-engine library; the query-sparql-http command
   title = "Comunica – Querying in a JavaScript app"
   quote = "In this guide, we will install it as a dependency in a Node.js JavaScript application, and show how it can be used to execute queries."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://comunica.dev/docs/query/getting_started/setup_endpoint/"
   title = "Comunica – Setting up a SPARQL endpoint"
   quote = "The SPARQL protocol allows clients to send SPARQL queries to Web servers over HTTP, and query results to be sent back to the client."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "GitHub's README states the MIT license directly, confirming the current value."
+
+  [[claims.sources]]
+  url = "https://github.com/comunica/comunica"
+  title = "comunica/comunica"
+  quote = "This code is copyrighted by the Comunica Association and Ghent University – imec and released under the MIT license."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2018-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "The project's creators announced Comunica's public release on the W3C public-lod mailing list in June 2018, refining the current year-only value to a month."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/public-lod/2018Jun/0000.html"
+  title = "Comunica: a meta-query engine for the Web from Ruben Taelman on 2018-06-01 (public-lod@w3.org from June 2018)"
+  quote = "With this mail, we announce the public release of Comunica, a modular framework for JavaScript and the Web that can be used to compose a SPARQL Query Engine."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "TypeScript"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "The project's own ISWC 2018 resource paper states Comunica is implemented in TypeScript/JavaScript, confirming the current value."
+
+  [[claims.sources]]
+  url = "https://comunica.github.io/Article-ISWC2018-Resource/"
+  title = "Comunica: a Modular SPARQL Query Engine for the Web"
+  quote = "Comunica is implemented in TypeScript/JavaScript as a collection of Node modules, which are able to run in Web browsers using native Web technologies."
+  verified = "matched"
+  checked = "2026-08-02"

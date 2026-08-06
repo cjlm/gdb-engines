@@ -7,6 +7,7 @@ license = "PostgreSQL"
 implementation_language = "C"
 type = "Property Graph"
 query_languages = ["SQL/PGQ"]
+released = "2026-03"
 protocols = ["PostgreSQL wire"]
 category = "Emerging"
 gdotv_support = false

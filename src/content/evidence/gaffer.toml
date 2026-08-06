@@ -17,11 +17,71 @@ notes = "Ships a full REST API for a deployed graph instance, and is equally usa
   title = "Using the REST API - Gaffer Docs"
   quote = "When a graph is deployed, a REST (or RESTful) API will be available at a predefined address."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/gchq/Gaffer/master/README.md"
   title = "Gaffer"
   quote = "To use Gaffer from the Java API the only required dependencies are the Gaffer graph module and a store module"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/gchq/Gaffer/license"
+  title = "GitHub licence API — gchq/Gaffer"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "status"
+value = "deprecated"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "GitHub reports the repository as archived, which is read-only and signals the project is no longer maintained."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/gchq/Gaffer"
+  title = "GitHub repository API — gchq/Gaffer"
+  quote = "\"archived\": true"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2015-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current year-only '2015' to 2015-12: GCHQ open-sourced Gaffer on GitHub in the week of 14-15 December 2015, widely covered in the press."
+
+  [[claims.sources]]
+  url = "https://arstechnica.com/information-technology/2015/12/gchq-open-sources-surveillance-graph-database-software-on-github/"
+  title = "GCHQ open-sources surveillance graph database software on GitHub"
+  quote = "The UK’s Government Communications Headquarters (GCHQ) has created an account on the repository code hosting service GitHub and open-sourced its first project, Gaffer."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://arstechnica.com/information-technology/2015/12/gchq-open-sources-surveillance-graph-database-software-on-github/"
+  title = "GCHQ open-sources surveillance graph database software on GitHub"
+  quote = "Written in Java, Gaffer is a “framework that makes it easy to store large-scale graphs in which the nodes and edges have statistics such as counts, histograms and sketches,” GCHQ stated in the project description."
+  verified = "matched"
+  checked = "2026-08-02"

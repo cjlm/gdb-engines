@@ -17,11 +17,63 @@ notes = "Official TSL docs describe three protocol types: Syn/Asyn (native binar
   title = "Message Passing Protocols"
   quote = "Three types of protocols are supported in GE: synchronous protocols, asynchronous protocols, and HTTP protocols."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://microsoft.github.io/GraphEngine/docs/manual/TSL/MPProtocol.html"
   title = "Message Passing Protocols"
   quote = "An HTTP protocol is a synchronous remote call. It is the RESTful version of Syn protocol."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2015-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Adds the month: Microsoft Research's Trinity project (renamed Graph Engine) was released to the public as a 1.0 preview in May 2015, well before the GitHub repo was created in 2017 when it was later open-sourced."
+
+  [[claims.sources]]
+  url = "https://www.zdnet.com/article/microsoft-quietly-delivers-first-preview-of-graph-engine/"
+  title = "Microsoft quietly delivers first preview of Graph Engine | ZDNET"
+  quote = "Microsoft Research's Project Trinity is now available for public testing in the form of Graph Engine 1.0 public preview."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.microsoft.com/en-us/research/project/trinity/"
+  title = "Trinity - Microsoft Research"
+  quote = "We are very pleased to announce that the Graph Engine 1.0 preview has finally been released to the public."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C#"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the project builds and ships as .NET/NuGet packages via Visual Studio, with C++ present only for native storage/build tooling."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/microsoft/GraphEngine/master/README.md"
+  title = "README.md (microsoft/GraphEngine)"
+  quote = "You can find the built NuGet packages `build/GraphEngine**._version_.nupkg` in\nthe `build` folder."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/microsoft/GraphEngine/license"
+  title = "GitHub licence API — microsoft/GraphEngine"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"

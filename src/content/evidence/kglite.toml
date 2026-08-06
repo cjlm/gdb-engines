@@ -17,11 +17,56 @@ notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server 
   title = "kglite documentation"
   quote = "Bolt and MCP protocol servers are standalone Rust binaries that wrap the same engine."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/kkollsga/kglite"
   title = "kkollsga/kglite"
   quote = "The interactive shell, Bolt-server, and MCP-server binaries are sibling Rust crates wrapping the same engine."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/kkollsga/kglite/license"
+  title = "GitHub licence API — kkollsga/kglite"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current value 2025-03: PyPI's own package metadata shows the first published release (0.11.0) was uploaded 2026-06-17. No Wayback Machine snapshot of the GitHub repo exists before June 2026 despite the repo's git history starting March 2024, suggesting the codebase was developed privately and only made public around the first PyPI release."
+
+  [[claims.sources]]
+  url = "https://pypi.org/pypi/kglite/0.11.0/json"
+  title = "kglite 0.11.0 JSON API - PyPI"
+  quote = "\"filename\":\"kglite-0.11.0-cp310-abi3-macosx_10_12_x86_64.whl\",\"has_sig\":false,\"md5_digest\":\"9aae5f6708c544a9cb4d98a82e6a3227\",\"packagetype\":\"bdist_wheel\",\"python_version\":\"cp310\",\"requires_python\":\">=3.10\",\"size\":12355629,\"upload_time\":\"2026-06-17T19:46:20\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "The published wheel declares a Rust implementation alongside its Python bindings."
+
+  [[claims.sources]]
+  url = "https://pypi.org/pypi/kglite/json"
+  title = "PyPI JSON API — kglite"
+  quote = "\"Programming Language :: Rust\""
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,11 +17,70 @@ notes = "RDF/SPARQL queries go through the SPARQL server implementing the W3C SP
   title = "Client-Server — MillenniumDB 0.2 documentation"
   quote = "The MillenniumDB SPARQL server supports all three query operations specified in the SPARQL Protocol:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/MillenniumDB/MillenniumDB-driver-python"
   title = "MillenniumDB/MillenniumDB-driver-python"
   quote = "import millenniumdb_driver\n\nurl = 'your-server-url' # e.g. ws://localhost:1234"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/MillenniumDB/MillenniumDB/license"
+  title = "GitHub licence API — MillenniumDB/MillenniumDB"
+  quote = "\"spdx_id\": \"GPL-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2021"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. IMFD's systems paper describes the first public release of the MillenniumDB engine and was itself published in 2021."
+
+  [[claims.sources]]
+  url = "https://aidanhogan.com/docs/millenniumdb.pdf"
+  title = "MillenniumDB: An Open-Source Graph Database System"
+  quote = "We further publish a first release of MillenniumDB as an open source graph database engine"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://aidanhogan.com/docs/millenniumdb.pdf"
+  title = "MillenniumDB: An Open-Source Graph Database System"
+  quote = "MillenniumDB: A persistent, open-source, graph database. CoRR, abs/2111.01540, 2021. arXiv:2111.01540."
+  verified = "mismatch"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value. GitHub byte counts show C++ (8.0MB) dwarfing every other language, and the project's own developer docs are about compiling the C++ core with CMake/Clang."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/MillenniumDB/MillenniumDB/languages"
+  title = "MillenniumDB/MillenniumDB languages (GitHub API)"
+  quote = "\"C++\":8041383,\"HTML\":2248716,\"ANTLR\":132014,\"Python\":96748,\"C\":48285"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://mdb.imfd.cl/doc/docs/developer/setup.html"
+  title = "General Developer Setup — MillenniumDB 0.2 documentation"
+  quote = "Sometimes when you install clang via the package manager, it won’t be recognized by cmake as a C++ alternative."
+  verified = "matched"
+  checked = "2026-08-02"

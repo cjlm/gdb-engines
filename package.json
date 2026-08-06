@@ -7,6 +7,7 @@
     "graphs": "node scripts/generate-graphs.mjs",
     "check-evidence": "node scripts/check-evidence.mjs",
     "verify-quotes": "node scripts/verify-quotes.mjs",
+    "check-links": "node scripts/check-links.mjs",
     "predev": "npm run favicons && npm run graphs",
     "dev": "astro dev",
     "prebuild": "npm run favicons && npm run graphs && npm run check-evidence",

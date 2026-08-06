@@ -17,4 +17,49 @@ notes = "Primarily an embedded Python/Rust library; can also host a GraphQL serv
   title = "GitHub - Pometry/Raphtory: Scalable graph analytics database powered by a multithreaded, vectorized temporal engine, written in Rust"
   quote = "It can be ran embedded or as a server instance using GraphQL, supports time traveling, full-text search, multilayer modelling, and advanced analytics beyond simple querying"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-12"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value. The repo (created 2017-05, with academic prototypes described at DEBS 2017) wasn't publicly usable software until this tagged release; GitHub explicitly dates it 2020-12-08."
+
+  [[claims.sources]]
+  url = "https://github.com/Pometry/Raphtory/releases/tag/raphtory-akka-0.1"
+  title = "raphtory-akka-0.1"
+  quote = "Initial Raphtory release now that it is in a useable state to ingest and build the graph. This is a test release for current users"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value. The project was originally written in Scala (2017-2022) and was fully rewritten in Rust, which is what today's repository ships."
+
+  [[claims.sources]]
+  url = "https://github.com/Pometry/Raphtory"
+  title = "Pometry/Raphtory: Scalable graph analytics database powered by a multithreaded, vectorized temporal engine, written in Rust"
+  quote = "Raphtory is an in-memory vectorised graph database written in Rust with friendly Python APIs on top."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Pometry/Raphtory/license"
+  title = "GitHub licence API — Pometry/Raphtory"
+  quote = "\"spdx_id\": \"GPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"

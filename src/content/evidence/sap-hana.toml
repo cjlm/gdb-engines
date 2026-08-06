@@ -17,25 +17,77 @@ notes = "SQL/graph access (openCypher, GraphScript) runs over HANA's proprietary
   title = "SAP HANA SQL Command Network Protocol Reference"
   quote = "This document describes the SQL Command Network Protocol of the SAP HANA database, the protocol used by SAP HANA database clients to communicate with the SAP HANA database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "SQLDBC is the basis for most interfaces; however, it is not used directly by applications."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "Java Database Connectivity (JDBC) is a Java-based application programming interface (API) which includes a set of functions that enable Java applications to access a data model in a database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://help.sap.com/doc/b01bb8ddc72e41f795034092b9bf541d/2.19/en-US/SAP_HANA_Client_Interface_Programming_Reference_en.pdf"
   title = "SAP HANA Client Interface Programming Reference"
   quote = "Open Database Connectivity (ODBC) is a standard application programming interface (API) that provides a set of functions that enable applications to access a data model in a database."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. SAP's own developer license agreement treats the software as proprietary, with no source code rights granted and reverse engineering prohibited."
+
+  [[claims.sources]]
+  url = "https://www.sap.com/docs/download/2016/06/sap-hana-express-dev-agmt-and-exhibit.pdf"
+  title = "Master Software Developer License Agreement for SAP HANA, Express Edition"
+  quote = "Ownership of and title in the SAP Software and Tools and to all intellectual property rights in any SAP proprietary information embodied in the SAP Software are and shall remain in SAP and its licensors."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refined current value '2010' to '2010-11': SAP's own history page and independent reporting both place first customer shipment in late November 2010."
+
+  [[claims.sources]]
+  url = "https://www.sap.com/products/data-cloud/hana/what-is-sap-hana.html"
+  title = "What is SAP HANA?"
+  quote = "2010 - SAP HANA was announced and a pre-release version was shipped to select customers in November of that year."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/SAP_HANA"
+  title = "SAP HANA"
+  quote = "The first product shipped in late November 2010."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. A former SAP HANA Core Platform developer's technical blog post states the core is C++; SAP's own docs confirm C++ is used for the Application Function Library layer but don't state the core language as directly."
+
+  [[claims.sources]]
+  url = "https://hookrace.net/blog/hana-cpp-development/"
+  title = "HANA C++ Development Environment and Processes"
+  quote = "HANA is the in-house database powering many of SAP's products. It is written in C++ with Python tests, and the entire code base lives inside of a single git repository."
+  verified = "matched"
+  checked = "2026-08-02"

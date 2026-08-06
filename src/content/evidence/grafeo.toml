@@ -17,25 +17,70 @@ notes = "Core Grafeo is an embeddable library with no protocol of its own; the s
   title = "README.md"
   quote = "Provides REST API, embedded web UI, GQL Wire Protocol (gRPC), and Bolt v5.x wire protocol access to Grafeo's multi-language query engine."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
   title = "README.md"
   quote = "Connect to `ws://localhost:7474/ws` for interactive query execution over a persistent connection."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
   title = "README.md"
   quote = "The gwp and full builds include a gRPC-based binary wire protocol on port 7688, fully aligned with the GQL type system"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/GrafeoDB/grafeo-server/main/README.md"
   title = "README.md"
   quote = "The bolt and full builds include a Bolt v5.x wire protocol on port 7687, compatible with Neo4j drivers."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/GrafeoDB/grafeo/license"
+  title = "GitHub licence API — GrafeoDB/grafeo"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-01"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Repo created 2026-01-26; CHANGELOG shows dated releases starting v0.1.2 (2026-01-29). Refines current value of '2026' to a month."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo/main/CHANGELOG.md"
+  title = "GrafeoDB/grafeo CHANGELOG.md"
+  quote = "## [0.1.2] - 2026-01-29\n\nPython test suite, documentation pass.\n\n### Added\n\n- Comprehensive Python test suite covering LPG, RDF, all 5 query languages and plugins"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "README states the engine is built in Rust; confirms current value."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo/main/README.md"
+  title = "GrafeoDB/grafeo README.md"
+  quote = "Grafeo is a graph database built in Rust from the ground up for speed and low memory use."
+  verified = "matched"
+  checked = "2026-08-02"

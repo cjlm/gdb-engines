@@ -17,11 +17,56 @@ notes = "SPARQL Protocol served over HTTP at /sparql; JDBC and ODBC drivers also
   title = "16.2.3. SPARQL Web Services & APIs"
   quote = "Virtuoso uses the pre-assigned endpoints \"/sparql\" and \"/SPARQL\" as the defaults for exposing its REST based SPARQL Web Services."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/virtuosodriverjdbc/"
   title = "7.4. Virtuoso Driver for JDBC"
   quote = "The Virtuoso Drivers for JDBC are available in \"jar\" file formats for JDBC 1.x, JDBC 2.x and JDBC 3.x specifications."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirmed by the LICENSE file itself; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/openlink/virtuoso-opensource/develop/7/LICENSE"
+  title = "LICENSE"
+  quote = "Note that the only valid version of the GPL license as far as this project is concerned is the original GNU General Public License Version 2, dated June 1991."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "1998"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "OpenLink's own project history confirms the first Virtuoso release shipped in 1998; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://vos.openlinksw.com/owiki/wiki/VOS/VOSHistory"
+  title = "History of Virtuoso"
+  quote = "Thus, in the fall of 1998 the first release of the Virtuoso VDBMS Engine was unveiled."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "OpenLink's own FAQ confirms built-in engine functions are written in C; corroborated by GitHub's language breakdown (C is the dominant language at 49%). Matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://vos.openlinksw.com/owiki/wiki/VOS/VOS/VirtuosoFAQ"
+  title = "OpenLink Universal Integration Middleware - Frequently Asked Questions about the Virtuoso Product Family"
+  quote = "Virtuoso can extend SQL by import Java and .NET classes and functions as well as build-in SQL functions written in C."
+  verified = "matched"
+  checked = "2026-08-02"

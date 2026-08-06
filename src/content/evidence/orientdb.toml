@@ -17,11 +17,63 @@ notes = "Binary protocol (port 2424) is the primary high-performance client prot
   title = "Binary Protocol - OrientDB"
   quote = "The OrientDB binary protocol is the fastest way to interface a client application to an OrientDB Server instance."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://orientdb.dev/docs/develop/misc/OrientDB-REST.html"
   title = "Rest API - OrientDB"
   quote = "OrientDB RESTful HTTP protocol allows to talk with a OrientDB Server instance using the HTTP protocol and JSON."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value: OrientDB was authored by Luca Garulli in 2010 as a Java rewrite of the earlier C++ Orient ODBMS."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/OrientDB"
+  title = "OrientDB - Wikipedia"
+  quote = "OrientDB was originally authored by Luca Garulli in 2010. Luca wrote it as a Java rewrite of the fast persistent layer of Orient ODBMS database"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/orientdb"
+  title = "OrientDB · Database of Databases"
+  quote = "OrientDB was originally developed by Luca Garulli in 2010. Luca rewrote the fast persistent layer of OrientDB ODBMS in Java as OrientDB."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/OrientDB"
+  title = "OrientDB - Wikipedia"
+  quote = "OrientDB is an open source NoSQL database management system written in Java."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/orientechnologies/orientdb/license"
+  title = "GitHub licence API — orientechnologies/orientdb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

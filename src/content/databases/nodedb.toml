@@ -10,7 +10,7 @@ type = "Multiple"
 query_languages = ["SQL", "openCypher"]
 protocols = ["PostgreSQL wire", "HTTP/REST", "WebSocket", "Redis RESP", "Native binary"]
 kind = "database"
-released = "2026-03"
+released = "2026-04"
 category = "Emerging"
 gdotv_support = false
 

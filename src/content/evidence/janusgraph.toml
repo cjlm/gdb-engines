@@ -17,4 +17,56 @@ notes = "JanusGraph Server wraps Gremlin Server; default channelizer is WebSocke
   title = "JanusGraph Server - JanusGraph"
   quote = "This section will describe how to use the WebSocket configuration, as well as describe how to configure JanusGraph Server to handle HTTP endpoint interactions."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value."
+
+  [[claims.sources]]
+  url = "https://janusgraph.org/"
+  title = "JanusGraph"
+  quote = "All functionality is totally free. No need to buy commercial licenses. JanusGraph is fully Open Source under the Apache 2 license."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-04"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value. The project was announced under the Linux Foundation in January 2017 as a fork of Titan, but its first tagged release (0.1.0) shipped in April 2017."
+
+  [[claims.sources]]
+  url = "https://docs.janusgraph.org/v0.3/changelog/"
+  title = "Changelog"
+  quote = "Version 0.1.0 (Release Date: April 11, 2017)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://opensource.googleblog.com/2017/01/janusgraph-connects-past-and-future-of-titan.html"
+  title = "JanusGraph connects the past and future of Titan"
+  quote = "JanusGraph is a fork of the popular open source project Titan, originally released in 2012 by Aurelius, and subsequently acquired by DataStax."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "JanusGraph's docs/README describe it only in general terms without stating 'Java' in prose; the project's pom.xml (Maven build, maven-compiler-plugin config) is direct, unambiguous evidence it's a Java codebase."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/JanusGraph/janusgraph/master/pom.xml"
+  title = "pom.xml - JanusGraph/janusgraph"
+  quote = "<artifactId>maven-compiler-plugin</artifactId>\n                    <version>3.13.0</version>\n                    <configuration>\n                        <source>${compiler.source}</source>\n                        <target>${compiler.target}</target>\n                        <compilerArgs>\n                            <arg>-Xmaxerrs</arg>\n                            <arg>500</arg>\n                            <arg>-Xlint:unchecked</arg>\n                        </compilerArgs>\n                    </configuration>\n                </plugin>"
+  verified = "matched"
+  checked = "2026-08-02"

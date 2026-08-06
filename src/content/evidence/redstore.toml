@@ -17,11 +17,56 @@ notes = "Lightweight standalone RDF triplestore built on the Redland library; ru
   title = "RedStore"
   quote = "It has a HTTP interface and supports the following W3C standards:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://www.aelius.com/njh/redstore/"
   title = "RedStore"
   quote = "RedStore is a lightweight RDF triplestore written in C using the Redland library."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/njh/redstore/license"
+  title = "GitHub licence API — njh/redstore"
+  quote = "\"spdx_id\": \"GPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; earliest tag (0.1) was committed 12 Feb 2010, originally on Google Code before the project moved to GitHub."
+
+  [[claims.sources]]
+  url = "https://github.com/njh/redstore/commit/1946fa05d513442f012e7d0ad1fcd92027776a89"
+  title = "1946fa0 Tagged RedStore version 0.1"
+  quote = "Tagged RedStore version 0.1 git-svn-id: https://redstore.googlecode.com/svn/tags/0.1@132"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/njh/redstore"
+  title = "njh/redstore"
+  quote = "RedStore is a lightweight RDF triplestore written in C using the Redland library."
+  verified = "matched"
+  checked = "2026-08-02"

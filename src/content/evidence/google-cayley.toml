@@ -17,4 +17,56 @@ notes = "All query languages (Gizmo, GraphQL-inspired, MQL) and writes are serve
   title = "HTTP Methods"
   quote = "Unless otherwise noted, all URIs take a POST command."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2014-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Adds the month to the current year-only value: Google's own announcement post is dated June 2014 and the GitHub repository was created 2014-06-05."
+
+  [[claims.sources]]
+  url = "https://opensource.googleblog.com/2014/06/cayley-graphs-in-go.html"
+  title = "Cayley: graphs in Go | Google Open Source Blog"
+  quote = "So today we are excited to release Cayley, an open source graph database."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Go"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; stated directly by the original author in Google's announcement post."
+
+  [[claims.sources]]
+  url = "https://opensource.googleblog.com/2014/06/cayley-graphs-in-go.html"
+  title = "Cayley: graphs in Go | Google Open Source Blog"
+  quote = "Cayley is written in Go, which was a natural choice. As a backend service that depends upon speed and concurrent access, Go seemed like a good fit."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cayleygraph/cayley"
+  title = "cayleygraph/cayley (GitHub API repository resource)"
+  quote = "\"language\": \"Go\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": false,"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cayleygraph/cayley/license"
+  title = "GitHub licence API — cayleygraph/cayley"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

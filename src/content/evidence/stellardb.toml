@@ -17,4 +17,19 @@ notes = "Official Python client PyStellarDB is built on PyHive and connects with
   title = "WarpCloud/PyStellarDB"
   quote = "PyStellarDB is a Python API for executing Transwarp Exetended OpenCypher(TEoC) and Hive query. It could also generate a RDD object which could be used in PySpark."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Transwarp's own IPO disclosure describes StellarDB as a separately priced, licensed component of the TDH platform sold under a perpetual-license model, not open-source software; no public source repository exists. Matches current value."
+
+  [[claims.sources]]
+  url = "http://pdf.dfcfw.com/pdf/H2_AN202205191566556104_1.pdf"
+  title = "关于星环信息科技（上海）股份有限公司 首次公开发行股票并在科创板上市申请文件的 首轮审核问询函的回复"
+  quote = "Discover，StellarDB 为图数据库组件，其价格相对较高，少量客户直接购买 TDH 套件 （即每套包括若干组件）。"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,11 +17,56 @@ notes = "Cypher and admin operations go through the /api/v2/ JSON REST API; a se
   title = "REST API - Streaming Graph for Data Pipelines"
   quote = "This page describes the conventions every endpoint shares — URL shape, request and response format, error envelope, and common query parameters."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://quine.io/learn/standing-queries/wiretap/"
   title = "Standing Query Wiretap - Streaming Graph for Data Pipelines"
   quote = "The standing query wiretap enables observing a standing query's results in real time over a WebSocket connection."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT + Commons Clause"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirmed directly from the repository's LICENSE file. SPDX has no combined identifier for MIT-plus-Commons-Clause, so the value follows the catalogue's existing convention; the permissive MIT grant is restricted by the Commons Clause condition, which forbids selling or commercially hosting the software."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/thatdot/quine/main/LICENSE"
+  title = "thatdot/quine LICENSE"
+  quote = "MIT License with Commons Clause\n\nCopyright © 2014 Ryan Wright; © 2019 thatDot, Inc."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2022-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed via thatDot's own announcement of Quine's public open-source release; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://www.thatdot.com/news/announcing-open-source-release-of-quine-streaming-graph/"
+  title = "Announcing Open Source Release of Quine Streaming Graph"
+  quote = "We at thatDot are pleased to announce that today the release of Quine, our streaming graph for event processing, as an open source project."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Scala"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed; no change from current value."
+
+  [[claims.sources]]
+  url = "https://quine.io/download/"
+  title = "Download - Streaming Graph for Data Pipelines"
+  quote = "Quine is written in Scala and released as open source."
+  verified = "matched"
+  checked = "2026-08-02"

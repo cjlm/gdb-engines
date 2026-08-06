@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/ladybugdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ladybugdb"
+
+[[claims]]
+field = "released"
+value = "2025-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "LadybugDB, a community fork of the archived Kuzu project, shipped its first post-Kuzu release in early November 2025 (announced Wednesday 5 November, reported 7 November); confirms current value. This is the fork's own release date, distinct from Kuzu's original 2022-11 first release."
+
+  [[claims.sources]]
+  url = "https://gdotv.com/blog/weekly-edge-gremlin-ladybug-arcadedb-ontologies-7-november-2025/"
+  title = "The Weekly Edge: New Gremlin Contributor, 2 Graph Releases, Ontologies in Aura, & More [7 November 2025]"
+  quote = "On Wednesday, LadybugDB announced its first post-Kuzu release, which mostly focused on providing continuity for Kuzu users and ensuring contributors retain copyright on their own works"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Ladybug is Kuzu's successor/rename and shares its build system. The CMakeLists.txt declares the project's languages as CXX (C++) and C directly."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/LadybugDB/ladybug/master/CMakeLists.txt"
+  title = "CMakeLists.txt - LadybugDB/ladybug"
+  quote = "cmake_minimum_required(VERSION 3.15)\n\nproject(Lbug VERSION 0.19.0 LANGUAGES CXX C)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/LadybugDB/ladybug/license"
+  title = "GitHub licence API — LadybugDB/ladybug"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"

@@ -9,6 +9,6 @@ implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
-released = "2011-12"
+released = "2010-10"
 category = "Established"
 gdotv_support = true

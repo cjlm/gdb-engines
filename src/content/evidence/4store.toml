@@ -17,25 +17,71 @@ notes = "4s-httpd serves SPARQL query/update at /sparql/ (port 8080, default); i
   title = "man 4store.conf (5): 4store configuration file"
   quote = "Port to run HTTP SPARQL daemon (4s-httpd) on. Default is 8080."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://www.semantic-mediawiki.org/wiki/Help:SPARQLStore/DatabaseConnector/4store"
   title = "Help:SPARQLStore and 4store - semantic-mediawiki.org"
   quote = "For example, a typical default location for the SPARQL query web service (\"endpoint\") of 4Store on a local machine might be http://localhost:8080/sparql/."
-  verified = "matched"
-  checked = "2026-08-01"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260517123447/https://www.semantic-mediawiki.org/wiki/Help:SPARQLStore/DatabaseConnector/4store"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/4store/4store/blob/master/src/http/httpd.c"
   title = "httpd.c · 4store/4store"
   quote = "} else if (!strncmp(url, \"/data/\", 6)) { /* pre-SPARQL 1.1 4store way */"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/4store/4store/blob/master/src/http/httpd.c"
   title = "httpd.c · 4store/4store"
   quote = "  } else if (!strcmp(path, \"/status/size/\")) {\n    http_size_report(ctxt);\n  } else if (!strcmp(path, \"/description/\")) {\n    http_service_description(ctxt);"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "GPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/4store/4store/license"
+  title = "GitHub licence API — 4store/4store"
+  quote = "\"spdx_id\": \"GPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2009-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. Garlik's official announcement of 4store 1.0.0 is dated 2009-10-17; the GitHub repo's initial public commit is three months earlier (2009-07-13), but the formal public release announcement is October 2009."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/semantic-web/2009Oct/0085.html"
+  title = "[ANN] 4store version 1.0.0 from Steve Harris on 2009-10-17 (semantic-web@w3.org from October 2009)"
+  quote = "Garlik is pleased to announce the release of 4store version 1.0.0."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Stated directly by the vendor in the release announcement and corroborated by GitHub's byte-count language stats, where C (2.5M bytes) dominates over HTML (1.5M) and all other languages."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/semantic-web/2009Oct/0085.html"
+  title = "[ANN] 4store version 1.0.0 from Steve Harris on 2009-10-17 (semantic-web@w3.org from October 2009)"
+  quote = "4store is written in C, and is portable to most Linux distributions  \nand Mac OS X."
+  verified = "matched"
+  checked = "2026-08-02"

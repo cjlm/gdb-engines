@@ -17,11 +17,63 @@ notes = "Server mode exposes Gremlin Server on port 8182 (default WebSocket chan
   title = "JetBrains/youtrackdb"
   quote = "You can use both Gremlin query language for your queries and TinkerPop API out of the box."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/JetBrains/youtrackdb"
   title = "JetBrains/youtrackdb"
   quote = "To install YouTrackDB as an embedded database, add the following dependency to your Maven project:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/JetBrains/youtrackdb/license"
+  title = "GitHub licence API — JetBrains/youtrackdb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2024-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects current value of 2024-02: that date is the GitHub repo's creation timestamp, but the repo was developed privately and only announced publicly on Dec 31, 2024 by the project's creator."
+
+  [[claims.sources]]
+  url = "https://www.mail-archive.com/orient-database@googlegroups.com/msg17167.html"
+  title = "[orientdb] Re: OrientDB is under sunset - long live YouTrackDB"
+  quote = "I am glad to announce that the YouTrack team is working on a binary-compatible fork of OrientDB, YouTrackDB"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://medium.com/@youtrackdb/long-road-ahead-6d648141a190"
+  title = "Long road ahead"
+  quote = "Thankfully for the YouTrack project, the OrientDB project has a new chance in its bumpy life to be reborn as the YouTrackDB project."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Matches current value; Java accounts for the overwhelming majority of the repository's code by byte count."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/JetBrains/youtrackdb/languages"
+  title = "JetBrains/youtrackdb languages (GitHub API)"
+  quote = "\"Java\":34522232,\"Python\":1003675"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,4 +17,57 @@ notes = "All SDKs (Rust, TypeScript, Go, Python) and curl alike send queries as 
   title = "HelixDB/helix-db"
   quote = "Queries are authored with the Rust, TypeScript, Go, or Python DSL and sent straight to a running instance as dynamic requests against `POST /v1/query` — no build or deploy step."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value. The founders' Show HN post announcing the first version of the graph database was posted February 24, 2025 (confirmed via the Hacker News API record)."
+
+  [[claims.sources]]
+  url = "https://news.ycombinator.com/item?id=43155338"
+  title = "Show HN: HelixDB, Open-Source Hybrid Graph-Vector Database | Hacker News"
+  quote = "We're super excited to release the first version of our Graph Database!"
+  verified = "unreachable"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://hn.algolia.com/api/v1/items/43155338"
+  title = "Item 43155338 - Hacker News API (Algolia)"
+  quote = "\"created_at\":\"2025-02-24T02:44:03.000Z\",\"created_at_i\":1740365043,\"id\":43155338,\"options\":[],\"parent_id\":null,\"points\":4,\"story_id\":43155338,\"text\":\"Hey HN!<p>A friend and I have been working on HelixDB, a graph-vector database, part-time at university."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; the founders state directly that HelixDB is written in Rust."
+
+  [[claims.sources]]
+  url = "https://news.ycombinator.com/item?id=43975423"
+  title = "HelixDB – Open-source vector-graph database for AI applications (Rust) | Hacker News"
+  quote = "It’s written in Rust and our initial focus is on supporting RAG."
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250520064418/https://news.ycombinator.com/item?id=43975423"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/HelixDB/helix-db/license"
+  title = "GitHub licence API — HelixDB/helix-db"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,11 +17,63 @@ notes = "Foxx microservice installed inside ArangoDB; exposes a Swagger/OpenAPI-
   title = "RecallGraph/RecallGraph"
   quote = "API documentation is also available directly in the Swagger console once the service is installed (accessed through ArangoDB's web UI)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/RecallGraph/RecallGraph"
   title = "RecallGraph/RecallGraph"
   quote = "It is a Foxx Microservice for ArangoDB that features VCS-like semantics in many parts of its interface, and is backed by a transactional event tracker."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/RecallGraph/RecallGraph/license"
+  title = "GitHub licence API — RecallGraph/RecallGraph"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2019-04"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "First tagged release v0.0.1 was published 29 Apr 2019 as a pre-release; confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph/releases"
+  title = "Releases · RecallGraph/RecallGraph · GitHub"
+  quote = "This is a pre-release, meant only for exploring and understanding the service."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph/tags"
+  title = "Tags · RecallGraph/RecallGraph · GitHub"
+  quote = "Merge pull request #3 from adityamukho/tests"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "JavaScript"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; RecallGraph is a Foxx Microservice for ArangoDB, and Foxx services run on ArangoDB's embedded V8/JavaScript engine."
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph"
+  title = "RecallGraph/RecallGraph"
+  quote = "It is a Foxx Microservice for ArangoDB that features _VCS-like_ semantics in many parts of its interface"
+  verified = "matched"
+  checked = "2026-08-02"

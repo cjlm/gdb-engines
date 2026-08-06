@@ -4,12 +4,12 @@ slug = "fluree"
 description = "An immutable, append-only RDF graph database using JSON-LD as its data format. Features a blockchain-inspired ledger for data provenance and fine-grained access control policies."
 url = "https://flur.ee/"
 github_url = "https://github.com/fluree/db"
-license = "EPL-2.0"
+license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "RDF"
 query_languages = ["FlureeQL", "SPARQL", "GraphQL"]
 protocols = ["HTTP/REST", "SPARQL Protocol"]
-released = "2018"
+released = "2018-08"
 category = "Growing"
 gdotv_support = false
 

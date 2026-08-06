@@ -17,11 +17,70 @@ notes = "AgensGraph is a PostgreSQL fork; its JDBC driver connects on the standa
   title = "skaiworldwide-oss/agensgraph-jdbc: A Java driver for AgensGraph"
   quote = "AgensGraph JDBC Driver is based on PostgreSQL JDBC Driver and offers additional features to handle graph data."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://pigsty.io/docs/pgsql/kernel/agensgraph/"
   title = "AgensGraph | PIGSTY"
   quote = "From the client side, AgensGraph still speaks the PostgreSQL wire protocol, so normal PostgreSQL clients, drivers, and connection pools can connect directly."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "LICENSE file in the current maintainer's repo (post Bitnine, now skaiworldwide-oss) is Apache License 2.0; confirms current value."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/skaiworldwide-oss/agensgraph/master/LICENSE"
+  title = "LICENSE (skaiworldwide-oss/agensgraph)"
+  quote = "Agens Graph\n\nCopyright (c) 2014-2017 Bitnine, Inc.  All Rights Reserved.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016-11"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from 2017-01, which was the 1.0 GA date. Bitnine publicly demoed AgensGraph Community Edition 0.9 at PGConf Silicon Valley 2016 (Nov 14-16, 2016), which counts as the first public preview."
+
+  [[claims.sources]]
+  url = "https://www.dt.co.kr/article/11068056"
+  title = "비트나인, RDB와 GDB를 결합한 멀티 모델 그래프 데이터베이스 `AgensGraph(아젠스 그래프)` 출시 | 디지털타임스"
+  quote = "작년 11월 미국 실리콘밸리에서 열린 국제 PGConf SV 2016 컨퍼런스에서 커뮤니티 에디션 0.9 버전을 발표하여 많은 주목을 받은 이후"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://wiki.postgresql.org/wiki/Events"
+  title = "PostgreSQL Events"
+  quote = "PGConf Silicon Valley 2016 | PGConf SV | Nov 14 - 16, 2016 | California, US | SF Bay Area | Talks, Tutorials"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "AgensGraph is a fork of PostgreSQL (itself written in C); GitHub's own language detection agrees."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/skaiworldwide-oss/agensgraph/main/README.md"
+  title = "README.md (skaiworldwide-oss/agensgraph)"
+  quote = "AgensGraph is built on the robust PostgreSQL RDBMS, providing a highly reliable, fully-featured platform ready for enterprise use."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/skaiworldwide-oss/agensgraph"
+  title = "skaiworldwide-oss/agensgraph (GitHub API repository resource)"
+  quote = "\"language\": \"C\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
+  verified = "matched"
+  checked = "2026-08-02"

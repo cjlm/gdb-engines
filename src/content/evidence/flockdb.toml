@@ -17,4 +17,49 @@ notes = "Twitter's 'flapp' servers expose a small Thrift API (default port 7915 
   title = "Flock demo"
   quote = "The flockdb interface is thrift, so you can talk to it in many different languages"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the repo's LICENSE file is the Apache License 2.0 text, matching GitHub's 'Other (NOASSERTION)' classification quirk (Apache headers without the SPDX-standard NOTICE format)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/twitter-archive/flockdb/master/LICENSE"
+  title = "LICENSE"
+  quote = "Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-04"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrects current year-only '2010' to 2010-04: the repo was created 2010-04-12 and its own README already describes FlockDB as being in full production use that same month."
+
+  [[claims.sources]]
+  url = "https://github.com/twitter-archive/flockdb"
+  title = "twitter-archive/flockdb: A distributed, fault-tolerant graph database"
+  quote = "As of April 2010, the Twitter FlockDB cluster stores 13+ billion edges and sustains peak traffic of 20k writes/second and 100k reads/second."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Scala"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://github.com/twitter-archive/flockdb/blob/master/doc/blog.md"
+  title = "Introducing FlockDB (doc/blog.md)"
+  quote = "The app servers (affectionately called \"flapps\") are written in Scala, are stateless, and are horizontally scalable."
+  verified = "matched"
+  checked = "2026-08-02"

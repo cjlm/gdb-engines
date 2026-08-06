@@ -4,12 +4,12 @@ slug = "surrealdb"
 description = "A multi-model database written in Rust that combines document, graph, and relational paradigms. Uses inter-document record links for graph traversals, with ACID transactions and row-level permissions."
 url = "https://surrealdb.com/"
 github_url = "https://github.com/surrealdb/surrealdb"
-license = "BSL-1.1"
+license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "Multiple"
 query_languages = ["SurrealQL", "GraphQL", "GQL"]
 protocols = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
-released = "2022"
+released = "2022-07"
 category = "Growing"
 gdotv_support = false
 

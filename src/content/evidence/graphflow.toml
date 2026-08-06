@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/graphflow.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graphflow"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from current value Apache-2.0: the repository's actual LICENSE file is MIT, dated 2019 (predates this specific VLDB-2021-paper repo)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/graphflow/graphflow-columnar-techniques/master/LICENSE"
+  title = "graphflow/graphflow-columnar-techniques LICENSE"
+  quote = "Unless otherwise specified directly in a source code file, the below license applies to all source code in this repository."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Graphflow was first demonstrated as a prototype active graph database at SIGMOD 2017; confirms current value."
+
+  [[claims.sources]]
+  url = "https://researchr.org/publication/KankanamgeSMCS17"
+  title = "Graphflow: An Active Graph Database - researchr publication"
+  quote = "Proceedings of the 2017 ACM International Conference on Management of Data, SIGMOD Conference 2017, Chicago, IL, USA, May 14-19, 2017"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "The rejected quote had been tidied to 'in memory' with a space. The PDF's actual text layer (extracted with pdftotext, no -layout) reads 'inmemory' as a single word with no hyphen or space — confirmed by direct extraction from the downloaded PDF. Quoted here exactly as the text layer has it."
+
+  [[claims.sources]]
+  url = "http://vldb.org/pvldb/vol14/p2491-gupta.pdf"
+  title = "Building an On-Disk Columnar Store for Graph Database Management Systems (VLDB 2021)"
+  quote = "We integrated our columnar techniques into GraphflowDB, an inmemory GDBMS written in Java."
+  verified = "matched"
+  checked = "2026-08-02"

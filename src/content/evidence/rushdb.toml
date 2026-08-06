@@ -17,11 +17,56 @@ notes = "Python and TypeScript SDKs are thin wrappers over the REST API; default
   title = "@rushdb/javascript-sdk v1.19.1"
   quote = "Default URL is \"https://api.rushdb.com/api/v1\". See SDK Configuration for more options."
   verified = "unreachable"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/rush-db/rushdb/main/docs/docs/connect/index.mdx"
   title = "RushDB — Connect"
   quote = "For application code, use the TypeScript SDK, Python SDK, or JSON REST API."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "ELv2"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The repo's own per-path license table puts the database core (platform/core) under Elastic License 2.0; only the SDKs/docs/website are Apache-2.0."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/main/README.md"
+  title = "Readme"
+  quote = "| platform/core           | Elastic License 2.0 |\n| platform/dashboard      | Elastic License 2.0 |\n| docs                    | Apache 2.0"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2024-12"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value. No public announcement predating the repo was found; GitHub org repo creation date is used as the best available signal."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/rush-db/rushdb"
+  title = "rushdb"
+  quote = "\"created_at\": \"2024-12-15T09:12:00Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "TypeScript"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value. GitHub byte-count shows TypeScript is overwhelmingly dominant over the remaining config/tooling languages."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/rush-db/rushdb/languages"
+  title = "languages"
+  quote = "\"TypeScript\": 2799251,\n  \"EJS\": 37387,\n  \"CSS\": 15352"
+  verified = "matched"
+  checked = "2026-08-02"

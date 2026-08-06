@@ -17,4 +17,49 @@ notes = "Evidence comes from client libraries (Java, JS, PHP) dated 2010-2011 fo
   title = "sones/sones-javaclient"
   quote = "simple connection to a GraphDB REST service based on given URI and credentials"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "AGPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/sones/sones/license"
+  title = "GitHub licence API — sones/sones"
+  quote = "\"spdx_id\": \"AGPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010-07"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refines current value '2010' to month precision: the open-source edition specifically launched in July 2010, ahead of the enterprise edition."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Sones_GraphDB"
+  title = "Sones GraphDB - Wikipedia"
+  quote = "GraphDB was unique in that its design based on weighted graphs. The open source edition was released in July 2010."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C#"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; GitHub byte-count and Wikipedia both identify C# (on .NET/Mono) as the implementation language."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/sones/sones/languages"
+  title = "languages"
+  quote = "\"C#\": 8014026,\n  \"JavaScript\": 225448,\n  \"Shell\": 6980"
+  verified = "matched"
+  checked = "2026-08-02"

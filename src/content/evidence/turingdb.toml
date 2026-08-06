@@ -17,18 +17,70 @@ notes = "Python SDK offers a JSON backend and a binary (Turing proto) backend, b
   title = "Reference"
   quote = "JSON payloads over HTTP against a running daemon"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "Reference"
   quote = "Binary (Turing proto) payloads over HTTP — faster; requires the compiled extension"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/turing-db/turingdb"
   title = "turing-db/turingdb"
   quote = "TuringDB is queried over HTTP; Neo4j and Memgraph over Bolt."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from 'BSL-1.1' to 'BUSL-1.1': the LICENSE file is the Business Source License 1.1 (shown as NOASSERTION on GitHub), whose SPDX id is BUSL-1.1, not BSL-1.1 (the unrelated Boost licence)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/LICENSE"
+  title = "turingdb/LICENSE"
+  quote = "License 1.1 (BSL), the TuringDB Enterprise License (TEL). A copy of each licence"
+  verified = "unreachable"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB Community Edition is licensed under the Business Source License (BSL). See [LICENSE](https://github.com/turing-db/turingdb/blob/main/LICENSE) for details."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value; README states the engine is built in C++, and GitHub's byte-count is dominated by C++."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No tagged GitHub releases predate v1.20 (Feb 2026), and the GitHub repo itself was only made public 2025-08-01, so there is no formal 'first release' artifact. The earliest Internet Archive snapshot with fully rendered marketing content (the site is a client-rendered SPA; earlier 2025 snapshots only captured the page shell) is from 2025-11-09 and already describes TuringDB as a working graph database engine, supporting 2025 as the year it went public."
+
+  [[claims.sources]]
+  url = "http://web.archive.org/web/20251109073921/https://www.turingdb.ai/"
+  title = "TuringDB (Wayback Machine snapshot, 2025-11-09)"
+  quote = "Get answers in milliseconds from the fastest columnar in-memory graph database engine, featuring git-like versioning."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,11 +17,56 @@ notes = "agdb_server exposes an OpenAPI/REST HTTP API for remote use; agdb is al
   title = "OpenAPI - agdb - Application Native Database"
   quote = "The agdb server can be accessed using OpenAPI (REST) via any HTTP client."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/agnesoft/agdb"
   title = "agnesoft/agdb"
   quote = "No query language, queries are written in the same language as the application."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/agnesoft/agdb/license"
+  title = "GitHub licence API — agnesoft/agdb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2023-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. The first published crates.io release, agdb v0.1.0, dates to 2023-06-18, matching the corresponding GitHub v0.1.0 tag/commit."
+
+  [[claims.sources]]
+  url = "https://crates.io/api/v1/crates/agdb/versions"
+  title = "agdb versions - crates.io API"
+  quote = "\"crate\":\"agdb\",\"num\":\"0.1.0\",\"dl_path\":\"/api/v1/crates/agdb/0.1.0/download\",\"readme_path\":\"/api/v1/crates/agdb/0.1.0/readme\",\"updated_at\":\"2023-06-18T14:12:01.809928Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The crate's own Cargo.toml is a Rust package manifest (using the Rust-specific 'edition' field), and GitHub's byte-count stats show Rust dominant (2.2M bytes) over all other languages in the repo."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/agnesoft/agdb/master/agdb/Cargo.toml"
+  title = "Cargo.toml"
+  quote = "[package]\nname = \"agdb\"\nversion = \"0.13.2\"\nedition = \"2024\"\nlicense = \"Apache-2.0\"\nhomepage = \"https://github.com/agnesoft/agdb\"\nrepository = \"https://github.com/agnesoft/agdb\""
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,4 +17,49 @@ notes = "Serves /sparql, /stream, /update, and /graph-store HTTP endpoints imple
   title = "SPARQL Endpoints - Tentris Beta Documentation"
   quote = "Tentris implements the SPARQL 1.1 Protocol and the SPARQL 1.1 Graph Store HTTP Protocol. It makes the following endpoints available."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Today's Tentris (tentris/tentris, run by Tentris GmbH) is a distinct product from the Apache-2.0/MIT dual-licensed research prototype (dice-group/tentris-research-project); the commercial repository carries no open-source license. Matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/dice-group/tentris-research-project"
+  title = "dice-group/tentris-research-project"
+  quote = "the commercial version of Tentris, but a research prototype that focuses on aspects presented in papers. For a reliable, SPARQL feature-complete, and well-tested edition, see the commercial edition at"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "The first public description of Tentris is the ISWC 2020 paper, accompanied by the first public pre-built binaries (v1.0.4); matches current value."
+
+  [[claims.sources]]
+  url = "https://tentris.dice-research.org/"
+  title = "ISWC 2020 Paper: Tentris – A Tensor-Based Triple Store"
+  quote = "Alexander Bigerl, Felix Conrads, Charlotte Behning, Mohamed Ahmed Sherif, Muhammad Saleem and Axel-Cyrille Ngonga Ngomo (2020) Tentris – A Tensor-Based Triple Store. In: The Semantic Web – ISWC 2020"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "The commercial repository (tentris/tentris) publishes only packaging scripts; language is inferred from the companion/predecessor research codebase, which builds with a C++ toolchain. Matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/dice-group/tentris-research-project"
+  title = "dice-group/tentris-research-project"
+  quote = "Building was tested with Clang 17 & 19. As C++ standard template library, only"
+  verified = "matched"
+  checked = "2026-08-02"

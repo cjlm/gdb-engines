@@ -17,11 +17,56 @@ notes = "Extends RDF4J (Sesame) and is deployed as a Java servlet WAR on Tomcat 
   title = "Strabon"
   quote = "Strabon is a spatiotemporal RDF store. You can use it to store linked geospatial data that changes over time and pose queries using two popular extensions of SPARQL."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/AI-team-UoA/Strabon"
   title = "AI-team-UoA/Strabon"
   quote = "Deploy the endpoint by placing the .war file that was created inside the webapps folder of your Tomcat installation, e.g.:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "MPL-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/AI-team-UoA/Strabon/license"
+  title = "GitHub licence API — AI-team-UoA/Strabon"
+  quote = "\"spdx_id\": \"MPL-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Strabon is built by extending the Java-based Sesame/RDF4J framework; matches current value."
+
+  [[claims.sources]]
+  url = "https://strabon.di.uoa.gr/"
+  title = "Strabon"
+  quote = "Strabon is built by extending the well-known RDF store Sesame (now called RDF4J) and extends RDF4J’s components to manage thematic, spatial and temporal data that is stored in the backend RDBMS."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2010"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Strabon's own publications page lists its earliest paper (naming Strabon explicitly) as a November 2010 SSN workshop paper at ISWC 2010; a second stRDF/stSPARQL paper from ESWC 2010 (May-June 2010) is listed in the same 2010 section. Used as the earliest documented year Strabon existed, since no separate software release date is published."
+
+  [[claims.sources]]
+  url = "https://strabon.di.uoa.gr/publications.html"
+  title = "Strabon - Publications"
+  quote = "In Proceedings of 3rd International workshop on Semantic Sensor Networks 2010, in conjunction with ISWC 2010, November 2010, Shanghai, China."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -17,18 +17,63 @@ notes = "Python client talks to the coordinator over gRPC for the analytical/lea
   title = "Deploy on K8s Cluster - GraphScope documentation"
   quote = "you could deploy and manage the workloads of GraphScope through a python client, which communicates with the GraphScope engines on the K8s cluster through a gRPC service"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://graphscope.io/docs/latest/flex/interactive/getting_started"
   title = "Getting Started - GraphScope documentation"
   quote = "You can establish a connection to the Interactive service using Neo4j’s Bolt connector and execute Cypher queries."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://graphscope.io/docs/flex/interactive/development/restful_api"
   title = "GraphScope Interactive API v0.3"
   quote = "AdminService API (with tag AdminService) defines the API for GraphManagement, ProcedureManagement and Service Management."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-12"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from the catalogue's '2021' (likely conflated with the 2021 VLDB papers describing GraphScope): the source code was first publicly released on December 7, 2020, per GraphScope's own launch post, matching the GitHub repository's creation date of 2020-10-28 as a lead-up."
+
+  [[claims.sources]]
+  url = "https://blog.graphscope.io/say-hello-to-graphscope-3cfe52c2c20f"
+  title = "Say Hello to GraphScope!"
+  quote = "The source code of GraphScope is released today!"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "GraphScope's own docs describe its core analytics execution engine (GAE, built on GRAPE) as written in C++, with Java and Python exposed via FFI; the codebase is genuinely split across C++, Rust and Java (GitHub byte counts are close between the three), so this reflects the engine the project leads with rather than a single unambiguous answer. Matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://graphscope.io/docs/latest/analytical_engine/overview_and_architecture"
+  title = "Overview and Architecture - GraphScope documentation"
+  quote = "The execution engine of GAE is written in C++ and supports other programming languages (i.e., Java and Python) through FFIs (Foreign Function Interfaces), allowing for better integration with other big data ecosystems."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/alibaba/GraphScope/license"
+  title = "GitHub licence API — alibaba/GraphScope"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

@@ -10,6 +10,6 @@ type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher"]
 protocols = ["Redis RESP"]
-released = "2025"
+released = "2025-10"
 category = "Emerging"
 gdotv_support = false

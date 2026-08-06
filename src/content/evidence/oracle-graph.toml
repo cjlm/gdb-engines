@@ -17,18 +17,70 @@ notes = "PGX JDBC driver and SQL/PGQ-over-JDBC cover JDBC/ODBC; the PGX Graph Se
   title = "Executing PGQL Queries Using the PGX JDBC Driver"
   quote = "Starting from Graph Server and Client Release 24.1.0, you can use the PGX JDBC driver to access a PGX session and query graphs that are loaded in to the graph server (PGX)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.oracle.com/en/database/oracle/property-graph/25.3/spgdg/graph-server-rest-api-version-1.html"
   title = "Graph Server REST API Version 1"
   quote = "Get the list of all graphs that belong to a user."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/op-database-rdf-networks-network_owner-network_name-models-model_name-sparql-1.1-get.html"
   title = "Oracle REST Data Services API - Execute a SPARQL query"
   quote = "Executes a SPARQL query and returns the result in JSON format (application/sparql-results+json) or XML format (application/sparql-results+xml) for SPARQL SELECT and ASK queries"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value. Graph features ship inside Oracle Database under Oracle's commercial database license (no extra-cost option since Dec 2019, but still requires a licensed Oracle Database edition)."
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/dblic/Licensing-Information.html"
+  title = "Database Licensing Information User Manual"
+  quote = "Property Graph and RDF Graph Technologies (RDF/OWL) no longer requires an extra cost license. See Oracle Database Insider blog post for more information."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2005"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value. Oracle's own team traces \"Oracle Graph\" to the RDF Knowledge Graph feature first shipped in Oracle Database 10g Release 2."
+
+  [[claims.sources]]
+  url = "https://download.oracle.com/otndocs/products/spatial/pdf/RDF_Whats_New_Spatial_and_Graph.pdf"
+  title = "What's New with Oracle Spatial and Graph"
+  quote = "First release of RDF Knowledge Graph was Oracle 10g R2 (2005)"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value with a caveat: Oracle Graph is split. The RDF/property-graph storage lives inside the C-based Oracle Database kernel, but the headline graph analytics engine (PGX, Parallel Graph AnalytiX) that Oracle Graph leads with is written in Java, with a C++ distributed runtime variant."
+
+  [[claims.sources]]
+  url = "https://gianniceresa.com/2020/04/property-graph-release-20-1-0-a-new-packaging/"
+  title = "Property Graph release 20.1.0: a new packaging"
+  quote = "PGX was an official Database add-on, and because the database is officially released for Windows they had to release PGX for Windows as well. PGX is written in Java"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/pvldb/vol9/p1317-iosup.pdf"
+  title = "LDBC Graphalytics: A Benchmark for Large-Scale Graph Analysis"
+  quote = "PGX has two different runtimes: a single-machine shared memory runtime implemented in Java and a distributed runtime implemented in C++"
+  verified = "mismatch"
+  checked = "2026-08-02"

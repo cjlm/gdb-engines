@@ -17,11 +17,41 @@ notes = "Gremlin access is documented only over WebSocket (port 8182), not HTTP;
   title = "Connect to and manage a Graph Database instance in a Python environment-Graph Database(Graph Database)-阿里云帮助中心"
   quote = "from gremlin_python.driver import client\nclient = client.Client('ws://${your-gdb-endpoint}:8182/gremlin', 'g', username=\"${username}\", password=\"${password}\")"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://help.aliyun.com/en/gdb/developer-reference/compatibility-of-gdb-cypher"
   title = "Compatibility of GDB Cypher-Graph Database(Graph Database)-阿里云帮助中心"
   quote = "GDB supports the bolt-v3 protocol. We recommend using version 4.0.0 of the neo4j-java-driver."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "No public license or source repository exists. Alibaba Cloud's own product page describes GDB as its self-developed, independently-controlled product, sold only as a metered/subscription cloud console service, consistent with the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://www.aliyun.com/product/gdb"
+  title = "图数据库GDB_知识图谱_金融风控_数据库-阿里云"
+  quote = "图数据库（Graph Database, 简称GDB）是阿里云自主研发、自主可控的图数据库产品，经历阿里巴巴集团内丰富的应用场景打磨，具备行业最佳实践经验。是基于图技术的行业多元异构数据的融合、分析、决策引擎，是知识图谱的最佳底座。"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2019-03"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. Alibaba Cloud's own developer-community article states GDB was released as a new database product in March 2019 at the Alibaba Cloud Summit Beijing."
+
+  [[claims.sources]]
+  url = "https://developer.aliyun.com/article/711478"
+  title = "为高度连接数据而生 阿里云图数据库GDB揭秘-阿里云开发者社区"
+  quote = "阿里云于2019年3月重磅发布了数据库新产品——图数据库（Graph Database，简称GDB），本文将从图数据库的基本背景知识说起，带你深入了解阿里云Cloud-Native图数据库GDB。"
+  verified = "matched"
+  checked = "2026-08-02"

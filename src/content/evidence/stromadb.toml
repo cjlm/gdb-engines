@@ -17,4 +17,49 @@ notes = "Very new, single-maintainer project (repo created 2026-06-23, pre-1.0).
   title = "katsut/stromadb"
   quote = "stroma-serve exposes the same database over HTTP so an agent or service can query and ingest it without embedding the engine — the intended surface for an LLM caller."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Elastic-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "README and the GitHub release notes both state the project is source-available under Elastic License 2.0; matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/katsut/stromadb/releases/tag/v0.1.0"
+  title = "Release v0.1.0 · katsut/stromadb"
+  quote = "Pre-1.0: single-node, single-threaded serving — see docs/DECISIONS.md for known limitations and the roadmap. Source-available under Elastic License 2.0."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-07"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from 2026-06. The repository was created June 23, 2026, but the first tagged release, v0.1.0, shipped July 15, 2026, per its own release notes; that is the first point the software was publicly available to install."
+
+  [[claims.sources]]
+  url = "https://github.com/katsut/stromadb/releases/tag/v0.1.0"
+  title = "Release v0.1.0 · katsut/stromadb"
+  quote = "First tagged release.\n\n- Durable changelog engine: framed WAL, group-commit fsync, prefix-exact recovery"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/katsut/stromadb"
+  title = "katsut/stromadb"
+  quote = "Real-time GraphRAG engine optimized for LLMs — stream-native graph + vector + typed retrieval (Rust). Source-available."
+  verified = "matched"
+  checked = "2026-08-02"

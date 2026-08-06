@@ -17,18 +17,63 @@ notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's
   title = "BigQuery API | Google Cloud Documentation"
   quote = "Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://cloud.google.com/bigquery/docs/write-api"
   title = "Introduction to the Storage Write API (gRPC) | BigQuery | Google Cloud Documentation"
   quote = "You can use the BigQuery Storage Write API (gRPC) to stream data into BigQuery."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://cloud.google.com/bigquery/docs/reference/odbc-jdbc-drivers"
   title = "Use the Simba ODBC and JDBC drivers for BigQuery | Google Cloud Documentation"
   quote = "The Simba Open Database Connectivity (ODBC) and Java Database Connectivity (JDBC) drivers for BigQuery connect your applications to BigQuery, letting you use BigQuery features with your preferred tooling and infrastructure."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-04"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Google's own blog post announcing BigQuery Graph's public preview matches the current value exactly."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/blog/products/data-analytics/introducing-bigquery-graph"
+  title = "Introducing BigQuery Graph | Google Cloud Blog"
+  quote = "Today, we're thrilled to announce that BigQuery Graph is now available in preview."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-08-02"
+notes = "Closed hosted service with no published licence terms; recorded as proprietary by the CMU Database of Databases. The previous citation described BigQuery’s storage format as proprietary, which is a different claim."
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/bigquery"
+  title = "BigQuery — Database of Databases"
+  quote = "Operating System Hosted License Proprietary"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "web"
+checked = "2026-08-02"
+notes = "Google does not publish BigQuery’s implementation; the CMU Database of Databases lists C++ first of three languages. The previous citation was the Dremel paper, which describes the underlying engine rather than BigQuery itself."
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/bigquery"
+  title = "BigQuery — Database of Databases"
+  quote = "Project Type Commercial Written in C++, Java, Python"
+  verified = "matched"
+  checked = "2026-08-02"

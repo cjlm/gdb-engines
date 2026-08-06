@@ -17,11 +17,63 @@ notes = "Server defaults to a TCP binary protocol; the -c flag can switch it to 
   title = "sachin-sinha/BangDB"
   quote = "defines if server runs as tcp server or http (rest) server or both (hybrid), default is tcp server"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/sachin-sinha/BangDB"
   title = "sachin-sinha/BangDB"
   quote = "The core client is written in C++, it uses TCP socket to communicate."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BSD-3-Clause"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value via BangDB's own documentation, which lists the community edition under BSD 3."
+
+  [[claims.sources]]
+  url = "https://docs.bangdb.com/server-getting-started"
+  title = "BangDB Server - Documentation"
+  quote = "License - 4.1 Community : BSD 3 4.2 Enterprise : Custom"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2012"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrects the current value of 2021-11, which is actually the BangDB 2.0 release date, not first availability. Founder Sachin Sinha states he developed BangDB in 2012; a July 2013 Wayback Machine capture of bangdb.com already promotes the database, corroborating an earlier launch."
+
+  [[claims.sources]]
+  url = "https://financialexpress.com/money/iqlect-provides-insights-in-real-time-makes-data-analytics-affordable/597429"
+  title = "IQLECT provides insights in real-time, makes data analytics affordable - The Financial Express"
+  quote = "In 2012, I developed BangDB, a high performance nosql database and one of the core components of IQLECT platform, for developers to capture data in with higher speed in efficient manner."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20130711173414/http://www.bangdb.com/"
+  title = "IQLECT (Wayback Machine capture, 11 Jul 2013)"
+  quote = "BangDB, High Performance NoSqlDB BigData Buffer, Real Time Big Data"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value via BangDB's own documentation, which states the server is written in C++; GitHub's own byte-count instead shows mostly Shell because only build scripts and prebuilt binaries are checked into the repo, not the C++ source."
+
+  [[claims.sources]]
+  url = "https://docs.bangdb.com/server-getting-started"
+  title = "BangDB Server - Documentation"
+  quote = "Language - 3.1 Server : C++ 3.2 Client : C++, Java, Python [ upcoming ]"
+  verified = "matched"
+  checked = "2026-08-02"

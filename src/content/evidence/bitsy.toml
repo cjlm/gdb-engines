@@ -17,11 +17,56 @@ notes = "Primarily an embedded Tinkerpop3 library; can also be loaded into Greml
   title = "Home · lambdazen/bitsy Wiki · GitHub"
   quote = "Bitsy is a small, fast, embeddable, durable in-memory graph database that implements Apache Tinkerpop."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://github.com/lambdazen/bitsy/wiki"
   title = "Home · lambdazen/bitsy Wiki · GitHub"
   quote = "You can run Bitsy in the Gremlin Server as follows:"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/lambdazen/bitsy/license"
+  title = "GitHub licence API — lambdazen/bitsy"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2013-07"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Refined the current year-only value: Bitsy 1.0 was announced on the Gremlin-users mailing list on 19 Jul 2013, well before the GitHub repo (which hosts the later Tinkerpop3-compatible v3 rewrite) was created in 2017."
+
+  [[claims.sources]]
+  url = "https://groups.google.com/g/gremlin-users/c/Izxa_BOGgZA"
+  title = "Announcing Bitsy 1.0 version"
+  quote = "I am happy to announce the 1.0 version of the Bitsy graph database. The released version supports Tinkerpop/Blueprints 2.3.0."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; Bitsy is a Maven/Java project distributed on Maven Central."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lambdazen/bitsy/master/README.md"
+  title = "README.md"
+  quote = "The project **build time requirement** is [Apache Maven](https://maven.apache.org/), at least version 3.9 and Java 21.\nThe project **run time requirement is Java 8**."
+  verified = "matched"
+  checked = "2026-08-02"

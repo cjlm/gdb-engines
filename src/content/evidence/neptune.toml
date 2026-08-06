@@ -17,39 +17,91 @@ notes = "Bolt is TCP-only on Neptune (the WebSocket variant of the spec is not s
   title = "Managed Graph Database – Amazon Neptune FAQs – AWS"
   quote = "Neptune provides a Gremlin endpoint (HTTPS and WebSocket), openCypher endpoint (HTTPS and Bolt), and a SPARQL 1.1 Protocol REST endpoint"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-bolt.html"
   title = "Using the Bolt protocol to make openCypher queries to Neptune"
   quote = "Althought the Bolt spec states that Bolt can connect using either TCP or WebSockets, Neptune only supports TCP connections for Bolt."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune/latest/userguide/lambda-functions-websocket-connections.html"
   title = "Managing Gremlin WebSocket connections in AWS Lambda functions"
   quote = "If you use a Gremlin language variant to query Neptune, the driver connects to the database using a WebSocket connection."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html"
   title = "Using the HTTPS REST endpoint to connect to a Neptune DB instance"
   quote = "Amazon Neptune provides an HTTPS endpoint for Gremlin queries. The REST interface is compatible with whatever Gremlin version your DB cluster is using"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html"
   title = "Using the HTTP REST endpoint to connect to a Neptune DB instance"
   quote = "Amazon Neptune provides an HTTP endpoint for SPARQL queries. The REST interface is compatible with SPARQL version 1.1."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-queries.html"
   title = "The Amazon Neptune OpenCypher HTTPS endpoint"
   quote = "Neptune does not currently support HTTP/2 for REST API requests. Clients must use HTTP/1.1 when connecting to endpoints."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Neptune is a closed-source, fully managed AWS commercial service with no published source code or license file, so it is classified as Proprietary rather than under any open-source SPDX id."
+
+  [[claims.sources]]
+  url = "https://press.aboutamazon.com/2017/11/aws-announces-new-capabilities-for-amazon-aurora-and-amazon-dynamodb-introduces-amazon-neptune-graph-database"
+  title = "AWS Announces New Capabilities for Amazon Aurora and Amazon DynamoDB, Introduces Amazon Neptune Graph Database"
+  quote = "Amazon Neptune is AWS's new fast, reliable, and fully managed graph database service that makes it easy for developers to build and run applications that work with highly connected datasets."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; a limited preview was launched at re:Invent on November 29, 2017, well ahead of the May 2018 general availability."
+
+  [[claims.sources]]
+  url = "https://aws.amazon.com/blogs/aws/amazon-neptune-a-fully-managed-graph-database-service/"
+  title = "Amazon Neptune – A Fully Managed Graph Database Service | AWS News Blog"
+  quote = "Today we're launching a limited preview (sign up here) of Amazon Neptune, a fast and reliable graph database service that makes it easy to gain insights from relationships among your highly connected datasets."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "AWS does not directly disclose Neptune's implementation language. Amazon's own paper on Poseidon, the engine behind Neptune Analytics, describes a C++ template-heavy codebase, and Neptune engineering job postings require C++ (or Rust) proficiency for the storage/compute core, so C++ is the best-supported inference for the primary engine language."
+
+  [[claims.sources]]
+  url = "https://arxiv.org/pdf/2510.11166v1"
+  title = "Poseidon: A OneGraph Engine"
+  quote = "For these reasons, our code relies heavily on C++ templates. The templates implement the access patterns as defined and enumerated by the P8APL interface."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://www.amazon.jobs/en/jobs/10431598/software-development-engineer-amazon-neptune"
+  title = "Software Development Engineer, Amazon Neptune - Job ID"
+  quote = "1+ years of experience in C++, Rust, Related programming language- Knowledge of database internals, query planning and optimization and/or storage performance and efficiency"
+  verified = "matched"
+  checked = "2026-08-02"

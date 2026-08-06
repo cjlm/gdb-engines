@@ -17,11 +17,56 @@ notes = "Client traversals go over Gremlin/WebSocket to AGS (default port 8182).
   title = "Aerospike Graph architecture"
   quote = "Applications submit Gremlin traversals to AGS over WebSocket, enabling language-agnostic access to the graph while keeping application logic independent of storage and execution details."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://aerospike.com/docs/graph/manage/endpoints.md"
   title = "HTTP endpoints"
   quote = "This page lists HTTP endpoints available to Aerospike Graph Service (AGS)."
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from AGPL-3.0, which appears to reflect the core Aerospike Database (Community Edition), not the graph product. Aerospike Graph Service (AGS), the engine behind Aerospike Graph, is Apache-2.0 licensed; note the catalogue's github_url (aerospike/aerospike-server) points to the core database repo rather than AGS's own repo (aerospike/aerospike-graph-service)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/aerospike/aerospike-graph-service/3.x-dev/README.md"
+  title = "aerospike/aerospike-graph-service README"
+  quote = "Aerospike Graph Service is licensed under the [Apache License,"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2023-06"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed via Aerospike's own press release announcing the public launch of Aerospike Graph; matches the current catalogue value."
+
+  [[claims.sources]]
+  url = "https://aerospike.com/press-release/aerospike-delivers-real-time-scalable-graph-database/"
+  title = "Aerospike Delivers New Developer-ready, Real-time Scalable Graph Database"
+  quote = "Mountain View, CA — June 20, 2023 — Aerospike, Inc. today unveiled a new graph database with native support for the Gremlin query language at Aerospike Summit 2023."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from C, which describes the core Aerospike Database engine, not the graph product. Aerospike Graph Service is a JVM process built with Maven, requiring JDK 11+."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/aerospike/aerospike-graph-service/3.x-dev/README.md"
+  title = "aerospike/aerospike-graph-service README"
+  quote = "Aerospike Graph Service (AGS) is a JVM process that speaks the standard\nTinkerPop Gremlin wire protocol over WebSocket and stores its data in\nan Aerospike cluster."
+  verified = "matched"
+  checked = "2026-08-02"

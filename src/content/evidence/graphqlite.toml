@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/graphqlite.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graphqlite"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/colliery-io/graphqlite/license"
+  title = "GitHub licence API — colliery-io/graphqlite"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-07"
+confidence = "medium"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; the repository was created 2025-07-19 and its oldest commit is dated 2025-07-21, but no explicit announcement of first public availability was found."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/colliery-io/graphqlite/commits?per_page=1&page=254"
+  title = "colliery-io/graphqlite commits (oldest, via GitHub API)"
+  quote = "\"date\": \"2025-07-21T09:02:23Z\"\n      },\n      \"message\": \"checkpoint: before we start implementing lemo\","
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; GraphQLite is a SQLite extension and GitHub's byte-count breakdown is C-dominant, with Python and Rust present only as binding layers."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/colliery-io/graphqlite/languages"
+  title = "colliery-io/graphqlite languages (GitHub API)"
+  quote = "\"C\": 2991801,\n  \"Python\": 363307,\n  \"Rust\": 276410,"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/colliery-io/graphqlite/main/README.md"
+  title = "colliery-io/graphqlite README.md"
+  quote = "An SQLite extension that adds graph database capabilities using the Cypher query language."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/graphlite.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "graphlite"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/GraphLite-AI/GraphLite/license"
+  title = "GitHub licence API — GraphLite-AI/GraphLite"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2025-11"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "CHANGELOG's first dated entry is v0.0.1 on 2025-11-16, one day after the repo was created. Refines current value of '2025' to a month."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GraphLite-AI/GraphLite/main/CHANGELOG.md"
+  title = "GraphLite-AI/GraphLite CHANGELOG.md"
+  quote = "## [0.0.1] - 2025-11-16\n\n### Added\n\n#### Core Features\n- **ISO GQL Query Engine** - Full implementation of ISO GQL standard based on OpenGQL grammar"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; README build prerequisites and GitHub's language breakdown (Rust dominant) agree."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GraphLite-AI/GraphLite/main/README.md"
+  title = "GraphLite-AI/GraphLite README.md"
+  quote = "Before building GraphLite, you need to install Rust and a C compiler/linker."
+  verified = "matched"
+  checked = "2026-08-02"

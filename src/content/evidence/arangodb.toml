@@ -17,11 +17,56 @@ notes = "VelocyStream (VST) binary protocol was removed in 3.12; HTTP/REST is no
   title = "HTTP API Documentation | Arango Documentation"
   quote = "All interactions with a server are ultimately carried out via this HTTP API."
   verified = "unreachable"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/arangodb/arangojs/main/README.md"
   title = "ArangoDB JavaScript Driver"
   quote = "If the server responded with a non-2xx status code, this `NetworkError` will be an `HttpError` with a `code` property indicating the HTTP status code of the response"
   verified = "matched"
-  checked = "2026-08-01"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from BSL-1.1: the repository's LICENSE file is the Business Source License 1.1 (SPDX id BUSL-1.1), not the unrelated Boost Software License. Precompiled Community Edition binaries carry a separate 'ArangoDB Community License' per Wikipedia, but the source itself is BUSL-1.1."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/arangodb/arangodb/devel/LICENSE"
+  title = "LICENSE"
+  quote = "Business Source License 1.1\n\nTerms\n\nThe Licensor hereby grants you the right to copy, modify, create derivative"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2012-03"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value. ArangoDB began as AvocadoDB; a third-party blog captured the original March 29, 2012 project announcement verbatim (the project was renamed ArangoDB in May 2012 but keeps its original release date)."
+
+  [[claims.sources]]
+  url = "https://tm.durusau.net/?cat=1231"
+  title = "AvocadoDB « Another Word For It"
+  quote = "We recently started a new open source project – a nosql database called AvocadoDB."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; confirmed directly in the project's own README."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/arangodb/arangodb/devel/README"
+  title = "README"
+  quote = "ArangoDB is written in C++ and can handle even very large datasets efficiently."
+  verified = "matched"
+  checked = "2026-08-02"
