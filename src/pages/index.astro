@@ -162,7 +162,7 @@ const datasetJsonLd = JSON.stringify({
               <a href={`/db/${db.data.slug}/`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
               {db.data.url && (
                 <span class="db-links">
-                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={db.data.url}>
+                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={db.data.url} data-outbound="engine-site" data-db={db.data.slug}>
                     <svg width="14" height="14"><use href="#icon-external" /></svg>
                   </a>
                 </span>
@@ -180,6 +180,8 @@ const datasetJsonLd = JSON.stringify({
                   href={db.data.github_url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-outbound="engine-github"
+                  data-db={db.data.slug}
                   title={typeof githubStars[db.data.slug] === 'number'
                     ? `${githubStars[db.data.slug]!.toLocaleString('en-US')} GitHub stars — ${db.data.github_url}`
                     : db.data.github_url}
@@ -254,7 +256,7 @@ const datasetJsonLd = JSON.stringify({
               )
             ) : ''}
           </td>
-          <td>{db.data.gdotv_support ? <a href={`${db.data.gdotv_url || 'https://gdotv.com'}${(db.data.gdotv_url || 'https://gdotv.com').includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Yes</a> : 'No'}</td>
+          <td>{db.data.gdotv_support ? <a href={`${db.data.gdotv_url || 'https://gdotv.com'}${(db.data.gdotv_url || 'https://gdotv.com').includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="gdotv" data-db={db.data.slug}>Yes</a> : 'No'}</td>
           <td>{db.data.license
             ? (() => {
                 const tierSlug = linkMaps?.licenseTierSlug(db.data.license);

@@ -538,8 +538,8 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
           {engines.map((e) => (
             <li>
               <strong>{e.name}</strong>
-              {e.url && <> · <a href={utm(e.url)} rel="nofollow noopener" target="_blank">website</a></>}
-              {e.github_url && <> · <a href={e.github_url} rel="nofollow noopener" target="_blank">github</a></>}
+              {e.url && <> · <a href={utm(e.url)} rel="nofollow noopener" target="_blank" data-outbound="engine-site" data-db={e.slug}>website</a></>}
+              {e.github_url && <> · <a href={e.github_url} rel="nofollow noopener" target="_blank" data-outbound="engine-github" data-db={e.slug}>github</a></>}
               {' '}· <a href={`/db/${e.slug}/`}>full profile</a>
             </li>
           ))}
