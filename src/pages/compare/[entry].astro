@@ -15,6 +15,7 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import CompareCombobox from '../../components/CompareCombobox.astro';
+import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { loadRankings } from '../../lib/rankings';
@@ -368,7 +369,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
             {engines.map((e) => (
               <th scope="col" class="engine-head">
                 <a href={`/db/${e.slug}/`} class="engine-head__link">
-                  <img src={faviconMap[e.slug] ?? '/favicon.svg'} alt="" width="20" height="20" loading="lazy" />
+                  <DatabaseLogo src={faviconMap[e.slug] ?? '/favicon.svg'} size={20} loading="lazy" />
                   <span class="engine-head__name">{e.name}</span>
                 </a>
                 <span class="engine-head__meta">

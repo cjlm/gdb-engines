@@ -16,15 +16,33 @@ import '../styles/global.css';
 >
   <SiteHeader />
   <main class="notfound-page">
-    <p class="code">404</p>
-    <h1>Page not found</h1>
-    <p>That URL isn't part of the catalog. It may have been renamed, or the engine may never have had a page here.</p>
-    <ul class="links">
-      <li><a href="/">Compare all graph databases</a></li>
-      <li><a href="/rankings/">Monthly popularity rankings</a></li>
-      <li><a href="/about/">About &amp; methodology</a></li>
-    </ul>
-    <p class="note">Think an engine is missing? <a href="https://github.com/cjlm/gdb-engines/issues" target="_blank" rel="noopener noreferrer">Open an issue</a>.</p>
+    <section class="notfound-card" aria-labelledby="notfound-title">
+      <div class="notfound-visual" aria-hidden="true">
+        <svg viewBox="0 0 240 180" fill="none">
+          <path d="M52 46 112 81l72-42M112 81l34 61M52 46l18 91 76 5 38-103" />
+          <circle cx="52" cy="46" r="13" />
+          <circle cx="112" cy="81" r="16" />
+          <circle cx="184" cy="39" r="11" />
+          <circle cx="70" cy="137" r="10" />
+          <circle cx="146" cy="142" r="14" />
+        </svg>
+        <span class="code">404</span>
+      </div>
+
+      <div class="notfound-content">
+        <p class="eyebrow">Lost in the graph</p>
+        <h1 id="notfound-title">Page not found</h1>
+        <p class="lede">That URL isn't part of the catalog. It may have been renamed, or the engine may never have had a page here.</p>
+
+        <nav class="actions" aria-label="Continue browsing">
+          <a class="primary-action" href="/">Browse the database catalog <span aria-hidden="true">&rarr;</span></a>
+          <a href="/rankings/">Popularity rankings</a>
+          <a href="/compare/">Compare engines</a>
+        </nav>
+
+        <p class="note">Think an engine is missing? <a href="https://github.com/cjlm/gdb-engines/issues" target="_blank" rel="noopener noreferrer">Open an issue</a>.</p>
+      </div>
+    </section>
   </main>
 </Layout>
 
@@ -38,11 +56,172 @@ import '../styles/global.css';
 </script>
 
 <style>
-  .notfound-page { max-width: 720px; margin: 0 auto; padding: calc(var(--header-height) + 4rem) 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
-  .code { font-size: 3rem; font-weight: 600; margin: 0; color: var(--color-border); line-height: 1; }
-  h1 { font-size: 1.5rem; margin: 0.5rem 0 1rem; color: var(--color-text); }
-  .links { list-style: none; padding: 0; margin: 1.5rem 0; }
-  .links li { margin-bottom: 0.5rem; }
-  .links a { color: var(--color-text); font-weight: 500; }
-  .note { font-size: 0.9rem; margin-top: 2rem; }
+  .notfound-page {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: calc(var(--header-height) + clamp(2rem, 7vw, 5rem)) 1.25rem clamp(2rem, 7vw, 5rem);
+    color: var(--color-text-secondary);
+  }
+
+  .notfound-card {
+    display: grid;
+    width: min(100%, 62rem);
+    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-background) 88%, var(--color-surface));
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 10%);
+  }
+
+  .notfound-visual {
+    position: relative;
+    display: grid;
+    min-height: 25rem;
+    place-items: center;
+    overflow: hidden;
+    border-right: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--color-brand-accent) 24%, transparent), transparent 15rem),
+      var(--color-surface);
+    color: var(--color-brand-accent);
+  }
+
+  .notfound-visual svg {
+    position: absolute;
+    width: min(88%, 19rem);
+    opacity: 0.34;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+  }
+
+  .notfound-visual circle {
+    fill: var(--color-surface);
+    stroke-width: 5;
+  }
+
+  .code {
+    position: relative;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: clamp(4.5rem, 10vw, 7rem);
+    font-weight: 600;
+    letter-spacing: -0.08em;
+    line-height: 1;
+    text-shadow: 0 0.2rem 1.5rem var(--color-surface);
+  }
+
+  .notfound-content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--color-brand-accent);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .lede {
+    max-width: 48ch;
+    margin: 1rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1.75rem;
+  }
+
+  .actions a {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 120ms ease, color 120ms ease, transform 120ms ease;
+  }
+
+  .actions a:hover {
+    border-color: var(--color-text-tertiary);
+    color: var(--color-brand-accent);
+    transform: translateY(-1px);
+  }
+
+  .actions .primary-action {
+    flex-basis: 100%;
+    justify-content: space-between;
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+  }
+
+  .actions .primary-action:hover {
+    border-color: var(--color-brand-accent);
+    color: var(--color-background);
+  }
+
+  .actions a:focus-visible,
+  .note a:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 3px;
+  }
+
+  .note {
+    margin: 1.75rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-tertiary);
+    font-size: 0.8125rem;
+  }
+
+  .note a {
+    color: var(--color-text-secondary);
+    text-underline-offset: 0.2em;
+  }
+
+  .note a:hover { color: var(--color-text); }
+
+  @media (max-width: 42rem) {
+    .notfound-card { grid-template-columns: 1fr; }
+    .notfound-visual {
+      min-height: 11rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .notfound-visual svg { width: min(74%, 15rem); }
+    .code { font-size: 4.25rem; }
+    .notfound-content { padding: 1.5rem; }
+  }
 </style>

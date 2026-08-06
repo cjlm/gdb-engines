@@ -4,6 +4,7 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import CorrectionNotice from '../../components/CorrectionNotice.astro';
 import CountBadge from '../../components/CountBadge.astro';
+import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, type Board } from '../../lib/ranking-boards';
@@ -81,7 +82,7 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
                 </a>
                 <span class="board-logos">
                   {leaders(b).map((src) => (
-                    <img src={src} alt="" width="16" height="16" loading="lazy" />
+                    <DatabaseLogo src={src} size={16} loading="lazy" />
                   ))}
                 </span>
               </li>

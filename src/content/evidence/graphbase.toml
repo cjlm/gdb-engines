@@ -5,6 +5,21 @@
 slug = "graphbase"
 
 [[claims]]
+field = "released"
+value = "2013"
+confidence = "medium"
+method = "web"
+checked = "2026-08-06"
+notes = "No first-party launch announcement survives. A September 2013 database survey already lists GraphBase as a distributed, priced FactNexus graph database, so the catalogue uses 2013 as the earliest defensible public-availability year rather than claiming a more precise launch date."
+
+  [[claims.sources]]
+  url = "https://arxiv.org/pdf/1309.2675"
+  title = "A Brief Study of Open Source Graph Databases"
+  quote = "GraphBase FactNexus Proprietary x86 Java Bin Free,$15/mo,$20,000"
+  verified = "matched"
+  checked = "2026-08-06"
+
+[[claims]]
 field = "protocols"
 value = ["HTTP/REST"]
 confidence = "high"

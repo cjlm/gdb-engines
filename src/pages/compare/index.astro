@@ -11,6 +11,7 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import CountBadge from '../../components/CountBadge.astro';
 import CompareCombobox from '../../components/CompareCombobox.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
+import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
@@ -120,7 +121,7 @@ const breadcrumbJsonLd = JSON.stringify({
             </a>
             <span class="segment-logos">
               {segment.columns.map((c) => (
-                <img src={faviconMap[c.slug] ?? '/favicon.svg'} alt="" width="16" height="16" loading="lazy" />
+                <DatabaseLogo src={faviconMap[c.slug] ?? '/favicon.svg'} size={16} loading="lazy" />
               ))}
             </span>
           </li>
