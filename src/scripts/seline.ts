@@ -10,26 +10,32 @@ declare global {
   }
 }
 
-const pending = new Map<string, Record<string, SelineProperty>>();
+interface PendingEvent {
+  name: string;
+  properties: Record<string, SelineProperty>;
+}
+
+const script = document.querySelector<HTMLScriptElement>('#seline-script');
+const pending: PendingEvent[] = [];
 let waitingForScript = false;
 
 function flush(): boolean {
   if (!window.seline) return false;
-  for (const [name, properties] of pending) window.seline.track(name, properties);
-  pending.clear();
+  for (const event of pending) window.seline.track(event.name, event.properties);
+  pending.length = 0;
   return true;
 }
 
 /**
- * Seline loads asynchronously. Keep the latest event of each name until its script is
- * ready, rather than silently losing events on a cold cache or slow connection.
+ * Seline loads asynchronously. Queue events in order until its script is ready, rather
+ * than silently losing them on a cold cache or slow connection. Without a token the
+ * script tag is never rendered, so nothing is queued.
  */
-function track(name: string, properties: Record<string, SelineProperty>): void {
-  pending.set(name, properties);
-  if (flush() || waitingForScript) return;
-
-  const script = document.querySelector<HTMLScriptElement>('#seline-script');
+export function track(name: string, properties: Record<string, SelineProperty>): void {
   if (!script) return;
+
+  pending.push({ name, properties });
+  if (flush() || waitingForScript) return;
 
   waitingForScript = true;
   script.addEventListener('load', () => {

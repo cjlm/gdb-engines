@@ -5,7 +5,7 @@ const { sponsor } = Astro.props;
 ---
 <aside class="sponsor-slot">
   <div class="sponsor-slot__tag">Sponsored</div>
-  <a class="sponsor-slot__body" href={sponsor.link} target="_blank" rel="noopener noreferrer sponsored">
+  <a class="sponsor-slot__body" href={sponsor.link} target="_blank" rel="noopener noreferrer sponsored" data-outbound="sponsor">
     <strong class="sponsor-slot__title">{sponsor.title}</strong>
     <span class="sponsor-slot__blurb">{sponsor.blurb}</span>
     <span class="sponsor-slot__arrow" aria-hidden="true">→</span>

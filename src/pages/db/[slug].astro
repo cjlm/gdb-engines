@@ -161,7 +161,7 @@ const description = db.data.description;
       {(db.data.url || db.data.github_url) && (
         <span class="db-links">
           {db.data.url && (
-            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">
+            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20a15.3 15.3 0 0 1 0-20"/></svg>
               Website
             </a>
@@ -172,6 +172,8 @@ const description = db.data.description;
               href={db.data.github_url}
               target="_blank"
               rel="noopener noreferrer"
+              data-outbound="engine-github"
+              data-db={db.data.slug}
               aria-label={typeof githubStars === 'number'
                 ? `GitHub repository, ${githubStars.toLocaleString('en-US')} stars`
                 : 'GitHub repository'}
@@ -260,6 +262,8 @@ const description = db.data.description;
               href={db.data.github_url}
               target="_blank"
               rel="noopener noreferrer"
+              data-outbound="engine-github"
+              data-db={db.data.slug}
               title={typeof githubStars === 'number'
                 ? `${githubStars.toLocaleString('en-US')} GitHub stars — ${db.data.github_url}`
                 : db.data.github_url}
@@ -374,9 +378,9 @@ const description = db.data.description;
               {claim.sources.map((source) => (
                 <li>
                   <blockquote cite={source.url}>{source.quote}</blockquote>
-                  <a href={source.url} target="_blank" rel="noopener noreferrer nofollow"><cite>{source.title}</cite></a>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer nofollow" data-outbound="citation"><cite>{source.title}</cite></a>
                   {source.archive_url && (
-                    <span class="claim-checked"> · via <a href={source.archive_url} target="_blank" rel="noopener noreferrer nofollow">Internet Archive</a></span>
+                    <span class="claim-checked"> · via <a href={source.archive_url} target="_blank" rel="noopener noreferrer nofollow" data-outbound="citation">Internet Archive</a></span>
                   )}
                   {source.checked && <span class="claim-checked"> · checked {source.checked}</span>}
                 </li>

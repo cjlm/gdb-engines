@@ -79,12 +79,12 @@ const tierClass = (tier: string): string => {
                 <a href={`/db/${e.slug}/`} class="has-tooltip" aria-label={engineMeta[e.slug]?.description ?? e.name} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{e.name}</a>
                 <span class="db-links">
                   {engineMeta[e.slug]?.githubUrl ? (
-                    <a href={engineMeta[e.slug]!.githubUrl} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.githubUrl}>
+                    <a href={engineMeta[e.slug]!.githubUrl} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.githubUrl} data-outbound="engine-github" data-db={e.slug}>
                       <svg width="14" height="14"><use href="#icon-github" /></svg>
                     </a>
                   ) : null}
                   {engineMeta[e.slug]?.url ? (
-                    <a href={`${engineMeta[e.slug]!.url}${engineMeta[e.slug]!.url!.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.url}>
+                    <a href={`${engineMeta[e.slug]!.url}${engineMeta[e.slug]!.url!.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={engineMeta[e.slug]!.url} data-outbound="engine-site" data-db={e.slug}>
                       <svg width="14" height="14"><use href="#icon-external" /></svg>
                     </a>
                   ) : null}
