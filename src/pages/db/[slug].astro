@@ -399,7 +399,7 @@ function hostname(value: string): string {
               {citedClaims.length > 0 && (
                 <li>
                   <a href="#sources">
-                    <span><strong>Checked sources</strong><small>{sourceCount} source{sourceCount === 1 ? '' : 's'}{latestEvidenceCheck ? ` · ${latestEvidenceCheck}` : ''}</small></span>
+                    <span><strong>Sources</strong><small>{sourceCount} reference{sourceCount === 1 ? '' : 's'}{latestEvidenceCheck ? ` · reviewed ${latestEvidenceCheck}` : ''}</small></span>
                     <span class="chev" aria-hidden="true">&darr;</span>
                   </a>
                 </li>
@@ -437,14 +437,13 @@ function hostname(value: string): string {
       <details class="sources" id="sources">
         <summary>
           Sources
-          <span class="sources-count">{citedClaims.reduce((n, c) => n + c.sources.length, 0)} checked</span>
+          <span class="sources-count">{sourceCount} reference{sourceCount === 1 ? '' : 's'}</span>
         </summary>
         {citedClaims.map((claim) => (
           <div class="claim">
             <p class="claim-head">
               <span class="claim-field">{fieldLabels[claim.field] ?? claim.field}</span>
               <span class="claim-value">{Array.isArray(claim.value) ? claim.value.join(', ') : String(claim.value)}</span>
-              <span class={`claim-confidence claim-confidence-${claim.confidence}`}>{claim.confidence} confidence</span>
             </p>
             {claim.notes && <p class="claim-notes">{claim.notes}</p>}
             <ul class="claim-sources">
@@ -455,7 +454,7 @@ function hostname(value: string): string {
                   {source.archive_url && (
                     <span class="claim-checked"> · via <a href={source.archive_url} target="_blank" rel="noopener noreferrer nofollow" data-outbound="citation">Internet Archive</a></span>
                   )}
-                  {source.checked && <span class="claim-checked"> · checked {source.checked}</span>}
+                  {source.checked && <span class="claim-checked"> · reviewed {source.checked}</span>}
                 </li>
               ))}
             </ul>
