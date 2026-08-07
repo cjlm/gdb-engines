@@ -1,6 +1,7 @@
 name = "FaunaDB"
 vendor = "Fauna Inc"
 slug = "faunadb"
+icon = "faunadb.svg"
 description = "A distributed multi-model database with document and graph capabilities, accessed via its custom Fauna Query Language (FQL). Supported ACID transactions and global distribution. Service was shut down in 2025."
 url = "https://web.archive.org/web/20250618121636/https://fauna.com/"
 license = "Apache-2.0"

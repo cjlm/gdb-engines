@@ -1,4 +1,6 @@
 ---
+import { needsLightLogoBackfill } from '../lib/logo-appearance';
+
 interface Props {
   src: string;
   size?: number;
@@ -6,8 +8,13 @@ interface Props {
 }
 
 const { src, size = 16, loading } = Astro.props;
+const needsBackfill = needsLightLogoBackfill(src);
 ---
-<span class="database-logo" style={`--database-logo-size: ${size}px`} aria-hidden="true">
+<span
+  class:list={['database-logo', { 'database-logo--needs-backfill': needsBackfill }]}
+  style={`--database-logo-size: ${size}px`}
+  aria-hidden="true"
+>
   <img
     src={src}
     alt=""

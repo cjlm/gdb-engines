@@ -251,6 +251,16 @@ a {
   @media (max-width: 45rem) {
     padding-inline: 0.5rem;
 
+    div.right {
+      gap: 0.375rem;
+
+      .search-container {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 36rem) {
     div.left {
       gap: 0.25rem;
 
@@ -269,14 +279,6 @@ a {
       }
 
       .header-brand {
-        display: none;
-      }
-    }
-
-    div.right {
-      gap: 0.375rem;
-
-      .search-container {
         display: none;
       }
     }
@@ -541,7 +543,7 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
 .rankings-link__icon { flex-shrink: 0; }
 .graph-link { gap: 0.35rem; }
 .graph-link__icon { flex-shrink: 0; }
-@media (max-width: 45rem) {
+@media (max-width: 36rem) {
   .rankings-link__label { display: none; }
 }
 
@@ -835,22 +837,20 @@ dialog {
   object-fit: contain;
 }
 
-/* Many vendor favicons are transparent black marks intended for a light browser tab.
-   Give every logo a neutral tile in dark mode; the small shadow keeps the inverse case
-   (a transparent white mark) legible on that same tile. */
-:root[data-theme='dark'] .database-logo {
+/* Only transparent, low-contrast marks get a neutral tile in dark mode. */
+:root[data-theme='dark'] .database-logo--needs-backfill {
   background: #f7f7f5;
   box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
 }
-:root[data-theme='dark'] .database-logo img {
+:root[data-theme='dark'] .database-logo--needs-backfill img {
   filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .database-logo {
+  :root:not([data-theme='light']) .database-logo--needs-backfill {
     background: #f7f7f5;
     box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
   }
-  :root:not([data-theme='light']) .database-logo img {
+  :root:not([data-theme='light']) .database-logo--needs-backfill img {
     filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 80%));
   }
 }
