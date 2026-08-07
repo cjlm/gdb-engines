@@ -1035,12 +1035,14 @@ tr.row-deprecated:hover td {
 .icon-btn:hover {
   color: var(--color-text);
 }
-.site-header .icon-btn {
+.site-header .icon-btn,
+.site-header .menu-btn {
   width: 2.5rem;
   height: 2rem;
 }
 .site-header .icon-btn .icon-sun,
-.site-header .icon-btn .icon-moon {
+.site-header .icon-btn .icon-moon,
+.site-header .menu-btn svg {
   width: 1.75rem;
   height: 1.75rem;
   stroke-width: 2.5;
