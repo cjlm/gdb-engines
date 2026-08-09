@@ -9,6 +9,7 @@
  * All three thresholds are constants here. Raising them is the only change needed to grow
  * the surface — see docs/design/comparison-pages.md §1.3.
  */
+import { PUBLISHED_PAIRS } from '../data/published-pairs';
 import { canonicalQueryLanguage } from './ranking-boards';
 import type { RankingFile } from './rankings';
 
@@ -36,6 +37,11 @@ export interface SelectPairsOptions {
   anchorDepth?: number;
   /** Drop pairs where neither side carries a `[features]` block. */
   requireSurveyed?: boolean;
+  /**
+   * Union in `PUBLISHED_PAIRS`. On by default: the published surface must only grow.
+   * Off answers the narrower question of what this month's ranking selects on its own.
+   */
+  includePublished?: boolean;
 }
 
 /**
@@ -48,20 +54,20 @@ const SEED_PAIRS: [string, string][] = [
   ['neo4j', 'janusgraph'],
   ['neo4j', 'neptune'],
   ['neo4j', 'tigergraph'],
-  ['neo4j', 'falkordb'],
-  ['neo4j', 'nebula-graph'],
+  ['neo4j', 'redisgraph-falkordb'],
+  ['neo4j', 'nebulagraph'],
   ['neo4j', 'orientdb'],
   ['neo4j', 'dgraph'],
   ['neo4j', 'virtuoso'],
-  ['memgraph', 'falkordb'],
+  ['memgraph', 'redisgraph-falkordb'],
   ['memgraph', 'arangodb'],
   ['arangodb', 'orientdb'],
   ['janusgraph', 'neptune'],
-  ['janusgraph', 'nebula-graph'],
-  ['tigergraph', 'nebula-graph'],
+  ['janusgraph', 'nebulagraph'],
+  ['tigergraph', 'nebulagraph'],
   ['dgraph', 'arangodb'],
-  ['virtuoso', 'graphdb'],
-  ['graphdb', 'stardog'],
+  ['virtuoso', 'ontotext-graphdb'],
+  ['ontotext-graphdb', 'stardog'],
   ['blazegraph', 'virtuoso'],
 ];
 
@@ -82,6 +88,10 @@ function makePair(x: string, y: string): Pair {
  * Set A: all pairs among the top `peerDepth` engines by overall rank.
  * Set B: each of the top `anchorDepth` engines paired with the whole catalogue.
  * Then the coverage gate: at least one side must carry survey feature scores.
+ * Set C: every pair in `PUBLISHED_PAIRS`, which bypasses both the depth cuts and the
+ * coverage gate. Sets A and B are recomputed from each month's ranking, so on their own
+ * they let an engine's pair pages vanish when it slips a few places; set C is what keeps
+ * an already-indexed URL alive.
  */
 export function selectPairs(
   ranking: RankingFile | null,
@@ -91,6 +101,7 @@ export function selectPairs(
   const peerDepth = opts.peerDepth ?? PEER_DEPTH;
   const anchorDepth = opts.anchorDepth ?? ANCHOR_DEPTH;
   const requireSurveyed = opts.requireSurveyed ?? true;
+  const includePublished = opts.includePublished ?? true;
 
   const known = new Set(databases.map((d) => d.slug));
   const surveyed = new Set(databases.filter((d) => d.features).map((d) => d.slug));
@@ -110,8 +121,20 @@ export function selectPairs(
     bySlug.set(pair.slug, pair);
   };
 
+  if (includePublished) addPublished(bySlug, known);
+
   if (!ranking) {
-    for (const [x, y] of SEED_PAIRS) add(x, y);
+    for (const [x, y] of SEED_PAIRS) {
+      // Renamed engines used to make their seed pairs no-op silently. `falkordb`,
+      // `nebula-graph` and `graphdb` had all been renamed in the catalogue, which left
+      // seven of these twenty pairs unreachable and nothing said so.
+      for (const slug of [x, y]) {
+        if (!known.has(slug)) {
+          throw new Error(`SEED_PAIRS references "${slug}", which is not a catalogue slug.`);
+        }
+      }
+      add(x, y);
+    }
     return [...bySlug.values()].sort((p, q) => p.slug.localeCompare(q.slug));
   }
 
@@ -131,6 +154,32 @@ export function selectPairs(
   }
 
   return [...bySlug.values()].sort((p, q) => p.slug.localeCompare(q.slug));
+}
+
+/**
+ * Set C: pairs the site has already published, which must keep resolving.
+ *
+ * A manifest entry naming a slug the catalogue no longer has is a build error rather than
+ * a silent drop, because dropping it 404s a live URL. Renaming an engine means updating
+ * the manifest and adding the old pair slugs to `public/_redirects`.
+ */
+function addPublished(bySlug: Map<string, Pair>, known: Set<string>): void {
+  for (const slug of PUBLISHED_PAIRS) {
+    const [a, b, ...rest] = slug.split(VS);
+    if (rest.length > 0 || !a || !b) {
+      throw new Error(`Published pair "${slug}" is not a well-formed "<a>${VS}<b>" slug.`);
+    }
+    for (const side of [a, b]) {
+      if (!known.has(side)) {
+        throw new Error(
+          `Published pair "${slug}" names "${side}", which is not a catalogue slug. ` +
+            `/compare/${slug}/ is a live indexed URL: either restore the slug or remove the ` +
+            `entry from src/data/published-pairs.ts and add a redirect to public/_redirects.`
+        );
+      }
+    }
+    bySlug.set(slug, makePair(a, b));
+  }
 }
 
 /**

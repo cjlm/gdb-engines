@@ -159,12 +159,34 @@ Nothing else in the design changes.
 Total deployment files after this: ~1,850, plus the roundups in §3. Comfortably inside the
 Pages cap, with room for per-pair OG images later if they earn it.
 
+**Set C: the published manifest.** Sets A and B are recomputed from whichever ranking the
+build loads, and the ranking moves every month. An engine slipping a few places out of the
+top 40 therefore used to take every one of its peer pairs offline. This was not a
+hypothetical: Search Console reported 40 such 404s in August 2026, all of them URLs Google
+had indexed and was still serving impressions for, and replaying the four monthly ranking
+snapshots against the current selector showed 444 pages had silently disappeared.
+
+So `src/data/published-pairs.ts` records every pair the site has ever published, and
+`selectPairs` unions it in. It bypasses both the depth cuts and the coverage gate, because
+its whole job is to outlive them. Two consequences:
+
+- **The published surface only grows.** Lowering `peerDepth`, tightening the coverage gate
+  or an engine sliding down the ranking can no longer remove a live URL. Raising the
+  thresholds still works exactly as described above.
+- **Removing an entry is a deliberate act.** A manifest slug the catalogue no longer knows
+  is a build error, not a silent drop, with the message pointing at `public/_redirects`.
+
+`npm run sync-pairs` reads `dist/compare/` after a build and appends anything new, so pairs
+the latest ranking introduced are protected from the next shuffle. It reads the build
+output rather than re-deriving the selection, so what gets recorded is what actually
+shipped.
+
 ### 1.4 URL scheme
 
 | URL | Surface | Count | Indexed |
 |---|---|---|---|
 | `/compare/` | Hub — roundup directory, curated pairs, the builder | 1 | yes |
-| `/compare/<a>-vs-<b>/` | Pair page, `a < b` alphabetically | 1,455 | yes |
+| `/compare/<a>-vs-<b>/` | Pair page, `a < b` alphabetically | 2,013, monotonic | yes |
 | `/compare/<editorial-slug>/` | Curated roundup (§3) | 10–25 | yes |
 | `/compare/custom/?db=x&db=y&db=z` | Client-side builder, 2–4 columns | 1 | **no** — `noindex, follow` |
 
