@@ -8,19 +8,37 @@ const pairings = [
   'graph databases from their graph query engines',
   'SPARQL from their SQL/PGQ',
 ];
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
-<aside class="sponsor-cta" aria-label="Sponsor GDB-Engines">
-  <span class="sponsor-cta__copy">
-    <strong>GDB-Engines provides an independent, evidence-led view of the graph
-    database landscape.</strong>
-    Sponsorship helps sustain the project – and connects vendors with users
-    trying to tell their
-    <span
-      class="sponsor-cta__pair"
-      data-sponsor-pairs={JSON.stringify(pairings)}
-    >GQL from their GraphQL</span>.
-  </span>
-  <a href="/sponsor/">Get in touch <span aria-hidden="true">→</span></a>
+<aside class:list={['sponsor-cta', compact && 'sponsor-cta--compact']} aria-label="Sponsor GDB-Engines">
+  {compact ? (
+    <>
+      <span class="sponsor-cta__copy">
+        <strong>Independent graph database research.</strong>{' '}
+        Sponsorship keeps GDB-Engines running.
+      </span>
+      <a href="/sponsor/">Sponsor us <span aria-hidden="true">→</span></a>
+    </>
+  ) : (
+    <>
+      <span class="sponsor-cta__copy">
+        <strong>GDB-Engines provides an independent, evidence-led view of the graph
+        database landscape.</strong>
+        Sponsorship helps sustain the project – and connects vendors with users
+        trying to tell their
+        <span
+          class="sponsor-cta__pair"
+          data-sponsor-pairs={JSON.stringify(pairings)}
+        >GQL from their GraphQL</span>.
+      </span>
+      <a href="/sponsor/">Get in touch <span aria-hidden="true">→</span></a>
+    </>
+  )}
 </aside>
 
 <script is:inline>
@@ -57,6 +75,13 @@ const pairings = [
     color: var(--color-text);
   }
 
+  .sponsor-cta--compact {
+    max-width: none;
+    margin: 0;
+    padding: 0.7rem 0.75rem 0.7rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
   .sponsor-cta a {
     flex: 0 0 auto;
     padding: 0.42rem 0.7rem;
@@ -71,11 +96,20 @@ const pairings = [
     filter: brightness(1.06);
   }
 
+  .sponsor-cta--compact a {
+    white-space: nowrap;
+  }
+
   @media (max-width: 32rem) {
     .sponsor-cta {
       align-items: flex-start;
       flex-direction: column;
       gap: 0.65rem;
+    }
+
+    .sponsor-cta--compact {
+      align-items: center;
+      flex-direction: row;
     }
   }
 </style>

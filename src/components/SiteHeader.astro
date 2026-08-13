@@ -43,7 +43,7 @@ const onCompare = path.startsWith('/compare');
         </svg>
         <span class="rankings-link__label">Rankings</span>
       </a>
-      <a href="/graph/query-languages/" class:list={['rankings-link', 'graph-link', onGraph && 'is-active']} aria-current={onGraph ? 'page' : undefined}>
+      <a href="/graph/query-languages/" class:list={['rankings-link', 'graph-link', onGraph && 'is-active']} aria-current={onGraph ? 'page' : undefined} aria-label="Graph database query language explorer">
         <svg class="rankings-link__icon graph-link__icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <path d="M4 4.5 8 7m0 0 4-3M8 7l1.5 4.5"/>
           <circle cx="3" cy="3.75" r="1.75"/>
