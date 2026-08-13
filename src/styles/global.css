@@ -246,6 +246,10 @@ a {
     .database-summary {
       display: none;
     }
+
+    div.right .search-container {
+      display: none;
+    }
   }
 
   @media (max-width: 45rem) {
@@ -253,10 +257,6 @@ a {
 
     div.right {
       gap: 0.375rem;
-
-      .search-container {
-        display: none;
-      }
     }
   }
 
