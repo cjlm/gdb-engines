@@ -1,5 +1,7 @@
 # Mobile Header and Sponsorship Pane Implementation Plan
 
+> **Superseded responsive details:** The sponsorship work in this plan was implemented, but its header breakpoints were subsequently refined. The approved final header behavior is documented in `2026-08-13-left-aligned-compact-header.md`: navigation becomes icon-only at 39rem, while the wordmark remains visible through 433px and hides at 432px.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Remove the homepage header's 577–620 px overlap and show a compact sponsorship pane above the comparison table on narrow screens.

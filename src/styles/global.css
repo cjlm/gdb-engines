@@ -242,11 +242,13 @@ a {
     align-items: center;
   }
 
-  @media (max-width: 55rem) {
+  @media (max-width: 64rem) {
     .database-summary {
       display: none;
     }
+  }
 
+  @media (max-width: 55rem) {
     div.right .search-container {
       display: none;
     }
@@ -261,18 +263,8 @@ a {
   }
 
   @media (max-width: 39rem) {
-    .header-brand {
-      display: none;
-    }
-  }
-
-  @media (max-width: 36rem) {
     div.left {
       gap: 0.25rem;
-
-      .database-summary {
-        display: none;
-      }
 
       .header-home {
         margin-right: 0;
@@ -283,6 +275,12 @@ a {
         justify-content: flex-start;
         gap: 0.25rem;
       }
+    }
+  }
+
+  @media (max-width: 27rem) {
+    .header-brand {
+      display: none;
     }
   }
 
@@ -545,7 +543,7 @@ th.rank-col { padding-left: 0.5rem; padding-right: 0.5rem; }
 .rankings-link__icon { flex-shrink: 0; }
 .graph-link { gap: 0.35rem; }
 .graph-link__icon { flex-shrink: 0; }
-@media (max-width: 36rem) {
+@media (max-width: 39rem) {
   .rankings-link__label { display: none; }
 }
 
