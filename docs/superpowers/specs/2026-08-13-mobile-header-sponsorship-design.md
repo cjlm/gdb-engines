@@ -12,7 +12,8 @@ The homepage sponsorship disclosure is also unavailable on narrow screens. `Spon
 ## Goals
 
 - Remove header overlap throughout the 577–620 px transition range.
-- Preserve the existing compact phone layout at and below 36rem.
+- Preserve the compact phone layout's icon-only controls at and below 36rem.
+- Keep compact navigation visually grouped with the home logo instead of distributing it across the header.
 - Keep labelled primary navigation visible for as long as it fits.
 - Give narrow-screen homepage visitors a visible sponsorship message without adding another header control.
 - Reuse the visual language of the existing sponsorship panels on rankings and graph pages.
@@ -30,7 +31,8 @@ The homepage sponsorship disclosure is also unavailable on narrow screens. `Spon
 Use a staged collapse rather than moving the complete compact layout to a larger breakpoint.
 
 - Between 36rem and 39rem (577–624 px), hide only `.header-brand`, the `GDB-Engines` wordmark. Keep the logo, labelled Rankings/Graph/Compare links, and existing right-side controls.
-- At and below 36rem (576 px), retain the current compact behavior: navigation labels are hidden, the home link is logo-only, and the navigation distributes the three icons within the available left-side space.
+- At and below 36rem (576 px), use a compact two-group layout. The left group contains the logo followed immediately by the Rankings, Graph, and Compare icon buttons, aligned from the left with the existing compact gap. The right group keeps theme, About, and Options pinned to the right edge. Navigation labels remain hidden and the home link remains logo-only.
+- Do not use `space-evenly` for the compact primary navigation. The primary navigation may retain flexible width to preserve separation from the right-side utilities, but its contents use start alignment so extra space remains between the two groups rather than between individual navigation buttons.
 - Leave the search-field behavior and the special 22rem About-button treatment unchanged.
 
 The 39rem threshold provides a small safety margin: the full layout has clean separation again at approximately 620 px, and at 625 px the uncollapsed layout fits. Hiding only the wordmark in the intermediate range removes roughly 99 px without sacrificing navigation labels.
@@ -74,6 +76,8 @@ Also verify:
 
 - The wordmark is hidden at 620, 580, and 577 px, and visible at 625 px.
 - Navigation labels remain visible at 577–624 px and switch to icons at 576 px.
+- At 576, 532, 375, and 320 px, the logo and three navigation icons form one left-aligned cluster while theme, About, and Options remain a separate right-aligned cluster.
+- The gaps between compact navigation icons stay equal to the configured navigation gap rather than expanding with viewport width.
 - The compact sponsorship pane is visible at 624 px and below, hidden at 625 px and above, and links to `/sponsor/`.
 - The existing desktop sponsor badge remains visible at its current 72rem threshold.
 - The pane fits at 320 px without horizontal overflow.
@@ -83,5 +87,6 @@ Also verify:
 ## Alternatives Considered
 
 - Moving the entire icon-only layout to 39rem would fix the collision but remove useful labels earlier than necessary.
+- Distributing compact navigation with `space-evenly` uses the available width but makes related links look like unrelated controls; start alignment preserves their grouping and leaves flexible space between navigation and utilities.
 - Adding sponsorship to the Options menu would save space but make it less discoverable and mix project support with table configuration.
 - A sticky or fixed sponsorship banner would be more prominent but would obscure too much of the comparison table on a small screen.
