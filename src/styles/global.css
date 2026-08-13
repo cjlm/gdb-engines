@@ -260,6 +260,12 @@ a {
     }
   }
 
+  @media (max-width: 39rem) {
+    .header-brand {
+      display: none;
+    }
+  }
+
   @media (max-width: 36rem) {
     div.left {
       gap: 0.25rem;
@@ -276,10 +282,6 @@ a {
         flex: 1 1 auto;
         justify-content: space-evenly;
         gap: 0.25rem;
-      }
-
-      .header-brand {
-        display: none;
       }
     }
   }
