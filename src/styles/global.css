@@ -1070,6 +1070,7 @@ tr.row-deprecated:hover td {
 
 /* Hamburger menu */
 .menu-wrapper {
+  display: flex;
   position: relative;
 }
 .menu-btn {
