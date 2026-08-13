@@ -280,7 +280,7 @@ a {
 
       .primary-nav {
         flex: 1 1 auto;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         gap: 0.25rem;
       }
     }
