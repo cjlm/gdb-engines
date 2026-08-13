@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import DatabaseLogo from '../components/DatabaseLogo.astro';
+import SponsorCTA from '../components/SponsorCTA.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -83,6 +84,10 @@ const datasetJsonLd = JSON.stringify({
   <SiteHeader comparisonControls sponsorBadge />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
+
+  <div class="mobile-sponsor-pane">
+    <SponsorCTA compact />
+  </div>
 
   <div class="comparison-stage">
     <table>
@@ -365,6 +370,10 @@ const datasetJsonLd = JSON.stringify({
 </Layout>
 
 <style>
+  .mobile-sponsor-pane {
+    display: none;
+  }
+
   .comparison-stage {
     width: max-content;
     min-width: 100%;
@@ -373,5 +382,16 @@ const datasetJsonLd = JSON.stringify({
 
   .comparison-stage table {
     margin-top: 0;
+  }
+
+  @media (max-width: 39rem) {
+    .mobile-sponsor-pane {
+      display: block;
+      padding: calc(var(--header-height) + 0.75rem) 0.75rem 0.75rem;
+    }
+
+    .comparison-stage {
+      padding-top: 0;
+    }
   }
 </style>
