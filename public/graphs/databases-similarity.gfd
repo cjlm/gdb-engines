@@ -194,6 +194,18 @@
             "queryLanguages": "SQL, openCypher, Gremlin, GraphQL"
           },
           {
+            "id": "db:astraeadb",
+            "label": "AstraeaDB",
+            "image": "https://gdb-engines.com/logos/astraeadb.png",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GQL, Cypher"
+          },
+          {
             "id": "db:atomic-server",
             "label": "Atomic Server",
             "image": "https://gdb-engines.com/logos/atomic-server.png",
@@ -362,6 +374,18 @@
             "queryLanguages": "Gremlin, SQL"
           },
           {
+            "id": "db:cozodb",
+            "label": "CozoDB",
+            "image": "https://gdb-engines.com/logos/cozodb.png",
+            "type": "Other",
+            "kind": "database",
+            "category": "Growing",
+            "status": "inactive",
+            "license": "MPL-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Datalog"
+          },
+          {
             "id": "db:cray-graph-engine",
             "label": "Cray Graph Engine",
             "image": "https://gdb-engines.com/logos/cray-graph-engine.png",
@@ -420,6 +444,30 @@
             "license": "GPL-3.0",
             "implementationLanguage": "Java",
             "queryLanguages": "Cypher"
+          },
+          {
+            "id": "db:duck-rdf",
+            "label": "Duck RDF",
+            "image": "https://gdb-engines.com/logos/duck-rdf.png",
+            "type": "RDF",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:duckgql",
+            "label": "DuckGQL",
+            "image": "https://gdb-engines.com/logos/duckgql.png",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "C++",
+            "queryLanguages": "GQL"
           },
           {
             "id": "db:duckpgq",
@@ -878,6 +926,18 @@
             "queryLanguages": "SQL, openCypher"
           },
           {
+            "id": "db:latticedb",
+            "label": "LatticeDB",
+            "image": "https://gdb-engines.com/logos/latticedb.png",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Zig",
+            "queryLanguages": "Cypher"
+          },
+          {
             "id": "db:livegraph",
             "label": "LiveGraph",
             "image": "https://gdb-engines.com/logos/livegraph.png",
@@ -888,6 +948,18 @@
             "license": "Apache-2.0",
             "implementationLanguage": "C++",
             "queryLanguages": "Custom API"
+          },
+          {
+            "id": "db:loradb",
+            "label": "LoraDB",
+            "image": "https://gdb-engines.com/logos/loradb.png",
+            "type": "Property Graph",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "BUSL-1.1",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "Cypher"
           },
           {
             "id": "db:marklogic",
@@ -1226,6 +1298,18 @@
             "queryLanguages": "Gremlin, openCypher"
           },
           {
+            "id": "db:qbix-streams",
+            "label": "Qbix Streams",
+            "image": "https://gdb-engines.com/logos/qbix-streams.png",
+            "type": "Property Graph",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "JavaScript",
+            "queryLanguages": "Custom API"
+          },
+          {
             "id": "db:qlever",
             "label": "QLever",
             "image": "https://gdb-engines.com/logos/qlever.png",
@@ -1416,6 +1500,18 @@
             "license": "Proprietary",
             "implementationLanguage": "C++",
             "queryLanguages": "SQL, openCypher, GraphScript"
+          },
+          {
+            "id": "db:selene-db",
+            "label": "selene-db",
+            "image": "https://gdb-engines.com/logos/selene-db.png",
+            "type": "Property Graph",
+            "kind": "library",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT OR Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "GQL"
           },
           {
             "id": "db:sones-graphdb",
@@ -1966,6 +2062,21 @@
             "similarity": 0.4545
           },
           {
+            "source": "db:astraeadb",
+            "target": "db:frogql",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "db:omnigraph",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "db:traverse",
+            "similarity": 0.5556
+          },
+          {
             "source": "db:atomic-server",
             "target": "db:omnigraph",
             "similarity": 0.7143
@@ -2082,8 +2193,8 @@
           },
           {
             "source": "db:brightstardb",
-            "target": "db:comunica",
-            "similarity": 0.4
+            "target": "db:duck-rdf",
+            "similarity": 0.4444
           },
           {
             "source": "db:bytegraph",
@@ -2142,7 +2253,12 @@
           },
           {
             "source": "db:comunica",
-            "target": "db:dydra",
+            "target": "db:duck-rdf",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:comunica",
             "similarity": 0.4
           },
           {
@@ -2159,6 +2275,21 @@
             "source": "db:cosmos-db",
             "target": "db:sap-hana",
             "similarity": 0.6667
+          },
+          {
+            "source": "db:cozodb",
+            "target": "db:typedb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:cozodb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:cozodb",
+            "target": "db:helixdb",
+            "similarity": 0.3333
           },
           {
             "source": "db:cray-graph-engine",
@@ -2231,18 +2362,33 @@
             "similarity": 0.3333
           },
           {
-            "source": "db:bighorn",
+            "source": "db:duck-rdf",
+            "target": "db:duckgql",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:duck-rdf",
             "target": "db:duckpgq",
             "similarity": 0.5
           },
           {
-            "source": "db:duckpgq",
-            "target": "db:graphqlite",
+            "source": "db:duck-rdf",
+            "target": "db:gstore",
             "similarity": 0.5
           },
           {
-            "source": "db:duckpgq",
-            "target": "db:kuzu",
+            "source": "db:duckgql",
+            "target": "db:duckpgq",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:duckgql",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:duckpgq",
             "similarity": 0.5
           },
           {
@@ -2334,11 +2480,6 @@
             "source": "db:frogql",
             "target": "db:kglite",
             "similarity": 0.625
-          },
-          {
-            "source": "db:agdb",
-            "target": "db:frogql",
-            "similarity": 0.5
           },
           {
             "source": "db:bytegraph",
@@ -2467,6 +2608,11 @@
           },
           {
             "source": "db:bighorn",
+            "target": "db:graphqlite",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:duckgql",
             "target": "db:graphqlite",
             "similarity": 0.5
           },
@@ -2646,6 +2792,21 @@
             "similarity": 0.4444
           },
           {
+            "source": "db:bighorn",
+            "target": "db:latticedb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:latticedb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:latticedb",
+            "similarity": 0.5
+          },
+          {
             "source": "db:livegraph",
             "target": "db:zipg",
             "similarity": 0.8333
@@ -2658,6 +2819,21 @@
           {
             "source": "db:bangdb",
             "target": "db:livegraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:loradb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:loradb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphlite",
+            "target": "db:loradb",
             "similarity": 0.5
           },
           {
@@ -2806,14 +2982,14 @@
             "similarity": 0.7143
           },
           {
-            "source": "db:kglite",
-            "target": "db:omnigraph",
-            "similarity": 0.625
-          },
-          {
             "source": "db:graphflow",
             "target": "db:ongdb",
             "similarity": 0.5
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "db:ongdb",
+            "similarity": 0.4444
           },
           {
             "source": "db:apache-jena-fuseki",
@@ -2961,6 +3137,21 @@
             "similarity": 0.4444
           },
           {
+            "source": "db:grust",
+            "target": "db:qbix-streams",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:qbix-streams",
+            "target": "db:recallgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:qbix-streams",
+            "target": "db:typegraph",
+            "similarity": 0.5
+          },
+          {
             "source": "db:apache-rya",
             "target": "db:qlever",
             "similarity": 0.7143
@@ -2991,7 +3182,7 @@
             "similarity": 0.5
           },
           {
-            "source": "db:nornicdb",
+            "source": "db:astraeadb",
             "target": "db:raphtory",
             "similarity": 0.4444
           },
@@ -3124,6 +3315,21 @@
             "source": "db:neptune",
             "target": "db:sap-hana",
             "similarity": 0.6
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:selene-db",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphlite",
+            "target": "db:selene-db",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:grust",
+            "target": "db:selene-db",
+            "similarity": 0.5
           },
           {
             "source": "db:galaxybase",
@@ -3279,11 +3485,6 @@
             "source": "db:helixdb",
             "target": "db:typedb",
             "similarity": 0.3333
-          },
-          {
-            "source": "db:relationalai",
-            "target": "db:typedb",
-            "similarity": 0.3
           },
           {
             "source": "db:grust",

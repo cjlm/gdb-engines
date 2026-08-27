@@ -1,0 +1,13 @@
+name = "Qbix Streams"
+vendor = "Qbix"
+slug = "qbix-streams"
+description = "A PHP and JavaScript application plugin that models streams as graph nodes and typed, weighted relations as edges, exposing relation queries alongside content, permissions, and real-time updates."
+url = "https://qbix.com/platform/guide/relations"
+github_url = "https://github.com/Qbix/Streams"
+license = "AGPL-3.0"
+implementation_language = "JavaScript"
+type = "Property Graph"
+kind = "library"
+query_languages = ["Custom API"]
+category = "Emerging"
+gdotv_support = false

@@ -1,0 +1,48 @@
+# Sources for values in src/content/databases/selene-db.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "selene-db"
+
+[[claims]]
+field = "license"
+value = "MIT OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/jscott3201/selene-db/development/README.md"
+  title = "selene-db README"
+  quote = "Dual-licensed under MIT OR Apache-2.0."
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "released"
+value = "2026-05"
+confidence = "medium"
+method = "api"
+checked = "2026-08-26"
+notes = "The repository was created publicly on 2026-05-07; the first tagged release followed on 2026-05-16."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/jscott3201/selene-db"
+  title = "selene-db repository — GitHub API"
+  quote = "\"created_at\": \"2026-05-07T14:18:13Z\""
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/jscott3201/selene-db/languages"
+  title = "selene-db languages — GitHub API"
+  quote = "\"Rust\": 11849595"
+  verified = "matched"
+  checked = "2026-08-27"

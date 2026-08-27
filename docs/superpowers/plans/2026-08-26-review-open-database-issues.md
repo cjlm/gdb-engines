@@ -14,6 +14,7 @@
 
 - Review all ten open issues: #101 GQLDB, #100 LatticeDB, #99 qbix, #98 CozoDB, #96 SeleneDB, #95 Lora, #94 DuckGQL, #93 Duck RDF, #92 OxidDB, and #91 AstraeaDB.
 - Add only graph databases, graph engines, graph extensions, graph query engines, embedded graph databases, or graph libraries that satisfy the repository schema and catalogue scope.
+- For every new entry, add src/content/evidence/<slug>.toml claims covering any present protocols, license, released, and implementation_language fields.
 - Use unknown or omit optional fields when evidence is insufficient; never guess enum values, release dates, licenses, or vendor claims.
 - Match the catalogue description tone: factual, neutral, present tense, 1–3 sentences, data model plus distinguishing features, no marketing language or unshipped features.
 - Omit [features] blocks for all new entries.
@@ -31,7 +32,7 @@
 - Read: src/content/databases/*.toml
 - Read: package.json
 
-- [ ] **Step 1: Inspect the content schema and existing entry patterns**
+- [x] **Step 1: Inspect the content schema and existing entry patterns**
 
 Run:
 
@@ -43,7 +44,7 @@ rg '^description = ' src/content/databases/*.toml | sed -n '1,80p'
 
 Record the accepted enum values, required fields, changelog markup, and representative description style before drafting entries.
 
-- [ ] **Step 2: Confirm the open issue set from GitHub**
+- [x] **Step 2: Confirm the open issue set from GitHub**
 
 Run:
 
@@ -59,15 +60,15 @@ Confirm that the ten issue numbers in the Global Constraints are still open and 
 - Read: GitHub issue pages and linked project documentation/repositories
 - Temporary: research notes outside the repository or in /tmp
 
-- [ ] **Step 1: Research each candidate with Exa’s search workflow**
+- [x] **Step 1: Research each candidate with Exa’s search workflow**
 
 For each candidate, search the project name and linked URL, requesting highlights only. Follow known URLs with contents extraction when needed. Prefer official documentation, repository metadata, release history, and license files; use independent sources only to validate adoption or production claims.
 
-- [ ] **Step 2: Build a research matrix**
+- [x] **Step 2: Build a research matrix**
 
 For every candidate record: official name, vendor, canonical URL, GitHub URL, license, implementation language, data model, query languages, kind, release date, category, status, GDOTV support, slug, inclusion decision, evidence URLs, and confidence. Use unknown/omission where a field cannot be verified.
 
-- [ ] **Step 3: Apply the inclusion rules**
+- [x] **Step 3: Apply the inclusion rules**
 
 Include a candidate only when the evidence establishes that it belongs in a graph-database catalogue and has enough verified information to create a valid entry. Exclude non-graph projects, duplicates already present in src/content/databases/, abandoned prototypes without a usable catalogue identity when the repository’s criteria reject them, and candidates whose issue does not identify a verifiable project.
 
@@ -75,8 +76,9 @@ Include a candidate only when the evidence establishes that it belongs in a grap
 
 **Files:**
 - Create: one src/content/databases/<slug>.toml per candidate accepted in Task 2
+- Create: one src/content/evidence/<slug>.toml per candidate accepted in Task 2
 
-- [ ] **Step 1: Draft each accepted TOML entry from the research matrix**
+- [x] **Step 1: Draft each accepted TOML entry from the research matrix**
 
 Use this field order and omit optional fields that are not verified:
 
@@ -99,11 +101,11 @@ gdotv_support = false
 
 Use Property Graph, RDF, Multiple, or Other only according to the local skill’s definitions; use database, extension, query-engine, embedded, or library according to what the project actually is.
 
-- [ ] **Step 2: Compare each description against existing entries**
+- [x] **Step 2: Compare each description against existing entries**
 
 Ensure each description starts with A or An, names the data model and one or two distinguishing features, states lineage where relevant, and contains no marketing or roadmap claims.
 
-- [ ] **Step 3: Check slug and filename consistency**
+- [x] **Step 3: Check slug and filename consistency**
 
 Run:
 
@@ -116,16 +118,20 @@ done
 
 Resolve every reported mismatch for the newly created files before building.
 
+- [x] **Step 4: Add evidence claims for required fields**
+
+For each accepted entry, create a matching evidence file whose claims restate every present protocols, license, released, and implementation_language value. Each claim must include a confidence, method, checked date, and at least one source with a verbatim quote; leave source verification as unchecked until the repository verifier can refetch it.
+
 ### Task 4: Update the changelog
 
 **Files:**
 - Modify: src/pages/about.astro
 
-- [ ] **Step 1: Add the dated batch entry**
+- [x] **Step 1: Add the dated batch entry**
 
 Insert a concise entry at the top of the existing <dl class="changelog"> that names the accepted databases added from the reviewed open issues. Do not mention excluded candidates as catalogue additions.
 
-- [ ] **Step 2: Review the resulting markup**
+- [x] **Step 2: Review the resulting markup**
 
 Run:
 
@@ -140,7 +146,7 @@ Confirm the new date and description are inside the existing changelog structure
 **Files:**
 - Read: generated dist/db/<slug>/index.html files for every accepted candidate
 
-- [ ] **Step 1: Run the full Astro build**
+- [x] **Step 1: Run the full Astro build**
 
 Run:
 
@@ -150,7 +156,7 @@ npx astro build
 
 Expected: exit code 0 with no content-collection, Zod, TOML, or URL validation errors.
 
-- [ ] **Step 2: Verify generated pages**
+- [x] **Step 2: Verify generated pages**
 
 Run:
 
@@ -163,7 +169,7 @@ done
 
 Expected: no missing page output, including every newly accepted candidate.
 
-- [ ] **Step 3: Review the final diff and branch state**
+- [x] **Step 3: Review the final diff and branch state**
 
 Run:
 
@@ -171,19 +177,18 @@ Run:
 git status --short --branch
 git diff --stat
 git diff --check
-git diff -- src/content/databases src/pages/about.astro
+git diff -- src/content/databases src/content/evidence src/pages/about.astro
 ~~~
 
 Confirm that only the intended plan, accepted database entries, and changelog update are present, with no credentials, generated artifacts, or unrelated modifications.
 
-- [ ] **Step 4: Commit the completed local branch**
+- [x] **Step 4: Commit the completed local branch**
 
 Run:
 
 ~~~
-git add docs/superpowers/plans/2026-08-26-review-open-database-issues.md src/content/databases src/pages/about.astro
+git add docs/superpowers/plans/2026-08-26-review-open-database-issues.md src/content/databases src/content/evidence src/pages/about.astro
 git commit -m "feat: add qualifying open database issues"
 ~~~
 
 Do not push the branch or create a pull request.
-

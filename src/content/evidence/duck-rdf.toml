@@ -1,0 +1,47 @@
+# Sources for values in src/content/databases/duck-rdf.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "duck-rdf"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/nonodename/duck_rdf/license"
+  title = "GitHub license API — nonodename/duck_rdf"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "released"
+value = "2025-08"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/nonodename/duck_rdf/releases/tags/v1.0.0"
+  title = "Duck RDF v1.0.0 release"
+  quote = "\"published_at\": \"2025-08-10T23:39:50Z\""
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/nonodename/duck_rdf/languages"
+  title = "Duck RDF languages — GitHub API"
+  quote = "\"C++\": 207673"
+  verified = "matched"
+  checked = "2026-08-27"

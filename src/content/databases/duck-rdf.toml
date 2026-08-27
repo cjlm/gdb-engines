@@ -1,0 +1,13 @@
+name = "Duck RDF"
+vendor = "Dan Bennett"
+slug = "duck-rdf"
+description = "An RDF extension for DuckDB that reads, writes, profiles, and queries RDF serializations through a columnar schema, with SPARQL and R2RML/YARRRML mapping support."
+github_url = "https://github.com/nonodename/duck_rdf"
+license = "MIT"
+implementation_language = "C++"
+type = "RDF"
+kind = "extension"
+query_languages = ["SPARQL"]
+released = "2025-08"
+category = "Emerging"
+gdotv_support = false

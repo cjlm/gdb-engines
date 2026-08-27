@@ -1,0 +1,61 @@
+# Sources for values in src/content/databases/loradb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "loradb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://loradb.com/features"
+  title = "LoraDB features and limitations"
+  quote = "lora-server is an Axum-based HTTP service that exposes POST /query"
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lora-db/lora/main/README.md"
+  title = "LoraDB README"
+  quote = "License: BUSL-1.1"
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "released"
+value = "2026-04"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/lora-db/lora/releases/tags/v0.1.0"
+  title = "LoraDB v0.1.0 release"
+  quote = "\"published_at\": \"2026-04-22T08:25:54Z\""
+  verified = "matched"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/lora-db/lora/languages"
+  title = "LoraDB languages — GitHub API"
+  quote = "\"Rust\": 4372191"
+  verified = "matched"
+  checked = "2026-08-27"
