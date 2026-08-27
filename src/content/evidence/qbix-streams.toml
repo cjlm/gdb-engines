@@ -1,0 +1,33 @@
+# Sources for values in src/content/databases/qbix-streams.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "qbix-streams"
+
+[[claims]]
+field = "license"
+value = "AGPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Qbix/Streams/license"
+  title = "GitHub license API — Qbix/Streams"
+  quote = "\"spdx_id\": \"AGPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "implementation_language"
+value = "JavaScript"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Qbix/Streams/languages"
+  title = "Qbix Streams languages — GitHub API"
+  quote = "\"JavaScript\": 1673552"
+  verified = "matched"
+  checked = "2026-08-26"

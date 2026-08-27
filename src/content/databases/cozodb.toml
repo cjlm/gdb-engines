@@ -1,0 +1,17 @@
+name = "CozoDB"
+vendor = "Cozo"
+slug = "cozodb"
+description = "A transactional relational database that uses Datalog for recursive queries over relational, graph, and vector data, with time-travel support and built-in graph algorithms."
+url = "https://cozodb.org"
+github_url = "https://github.com/cozodb/cozo"
+license = "MPL-2.0"
+implementation_language = "Rust"
+type = "Other"
+kind = "database"
+query_languages = ["Datalog"]
+protocols = ["HTTP/REST"]
+released = "2022-10"
+category = "Growing"
+status = "inactive"
+status_note = "The main repository has had no commits since December 2024 and the latest release is v0.7.6 from December 2023."
+gdotv_support = false

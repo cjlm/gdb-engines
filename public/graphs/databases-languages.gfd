@@ -149,6 +149,15 @@
             "status": "active"
           },
           {
+            "id": "db:astraeadb",
+            "label": "AstraeaDB",
+            "image": "https://gdb-engines.com/logos/astraeadb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:atomic-server",
             "label": "Atomic Server",
             "image": "https://gdb-engines.com/logos/atomic-server.png",
@@ -275,6 +284,15 @@
             "status": "active"
           },
           {
+            "id": "db:cozodb",
+            "label": "CozoDB",
+            "image": "https://gdb-engines.com/logos/cozodb.png",
+            "kind": "Database",
+            "type": "Other",
+            "category": "Growing",
+            "status": "inactive"
+          },
+          {
             "id": "db:cray-graph-engine",
             "label": "Cray Graph Engine",
             "image": "https://gdb-engines.com/logos/cray-graph-engine.png",
@@ -314,6 +332,24 @@
             "id": "db:dozerdb",
             "label": "DozerDB",
             "image": "https://gdb-engines.com/logos/dozerdb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:duck-rdf",
+            "label": "Duck RDF",
+            "image": "https://gdb-engines.com/logos/duck-rdf.png",
+            "kind": "Database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:duckgql",
+            "label": "DuckGQL",
+            "image": "https://gdb-engines.com/logos/duckgql.png",
             "kind": "Database",
             "type": "Property Graph",
             "category": "Emerging",
@@ -444,6 +480,15 @@
             "type": "RDF",
             "category": "Emerging",
             "status": "inactive"
+          },
+          {
+            "id": "db:gqldb",
+            "label": "Ultipa GQLDB",
+            "image": "https://gdb-engines.com/logos/gqldb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Growing",
+            "status": "active"
           },
           {
             "id": "db:grafeo",
@@ -662,6 +707,15 @@
             "status": "active"
           },
           {
+            "id": "db:latticedb",
+            "label": "LatticeDB",
+            "image": "https://gdb-engines.com/logos/latticedb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:livegraph",
             "label": "LiveGraph",
             "image": "https://gdb-engines.com/logos/livegraph.png",
@@ -669,6 +723,15 @@
             "type": "Other",
             "category": "Emerging",
             "status": "inactive"
+          },
+          {
+            "id": "db:loradb",
+            "label": "LoraDB",
+            "image": "https://gdb-engines.com/logos/loradb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
           },
           {
             "id": "db:marklogic",
@@ -923,6 +986,15 @@
             "status": "active"
           },
           {
+            "id": "db:qbix-streams",
+            "label": "Qbix Streams",
+            "image": "https://gdb-engines.com/logos/qbix-streams.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:qlever",
             "label": "QLever",
             "image": "https://gdb-engines.com/logos/qlever.png",
@@ -1064,6 +1136,15 @@
             "kind": "Database",
             "type": "Multiple",
             "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:selene-db",
+            "label": "selene-db",
+            "image": "https://gdb-engines.com/logos/selene-db.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
             "status": "active"
           },
           {
@@ -1257,7 +1338,7 @@
           },
           {
             "id": "db:ultipa",
-            "label": "Ultipa",
+            "label": "Ultipa Graph v5",
             "image": "https://gdb-engines.com/logos/ultipa.png",
             "kind": "Database",
             "type": "Property Graph",
@@ -1636,6 +1717,16 @@
             "relationship": "supports"
           },
           {
+            "source": "db:astraeadb",
+            "target": "language:GQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:atomic-server",
             "target": "language:Custom API",
             "relationship": "supports"
@@ -1736,6 +1827,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:cozodb",
+            "target": "language:Datalog",
+            "relationship": "supports"
+          },
+          {
             "source": "db:cray-graph-engine",
             "target": "language:SPARQL",
             "relationship": "supports"
@@ -1773,6 +1869,16 @@
           {
             "source": "db:dozerdb",
             "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:duck-rdf",
+            "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:duckgql",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
@@ -1878,6 +1984,11 @@
           {
             "source": "db:google-cayley",
             "target": "language:MQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:gqldb",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
@@ -2046,8 +2157,18 @@
             "relationship": "supports"
           },
           {
+            "source": "db:latticedb",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:livegraph",
             "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:loradb",
+            "target": "language:Cypher",
             "relationship": "supports"
           },
           {
@@ -2256,6 +2377,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:qbix-streams",
+            "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
             "source": "db:qlever",
             "target": "language:SPARQL",
             "relationship": "supports"
@@ -2353,6 +2479,11 @@
           {
             "source": "db:sap-hana",
             "target": "language:GraphScript",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:selene-db",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
@@ -2513,6 +2644,11 @@
           {
             "source": "db:typegraph",
             "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:ultipa",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {

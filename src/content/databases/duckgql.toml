@@ -1,0 +1,14 @@
+name = "DuckGQL"
+vendor = "Rahul Iyer"
+slug = "duckgql"
+description = "A DuckDB extension that adds a subset of ISO/IEC 39075:2024 GQL for querying and mutating property graphs stored in DuckDB tables, with graph imports, DuckLake mappings, and CSR-based graph algorithms."
+url = "https://duckgql.com/"
+github_url = "https://github.com/rahul-iyer/duckdb-gql"
+license = "MIT"
+implementation_language = "C++"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["GQL"]
+released = "2026-07"
+category = "Emerging"
+gdotv_support = false

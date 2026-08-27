@@ -1,0 +1,15 @@
+name = "AstraeaDB"
+vendor = "AstraeaDB"
+slug = "astraeadb"
+description = "A Rust graph database using a vector-property graph model with GQL and Cypher queries, HNSW vector search, temporal graph operations, and graph algorithms."
+url = "https://astraeadb.github.io/AstraeaDB-Official/"
+github_url = "https://github.com/AstraeaDB/AstraeaDB-Official"
+license = "MIT"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "database"
+query_languages = ["GQL", "Cypher"]
+protocols = ["gRPC", "Native binary"]
+released = "2026-02"
+category = "Emerging"
+gdotv_support = false

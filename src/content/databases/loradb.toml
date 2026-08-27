@@ -1,0 +1,15 @@
+name = "LoraDB"
+vendor = "LoraDB"
+slug = "loradb"
+description = "An embeddable property graph database written in Rust with a Cypher subset, local persistence options, vector values, and bindings for multiple languages. Includes an HTTP server for sharing a local graph across clients."
+url = "https://loradb.com/"
+github_url = "https://github.com/lora-db/lora"
+license = "BUSL-1.1"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "embedded"
+query_languages = ["Cypher"]
+protocols = ["HTTP/REST"]
+released = "2026-04"
+category = "Emerging"
+gdotv_support = false
