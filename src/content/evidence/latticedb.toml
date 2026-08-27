@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "GitHub license API — jeffhajewski/latticedb"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "released"
@@ -30,7 +30,7 @@ checked = "2026-08-26"
   title = "LatticeDB v0.1.0 release"
   quote = "\"published_at\": \"2026-01-08T21:14:46Z\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "implementation_language"
@@ -44,4 +44,4 @@ checked = "2026-08-26"
   title = "LatticeDB languages — GitHub API"
   quote = "\"Zig\": 3332248"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"

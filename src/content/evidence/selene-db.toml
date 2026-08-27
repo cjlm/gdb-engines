@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "selene-db README"
   quote = "Dual-licensed under MIT OR Apache-2.0."
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "released"
@@ -31,7 +31,7 @@ notes = "The repository was created publicly on 2026-05-07; the first tagged rel
   title = "selene-db repository — GitHub API"
   quote = "\"created_at\": \"2026-05-07T14:18:13Z\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "implementation_language"
@@ -45,4 +45,4 @@ checked = "2026-08-26"
   title = "selene-db languages — GitHub API"
   quote = "\"Rust\": 11849595"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"

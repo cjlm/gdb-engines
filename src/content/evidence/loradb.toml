@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "LoraDB features and limitations"
   quote = "lora-server is an Axum-based HTTP service that exposes POST /query"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "license"
@@ -30,7 +30,7 @@ checked = "2026-08-26"
   title = "LoraDB README"
   quote = "License: BUSL-1.1"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "released"
@@ -44,7 +44,7 @@ checked = "2026-08-26"
   title = "LoraDB v0.1.0 release"
   quote = "\"published_at\": \"2026-04-22T08:25:54Z\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "implementation_language"
@@ -58,4 +58,4 @@ checked = "2026-08-26"
   title = "LoraDB languages — GitHub API"
   quote = "\"Rust\": 4372191"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"

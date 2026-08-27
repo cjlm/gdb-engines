@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
   quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
   verified = "unreachable"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "license"
@@ -31,4 +31,4 @@ notes = "The vendor offers a restricted free Community Edition for personal and 
   title = "GQLDB Community Edition - Free ISO GQL Graph Database - Ultipa"
   quote = "Free to use for personal and non-commercial purposes. No license key required."
   verified = "unreachable"
-  checked = "2026-08-27"
+  checked = "2026-08-26"

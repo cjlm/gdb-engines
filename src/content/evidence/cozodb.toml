@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "CozoDB README"
   quote = "Standalone HTTP server"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "license"
@@ -30,7 +30,7 @@ checked = "2026-08-26"
   title = "GitHub license API — cozodb/cozo"
   quote = "\"spdx_id\": \"MPL-2.0\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "released"
@@ -44,7 +44,7 @@ checked = "2026-08-26"
   title = "CozoDB v0.1.1 release"
   quote = "\"published_at\": \"2022-10-31T16:10:12Z\""
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
 
 [[claims]]
 field = "implementation_language"
@@ -58,4 +58,4 @@ checked = "2026-08-26"
   title = "CozoDB languages — GitHub API"
   quote = "\"Rust\": 2205638"
   verified = "matched"
-  checked = "2026-08-27"
+  checked = "2026-08-26"
