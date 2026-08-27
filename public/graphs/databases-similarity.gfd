@@ -638,6 +638,18 @@
             "queryLanguages": "Gizmo, GraphQL, MQL"
           },
           {
+            "id": "db:gqldb",
+            "label": "Ultipa GQLDB",
+            "image": "https://gdb-engines.com/logos/gqldb.png",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Growing",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "GQL"
+          },
+          {
             "id": "db:grafeo",
             "label": "Grafeo",
             "image": "https://gdb-engines.com/logos/grafeo.png",
@@ -1767,15 +1779,15 @@
           },
           {
             "id": "db:ultipa",
-            "label": "Ultipa",
+            "label": "Ultipa Graph v5",
             "image": "https://gdb-engines.com/logos/ultipa.png",
             "type": "Property Graph",
             "kind": "database",
             "category": "Growing",
             "status": "active",
             "license": "Proprietary",
-            "implementationLanguage": null,
-            "queryLanguages": "UQL"
+            "implementationLanguage": "C++",
+            "queryLanguages": "GQL, UQL"
           },
           {
             "id": "db:velocitygraph",
@@ -2547,6 +2559,21 @@
             "similarity": 0.4
           },
           {
+            "source": "db:gqldb",
+            "target": "db:ultipa",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:gqldb",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:gqldb",
+            "similarity": 0.5
+          },
+          {
             "source": "db:data-graphs",
             "target": "db:grafeo",
             "similarity": 0.5
@@ -3122,8 +3149,8 @@
             "similarity": 0.3333
           },
           {
-            "source": "db:prometheux",
-            "target": "db:ultipa",
+            "source": "db:gqldb",
+            "target": "db:prometheux",
             "similarity": 0.25
           },
           {
@@ -3267,8 +3294,8 @@
             "similarity": 0.5
           },
           {
-            "source": "db:relationalai",
-            "target": "db:ultipa",
+            "source": "db:gqldb",
+            "target": "db:relationalai",
             "similarity": 0.3333
           },
           {
@@ -3497,19 +3524,14 @@
             "similarity": 0.5
           },
           {
-            "source": "db:alibaba-gdb",
+            "source": "db:bigquery-graph",
             "target": "db:ultipa",
-            "similarity": 0.5
+            "similarity": 0.5556
           },
           {
-            "source": "db:fabric-graph",
+            "source": "db:spanner-graph",
             "target": "db:ultipa",
-            "similarity": 0.4286
-          },
-          {
-            "source": "db:galaxybase",
-            "target": "db:ultipa",
-            "similarity": 0.4286
+            "similarity": 0.5556
           },
           {
             "source": "db:galaxybase",

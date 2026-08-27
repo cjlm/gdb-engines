@@ -1,13 +1,13 @@
-name = "Ultipa"
+name = "Ultipa Graph v5"
 vendor = "Ultipa"
 slug = "ultipa"
-description = "A property graph database using an HTAP (Hybrid Transactional and Analytical Processing) architecture for combined transactional and analytical workloads. Uses its own UQL query language with planned ISO GQL compatibility."
-url = "https://www.ultipa.com/"
+description = "A distributed property graph database implemented in C++ with a storage-compute-coupled architecture for large-scale graph processing. Supports ISO GQL and the native UQL query language, with sharding, replication, graph algorithms, and RESTful access."
+url = "https://www.ultipa.com/docs/v5/graph-database"
 license = "Proprietary"
+implementation_language = "C++"
 type = "Property Graph"
-query_languages = ["UQL"]
-protocols = ["gRPC", "HTTP/REST"]
-released = "2019"
+query_languages = ["GQL", "UQL"]
+protocols = ["HTTP/REST"]
 category = "Growing"
 gdotv_support = true
 

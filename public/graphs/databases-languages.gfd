@@ -482,6 +482,15 @@
             "status": "inactive"
           },
           {
+            "id": "db:gqldb",
+            "label": "Ultipa GQLDB",
+            "image": "https://gdb-engines.com/logos/gqldb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
             "id": "db:grafeo",
             "label": "Grafeo",
             "image": "https://gdb-engines.com/logos/grafeo.png",
@@ -1329,7 +1338,7 @@
           },
           {
             "id": "db:ultipa",
-            "label": "Ultipa",
+            "label": "Ultipa Graph v5",
             "image": "https://gdb-engines.com/logos/ultipa.png",
             "kind": "Database",
             "type": "Property Graph",
@@ -1975,6 +1984,11 @@
           {
             "source": "db:google-cayley",
             "target": "language:MQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:gqldb",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
@@ -2630,6 +2644,11 @@
           {
             "source": "db:typegraph",
             "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:ultipa",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {

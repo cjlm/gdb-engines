@@ -6,32 +6,32 @@ slug = "ultipa"
 
 [[claims]]
 field = "protocols"
-value = ["gRPC", "HTTP/REST"]
+value = ["HTTP/REST"]
 confidence = "high"
-method = "repo"
-checked = "2026-08-01"
-notes = "Current v6 GQLDB standalone server mode is documented by the vendor as exposing both gRPC and REST; official Node.js and Go driver docs confirm gRPC/Protocol Buffer client SDKs are the default. Rejects pass_A's gRPC-only read; agrees with pass_B that REST is also real (a separate documented deploy mode, not just a driver quirk)."
+method = "vendor-docs"
+checked = "2026-08-26"
+notes = "This entry now represents Ultipa Powerhouse v5, whose official product documentation lists RESTful API access. GQLDB v6 is catalogued separately."
 
   [[claims.sources]]
-  url = "https://www.ultipa.com/docs/drivers/nodejs-quick-start"
-  title = "Quick Start - Ultipa Drivers"
-  quote = "The GQLDB Node.js driver is a gRPC-based client library for interacting with GQLDB graph database."
-  verified = "matched"
-  checked = "2026-08-02"
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Powerhouse (v5) - Ultipa Graph Database"
+  quote = "Full-fledged API/SDKs enabling seamless application development, supporting Java, Go, Python, NodeJS, C#, and RESTful API."
+  verified = "unreachable"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-26"
 
   [[claims.sources]]
-  url = "https://github.com/ultipa/ultipa-go-sdk"
-  title = "ultipa/ultipa-go-sdk"
-  quote = "This sdk depends on Protocol Buffer and grpc, so we need to compile the proto file first:"
-  verified = "matched"
-  checked = "2026-08-02"
-
-  [[claims.sources]]
-  url = "https://www.ultipa.com/products/gqldb"
-  title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
-  quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
-  verified = "matched"
-  checked = "2026-08-02"
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Powerhouse (v5) - Ultipa Graph Database"
+  quote = "Ultipa Powerhouse (v5), implemented in C++, introduces a novel hybrid architecture"
+  verified = "unreachable"
+  checked = "2026-08-27"
 
 [[claims]]
 field = "license"
@@ -45,27 +45,5 @@ notes = "Confirms the current value; no source repository or open licence exists
   url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
   title = "License - Operations & Maintenance"
   quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
-  verified = "matched"
-  checked = "2026-08-02"
-
-[[claims]]
-field = "released"
-value = "2019"
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-08-02"
-notes = "No specific first-release announcement found; Ultipa's own site schema.org markup and its 2021 copyright notice both give 2019 as the company's founding year, corroborating the current value."
-
-  [[claims.sources]]
-  url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
-  title = "License - Operations & Maintenance"
-  quote = "\"foundingDate\":\"2019\""
-  verified = "mismatch"
-  checked = "2026-08-02"
-
-  [[claims.sources]]
-  url = "http://web.archive.org/web/20211129022106/https://www.ultipa.com/about"
-  title = "About - Ultipa"
-  quote = "Copyright © 2019-2021 Ultipa Inc. – All Rights Reserved"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-08-27"

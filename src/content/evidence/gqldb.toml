@@ -1,0 +1,34 @@
+# Sources for values in src/content/databases/gqldb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "gqldb"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/products/gqldb"
+  title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
+  quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
+  verified = "unreachable"
+  checked = "2026-08-27"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-26"
+notes = "The vendor offers a restricted free Community Edition for personal and non-commercial use; no open-source license is published for the GQLDB product."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/products/gqldb-community"
+  title = "GQLDB Community Edition - Free ISO GQL Graph Database - Ultipa"
+  quote = "Free to use for personal and non-commercial purposes. No license key required."
+  verified = "unreachable"
+  checked = "2026-08-27"
