@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "test": "node --test",
     "favicons": "node scripts/extract-favicons.mjs",
     "graphs": "node scripts/generate-graphs.mjs",
     "check-evidence": "node scripts/check-evidence.mjs",

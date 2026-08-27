@@ -33,6 +33,21 @@ const databases = await Promise.all(
 );
 
 function document(name, nodes, links, config) {
+  const current = {
+    v: 1,
+    dataset: { kind: "file", name },
+    layout: config.layout,
+    labels: true,
+    tapered: false,
+    edgeGradient: false,
+    theme: "light",
+    bindings: config.bindings,
+    filterStack: config.filterStack ?? [],
+    selection: { primary: null, set: [], target: null },
+    camera: null,
+    panel: { bottomOpen: false, bottom: 240, floating: false },
+  };
+
   return {
     info: { version: 1, name },
     datasets: [
@@ -47,7 +62,10 @@ function document(name, nodes, links, config) {
         },
       },
     ],
-    config,
+    config: {
+      ...config,
+      current: { version: 1, state: current, playerIndex: null },
+    },
   };
 }
 
