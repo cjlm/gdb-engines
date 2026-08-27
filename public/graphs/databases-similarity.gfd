@@ -3406,6 +3406,69 @@
         },
         "resultType": "num"
       }
-    ]
+    ],
+    "current": {
+      "version": 1,
+      "state": {
+        "v": 1,
+        "dataset": {
+          "kind": "file",
+          "name": "Database similarity"
+        },
+        "layout": "force",
+        "labels": true,
+        "tapered": false,
+        "edgeGradient": false,
+        "theme": "light",
+        "bindings": [
+          {
+            "channel": "size",
+            "source": {
+              "kind": "algorithm",
+              "id": "degree"
+            },
+            "resultType": "num"
+          },
+          {
+            "channel": "image",
+            "source": {
+              "kind": "field",
+              "id": "image"
+            },
+            "resultType": "cat"
+          },
+          {
+            "channel": "color",
+            "source": {
+              "kind": "field",
+              "id": "type"
+            },
+            "resultType": "cat"
+          },
+          {
+            "channel": "edgeWidth",
+            "source": {
+              "kind": "field",
+              "id": "similarity",
+              "target": "edge"
+            },
+            "resultType": "num"
+          }
+        ],
+        "filterStack": [],
+        "selection": {
+          "primary": null,
+          "set": [],
+          "target": null
+        },
+        "camera": null,
+        "panel": {
+          "bottomOpen": false,
+          "bottom": 240,
+          "floating": false
+        }
+      },
+      "playerIndex": null
+    }
   }
 }

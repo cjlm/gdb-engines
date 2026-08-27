@@ -2597,6 +2597,60 @@
         },
         "resultType": "cat"
       }
-    ]
+    ],
+    "current": {
+      "version": 1,
+      "state": {
+        "v": 1,
+        "dataset": {
+          "kind": "file",
+          "name": "Databases × query languages"
+        },
+        "layout": "force",
+        "labels": true,
+        "tapered": false,
+        "edgeGradient": false,
+        "theme": "light",
+        "bindings": [
+          {
+            "channel": "size",
+            "source": {
+              "kind": "algorithm",
+              "id": "degree"
+            },
+            "resultType": "num"
+          },
+          {
+            "channel": "image",
+            "source": {
+              "kind": "field",
+              "id": "image"
+            },
+            "resultType": "cat"
+          },
+          {
+            "channel": "color",
+            "source": {
+              "kind": "field",
+              "id": "kind"
+            },
+            "resultType": "cat"
+          }
+        ],
+        "filterStack": [],
+        "selection": {
+          "primary": null,
+          "set": [],
+          "target": null
+        },
+        "camera": null,
+        "panel": {
+          "bottomOpen": false,
+          "bottom": 240,
+          "floating": false
+        }
+      },
+      "playerIndex": null
+    }
   }
 }

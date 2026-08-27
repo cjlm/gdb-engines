@@ -373,6 +373,7 @@ function timelineTypeClass(type: string): string {
 
   <script>
     import { createGarphield } from 'garphield';
+    import { prepareGarphieldDocument } from '../lib/garphield-document.mjs';
 
     const page = document.querySelector('.graph-page');
     const graphStage = document.querySelector('.graph-stage');
@@ -912,7 +913,7 @@ function timelineTypeClass(type: string): string {
       }
 
       async function renderDocument(source, version, graphHidden, context) {
-        const document = structuredClone(source);
+        const document = prepareGarphieldDocument(source, effectiveTheme());
         const graph = document.datasets[0].graph;
 
         if (!context.loaded) {
