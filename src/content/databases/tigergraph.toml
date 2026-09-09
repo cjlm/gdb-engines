@@ -3,6 +3,7 @@ vendor = "TigerGraph"
 slug = "tigergraph"
 previous_names = ["GraphSQL"]
 description = "A distributed property graph database (formerly GraphSQL) built for massively parallel processing and graph analytics. Uses the SQL-like GSQL query language and supports ACID transactions. Available in developer, cloud, and enterprise editions."
+ai_roles = ["graphrag"]
 url = "https://www.tigergraph.com/"
 license = "Proprietary"
 implementation_language = "C++"

@@ -1,6 +1,7 @@
 name = "Minigraf"
 slug = "minigraf"
 description = "An embedded, single-file graph database with Datalog queries over entity-attribute-value facts and bi-temporal time travel via per-fact transaction and valid time. Written in Rust with WebAssembly and mobile builds, targeting AI-agent memory. Successor to the archived RecallGraph."
+ai_roles = ["agent-memory"]
 url = "https://github.com/project-minigraf/minigraf"
 github_url = "https://github.com/project-minigraf/minigraf"
 license = "MIT OR Apache-2.0"

@@ -2,6 +2,7 @@ name = "NodeDB"
 vendor = "NodeDB-Lab"
 slug = "nodedb"
 description = "A multi-model database written in Rust that runs document, key-value, columnar, timeseries, spatial, vector, and array engines in a single binary over shared storage, with graph and full-text search as cross-engine overlays on any collection. Its graph overlay uses a CSR adjacency index with 13 built-in algorithms and a Cypher-subset MATCH syntax, and fuses graph traversal with vector search in a single query for GraphRAG. Speaks SQL over a native MessagePack protocol and the PostgreSQL wire protocol, alongside HTTP/REST, WebSocket, RESP, and ILP."
+ai_roles = ["graphrag"]
 url = "https://nodedb.dev"
 github_url = "https://github.com/NodeDB-Lab/nodedb"
 license = "BUSL-1.1"

@@ -2,6 +2,7 @@ name = "Cosmos DB"
 vendor = "Microsoft"
 slug = "cosmos-db"
 description = "A globally distributed multi-model database service on Microsoft Azure with property graph support through the Apache Gremlin API. Offers multi-region replication and multiple consistency models."
+ai_roles = ["graphrag"]
 url = "https://azure.microsoft.com/en-us/products/cosmos-db"
 license = "Proprietary"
 implementation_language = "C++"

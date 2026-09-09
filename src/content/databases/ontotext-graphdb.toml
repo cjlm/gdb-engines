@@ -2,6 +2,7 @@ name = "Ontotext GraphDB"
 vendor = "Graphwise"
 slug = "ontotext-graphdb"
 description = "An RDF triplestore with ACID transactions, available in free, standard, and enterprise editions. Supports semantic reasoning and inference with configurable rule sets."
+ai_roles = ["graphrag"]
 url = "https://graphwise.ai/components/graphdb/"
 license = "Proprietary"
 implementation_language = "Java"

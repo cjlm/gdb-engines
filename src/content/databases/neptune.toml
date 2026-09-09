@@ -2,6 +2,7 @@ name = "Neptune"
 vendor = "Amazon Web Services"
 slug = "neptune"
 description = "A fully managed graph database service from AWS supporting both property graph and RDF models. Available as Neptune Database (for transactional workloads) and Neptune Analytics (for analytical queries)."
+ai_roles = ["graphrag"]
 url = "https://aws.amazon.com/neptune/"
 license = "Proprietary"
 implementation_language = "C++"

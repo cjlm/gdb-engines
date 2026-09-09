@@ -40,7 +40,7 @@ export async function getStaticPaths() {
     roundups.filter((r) => r.data.ranking_board).map((r) => [r.data.ranking_board, { slug: r.data.slug, h1: r.data.h1 }])
   );
 
-  return buildBoards(ranking).map((board) => ({
+  return buildBoards(ranking, databases.map(({ data }) => data)).map((board) => ({
     params: { slug: board.slug },
     props: {
       board,
@@ -93,6 +93,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
   <main class="ranking-page">
     <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
     <h1>{board.h1}</h1>
+    <p class="context">{board.blurb}</p>
     {top.length >= 3 ? (
       <p class="lead">
         <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads with a {scoreLabel} of {(isMovers ? top[0].momentum : top[0].score).toFixed(1)},
@@ -127,7 +128,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
   .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
   .breadcrumb a:hover { text-decoration: underline; }
   h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
-  .blurb { color: var(--color-text-secondary); max-width: 70ch; line-height: 1.5; margin: 0.5rem 0 0.25rem; }
+  .context { color: var(--color-text-secondary); max-width: 90ch; line-height: 1.5; margin: 0.5rem 0 0.25rem; }
   .updated { color: var(--color-text-tertiary); font-size: 0.8rem; margin-bottom: 1rem; }
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
   .lead a { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-border); text-underline-offset: 2px; }

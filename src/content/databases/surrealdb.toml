@@ -2,6 +2,7 @@ name = "SurrealDB"
 vendor = "SurrealDB"
 slug = "surrealdb"
 description = "A multi-model database written in Rust that combines document, graph, and relational paradigms. Uses inter-document record links for graph traversals, with ACID transactions and row-level permissions."
+ai_roles = ["agent-memory", "graphrag"]
 url = "https://surrealdb.com/"
 github_url = "https://github.com/surrealdb/surrealdb"
 license = "BUSL-1.1"

@@ -2,6 +2,7 @@ name = "Stardog"
 vendor = "Stardog Union"
 slug = "stardog"
 description = "An RDF-based knowledge graph database with OWL 2 reasoning and property graph extensions. Includes Voicebox, an OpenAI-compatible natural language query interface via LLM integration."
+ai_roles = ["graphrag"]
 url = "https://www.stardog.com/"
 license = "Proprietary"
 implementation_language = "Java"

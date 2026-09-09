@@ -4,6 +4,7 @@ previous_vendors = ["Redis"]
 previous_names = ["RedisGraph"]
 slug = "redisgraph-falkordb"
 description = "A property graph database that runs as a Redis module, formerly RedisGraph. Uses GraphBLAS sparse matrix operations for query execution, enabling parallel graph traversal."
+ai_roles = ["agent-memory", "graphrag"]
 url = "https://www.falkordb.com/"
 github_url = "https://github.com/FalkorDB/FalkorDB"
 license = "SSPL-1.0"

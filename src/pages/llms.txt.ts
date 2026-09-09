@@ -48,7 +48,11 @@ export const GET: APIRoute = async () =>
 
 - [Overall ranking](https://gdb-engines.com/rankings/overall/): Top graph databases by blended score, refreshed monthly.
 - [Movers](https://gdb-engines.com/rankings/movers/): Engines with the fastest-rising momentum month-over-month.
-- [Rankings index](https://gdb-engines.com/rankings/): All boards split by data model, engine kind, license, query language, and implementation language.
+- [PostgreSQL graph extensions](https://gdb-engines.com/rankings/postgresql-graph-extensions/): Graph extensions that run inside PostgreSQL or a PostgreSQL-compatible engine.
+- [Graph layers for relational databases](https://gdb-engines.com/rankings/graph-layers-relational-databases/): Graph layers that add graph capabilities to relational data or query it in place.
+- [Graph systems for agent memory](https://gdb-engines.com/rankings/graph-databases-agent-memory/): Graph systems used as memory and context stores for AI agents.
+- [Graph systems for GraphRAG and knowledge grounding](https://gdb-engines.com/rankings/graph-databases-graphrag-knowledge-grounding/): Graph systems used for GraphRAG and grounding AI responses in structured knowledge.
+- [Rankings index](https://gdb-engines.com/rankings/): All boards split by data model, engine kind, landscape segment, query language, and implementation language.
 
 ## Comparisons
 

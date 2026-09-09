@@ -12,10 +12,11 @@ import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 
 const ranking = await loadRankings();
-const boards: Board[] = ranking ? buildBoards(ranking) : [];
+const databases = await getCollection('databases');
+const boards: Board[] = ranking ? buildBoards(ranking, databases.map(({ data }) => data)) : [];
 const generatedAt = ranking?.generatedAt;
 const updated = generatedAt ? new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' }) : null;
-const faviconMap = await buildFaviconMap(await getCollection('databases'));
+const faviconMap = await buildFaviconMap(databases);
 // Leaders of each board, logo-bearing only — a slug missing from the map has no logo.
 const leaders = (b: Board) => b.engines.map((e) => faviconMap[e.slug]).filter(Boolean).slice(0, 6);
 const overall = boards.find((b) => b.slug === 'overall');
@@ -37,12 +38,15 @@ const groupLabels: Record<Board['group'], string> = {
   license: 'By License',
   'query-language': 'By Query Language',
   language: 'By Implementation Language',
+  segment: 'By Landscape Segment',
   movers: 'Movers',
 };
 
 const grouped: Partial<Record<Board['group'], Board[]>> = {};
-for (const b of boards) (grouped[b.group] ??= []).push(b);
-const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'license', 'query-language', 'language'];
+for (const b of boards) {
+  if (b.listed) (grouped[b.group] ??= []).push(b);
+}
+const groupOrder: Board['group'][] = ['overall', 'movers', 'segment', 'type', 'kind', 'license', 'query-language', 'language'];
 ---
 <Layout
   title="GDB-Engines Rankings — Graph Database Popularity"
@@ -58,10 +62,10 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
         <a href={`/db/${topOverall[0].slug}/`}>{topOverall[0].name}</a> ({topOverall[0].score.toFixed(1)}),
         <a href={`/db/${topOverall[1].slug}/`}>{topOverall[1].name}</a> ({topOverall[1].score.toFixed(1)}) and
         <a href={`/db/${topOverall[2].slug}/`}>{topOverall[2].name}</a> ({topOverall[2].score.toFixed(1)}) lead the overall ranking{updated && `, ${updated}`}.
-        Boards below split the same data by data model, engine kind, license, query language and implementation language.
+        Boards below split the same data by data model, engine kind, landscape segment, query language and implementation language.
       </p>
     ) : (
-      <p class="lead">Monthly popularity rankings for graph databases — blended scores across adoption, activity, community and research signals.</p>
+      <p class="lead">Monthly popularity rankings for graph databases, extensions and graph layers — blended scores across adoption, activity, community and research signals.</p>
     )}
     <SponsorCTA />
 
@@ -70,26 +74,50 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
     {boards.length === 0 ? (
       <p class="empty">Ranking data isn't available in this build (no <code>RANKINGS_TOKEN</code> set and no local sibling checkout).</p>
     ) : (
-      groupOrder.map((g) => grouped[g] && (
-        <section>
-          <h2>{groupLabels[g]}</h2>
-          <ul class="board-cards">
-            {grouped[g]!.map((b) => (
-              <li>
-                <a href={`/rankings/${b.slug}/`}>
-                  <span class="board-name">{b.h1}</span>
-                  <CountBadge count={b.engines.length} />
-                </a>
-                <span class="board-logos">
-                  {leaders(b).map((src) => (
-                    <DatabaseLogo src={src} size={16} loading="lazy" />
-                  ))}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
+      <>
+        <div class="featured-boards">
+          {(['overall', 'movers'] as const).map((g) => grouped[g] && (
+            <section>
+              <h2>{groupLabels[g]}</h2>
+              <ul class="board-cards">
+                {grouped[g]!.map((b) => (
+                  <li>
+                    <a href={`/rankings/${b.slug}/`}>
+                      <span class="board-name">{b.h1}</span>
+                      <CountBadge count={b.engines.length} />
+                    </a>
+                    <span class="board-logos">
+                      {leaders(b).map((src) => (
+                        <DatabaseLogo src={src} size={16} loading="lazy" />
+                      ))}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+        {groupOrder.filter((g) => g !== 'overall' && g !== 'movers').map((g) => grouped[g] && (
+          <section>
+            <h2>{groupLabels[g]}</h2>
+            <ul class="board-cards">
+              {grouped[g]!.map((b) => (
+                <li>
+                  <a href={`/rankings/${b.slug}/`}>
+                    <span class="board-name">{b.h1}</span>
+                    <CountBadge count={b.engines.length} />
+                  </a>
+                  <span class="board-logos">
+                    {leaders(b).map((src) => (
+                      <DatabaseLogo src={src} size={16} loading="lazy" />
+                    ))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </>
     )}
   </main>
 </Layout>
@@ -104,6 +132,8 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   .lead a:hover { text-decoration-color: var(--color-brand-accent); }
   .empty { background: var(--color-surface); border-left: 3px solid var(--color-border); padding: 0.75rem 1rem; color: var(--color-text-secondary); }
   section { margin: 1.5rem 0; }
+  .featured-boards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .featured-boards section { min-width: 0; }
   h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
   /* Same card treatment as the /compare/ hub: the two index pages are siblings. */
   .board-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.15rem; }
@@ -111,4 +141,7 @@ const groupOrder: Board['group'][] = ['overall', 'movers', 'type', 'kind', 'lice
   .board-cards a { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; color: var(--color-text); text-decoration: none; }
   .board-cards a:hover .board-name { text-decoration: underline; text-decoration-color: var(--color-brand-accent); }
   .board-logos { display: flex; gap: 0.25rem; margin-top: auto; padding-top: 0.5rem; }
+  @media (max-width: 42rem) {
+    .featured-boards { grid-template-columns: 1fr; gap: 0; }
+  }
 </style>

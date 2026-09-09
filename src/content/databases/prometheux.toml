@@ -2,6 +2,7 @@ name = "Prometheux"
 vendor = "Prometheux"
 slug = "prometheux"
 description = "An ontology engine that runs graph analytics and logical reasoning over existing data sources without moving data, using the Vadalog (Datalog+/-) reasoning language. Produces deterministic, fully traceable results with row-level provenance across sources such as Snowflake, Databricks, PostgreSQL, and Neo4j."
+ai_roles = ["graphrag"]
 url = "https://www.prometheux.ai/"
 license = "Proprietary"
 type = "Other"

@@ -2,6 +2,7 @@ name = "ArangoDB"
 vendor = "ArangoDB Inc"
 slug = "arangodb"
 description = "A multi-model database supporting graphs, key-value pairs, and documents in a unified JSON-based data model. Offers both an in-memory storage engine and a RocksDB-based engine for larger datasets."
+ai_roles = ["graphrag"]
 url = "https://www.arangodb.com/"
 github_url = "https://github.com/arangodb/arangodb"
 license = "BUSL-1.1"

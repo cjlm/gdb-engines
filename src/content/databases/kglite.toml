@@ -2,6 +2,7 @@ name = "KGLite"
 vendor = "Kristian dF Kollsgård"
 slug = "kglite"
 description = "An embedded knowledge graph for Python written in Rust. Speaks openCypher, ships with three storage modes (in-memory, mmap, disk-backed CSR), pandas DataFrame I/O, a code_tree parser that turns source trees into call graphs across 9 languages, and a bundled MCP server for LLM agents."
+ai_roles = ["graphrag"]
 url = "https://kglite.readthedocs.io"
 github_url = "https://github.com/kkollsga/kglite"
 license = "MIT"
