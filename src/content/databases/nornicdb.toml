@@ -2,6 +2,7 @@ name = "NornicDB"
 vendor = "orneryd"
 slug = "nornicdb"
 description = "A hybrid graph and vector database written in Go with Neo4j compatibility via the Bolt protocol. Supports Cypher queries, native vector search with GPU acceleration, and a tiered memory system with episodic, semantic, and procedural decay. Includes a versioned graph ledger with temporal validity and as-of reads."
+ai_roles = ["agent-memory"]
 url = "https://github.com/orneryd/NornicDB"
 github_url = "https://github.com/orneryd/NornicDB"
 license = "MIT"

@@ -2,6 +2,7 @@ name = "Memgraph"
 vendor = "Memgraph"
 slug = "memgraph"
 description = "An in-memory property graph database with ACID transactions and strong consistency. Includes the MAGE library of graph algorithms and supports real-time streaming ingestion."
+ai_roles = ["agent-memory", "graphrag"]
 url = "https://memgraph.com/"
 github_url = "https://github.com/memgraph/memgraph"
 license = "BUSL-1.1"

@@ -13,7 +13,8 @@ import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
 
 const ranking = await loadRankings();
-const boards = ranking ? buildBoards(ranking) : [];
+const catalogue = await getCollection('databases');
+const boards = ranking ? buildBoards(ranking, catalogue.map(({ data }) => data)) : [];
 
 export async function getStaticPaths() {
   const databases = await getCollection('databases');

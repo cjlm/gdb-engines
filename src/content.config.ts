@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 import { PROTOCOLS } from './lib/protocols';
 
 const featureScore = z.number().min(0).max(1);
+const aiRole = z.enum(['agent-memory', 'graphrag']);
 
 const databases = defineCollection({
   loader: glob({ pattern: '**/*.toml', base: './src/content/databases' }),
@@ -11,6 +12,9 @@ const databases = defineCollection({
     vendor: z.string().optional(),
     slug: z.string().min(1).regex(/^[a-z0-9-]+$/),
     description: z.string(),
+    // Curated AI role classification. This is intentionally separate from the general
+    // description: generic AI, vector, or graph language is not enough for inclusion.
+    ai_roles: z.array(aiRole).default([]),
     url: z.string().url().optional(),
     github_url: z.string().url().optional(),
     license: z.string().optional(),

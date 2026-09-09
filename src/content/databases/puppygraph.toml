@@ -2,6 +2,7 @@ name = "PuppyGraph"
 vendor = "PuppyQuery Inc"
 slug = "puppygraph"
 description = "A graph query engine that runs analytics on existing relational databases, data lakes, and warehouses without data migration."
+ai_roles = ["graphrag"]
 url = "https://www.puppygraph.com/"
 license = "Proprietary"
 type = "Property Graph"

@@ -2,6 +2,7 @@ name = "Neo4j"
 vendor = "Neo4j Inc"
 slug = "neo4j"
 description = "A property graph database that stores data as fixed-size records in linked lists for index-free adjacency traversal. Offers community and commercial editions with an extensive graph algorithms library."
+ai_roles = ["graphrag"]
 url = "https://neo4j.com/"
 github_url = "https://github.com/neo4j/neo4j"
 license = "GPL-3.0"

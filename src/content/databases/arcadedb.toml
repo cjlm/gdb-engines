@@ -2,6 +2,7 @@ name = "ArcadeDB"
 vendor = "ArcadeDB"
 slug = "arcadedb"
 description = "A multi-model database inspired by OrientDB, supporting graphs, documents, key-value, time-series, and search. Uses RAFT-based replication for high availability."
+ai_roles = ["agent-memory", "graphrag"]
 url = "https://arcadedb.com/"
 github_url = "https://github.com/ArcadeData/arcadedb"
 license = "Apache-2.0"
