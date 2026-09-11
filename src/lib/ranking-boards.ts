@@ -370,16 +370,18 @@ export function buildBoards(ranking: RankingFile, catalogue: readonly CatalogueR
     }, engines));
   }
 
-  // Editorial segments use the same monthly score as every other board, but their
-  // membership comes from catalogue metadata rather than a field already present in
-  // ranking.json. Keeping the matchers here makes it easy to add the next landscape
-  // segment without creating a second ranking page template or data format.
-  if (catalogue.length > 0) {
+  // Editorial segments are now emitted by the rankings pipeline, which gives them
+  // independent monthly movement. Keep the catalogue-derived path as a compatibility
+  // fallback while older ranking.json files roll forward.
+  if (catalogue.length > 0 || ranking.bySegment) {
     for (const segment of SEGMENTS) {
-      const eligible = new Set(
-        catalogue.filter(segment.match).map((db) => db.slug)
-      );
-      const engines = ranking.overall.filter((engine) => eligible.has(engine.slug));
+      const eligible = new Set(catalogue.filter(segment.match).map((db) => db.slug));
+      // A legacy ranking payload has no segment-specific delta. Do not leak the
+      // overall board's movement into an editorial segment while it rolls forward.
+      const fallback = ranking.overall
+        .filter((engine) => eligible.has(engine.slug))
+        .map((engine) => ({ ...engine, rankDelta1m: null }));
+      const engines = ranking.bySegment?.[segment.slug] ?? fallback;
       if (engines.length === 0) continue;
       boards.push(makeBoard({
         slug: segment.slug,
