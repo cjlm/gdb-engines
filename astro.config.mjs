@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import astroAgentAnnotate from 'astro-agent-annotate';
 import { execSync } from 'node:child_process';
 
 // Fallback for pages whose real change date can't be derived from git.
@@ -53,6 +54,9 @@ export default defineConfig({
   // so a no-slash internal link is a build error, not a silent 301 redirect.
   trailingSlash: 'always',
   integrations: [
+    // Dev-only: Alt+click any element to leave inline notes for the agent.
+    // Self-gates to `astro dev`; the production build is untouched.
+    astroAgentAnnotate(),
     sitemap({
       // Report an honest per-page lastmod so unchanged pages don't claim freshness
       // on every rebuild (which trains Google to ignore lastmod entirely).

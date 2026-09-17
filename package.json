@@ -3,8 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "node scripts/sync-blog.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/extract-favicons.mjs",
+    "prebuild": "node scripts/sync-blog.mjs && node scripts/extract-favicons.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,5 +16,8 @@
     "astro": "^5.17.1",
     "astro-og-canvas": "^0.11.1",
     "canvaskit-wasm": "^0.41.1"
+  },
+  "devDependencies": {
+    "astro-agent-annotate": "^0.0.2"
   }
 }

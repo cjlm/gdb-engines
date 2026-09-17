@@ -20,6 +20,7 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
+const ogImage = `https://gdb-engines.com/og/blog/${post.id}.png`;
 const publishedTime = post.data.date.toISOString();
 const postJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -43,6 +44,7 @@ const postJsonLd = JSON.stringify({
   title={`${post.data.title} — GDB-Engines`}
   description={post.data.description}
   canonical={canonical}
+  ogImage={ogImage}
   ogType="article"
   publishedTime={publishedTime}
   jsonLd={[postJsonLd]}
@@ -90,8 +92,7 @@ const postJsonLd = JSON.stringify({
     color: var(--color-brand-accent);
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: normal;
   }
   .blog-post-header h1 {
     margin: 1rem 0 0;
@@ -115,9 +116,8 @@ const postJsonLd = JSON.stringify({
     margin-top: 1.25rem;
     color: var(--color-text-tertiary);
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: normal;
   }
   .draft-badge {
     padding: 0.1rem 0.35rem;
@@ -160,6 +160,17 @@ const postJsonLd = JSON.stringify({
   .blog-prose p,
   .blog-prose li {
     color: var(--color-text);
+  }
+  .blog-prose a {
+    color: var(--color-brand-accent);
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: color-mix(in srgb, var(--color-brand-accent) 45%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .blog-prose a:hover {
+    text-decoration-color: var(--color-brand-accent);
   }
   .blog-prose ul,
   .blog-prose ol {

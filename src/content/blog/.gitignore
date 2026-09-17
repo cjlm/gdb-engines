@@ -1,0 +1,4 @@
+# Blog posts are synced from the private cjlm/gdb-engines-blog repo at build time.
+# See scripts/sync-blog.mjs. Do not commit synced markdown here.
+*.md
+!.gitkeep
