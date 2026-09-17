@@ -163,4 +163,16 @@ const evidence = defineCollection({
   }),
 });
 
-export const collections = { databases, roundups, evidence };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+    date: z.coerce.date(),
+    author: z.string().min(1).default('GDB-Engines'),
+    draft: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { databases, roundups, evidence, blog };

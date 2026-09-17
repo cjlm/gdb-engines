@@ -10,9 +10,10 @@
     "verify-quotes": "node scripts/verify-quotes.mjs",
     "check-links": "node scripts/check-links.mjs",
     "sync-pairs": "node scripts/sync-published-pairs.mjs",
-    "predev": "npm run favicons && npm run graphs",
+    "sync-blog": "node scripts/sync-blog.mjs",
+    "predev": "npm run favicons && npm run graphs && npm run sync-blog",
     "dev": "astro dev",
-    "prebuild": "npm run favicons && npm run graphs && npm run check-evidence",
+    "prebuild": "npm run favicons && npm run graphs && npm run check-evidence && npm run sync-blog",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -25,5 +26,8 @@
     "canvaskit-wasm": "^0.41.1",
     "garphield": "0.1.1",
     "smol-toml": "1.6.0"
+  },
+  "devDependencies": {
+    "astro-agent-annotate": "^0.0.2"
   }
 }

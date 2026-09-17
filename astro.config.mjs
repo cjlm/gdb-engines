@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import astroAgentAnnotate from 'astro-agent-annotate';
 import { execSync } from 'node:child_process';
 
 // Fallback for pages whose real change date can't be derived from git.
@@ -66,6 +67,9 @@ export default defineConfig({
     },
   },
   integrations: [
+    // Dev-only: Alt+click any element to leave inline notes for the agent.
+    // Self-gates to `astro dev`; the production build is untouched.
+    astroAgentAnnotate(),
     sitemap({
       // /compare/custom/ is noindex; listing a noindex URL in a sitemap is a
       // contradictory signal.
