@@ -43,7 +43,11 @@ async function fetchFromGitHub(token) {
   const entries = (await res.json()).filter((e) => e.type === 'file' && e.name.endsWith('.md'));
   let count = 0;
   for (const entry of entries) {
-    const raw = await fetch(entry.download_url, { headers: { 'user-agent': 'gdb-engines-build' } });
+    // Fetch via the contents API with the raw accept header (not download_url,
+    // which is not reliably authenticated for private repos).
+    const raw = await fetch(entry.url, {
+      headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github.raw', 'user-agent': 'gdb-engines-build' },
+    });
     if (!raw.ok) {
       console.warn(`[blog] fetch failed for ${entry.name}: ${raw.status}`);
       continue;
@@ -70,5 +74,12 @@ function copyFromSibling() {
 
 const token = process.env.RANKINGS_TOKEN;
 resetTarget();
-const count = token ? await fetchFromGitHub(token) : copyFromSibling();
+let count = 0;
+try {
+  count = token ? await fetchFromGitHub(token) : copyFromSibling();
+} catch (err) {
+  // Degrade gracefully like loadRankings/loadSponsors: warn and build without posts
+  // rather than failing the whole site build on a transient fetch error.
+  console.warn(`[blog] sync failed, building without posts: ${err.message}`);
+}
 console.log(`[blog] synced ${count} post(s) from ${token ? REPO : LOCAL_FALLBACK} into src/content/blog/`);
