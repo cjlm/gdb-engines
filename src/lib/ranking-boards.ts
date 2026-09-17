@@ -1,7 +1,8 @@
 /**
- * Turns a RankingFile into the flat list of pages to generate. Each board becomes a page at
- * /rankings/{slug}. Titles use the "X Graph Database Popularity Ranking" convention; meta
- * descriptions include "best / most popular / top" for long-tail SEO.
+ * Turns a RankingFile plus catalogue metadata into the flat list of pages to generate. Each
+ * board becomes a page at /rankings/{slug}. Only /rankings/overall/ targets the generic head
+ * terms; sub-boards lead with their qualifier so they stop competing with it, and with each
+ * other.
  */
 import type { RankingFile, RankedEngine } from './rankings';
 
@@ -16,8 +17,24 @@ export interface Board {
   engines: RankedEngine[];
   /** Engines on this board flagged 'Insufficient data' (stripped from `engines`). */
   insufficientCount: number;
+  /** Whether this board is linked from the rankings directory. Direct URLs remain valid. */
+  listed: boolean;
   /** For breadcrumbs/grouping on the index page. */
-  group: 'overall' | 'type' | 'kind' | 'license' | 'query-language' | 'language' | 'movers';
+  group: 'overall' | 'type' | 'kind' | 'license' | 'query-language' | 'language' | 'segment' | 'movers';
+}
+
+/**
+ * The small amount of catalogue metadata needed to build editorial ranking segments.
+ * Keep this separate from Astro's collection type so the ranking builder stays reusable
+ * from the OG image endpoint and from page routes.
+ */
+export interface CatalogueRankingMeta {
+  slug: string;
+  kind?: string;
+  status?: string;
+  protocols?: readonly string[];
+  description?: string;
+  ai_roles?: readonly string[];
 }
 
 const splitInsufficient = (engines: RankedEngine[]): { ranked: RankedEngine[]; insufficientCount: number } => {
@@ -43,8 +60,18 @@ export const slugify = (s: string): string =>
 
 // Boards we omit on purpose:
 //   - byKind.database overlaps almost entirely with the overall board
-//   - byImplementationLanguage groups with <3 engines (already filtered upstream)
-const SKIP_KIND = new Set(['database']);
+//   - byKind.library ranks a toolkit set nobody searches as a ranking (90 days of
+//     Search Console to 2026-07-29: zero impressions, zero clicks)
+//   - byImplementationLanguage groups below the upstream MIN_LANGUAGE_ENGINES floor
+const SKIP_KIND = new Set(['database', 'library']);
+
+// These boards remain available as stable direct URLs, but are not useful entry points
+// from the rankings directory: Specialized is a catch-all for the `Other` type, while
+// Custom API describes an integration surface rather than a query language.
+const HIDE_FROM_RANKINGS_INDEX = {
+  type: new Set(['Specialized']),
+  queryLanguage: new Set(['Custom API']),
+};
 
 // type 'Other' and license-tier 'Other' would both want the slug "other"; relabel the
 // license one as "Source-Available" since after the recent metadata fixes it's mostly BSL.
@@ -69,8 +96,103 @@ const KIND_LABEL: Record<string, string> = {
   library: 'Graph Library',
 };
 
+const POSTGRES_PROTOCOL = 'PostgreSQL wire';
+
+/**
+ * These are graph layers whose primary value is querying or extending relational data,
+ * rather than operating as a separate native graph store. The extension half is discovered
+ * from the catalogue description below; these entries are the non-extension graph layers
+ * whose existing metadata expresses the same user-facing use case.
+ */
+const RELATIONAL_GRAPH_LAYER_OVERRIDES = new Set([
+  'agensgraph',
+  'bigquery-graph',
+  'ontop',
+  'postgresql-sql-pgq',
+  'prometheux',
+  'puppygraph',
+  'relationalai',
+  'spanner-graph',
+  'typegraph',
+]);
+
+const isActiveCatalogueEntry = (db: CatalogueRankingMeta): boolean =>
+  db.status !== 'inactive' && db.status !== 'deprecated';
+
+const isPostgresGraphExtension = (db: CatalogueRankingMeta): boolean =>
+  isActiveCatalogueEntry(db) && db.kind === 'extension' && db.protocols?.includes(POSTGRES_PROTOCOL) === true;
+
+const isGraphOverRelational = (db: CatalogueRankingMeta): boolean =>
+  isActiveCatalogueEntry(db) && (
+    RELATIONAL_GRAPH_LAYER_OVERRIDES.has(db.slug) ||
+    (db.kind === 'extension' && /\b(?:postgres(?:ql)?|duckdb|sqlite)\b/i.test(db.description ?? ''))
+  );
+
+// Do not infer these boards from generic AI, vector, or graph language. `ai_roles` is a
+// curated product-role classification, kept separate from the monthly ranking data.
+const hasAiRole = (db: CatalogueRankingMeta, role: 'agent-memory' | 'graphrag'): boolean =>
+  isActiveCatalogueEntry(db) && db.ai_roles?.includes(role) === true;
+
+const isAgentMemory = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'agent-memory');
+const isGraphRag = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'graphrag');
+
+interface SegmentDefinition {
+  slug: string;
+  title: string;
+  h1: string;
+  shortLabel: string;
+  blurb: string;
+  listed?: boolean;
+  match: (db: CatalogueRankingMeta) => boolean;
+}
+
+const SEGMENTS: SegmentDefinition[] = [
+  {
+    slug: 'postgresql-graph-extensions',
+    title: 'PostgreSQL Graph Extensions, Ranked Monthly',
+    h1: 'PostgreSQL Graph Extensions, Ranked Monthly',
+    shortLabel: 'PostgreSQL Extensions',
+    blurb: 'Graph extensions that run inside PostgreSQL or a PostgreSQL-compatible engine, ranked monthly across adoption, activity, community and research signals.',
+    match: isPostgresGraphExtension,
+  },
+  {
+    slug: 'graph-layers-relational-databases',
+    title: 'Graph Layers for Relational Databases, Ranked Monthly',
+    h1: 'Graph Layers for Relational Databases, Ranked Monthly',
+    shortLabel: 'Relational Graph Layers',
+    blurb: 'Graph layers that add graph capabilities to relational databases or query relational tables in place, ranked monthly across adoption, activity, community and research signals.',
+    match: isGraphOverRelational,
+  },
+  {
+    slug: 'graph-databases-agent-memory',
+    title: 'Graph Systems for Agent Memory, Ranked Monthly',
+    h1: 'Graph Systems for Agent Memory, Ranked Monthly',
+    shortLabel: 'Agent Memory',
+    blurb: 'Graph systems used as memory and context stores for AI agents. Monthly ranking by adoption, activity, community, and research.',
+    match: isAgentMemory,
+  },
+  {
+    slug: 'graph-databases-graphrag-knowledge-grounding',
+    title: 'Graph Systems for GraphRAG & Knowledge Grounding, Ranked Monthly',
+    h1: 'Graph Systems for GraphRAG & Knowledge Grounding, Ranked Monthly',
+    shortLabel: 'GraphRAG & Grounding',
+    blurb: 'Graph systems used for GraphRAG and to ground AI responses in structured knowledge. Monthly ranking by adoption, activity, community, and research.',
+    match: isGraphRag,
+  },
+  {
+    // Keep the original URL as an unlisted umbrella page for existing links.
+    slug: 'graph-databases-ai-agents',
+    title: 'Graph Systems for AI, Ranked Monthly',
+    h1: 'Graph Systems for AI, Ranked Monthly',
+    shortLabel: 'AI Graphs',
+    blurb: 'Graph systems used for agent memory, GraphRAG, or knowledge grounding. Monthly ranking by adoption, activity, community, and research.',
+    listed: false,
+    match: (db) => isAgentMemory(db) || isGraphRag(db),
+  },
+];
+
 const blurbFor = (label: string): string =>
-  `The most popular ${label.toLowerCase()} graph databases, ranked monthly by adoption, activity, community and research signals.`;
+  `${label} graph databases, ranked monthly by adoption, activity, community and research signals.`;
 
 const blurbOverall =
   'The most popular graph databases, ranked monthly across adoption, activity, community and research signals.';
@@ -108,23 +230,32 @@ export function buildLinkMaps(ranking: RankingFile): {
   overallRank: Map<string, number>;
   overallDelta1m: Map<string, number | 'new' | null>;
 } {
-  const typeSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byType)) typeSlug.set(k, slugify(TYPE_LABEL[k] ?? k));
-  const kindSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byKind)) {
-    if (SKIP_KIND.has(k)) continue;
-    kindSlug.set(k, slugify(KIND_LABEL[k] ?? k));
-  }
-  const licenseTierSlugMap = new Map<string, string>();
-  for (const k of Object.keys(ranking.byLicenseTier)) licenseTierSlugMap.set(k, slugify(LICENSE_LABEL[k] ?? k));
+  // Only link to boards that survive the group and size gates in buildBoards, so a
+  // retired board never leaves a dangling /rankings/<slug>/ link behind on a value.
+  const live = new Set(buildBoards(ranking).map((b) => b.slug));
+  const linkable = (label: string): string | null => {
+    const slug = slugify(label);
+    return live.has(slug) ? slug : null;
+  };
+  const mapFor = (keys: string[], label: (k: string) => string): Map<string, string> => {
+    const out = new Map<string, string>();
+    for (const k of keys) {
+      const slug = linkable(label(k));
+      if (slug) out.set(k, slug);
+    }
+    return out;
+  };
+  const typeSlug = mapFor(Object.keys(ranking.byType), (k) => TYPE_LABEL[k] ?? k);
+  const kindSlug = mapFor(
+    Object.keys(ranking.byKind).filter((k) => !SKIP_KIND.has(k)),
+    (k) => KIND_LABEL[k] ?? k
+  );
   const licenseTierSlug = (spdx: string | null | undefined): string | null => {
     const tier = licenseTierLabel(spdx);
-    return licenseTierSlugMap.get(tier) ?? null;
+    return linkable(LICENSE_LABEL[tier] ?? tier);
   };
-  const queryLanguageSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byQueryLanguage)) queryLanguageSlug.set(k, slugify(k));
-  const implementationLanguageSlug = new Map<string, string>();
-  for (const k of Object.keys(ranking.byImplementationLanguage)) implementationLanguageSlug.set(k, slugify(k));
+  const queryLanguageSlug = mapFor(Object.keys(ranking.byQueryLanguage), (k) => k);
+  const implementationLanguageSlug = mapFor(Object.keys(ranking.byImplementationLanguage), (k) => k);
   const overallRank = new Map<string, number>();
   const overallDelta1m = new Map<string, number | 'new' | null>();
   // Rank among engines that actually appear on the public board (Insufficient stripped).
@@ -151,14 +282,14 @@ export interface EngineRanking { board: Board; rank: number; }
 /** Every board an engine appears on, with its rank. Ordered overall→type→kind→license→query→language→movers. */
 export function getEngineRanks(boards: Board[], slug: string): EngineRanking[] {
   const out: EngineRanking[] = [];
-  for (const b of boards) {
+  for (const b of boards.filter((board) => board.listed)) {
     const i = b.engines.findIndex((e) => e.slug === slug);
     if (i !== -1) out.push({ board: b, rank: i + 1 });
   }
   return out;
 }
 
-type BoardMeta = Omit<Board, 'engines' | 'insufficientCount'>;
+type BoardMeta = Omit<Board, 'engines' | 'insufficientCount' | 'listed'> & { listed?: boolean };
 function makeBoard(meta: BoardMeta, engines: RankedEngine[]): Board {
   const { ranked, insufficientCount } = splitInsufficient(engines);
   // Enrich the meta description with the top-3 engines for this board, so each ranking
@@ -171,17 +302,34 @@ function makeBoard(meta: BoardMeta, engines: RankedEngine[]): Board {
   } else if (top3.length >= 3 && meta.group === 'movers') {
     metaDescription = `${meta.metaDescription} Top movers: ${top3.join(', ')}.`;
   }
-  return { ...meta, metaDescription, engines: ranked, insufficientCount };
+  return { ...meta, listed: meta.listed ?? true, metaDescription, engines: ranked, insufficientCount };
 }
 
 // Build "{label} Graph Database Popularity Ranking", avoiding the duplicate-word
 // "Property Graph Graph Database" when the label already ends in "Graph".
+//
+// Sub-boards lead with their qualifier and end "Ranked Monthly" rather than
+// repeating "Graph Database Popularity Ranking", which 30 pages were bidding for
+// against /rankings/overall/. Search Console showed nine of them splitting the
+// impressions for "graph database ranking" while overall (position 4) got two.
 function gdbRankingTitle(label: string): string {
   const trimmed = label.endsWith(' Graph') ? label.slice(0, -' Graph'.length) : label;
-  return `${trimmed} Graph Database Popularity Ranking`;
+  return `${trimmed} Graph Databases, Ranked Monthly`;
 }
 
-export function buildBoards(ranking: RankingFile): Board[] {
+// A board needs enough engines for the ordering to mean anything. Set at 15 on the
+// evidence rather than by feel: C (10 engines) drew 393 impressions across 52 queries
+// in the 90 days to 2026-07-29 and not one was about C — they were "best graph
+// database", "top graph databases", "db engines ranking", all at position 43-91. It had
+// become the site's generic-head-term page, competing with /rankings/overall/ and
+// winning nothing. Rust (19) is the smallest board that actually wins its own queries
+// ("rust graph database", "graph database rust", positions 9-12).
+//
+// Query language is exempt: it is how people shop for an engine, and it carries the
+// best-performing board on the site, so emerging standards stay in below the floor.
+const MIN_BOARD_ENGINES = 15;
+
+export function buildBoards(ranking: RankingFile, catalogue: readonly CatalogueRankingMeta[] = []): Board[] {
   const boards: Board[] = [];
 
   boards.push(makeBoard({
@@ -203,6 +351,7 @@ export function buildBoards(ranking: RankingFile): Board[] {
       shortLabel: label,
       blurb: blurbFor(label),
       metaDescription: blurbFor(label),
+      listed: !HIDE_FROM_RANKINGS_INDEX.type.has(label),
       group: 'type',
     }, engines));
   }
@@ -221,18 +370,36 @@ export function buildBoards(ranking: RankingFile): Board[] {
     }, engines));
   }
 
-  for (const [tier, engines] of Object.entries(ranking.byLicenseTier)) {
-    const label = LICENSE_LABEL[tier] ?? tier;
-    boards.push(makeBoard({
-      slug: slugify(label),
-      title: gdbRankingTitle(label),
-      h1: gdbRankingTitle(label),
-      shortLabel: label,
-      blurb: blurbFor(label),
-      metaDescription: blurbFor(label),
-      group: 'license',
-    }, engines));
+  // Editorial segments are now emitted by the rankings pipeline, which gives them
+  // independent monthly movement. Keep the catalogue-derived path as a compatibility
+  // fallback while older ranking.json files roll forward.
+  if (catalogue.length > 0 || ranking.bySegment) {
+    for (const segment of SEGMENTS) {
+      const eligible = new Set(catalogue.filter(segment.match).map((db) => db.slug));
+      // A legacy ranking payload has no segment-specific delta. Do not leak the
+      // overall board's movement into an editorial segment while it rolls forward.
+      const fallback = ranking.overall
+        .filter((engine) => eligible.has(engine.slug))
+        .map((engine) => ({ ...engine, rankDelta1m: null }));
+      const engines = ranking.bySegment?.[segment.slug] ?? fallback;
+      if (engines.length === 0) continue;
+      boards.push(makeBoard({
+        slug: segment.slug,
+        title: segment.title,
+        h1: segment.h1,
+        shortLabel: segment.shortLabel,
+        blurb: segment.blurb,
+        metaDescription: segment.blurb,
+        listed: segment.listed,
+        group: 'segment',
+      }, engines));
+    }
   }
+
+  // The license group is retired: four boards, 71 impressions and zero clicks over the
+  // 90 days to 2026-07-29. Ranking 71 of 143 engines by "permissive licence" was never a
+  // question anyone asked, and the pages competed with the overall board for head terms.
+  // License remains a sortable column on the homepage.
 
   for (const [lang, engines] of Object.entries(ranking.byQueryLanguage)) {
     boards.push(makeBoard({
@@ -242,6 +409,7 @@ export function buildBoards(ranking: RankingFile): Board[] {
       shortLabel: lang,
       blurb: blurbFor(lang),
       metaDescription: blurbFor(lang),
+      listed: !HIDE_FROM_RANKINGS_INDEX.queryLanguage.has(lang),
       group: 'query-language',
     }, engines));
   }
@@ -252,8 +420,8 @@ export function buildBoards(ranking: RankingFile): Board[] {
       title: gdbRankingTitle(lang),
       h1: gdbRankingTitle(lang),
       shortLabel: lang,
-      blurb: `The best and most popular graph databases written in ${lang}, ranked monthly across adoption, activity, community and research signals. Compare top ${lang} graph database options.`,
-      metaDescription: `The best and most popular graph databases written in ${lang}, ranked monthly. Compare top ${lang} graph database options.`,
+      blurb: `Graph databases implemented in ${lang}, ranked monthly across adoption, activity, community and research signals.`,
+      metaDescription: `Graph databases implemented in ${lang}, ranked monthly across adoption, activity, community and research signals.`,
       group: 'language',
     }, engines));
   }
@@ -271,11 +439,13 @@ export function buildBoards(ranking: RankingFile): Board[] {
   // De-duplicate any accidental slug collisions across categories (last wins isn't ideal —
   // but with our current label maps there shouldn't be any).
   const seen = new Set<string>();
+  const exemptFromFloor = new Set(['overall', 'movers', 'query-language', 'segment']);
   return boards.filter((b) => {
     if (seen.has(b.slug)) {
       console.warn(`[rankings] dropping board with duplicate slug "${b.slug}" (group=${b.group})`);
       return false;
     }
+    if (!exemptFromFloor.has(b.group) && b.engines.length < MIN_BOARD_ENGINES) return false;
     seen.add(b.slug);
     return true;
   });

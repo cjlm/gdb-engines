@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/tinkergraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "tinkergraph"
+
+[[claims]]
+field = "released"
+value = "2009"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value. TinkerGraph originated within the Gremlin project before Blueprints (which packaged TinkerGraph) split off as its own project in early 2010; no source pins TinkerGraph's own first-shipped date independently of that lineage."
+
+  [[claims.sources]]
+  url = "https://www.odbms.org/blog/2011/06/applying-graph-analysis-and-manipulation-to-data-stores/"
+  title = "Applying Graph Analysis and Manipulation to Data Stores | ODBMS Industry Watch"
+  quote = "In late 2009, Gremlin was pieced apart into multiple self contained projects: Blueprints and Pipes."
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/tinkerpop/blueprints/wiki/Release-Notes"
+  title = "Release Notes · tinkerpop/blueprints Wiki · GitHub"
+  quote = "Initial release providing the property graph model\nCode originally packaged with Gremlin"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value; TinkerGraph is implemented as a Java class within the TinkerPop codebase."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/apache/tinkerpop/master/tinkergraph-gremlin/src/main/java/org/apache/tinkerpop/gremlin/tinkergraph/structure/TinkerGraph.java"
+  title = "TinkerGraph.java - apache/tinkerpop"
+  quote = "protected Map<Object, Vertex> vertices = new ConcurrentHashMap<>();\n    protected Map<Object, Edge> edges = new ConcurrentHashMap<>();"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/apache/tinkerpop/license"
+  title = "GitHub licence API — apache/tinkerpop"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"

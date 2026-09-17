@@ -5,6 +5,8 @@ import { execSync } from 'node:child_process';
 
 // Fallback for pages whose real change date can't be derived from git.
 const buildDate = new Date().toISOString().split('T')[0];
+const garphieldOrigin =
+  process.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
 
 /** Last git commit date (YYYY-MM-DD) touching any of `paths`, or null if unavailable. */
 function gitDate(...paths) {
@@ -53,11 +55,25 @@ export default defineConfig({
   // Canonical URLs carry a trailing slash (directory build format). Enforce it
   // so a no-slash internal link is a build error, not a silent 301 redirect.
   trailingSlash: 'always',
+  // Sigma loads node images into a WebGL texture atlas with anonymous CORS.
+  // Production mirrors these headers in public/_headers; this keeps local
+  // GDB + local Garphield development working with the same generated docs.
+  vite: {
+    server: {
+      headers: {
+        'Access-Control-Allow-Origin': garphieldOrigin,
+        'Cross-Origin-Resource-Policy': 'cross-origin',
+      },
+    },
+  },
   integrations: [
     // Dev-only: Alt+click any element to leave inline notes for the agent.
     // Self-gates to `astro dev`; the production build is untouched.
     astroAgentAnnotate(),
     sitemap({
+      // /compare/custom/ is noindex; listing a noindex URL in a sitemap is a
+      // contradictory signal.
+      filter: (page) => !page.includes('/compare/custom/'),
       // Report an honest per-page lastmod so unchanged pages don't claim freshness
       // on every rebuild (which trains Google to ignore lastmod entirely).
       serialize(item) {
@@ -72,6 +88,32 @@ export default defineConfig({
           item.lastmod = dbDates.get(dbSlug) ?? buildDate;
           item.changefreq = 'yearly';
           item.priority = 0.6;
+        } else if (path.startsWith('/compare/')) {
+          // Pair pages are numerous and individually low-value, so they sit below engine
+          // pages; the hub is the distributor and sits above both. The rank block
+          // regenerates monthly, so the build date is honest here too.
+          const slug = path.match(/^\/compare\/(.+)\/$/)?.[1];
+          const pairSlugs = slug?.split('-vs-') ?? [];
+          if (pairSlugs.length === 2) {
+            const dates = pairSlugs.map((s) => dbDates.get(s)).filter(Boolean);
+            item.lastmod = dates.length ? [...dates, buildDate].sort().at(-1) : buildDate;
+            item.changefreq = 'monthly';
+            item.priority = 0.5;
+          } else if (slug) {
+            // Roundups are hand-maintained and few, so they outrank pair pages; their
+            // content moves when either the roundup TOML or the member data moves.
+            const dates = [
+              gitDate(`src/content/roundups/${slug}.toml`),
+              gitDate('src/content/databases'),
+            ].filter(Boolean);
+            item.lastmod = [...dates, buildDate].sort().at(-1);
+            item.changefreq = 'monthly';
+            item.priority = 0.7;
+          } else {
+            item.lastmod = gitDate('src/pages/compare') ?? buildDate;
+            item.changefreq = 'weekly';
+            item.priority = 0.8;
+          }
         } else if (path === '/') {
           item.lastmod = homepageDate;
         } else {

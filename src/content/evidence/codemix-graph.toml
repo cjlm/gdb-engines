@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/codemix-graph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "codemix-graph"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirmed by both the vendor page's license section and the GitHub README."
+
+  [[claims.sources]]
+  url = "https://codemix.com/graph"
+  title = "@codemix/graph"
+  quote = "This package is licensed under the MIT license."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-04"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Package's first npm publish (0.0.2) and repo creation both date to April 8, 2026; matches current value."
+
+  [[claims.sources]]
+  url = "https://registry.npmjs.org/@codemix/graph"
+  title = "@codemix/graph npm registry metadata"
+  quote = "\"time\":{\"created\":\"2026-04-08T19:37:38.563Z\",\"modified\":\"2026-04-10T16:53:53.858Z\",\"0.0.2\":\"2026-04-08T19:37:38.909Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "TypeScript"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "README describes the engine as TypeScript-first; matches current value."
+
+  [[claims.sources]]
+  url = "https://github.com/codemix/graph"
+  title = "codemix/graph"
+  quote = "A fully type-safe, TypeScript-first in-memory property graph database with a Cypher-like query language"
+  verified = "matched"
+  checked = "2026-08-02"

@@ -8,6 +8,7 @@ license = "GPL-3.0 OR AGPL-3.0"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Cypher"]
+protocols = ["Bolt", "HTTP/REST"]
 released = "2018"
 category = "Emerging"
 gdotv_support = false

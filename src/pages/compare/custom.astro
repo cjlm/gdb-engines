@@ -1,0 +1,53 @@
+---
+/**
+ * `/compare/custom/` — the client-side builder for combinations that were not
+ * pre-generated. `noindex, follow`: the long tail still works for a visitor, it just is not
+ * published. Without JS the page shows the hub's directory rather than a blank screen.
+ */
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import CompareCombobox from '../../components/CompareCombobox.astro';
+import '../../styles/global.css';
+---
+<Layout
+  title="Build a graph database comparison — GDB-Engines"
+  description="Choose any two to four graph databases and compare their features, licenses, query languages and rankings side by side."
+  noindex={true}
+>
+  <SiteHeader />
+  <main class="custom-page">
+    <h1>Build a comparison</h1>
+    <p class="lead">Choose two to four databases and see their features, licenses, query languages and rankings side by side.</p>
+
+    <CompareCombobox mode="builder" />
+
+    <p class="fallback">
+      Or start from one of the <a href="/compare/">ready-made comparisons</a>.
+    </p>
+  </main>
+</Layout>
+
+<style>
+  .custom-page { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; max-width: var(--content-max-width); margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; line-height: 1.2; color: var(--color-text); }
+  .lead { color: var(--color-text); line-height: 1.55; margin: 0.75rem 0 1.25rem; }
+  .fallback { font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 2rem; }
+  .fallback a { color: var(--color-text); }
+</style>
+
+<style is:global>
+  .combobox-result { list-style: none; padding: 0; margin: 0.75rem 0 0; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .compare-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0; font-size: 0.9rem; }
+  /* Override global.css's `th, td { white-space: nowrap }` — status notes are prose. */
+  .compare-table td { white-space: normal; }
+  .compare-table th, .compare-table td { text-align: left; padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  .compare-table thead th { font-weight: 600; color: var(--color-text); }
+  .compare-table tbody th[scope='row'] { font-weight: 400; color: var(--color-text-secondary); }
+  .compare-table .group-row th { font-weight: 600; color: var(--color-text); padding-top: 1rem; }
+  .compare-table tr.differs th[scope='row'] { color: var(--color-text); font-weight: 500; }
+  .compare-table .num { font-variant-numeric: tabular-nums; }
+  .compare-table .cell-unassessed { color: var(--color-text-tertiary); }
+  .compare-table .cell-no { color: var(--color-text-tertiary); }
+  .feature-heading { font-size: 1.1rem; margin: 2rem 0 0; color: var(--color-text); }
+  .feature-heading .differ-count { font-size: 0.8rem; font-weight: 400; color: var(--color-text-secondary); margin-left: 0.5rem; }
+</style>

@@ -1,0 +1,13 @@
+slug = "open-source-graph-databases"
+title = "Open Source Graph Databases Compared"
+h1 = "Open source graph databases compared"
+lede = "Graph databases in the catalogue published under a non-proprietary license."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+license_not = ["Proprietary"]
+
+include = []
+exclude = []
+ranking_board = ""

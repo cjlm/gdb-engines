@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/typegraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "typegraph"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/nicia-ai/typegraph/license"
+  title = "GitHub licence API — nicia-ai/typegraph"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value; the npm registry shows the first published version (0.1.0) on 2026-02-08, the same day the GitHub repository was created."
+
+  [[claims.sources]]
+  url = "https://registry.npmjs.org/@nicia-ai/typegraph"
+  title = "@nicia-ai/typegraph npm registry metadata"
+  quote = "\"0.1.0\":\"2026-02-08T20:07:22.334Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "TypeScript"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value; README describes it as TypeScript-first and GitHub's byte-count is dominated by TypeScript."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/nicia-ai/typegraph/main/README.md"
+  title = "typegraph README.md"
+  quote = "TypeScript-first embedded knowledge graph library."
+  verified = "matched"
+  checked = "2026-08-02"

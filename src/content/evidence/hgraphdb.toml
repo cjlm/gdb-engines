@@ -1,0 +1,64 @@
+# Sources for values in src/content/databases/hgraphdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "hgraphdb"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/rayokota/hgraphdb/license"
+  title = "GitHub licence API — rayokota/hgraphdb"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2016-11"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Refines the current year-only value; the author's own announcement post and the repo creation date both point to November 2016."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/rayokota/hgraphdb"
+  title = "rayokota/hgraphdb"
+  quote = "\"created_at\":\"2016-11-08T23:05:08Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://yokota.blog/2016/11/10/hgraphdb-hbase-as-a-tinkerpop-graph-database/"
+  title = "HGraphDB: HBase as a TinkerPop Graph Database – Robert Yokota"
+  quote = "This led me to create HGraphDB, a TinkerPop 3 layer for HBase."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "Confirms current value; a TinkerPop 3 client layer distributed via Maven Central."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/rayokota/hgraphdb"
+  title = "rayokota/hgraphdb"
+  quote = "\"language\":\"Java\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/rayokota/hgraphdb"
+  title = "rayokota/hgraphdb"
+  quote = "HGraphDB is a client layer for using HBase as a graph database. It is an implementation of the Apache TinkerPop 3 interfaces."
+  verified = "matched"
+  checked = "2026-08-02"

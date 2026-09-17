@@ -1,0 +1,69 @@
+# Sources for values in src/content/databases/astraeadb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "astraeadb"
+
+[[claims]]
+field = "protocols"
+value = ["gRPC", "Native binary"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/AstraeaDB/AstraeaDB-Official/main/README.md"
+  title = "AstraeaDB README"
+  quote = "JSON/TCP client (all 22 operations)"
+  verified = "matched"
+  checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/AstraeaDB/AstraeaDB-Official/main/README.md"
+  title = "AstraeaDB README"
+  quote = "gRPC client (14 RPCs, protobuf)"
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/AstraeaDB/AstraeaDB-Official/main/README.md"
+  title = "AstraeaDB README"
+  quote = "## License\n\nMIT"
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "released"
+value = "2026-02"
+confidence = "medium"
+method = "api"
+checked = "2026-08-26"
+notes = "The official repository was created publicly on 2026-02-21; no earlier public release record was found."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/AstraeaDB/AstraeaDB-Official"
+  title = "AstraeaDB repository — GitHub API"
+  quote = "\"created_at\": \"2026-02-21T23:23:21Z\""
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/AstraeaDB/AstraeaDB-Official/languages"
+  title = "AstraeaDB languages — GitHub API"
+  quote = "\"Rust\": 1510213"
+  verified = "matched"
+  checked = "2026-08-26"

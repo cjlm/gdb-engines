@@ -2,6 +2,7 @@ name = "RyuGraph"
 vendor = "Predictable Labs"
 slug = "ryugraph"
 description = "An embedded property graph database forked from Kuzu. Features columnar storage, ACID transactions, full-text search, and vector indices, targeting knowledge and context management for AI agents."
+ai_roles = ["agent-memory"]
 url = "https://www.ryugraph.io/"
 github_url = "https://github.com/predictable-labs/ryugraph"
 license = "MIT"

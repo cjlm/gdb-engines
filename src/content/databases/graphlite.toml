@@ -9,6 +9,6 @@ implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["GQL"]
 kind = "embedded"
-released = "2025"
+released = "2025-11"
 category = "Emerging"
 gdotv_support = false

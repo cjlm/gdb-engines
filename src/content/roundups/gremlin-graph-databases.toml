@@ -1,0 +1,13 @@
+slug = "gremlin-graph-databases"
+title = "Gremlin Graph Databases Compared"
+h1 = "Gremlin graph databases compared"
+lede = "Graph databases that support the Gremlin traversal language."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+query_languages = ["Gremlin"]
+
+include = []
+exclude = []
+ranking_board = "gremlin"

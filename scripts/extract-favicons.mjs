@@ -5,6 +5,7 @@ import { parse } from 'smol-toml';
 
 const LOGOS_DIR = join(process.cwd(), 'public', 'logos');
 const DB_DIR = join(process.cwd(), 'src', 'content', 'databases');
+const FAVICON_SIZE = 128;
 
 if (!existsSync(LOGOS_DIR)) {
   mkdirSync(LOGOS_DIR, { recursive: true });
@@ -14,7 +15,7 @@ if (!existsSync(LOGOS_DIR)) {
 let defaultFaviconBytes = null;
 try {
   defaultFaviconBytes = await EleventyFetch(
-    'https://www.google.com/s2/favicons?sz=32&domain=this-domain-does-not-exist-xyz123.invalid',
+    `https://www.google.com/s2/favicons?sz=${FAVICON_SIZE}&domain=this-domain-does-not-exist-xyz123.invalid`,
     { duration: '30d', type: 'buffer', directory: '.cache/favicons' }
   );
 } catch {
@@ -24,7 +25,7 @@ try {
 let githubFaviconBytes = null;
 try {
   githubFaviconBytes = await EleventyFetch(
-    'https://www.google.com/s2/favicons?sz=32&domain=github.com',
+    `https://www.google.com/s2/favicons?sz=${FAVICON_SIZE}&domain=github.com`,
     { duration: '30d', type: 'buffer', directory: '.cache/favicons' }
   );
 } catch {
@@ -59,7 +60,7 @@ for (const file of files) {
     try {
       const hostname = new URL(data.url).hostname;
       const buf = await EleventyFetch(
-        `https://www.google.com/s2/favicons?sz=32&domain=${hostname}`,
+        `https://www.google.com/s2/favicons?sz=${FAVICON_SIZE}&domain=${hostname}`,
         { duration: '30d', type: 'buffer', directory: '.cache/favicons' }
       );
       const isDefault = defaultFaviconBytes.length > 0 && buf.equals(defaultFaviconBytes);
@@ -77,7 +78,7 @@ for (const file of files) {
     try {
       const org = new URL(data.github_url).pathname.split('/').filter(Boolean)[0];
       if (org) {
-        const buf = await EleventyFetch(`https://github.com/${org}.png?size=32`, {
+        const buf = await EleventyFetch(`https://github.com/${org}.png?size=${FAVICON_SIZE}`, {
           duration: '30d', type: 'buffer', directory: '.cache/favicons',
         });
         if (buf) {

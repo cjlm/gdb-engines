@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/chronograph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "chronograph"
+
+[[claims]]
+field = "license"
+value = "AGPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/MartinHaeusler/chronos/license"
+  title = "GitHub licence API — MartinHaeusler/chronos"
+  quote = "\"spdx_id\": \"AGPL-3.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-02"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from the current value of 2016, which is the GitHub repository's creation date. ChronoGraph itself was first announced on the Gremlin-users mailing list on 27 Feb 2017."
+
+  [[claims.sources]]
+  url = "https://groups.google.com/g/gremlin-users/c/sWFUMYtY1t0"
+  title = "[New Release] ChronoGraph: A versioned TinkerPop OLTP Graph"
+  quote = "I am very happy to announce the release of a new TinkerPop OLTP Graph implementation called ChronoGraph."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "medium"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value, though the parent Chronos monorepo (which contains ChronoGraph, ChronoDB and ChronoSphere) mixes Java and Kotlin, with some Groovy; TinkerPop implementations are conventionally Java-led."
+
+  [[claims.sources]]
+  url = "https://github.com/MartinHaeusler/chronos"
+  title = "MartinHaeusler/chronos"
+  quote = "This project is dedicated to providing efficient and easy-to-use versioned database persistence solutions for the Java Virtual Machine. It is written in Java and Kotlin, and some parts also make use of Groovy."
+  verified = "matched"
+  checked = "2026-08-02"

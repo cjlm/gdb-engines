@@ -1,0 +1,12 @@
+name = "Ultipa GQLDB"
+vendor = "Ultipa"
+slug = "gqldb"
+description = "A property graph database built around ISO/IEC 39075 GQL, with native storage, vector and AI functions, ontology support, graph algorithms, and single-binary, standalone-server, or clustered deployment."
+url = "https://www.ultipa.com/products/gqldb"
+license = "Proprietary"
+type = "Property Graph"
+kind = "database"
+query_languages = ["GQL"]
+protocols = ["gRPC", "HTTP/REST"]
+category = "Growing"
+gdotv_support = false

@@ -1,0 +1,13 @@
+slug = "graph-query-engines"
+title = "Graph Query Engines Compared"
+h1 = "Graph query engines compared"
+lede = "Query engines that run graph queries over storage they do not own."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+kind = ["query-engine"]
+
+include = []
+exclude = []
+ranking_board = "graph-query-engine"

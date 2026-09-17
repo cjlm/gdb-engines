@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/triblespace.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "triblespace"
+
+[[claims]]
+field = "license"
+value = "MIT OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current dual-license value; the crate manifest declares the SPDX expression directly and separate LICENSE-MIT/LICENSE-APACHE files exist in the repo."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/triblespace/triblespace-rs/main/Cargo.toml"
+  title = "triblespace-rs/Cargo.toml"
+  quote = "license = \"MIT OR Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/triblespace/triblespace-rs/main/LICENSE-MIT"
+  title = "triblespace-rs/LICENSE-MIT"
+  quote = "Permission is hereby granted, free of charge, to any person obtaining a copy"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms the current value; the crate's own manifest describes it as a Rust library and GitHub's byte-count is overwhelmingly Rust."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/triblespace/triblespace-rs/main/Cargo.toml"
+  title = "triblespace-rs/Cargo.toml"
+  quote = "rust-version = \"1.89\"\ndescription = \"The Triblespace: A lightweight knowledge base for rust.\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "GitHub REST API for the repository's first commit (message \"init\") shows an author date of 2020-09-17, confirming the repo's origin year. Earlier attempt cited a GraphQL-style field ('authoredDate'/'committedDate') that doesn't appear on the REST commit URL cited; this uses the REST API's actual field names/values."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/triblespace/triblespace-rs/commits/dc953399a866963846b7c0097fe2c20c3b6929e"
+  title = "GitHub API - triblespace-rs initial commit"
+  quote = "\"author\": {\n      \"name\": \"Jan-Paul Bultmann\",\n      \"email\": \"jp@bultmann.eu\",\n      \"date\": \"2020-09-17T18:52:44Z\"\n    }"
+  verified = "matched"
+  checked = "2026-08-02"

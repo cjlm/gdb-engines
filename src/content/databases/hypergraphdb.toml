@@ -1,7 +1,7 @@
 name = "HyperGraphDB"
 slug = "hypergraphdb"
 description = "An open-source embedded database for storing hypergraphs, where edges can connect any number of vertices. Uses BerkeleyDB for low-level storage and supports ACID transactions with MVCC conflict detection."
-url = "http://www.hypergraphdb.org/"
+url = "https://hypergraphdb.org/"
 github_url = "https://github.com/hypergraphdb/hypergraphdb"
 license = "Apache-2.0"
 implementation_language = "Java"

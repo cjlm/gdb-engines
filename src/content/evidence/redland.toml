@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/redland.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "redland"
+
+[[claims]]
+field = "license"
+value = "LGPL-2.1 OR GPL-2.0 OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected from the flattened current value 'LGPL-2.1': the LICENSE file offers three alternative licences, of which only one applies once chosen."
+
+  [[claims.sources]]
+  url = "https://github.com/dajobe/librdf/blob/master/LICENSE.html"
+  title = "LICENSE.html"
+  quote = "This package is Free Software available under any one of the specified licenses below. All the licenses below are alternatives"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2000"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; project README states development began in 2000."
+
+  [[claims.sources]]
+  url = "https://github.com/dajobe/librdf"
+  title = "dajobe/librdf"
+  quote = "This is a mature and stable RDF library developed since 2000 used in multiple projects."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Project homepage describes the libraries as C libraries."
+
+  [[claims.sources]]
+  url = "https://librdf.org/"
+  title = "Redland RDF Libraries"
+  quote = "Redland is a set of free software C libraries that provide support for the Resource Description Framework (RDF)."
+  verified = "matched"
+  checked = "2026-08-02"

@@ -9,9 +9,11 @@
 import { OGImageRoute } from 'astro-og-canvas';
 import { loadRankings } from '../../../lib/rankings';
 import { buildBoards } from '../../../lib/ranking-boards';
+import { getCollection } from 'astro:content';
 
 const ranking = await loadRankings();
-const boards = ranking ? buildBoards(ranking) : [];
+const databases = await getCollection('databases');
+const boards = ranking ? buildBoards(ranking, databases.map(({ data }) => data)) : [];
 
 const pages = Object.fromEntries(
   boards.map((b) => [b.slug, { title: b.h1 }]),

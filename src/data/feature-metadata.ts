@@ -1,6 +1,7 @@
 // Column definitions for table headers
 export const columnTooltips: Record<string, string> = {
   name: 'Graph database, engine, or extension name',
+  github_stars: 'Current GitHub repository stars, refreshed at most once per day',
   vendor: 'Company or organization developing the product',
   type: 'Graph data model: LPG (Labeled Property Graph), RDF (Resource Description Framework), Multiple (supports both LPG and RDF), or Other',
   kind: 'Product type: database, extension (e.g. PostGIS for Postgres), query engine, or embedded library',
@@ -11,6 +12,7 @@ export const columnTooltips: Record<string, string> = {
   license: 'Software license (SPDX identifier or Proprietary)',
   implementation_language: 'Primary programming language the engine is written in',
   query_languages: 'Query languages supported by this database',
+  protocols: 'Client wire protocols the engine speaks — the transport, not the query language. Engines sharing a protocol can often share client drivers.',
 };
 
 export const featureDisplayNames: Record<string, string> = {
@@ -351,3 +353,9 @@ export const featureGroups: { name: string; features: string[] }[] = [
     features: ["constraints", "schema_support", "secondary_indexes", "server_side_procedures", "triggers", "authentication", "authorization", "data_encryption"],
   },
 ];
+
+/** Every surveyed feature key, in group order — the single source of the feature count. */
+export const featureKeys: string[] = featureGroups.flatMap((g) => g.features);
+
+/** How many features the survey scores. Never hardcode this number in copy. */
+export const featureCount = featureKeys.length;

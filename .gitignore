@@ -1,5 +1,7 @@
 # build output
 dist/
+# git worktrees checked out inside the repo
+.worktrees/
 # generated types
 .astro/
 
@@ -23,8 +25,13 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .cache
-public/logos/
+public/logos/*
+!public/logos/faunadb.svg
+!public/logos/objectivity-db.png
 
 # Local dev gallery for OG image inspection
 public/og-gallery.html
 docs/seo/
+
+# Local git worktrees
+.worktrees/

@@ -1,11 +1,54 @@
 # Redirects for legacy/brand-friendly URLs not in the build output.
 # Cloudflare Pages format: <source> <destination> <status>
 
-# Canonical host is the apex. Send the www custom domain to it so the two hosts
-# don't split indexing. Requires www.gdb-engines.com to be attached to this project.
-https://www.gdb-engines.com/* https://gdb-engines.com/:splat 301
+# NOTE: www -> apex cannot live here. Cloudflare Pages `_redirects` sources are
+# paths only; domain-level redirects are unsupported and silently never match.
+# The www host is redirected by a zone-level Redirect Rule instead.
+
+# Astro's sitemap integration emits an index, but crawlers and tools probe the
+# conventional /sitemap.xml. Without this it hits the 404 handler.
+/sitemap.xml        /sitemap-index.xml              301
+
+# Retired ranking boards. Safe to list here only because the same commit stops
+# generating them — Cloudflare Pages evaluates _redirects before static assets, so an
+# entry for a live path would shadow the page.
+# Language boards below the fifteen-engine floor:
+/rankings/c                 /rankings/                      301
+/rankings/c/                /rankings/                      301
+/rankings/go                /rankings/                      301
+/rankings/go/               /rankings/                      301
+/rankings/csharp            /rankings/                      301
+/rankings/csharp/           /rankings/                      301
+/rankings/typescript        /rankings/                      301
+/rankings/typescript/       /rankings/                      301
+/rankings/python            /rankings/                      301
+/rankings/python/           /rankings/                      301
+/rankings/scala             /rankings/                      301
+/rankings/scala/            /rankings/                      301
+# Kind boards below the floor:
+/rankings/graph-library     /rankings/                      301
+/rankings/graph-library/    /rankings/                      301
+/rankings/graph-extension   /rankings/                      301
+/rankings/graph-extension/  /rankings/                      301
+/rankings/graph-query-engine   /rankings/                   301
+/rankings/graph-query-engine/  /rankings/                   301
+# Retired license group:
+/rankings/copyleft          /rankings/                      301
+/rankings/copyleft/         /rankings/                      301
+/rankings/permissive-licensed   /rankings/                  301
+/rankings/permissive-licensed/  /rankings/                  301
+/rankings/proprietary       /rankings/                      301
+/rankings/proprietary/      /rankings/                      301
+/rankings/source-available  /rankings/                      301
+/rankings/source-available/ /rankings/                      301
 
 # FalkorDB's catalog slug carries its legacy Redis history (`redisgraph-falkordb`).
 # Searches for "FalkorDB" should land on its page directly.
 /db/falkordb        /db/redisgraph-falkordb/        301
 /db/falkordb/       /db/redisgraph-falkordb/        301
+
+# NOTE: no `/compare/:pair/` splat here. Cloudflare Pages evaluates `_redirects`
+# BEFORE serving static assets (verified on a preview deploy, 2026-07-28: the splat
+# 302'd every pre-generated pair, every roundup, and the builder itself — the latter
+# in an infinite loop). Unmatched comparison URLs are instead recovered client-side
+# by 404.astro, which forwards `-vs-` paths to the builder.

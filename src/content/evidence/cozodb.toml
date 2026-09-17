@@ -1,0 +1,61 @@
+# Sources for values in src/content/databases/cozodb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "cozodb"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/cozodb/cozo/main/README.md"
+  title = "CozoDB README"
+  quote = "Standalone HTTP server"
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "license"
+value = "MPL-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cozodb/cozo/license"
+  title = "GitHub license API — cozodb/cozo"
+  quote = "\"spdx_id\": \"MPL-2.0\""
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "released"
+value = "2022-10"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cozodb/cozo/releases/tags/v0.1.1"
+  title = "CozoDB v0.1.1 release"
+  quote = "\"published_at\": \"2022-10-31T16:10:12Z\""
+  verified = "matched"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/cozodb/cozo/languages"
+  title = "CozoDB languages — GitHub API"
+  quote = "\"Rust\": 2205638"
+  verified = "matched"
+  checked = "2026-08-26"

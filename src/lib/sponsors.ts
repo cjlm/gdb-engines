@@ -12,6 +12,12 @@ export interface Sponsor {
   link: string;
   /** Optional YYYY-MM-DD; sponsor is ignored after this date. */
   expires?: string;
+  /**
+   * Catalogue slug of the engine this sponsor sells, when there is one. Comparison pages
+   * suppress the slot when it matches a column: a vendor's ad on its own head-to-head page
+   * reads as paid influence over the comparison whether or not it is (§2.6 rule 2).
+   */
+  engine_slug?: string;
 }
 
 export type SponsorMap = Record<string, Sponsor | string | undefined>;

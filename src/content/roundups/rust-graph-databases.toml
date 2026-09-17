@@ -1,0 +1,13 @@
+slug = "rust-graph-databases"
+title = "Rust Graph Databases Compared"
+h1 = "Rust graph databases compared"
+lede = "Graph databases implemented in Rust."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+implementation_language = ["Rust"]
+
+include = []
+exclude = []
+ranking_board = "rust"

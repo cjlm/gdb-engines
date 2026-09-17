@@ -44,6 +44,8 @@ export interface RankingFile {
   byLicenseTier: Record<string, RankedEngine[]>;
   byQueryLanguage: Record<string, RankedEngine[]>;
   byImplementationLanguage: Record<string, RankedEngine[]>;
+  /** Editorial/landscape boards, keyed by their stable public URL slug. */
+  bySegment?: Record<string, RankedEngine[]>;
   movers: RankedEngine[];
 }
 

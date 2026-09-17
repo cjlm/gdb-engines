@@ -1,0 +1,65 @@
+# Sources for values in src/content/databases/memgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "memgraph"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-07-31"
+notes = "Bolt server defaults to port 7687. Separate HTTP metrics (9091) and WebSocket log-monitoring (7444) servers exist but are observability-only, not query interfaces."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/database-management/configuration"
+  title = "Configuration"
+  quote = "This section contains the list of flags that are used to configure the Bolt protocol used by Memgraph."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "BUSL-1.1"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Corrected SPDX id from BSL-1.1: the licenses/BSL.txt file in the repo is the Business Source License 1.1, whose SPDX identifier is BUSL-1.1, not the unrelated Boost licence (BSL)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/memgraph/memgraph/master/licenses/BSL.txt"
+  title = "BSL.txt"
+  quote = "The Licensor hereby grants you the right to copy, modify, create derivative works, redistribute, and make non-production use of the Licensed Work."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2020-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Corrected from 2018: Memgraph's own history page states Memgraph 1.0 in May 2020 was the first publicly available, production-ready release; earlier years were internal development."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/about-us"
+  title = "About us"
+  quote = "Launched the first publicly available and production-ready version of Memgraph 1.0 and Memgraph Cloud."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Matches current value; confirmed by the project's own repository description."
+
+  [[claims.sources]]
+  url = "https://github.com/memgraph/memgraph"
+  title = "memgraph/memgraph"
+  quote = "Built in C/C++, it serves as the graph engine for GraphRAG pipelines, AI memory systems, and agentic workflows"
+  verified = "matched"
+  checked = "2026-08-02"

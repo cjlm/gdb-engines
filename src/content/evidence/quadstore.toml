@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/quadstore.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "quadstore"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/quadstorejs/quadstore/license"
+  title = "GitHub licence API — quadstorejs/quadstore"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2017-03"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "First npm publication (0.0.1), March 2017."
+
+  [[claims.sources]]
+  url = "https://registry.npmjs.org/quadstore"
+  title = "npm registry — quadstore"
+  quote = "\"created\":\"2017-03-06T21:55:20.897Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "TypeScript"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the project's own README states it is written in TypeScript, and devDependencies include the typescript compiler."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/quadstorejs/quadstore/master/README.md"
+  title = "quadstorejs/quadstore README"
+  quote = "Quadstore is a LevelDB-backed RDF graph database / triplestore for JavaScript\nruntimes (browsers, Node.js, Deno, Bun, ...) written in TypeScript."
+  verified = "matched"
+  checked = "2026-08-02"

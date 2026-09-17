@@ -6,7 +6,8 @@ url = "https://www.galaxybase.com/"
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher"]
-released = "2020"
+protocols = ["Bolt", "HTTP/REST"]
+released = "2020-12"
 category = "Emerging"
 gdotv_support = false
 

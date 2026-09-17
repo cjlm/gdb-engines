@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/velocitygraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "velocitygraph"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "VelocityGraph is a code sample bundled with VelocityDB, whose EULA is proprietary (paid tiers, no LICENSE file in the repo, only a Eula.txt). Corrects current value of MIT."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/VelocityDB/VelocityDB/master/Eula.txt"
+  title = "Eula.txt (VelocityDB/VelocityDB)"
+  quote = "The software and information contained herein are proprietary to, and comprise valuable trade secrets of, VelocityDB, Inc"
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/VelocityDB/VelocityDB/tree/master/VelocityGraph"
+  title = "VelocityGraph at master · VelocityDB/VelocityDB"
+  quote = "VelocityGraph is an open source product but the backend database engine is VelocityDB. See VelocityDB license info"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2013-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "First appearance of VelocityGraph in VelocityDB's own dated release history, matching the current year value with an added month."
+
+  [[claims.sources]]
+  url = "https://velocitydb.com/ReleaseNotes.pdf"
+  title = "Release History"
+  quote = "VelocityGraph library project and sample added to the solution of sample projects."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C#"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Matches current value; VelocityGraph is a .NET/C# library layered on the VelocityDB object database."
+
+  [[claims.sources]]
+  url = "http://v821.velocitydb.com/VelocityGraph.aspx"
+  title = "VelocityGraph - Graph Database"
+  quote = "VelocityGraph is an open source C# .NET hybrid NoSQL Graph Database and Object Database that can be Embedded/Distributed."
+  verified = "matched"
+  checked = "2026-08-02"

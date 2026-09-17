@@ -1,0 +1,13 @@
+slug = "graph-database-extensions"
+title = "Graph Database Extensions Compared"
+h1 = "Graph database extensions compared"
+lede = "Graph capabilities added to an existing database as an extension."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+kind = ["extension"]
+
+include = []
+exclude = []
+ranking_board = "graph-extension"

@@ -8,6 +8,7 @@ implementation_language = "C#"
 type = "RDF"
 kind = "embedded"
 query_languages = ["SPARQL", "LINQ"]
+protocols = ["HTTP/REST", "SPARQL Protocol"]
 released = "2012-02"
 category = "Emerging"
 status = "inactive"

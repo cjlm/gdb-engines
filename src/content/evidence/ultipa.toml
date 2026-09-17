@@ -1,0 +1,49 @@
+# Sources for values in src/content/databases/ultipa.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "ultipa"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-26"
+notes = "This entry now represents Ultipa Powerhouse v5, whose official product documentation lists RESTful API access. GQLDB v6 is catalogued separately."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Powerhouse (v5) - Ultipa Graph Database"
+  quote = "Full-fledged API/SDKs enabling seamless application development, supporting Java, Go, Python, NodeJS, C#, and RESTful API."
+  verified = "unreachable"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-26"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Powerhouse (v5) - Ultipa Graph Database"
+  quote = "Ultipa Powerhouse (v5), implemented in C++, introduces a novel hybrid architecture"
+  verified = "unreachable"
+  checked = "2026-08-26"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms the current value; no source repository or open licence exists, and Ultipa's own docs describe a closed, per-deployment commercial license (server + algo licenses issued on request)."
+
+  [[claims.sources]]
+  url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
+  title = "License - Operations & Maintenance"
+  quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
+  verified = "unreachable"
+  checked = "2026-08-26"

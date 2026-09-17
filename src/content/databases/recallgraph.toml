@@ -9,6 +9,7 @@ implementation_language = "JavaScript"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["Custom API"]
+protocols = ["HTTP/REST"]
 released = "2019-04"
 category = "Emerging"
 status = "deprecated"

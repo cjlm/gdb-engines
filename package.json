@@ -3,9 +3,17 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "predev": "node scripts/sync-blog.mjs",
+    "test": "node --test",
+    "favicons": "node scripts/extract-favicons.mjs",
+    "graphs": "node scripts/generate-graphs.mjs",
+    "check-evidence": "node scripts/check-evidence.mjs",
+    "verify-quotes": "node scripts/verify-quotes.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "sync-pairs": "node scripts/sync-published-pairs.mjs",
+    "sync-blog": "node scripts/sync-blog.mjs",
+    "predev": "npm run favicons && npm run graphs && npm run sync-blog",
     "dev": "astro dev",
-    "prebuild": "node scripts/sync-blog.mjs && node scripts/extract-favicons.mjs",
+    "prebuild": "npm run favicons && npm run graphs && npm run check-evidence && npm run sync-blog",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,7 +23,9 @@
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^5.17.1",
     "astro-og-canvas": "^0.11.1",
-    "canvaskit-wasm": "^0.41.1"
+    "canvaskit-wasm": "^0.41.1",
+    "garphield": "0.1.1",
+    "smol-toml": "1.6.0"
   },
   "devDependencies": {
     "astro-agent-annotate": "^0.0.2"

@@ -10,17 +10,10 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   publishedTime?: string;
+  noindex?: boolean;
 }
 const dbCount = await getDatabaseCount();
-const {
-  title,
-  description = `Compare ${dbCount}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`,
-  jsonLd = [],
-  canonical = 'https://gdb-engines.com/',
-  ogImage = 'https://gdb-engines.com/og.png',
-  ogType = 'website',
-  publishedTime,
-} = Astro.props;
+const { title, description = `Compare ${dbCount}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`, jsonLd = [], canonical = 'https://gdb-engines.com/', ogImage = 'https://gdb-engines.com/og.png', ogType = 'website', publishedTime, noindex = false } = Astro.props;
 const selineToken = import.meta.env.PUBLIC_SELINE_TOKEN;
 
 const siteSchema = JSON.stringify({
@@ -47,13 +40,17 @@ const siteSchema = JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {/* A noindex page has no canonical: pointing one elsewhere would claim this URL
+        is a duplicate of a page that should be indexed. */}
+    {noindex
+      ? <meta name="robots" content="noindex, follow" />
+      : <link rel="canonical" href={canonical} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -79,6 +76,7 @@ const siteSchema = JSON.stringify({
     ))}
     {selineToken && (
       <script
+        id="seline-script"
         src="https://sln.gdb-engines.com/ennui.js"
         data-api-host="https://sln.gdb-engines.com"
         data-token={selineToken}
@@ -95,6 +93,7 @@ const siteSchema = JSON.stringify({
     <script>
       import '../scripts/theme.ts';
       import '../scripts/tooltip-flip.ts';
+      import '../scripts/outbound.ts';
     </script>
   </body>
 </html>

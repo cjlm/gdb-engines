@@ -1,0 +1,57 @@
+# Sources for values in src/content/databases/grust.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "grust"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/querygraph/grust/license"
+  title = "GitHub licence API — querygraph/grust"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-05"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "GitHub repo creation date; this is a brand-new project (no prior life elsewhere), so it stands in reliably for first public availability. Confirms current value."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/querygraph/grust"
+  title = "querygraph/grust"
+  quote = "\"created_at\":\"2026-05-31T22:32:51Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "A Cargo workspace of Rust crates; confirms current value."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/querygraph/grust"
+  title = "querygraph/grust"
+  quote = "\"language\":\"Rust\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+  [[claims.sources]]
+  url = "https://github.com/querygraph/grust"
+  title = "querygraph/grust"
+  quote = "Grust is a modern property graph API for Rust."
+  verified = "matched"
+  checked = "2026-08-02"

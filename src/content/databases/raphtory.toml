@@ -8,6 +8,7 @@ license = "GPL-3.0"
 implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["GraphQL"]
+protocols = ["GraphQL (HTTP)"]
 released = "2020-12"
 category = "Emerging"
 gdotv_support = false

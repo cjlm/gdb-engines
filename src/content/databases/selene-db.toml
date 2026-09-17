@@ -1,0 +1,13 @@
+name = "selene-db"
+vendor = "Justin Scott"
+slug = "selene-db"
+description = "An embeddable property graph engine for Rust using ISO/IEC 39075:2024 GQL, with native graph algorithms, vector and full-text search, JSON metadata, and local persistence."
+github_url = "https://github.com/jscott3201/selene-db"
+license = "MIT OR Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "library"
+query_languages = ["GQL"]
+released = "2026-05"
+category = "Emerging"
+gdotv_support = false

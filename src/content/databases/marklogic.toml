@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "C++"
 type = "Multiple"
 query_languages = ["SPARQL", "XQuery", "SQL"]
+protocols = ["HTTP/REST", "SPARQL Protocol", "JDBC/ODBC", "PostgreSQL wire", "Native binary"]
 released = "2001"
 category = "Enterprise"
 gdotv_support = true

@@ -1,0 +1,13 @@
+slug = "embedded-graph-databases"
+title = "Embedded Graph Databases Compared"
+h1 = "Embedded graph databases compared"
+lede = "Graph engines that run in-process rather than as a separate server."
+
+# All conditions AND together; list values are OR. Members are always active-only;
+# filtered-out inactive members are listed in the page footnote instead.
+[filter]
+kind = ["embedded"]
+
+include = []
+exclude = []
+ranking_board = "embedded"

@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/minigraf.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "minigraf"
+
+[[claims]]
+field = "license"
+value = "MIT OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value. The repo's own README states the dual-license choice verbatim."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/project-minigraf/minigraf/main/README.md"
+  title = "minigraf README"
+  quote = "Licensed under either of:\n\n- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)\n- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)\n\nat your option."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-04"
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value using the crates.io registry: the crate's first published version (0.19.0) was created 2026-04-08, the first point at which the software was independently obtainable. Note: GitHub carries an earlier v0.1.0 tag dated 2026-03-21, but versions before 0.19.0 were never published to crates.io/npm, so it's unclear whether the repo was public that early."
+
+  [[claims.sources]]
+  url = "https://crates.io/api/v1/crates/minigraf"
+  title = "minigraf - crates.io API"
+  quote = "\"crate\":\"minigraf\",\"num\":\"0.19.0\",\"dl_path\":\"/api/v1/crates/minigraf/0.19.0/download\",\"readme_path\":\"/api/v1/crates/minigraf/0.19.0/readme\",\"updated_at\":\"2026-04-08T03:26:13.144496Z\",\"created_at\":\"2026-04-08T03:26:13.144496Z\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value. crates.io's own line-count analysis of the published crate shows the codebase is entirely Rust."
+
+  [[claims.sources]]
+  url = "https://crates.io/api/v1/crates/minigraf"
+  title = "minigraf - crates.io API"
+  quote = "\"linecounts\":{\"languages\":{\"Rust\":{\"code_lines\":24338,\"comment_lines\":1611,\"files\":36}},\"total_code_lines\":24338"
+  verified = "matched"
+  checked = "2026-08-02"

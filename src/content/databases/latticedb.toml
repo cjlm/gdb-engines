@@ -1,0 +1,14 @@
+name = "LatticeDB"
+vendor = "Jeff Hajewski"
+slug = "latticedb"
+description = "An embedded, single-file property graph database with vector similarity and BM25 full-text search in a shared query layer."
+url = "https://latticedb.org"
+github_url = "https://github.com/jeffhajewski/latticedb"
+license = "MIT"
+implementation_language = "Zig"
+type = "Property Graph"
+query_languages = ["Cypher"]
+kind = "embedded"
+released = "2026-01"
+category = "Emerging"
+gdotv_support = false

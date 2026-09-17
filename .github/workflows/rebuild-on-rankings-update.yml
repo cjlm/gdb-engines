@@ -1,11 +1,13 @@
-name: Rebuild on rankings update
+name: Rebuild site
 
-# Triggered by the gdb-engines-rankings monthly workflow via repository_dispatch.
-# Calls the Cloudflare Pages deploy hook so the site picks up the new ranking.json.
+# Rebuild monthly when rankings change and daily so cached GitHub star counts stay fresh.
+# Both paths call the same Cloudflare Pages deploy hook.
 
 on:
   repository_dispatch:
     types: [rankings-updated]
+  schedule:
+    - cron: '17 7 * * *'
   workflow_dispatch:
 
 jobs:

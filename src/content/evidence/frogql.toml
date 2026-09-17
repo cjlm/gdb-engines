@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/frogql.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "frogql"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-08-02"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/pleiad/frogql/license"
+  title = "GitHub licence API — pleiad/frogql"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2026-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value: the GitHub repo was created 2026-04-01 but the first public package (PyPI 0.1.0) was uploaded 2026-05-05, which is the first point end users could actually install the engine."
+
+  [[claims.sources]]
+  url = "https://pypi.org/pypi/frogql/json"
+  title = "frogql · PyPI JSON API"
+  quote = "\"filename\":\"frogql-0.1.0-cp38-abi3-macosx_10_12_x86_64.whl\",\"has_sig\":false,\"md5_digest\":\"68a10e4d4a019e150bc624e00b9996a0\",\"packagetype\":\"bdist_wheel\",\"python_version\":\"cp38\",\"requires_python\":\">=3.8\",\"size\":942096,\"upload_time\":\"2026-05-05T21:04:11\""
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-08-02"
+notes = "Confirms current value; the project describes itself as a Rust core with Python/Node/WASM bindings layered on top."
+
+  [[claims.sources]]
+  url = "https://github.com/pleiad/frogql"
+  title = "pleiad/frogql"
+  quote = "Embedded GQL graph database in Rust. ISO/IEC 39075:2024 path patterns, Leapfrog-Triejoin runtime, single-file .gdb storage."
+  verified = "matched"
+  checked = "2026-08-02"

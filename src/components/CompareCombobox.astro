@@ -1,0 +1,88 @@
+---
+/**
+ * The add-database combobox (§4). One implementation, two mounts:
+ *
+ * - `mode="builder"` on `/compare/custom/`, where the script also renders the columns.
+ * - `mode="static"` on the pre-generated pair and roundup pages, where the comparison is
+ *   already server-rendered and a selection change navigates instead (§4.4).
+ *
+ * The root is `hidden` in the HTML and unhidden by the script, so a page without JS is
+ * exactly the page it was before the combobox existed (§4.5).
+ */
+interface Props {
+  /** Slugs to pre-seed the selection with — the engines this page already compares. */
+  seed?: string[];
+  mode?: 'builder' | 'static';
+}
+
+const { seed = [], mode = 'builder' } = Astro.props;
+---
+
+<div class="builder-slot" data-slot-mode={mode}>
+<div class="builder" data-compare-builder data-mode={mode} data-seed={seed.join(' ')} hidden>
+  <div class="combobox-chips" data-combobox-chips></div>
+  <label class="visually-hidden" for="compare-combobox">Add a database</label>
+  <input
+    id="compare-combobox"
+    class="combobox-input"
+    type="text"
+    role="combobox"
+    autocomplete="off"
+    aria-expanded="false"
+    aria-controls="compare-listbox"
+    aria-autocomplete="list"
+    placeholder="Add a database"
+    data-combobox-input
+  />
+  <ul id="compare-listbox" role="listbox" aria-label="Databases" class="combobox-list" data-combobox-list hidden></ul>
+  {mode === 'builder' && <div data-compare-result></div>}
+  <div class="visually-hidden" aria-live="polite" data-combobox-live></div>
+</div>
+</div>
+
+<script>
+  import '../scripts/compare-builder.ts';
+</script>
+
+<style>
+  /* The open listbox has to clear the comparison table's sticky header row (z-index 10 in
+     global.css, 2 on the pre-generated pages) while staying under the fixed site header
+     (z-index 20). On `/compare/custom/` the table is rendered *inside* this root, so the
+     listbox also carries a z-index above the thead — see `.combobox-list` below. */
+  .builder { position: relative; z-index: 15; }
+  /* The widget ships `hidden` and is unhidden by the script. Without a reserved box the
+     page reflowed the moment the script ran; this floor matches the input's height. */
+  .builder-slot { min-height: 2.6rem; }
+  /* `hidden` is display:none, so the margin costs a no-JS page nothing. */
+  .builder[data-mode='static'] { margin: 0 0 1.25rem; }
+  .combobox-input { width: 100%; max-width: 24rem; padding: 0.45rem 0.6rem; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); color: var(--color-text); font: inherit; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<style is:global>
+  /* The chips and options are written by the script, so they sit outside the scope hash. */
+  .combobox-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+  .combobox-chip { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--color-border); border-radius: 999px; padding: 0.15rem 0.5rem; font-size: 0.85rem; }
+  .combobox-chip button { background: none; border: 0; color: var(--color-text-tertiary); cursor: pointer; font-size: 1rem; line-height: 1; }
+  /* Opaque background, not the translucent one the sticky thead uses: the list sits over
+     table rows and anything that shows through reads as a rendering fault. z-index clears
+     the thead inside the builder root (10) the way `.builder` clears it outside. */
+  .combobox-list { list-style: none; margin: 0.25rem 0 0; padding: 0.25rem; max-width: 24rem; max-height: 18rem; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-background); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); position: absolute; z-index: 30; width: 100%; }
+  .combobox-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.4rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+  .combobox-option.is-active { background: var(--color-border); }
+  .combobox-option[aria-disabled='true'] { color: var(--color-text-tertiary); cursor: default; }
+  .combobox-empty { padding: 0.3rem 0.4rem; font-size: 0.9rem; color: var(--color-text-tertiary); }
+  .combobox-selected { margin-left: auto; font-size: 0.75rem; color: var(--color-text-tertiary); }
+  .combobox-monogram { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: var(--color-surface); border: 1px solid var(--color-border); font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; font-size: 0.6rem; }
+
+  /* The "+" column. The script writes the cell into the header row of both the builder
+     table and the pre-generated ones, so it is styled here rather than in either page's
+     scoped block. It sticks with the header row it belongs to; the body rows simply have
+     no cell in this column, which is what keeps it reading as an affordance. */
+  .add-col { width: 2.75rem; border-bottom: 1px solid var(--color-border); position: sticky; top: var(--header-height); background: var(--color-alpha-background); backdrop-filter: blur(6px); }
+  /* The pre-generated pages give their header row a solid surface instead. */
+  .matrix-scroll .add-col { background: var(--color-surface); backdrop-filter: none; }
+  .add-col-btn { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; padding: 0; border: 1px dashed var(--color-border); border-radius: 0.25rem; background: none; color: var(--color-text-tertiary); font-size: 1rem; line-height: 1; cursor: pointer; }
+  .add-col-btn:hover { border-style: solid; border-color: var(--color-text-tertiary); color: var(--color-text); }
+  .add-col-btn:focus-visible { outline: 2px solid var(--color-brand-accent); outline-offset: 2px; }
+</style>

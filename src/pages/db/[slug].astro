@@ -1,24 +1,117 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DatabaseLogo from '../../components/DatabaseLogo.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
-import { fetchFavicon } from '../../utils/favicon';
+import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
+import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
+import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
+import { sortProtocols } from '../../lib/protocols';
 
 const ranking = await loadRankings();
-const boards = ranking ? buildBoards(ranking) : [];
+const catalogue = await getCollection('databases');
+const boards = ranking ? buildBoards(ranking, catalogue.map(({ data }) => data)) : [];
 
 export async function getStaticPaths() {
   const databases = await getCollection('databases');
+  const rankingFile = await loadRankings();
+
+  // Catalogue-wide facts, resolved once for the whole route rather than per page.
+  const pregenerated = pregeneratedPairs(
+    rankingFile,
+    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  );
+  const overallRanks = buildOverallRankMap(rankingFile);
+  const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
+  const [faviconMap, githubStars] = await Promise.all([
+    buildFaviconMap(databases),
+    loadGithubStars(databases),
+  ]);
+
+  // §3.6 reverse index: which roundups each engine belongs to, capped at three. Built once
+  // here rather than re-resolving every roundup on all 143 engine pages.
+  const roundupsByEngine = new Map<string, { slug: string; title: string }[]>();
+  for (const entry of await getCollection('roundups')) {
+    const resolved = resolveRoundup(entry.data, databases.map((d) => d.data), rankingFile);
+    if (resolved.members.length < MIN_ROUNDUP_MEMBERS) continue;
+    for (const member of resolved.members) {
+      const list = roundupsByEngine.get(member.slug) ?? [];
+      if (list.length < 3) list.push({ slug: entry.data.slug, title: entry.data.h1 });
+      roundupsByEngine.set(member.slug, list);
+    }
+  }
+  const evidenceBySlug = new Map(
+    (await getCollection('evidence')).map((e) => [e.data.slug, e.data.claims]),
+  );
+  const nameBySlug = new Map(databases.map((d) => [d.data.slug, d.data.name]));
+  const languagesBySlug = new Map(databases.map((d) => [d.data.slug, d.data.query_languages ?? []]));
+
+  /** Deterministic peers: nearest-ranked, then sharing a query language, then the top two. */
+  function compareLinks(slug: string): { slug: string; name: string; href: string; logo: string | null }[] {
+    const rank = overallRanks.get(slug);
+    const candidates: string[] = [];
+    if (rank !== undefined) {
+      const i = rank - 1;
+      candidates.push(...[rankOrder[i - 2], rankOrder[i - 1], rankOrder[i + 1], rankOrder[i + 2]].filter(Boolean) as string[]);
+    }
+    const own = languagesBySlug.get(slug) ?? [];
+    if (own.length) {
+      candidates.push(...rankOrder.filter((s) => (languagesBySlug.get(s) ?? []).some((l) => own.includes(l))).slice(0, 4));
+    }
+    candidates.push(...rankOrder.slice(0, 2));
+
+    const seen = new Set<string>();
+    const links: { slug: string; name: string; href: string; logo: string | null }[] = [];
+    for (const other of candidates) {
+      if (other === slug || seen.has(other)) continue;
+      seen.add(other);
+      const pair = pairSlug(slug, other);
+      if (!pregenerated.has(pair)) continue;
+      links.push({
+        slug: other,
+        name: nameBySlug.get(other) ?? other,
+        href: `/compare/${pair}/`,
+        logo: faviconMap[other] ?? null,
+      });
+      if (links.length === 8) break;
+    }
+    return links;
+  }
+
   return databases.map(db => ({
     params: { slug: db.data.slug },
-    props: { db },
+    props: {
+      db,
+      compareLinks: compareLinks(db.data.slug),
+      faviconUrl: faviconMap[db.data.slug] ?? null,
+      githubStars: githubStars[db.data.slug] ?? null,
+      evidence: evidenceBySlug.get(db.data.slug) ?? [],
+      partOf: roundupsByEngine.get(db.data.slug) ?? [],
+    },
   }));
 }
 
-const { db } = Astro.props;
+const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf, evidence } = Astro.props;
+
+// Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
+// is the thing this whole layer exists to avoid publishing.
+const fieldLabels: Record<string, string> = {
+  protocols: 'Protocols',
+  license: 'License',
+  released: 'Released',
+  implementation_language: 'Language',
+};
+
+const citedClaims = evidence
+  .map((claim) => ({
+    ...claim,
+    sources: claim.sources.filter((s) => s.verified === 'matched' || s.verified === 'matched-archive'),
+  }))
+  .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
 
 function formatReleased(value: string): string {
@@ -28,16 +121,6 @@ function formatReleased(value: string): string {
   return `${monthName} ${match[1]}`;
 }
 
-// Resolve favicon
-let faviconUrl: string | null = null;
-if (db.data.icon) {
-  faviconUrl = `/logos/${db.data.icon}`;
-} else if (db.data.url) {
-  const result = await fetchFavicon(db.data.slug, db.data.url, db.data.github_url);
-  if (result.source === 'site' || result.source === 'github' || result.source === 'custom') {
-    faviconUrl = result.url;
-  }
-}
 
 const categoryLabel = `Graph ${db.data.kind === 'database' ? 'Database' : db.data.kind === 'extension' ? 'Database Extension' : db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'library' ? 'Library' : 'Embedded Database'}`;
 
@@ -73,6 +156,20 @@ const breadcrumbJsonLd = JSON.stringify({
 
 const title = `${db.data.name} — ${categoryLabel} | GDB-Engines`;
 const description = db.data.description;
+const sourceCount = citedClaims.reduce((count, claim) => count + claim.sources.length, 0);
+const latestEvidenceCheck = citedClaims
+  .flatMap((claim) => [claim.checked, ...claim.sources.map((source) => source.checked).filter(Boolean) as string[]])
+  .sort()
+  .at(-1);
+const primaryRank = engineRanks.find(({ board }) => board.slug === 'overall') ?? engineRanks[0];
+
+function hostname(value: string): string {
+  try {
+    return new URL(value).hostname.replace(/^www\./, '');
+  } catch {
+    return value;
+  }
+}
 ---
 <Layout
   title={title}
@@ -80,31 +177,79 @@ const description = db.data.description;
   jsonLd={[pageJsonLd, breadcrumbJsonLd]}
   canonical={`https://gdb-engines.com/db/${db.data.slug}/`}
 >
+  <SiteHeader />
   <main class="db-page">
-    <a href="/" class="back-link">&larr; Back to comparison</a>
+    <a href="/" class="back-link"><span aria-hidden="true">&larr;</span> Back to all databases</a>
 
-    <h1>
-      {faviconUrl && (
-        <img src={faviconUrl} alt="" width="24" height="24" />
+    <header class="db-hero">
+      <div class="db-identity">
+        {faviconUrl && <DatabaseLogo src={faviconUrl} size={52} loading="eager" />}
+        <h1>{db.data.name}</h1>
+      </div>
+
+      <p class="description">{db.data.description}</p>
+
+      {(db.data.url || db.data.github_url) && (
+        <div class="db-actions" aria-label="Primary links">
+          {db.data.url && (
+            <a class="db-action db-action-primary" href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
+              Visit website
+              <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+            </a>
+          )}
+          {db.data.github_url && (
+            <a
+              class="db-action"
+              href={db.data.github_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-outbound="engine-github"
+              data-db={db.data.slug}
+              aria-label={typeof githubStars === 'number'
+                ? `GitHub repository, ${githubStars.toLocaleString('en-US')} stars`
+                : 'GitHub repository'}
+            >
+              <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
+              GitHub
+              {typeof githubStars === 'number' && <span class="db-action-meta">{formatGithubStars(githubStars)} stars</span>}
+            </a>
+          )}
+        </div>
       )}
-      {db.data.name}
-    </h1>
 
-    <p class="description">{db.data.description}</p>
+      <dl class="db-snapshot">
+        {primaryRank && (
+          <div>
+            <dt>{primaryRank.board.shortLabel} rank</dt>
+            <dd><a href={`/rankings/${primaryRank.board.slug}/`}>#{primaryRank.rank}</a></dd>
+          </div>
+        )}
+        {db.data.released && (
+          <div>
+            <dt>First released</dt>
+            <dd>{formatReleased(db.data.released)}</dd>
+          </div>
+        )}
+        <div>
+          <dt>License</dt>
+          <dd>{db.data.license ?? 'Not listed'}</dd>
+        </div>
+        {db.data.implementation_language && (
+          <div>
+            <dt>Built with</dt>
+            <dd>{db.data.implementation_language}</dd>
+          </div>
+        )}
+      </dl>
+    </header>
 
-    {engineRanks.length > 0 && (
-      <section class="ranks-block">
-        <h2>Rankings</h2>
-        <ul class="ranks-list">
-          {engineRanks.map(({ board, rank }) => (
-            <li><a href={`/rankings/${board.slug}/`}><span class="rank">#{rank}</span> <span class="label">{board.shortLabel}</span></a></li>
-          ))}
-        </ul>
-      </section>
-    )}
-
-    <h2>Details</h2>
-    <dl class="meta-grid">
+    <div class="db-layout">
+      <div class="db-main-column">
+        <section class="db-section" aria-labelledby="details-heading">
+          <div class="db-section-heading">
+            <h2 id="details-heading">Details</h2>
+          </div>
+          <dl class="meta-grid">
       {db.data.vendor && (
         <>
           <dt>Vendor</dt>
@@ -113,37 +258,23 @@ const description = db.data.description;
       )}
       <dt>Type</dt>
       <dd>
-        <span class={`badge badge-${db.data.type.toLowerCase().replace(/ /g, '-')}`}>
-          {db.data.type}
-        </span>
+        {db.data.type}
       </dd>
       {db.data.kind !== 'database' && (
         <>
           <dt>Kind</dt>
           <dd>
-            <span class={`badge badge-${db.data.kind}`}>
-              {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
-            </span>
+            {db.data.kind === 'query-engine' ? 'Query Engine' : db.data.kind === 'extension' ? 'Extension' : db.data.kind === 'library' ? 'Library' : 'Embedded'}
           </dd>
         </>
       )}
       <dt>Category</dt>
-      <dd>
-        <span class={`badge badge-${db.data.category.toLowerCase()}`}>
-          {db.data.category}
-        </span>
-      </dd>
-      {db.data.released && (
-        <>
-          <dt>Released</dt>
-          <dd>{formatReleased(db.data.released)}</dd>
-        </>
-      )}
+      <dd>{db.data.category}</dd>
       {db.data.status !== 'active' && (
         <>
           <dt>Status</dt>
           <dd>
-            <span class={`badge badge-${db.data.status}`}>
+            <span class="db-status">
               {db.data.status === 'inactive' ? 'Inactive' : 'Deprecated'}
             </span>
             {db.data.status_note && <span> — {db.data.status_note}</span>}
@@ -161,28 +292,24 @@ const description = db.data.description;
       {db.data.query_languages?.length > 0 && (
         <>
           <dt>Query Languages</dt>
-          <dd>{db.data.query_languages.join(', ')}</dd>
+          <dd class="meta-list">{db.data.query_languages.map((language) => <span>{language}</span>)}</dd>
         </>
       )}
-    </dl>
-
-    {(db.data.url || db.data.github_url) && (
-      <>
-        <h2>Links</h2>
-        <div class="db-links">
-          {db.data.url && (
-            <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer">Official website</a>
-          )}
-          {db.data.github_url && (
-            <a href={db.data.github_url} target="_blank" rel="noopener noreferrer">GitHub</a>
-          )}
-        </div>
-      </>
-    )}
+      {db.data.protocols?.length > 0 && (
+        <>
+          <dt>Protocols</dt>
+          <dd class="meta-list">{sortProtocols(db.data.protocols).map((protocol) => <span>{protocol}</span>)}</dd>
+        </>
+      )}
+          </dl>
+        </section>
 
     {db.data.features && (
-      <>
-        <h2>Feature Scores</h2>
+      <section class="db-section db-features" aria-labelledby="features-heading">
+        <div class="db-section-heading">
+          <h2 id="features-heading">Feature scores</h2>
+        </div>
+        <div class="feature-groups">
         {featureGroups.map(group => {
           const groupFeatures = group.features.filter(key => {
             const val = db.data.features?.[key as keyof typeof db.data.features];
@@ -190,25 +317,151 @@ const description = db.data.description;
           });
           if (groupFeatures.length === 0) return null;
           return (
-            <>
+            <section class="feature-group">
               <h3>{group.name}</h3>
               {groupFeatures.map(key => {
                 const value = db.data.features![key as keyof typeof db.data.features] as number;
                 const meaning = scoreMeanings[key]?.[String(value)] ?? '';
                 return (
-                  <div class="feature-row">
+                  <div class:list={['feature-row', value === 1 && 'feature-row-complete']}>
                     <span class="feature-name">{featureDisplayNames[key] ?? key}</span>
-                    <div class="bar-indicator">
-                      <div class="bar-fill" style={`width: ${value * 100}%`} data-score={value}></div>
+                    <div class="feature-score-visual">
+                      {value === 1 ? (
+                        <span class="feature-check" aria-label="Fully supported">✓</span>
+                      ) : (
+                        <>
+                          <div class="bar-indicator">
+                            <div class="bar-fill" style={`width: ${value * 100}%`} data-score={value}></div>
+                          </div>
+                          <span class="feature-score" aria-label={`Score ${value} out of 1`}>{Math.round(value * 100)}%</span>
+                        </>
+                      )}
                     </div>
-                    <span class="feature-meaning">{meaning}</span>
+                    <span class="feature-meaning">{meaning || 'No description available'}</span>
                   </div>
                 );
               })}
-            </>
+            </section>
           );
         })}
-      </>
+        </div>
+      </section>
+    )}
+      </div>
+
+      <aside class="db-side-column" aria-label="Related information">
+        {(engineRanks.length > 0 || partOf.length > 0) && (
+          <section class="db-side-section">
+            <h2>Rankings &amp; collections</h2>
+            <ul class="ranks-list">
+              {engineRanks.map(({ board, rank }) => (
+                <li><a href={`/rankings/${board.slug}/`}><span class="label">{board.shortLabel}</span><span class="rank">#{rank}</span></a></li>
+              ))}
+              {partOf.map((r) => (
+                <li>
+                  <a href={`/compare/${r.slug}/`}>
+                    <span class="label">{r.title.replace(/ Compared$/, '')}</span>
+                    <span class="chev" aria-hidden="true">&rsaquo;</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {(db.data.url || db.data.github_url || db.data.gdotv_url || citedClaims.length > 0) && (
+          <section class="db-side-section db-external">
+            <h2>Elsewhere</h2>
+            <ul class="external-list">
+              {db.data.url && (
+                <li>
+                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
+                    <span><strong>Official website</strong><small>{hostname(db.data.url)}</small></span>
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+                  </a>
+                </li>
+              )}
+              {db.data.github_url && (
+                <li>
+                  <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
+                    <span><strong>GitHub repository</strong><small>{typeof githubStars === 'number' ? `${githubStars.toLocaleString('en-US')} stars` : hostname(db.data.github_url)}</small></span>
+                    <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
+                  </a>
+                </li>
+              )}
+              {db.data.gdotv_url && (
+                <li>
+                  <a href={`${db.data.gdotv_url}${db.data.gdotv_url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="gdotv" data-db={db.data.slug}>
+                    <span><strong>Graph visualisation</strong><small>Explore with gdotv</small></span>
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+                  </a>
+                </li>
+              )}
+              {citedClaims.length > 0 && (
+                <li>
+                  <a href="#sources">
+                    <span><strong>Sources</strong><small>{sourceCount} reference{sourceCount === 1 ? '' : 's'}{latestEvidenceCheck ? ` · reviewed ${latestEvidenceCheck}` : ''}</small></span>
+                    <span class="chev" aria-hidden="true">&darr;</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
+        )}
+
+    {comparePeers.length > 0 && (
+      <section class="db-side-section">
+        <h2>Compare with</h2>
+        <ul class="compare-with">
+          {comparePeers.map((link) => (
+            /* The engine name stays in the accessible/crawlable label; the visible
+               lozenge drops it because the page is already about this engine. */
+            <li>
+              <a href={link.href}>
+                <span><span class="sr-only">{db.data.name} </span>vs {link.name}</span>
+                {link.logo
+                  ? <DatabaseLogo src={link.logo} size={22} loading="lazy" />
+                  : <span aria-hidden="true">&rsaquo;</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+      </aside>
+    </div>
+
+    {/* Provenance, not content: last on the page and closed by default. Anyone checking a value
+        goes looking for this; nobody reading about the engine needs it in the way. Kept in the
+        markup rather than loaded on demand so it stays crawlable and Ctrl-F finds it. */}
+    {citedClaims.length > 0 && (
+      <details class="sources" id="sources">
+        <summary>
+          Sources
+          <span class="sources-count">{sourceCount} reference{sourceCount === 1 ? '' : 's'}</span>
+        </summary>
+        {citedClaims.map((claim) => (
+          <div class="claim">
+            <p class="claim-head">
+              <span class="claim-field">{fieldLabels[claim.field] ?? claim.field}</span>
+              <span class="claim-value">{Array.isArray(claim.value) ? claim.value.join(', ') : String(claim.value)}</span>
+            </p>
+            {claim.notes && <p class="claim-notes">{claim.notes}</p>}
+            <ul class="claim-sources">
+              {claim.sources.map((source) => (
+                <li>
+                  <blockquote cite={source.url}>{source.quote}</blockquote>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer nofollow" data-outbound="citation"><cite>{source.title}</cite></a>
+                  {source.archive_url && (
+                    <span class="claim-checked"> · via <a href={source.archive_url} target="_blank" rel="noopener noreferrer nofollow" data-outbound="citation">Internet Archive</a></span>
+                  )}
+                  {source.checked && <span class="claim-checked"> · reviewed {source.checked}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </details>
     )}
   </main>
 </Layout>

@@ -37,6 +37,7 @@ gdotv_support = false
 - `implementation_language` — primary programming language the engine is written in (e.g. `Rust`, `Java`, `C++`); omit when unknown
 - `gdotv_support` — whether the database is supported by G.V()
 - `icon` — optional custom favicon filename in `public/logos/`
+- `github_url` — canonical GitHub repository URL. Its star count is derived at build time rather than stored in TOML
 
 Databases that have been scored in the research paper also include a `[features]` section with 43 feature scores (each a value of `0`, `0.5`, or `1`).
 
@@ -63,6 +64,12 @@ npm install
 npm run dev    # http://localhost:4321
 npm run build  # static output to dist/
 ```
+
+GitHub stars are fetched in one batched GraphQL request and cached under
+`.cache/github-stars/` for one day. Set `GITHUB_STARS_TOKEN`; production can reuse
+`RANKINGS_TOKEN`, and `GITHUB_TOKEN` is also accepted. If neither a token nor an expired
+cache entry is available, the build still succeeds and omits star counts. A scheduled
+workflow requests one Cloudflare Pages rebuild per day.
 
 ## Acknowledgements
 

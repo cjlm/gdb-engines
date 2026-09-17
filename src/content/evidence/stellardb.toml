@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/stellardb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "stellardb"
+
+[[claims]]
+field = "released"
+value = "2018-05"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-06"
+notes = "Transwarp's official company history places the StellarDB launch in May 2018."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.cn/en/introduction"
+  title = "Company Profile - Transwarp"
+  quote = "Launched distributed analytical database ArgoDB and distributed graph database StellarDB"
+  verified = "matched"
+  checked = "2026-08-06"
+
+[[claims]]
+field = "protocols"
+value = ["Thrift"]
+confidence = "medium"
+method = "repo"
+checked = "2026-07-31"
+notes = "Official Python client PyStellarDB is built on PyHive and connects with host/port arguments matching HiveServer2's default Thrift port (10000); Transwarp's official docs also list a JDBC SDK access page, but that site is JS-rendered and its body text could not be fetched to quote."
+
+  [[claims.sources]]
+  url = "https://github.com/WarpCloud/PyStellarDB"
+  title = "WarpCloud/PyStellarDB"
+  quote = "PyStellarDB is a Python API for executing Transwarp Exetended OpenCypher(TEoC) and Hive query. It could also generate a RDD object which could be used in PySpark."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Transwarp's own IPO disclosure describes StellarDB as a separately priced, licensed component of the TDH platform sold under a perpetual-license model, not open-source software; no public source repository exists. Matches current value."
+
+  [[claims.sources]]
+  url = "http://pdf.dfcfw.com/pdf/H2_AN202205191566556104_1.pdf"
+  title = "关于星环信息科技（上海）股份有限公司 首次公开发行股票并在科创板上市申请文件的 首轮审核问询函的回复"
+  quote = "Discover，StellarDB 为图数据库组件，其价格相对较高，少量客户直接购买 TDH 套件 （即每套包括若干组件）。"
+  verified = "matched"
+  checked = "2026-08-02"

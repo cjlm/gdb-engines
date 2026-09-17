@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Go"
 type = "RDF"
 query_languages = ["Custom API"]
+protocols = ["gRPC", "HTTP/REST"]
 released = "2019-04"
 category = "Emerging"
 status = "inactive"

@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/sparksee.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "sparksee"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; Sparsity Technologies' own user manual states the license terms directly."
+
+  [[claims.sources]]
+  url = "https://www.sparsity-technologies.com/doc-sparksee/UserManual/html/Introduction.html"
+  title = "Sparksee User Manual"
+  quote = "Sparksee is distributed under a proprietary license considering the following variables:"
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "released"
+value = "2008"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value; Sparksee was originally named DEX, developed from 2006, with its first version released in 2008."
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/sparksee"
+  title = "Sparksee"
+  quote = "In 2008, its first version was released, and DEX officially changed its name to Sparksee on its 5th release in 2014."
+  verified = "matched"
+  checked = "2026-08-02"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-08-02"
+notes = "Confirms current value."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Sparksee_(graph_database)"
+  title = "Sparksee (graph database) - Wikipedia"
+  quote = "Sparksee (formerly known as DEX) is a high-performance and scalable graph database management system written in C++."
+  verified = "matched"
+  checked = "2026-08-02"

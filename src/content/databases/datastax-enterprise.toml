@@ -8,7 +8,8 @@ license = "Proprietary"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin", "CQL"]
-released = "2016"
+protocols = ["Native binary"]
+released = "2016-04"
 category = "Established"
 gdotv_support = true
 

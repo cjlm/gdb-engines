@@ -9,6 +9,7 @@ implementation_language = "Java"
 type = "Property Graph"
 kind = "query-engine"
 query_languages = ["Java API"]
+protocols = ["Unknown"]
 released = "2012-02"
 category = "Established"
 status = "inactive"

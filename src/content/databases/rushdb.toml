@@ -8,6 +8,7 @@ license = "ELv2"
 implementation_language = "TypeScript"
 type = "Property Graph"
 query_languages = ["Custom API"]
+protocols = ["HTTP/REST"]
 kind = "database"
 released = "2024-12"
 category = "Emerging"
