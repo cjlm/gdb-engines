@@ -1226,6 +1226,18 @@
             "queryLanguages": "SPARQL"
           },
           {
+            "id": "db:oxilite",
+            "label": "oxilite",
+            "image": "https://gdb-engines.com/logos/oxilite.png",
+            "type": "RDF",
+            "kind": "embedded",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT OR Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SPARQL, openCypher"
+          },
+          {
             "id": "db:oxirs",
             "label": "OxiRS",
             "image": "https://gdb-engines.com/logos/oxirs.png",
@@ -1260,6 +1272,18 @@
             "license": "BSD-3-Clause",
             "implementationLanguage": "C++",
             "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:pg-ladybug",
+            "label": "pg_ladybug",
+            "image": "https://gdb-engines.com/logos/pg-ladybug.png",
+            "type": "Property Graph",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "PostgreSQL",
+            "implementationLanguage": "C",
+            "queryLanguages": "openCypher, SQL"
           },
           {
             "id": "db:pggraph",
@@ -1920,8 +1944,8 @@
           },
           {
             "source": "db:agensgraph",
-            "target": "db:graphqlite",
-            "similarity": 0.4444
+            "target": "db:pg-ladybug",
+            "similarity": 0.5556
           },
           {
             "source": "db:akutan",
@@ -1990,8 +2014,8 @@
           },
           {
             "source": "db:apache-age",
-            "target": "db:graphqlite",
-            "similarity": 0.4444
+            "target": "db:pg-ladybug",
+            "similarity": 0.5556
           },
           {
             "source": "db:apache-giraph",
@@ -2630,16 +2654,16 @@
           },
           {
             "source": "db:graphqlite",
+            "target": "db:pg-ladybug",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:graphqlite",
             "target": "db:yugabytedb-mage",
             "similarity": 0.625
           },
           {
             "source": "db:bighorn",
-            "target": "db:graphqlite",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:duckgql",
             "target": "db:graphqlite",
             "similarity": 0.5
           },
@@ -2920,13 +2944,13 @@
           },
           {
             "source": "db:minigraf",
-            "target": "db:zipg",
-            "similarity": 0.375
+            "target": "db:oxilite",
+            "similarity": 0.4444
           },
           {
-            "source": "db:agdb",
-            "target": "db:minigraf",
-            "similarity": 0.3333
+            "source": "db:minigraf",
+            "target": "db:zipg",
+            "similarity": 0.375
           },
           {
             "source": "db:apache-rya",
@@ -3079,6 +3103,16 @@
             "similarity": 0.5
           },
           {
+            "source": "db:oxigraph",
+            "target": "db:oxilite",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:oxilite",
+            "target": "db:oxirs",
+            "similarity": 0.4444
+          },
+          {
             "source": "db:apache-rya",
             "target": "db:oxirs",
             "similarity": 0.5
@@ -3114,6 +3148,11 @@
             "similarity": 0.7143
           },
           {
+            "source": "db:pg-ladybug",
+            "target": "db:yugabytedb-mage",
+            "similarity": 0.75
+          },
+          {
             "source": "db:pggraph",
             "target": "db:yugabytedb-mage",
             "similarity": 0.625
@@ -3124,6 +3163,11 @@
             "similarity": 0.5
           },
           {
+            "source": "db:pg-ladybug",
+            "target": "db:postgresql-sql-pgq",
+            "similarity": 0.4444
+          },
+          {
             "source": "db:galaxybase",
             "target": "db:postgresql-sql-pgq",
             "similarity": 0.375
@@ -3132,11 +3176,6 @@
             "source": "db:postgresql-sql-pgq",
             "target": "db:rocketgraph",
             "similarity": 0.375
-          },
-          {
-            "source": "db:4store",
-            "target": "db:postgresql-sql-pgq",
-            "similarity": 0.3333
           },
           {
             "source": "db:prometheux",

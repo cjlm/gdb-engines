@@ -1,0 +1,15 @@
+name = "pg_ladybug"
+vendor = "LadybugDB"
+slug = "pg-ladybug"
+description = "A PostgreSQL extension that embeds the LadybugDB engine to run Cypher queries from SQL. Registered Postgres tables act as node and relationship labels, and Ladybug's planner rewrites each pattern into a single SQL join executed natively by Postgres; Cypher can also run against Ladybug-native tables stored in the data directory."
+url = "https://github.com/LadybugDB/pg_ladybug"
+github_url = "https://github.com/LadybugDB/pg_ladybug"
+license = "PostgreSQL"
+implementation_language = "C"
+type = "Property Graph"
+kind = "extension"
+query_languages = ["openCypher", "SQL"]
+protocols = ["PostgreSQL wire"]
+released = "2026-07"
+category = "Emerging"
+gdotv_support = false

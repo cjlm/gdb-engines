@@ -1,0 +1,64 @@
+# Sources for values in src/content/databases/oxilite.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "oxilite"
+
+[[claims]]
+field = "protocols"
+value = ["SPARQL Protocol"]
+confidence = "high"
+method = "repo"
+checked = "2026-09-22"
+notes = "Primarily an in-process library; the oxilite-cli crate adds a SPARQL endpoint mirroring oxigraph serve."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Volland/oxilite/main/README.md"
+  title = "oxilite README"
+  quote = "/query, /update, /store like `oxigraph serve`"
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "license"
+value = "MIT OR Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-09-22"
+notes = "GitHub's detector reports Apache-2.0 only; the repo ships LICENSE-MIT and LICENSE-APACHE and the workspace manifest declares the dual licence."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Volland/oxilite/main/Cargo.toml"
+  title = "oxilite workspace Cargo.toml"
+  quote = "license = \"MIT OR Apache-2.0\""
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "released"
+value = "2026-09"
+confidence = "high"
+method = "api"
+checked = "2026-09-22"
+notes = "Repository created and v0.1.0 published to crates.io on 2026-09-22."
+
+  [[claims.sources]]
+  url = "https://crates.io/api/v1/crates/oxilite/0.1.0"
+  title = "oxilite 0.1.0 — crates.io API"
+  quote = "\"created_at\":\"2026-09-22T13:08:46.732275Z\""
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-09-22"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Volland/oxilite/languages"
+  title = "oxilite languages — GitHub API"
+  quote = "\"Rust\": 1503460"
+  verified = "matched"
+  checked = "2026-09-22"
