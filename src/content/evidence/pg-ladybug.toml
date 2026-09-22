@@ -1,0 +1,64 @@
+# Sources for values in src/content/databases/pg-ladybug.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "pg-ladybug"
+
+[[claims]]
+field = "protocols"
+value = ["PostgreSQL wire"]
+confidence = "high"
+method = "repo"
+checked = "2026-09-22"
+notes = "Installed with CREATE EXTENSION and called as a SQL set-returning function, so clients use ordinary Postgres connections."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/LadybugDB/pg_ladybug/main/README.md"
+  title = "pg_ladybug README"
+  quote = "Cypher query support as a PostgreSQL extension."
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "license"
+value = "PostgreSQL"
+confidence = "high"
+method = "repo"
+checked = "2026-09-22"
+notes = "LICENSE is the PostgreSQL License text; GitHub reports it as PostgreSQL."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/LadybugDB/pg_ladybug/main/LICENSE"
+  title = "pg_ladybug LICENSE"
+  quote = "Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and without a written agreement is hereby granted"
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "released"
+value = "2026-07"
+confidence = "medium"
+method = "api"
+checked = "2026-09-22"
+notes = "No tagged releases. Repository created 2026-07-25; announced alongside LadybugDB v0.19.0 on 2026-07-30."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/LadybugDB/pg_ladybug"
+  title = "LadybugDB/pg_ladybug — GitHub API"
+  quote = "\"created_at\": \"2026-07-25T03:57:45Z\""
+  verified = "matched"
+  checked = "2026-09-22"
+
+[[claims]]
+field = "implementation_language"
+value = "C"
+confidence = "high"
+method = "api"
+checked = "2026-09-22"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/LadybugDB/pg_ladybug/languages"
+  title = "pg_ladybug languages — GitHub API"
+  quote = "\"C\": 86024"
+  verified = "matched"
+  checked = "2026-09-22"

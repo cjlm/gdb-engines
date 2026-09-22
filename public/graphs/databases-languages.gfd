@@ -923,6 +923,15 @@
             "status": "active"
           },
           {
+            "id": "db:oxilite",
+            "label": "oxilite",
+            "image": "https://gdb-engines.com/logos/oxilite.png",
+            "kind": "Database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:oxirs",
             "label": "OxiRS",
             "image": "https://gdb-engines.com/logos/oxirs.png",
@@ -948,6 +957,15 @@
             "type": "RDF",
             "category": "Emerging",
             "status": "inactive"
+          },
+          {
+            "id": "db:pg-ladybug",
+            "label": "pg_ladybug",
+            "image": "https://gdb-engines.com/logos/pg-ladybug.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
           },
           {
             "id": "db:pggraph",
@@ -2337,6 +2355,16 @@
             "relationship": "supports"
           },
           {
+            "source": "db:oxilite",
+            "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:oxilite",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:oxirs",
             "target": "language:SPARQL",
             "relationship": "supports"
@@ -2349,6 +2377,16 @@
           {
             "source": "db:parliament",
             "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:pg-ladybug",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:pg-ladybug",
+            "target": "language:SQL",
             "relationship": "supports"
           },
           {
