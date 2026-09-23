@@ -13,3 +13,6 @@ protocols = ["PostgreSQL wire"]
 released = "2026-07"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.ladybugdb]
+relation = "based-on"

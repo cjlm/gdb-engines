@@ -77,3 +77,24 @@ notes = "Matches current value; Java accounts for the overwhelming majority of t
   quote = "\"Java\":34522232,\"Python\":1003675"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.orientdb.relation"
+value = "fork"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://internship.jetbrains.com/projects/1630"
+  title = "YouTrackDB development - JetBrains Internship"
+  quote = "The YouTrack team forked OrientDB code, but it wants to keep OrientDB's initial goals."
+  verified = "unreachable"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://medium.com/@youtrackdb/long-road-ahead-6d648141a190"
+  title = "Long road ahead - YouTrackDB"
+  quote = "Thankfully for the YouTrack project, the OrientDB project has a new chance in its bumpy life to be reborn as the YouTrackDB project."
+  verified = "matched"
+  checked = "2026-09-23"

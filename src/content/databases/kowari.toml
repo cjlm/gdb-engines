@@ -1,0 +1,14 @@
+name = "Kowari"
+vendor = "Tucana Technologies"
+slug = "kowari"
+description = "An RDF triple store written in Java with its own iTQL query language and Lucene full-text indexing, open-sourced by Tucana Technologies from the storage layer of its commercial knowledge server. Development stopped after Northrop Grumman acquired Tucana's assets in 2005; continued as the Mulgara fork."
+url = "https://kowari.sourceforge.net/"
+license = "MPL-1.1"
+implementation_language = "Java"
+type = "RDF"
+query_languages = ["iTQL"]
+released = "2003-10"
+category = "Emerging"
+status = "deprecated"
+status_note = "No longer developed. Continued as the Mulgara fork from 2005."
+gdotv_support = false

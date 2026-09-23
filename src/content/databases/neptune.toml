@@ -14,6 +14,9 @@ category = "Enterprise"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/amazon-neptune-graph-visualization-tool/"
 
+[lineage.blazegraph]
+relation = "based-on"
+
 [features]
 active_development = 1.0
 commercial_support = 1.0

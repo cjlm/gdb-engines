@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.orientdb.relation"
+value = "fork"
+confidence = "high"
+method = "repo"
+checked = "2026-09-23"
+notes = "Self-described 'conceptual fork': a new engine that reuses OrientDB's SQL engine, by OrientDB's founder."
+
+  [[claims.sources]]
+  url = "https://github.com/ArcadeData/arcadedb"
+  title = "ArcadeData/arcadedb"
+  quote = "ArcadeDB reuses OrientDB's SQL engine (heavily modified) and some utility classes."
+  verified = "matched"
+  checked = "2026-09-23"

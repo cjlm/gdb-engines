@@ -680,6 +680,15 @@
             "status": "active"
           },
           {
+            "id": "db:kowari",
+            "label": "Kowari",
+            "image": "https://gdb-engines.com/logos/kowari.png",
+            "kind": "Database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "deprecated"
+          },
+          {
             "id": "db:kuzu",
             "label": "Kuzu",
             "image": "https://gdb-engines.com/logos/kuzu.png",
@@ -1290,6 +1299,15 @@
             "type": "Property Graph",
             "category": "Established",
             "status": "active"
+          },
+          {
+            "id": "db:titan",
+            "label": "Titan",
+            "image": "https://gdb-engines.com/logos/titan.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "deprecated"
           },
           {
             "id": "db:traverse",
@@ -2155,6 +2173,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:kowari",
+            "target": "language:iTQL",
+            "relationship": "supports"
+          },
+          {
             "source": "db:kuzu",
             "target": "language:openCypher",
             "relationship": "supports"
@@ -2636,6 +2659,11 @@
           },
           {
             "source": "db:tinkergraph",
+            "target": "language:Gremlin",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:titan",
             "target": "language:Gremlin",
             "relationship": "supports"
           },

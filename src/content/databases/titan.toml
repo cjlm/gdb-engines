@@ -1,0 +1,15 @@
+name = "Titan"
+vendor = "DataStax"
+previous_vendors = ["Aurelius"]
+slug = "titan"
+description = "A distributed property graph database that stored graphs in pluggable backends such as Apache Cassandra, Apache HBase and Oracle BerkeleyDB, queried with Gremlin. Development stopped after DataStax acquired its developer Aurelius in 2015; continued as the JanusGraph fork and inside DataStax Enterprise Graph."
+github_url = "https://github.com/thinkaurelius/titan"
+license = "Apache-2.0"
+implementation_language = "Java"
+type = "Property Graph"
+query_languages = ["Gremlin"]
+released = "2012"
+category = "Established"
+status = "deprecated"
+status_note = "No releases since 1.0 in September 2015. Development continued as JanusGraph."
+gdotv_support = false

@@ -13,3 +13,6 @@ protocols = ["Redis RESP"]
 released = "2025-10"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.redisgraph-falkordb]
+relation = "based-on"

@@ -13,3 +13,9 @@ protocols = ["HTTP/REST"]
 released = "2026-03"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.graphscope]
+relation = "based-on"
+
+[lineage.kuzu]
+relation = "borrows-from"

@@ -13,3 +13,6 @@ protocols = ["Bolt", "HTTP/REST"]
 released = "2023"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.neo4j]
+relation = "based-on"

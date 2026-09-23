@@ -5,7 +5,8 @@ collected under it carries the pages it came from, every citation is mechanicall
 confirmed sources are published.
 
 `protocols`, `license`, `released` and `implementation_language` are covered across the catalogue.
-Feature scores are not yet covered.
+Each `lineage.<parent>.relation` (where an engine was forked from or built on) must carry a claim
+wherever it is set. Feature scores are not yet covered.
 
 ## Where things live
 

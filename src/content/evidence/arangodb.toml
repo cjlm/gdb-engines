@@ -70,3 +70,24 @@ notes = "Matches current value; confirmed directly in the project's own README."
   quote = "ArangoDB is written in C++ and can handle even very large datasets efficiently."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["AvocadoDB"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/ArangoDB"
+  title = "ArangoDB - Wikipedia"
+  quote = "Later, they changed the name to ArangoDB."
+  verified = "matched"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://dbdb.io/db/arangodb"
+  title = "ArangoDB - Database of Databases"
+  quote = "It was originally named AvocadoDB. Later to avoid legal issues, the name was changed to ArangoDB in May 2012."
+  verified = "matched"
+  checked = "2026-09-23"

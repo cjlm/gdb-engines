@@ -121,3 +121,17 @@ notes = "ontotext.com/products/graphdb/ still resolves but now 301-redirects to 
   quote = "Graphwise GraphDB is an enterprise-grade semantic graph database that supports RDF and SPARQL—providing a highly scalable foundation to link fragmented business data and power real-time AI insights."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["OWLIM"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/master/faq.html"
+  title = "FAQ - GraphDB documentation"
+  quote = "OWLIM is the former name of GraphDB"
+  verified = "matched"
+  checked = "2026-09-23"

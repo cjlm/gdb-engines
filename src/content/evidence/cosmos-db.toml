@@ -91,3 +91,17 @@ notes = "No primary Microsoft source discloses the implementation language of th
   quote = "Written in C++ Supported Languages C#, Go, Java, JavaScript, Python Operating System Windows License Proprietary"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["DocumentDB"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://azure.microsoft.com/en-us/blog/dear-documentdb-customers-welcome-to-azure-cosmos-db/"
+  title = "Dear DocumentDB customers, welcome to Azure Cosmos DB!"
+  quote = "we decided to make Cosmos DB generally available to external developers in 2015 in the form of Azure DocumentDB"
+  verified = "matched"
+  checked = "2026-09-23"

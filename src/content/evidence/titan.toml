@@ -1,0 +1,48 @@
+# Sources for values in src/content/databases/titan.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "titan"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-09-23"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/thinkaurelius/titan/license"
+  title = "GitHub licence API — thinkaurelius/titan"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "api"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/thinkaurelius/titan/languages"
+  title = "GitHub languages API — thinkaurelius/titan"
+  quote = "\"Java\": 4132325"
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "released"
+value = "2012"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://opensource.googleblog.com/2017/01/janusgraph-connects-past-and-future-of-titan.html"
+  title = "JanusGraph connects the past and future of Titan"
+  quote = "JanusGraph is a fork of the popular open source project Titan, originally released in 2012 by Aurelius, and subsequently acquired by DataStax."
+  verified = "matched"
+  checked = "2026-09-23"

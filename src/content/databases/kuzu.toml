@@ -15,3 +15,6 @@ status = "deprecated"
 status_note = "Acquired by Apple in October 2025. Repository archived. Continued as LadybugDB and Bighorn forks."
 gdotv_support = true
 gdotv_url = "https://gdotv.com/kuzu-graph-visualization-tool/"
+
+[lineage.graphflow]
+relation = "successor"

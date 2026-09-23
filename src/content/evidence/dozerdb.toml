@@ -70,3 +70,18 @@ notes = "It is a Neo4j plugin built as a Java uber-jar; matches current value."
   quote = "Please ensure you use java 17 or above when working on the plugin."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.neo4j.relation"
+value = "based-on"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "A plugin distributed with Neo4j Community Edition rather than a fork of it."
+
+  [[claims.sources]]
+  url = "https://dozerdb.org/"
+  title = "DozerDB"
+  quote = "DozerDB is a free, GPL-licensed plugin that extends Neo4j® Community Edition with production-grade capabilities for demanding deployments."
+  verified = "matched"
+  checked = "2026-09-23"

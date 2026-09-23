@@ -12,3 +12,6 @@ query_languages = ["openCypher"]
 released = "2025-10"
 category = "Emerging"
 gdotv_support = true
+
+[lineage.kuzu]
+relation = "fork"

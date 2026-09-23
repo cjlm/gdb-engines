@@ -92,3 +92,17 @@ notes = "The vendor's own site and GitHub repo both state active support has end
   quote = "We are archiving the KuzuDB project here: https://github.com/kuzudb/kuzu/"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.graphflow.relation"
+value = "successor"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://kuzudb.github.io/blog/post/meet-kuzu/"
+  title = "Meet Kuzu"
+  quote = "Kuzu’s core architecture is informed by 6 years of research we conducted at University of Waterloo on an earlier prototype GDBMS called GraphflowDB."
+  verified = "matched"
+  checked = "2026-09-23"

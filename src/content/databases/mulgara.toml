@@ -15,3 +15,6 @@ category = "Emerging"
 status = "inactive"
 status_note = "No significant development activity in recent years."
 gdotv_support = false
+
+[lineage.kowari]
+relation = "fork"

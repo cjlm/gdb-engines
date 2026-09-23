@@ -1,5 +1,6 @@
 name = "Akutan"
 vendor = "eBay"
+previous_names = ["Beam"]
 slug = "akutan"
 description = "A distributed knowledge graph store built by eBay for storing and querying billions of facts. Uses a centralized log for serializing transactional updates across a cluster."
 url = "https://github.com/eBay/akutan"

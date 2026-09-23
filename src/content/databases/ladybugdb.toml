@@ -14,3 +14,6 @@ released = "2025-11"
 category = "Growing"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/ladybugdb-ide-graph-visualization-tool/"
+
+[lineage.kuzu]
+relation = "fork"

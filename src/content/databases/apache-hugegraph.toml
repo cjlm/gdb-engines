@@ -13,6 +13,12 @@ released = "2018-08"
 category = "Established"
 gdotv_support = false
 
+[lineage.titan]
+relation = "inspired-by"
+
+[lineage.janusgraph]
+relation = "inspired-by"
+
 [features]
 active_development = 1.0
 commercial_support = 0.0

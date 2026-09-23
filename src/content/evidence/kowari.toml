@@ -1,0 +1,56 @@
+# Sources for values in src/content/databases/kowari.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "kowari"
+
+[[claims]]
+field = "license"
+value = "MPL-1.1"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Stated by Northrop Grumman in 2006 after it had acquired the copyright from Tucana."
+
+  [[claims.sources]]
+  url = "http://prototypo.blogspot.com/2006/07/northrop-grumman-backs-down-on-kowari.html"
+  title = "Northrop Grumman Backs Down on Kowari"
+  quote = "licensed freely to all under the Mozilla Public License, version 1.1"
+  verified = "matched"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://sourceforge.net/projects/kowari/"
+  title = "Kowari - SourceForge"
+  quote = "Mozilla Public License 1.1 (MPL 1.1)"
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "implementation_language"
+value = "Java"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://www.xml.com/pub/a/2004/06/23/kowari.html"
+  title = "A First Look at the Kowari Triplestore"
+  quote = "Kowari is an open-sourced (Mozilla Public License) triplestore optimized for RDF storage, created by Tucana Technologies, and written entirely in Java 1.4.2."
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "released"
+value = "2003-10"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Developer beta announced on the W3C RDF interest list on 25 October 2003."
+
+  [[claims.sources]]
+  url = "https://lists.w3.org/Archives/Public/www-rdf-interest/2003Oct/0173.html"
+  title = "Kowari Developer Beta Release"
+  quote = "I'm pleased to announce the availability of an early release of Kowari for RDF developers."
+  verified = "matched"
+  checked = "2026-09-23"

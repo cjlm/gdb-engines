@@ -63,3 +63,17 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.agensgraph.relation"
+value = "inspired-by"
+confidence = "high"
+method = "repo"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://github.com/apache/age"
+  title = "apache/age"
+  quote = "AGE is an acronym for A Graph Extension and is inspired by Bitnine's AgensGraph, a multi-model database fork of PostgreSQL."
+  verified = "matched"
+  checked = "2026-09-23"
