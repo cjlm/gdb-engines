@@ -84,7 +84,7 @@ value = "based-on"
 confidence = "high"
 method = "repo"
 checked = "2026-09-23"
-notes = "Built as an ArangoDB Foxx microservice; a later embedded single-file version no longer needs ArangoDB."
+notes = "Built as an ArangoDB Foxx microservice."
 
   [[claims.sources]]
   url = "https://github.com/RecallGraph/RecallGraph"
