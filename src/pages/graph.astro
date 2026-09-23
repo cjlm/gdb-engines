@@ -57,6 +57,11 @@ const garphieldOrigin =
 
 const databaseEntries = await getCollection('databases');
 const lineageFamilies = buildFamilies(databaseEntries);
+// Two-stop histories (a single rename or derivative) read best as small multiples in a grid;
+// anything longer gets the full width.
+const isCompactFamily = (family: (typeof lineageFamilies)[number]) => family.stations.length === 2;
+const branchingFamilies = lineageFamilies.filter((family) => !isCompactFamily(family));
+const compactFamilies = lineageFamilies.filter(isCompactFamily);
 const faviconMap = await buildFaviconMap(databaseEntries);
 const timelineDatabases = databaseEntries.map(({ data }) => ({
   name: data.name,
@@ -391,19 +396,20 @@ function timelineTypeClass(type: string): string {
           aria-hidden="true"
           data-family-count={lineageFamilies.length}
         >
-          <ul class="lineage-key" aria-label="Line styles">
-            <li><svg width="36" height="10" aria-hidden="true"><path d="M3 5H33" /></svg>fork, based on, successor, renamed</li>
-            <li><svg width="36" height="10" aria-hidden="true"><path d="M3 5H33" class="is-dotted" /></svg>inspired by</li>
-            <li><svg width="36" height="10" aria-hidden="true"><path d="M3 5H33" class="is-dashed" /></svg>borrows code</li>
-            <li><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6" class="is-external" /></svg>not in the catalogue</li>
-            <li><svg width="14" height="14" aria-hidden="true"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" class="is-ended" /></svg>no longer developed</li>
-          </ul>
-          {lineageFamilies.map((family) => (
+          {branchingFamilies.map((family) => (
             <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
               <h2 id={`lineage-${family.id}`}>{family.title}</h2>
               <LineageMap family={family} />
             </section>
           ))}
+          <div class="lineage-compact">
+            {compactFamilies.map((family) => (
+              <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
+                <h2 id={`lineage-${family.id}`}>{family.title}</h2>
+                <LineageMap family={family} maxWidth={300} />
+              </section>
+            ))}
+          </div>
         </section>
       </div>
     </section>
@@ -1464,63 +1470,33 @@ function timelineTypeClass(type: string): string {
       scrollbar-color: var(--color-border) transparent;
     }
 
-    .lineage-key {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      margin: 0 -1.25rem;
-      padding: 0.55rem 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem 1.1rem;
-      list-style: none;
-      border-bottom: 1px solid var(--color-border);
-      background: var(--color-background);
-      color: var(--color-text-secondary);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-    }
-
-    .lineage-key li {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      white-space: nowrap;
-    }
-
-    .lineage-key path {
-      fill: none;
-      stroke: var(--color-text-secondary);
-      stroke-width: 4;
-      stroke-linecap: round;
-    }
-
-    .lineage-key path.is-dotted {
-      stroke-dasharray: 0.1 8;
-    }
-
-    .lineage-key path.is-dashed {
-      stroke-dasharray: 9 6;
-      stroke-linecap: butt;
-    }
-
-    .lineage-key path.is-ended {
-      stroke: var(--lineage-ended);
-      stroke-width: 2.25;
-    }
-
-    .lineage-key circle {
-      fill: var(--color-surface);
-      stroke: var(--color-text-tertiary);
-      stroke-width: 2.5;
-    }
-
     .lineage-family {
-      padding-top: 1rem;
+      padding-block: 1rem 0.5rem;
     }
 
-    .lineage-family + .lineage-family {
+    .lineage-family + .lineage-family,
+    .lineage-compact {
       border-top: 1px solid var(--color-border);
+    }
+
+    .lineage-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+      column-gap: 1.5rem;
+    }
+
+    .lineage-compact .lineage-family {
+      border-top: 0;
+    }
+
+    /* A two-stop map already names both engines; the heading stays for screen readers and links. */
+    .lineage-compact h2 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
 
     .lineage-family h2 {

@@ -35,13 +35,17 @@
   --color-text-tertiary: #767676;
   --color-star: #9a6700;
 
-  /* Lineage map lines: the brand accent plus the graph page's timeline hues. */
+  /* Lineage map lines, taken in this order. Validated as a categorical set (lightness, chroma,
+     colour-blind and normal-vision separation) against each mode's surface; the lighter slots
+     fall under 3:1 on white, which every line's direct name label offsets. */
   --lineage-1: #a73752;
-  --lineage-2: #3975bd;
-  --lineage-3: #7860ba;
-  --lineage-4: #a96b16;
-  --lineage-5: #2f7d6d;
-  --lineage-6: #5b6b7f;
+  --lineage-2: #2a78d6;
+  --lineage-3: #eb6834;
+  --lineage-4: #1baf7a;
+  --lineage-5: #eda100;
+  --lineage-6: #4a3aa7;
+  --lineage-7: #008300;
+  --lineage-8: #e87ba4;
   --lineage-ended: #b42318;
   --site-background:
     radial-gradient(
@@ -66,13 +70,14 @@
     --color-text-secondary: #AAA;
     --color-text-tertiary: #8A8A8A;
     --color-star: #e3b341;
-
-    --lineage-1: #e8a4b5;
-    --lineage-2: #7aa7e0;
-    --lineage-3: #a995e3;
-    --lineage-4: #d9a255;
-    --lineage-5: #5fb8a3;
-    --lineage-6: #9aa8ba;
+    --lineage-1: #d5607e;
+    --lineage-2: #3987e5;
+    --lineage-3: #d95926;
+    --lineage-4: #199e70;
+    --lineage-5: #c98500;
+    --lineage-6: #9085e9;
+    --lineage-7: #008300;
+    --lineage-8: #d55181;
     --lineage-ended: #ff8a80;
   }
 }
@@ -90,13 +95,14 @@
   --color-text-secondary: #AAA;
   --color-text-tertiary: #8A8A8A;
   --color-star: #e3b341;
-
-  --lineage-1: #e8a4b5;
-  --lineage-2: #7aa7e0;
-  --lineage-3: #a995e3;
-  --lineage-4: #d9a255;
-  --lineage-5: #5fb8a3;
-  --lineage-6: #9aa8ba;
+  --lineage-1: #d5607e;
+  --lineage-2: #3987e5;
+  --lineage-3: #d95926;
+  --lineage-4: #199e70;
+  --lineage-5: #c98500;
+  --lineage-6: #9085e9;
+  --lineage-7: #008300;
+  --lineage-8: #d55181;
   --lineage-ended: #ff8a80;
 }
 
@@ -1423,8 +1429,6 @@ thead [role="tooltip"]::after {
 .db-section + .db-section { margin-top: 2.75rem; }
 .db-section-heading {
   margin-bottom: 0.875rem;
-  padding-bottom: 0.625rem;
-  border-bottom: 1px solid var(--color-border);
 }
 .db-page h2 {
   font-family: var(--font-heading);

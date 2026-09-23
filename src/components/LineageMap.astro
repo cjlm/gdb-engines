@@ -1,5 +1,5 @@
 ---
-import { graphStratify, grid } from 'd3-dag';
+import { graphStratify, grid, laneGreedy } from 'd3-dag';
 import { curveBumpX, line } from 'd3-shape';
 import { RELATION_LABELS, type Family, type Relation, type Station } from '../lib/lineage';
 
@@ -7,9 +7,11 @@ interface Props {
   family: Family;
   /** Slug of the engine whose page this is; its station is drawn as "you are here". */
   highlight?: string;
+  /** Widest the family is drawn before its time scale compresses to fit. */
+  maxWidth?: number;
 }
 
-const { family, highlight } = Astro.props;
+const { family, highlight, maxWidth = 880 } = Astro.props;
 
 const LANE = 84;
 const PAD_Y_TOP = 50;
@@ -19,7 +21,7 @@ const LABEL_WRAP = 18;
 const LABEL_LINE = 15;
 /** Horizontal run a branch needs to change lanes. */
 const BEND = 44;
-/** Minimum clear space between neighbouring columns' text. */
+/** Minimum clear space between neighbouring stations' text on the same lane. */
 const TEXT_GAP = 20;
 /** Space kept between a station and the relation labels on its incoming line. */
 const LABEL_PAD = 22;
@@ -27,12 +29,17 @@ const LABEL_PAD = 22;
 const LINE_RUN = 38;
 /** Padding inside the pill drawn behind a relation label. */
 const PILL_PAD = 5;
+// Horizontal scale bounds, in pixels per year. The scale is the smallest that gives every
+// line the room its labels need, clamped so a short family isn't stretched and a long one
+// isn't squashed; stations that still collide are nudged apart afterwards.
+const MIN_PX_PER_YEAR = 22;
+const MAX_PX_PER_YEAR = 90;
 // Approximate advance widths, used to keep text from colliding. Labels are 14px Familjen
 // Grotesk semibold; captions and relation labels are 12px IBM Plex Mono (0.6em advance).
 const LABEL_CHAR = 8;
 const MONO_CHAR = 7.2;
-/** Number of `--lineage-N` colour tokens defined in global.css. */
-const LINE_COLOR_COUNT = 6;
+/** Number of `--lineage-N` colour tokens defined in global.css, assigned in order. */
+const LINE_COLOR_COUNT = 8;
 const ROUTE_STYLES: Partial<Record<Relation, string>> = {
   'inspired-by': 'is-dotted',
   'borrows-from': 'is-dashed',
@@ -41,9 +48,11 @@ const ROUTE_STYLES: Partial<Record<Relation, string>> = {
 const dag = graphStratify()
   .id((s: Station) => s.id)
   .parentIds((s: Station) => s.parents.map((p) => p.id))(family.stations);
-grid().rank((node) => node.data.when)(dag);
+// Bidirectional lanes let branches fan out on both sides of their parent's line.
+grid().lane(laneGreedy().bidirectional(true)).rank((node) => node.data.when)(dag);
 
 type DagNode = ReturnType<typeof dag.nodes> extends IterableIterator<infer N> ? N : never;
+const topological = [...dag.nodes()].sort((a, b) => a.y - b.y);
 
 function wrap(label: string): string[] {
   const lines: string[] = [];
@@ -75,7 +84,7 @@ function halfWidth(station: Station): number {
 // Relation labels sit on the target's incoming line, nearest the station first. A relation shared
 // by several parents is labelled once, since those lines run together into the station.
 const relationLabels = new Map<string, { relation: Relation; offset: number; width: number }[]>();
-for (const node of dag.nodes()) {
+for (const node of topological) {
   const relations = [...new Set(node.data.parents.map((p) => p.relation))];
   let offset = radius(node.data) + LABEL_PAD;
   const labels = [];
@@ -92,38 +101,101 @@ function labelFor(target: Station, source: Station) {
   return relationLabels.get(target.id)!.find((l) => l.relation === relation)!;
 }
 
-// The grid layout runs top-to-bottom with lanes across; turn it on its side so time reads left
-// to right and each lane becomes a horizontal line. Columns are spaced by what is drawn in them
-// rather than evenly, so text never overlaps and each branch has room to bend before its label.
-const lanes = [...new Set([...dag.nodes()].map((n) => n.x))].sort((a, b) => a - b);
-const byRow = [...dag.nodes()].sort((a, b) => a.y - b.y);
+/**
+ * When each station sits in time. Former names and uncatalogued ancestors have no release date,
+ * so they are placed between their dated neighbours; a child never sits left of its parent.
+ */
+function resolveTimes(): Map<DagNode, number> {
+  const times = new Map<DagNode, number>();
+  for (const node of topological) {
+    if (node.data.when !== undefined) times.set(node, node.data.when);
+  }
+  const datedChildren = (node: DagNode) =>
+    [...node.children()].map((c) => times.get(c)).filter((t) => t !== undefined);
+  for (const node of [...topological].reverse()) {
+    if (times.has(node) || node.nparents() > 0) continue;
+    const children = datedChildren(node);
+    times.set(node, (children.length ? Math.min(...children) : 0) - 1);
+  }
+  for (const node of topological) {
+    if (node.nparents() === 0) continue;
+    const earliest = Math.max(...[...node.parents()].map((p) => times.get(p)!));
+    if (!times.has(node)) {
+      const children = datedChildren(node);
+      const latest = children.length ? Math.min(...children) : earliest + 1;
+      times.set(node, latest > earliest ? (earliest + latest) / 2 : earliest + 0.5);
+    } else {
+      times.set(node, Math.max(times.get(node)!, earliest));
+    }
+  }
+  return times;
+}
+
+const times = resolveTimes();
+const byTime = [...topological].sort((a, b) => times.get(a)! - times.get(b)! || a.y - b.y);
+const laneOf = (node: DagNode) => node.x;
+
+/** Pixels needed between two stations on the same line, or between a parent and its child. */
+function sameLaneGap(left: DagNode, right: DagNode): number {
+  return halfWidth(left.data) + TEXT_GAP + halfWidth(right.data);
+}
+function edgeGap(source: DagNode, target: DagNode): number {
+  const bent = laneOf(source) !== laneOf(target);
+  const clear = bent ? halfWidth(source.data) + BEND : radius(source.data);
+  return clear + LINE_RUN + labelFor(target.data, source.data).offset;
+}
+
+const constraints: [DagNode, DagNode, number][] = [];
+const lastInLane = new Map<number, DagNode>();
+for (const node of byTime) {
+  const previous = lastInLane.get(laneOf(node));
+  if (previous) constraints.push([previous, node, sameLaneGap(previous, node)]);
+  lastInLane.set(laneOf(node), node);
+  for (const parent of node.parents()) constraints.push([parent, node, edgeGap(parent, node)]);
+}
+
+let pxPerYear = MIN_PX_PER_YEAR;
+for (const [left, right, gap] of constraints) {
+  const years = times.get(right)! - times.get(left)!;
+  if (years > 0.05) pxPerYear = Math.max(pxPerYear, gap / years);
+}
+pxPerYear = Math.min(pxPerYear, MAX_PX_PER_YEAR);
+// Fitting the available width wins over the minimum scale; nudging below keeps text apart.
+const span = Math.max(...byTime.map((n) => times.get(n)!)) - Math.min(...byTime.map((n) => times.get(n)!));
+const textAllowance = Math.max(...byTime.map((n) => halfWidth(n.data))) * 2 + PAD_X * 2;
+if (span > 0) pxPerYear = Math.min(pxPerYear, Math.max(0, maxWidth - textAllowance) / span);
+
+const start = Math.min(...byTime.map((n) => times.get(n)! * pxPerYear - halfWidth(n.data)));
 const xOf = new Map<DagNode, number>();
-for (const [i, node] of byRow.entries()) {
-  let x = PAD_X + halfWidth(node.data);
-  const previous = byRow[i - 1];
-  if (previous) x = Math.max(x, xOf.get(previous)! + halfWidth(previous.data) + TEXT_GAP + halfWidth(node.data));
-  for (const source of node.parents()) {
-    const bent = source.x !== node.x;
-    const clear = bent ? halfWidth(source.data) + BEND : radius(source.data);
-    x = Math.max(x, xOf.get(source)! + clear + LINE_RUN + labelFor(node.data, source.data).offset);
+for (const node of byTime) xOf.set(node, times.get(node)! * pxPerYear - start + PAD_X);
+// Nudge apart anything the clamped scale left too close, in time order so pushes cascade.
+for (const node of byTime) {
+  let x = xOf.get(node)!;
+  for (const [left, right, gap] of constraints) {
+    if (right === node) x = Math.max(x, xOf.get(left)! + gap);
   }
   xOf.set(node, x);
 }
+
+const lanes = [...new Set(topological.map(laneOf))].sort((a, b) => a - b);
 const position = (node: DagNode): [number, number] => [
   xOf.get(node)!,
-  PAD_Y_TOP + lanes.indexOf(node.x) * LANE,
+  PAD_Y_TOP + lanes.indexOf(laneOf(node)) * LANE,
 ];
 
+// Lines take hues in a fixed order, earliest engine first. A family with more lines than
+// validated hues draws the rest in neutral ink rather than repeating a colour.
 const lineColor = new Map<string, string>();
 function colorFor(station: Station): string {
   const key = station.slug ?? station.id;
   if (!lineColor.has(key)) {
-    lineColor.set(key, `var(--lineage-${(lineColor.size % LINE_COLOR_COUNT) + 1})`);
+    const slot = lineColor.size + 1;
+    lineColor.set(key, slot <= LINE_COLOR_COUNT ? `var(--lineage-${slot})` : 'var(--color-text-tertiary)');
   }
   return lineColor.get(key)!;
 }
 
-const nodes = byRow.map((node) => {
+const nodes = byTime.map((node) => {
   const [x, y] = position(node);
   return { station: node.data, x, y, color: node.data.kind === 'external' ? undefined : colorFor(node.data) };
 });
@@ -149,13 +221,23 @@ const links = [...dag.links()].map((link) => {
   };
 });
 
-const relationTexts = nodes.flatMap(({ station, x, y }) =>
-  relationLabels.get(station.id)!.map((label) => ({
-    text: RELATION_LABELS[label.relation],
-    x: x - label.offset + label.width / 2,
-    y,
-    width: label.width,
-  })));
+// A lone straight line carries its label at its midpoint; where lines bend or several labels
+// share one line, labels stack from the station outwards so each stays on its own route.
+function soleStraightParent(node: DagNode): DagNode | undefined {
+  const parents = [...node.parents()];
+  return parents.length === 1 && laneOf(parents[0]) === laneOf(node) ? parents[0] : undefined;
+}
+
+const relationTexts = byTime.flatMap((node) => {
+  const [x, y] = position(node);
+  const parent = soleStraightParent(node);
+  return relationLabels.get(node.data.id)!.map((label) => {
+    const midpoint = parent
+      ? (xOf.get(parent)! + radius(parent.data) + x - radius(node.data)) / 2
+      : x - label.offset + label.width / 2;
+    return { text: RELATION_LABELS[label.relation], x: midpoint, y, width: label.width };
+  });
+});
 
 const width = Math.max(...nodes.map(({ station, x }) => x + halfWidth(station))) + PAD_X;
 const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
@@ -225,6 +307,7 @@ const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
 
   .lineage-map svg {
     display: block;
+    margin-inline: auto;
   }
 
   .lineage-routes path {
@@ -317,6 +400,10 @@ const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
   a:hover .lineage-label,
   a:focus-visible .lineage-label {
     fill: var(--color-brand-accent);
-    text-decoration: underline;
+  }
+
+  a:hover .lineage-station,
+  a:focus-visible .lineage-station {
+    stroke-width: 4;
   }
 </style>
