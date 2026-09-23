@@ -1,7 +1,7 @@
 ---
 import { graphStratify, grid, laneGreedy } from 'd3-dag';
 import { curveBumpX, line } from 'd3-shape';
-import { RELATION_LABELS, type Family, type Relation, type Station } from '../lib/lineage';
+import { RELATION_LABELS, RELATION_PHRASES, type Family, type Relation, type Station } from '../lib/lineage';
 
 interface Props {
   family: Family;
@@ -239,16 +239,29 @@ const relationTexts = byTime.flatMap((node) => {
   });
 });
 
+// The same relationships as sentences, for screen readers and anyone who can't use the drawing.
+const labelById = new Map(family.stations.map((s) => [s.id, s.label]));
+const descriptions = byTime
+  .filter((node) => node.data.parents.length > 0 || node.data.ended)
+  .map(({ data }) => {
+    const when = data.released ? `, ${data.released.slice(0, 4)}` : '';
+    const origins = data.parents.map((p) => `${RELATION_PHRASES[p.relation]} ${labelById.get(p.id)}`);
+    const ended = data.ended ? ['no longer developed'] : [];
+    return `${data.label}${when}: ${[...origins, ...ended].join('; ')}.`;
+  });
+
+const focusX = nodes.find(({ station }) => station.kind === 'current' && station.slug === highlight)?.x;
+
 const width = Math.max(...nodes.map(({ station, x }) => x + halfWidth(station))) + PAD_X;
 const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
 ---
-<div class="lineage-map">
+<div class="lineage-map" data-focus-x={focusX}>
   <svg
     viewBox={`0 0 ${width} ${height}`}
     width={width}
     height={height}
-    role="img"
-    aria-label={`${family.title} family: ${family.stations.map((s) => s.label).join(', ')}`}
+    role="group"
+    aria-label={`Lineage of ${family.title}`}
   >
     <g class="lineage-routes">
       {links.map((link) => (
@@ -296,7 +309,19 @@ const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
         : <g>{marker}</g>;
     })}
   </svg>
+  <ul class="sr-only">
+    {descriptions.map((text) => <li>{text}</li>)}
+  </ul>
 </div>
+
+<script>
+  // On screens narrower than the map, open it scrolled to this page's engine rather than the
+  // family's earliest ancestor.
+  for (const map of document.querySelectorAll<HTMLElement>('.lineage-map[data-focus-x]')) {
+    if (map.scrollWidth <= map.clientWidth) continue;
+    map.scrollLeft = Number(map.dataset.focusX) - map.clientWidth / 2;
+  }
+</script>
 
 <style>
   .lineage-map {

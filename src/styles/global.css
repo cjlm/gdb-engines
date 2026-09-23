@@ -1316,6 +1316,16 @@ thead [role="tooltip"]::after {
     color-mix(in srgb, var(--color-background) 92%, transparent);
   box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 5%);
 }
+/* Intro on the left, the engine's outbound links on the right, key facts across the bottom. */
+.db-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15.5rem, 19rem);
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.db-hero-main { min-width: 0; }
+.db-hero .db-snapshot { grid-column: 1 / -1; }
+.db-lineage { margin-top: 2.5rem; }
 .db-identity {
   display: flex;
   align-items: center;
@@ -1594,6 +1604,8 @@ thead [role="tooltip"]::after {
 }
 
 @media (max-width: 52rem) {
+  .db-hero { grid-template-columns: 1fr; }
+  .db-hero-links { margin-top: 1.5rem; }
   .db-layout { grid-template-columns: 1fr; }
   .db-side-column {
     position: static;

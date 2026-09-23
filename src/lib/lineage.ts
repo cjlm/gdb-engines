@@ -40,6 +40,16 @@ export const RELATION_LABELS: Record<Relation, string> = {
   'borrows-from': 'borrows code',
 };
 
+/** Relations phrased to precede the parent's name: "fork of Titan", "successor to graphd". */
+export const RELATION_PHRASES: Record<Relation, string> = {
+  renamed: 'renamed from',
+  fork: 'fork of',
+  'based-on': 'based on',
+  successor: 'successor to',
+  'inspired-by': 'inspired by',
+  'borrows-from': 'borrows code from',
+};
+
 function fractionalYear(released: string | undefined): number | undefined {
   if (!released) return undefined;
   const [year, month] = released.split('-').map(Number);
