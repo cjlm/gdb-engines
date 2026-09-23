@@ -13,6 +13,7 @@ import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_R
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
+import { layoutFamily } from '../../lib/lineage-layout';
 
 const ranking = await loadRankings();
 const catalogue = await getCollection('databases');
@@ -122,6 +123,10 @@ const citedClaims = evidence
   .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
 const lineageFamily = familyOf(buildFamilies(catalogue), db.data.slug);
+// A map that fits beside the sidebar sits under Details; a wider one gets the full page width.
+const MAIN_COLUMN_MAP_WIDTH = 700;
+const lineageLayout = lineageFamily && layoutFamily(lineageFamily, { highlight: db.data.slug });
+const lineageInColumn = Boolean(lineageLayout && lineageLayout.width <= MAIN_COLUMN_MAP_WIDTH);
 
 function formatClaimValue(field: string, value: string | number | boolean | string[]): string {
   if (Array.isArray(value)) return value.join(', ');
@@ -307,12 +312,15 @@ function hostname(value: string): string {
       </dl>
     </header>
 
-    {lineageFamily && (
+
+    {lineageFamily && !lineageInColumn && (
       <section class="db-section db-lineage" aria-labelledby="lineage-heading">
         <div class="db-section-heading">
           <h2 id="lineage-heading">Lineage</h2>
         </div>
-        <LineageMap family={lineageFamily} highlight={db.data.slug} />
+        <div class="db-lineage-panel">
+          <LineageMap family={lineageFamily} highlight={db.data.slug} layout={lineageLayout} />
+        </div>
       </section>
     )}
 
@@ -388,6 +396,17 @@ function hostname(value: string): string {
       )}
           </dl>
         </section>
+
+        {lineageFamily && lineageInColumn && (
+          <section class="db-section db-lineage" aria-labelledby="lineage-heading">
+            <div class="db-section-heading">
+              <h2 id="lineage-heading">Lineage</h2>
+            </div>
+            <div class="db-lineage-panel">
+              <LineageMap family={lineageFamily} highlight={db.data.slug} layout={lineageLayout} />
+            </div>
+          </section>
+        )}
 
 
     {db.data.features && (

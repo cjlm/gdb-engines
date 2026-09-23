@@ -1325,7 +1325,13 @@ thead [role="tooltip"]::after {
 }
 .db-hero-main { min-width: 0; }
 .db-hero .db-snapshot { grid-column: 1 / -1; }
-.db-lineage { margin-top: 2.5rem; }
+.db-page > .db-lineage { margin-top: 2.5rem; }
+.db-lineage-panel {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--db-panel);
+}
 .db-identity {
   display: flex;
   align-items: center;
