@@ -1,5 +1,6 @@
 name = "Graph Engine"
 vendor = "Microsoft"
+previous_names = ["Trinity"]
 slug = "graph-engine"
 description = "A distributed, in-memory graph processing engine developed by Microsoft Research, originally known as Trinity. Supports large-scale graph computation on a memory cloud architecture."
 url = "https://github.com/microsoft/GraphEngine"

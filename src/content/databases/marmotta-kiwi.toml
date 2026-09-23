@@ -14,3 +14,6 @@ category = "Emerging"
 status = "inactive"
 status_note = "Project retired to the Apache Attic. Repository archived in May 2021."
 gdotv_support = false
+
+[lineage.eclipse-rdf4j]
+relation = "based-on"

@@ -84,3 +84,17 @@ notes = "Confirms current value. The repo is 95.5% Java by GitHub's byte count, 
   quote = "Download a J2SE 1.5.X (or higher) for your platform from http://java.sun.com/j2se/, and install it."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.kowari.relation"
+value = "fork"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "http://www.mulgara.org/release.html"
+  title = "Mulgara Project Release Notes"
+  quote = "The initial release is a fork from Kowari v1.1, as of August 1, 2005."
+  verified = "matched"
+  checked = "2026-09-23"

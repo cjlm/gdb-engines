@@ -14,3 +14,6 @@ released = "2020-07"
 category = "Established"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/apache-age-ide-graph-visualization-tool/"
+
+[lineage.agensgraph]
+relation = "inspired-by"

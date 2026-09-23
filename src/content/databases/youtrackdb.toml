@@ -13,3 +13,6 @@ kind = "database"
 released = "2024-12"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.orientdb]
+relation = "fork"

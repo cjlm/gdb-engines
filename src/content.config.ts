@@ -26,6 +26,15 @@ const databases = defineCollection({
     status_note: z.string().optional(),
     previous_vendors: z.array(z.string()).optional(),
     previous_names: z.array(z.string()).optional(),
+    // Where this engine came from, keyed by parent. A key that is a catalogue slug links to that
+    // entry; any other key names a project outside the catalogue and must give its `name`.
+    lineage: z.record(
+      z.string().regex(/^[a-z0-9-]+$/),
+      z.object({
+        name: z.string().min(1).optional(),
+        relation: z.enum(['fork', 'based-on', 'successor', 'inspired-by', 'borrows-from']),
+      }),
+    ).optional(),
     released: z.string().regex(/^\d{4}(-\d{2})?$/).optional(),
     query_languages: z.array(z.string()).optional(),
     // Closed vocabulary — see src/lib/protocols.ts for why this differs from query_languages.

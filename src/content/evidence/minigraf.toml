@@ -48,3 +48,18 @@ notes = "Confirms current value. crates.io's own line-count analysis of the publ
   quote = "\"linecounts\":{\"languages\":{\"Rust\":{\"code_lines\":24338,\"comment_lines\":1611,\"files\":36}},\"total_code_lines\":24338"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.recallgraph.relation"
+value = "successor"
+confidence = "high"
+method = "repo"
+checked = "2026-09-23"
+notes = "Same author. Described as a spiritual successor with a different technology stack, not a port of RecallGraph's code."
+
+  [[claims.sources]]
+  url = "https://github.com/RecallGraph/RecallGraph"
+  title = "RecallGraph/RecallGraph"
+  quote = "Minigraf is a spiritual successor, not a port."
+  verified = "matched"
+  checked = "2026-09-23"

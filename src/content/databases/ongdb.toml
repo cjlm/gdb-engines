@@ -12,3 +12,6 @@ protocols = ["Bolt", "HTTP/REST"]
 released = "2018"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.neo4j]
+relation = "fork"

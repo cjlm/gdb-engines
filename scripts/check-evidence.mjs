@@ -21,7 +21,12 @@ const DB_DIR = 'src/content/databases';
 const EV_DIR = 'src/content/evidence';
 
 /** Values we won't publish unsourced. Feature scores remain grandfathered until backfilled. */
-const REQUIRE_EVIDENCE = ['protocols', 'license', 'released', 'implementation_language'];
+const REQUIRE_EVIDENCE = [
+  'protocols',
+  'license',
+  'released',
+  'implementation_language',
+];
 
 const errors = [];
 const warnings = [];
@@ -116,7 +121,17 @@ if (existsSync(EV_DIR)) {
 }
 
 for (const [slug, { file, data }] of databases) {
-  for (const field of REQUIRE_EVIDENCE) {
+  const lineageFields = [];
+  for (const [key, parent] of Object.entries(data.lineage ?? {})) {
+    lineageFields.push(`lineage.${key}.relation`);
+    if (databases.has(key) === Boolean(parent.name)) {
+      errors.push(
+        `${join(DB_DIR, file)}: lineage.${key} must either be a catalogue slug or give a name ` +
+        `for a project outside the catalogue, not both or neither.`,
+      );
+    }
+  }
+  for (const field of [...REQUIRE_EVIDENCE, ...lineageFields]) {
     if (fieldValue(data, field) === undefined) continue;
     if (!evidenced.get(slug)?.has(field)) {
       errors.push(`${join(DB_DIR, file)}: sets "${field}" but ${EV_DIR}/${slug}.toml has no claim for it.`);

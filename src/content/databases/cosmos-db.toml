@@ -1,5 +1,6 @@
 name = "Cosmos DB"
 vendor = "Microsoft"
+previous_names = ["DocumentDB"]
 slug = "cosmos-db"
 description = "A globally distributed multi-model database service on Microsoft Azure with property graph support through the Apache Gremlin API. Offers multi-region replication and multiple consistency models."
 ai_roles = ["graphrag"]

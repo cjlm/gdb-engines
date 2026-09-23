@@ -34,6 +34,19 @@
   --color-text-secondary: #666;
   --color-text-tertiary: #767676;
   --color-star: #9a6700;
+
+  /* Lineage map lines, taken in this order. Validated as a categorical set (lightness, chroma,
+     colour-blind and normal-vision separation) against each mode's surface; the lighter slots
+     fall under 3:1 on white, which every line's direct name label offsets. */
+  --lineage-1: #a73752;
+  --lineage-2: #2a78d6;
+  --lineage-3: #eb6834;
+  --lineage-4: #1baf7a;
+  --lineage-5: #eda100;
+  --lineage-6: #4a3aa7;
+  --lineage-7: #008300;
+  --lineage-8: #e87ba4;
+  --lineage-ended: #b42318;
   --site-background:
     radial-gradient(
       circle at 15% 10%,
@@ -57,6 +70,15 @@
     --color-text-secondary: #AAA;
     --color-text-tertiary: #8A8A8A;
     --color-star: #e3b341;
+    --lineage-1: #d5607e;
+    --lineage-2: #3987e5;
+    --lineage-3: #d95926;
+    --lineage-4: #199e70;
+    --lineage-5: #c98500;
+    --lineage-6: #9085e9;
+    --lineage-7: #008300;
+    --lineage-8: #d55181;
+    --lineage-ended: #ff8a80;
   }
 }
 
@@ -73,6 +95,15 @@
   --color-text-secondary: #AAA;
   --color-text-tertiary: #8A8A8A;
   --color-star: #e3b341;
+  --lineage-1: #d5607e;
+  --lineage-2: #3987e5;
+  --lineage-3: #d95926;
+  --lineage-4: #199e70;
+  --lineage-5: #c98500;
+  --lineage-6: #9085e9;
+  --lineage-7: #008300;
+  --lineage-8: #d55181;
+  --lineage-ended: #ff8a80;
 }
 
 html,
@@ -1285,6 +1316,22 @@ thead [role="tooltip"]::after {
     color-mix(in srgb, var(--color-background) 92%, transparent);
   box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 5%);
 }
+/* Intro on the left, the engine's outbound links on the right, key facts across the bottom. */
+.db-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15.5rem, 19rem);
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.db-hero-main { min-width: 0; }
+.db-hero .db-snapshot { grid-column: 1 / -1; }
+.db-page > .db-lineage { margin-top: 2.5rem; }
+.db-lineage-panel {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--db-radius);
+  background: var(--db-panel);
+}
 .db-identity {
   display: flex;
   align-items: center;
@@ -1398,8 +1445,6 @@ thead [role="tooltip"]::after {
 .db-section + .db-section { margin-top: 2.75rem; }
 .db-section-heading {
   margin-bottom: 0.875rem;
-  padding-bottom: 0.625rem;
-  border-bottom: 1px solid var(--color-border);
 }
 .db-page h2 {
   font-family: var(--font-heading);
@@ -1565,6 +1610,8 @@ thead [role="tooltip"]::after {
 }
 
 @media (max-width: 52rem) {
+  .db-hero { grid-template-columns: 1fr; }
+  .db-hero-links { margin-top: 1.5rem; }
   .db-layout { grid-template-columns: 1fr; }
   .db-side-column {
     position: static;

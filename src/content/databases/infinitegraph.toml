@@ -13,3 +13,6 @@ category = "Enterprise"
 gdotv_support = false
 status = "inactive"
 status_note = "Objectivity Inc ceased operations in late 2023."
+
+[lineage.objectivity-db]
+relation = "based-on"

@@ -1,0 +1,193 @@
+---
+import type { Family } from '../lib/lineage';
+import { layoutFamily, type FamilyLayout } from '../lib/lineage-layout';
+
+interface Props {
+  family: Family;
+  /** Slug of the engine whose page this is; its station is drawn as "you are here". */
+  highlight?: string;
+  /** Widest the family is drawn before its time scale compresses to fit. */
+  maxWidth?: number;
+  /** A layout the caller already computed, e.g. to decide where the map goes. */
+  layout?: FamilyLayout;
+}
+
+const { family, highlight, maxWidth, layout = layoutFamily(family, { highlight, maxWidth }) } = Astro.props;
+const { width, height, stations, routes, relationLabels, descriptions, focusX } = layout;
+const LABEL_LINE = 15;
+---
+<div class="lineage-map" data-focus-x={focusX}>
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    width={width}
+    height={height}
+    role="group"
+    aria-label={`Lineage of ${family.title}`}
+  >
+    <g class="lineage-routes">
+      {routes.map((route) => (
+        <path d={route.d} style={`--line: ${route.color}`} class={route.style} />
+      ))}
+    </g>
+    <g class="lineage-relations" aria-hidden="true">
+      {relationLabels.map(({ text, x, y, width }) => (
+        <>
+          <rect x={x - width / 2} y={y - 9} width={width} height={18} rx={9} />
+          <text x={x} y={y}>{text}</text>
+        </>
+      ))}
+    </g>
+    {stations.map(({ station, x, y, color, radius, labelLines, caption, isHere }) => {
+      const marker = (
+        <>
+          <circle
+            cx={x}
+            cy={y}
+            r={radius}
+            class:list={['lineage-station', `is-${station.kind}`, isHere && 'is-here']}
+            style={color ? `--line: ${color}` : undefined}
+          />
+          {station.ended && (
+            <path
+              class:list={['lineage-ended', isHere && 'is-here']}
+              d={`M${x - 3.5} ${y - 3.5}L${x + 3.5} ${y + 3.5}M${x + 3.5} ${y - 3.5}L${x - 3.5} ${y + 3.5}`}
+            />
+          )}
+          <text
+            class:list={['lineage-label', station.kind !== 'current' && 'is-muted']}
+            x={x}
+            y={y - 18 - (labelLines.length - 1) * LABEL_LINE}
+          >
+            {labelLines.map((text, i) => <tspan x={x} dy={i === 0 ? 0 : LABEL_LINE}>{text}</tspan>)}
+          </text>
+          <text class="lineage-caption" x={x} y={y + 28}>{caption}</text>
+        </>
+      );
+      return station.kind === 'current' && !isHere
+        ? <a href={`/db/${station.slug}/`}>{marker}</a>
+        : <g>{marker}</g>;
+    })}
+  </svg>
+  <ul class="sr-only">
+    {descriptions.map((text) => <li>{text}</li>)}
+  </ul>
+</div>
+
+<script>
+  // On screens narrower than the map, open it scrolled to this page's engine rather than the
+  // family's earliest ancestor.
+  for (const map of document.querySelectorAll<HTMLElement>('.lineage-map[data-focus-x]')) {
+    if (map.scrollWidth <= map.clientWidth) continue;
+    map.scrollLeft = Number(map.dataset.focusX) - map.clientWidth / 2;
+  }
+</script>
+
+<style>
+  .lineage-map {
+    overflow-x: auto;
+    scrollbar-color: var(--color-border) transparent;
+    padding-block: 0.25rem;
+  }
+
+  .lineage-map svg {
+    display: block;
+    margin-inline: auto;
+  }
+
+  .lineage-routes path {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+
+  .lineage-routes path.is-dotted {
+    stroke-dasharray: 0.1 8;
+  }
+
+  .lineage-routes path.is-dashed {
+    stroke-dasharray: 9 6;
+    stroke-linecap: butt;
+  }
+
+  .lineage-station {
+    fill: var(--color-background);
+    stroke: var(--line);
+    stroke-width: 3;
+  }
+
+  .lineage-station.is-external {
+    fill: var(--color-surface);
+    stroke: var(--color-text-tertiary);
+  }
+
+  .lineage-station.is-here {
+    fill: var(--line);
+    stroke: var(--color-text);
+  }
+
+  .lineage-ended {
+    stroke: var(--lineage-ended);
+    stroke-width: 2.25;
+    stroke-linecap: round;
+  }
+
+  .lineage-ended.is-here {
+    stroke: var(--color-background);
+  }
+
+  /* A background-coloured outline behind every glyph keeps text legible where a line passes. */
+  .lineage-label,
+  .lineage-caption {
+    paint-order: stroke;
+    stroke: var(--color-background);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    text-anchor: middle;
+  }
+
+  .lineage-label {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+
+  .lineage-label.is-muted {
+    fill: var(--color-text-secondary);
+    font-weight: 400;
+  }
+
+  .lineage-caption,
+  .lineage-relations text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    fill: var(--color-text-tertiary);
+  }
+
+  .lineage-relations rect {
+    fill: var(--color-background);
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .lineage-relations text {
+    dominant-baseline: central;
+    text-anchor: middle;
+    fill: var(--color-text-secondary);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover .lineage-label,
+  a:focus-visible .lineage-label {
+    fill: var(--color-brand-accent);
+  }
+
+  a:hover .lineage-station,
+  a:focus-visible .lineage-station {
+    stroke-width: 4;
+  }
+</style>

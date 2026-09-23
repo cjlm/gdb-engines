@@ -121,3 +121,45 @@ notes = "ontotext.com/products/graphdb/ still resolves but now 301-redirects to 
   quote = "Graphwise GraphDB is an enterprise-grade semantic graph database that supports RDF and SPARQL—providing a highly scalable foundation to link fragmented business data and power real-time AI insights."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["OWLIM"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/master/faq.html"
+  title = "FAQ - GraphDB documentation"
+  quote = "OWLIM is the former name of GraphDB"
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "previous_names"
+value = ["OWLIM"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/master/faq.html"
+  title = "FAQ - GraphDB documentation"
+  quote = "OWLIM is the former name of GraphDB"
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "lineage.eclipse-rdf4j.relation"
+value = "based-on"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/master/architecture-components.html"
+  title = "Architecture and components - GraphDB documentation"
+  quote = "GraphDB is a plugin SAIL component for the RDF4J framework."
+  verified = "matched"
+  checked = "2026-09-23"

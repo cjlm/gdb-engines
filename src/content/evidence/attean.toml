@@ -70,3 +70,18 @@ notes = "Confirms the current value; Attean is described as a Perl framework and
   quote = "\"watchers_count\": 19,\n  \"language\": \"Perl\",\n  \"has_issues\": true,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.rdf-trine.relation"
+value = "borrows-from"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Same author; parts of RDF::Trine were ported into Attean."
+
+  [[claims.sources]]
+  url = "https://github.com/kasei/attean/blob/master/meta/changes.ttl"
+  title = "kasei/attean meta/changes.ttl"
+  quote = "Ported RDF::Trine::Serializer::RDFXML to AtteanX::Serializer::RDFXML"
+  verified = "matched"
+  checked = "2026-09-23"

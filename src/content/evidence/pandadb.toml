@@ -77,3 +77,25 @@ notes = "Confirms current value. The build is a Scala/Maven project using the sc
   quote = "<maven.compiler.target>1.8</maven.compiler.target>\n        <scala.version>2.12.8</scala.version>\n        <scala.binary.version>2.12</scala.binary.version>\n        <scala.compat.version>2.12</scala.compat.version>"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.neo4j.relation"
+value = "based-on"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "PandaDB modifies Neo4j's storage structure and query engine rather than running on an unmodified Neo4j."
+
+  [[claims.sources]]
+  url = "https://github.com/grapheco/pandadb-v0.1"
+  title = "grapheco/pandadb-v0.1"
+  quote = "PandaDB (+Neo4j-3.5.6-BLOB)"
+  verified = "matched"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://github.com/grapheco/pandadb-v0.1"
+  title = "grapheco/pandadb-v0.1"
+  quote = "bin/neo4j console`: start a PandaDB server"
+  verified = "matched"
+  checked = "2026-09-23"

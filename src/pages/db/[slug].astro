@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import LineageMap from '../../components/LineageMap.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
@@ -11,6 +12,8 @@ import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
+import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
+import { layoutFamily } from '../../lib/lineage-layout';
 
 const ranking = await loadRankings();
 const catalogue = await getCollection('databases');
@@ -104,7 +107,13 @@ const fieldLabels: Record<string, string> = {
   license: 'License',
   released: 'Released',
   implementation_language: 'Language',
+  previous_names: 'Previous names',
 };
+
+/** Lineage claims are keyed per parent (`lineage.<parent>.relation`), so they share one label. */
+function fieldLabel(field: string): string {
+  return field.startsWith('lineage.') ? 'Lineage' : fieldLabels[field] ?? field;
+}
 
 const citedClaims = evidence
   .map((claim) => ({
@@ -113,6 +122,23 @@ const citedClaims = evidence
   }))
   .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
+const lineageFamily = familyOf(buildFamilies(catalogue), db.data.slug);
+// A map that fits beside the sidebar sits under Details; a wider one gets the full page width.
+const MAIN_COLUMN_MAP_WIDTH = 700;
+const lineageLayout = lineageFamily && layoutFamily(lineageFamily, { highlight: db.data.slug });
+const lineageInColumn = Boolean(lineageLayout && lineageLayout.width <= MAIN_COLUMN_MAP_WIDTH);
+
+function formatClaimValue(field: string, value: string | number | boolean | string[]): string {
+  if (Array.isArray(value)) return value.join(', ');
+  const lineageKey = field.match(/^lineage\.([^.]+)\.relation$/)?.[1];
+  if (lineageKey) {
+    const parentName = catalogue.find((entry) => entry.data.slug === lineageKey)?.data.name
+      ?? db.data.lineage?.[lineageKey]?.name
+      ?? lineageKey;
+    return `${RELATION_PHRASES[value as keyof typeof RELATION_PHRASES] ?? value} ${parentName}`;
+  }
+  return String(value);
+}
 
 function formatReleased(value: string): string {
   const match = value.match(/^(\d{4})-(\d{2})$/);
@@ -182,6 +208,7 @@ function hostname(value: string): string {
     <a href="/" class="back-link"><span aria-hidden="true">&larr;</span> Back to all databases</a>
 
     <header class="db-hero">
+      <div class="db-hero-main">
       <div class="db-identity">
         {faviconUrl && <DatabaseLogo src={faviconUrl} size={52} loading="eager" />}
         <h1>{db.data.name}</h1>
@@ -217,6 +244,48 @@ function hostname(value: string): string {
         </div>
       )}
 
+      </div>
+
+        {(db.data.url || db.data.github_url || db.data.gdotv_url || citedClaims.length > 0) && (
+          <section class="db-side-section db-external db-hero-links">
+            <h2>Elsewhere</h2>
+            <ul class="external-list">
+              {db.data.url && (
+                <li>
+                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
+                    <span><strong>Official website</strong><small>{hostname(db.data.url)}</small></span>
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+                  </a>
+                </li>
+              )}
+              {db.data.github_url && (
+                <li>
+                  <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
+                    <span><strong>GitHub repository</strong><small>{typeof githubStars === 'number' ? `${githubStars.toLocaleString('en-US')} stars` : hostname(db.data.github_url)}</small></span>
+                    <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
+                  </a>
+                </li>
+              )}
+              {db.data.gdotv_url && (
+                <li>
+                  <a href={`${db.data.gdotv_url}${db.data.gdotv_url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="gdotv" data-db={db.data.slug}>
+                    <span><strong>Graph visualisation</strong><small>Explore with gdotv</small></span>
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+                  </a>
+                </li>
+              )}
+              {citedClaims.length > 0 && (
+                <li>
+                  <a href="#sources">
+                    <span><strong>Sources</strong><small>{sourceCount} reference{sourceCount === 1 ? '' : 's'}{latestEvidenceCheck ? ` · reviewed ${latestEvidenceCheck}` : ''}</small></span>
+                    <span class="chev" aria-hidden="true">&darr;</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </section>
+        )}
+
       <dl class="db-snapshot">
         {primaryRank && (
           <div>
@@ -243,6 +312,18 @@ function hostname(value: string): string {
       </dl>
     </header>
 
+
+    {lineageFamily && !lineageInColumn && (
+      <section class="db-section db-lineage" aria-labelledby="lineage-heading">
+        <div class="db-section-heading">
+          <h2 id="lineage-heading">Lineage</h2>
+        </div>
+        <div class="db-lineage-panel">
+          <LineageMap family={lineageFamily} highlight={db.data.slug} layout={lineageLayout} />
+        </div>
+      </section>
+    )}
+
     <div class="db-layout">
       <div class="db-main-column">
         <section class="db-section" aria-labelledby="details-heading">
@@ -254,6 +335,18 @@ function hostname(value: string): string {
         <>
           <dt>Vendor</dt>
           <dd>{db.data.vendor}</dd>
+        </>
+      )}
+      {db.data.previous_names?.length > 0 && (
+        <>
+          <dt>Previous names</dt>
+          <dd>{db.data.previous_names.join(' → ')}</dd>
+        </>
+      )}
+      {db.data.previous_vendors?.length > 0 && (
+        <>
+          <dt>Previous vendors</dt>
+          <dd>{db.data.previous_vendors.join(' → ')}</dd>
         </>
       )}
       <dt>Type</dt>
@@ -303,6 +396,18 @@ function hostname(value: string): string {
       )}
           </dl>
         </section>
+
+        {lineageFamily && lineageInColumn && (
+          <section class="db-section db-lineage" aria-labelledby="lineage-heading">
+            <div class="db-section-heading">
+              <h2 id="lineage-heading">Lineage</h2>
+            </div>
+            <div class="db-lineage-panel">
+              <LineageMap family={lineageFamily} highlight={db.data.slug} layout={lineageLayout} />
+            </div>
+          </section>
+        )}
+
 
     {db.data.features && (
       <section class="db-section db-features" aria-labelledby="features-heading">
@@ -369,45 +474,6 @@ function hostname(value: string): string {
           </section>
         )}
 
-        {(db.data.url || db.data.github_url || db.data.gdotv_url || citedClaims.length > 0) && (
-          <section class="db-side-section db-external">
-            <h2>Elsewhere</h2>
-            <ul class="external-list">
-              {db.data.url && (
-                <li>
-                  <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
-                    <span><strong>Official website</strong><small>{hostname(db.data.url)}</small></span>
-                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
-                  </a>
-                </li>
-              )}
-              {db.data.github_url && (
-                <li>
-                  <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
-                    <span><strong>GitHub repository</strong><small>{typeof githubStars === 'number' ? `${githubStars.toLocaleString('en-US')} stars` : hostname(db.data.github_url)}</small></span>
-                    <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
-                  </a>
-                </li>
-              )}
-              {db.data.gdotv_url && (
-                <li>
-                  <a href={`${db.data.gdotv_url}${db.data.gdotv_url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="gdotv" data-db={db.data.slug}>
-                    <span><strong>Graph visualisation</strong><small>Explore with gdotv</small></span>
-                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
-                  </a>
-                </li>
-              )}
-              {citedClaims.length > 0 && (
-                <li>
-                  <a href="#sources">
-                    <span><strong>Sources</strong><small>{sourceCount} reference{sourceCount === 1 ? '' : 's'}{latestEvidenceCheck ? ` · reviewed ${latestEvidenceCheck}` : ''}</small></span>
-                    <span class="chev" aria-hidden="true">&darr;</span>
-                  </a>
-                </li>
-              )}
-            </ul>
-          </section>
-        )}
 
     {comparePeers.length > 0 && (
       <section class="db-side-section">
@@ -443,8 +509,8 @@ function hostname(value: string): string {
         {citedClaims.map((claim) => (
           <div class="claim">
             <p class="claim-head">
-              <span class="claim-field">{fieldLabels[claim.field] ?? claim.field}</span>
-              <span class="claim-value">{Array.isArray(claim.value) ? claim.value.join(', ') : String(claim.value)}</span>
+              <span class="claim-field">{fieldLabel(claim.field)}</span>
+              <span class="claim-value">{formatClaimValue(claim.field, claim.value)}</span>
             </p>
             {claim.notes && <p class="claim-notes">{claim.notes}</p>}
             <ul class="claim-sources">

@@ -15,6 +15,10 @@ status = "inactive"
 status_note = "Katana Graph shut down in 2023. GitHub repositories archived."
 gdotv_support = false
 
+[lineage.galois]
+name = "Galois"
+relation = "based-on"
+
 [features]
 active_development = 0.0
 commercial_support = 1.0

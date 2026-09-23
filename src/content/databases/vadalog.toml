@@ -1,0 +1,11 @@
+name = "Vadalog"
+vendor = "University of Oxford"
+slug = "vadalog"
+description = "A knowledge graph management system from the University of Oxford that reasons over knowledge graphs in the Vadalog language, built on Warded Datalog+/- to combine full recursion with ontological reasoning at polynomial data complexity. Developed in the VADA research programme and commercialised by Prometheux as Vadalog Parallel."
+url = "https://doi.org/10.14778/3213880.3213888"
+type = "Other"
+kind = "query-engine"
+query_languages = ["Vadalog"]
+released = "2018"
+category = "Emerging"
+gdotv_support = false

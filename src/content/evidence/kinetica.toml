@@ -84,3 +84,17 @@ notes = "Confirms current value via a secondary catalog source; Kinetica has not
   quote = "Written in C, C++"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["GPUdb"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://www.nextplatform.com/ai/2016/09/23/pushing-database-scalability-up-and-out-with-gpus/1654008"
+  title = "Pushing Database Scalability Up And Out With GPUs - The Next Platform"
+  quote = "Kinetica, formerly known as GPUdb, is making a bit of a splash"
+  verified = "matched"
+  checked = "2026-09-23"

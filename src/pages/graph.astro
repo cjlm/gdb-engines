@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SponsorCTA from '../components/SponsorCTA.astro';
+import LineageMap from '../components/LineageMap.astro';
+import { buildFamilies } from '../lib/lineage';
 import { getDatabaseCount } from '../lib/database-count';
 import { buildFaviconMap } from '../lib/favicon-map';
 import { getCollection } from 'astro:content';
 import '../styles/global.css';
 
-type GraphView = 'query-languages' | 'similarity' | 'timeline';
+type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage';
 
 interface Props {
   initialView?: GraphView;
@@ -39,6 +41,13 @@ const viewMetadata: Record<
       'See when each catalogued database product was first released. Some added graph capabilities later.',
     canonical: 'https://gdb-engines.com/graph/timeline/',
   },
+  lineage: {
+    title: 'Graph database lineage: forks, renames and successors — GDB-Engines',
+    description:
+      'Explore where graph databases came from: forks, rebrands and successors, each backed by a cited source.',
+    modelDescription: 'Where each engine came from: forks, derivatives and former names.',
+    canonical: 'https://gdb-engines.com/graph/lineage/',
+  },
 };
 const currentView = viewMetadata[initialView];
 
@@ -47,6 +56,12 @@ const garphieldOrigin =
   import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
 
 const databaseEntries = await getCollection('databases');
+const lineageFamilies = buildFamilies(databaseEntries);
+// Two-stop histories (a single rename or derivative) read best as small multiples in a grid;
+// anything longer gets the full width.
+const isCompactFamily = (family: (typeof lineageFamilies)[number]) => family.stations.length === 2;
+const branchingFamilies = lineageFamilies.filter((family) => !isCompactFamily(family));
+const compactFamilies = lineageFamilies.filter(isCompactFamily);
 const faviconMap = await buildFaviconMap(databaseEntries);
 const timelineDatabases = databaseEntries.map(({ data }) => ({
   name: data.name,
@@ -185,6 +200,22 @@ function timelineTypeClass(type: string): string {
               aria-current={initialView === 'timeline' ? 'page' : undefined}
             >
               Timeline
+            </a>
+            <a
+              href="/graph/lineage/"
+              class:list={[
+                'model-button',
+                initialView === 'lineage' && 'active',
+              ]}
+              data-view="lineage"
+              data-description={viewMetadata.lineage.modelDescription}
+              data-mobile-description="Forks, renames and successors of graph databases."
+              data-page-title={viewMetadata.lineage.title}
+              data-page-description={`${viewMetadata.lineage.description} Compare ${databaseCount} graph databases.`}
+              data-canonical={viewMetadata.lineage.canonical}
+              aria-current={initialView === 'lineage' ? 'page' : undefined}
+            >
+              Lineage
             </a>
           </nav>
           <div id="similarity-control" hidden>
@@ -358,6 +389,28 @@ function timelineTypeClass(type: string): string {
             <span><i class="other"></i>Other</span>
           </div>
         </section>
+        <section
+          id="lineage-view"
+          class="lineage-view visualization-view"
+          aria-label="Graph database lineage"
+          aria-hidden="true"
+          data-family-count={lineageFamilies.length}
+        >
+          {branchingFamilies.map((family) => (
+            <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
+              <h2 id={`lineage-${family.id}`}>{family.title}</h2>
+              <LineageMap family={family} />
+            </section>
+          ))}
+          <div class="lineage-compact">
+            {compactFamilies.map((family) => (
+              <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
+                <h2 id={`lineage-${family.id}`}>{family.title}</h2>
+                <LineageMap family={family} maxWidth={300} />
+              </section>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
 
@@ -381,6 +434,7 @@ function timelineTypeClass(type: string): string {
       ...document.querySelectorAll<HTMLIFrameElement>('.garphield-frame'),
     ];
     const timeline = document.querySelector('#release-timeline');
+    const lineageView = document.querySelector('#lineage-view');
     const timelineScroll = document.querySelector('.timeline-scroll');
     const timelineCanvas = document.querySelector('.timeline-canvas');
     const timelineKey = document.querySelector('.timeline-key');
@@ -406,6 +460,7 @@ function timelineTypeClass(type: string): string {
       graphStage instanceof HTMLElement &&
       frames.length === 2 &&
       timeline instanceof HTMLElement &&
+      lineageView instanceof HTMLElement &&
       timelineScroll instanceof HTMLElement &&
       timelineCanvas instanceof HTMLElement &&
       timelineKey instanceof HTMLElement &&
@@ -872,10 +927,9 @@ function timelineTypeClass(type: string): string {
       function hideRenderedView(): Promise<void> {
         if (!hasRendered) return Promise.resolve();
 
+        const staticViews = { timeline, lineage: lineageView };
         const activeView =
-          activeButton?.dataset.view === 'timeline'
-            ? timeline
-            : activeContext?.frame;
+          staticViews[activeButton?.dataset.view ?? ''] ?? activeContext?.frame;
         if (!activeView) return Promise.resolve();
 
         graphStage.classList.add('switching');
@@ -943,6 +997,7 @@ function timelineTypeClass(type: string): string {
         timeline.classList.remove('active');
         timeline.setAttribute('aria-hidden', 'true');
         timelineScroll.tabIndex = -1;
+        hideLineage();
         activeContext = context;
         updateGraphStatus(graph);
         graphStage.style.removeProperty('height');
@@ -962,6 +1017,7 @@ function timelineTypeClass(type: string): string {
           context.frame.setAttribute('aria-hidden', 'true');
           context.frame.tabIndex = -1;
         }
+        hideLineage();
         timeline.classList.add('ready', 'active');
         timeline.setAttribute('aria-hidden', 'false');
         timelineScroll.tabIndex = -1;
@@ -976,6 +1032,44 @@ function timelineTypeClass(type: string): string {
 
         scheduleTimelineLayout();
         requestAnimationFrame(syncTimelineStageHeight);
+      }
+
+      function hideLineage() {
+        lineageView.classList.remove('active');
+        lineageView.setAttribute('aria-hidden', 'true');
+      }
+
+      async function renderLineage(version, viewHidden) {
+        await viewHidden;
+        if (version !== loadVersion) return;
+
+        for (const context of contexts.values()) {
+          context.frame.classList.remove('active');
+          context.frame.setAttribute('aria-hidden', 'true');
+          context.frame.tabIndex = -1;
+        }
+        timeline.classList.remove('active');
+        timeline.setAttribute('aria-hidden', 'true');
+        lineageView.classList.add('ready', 'active');
+        lineageView.setAttribute('aria-hidden', 'false');
+        activeContext = null;
+        activeDocument = null;
+        status.textContent = `${lineageView.dataset.familyCount} families`;
+        graphStage.style.removeProperty('height');
+        graphStage.classList.remove('timeline-active', 'switching');
+        graphStage.classList.add('ready');
+        graphStage.removeAttribute('aria-busy');
+        hasRendered = true;
+        scrollToLineageFamily();
+      }
+
+      function scrollToLineageFamily() {
+        const target = window.location.hash
+          ? lineageView.querySelector(`[id="${CSS.escape(window.location.hash.slice(1))}"]`)
+          : null;
+        if (target instanceof HTMLElement) {
+          lineageView.scrollTop = target.offsetTop;
+        }
       }
 
       async function loadView(button) {
@@ -1003,6 +1097,10 @@ function timelineTypeClass(type: string): string {
 
         if (button.dataset.view === 'timeline') {
           await renderTimeline(version, viewHidden);
+          return;
+        }
+        if (button.dataset.view === 'lineage') {
+          await renderLineage(version, viewHidden);
           return;
         }
 
@@ -1364,6 +1462,48 @@ function timelineTypeClass(type: string): string {
     .graph-stage.switching .visualization-view {
       opacity: 0;
       pointer-events: none;
+    }
+
+    .lineage-view {
+      overflow-y: auto;
+      padding: 0.25rem 1.25rem 1.5rem;
+      scrollbar-color: var(--color-border) transparent;
+    }
+
+    .lineage-family {
+      padding-block: 1rem 0.5rem;
+    }
+
+    .lineage-family + .lineage-family,
+    .lineage-compact {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lineage-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+      column-gap: 1.5rem;
+    }
+
+    .lineage-compact .lineage-family {
+      border-top: 0;
+    }
+
+    /* A two-stop map already names both engines; the heading stays for screen readers and links. */
+    .lineage-compact h2 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .lineage-family h2 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text);
     }
 
     .timeline-view {

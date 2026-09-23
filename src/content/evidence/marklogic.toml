@@ -98,3 +98,17 @@ notes = "Confirmed; no change from current value. MarkLogic's own technical docu
   quote = "Speed and scale are an obsession for MarkLogic. They're not features you can add after the fact; they have to be part of the core design. And they are, from the highly optimized native C++ code to the algorithms we'll discuss later."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "previous_names"
+value = ["Cerisent XQE"]
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://www.progress.com/blogs/looking-back-on-12-years-of-constant-innovation"
+  title = "Looking back on 12 years of constant innovation - Progress"
+  quote = "Initially launched as Cerisent XQE Server 1, the first version of MarkLogic carried patents for its innovative way of storing data"
+  verified = "matched"
+  checked = "2026-09-23"

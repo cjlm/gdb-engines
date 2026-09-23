@@ -84,3 +84,18 @@ notes = "Confirms current value; the Marmotta Platform architecture documentatio
   quote = "the model layer offers persistence and data access functionality; this is in most cases provided by normal Java libraries (kiwi, ldcache, ldclient, commons from Marmotta, Sesame Repository, etc)"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.eclipse-rdf4j.relation"
+value = "based-on"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Built as Sail modules for OpenRDF Sesame, the project since renamed Eclipse RDF4J."
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/kiwi/"
+  title = "KiWi Triplestore - Apache Marmotta"
+  quote = "The KiWi triple store is a high performance transactional triple store backend for OpenRDF Sesame building on top of a relational database"
+  verified = "matched"
+  checked = "2026-09-23"

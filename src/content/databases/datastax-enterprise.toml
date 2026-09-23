@@ -13,6 +13,9 @@ released = "2016-04"
 category = "Established"
 gdotv_support = true
 
+[lineage.titan]
+relation = "based-on"
+
 [features]
 active_development = 1.0
 commercial_support = 1.0

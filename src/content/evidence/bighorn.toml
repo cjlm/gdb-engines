@@ -48,3 +48,17 @@ notes = "Confirms the current value; Bighorn inherits Kuzu's C++ codebase, and G
   quote = "\"watchers_count\": 132,\n  \"language\": \"C++\",\n  \"has_issues\": false,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.kuzu.relation"
+value = "fork"
+confidence = "high"
+method = "repo"
+checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Kineviz/bighorn/master/README.md"
+  title = "Kineviz/bighorn README"
+  quote = "This is a fork from the original kuzu/kuzudb"
+  verified = "matched"
+  checked = "2026-09-23"

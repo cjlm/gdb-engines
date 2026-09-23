@@ -77,3 +77,33 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.titan.relation"
+value = "inspired-by"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "The proposal is explicit that HugeGraph was written from scratch and is not a fork; its early storage layout followed Titan/JanusGraph."
+
+  [[claims.sources]]
+  url = "https://cwiki.apache.org/confluence/display/INCUBATOR/HugeGraphProposal"
+  title = "HugeGraphProposal - Apache Incubator"
+  quote = "Certainly, the project was inspired by Titan/Janus and we are really gratitious for such inspirations."
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "lineage.janusgraph.relation"
+value = "inspired-by"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "The proposal is explicit that HugeGraph was written from scratch and is not a fork; its early storage layout followed Titan/JanusGraph."
+
+  [[claims.sources]]
+  url = "https://cwiki.apache.org/confluence/display/INCUBATOR/HugeGraphProposal"
+  title = "HugeGraphProposal - Apache Incubator"
+  quote = "In the early stage of the project, we referred to the storage structure of Titan/Janus Graph"
+  verified = "matched"
+  checked = "2026-09-23"

@@ -14,3 +14,6 @@ category = "Emerging"
 status = "inactive"
 status_note = "Minimal development activity in recent years."
 gdotv_support = false
+
+[lineage.eclipse-rdf4j]
+relation = "based-on"

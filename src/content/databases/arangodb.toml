@@ -1,5 +1,6 @@
 name = "ArangoDB"
 vendor = "ArangoDB Inc"
+previous_names = ["AvocadoDB"]
 slug = "arangodb"
 description = "A multi-model database supporting graphs, key-value pairs, and documents in a unified JSON-based data model. Offers both an in-memory storage engine and a RocksDB-based engine for larger datasets."
 ai_roles = ["graphrag"]

@@ -105,3 +105,25 @@ notes = "AWS does not directly disclose Neptune's implementation language. Amazo
   quote = "1+ years of experience in C++, Rust, Related programming language- Knowledge of database internals, query planning and optimization and/or storage performance and efficiency"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.blazegraph.relation"
+value = "based-on"
+confidence = "medium"
+method = "web"
+checked = "2026-09-23"
+notes = "AWS has never said so itself. The link rests on the Blazegraph team (including its CEO), trademark and domain moving to AWS in the year before Neptune launched."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Amazon_Neptune"
+  title = "Amazon Neptune - Wikipedia"
+  quote = "Amazon Neptune is based on Blazegraph."
+  verified = "matched"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://www.i-programmer.info/news/84-database/11358-amazon-neptune-graph-database.html"
+  title = "Amazon Neptune Graph Database - I Programmer"
+  quote = "it seems to be based on Blazegraph, a well-known graph database that rumor has it was acquired by Amazon last year"
+  verified = "matched"
+  checked = "2026-09-23"

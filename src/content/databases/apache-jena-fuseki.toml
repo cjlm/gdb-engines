@@ -12,3 +12,7 @@ protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2010-10"
 category = "Established"
 gdotv_support = true
+
+[lineage.joseki]
+name = "Joseki"
+relation = "successor"

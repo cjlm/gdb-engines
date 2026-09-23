@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.joseki.relation"
+value = "successor"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Joseki was Jena's earlier RDF and SPARQL server (first beta 2002)."
+
+  [[claims.sources]]
+  url = "https://sourceforge.net/projects/joseki/"
+  title = "Joseki: The Jena RDF Server - SourceForge"
+  quote = "Joseki is replaced by Apache Jena Fuseki."
+  verified = "matched"
+  checked = "2026-09-23"

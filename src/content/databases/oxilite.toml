@@ -13,3 +13,6 @@ kind = "embedded"
 released = "2026-09"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.oxigraph]
+relation = "borrows-from"

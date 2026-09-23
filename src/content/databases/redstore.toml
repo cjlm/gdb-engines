@@ -14,3 +14,6 @@ category = "Emerging"
 status = "inactive"
 status_note = "Mature project with minimal recent activity."
 gdotv_support = false
+
+[lineage.redland]
+relation = "based-on"
