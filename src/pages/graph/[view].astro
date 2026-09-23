@@ -1,10 +1,10 @@
 ---
 import GraphPage from '../graph.astro';
 
-type GraphView = 'query-languages' | 'similarity' | 'timeline';
+type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage';
 
 export function getStaticPaths() {
-  return (['query-languages', 'similarity', 'timeline'] as const).map((view) => ({
+  return (['query-languages', 'similarity', 'timeline', 'lineage'] as const).map((view) => ({
     params: { view },
     props: { initialView: view },
   }));

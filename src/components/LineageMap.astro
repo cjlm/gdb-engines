@@ -1,0 +1,322 @@
+---
+import { graphStratify, grid } from 'd3-dag';
+import { curveBumpX, line } from 'd3-shape';
+import { RELATION_LABELS, type Family, type Relation, type Station } from '../lib/lineage';
+
+interface Props {
+  family: Family;
+  /** Slug of the engine whose page this is; its station is drawn as "you are here". */
+  highlight?: string;
+}
+
+const { family, highlight } = Astro.props;
+
+const LANE = 84;
+const PAD_Y_TOP = 50;
+const PAD_Y_BOTTOM = 36;
+const PAD_X = 16;
+const LABEL_WRAP = 18;
+const LABEL_LINE = 15;
+/** Horizontal run a branch needs to change lanes. */
+const BEND = 44;
+/** Minimum clear space between neighbouring columns' text. */
+const TEXT_GAP = 20;
+/** Space kept between a station and the relation labels on its incoming line. */
+const LABEL_PAD = 22;
+/** Minimum stretch of visible line on either side of a relation label. */
+const LINE_RUN = 38;
+/** Padding inside the pill drawn behind a relation label. */
+const PILL_PAD = 5;
+// Approximate advance widths, used to keep text from colliding. Labels are 14px Familjen
+// Grotesk semibold; captions and relation labels are 12px IBM Plex Mono (0.6em advance).
+const LABEL_CHAR = 8;
+const MONO_CHAR = 7.2;
+/** Number of `--lineage-N` colour tokens defined in global.css. */
+const LINE_COLOR_COUNT = 6;
+const ROUTE_STYLES: Partial<Record<Relation, string>> = {
+  'inspired-by': 'is-dotted',
+  'borrows-from': 'is-dashed',
+};
+
+const dag = graphStratify()
+  .id((s: Station) => s.id)
+  .parentIds((s: Station) => s.parents.map((p) => p.id))(family.stations);
+grid().rank((node) => node.data.when)(dag);
+
+type DagNode = ReturnType<typeof dag.nodes> extends IterableIterator<infer N> ? N : never;
+
+function wrap(label: string): string[] {
+  const lines: string[] = [];
+  for (const word of label.split(' ')) {
+    const last = lines.at(-1);
+    if (last && `${last} ${word}`.length <= LABEL_WRAP) lines[lines.length - 1] = `${last} ${word}`;
+    else lines.push(word);
+  }
+  return lines;
+}
+
+function caption(station: Station): string {
+  return [station.released?.slice(0, 4), station.ended && 'ended'].filter(Boolean).join(' · ');
+}
+
+function radius(station: Station): number {
+  if (station.kind === 'current' && station.slug === highlight) return 10;
+  return station.kind === 'former' ? 6 : 8;
+}
+
+const monoWidth = (text: string) => text.length * MONO_CHAR;
+
+/** Half the widest piece of text drawn above or below a station. */
+function halfWidth(station: Station): number {
+  const label = Math.max(...wrap(station.label).map((l) => l.length)) * LABEL_CHAR;
+  return Math.max(label, monoWidth(caption(station)), radius(station) * 2) / 2;
+}
+
+// Relation labels sit on the target's incoming line, nearest the station first. A relation shared
+// by several parents is labelled once, since those lines run together into the station.
+const relationLabels = new Map<string, { relation: Relation; offset: number; width: number }[]>();
+for (const node of dag.nodes()) {
+  const relations = [...new Set(node.data.parents.map((p) => p.relation))];
+  let offset = radius(node.data) + LABEL_PAD;
+  const labels = [];
+  for (const relation of relations) {
+    const width = monoWidth(RELATION_LABELS[relation]) + PILL_PAD * 2;
+    labels.push({ relation, offset: offset + width, width });
+    offset += width + LABEL_PAD;
+  }
+  relationLabels.set(node.data.id, labels);
+}
+
+function labelFor(target: Station, source: Station) {
+  const relation = target.parents.find((p) => p.id === source.id)?.relation;
+  return relationLabels.get(target.id)!.find((l) => l.relation === relation)!;
+}
+
+// The grid layout runs top-to-bottom with lanes across; turn it on its side so time reads left
+// to right and each lane becomes a horizontal line. Columns are spaced by what is drawn in them
+// rather than evenly, so text never overlaps and each branch has room to bend before its label.
+const lanes = [...new Set([...dag.nodes()].map((n) => n.x))].sort((a, b) => a - b);
+const byRow = [...dag.nodes()].sort((a, b) => a.y - b.y);
+const xOf = new Map<DagNode, number>();
+for (const [i, node] of byRow.entries()) {
+  let x = PAD_X + halfWidth(node.data);
+  const previous = byRow[i - 1];
+  if (previous) x = Math.max(x, xOf.get(previous)! + halfWidth(previous.data) + TEXT_GAP + halfWidth(node.data));
+  for (const source of node.parents()) {
+    const bent = source.x !== node.x;
+    const clear = bent ? halfWidth(source.data) + BEND : radius(source.data);
+    x = Math.max(x, xOf.get(source)! + clear + LINE_RUN + labelFor(node.data, source.data).offset);
+  }
+  xOf.set(node, x);
+}
+const position = (node: DagNode): [number, number] => [
+  xOf.get(node)!,
+  PAD_Y_TOP + lanes.indexOf(node.x) * LANE,
+];
+
+const lineColor = new Map<string, string>();
+function colorFor(station: Station): string {
+  const key = station.slug ?? station.id;
+  if (!lineColor.has(key)) {
+    lineColor.set(key, `var(--lineage-${(lineColor.size % LINE_COLOR_COUNT) + 1})`);
+  }
+  return lineColor.get(key)!;
+}
+
+const nodes = byRow.map((node) => {
+  const [x, y] = position(node);
+  return { station: node.data, x, y, color: node.data.kind === 'external' ? undefined : colorFor(node.data) };
+});
+
+const route = line().curve(curveBumpX);
+const links = [...dag.links()].map((link) => {
+  const [sx, sy] = position(link.source);
+  const [tx, ty] = position(link.target);
+  const label = labelFor(link.target.data, link.source.data);
+  // Leave the parent clear of its own text, and finish the bend before this line's label.
+  const points: [number, number][] = sy === ty
+    ? [[sx, sy], [tx, ty]]
+    : [
+      [sx, sy],
+      [sx + halfWidth(link.source.data), sy],
+      [tx - label.offset - LINE_RUN, ty],
+      [tx, ty],
+    ];
+  return {
+    d: route(points) ?? '',
+    color: colorFor(link.target.data),
+    style: ROUTE_STYLES[label.relation],
+  };
+});
+
+const relationTexts = nodes.flatMap(({ station, x, y }) =>
+  relationLabels.get(station.id)!.map((label) => ({
+    text: RELATION_LABELS[label.relation],
+    x: x - label.offset + label.width / 2,
+    y,
+    width: label.width,
+  })));
+
+const width = Math.max(...nodes.map(({ station, x }) => x + halfWidth(station))) + PAD_X;
+const height = PAD_Y_TOP + PAD_Y_BOTTOM + (lanes.length - 1) * LANE;
+---
+<div class="lineage-map">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    width={width}
+    height={height}
+    role="img"
+    aria-label={`${family.title} family: ${family.stations.map((s) => s.label).join(', ')}`}
+  >
+    <g class="lineage-routes">
+      {links.map((link) => (
+        <path d={link.d} style={`--line: ${link.color}`} class={link.style} />
+      ))}
+    </g>
+    <g class="lineage-relations" aria-hidden="true">
+      {relationTexts.map(({ text, x, y, width }) => (
+        <>
+          <rect x={x - width / 2} y={y - 9} width={width} height={18} rx={9} />
+          <text x={x} y={y}>{text}</text>
+        </>
+      ))}
+    </g>
+    {nodes.map(({ station, x, y, color }) => {
+      const labelLines = wrap(station.label);
+      const isHere = station.kind === 'current' && station.slug === highlight;
+      const marker = (
+        <>
+          <circle
+            cx={x}
+            cy={y}
+            r={radius(station)}
+            class:list={['lineage-station', `is-${station.kind}`, isHere && 'is-here']}
+            style={color ? `--line: ${color}` : undefined}
+          />
+          {station.ended && (
+            <path
+              class:list={['lineage-ended', isHere && 'is-here']}
+              d={`M${x - 3.5} ${y - 3.5}L${x + 3.5} ${y + 3.5}M${x + 3.5} ${y - 3.5}L${x - 3.5} ${y + 3.5}`}
+            />
+          )}
+          <text
+            class:list={['lineage-label', station.kind !== 'current' && 'is-muted']}
+            x={x}
+            y={y - 18 - (labelLines.length - 1) * LABEL_LINE}
+          >
+            {labelLines.map((text, i) => <tspan x={x} dy={i === 0 ? 0 : LABEL_LINE}>{text}</tspan>)}
+          </text>
+          <text class="lineage-caption" x={x} y={y + 28}>{caption(station)}</text>
+        </>
+      );
+      return station.kind === 'current' && !isHere
+        ? <a href={`/db/${station.slug}/`}>{marker}</a>
+        : <g>{marker}</g>;
+    })}
+  </svg>
+</div>
+
+<style>
+  .lineage-map {
+    overflow-x: auto;
+    scrollbar-color: var(--color-border) transparent;
+    padding-block: 0.25rem;
+  }
+
+  .lineage-map svg {
+    display: block;
+  }
+
+  .lineage-routes path {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+
+  .lineage-routes path.is-dotted {
+    stroke-dasharray: 0.1 8;
+  }
+
+  .lineage-routes path.is-dashed {
+    stroke-dasharray: 9 6;
+    stroke-linecap: butt;
+  }
+
+  .lineage-station {
+    fill: var(--color-background);
+    stroke: var(--line);
+    stroke-width: 3;
+  }
+
+  .lineage-station.is-external {
+    fill: var(--color-surface);
+    stroke: var(--color-text-tertiary);
+  }
+
+  .lineage-station.is-here {
+    fill: var(--line);
+    stroke: var(--color-text);
+  }
+
+  .lineage-ended {
+    stroke: var(--lineage-ended);
+    stroke-width: 2.25;
+    stroke-linecap: round;
+  }
+
+  .lineage-ended.is-here {
+    stroke: var(--color-background);
+  }
+
+  /* A background-coloured outline behind every glyph keeps text legible where a line passes. */
+  .lineage-label,
+  .lineage-caption {
+    paint-order: stroke;
+    stroke: var(--color-background);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    text-anchor: middle;
+  }
+
+  .lineage-label {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+
+  .lineage-label.is-muted {
+    fill: var(--color-text-secondary);
+    font-weight: 400;
+  }
+
+  .lineage-caption,
+  .lineage-relations text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    fill: var(--color-text-tertiary);
+  }
+
+  .lineage-relations rect {
+    fill: var(--color-background);
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .lineage-relations text {
+    dominant-baseline: central;
+    text-anchor: middle;
+    fill: var(--color-text-secondary);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover .lineage-label,
+  a:focus-visible .lineage-label {
+    fill: var(--color-brand-accent);
+    text-decoration: underline;
+  }
+</style>

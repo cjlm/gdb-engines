@@ -34,6 +34,15 @@
   --color-text-secondary: #666;
   --color-text-tertiary: #767676;
   --color-star: #9a6700;
+
+  /* Lineage map lines: the brand accent plus the graph page's timeline hues. */
+  --lineage-1: #a73752;
+  --lineage-2: #3975bd;
+  --lineage-3: #7860ba;
+  --lineage-4: #a96b16;
+  --lineage-5: #2f7d6d;
+  --lineage-6: #5b6b7f;
+  --lineage-ended: #b42318;
   --site-background:
     radial-gradient(
       circle at 15% 10%,
@@ -57,6 +66,14 @@
     --color-text-secondary: #AAA;
     --color-text-tertiary: #8A8A8A;
     --color-star: #e3b341;
+
+    --lineage-1: #e8a4b5;
+    --lineage-2: #7aa7e0;
+    --lineage-3: #a995e3;
+    --lineage-4: #d9a255;
+    --lineage-5: #5fb8a3;
+    --lineage-6: #9aa8ba;
+    --lineage-ended: #ff8a80;
   }
 }
 
@@ -73,6 +90,14 @@
   --color-text-secondary: #AAA;
   --color-text-tertiary: #8A8A8A;
   --color-star: #e3b341;
+
+  --lineage-1: #e8a4b5;
+  --lineage-2: #7aa7e0;
+  --lineage-3: #a995e3;
+  --lineage-4: #d9a255;
+  --lineage-5: #5fb8a3;
+  --lineage-6: #9aa8ba;
+  --lineage-ended: #ff8a80;
 }
 
 html,
