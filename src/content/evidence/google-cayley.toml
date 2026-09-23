@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.graphd.relation"
+value = "successor"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "graphd was the graph store behind Metaweb's Freebase, acquired by Google in 2010."
+
+  [[claims.sources]]
+  url = "https://opensource.googleblog.com/2014/06/cayley-graphs-in-go.html"
+  title = "Cayley: graphs in Go - Google Open Source Blog"
+  quote = "Cayley is a spiritual successor to graphd; it shares a similar query strategy for speed."
+  verified = "matched"
+  checked = "2026-09-23"

@@ -16,6 +16,10 @@ status = "inactive"
 status_note = "No significant development activity since 2020."
 gdotv_support = false
 
+[lineage.graphd]
+name = "graphd"
+relation = "successor"
+
 [features]
 active_development = 0.5
 commercial_support = 0.0

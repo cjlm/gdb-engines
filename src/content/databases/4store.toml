@@ -14,3 +14,7 @@ category = "Emerging"
 status = "inactive"
 status_note = "Sporadic maintenance only. Originally developed circa 2009."
 gdotv_support = false
+
+[lineage.3store]
+name = "3store"
+relation = "inspired-by"

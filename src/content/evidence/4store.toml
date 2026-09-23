@@ -85,3 +85,18 @@ notes = "Stated directly by the vendor in the release announcement and corrobora
   quote = "4store is written in C, and is portable to most Linux distributions  \nand Mac OS X."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "lineage.3store.relation"
+value = "inspired-by"
+confidence = "high"
+method = "web"
+checked = "2026-09-23"
+notes = "Both designed by Steve Harris; 3store came out of the AKT project at the University of Southampton."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20191117003942id_/http://ceur-ws.org/Vol-517/ssws09-paper7.pdf"
+  title = "4store: The Design and Implementation of a Clustered RDF Store"
+  quote = "many of the design principles originated in 3store"
+  verified = "matched"
+  checked = "2026-09-23"
