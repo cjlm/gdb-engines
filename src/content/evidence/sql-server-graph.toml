@@ -1,0 +1,42 @@
+# Sources for values in src/content/databases/sql-server-graph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "sql-server-graph"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-09-23"
+notes = "SQL Server is closed-source commercial software; the Wikipedia comparison table lists it as Proprietary."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Graph_database"
+  title = "Graph database - Wikipedia"
+  quote = "Proprietary SQL /T-SQL, R , Python Offers graph database abilities to model many-to-many relationships."
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "released"
+value = "2017-04"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-09-23"
+notes = "Graph support first shipped in SQL Server 2017 CTP 2.0, announced 19 April 2017."
+
+  [[claims.sources]]
+  url = "https://www.microsoft.com/en-us/sql-server/blog/2017/04/19/sql-server-2017-community-technology-preview-2-0-now-available/"
+  title = "SQL Server 2017 Community Technology Preview 2.0 now available"
+  quote = "We also added support for storing and analyzing graph data relationships."
+  verified = "matched"
+  checked = "2026-09-23"
+
+  [[claims.sources]]
+  url = "https://www.microsoft.com/en-us/sql-server/blog/2017/04/20/graph-data-processing-with-sql-server-2017/"
+  title = "Graph Data Processing with SQL Server 2017 and Azure SQL Database"
+  quote = "We are excited to announce the first version of graph extensions to SQL Server."
+  verified = "matched"
+  checked = "2026-09-23"

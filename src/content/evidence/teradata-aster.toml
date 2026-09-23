@@ -1,0 +1,35 @@
+# Sources for values in src/content/databases/teradata-aster.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "teradata-aster"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-09-23"
+notes = "Closed-source commercial product; the Wikipedia comparison table lists it as Proprietary."
+
+  [[claims.sources]]
+  url = "https://en.wikipedia.org/wiki/Graph_database"
+  title = "Graph database - Wikipedia"
+  quote = "Proprietary Java , SQL , Python , C++ , R Massive parallel processing (MPP) database incorporating patented engines supporting native SQL, MapReduce, and graph data storage and manipulation"
+  verified = "matched"
+  checked = "2026-09-23"
+
+[[claims]]
+field = "released"
+value = "2013-10"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-09-23"
+notes = "The SQL-GR graph engine was announced with Aster Discovery Platform 6 on 8 October 2013. Aster itself predates graph support."
+
+  [[claims.sources]]
+  url = "https://www.prnewswire.com/news-releases/teradata-aster-discovery-platform-liberates-data-scientists-around-the-world-226871491.html"
+  title = "Teradata Aster Discovery Platform Liberates Data Scientists Around the World"
+  quote = "The innovations in the Aster Discovery Platform include Teradata Aster SQL-GR™, a graph engine"
+  verified = "matched"
+  checked = "2026-09-23"

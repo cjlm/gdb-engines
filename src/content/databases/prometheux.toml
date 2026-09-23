@@ -12,3 +12,6 @@ kind = "query-engine"
 released = "2022"
 category = "Growing"
 gdotv_support = false
+
+[lineage.vadalog]
+relation = "based-on"

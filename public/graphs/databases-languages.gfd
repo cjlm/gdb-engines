@@ -1211,6 +1211,15 @@
             "status": "active"
           },
           {
+            "id": "db:sql-server-graph",
+            "label": "Microsoft SQL Server Graph",
+            "image": "https://gdb-engines.com/logos/sql-server-graph.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
             "id": "db:stardog",
             "label": "Stardog",
             "image": "https://gdb-engines.com/logos/stardog.png",
@@ -1272,6 +1281,15 @@
             "type": "RDF",
             "category": "Emerging",
             "status": "active"
+          },
+          {
+            "id": "db:teradata-aster",
+            "label": "Teradata Aster",
+            "image": "https://gdb-engines.com/logos/teradata-aster.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Enterprise",
+            "status": "deprecated"
           },
           {
             "id": "db:terminusdb",
@@ -1379,6 +1397,15 @@
             "kind": "Database",
             "type": "Property Graph",
             "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:vadalog",
+            "label": "Vadalog",
+            "image": "https://gdb-engines.com/logos/vadalog.png",
+            "kind": "Database",
+            "type": "Other",
+            "category": "Emerging",
             "status": "active"
           },
           {
@@ -2573,6 +2600,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:sql-server-graph",
+            "target": "language:SQL",
+            "relationship": "supports"
+          },
+          {
             "source": "db:stardog",
             "target": "language:SPARQL",
             "relationship": "supports"
@@ -2640,6 +2672,11 @@
           {
             "source": "db:tentris",
             "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:teradata-aster",
+            "target": "language:SQL",
             "relationship": "supports"
           },
           {
@@ -2720,6 +2757,11 @@
           {
             "source": "db:ultipa",
             "target": "language:UQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:vadalog",
+            "target": "language:Vadalog",
             "relationship": "supports"
           },
           {

@@ -1610,6 +1610,18 @@
             "queryLanguages": "openCypher"
           },
           {
+            "id": "db:sql-server-graph",
+            "label": "Microsoft SQL Server Graph",
+            "image": "https://gdb-engines.com/logos/sql-server-graph.png",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "active",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "SQL"
+          },
+          {
             "id": "db:stardog",
             "label": "Stardog",
             "image": "https://gdb-engines.com/logos/stardog.png",
@@ -1692,6 +1704,18 @@
             "license": "Proprietary",
             "implementationLanguage": "C++",
             "queryLanguages": "SPARQL"
+          },
+          {
+            "id": "db:teradata-aster",
+            "label": "Teradata Aster",
+            "image": "https://gdb-engines.com/logos/teradata-aster.png",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Enterprise",
+            "status": "deprecated",
+            "license": "Proprietary",
+            "implementationLanguage": null,
+            "queryLanguages": "SQL"
           },
           {
             "id": "db:terminusdb",
@@ -1836,6 +1860,18 @@
             "license": "Proprietary",
             "implementationLanguage": "C++",
             "queryLanguages": "GQL, UQL"
+          },
+          {
+            "id": "db:vadalog",
+            "label": "Vadalog",
+            "image": "https://gdb-engines.com/logos/vadalog.png",
+            "type": "Other",
+            "kind": "query-engine",
+            "category": "Emerging",
+            "status": "active",
+            "license": null,
+            "implementationLanguage": null,
+            "queryLanguages": "Vadalog"
           },
           {
             "id": "db:velocitygraph",
@@ -1998,8 +2034,8 @@
           },
           {
             "source": "db:alibaba-gdb",
-            "target": "db:infinitegraph",
-            "similarity": 0.6667
+            "target": "db:sql-server-graph",
+            "similarity": 0.8
           },
           {
             "source": "db:allegrograph",
@@ -2653,8 +2689,8 @@
           },
           {
             "source": "db:graphbase",
-            "target": "db:infinitegraph",
-            "similarity": 0.5714
+            "target": "db:sql-server-graph",
+            "similarity": 0.6667
           },
           {
             "source": "db:graphflow",
@@ -2797,7 +2833,17 @@
             "similarity": 0.7143
           },
           {
+            "source": "db:alibaba-gdb",
+            "target": "db:infinitegraph",
+            "similarity": 0.6667
+          },
+          {
             "source": "db:fabric-graph",
+            "target": "db:infinitegraph",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:graphbase",
             "target": "db:infinitegraph",
             "similarity": 0.5714
           },
@@ -3218,6 +3264,11 @@
           },
           {
             "source": "db:prometheux",
+            "target": "db:vadalog",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:prometheux",
             "target": "db:puppygraph",
             "similarity": 0.375
           },
@@ -3225,11 +3276,6 @@
             "source": "db:prometheux",
             "target": "db:relationalai",
             "similarity": 0.3333
-          },
-          {
-            "source": "db:gqldb",
-            "target": "db:prometheux",
-            "similarity": 0.25
           },
           {
             "source": "db:graphscope",
@@ -3377,9 +3423,9 @@
             "similarity": 0.3333
           },
           {
-            "source": "db:bytegraph",
-            "target": "db:relationalai",
-            "similarity": 0.3
+            "source": "db:relationalai",
+            "target": "db:sql-server-graph",
+            "similarity": 0.3333
           },
           {
             "source": "db:rocketgraph",
@@ -3477,6 +3523,16 @@
             "similarity": 0.625
           },
           {
+            "source": "db:sql-server-graph",
+            "target": "db:teradata-aster",
+            "similarity": 1
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:sql-server-graph",
+            "similarity": 0.6667
+          },
+          {
             "source": "db:rdfox",
             "target": "db:stardog",
             "similarity": 0.5556
@@ -3535,6 +3591,16 @@
             "source": "db:ibm-system-g",
             "target": "db:tao",
             "similarity": 0.5
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:teradata-aster",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:teradata-aster",
+            "similarity": 0.6667
           },
           {
             "source": "db:grafeo",
@@ -3620,6 +3686,16 @@
             "source": "db:spanner-graph",
             "target": "db:ultipa",
             "similarity": 0.5556
+          },
+          {
+            "source": "db:vadalog",
+            "target": "db:zipg",
+            "similarity": 0.2857
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:vadalog",
+            "similarity": 0.25
           },
           {
             "source": "db:galaxybase",

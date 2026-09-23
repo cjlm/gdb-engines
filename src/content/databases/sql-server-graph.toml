@@ -1,0 +1,11 @@
+name = "Microsoft SQL Server Graph"
+vendor = "Microsoft"
+slug = "sql-server-graph"
+description = "A graph layer within Microsoft SQL Server and Azure SQL that stores nodes and edges as tables and adds a MATCH clause to T-SQL for ASCII-art pattern matching. Graph and relational data share one engine and can be queried together."
+url = "https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-graph-overview"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["SQL"]
+released = "2017-04"
+category = "Enterprise"
+gdotv_support = false

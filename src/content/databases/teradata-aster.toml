@@ -1,0 +1,13 @@
+name = "Teradata Aster"
+vendor = "Teradata"
+previous_vendors = ["Aster Data Systems"]
+slug = "teradata-aster"
+description = "A massively parallel analytics database whose SQL-GR engine, added in Aster 6, runs vertex-oriented graph algorithms in bulk-synchronous parallel steps and invokes them from SQL alongside SQL-MapReduce functions. Its engines were folded into Teradata Vantage in 2018."
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["SQL"]
+released = "2013-10"
+category = "Enterprise"
+status = "deprecated"
+status_note = "Last standalone release was Aster 7 in 2016; its engines were folded into Teradata Vantage in 2018."
+gdotv_support = false
