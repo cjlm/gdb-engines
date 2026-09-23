@@ -1,5 +1,6 @@
 name = "Parliament"
 vendor = "Raytheon BBN Technologies"
+previous_names = ["DAML DB"]
 slug = "parliament"
 description = "An RDF triple store and OWL reasoner originally developed with DARPA funding as DAML DB. Supports SWRL rules for inference, configurable global caching across named graphs, and query timeouts."
 url = "https://github.com/raytheonbbn/parliament"

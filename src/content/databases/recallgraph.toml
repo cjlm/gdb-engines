@@ -16,3 +16,6 @@ status = "deprecated"
 status_note = "Repository archived; development moved to the successor project Minigraf."
 previous_names = ["CivicGraph"]
 gdotv_support = false
+
+[lineage.arangodb]
+relation = "based-on"

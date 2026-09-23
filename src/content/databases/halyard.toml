@@ -14,3 +14,6 @@ category = "Emerging"
 status = "inactive"
 status_note = "No development activity since mid-2022."
 gdotv_support = false
+
+[lineage.eclipse-rdf4j]
+relation = "based-on"

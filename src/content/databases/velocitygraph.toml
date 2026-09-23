@@ -1,7 +1,6 @@
 name = "VelocityGraph"
 vendor = "VelocityDB Inc"
 slug = "velocitygraph"
-previous_names = ["VelocityDB"]
 description = "An open-source .NET property graph layer built on top of the VelocityDB object database, implementing the Blueprints API via Frontenac. Supports embedded and distributed deployments with ACID transactions."
 url = "https://velocitydb.com"
 github_url = "https://github.com/VelocityDB/VelocityDB"
@@ -15,3 +14,7 @@ category = "Emerging"
 status = "inactive"
 status_note = "Last updated April 2021; single-person project with no recent activity"
 gdotv_support = false
+
+[lineage.velocitydb]
+name = "VelocityDB"
+relation = "based-on"

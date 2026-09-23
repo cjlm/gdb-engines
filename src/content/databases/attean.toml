@@ -13,3 +13,6 @@ protocols = ["SPARQL Protocol"]
 released = "2014-09"
 category = "Emerging"
 gdotv_support = false
+
+[lineage.rdf-trine]
+relation = "borrows-from"
