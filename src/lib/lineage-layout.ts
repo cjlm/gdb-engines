@@ -33,6 +33,47 @@ export interface FamilyLayout {
   focusX?: number;
 }
 
+/** Compact top-to-bottom subway drawing. Every edge keeps its own route and style. */
+export function layoutVerticalFamily(family: Family, horizontal = layoutFamily(family)): FamilyLayout {
+  const lanes = [...new Set(horizontal.stations.map((station) => station.y))].sort((a, b) => a - b);
+  const laneStep = Math.min(24, 96 / Math.max(1, lanes.length - 1));
+  const width = 280;
+  const trackLeft = (width - (lanes.length - 1) * laneStep) / 2;
+  let cursor = 48;
+  const stations = horizontal.stations.map((placed) => {
+    const relations = new Set(placed.station.parents.map((parent) => parent.relation));
+    // Reserve separate rows for incoming relation labels, including multi-parent joins.
+    cursor += relations.size * 26;
+    const station = { ...placed, x: trackLeft + lanes.indexOf(placed.y) * laneStep, y: cursor, labelLines: wrap(placed.station.label, 14) };
+    cursor += 82;
+    return station;
+  });
+  const byId = new Map(stations.map((placed) => [placed.station.id, placed]));
+  const routes: FamilyLayout['routes'] = [];
+  const relationLabels: FamilyLayout['relationLabels'] = [];
+  for (const target of stations) {
+    const relations = [...new Set(target.station.parents.map((parent) => parent.relation))];
+    for (const parent of target.station.parents) {
+      const source = byId.get(parent.id)!;
+      const bendY = source.y + 30;
+      // Change lanes below the source, then descend to the child.
+      routes.push({
+        d: source.x === target.x
+          ? `M${source.x},${source.y}V${target.y}`
+          : `M${source.x},${source.y}V${bendY - 12}C${source.x},${bendY + 12} ${target.x},${bendY + 12} ${target.x},${bendY + 36}V${target.y}`,
+        color: target.color ?? 'var(--color-text-tertiary)',
+        style: ROUTE_STYLES[parent.relation],
+      });
+    }
+    relations.forEach((relation, index) => {
+      const text = RELATION_LABELS[relation];
+      const width = monoWidth(text) + PILL_PAD * 2;
+      relationLabels.push({ text, width, x: target.x, y: target.y - 54 - index * 26 });
+    });
+  }
+  return { width, height: cursor - 40, stations, routes, relationLabels, descriptions: horizontal.descriptions };
+}
+
 const LANE = 84;
 const PAD_Y_TOP = 50;
 const PAD_Y_BOTTOM = 36;
@@ -65,11 +106,11 @@ const ROUTE_STYLES: Partial<Record<Relation, string>> = {
   'borrows-from': 'is-dashed',
 };
 
-function wrap(label: string): string[] {
+function wrap(label: string, maxChars = LABEL_WRAP): string[] {
   const lines: string[] = [];
   for (const word of label.split(' ')) {
     const last = lines.at(-1);
-    if (last && `${last} ${word}`.length <= LABEL_WRAP) lines[lines.length - 1] = `${last} ${word}`;
+    if (last && `${last} ${word}`.length <= maxChars) lines[lines.length - 1] = `${last} ${word}`;
     else lines.push(word);
   }
   return lines;
