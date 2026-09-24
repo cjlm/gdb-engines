@@ -144,7 +144,7 @@ function timelineTypeClass(type: string): string {
         <h1>Graph Database Map</h1>
         <p id="model-description">{currentView.modelDescription}</p>
       </div>
-      <SponsorCTA />
+      <div class="graph-sponsor"><SponsorCTA compact /></div>
     </section>
 
     <section class="graph-stage" aria-label="Interactive graph visualization">
@@ -165,8 +165,10 @@ function timelineTypeClass(type: string): string {
               data-page-description={`${viewMetadata['query-languages'].description} Compare ${databaseCount} graph databases.`}
               data-canonical={viewMetadata['query-languages'].canonical}
               aria-current={initialView === 'query-languages' ? 'page' : undefined}
+              aria-label="Query languages"
             >
-              Query languages
+              <span class="model-full-label">Query languages</span>
+              <span class="model-short-label" aria-hidden="true">Languages</span>
             </a>
             <a
               href="/graph/similarity/"
@@ -265,6 +267,7 @@ function timelineTypeClass(type: string): string {
           data-end-year={timelineEndYear}
           style={`--timeline-canvas-height: ${timelineCanvasHeight}px`}
         >
+          <p class="timeline-mobile-hint">Busy years expand to fit. Tap a node for details; tap again to open.</p>
           <div
             class="timeline-scroll"
             tabindex="-1"
@@ -310,6 +313,7 @@ function timelineTypeClass(type: string): string {
                   <li
                     class="timeline-item"
                     data-timeline-y={database.top}
+                    data-release={database.released}
                     style={`--release-top: ${database.top}px`}
                   >
                     <a
@@ -399,14 +403,14 @@ function timelineTypeClass(type: string): string {
           {branchingFamilies.map((family) => (
             <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
               <h2 id={`lineage-${family.id}`}>{family.title}</h2>
-              <LineageMap family={family} />
+              <LineageMap family={family} mobileVertical />
             </section>
           ))}
           <div class="lineage-compact">
             {compactFamilies.map((family) => (
               <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
                 <h2 id={`lineage-${family.id}`}>{family.title}</h2>
-                <LineageMap family={family} maxWidth={300} />
+                <LineageMap family={family} maxWidth={300} mobileVertical />
               </section>
             ))}
           </div>
@@ -426,6 +430,7 @@ function timelineTypeClass(type: string): string {
 
   <script>
     import { createGarphield } from 'garphield';
+    import { layoutMobileTimeline } from '../lib/timeline-mobile-layout.mjs';
     import { prepareGarphieldDocument } from '../lib/garphield-document.mjs';
 
     const page = document.querySelector('.graph-page');
@@ -508,6 +513,10 @@ function timelineTypeClass(type: string): string {
 
       function syncTimelineStageHeight() {
         if (!graphStage.classList.contains('timeline-active')) return;
+        if (window.matchMedia('(max-width: 48rem)').matches) {
+          graphStage.style.removeProperty('height');
+          return;
+        }
         const horizontalScrollbarHeight =
           timelineScroll.offsetHeight - timelineScroll.clientHeight;
         graphStage.style.height = `${
@@ -650,13 +659,51 @@ function timelineTypeClass(type: string): string {
               break;
             }
           }
-          if (!placed) label.dataset.position = isRight ? 'right' : 'left';
+          if (!placed) label.dataset.position = isRight ? 'above-left' : 'above-right';
         }
         timeline.dataset.visibleLabels = String(visibleLabelRects.length);
       }
 
       function layoutTimeline() {
         if (timelineItems.length === 0 || timelineCanvas.clientWidth === 0) return;
+        if (window.matchMedia('(max-width: 48rem)').matches) {
+          const years = Array.from(
+            { length: Number(timeline.dataset.endYear) - Number(timeline.dataset.startYear) + 1 },
+            (_, index) => Number(timeline.dataset.endYear) - index,
+          );
+          const mobile = layoutMobileTimeline(timelineItems.map((item, id) => {
+            const [year, month] = (item.dataset.release ?? '').split('-').map(Number);
+            return { id, year: year || null, fraction: month ? (month - 0.5) / 12 : 0.5 };
+          }), years, timelineCanvas.clientWidth);
+          timeline.style.setProperty('--timeline-node-size', `${mobile.nodeSize}px`);
+          timeline.dataset.nodeSize = String(mobile.nodeSize);
+          timelineCanvas.style.height = `${mobile.height}px`;
+          const ticks = [...timeline.querySelectorAll<HTMLElement>('.timeline-year-tick')];
+          mobile.ticks.forEach(({ year, y }, index) => {
+            if (year !== null) ticks[index].style.top = `${y}px`;
+            else (timeline.querySelector('.timeline-unknown-label') as HTMLElement).style.top = `${y}px`;
+          });
+          const axis = timeline.querySelector<HTMLElement>('.timeline-axis-line')!;
+          axis.style.top = `${mobile.ticks[0].y}px`;
+          axis.style.height = `${mobile.ticks.at(-1)!.y - mobile.ticks[0].y}px`;
+          for (const [index, item] of timelineItems.entries()) {
+            const { x, y } = mobile.positions.get(index)!;
+            item.style.top = `${y}px`;
+            item.style.left = `calc(50% + ${x}px)`;
+            item.classList.toggle('timeline-item--right', x >= 0);
+            item.classList.toggle('timeline-item--left', x < 0);
+          }
+          revealTimelineLabels();
+          syncTimelineStageHeight();
+          return;
+        }
+        // Restore the uniform desktop time scale after resizing from mobile.
+        timelineCanvas.style.removeProperty('height');
+        for (const item of timelineItems) item.style.removeProperty('top');
+        for (const tick of timeline.querySelectorAll<HTMLElement>('.timeline-year-tick, .timeline-unknown-label, .timeline-axis-line')) {
+          tick.style.removeProperty('top');
+          tick.style.removeProperty('height');
+        }
         const maximumNodeSize = 40;
         let nodeSize = Math.min(
           maximumNodeSize,
@@ -796,6 +843,23 @@ function timelineTypeClass(type: string): string {
 
       const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
       const compactLayout = window.matchMedia('(max-width: 48rem)');
+      let selectedTimelineNode: HTMLAnchorElement | null = null;
+      for (const node of timelineNodes) {
+        node.addEventListener('click', (event) => {
+          if (!compactLayout.matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.detail === 0) return;
+          if (selectedTimelineNode === node) return;
+          event.preventDefault();
+          selectedTimelineNode = node;
+          node.focus({ preventScroll: true });
+          const item = node.closest('.timeline-item')!;
+          showSelection({
+            label: item.querySelector('.timeline-node-label-name')!.textContent ?? '',
+            imageUrl: node.querySelector('img')?.src ?? '',
+            href: node.href,
+            detail: item.querySelector('.timeline-node-label-date')!.textContent ?? '',
+          });
+        });
+      }
 
       function effectiveTheme(): 'light' | 'dark' {
         const explicit = document.documentElement.dataset.theme;
@@ -1037,6 +1101,7 @@ function timelineTypeClass(type: string): string {
       function hideLineage() {
         lineageView.classList.remove('active');
         lineageView.setAttribute('aria-hidden', 'true');
+        graphStage.classList.remove('lineage-active');
       }
 
       async function renderLineage(version, viewHidden) {
@@ -1057,7 +1122,7 @@ function timelineTypeClass(type: string): string {
         status.textContent = `${lineageView.dataset.familyCount} families`;
         graphStage.style.removeProperty('height');
         graphStage.classList.remove('timeline-active', 'switching');
-        graphStage.classList.add('ready');
+        graphStage.classList.add('ready', 'lineage-active');
         graphStage.removeAttribute('aria-busy');
         hasRendered = true;
         scrollToLineageFamily();
@@ -1068,7 +1133,11 @@ function timelineTypeClass(type: string): string {
           ? lineageView.querySelector(`[id="${CSS.escape(window.location.hash.slice(1))}"]`)
           : null;
         if (target instanceof HTMLElement) {
-          lineageView.scrollTop = target.offsetTop;
+          if (compactLayout.matches) {
+            target.scrollIntoView({ block: 'start' });
+          } else {
+            lineageView.scrollTop = target.offsetTop;
+          }
         }
       }
 
@@ -1079,6 +1148,10 @@ function timelineTypeClass(type: string): string {
         const viewHidden = hideRenderedView();
         graphStage.setAttribute('aria-busy', 'true');
         activeButton = button;
+        const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 56;
+        if (compactLayout.matches && graphStage.getBoundingClientRect().top < headerHeight) {
+          window.scrollTo({ top: window.scrollY + graphStage.getBoundingClientRect().top - headerHeight });
+        }
         for (const candidate of buttons) {
           const active = candidate === button;
           candidate.classList.toggle('active', active);
@@ -1093,6 +1166,7 @@ function timelineTypeClass(type: string): string {
         similarityControl.hidden =
           !button.dataset.document?.includes('similarity');
         clearSelection();
+        selectedTimelineNode = null;
         status.textContent = 'Loading…';
 
         if (button.dataset.view === 'timeline') {
@@ -1273,6 +1347,15 @@ function timelineTypeClass(type: string): string {
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     }
 
+    .model-short-label {
+      display: none;
+    }
+
+    .model-button:focus-visible {
+      outline: 2px solid var(--color-brand-accent);
+      outline-offset: 2px;
+    }
+
     .graph-stage {
       width: min(calc(100% - 2.5rem), 92rem);
       min-height: 34rem;
@@ -1446,6 +1529,7 @@ function timelineTypeClass(type: string): string {
       height: 100%;
       background: var(--color-background);
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
       transition: opacity 180ms ease;
     }
@@ -1456,6 +1540,7 @@ function timelineTypeClass(type: string): string {
 
     .visualization-view.ready.active {
       opacity: 1;
+      visibility: visible;
       pointer-events: auto;
     }
 
@@ -1515,6 +1600,10 @@ function timelineTypeClass(type: string): string {
       display: grid;
       grid-template-rows: minmax(0, 1fr) auto;
       overflow: hidden;
+    }
+
+    .timeline-mobile-hint {
+      display: none;
     }
 
     .timeline-scroll {
@@ -1849,39 +1938,108 @@ function timelineTypeClass(type: string): string {
 
     @media (max-width: 48rem) {
       .graph-page {
-        padding-top: calc(var(--header-height) + 1rem);
+        padding: calc(var(--header-height) + 1.25rem) 0 1rem;
+        grid-template-rows: auto auto auto;
+        align-content: start;
+        gap: 1rem;
       }
 
       .graph-intro {
-        width: calc(100% - 1rem);
-        padding-bottom: 0.75rem;
-        display: block;
+        display: contents;
+      }
+
+      .graph-heading,
+      .graph-sponsor {
+        width: calc(100% - 2rem);
+        margin-inline: auto;
+      }
+
+      .graph-heading {
+        order: 0;
+      }
+
+      .graph-sponsor {
+        order: 2;
       }
 
       .graph-intro h1 {
         margin-bottom: 0.35rem;
+        font-size: 1.5rem;
+        line-height: 1.2;
       }
 
       #model-description {
-        height: 3.1em;
-        margin: 0 0 0.75rem;
+        height: auto;
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        overflow: visible;
       }
 
       .graph-stage,
       .graph-fallback {
-        width: calc(100% - 1rem);
+        width: calc(100% - 2rem);
+        min-width: 0;
+        order: 1;
+      }
+
+      .graph-stage {
+        min-height: 28rem;
+        box-shadow: none;
+      }
+
+      .graph-stage:not(.lineage-active):not(.timeline-active) {
+        height: 70svh;
+      }
+
+      .visualization-views {
+        min-height: 0;
       }
 
       .graph-status-row {
+        padding: 0.6rem;
         align-items: flex-start;
         flex-direction: column;
-        gap: 0.4rem;
+        gap: 0.65rem;
       }
 
       .graph-status-left {
         width: 100%;
         flex-wrap: wrap;
-        gap: 0.4rem 0.65rem;
+        gap: 0.75rem;
+      }
+
+      .model-switcher {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0.15rem 0;
+        border: 0;
+        background: transparent;
+      }
+
+      .model-button {
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.4rem;
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .model-full-label {
+        display: none;
+      }
+
+      .model-short-label {
+        display: inline;
+      }
+
+      .model-button.active {
+        background: color-mix(in srgb, var(--color-brand-accent) 14%, transparent);
+        color: var(--color-brand-accent);
+        box-shadow: none;
       }
 
       #similarity-control {
@@ -1896,10 +2054,24 @@ function timelineTypeClass(type: string): string {
         align-items: flex-start;
         flex-direction: column;
         gap: 0.3rem;
+        padding-inline: 0.25rem;
+        overflow-wrap: anywhere;
+      }
+
+      #graph-selection {
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+
+      .similarity-threshold-control {
+        width: 100%;
+        padding-inline: 0.25rem;
       }
 
       #similarity-threshold {
-        width: 5.5rem;
+        flex: 1;
+        min-width: 0;
+        height: 2.75rem;
       }
 
       #similarity-value {
@@ -1907,7 +2079,85 @@ function timelineTypeClass(type: string): string {
       }
 
       .graph-stage.timeline-active {
-        min-height: 42rem;
+        min-height: 0;
+      }
+
+      .graph-stage.lineage-active,
+      .graph-stage.timeline-active {
+        display: block;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .lineage-active .graph-status-row,
+      .timeline-active .graph-status-row {
+        position: sticky;
+        top: var(--header-height);
+        z-index: 5;
+        background: var(--color-background);
+        border-radius: 0.75rem 0.75rem 0 0;
+      }
+
+      .lineage-active .visualization-views,
+      .timeline-active .visualization-views {
+        height: auto;
+        border-radius: 0 0 0.75rem 0.75rem;
+      }
+
+      .lineage-view.active,
+      .timeline-view.active {
+        position: relative;
+        height: auto;
+        overflow: visible;
+        padding: 0 0.75rem 0.75rem;
+        border-radius: inherit;
+      }
+
+      .timeline-view.active {
+        display: block;
+      }
+
+      .timeline-view.active {
+        padding: 0;
+      }
+
+      .timeline-mobile-hint {
+        display: block;
+        width: 100%;
+        padding: 0.65rem 0.85rem 0;
+        color: var(--color-text-secondary);
+        font-size: 0.72rem;
+        line-height: 1.5;
+      }
+
+      .timeline-scroll {
+        overflow: clip;
+      }
+
+      .lineage-family {
+        padding-block: 1rem;
+        scroll-margin-top: calc(var(--header-height) + 10rem);
+      }
+
+      .lineage-family h2 {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+      }
+
+      .lineage-compact {
+        display: block;
+      }
+
+      .lineage-compact .lineage-family + .lineage-family {
+        border-top: 1px solid var(--color-border);
+      }
+
+      .lineage-compact h2 {
+        position: static;
+        width: auto;
+        height: auto;
+        clip-path: none;
+        white-space: normal;
       }
 
       .timeline-key {

@@ -1,6 +1,6 @@
 ---
 import type { Family } from '../lib/lineage';
-import { layoutFamily, type FamilyLayout } from '../lib/lineage-layout';
+import { layoutFamily, layoutVerticalFamily, type FamilyLayout } from '../lib/lineage-layout';
 
 interface Props {
   family: Family;
@@ -10,13 +10,15 @@ interface Props {
   maxWidth?: number;
   /** A layout the caller already computed, e.g. to decide where the map goes. */
   layout?: FamilyLayout;
+  mobileVertical?: boolean;
 }
 
-const { family, highlight, maxWidth, layout = layoutFamily(family, { highlight, maxWidth }) } = Astro.props;
-const { width, height, stations, routes, relationLabels, descriptions, focusX } = layout;
+const { family, highlight, maxWidth, mobileVertical = false, layout = layoutFamily(family, { highlight, maxWidth }) } = Astro.props;
+const layouts = [{ ...layout, vertical: false }, ...(mobileVertical ? [{ ...layoutVerticalFamily(family, layout), vertical: true }] : [])];
 const LABEL_LINE = 15;
 ---
-<div class="lineage-map" data-focus-x={focusX}>
+{layouts.map(({ width, height, stations, routes, relationLabels, descriptions, focusX, vertical }) => (
+<div class:list={["lineage-map", mobileVertical && !vertical && "lineage-map--horizontal", vertical && "lineage-map--vertical"]} data-focus-x={focusX}>
   <svg
     viewBox={`0 0 ${width} ${height}`}
     width={width}
@@ -40,6 +42,9 @@ const LABEL_LINE = 15;
     {stations.map(({ station, x, y, color, radius, labelLines, caption, isHere }) => {
       const marker = (
         <>
+          {vertical && station.kind === 'current' && (
+            <rect x={x - 60} y={y - 38} width={120} height={70} fill="transparent" />
+          )}
           <circle
             cx={x}
             cy={y}
@@ -60,7 +65,7 @@ const LABEL_LINE = 15;
           >
             {labelLines.map((text, i) => <tspan x={x} dy={i === 0 ? 0 : LABEL_LINE}>{text}</tspan>)}
           </text>
-          <text class="lineage-caption" x={x} y={y + 28}>{caption}</text>
+          <text class="lineage-caption" x={x} y={y + (vertical ? 23 : 28)}>{caption}</text>
         </>
       );
       return station.kind === 'current' && !isHere
@@ -72,6 +77,7 @@ const LABEL_LINE = 15;
     {descriptions.map((text) => <li>{text}</li>)}
   </ul>
 </div>
+))}
 
 <script>
   // On screens narrower than the map, open it scrolled to this page's engine rather than the
@@ -83,6 +89,20 @@ const LABEL_LINE = 15;
 </script>
 
 <style>
+  .lineage-map--vertical {
+    display: none;
+  }
+
+  @media (max-width: 48rem) {
+    .lineage-map--horizontal { display: none; }
+    .lineage-map--vertical { display: block; overflow: visible; }
+    .lineage-map--vertical svg { width: 100%; max-width: 18rem; height: auto; }
+    .lineage-map--vertical .lineage-label { font-size: 12px; }
+    .lineage-map--vertical .lineage-caption,
+    .lineage-map--vertical .lineage-relations text { font-size: 10px; }
+    .lineage-map--vertical a:focus-visible .lineage-station { stroke-width: 5; }
+  }
+
   .lineage-map {
     overflow-x: auto;
     scrollbar-color: var(--color-border) transparent;
