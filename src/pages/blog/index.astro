@@ -23,7 +23,10 @@ const pageJsonLd = JSON.stringify({
   <SiteHeader />
   <main class="blog-index">
     <div class="blog-masthead">
-      <h1>Blog</h1>
+      <div class="blog-masthead-row">
+        <h1>Blog</h1>
+        <a class="blog-rss-link" href="/blog/rss.xml">RSS</a>
+      </div>
       <div class="blog-dotline" aria-hidden="true"></div>
     </div>
 
@@ -66,6 +69,23 @@ const pageJsonLd = JSON.stringify({
     font-weight: 600;
     letter-spacing: -0.035em;
     line-height: 1.1;
+  }
+  .blog-masthead-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .blog-rss-link {
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .blog-rss-link:hover {
+    color: var(--color-brand-accent);
   }
   .blog-dotline {
     height: 3px;
