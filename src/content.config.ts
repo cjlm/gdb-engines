@@ -186,4 +186,18 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { databases, roundups, evidence, blog };
+/**
+ * Hand-written guidance on a few high-demand pair pages, one file per published pair slug
+ * (src/content/comparison-notes/<a>-vs-<b>.md). An exception to the no-prose rule in
+ * docs/design/comparison-pages.md §2.5: written and checked by hand, never generated, and
+ * every factual claim backed by a listed source.
+ */
+const comparisonNotes = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/comparison-notes' }),
+  schema: z.object({
+    reviewed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    sources: z.array(z.object({ title: z.string().min(1), url: z.string().url() })).min(1),
+  }),
+});
+
+export const collections = { databases, roundups, evidence, blog, comparisonNotes };

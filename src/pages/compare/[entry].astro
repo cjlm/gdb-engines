@@ -17,7 +17,7 @@ import SponsorSlot from '../../components/SponsorSlot.astro';
 import CompareCombobox from '../../components/CompareCombobox.astro';
 import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import '../../styles/global.css';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { loadRankings } from '../../lib/rankings';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
@@ -65,6 +65,13 @@ export async function getStaticPaths() {
   };
 
   const selected = pregeneratedPairList(ranking, comparable);
+  const notes = new Map((await getCollection('comparisonNotes')).map((n) => [n.id, n]));
+  const selectedSlugs = new Set(selected.map((p) => p.slug));
+  for (const id of notes.keys()) {
+    if (!selectedSlugs.has(id)) {
+      throw new Error(`Comparison note "${id}" names a pair with no published page.`);
+    }
+  }
   // Reverse index so each pair page can offer siblings sharing one of its engines — this
   // is what turns the set into a connected graph instead of hundreds of leaves.
   const pairsByEngine = new Map<string, string[]>();
@@ -106,6 +113,7 @@ export async function getStaticPaths() {
       kind: 'pair' as const,
       engines: [bySlug.get(pair.a)!, bySlug.get(pair.b)!],
       related: relatedPairs(pair).map((s) => ({ slug: s, label: label(s) })),
+      note: notes.get(pair.slug) ?? null,
       ...shared,
     },
   }));
@@ -160,7 +168,9 @@ const {
   siblings = [],
   related = [],
   headToHead = [],
+  note = null,
 } = Astro.props;
+const NoteContent = note ? (await render(note)).Content : null;
 
 const isPair = kind === 'pair';
 const [a, b] = engines;
@@ -356,6 +366,18 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
     <h1>{h1}</h1>
     {!isPair && <p class="lede">{def.lede}</p>}
     <p class="lead">{summary}</p>
+    {note && NoteContent && (
+      <section class="choosing">
+        <h2>Choosing between them</h2>
+        <NoteContent />
+        <p class="choosing-meta">
+          Reviewed {note.data.reviewed}. Sources:{' '}
+          {note.data.sources.map((source, i) => (
+            <>{i > 0 && '; '}<a href={source.url} rel="noopener noreferrer nofollow" data-outbound="citation">{source.title}</a></>
+          ))}.
+        </p>
+      </section>
+    )}
     {!isPair && def.ranking_board && (
       <p class="cross-link">
         Ranked by popularity: <a href={`/rankings/${def.ranking_board}/`}>{def.h1.replace(/ compared$/, '')} popularity ranking &rarr;</a>
@@ -582,6 +604,9 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
   h2 { font-size: 0.8rem; font-family: 'Familjen Grotesk', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.5px; color: var(--color-text-secondary); margin: 2rem 0 0.5rem; }
   .lede { color: var(--color-text-secondary); margin: 0 0 0.5rem; max-width: 90ch; }
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
+  .choosing { max-width: 90ch; margin: 0 0 1.5rem; line-height: 1.55; }
+  .choosing h2 { margin-bottom: 0.5rem; }
+  .choosing-meta { font-size: 0.8125rem; color: var(--color-text-secondary); }
   .cross-link, .note { font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 1rem; }
   .cross-link a { color: var(--color-text); }
 
