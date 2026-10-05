@@ -466,6 +466,12 @@ a {
 .more-comparisons li { padding: 0.2rem 0; break-inside: avoid; }
 .more-comparisons a { color: var(--color-text-secondary); text-decoration: none; }
 .more-comparisons a:hover { color: var(--color-brand-accent); }
+.blog-mentions { list-style: none; padding: 0; margin: 0; font-size: 0.8125rem; }
+.blog-mentions li { padding: 0.4rem 0; }
+.blog-mentions li + li { border-top: 1px solid var(--color-border); }
+.blog-mentions a { color: var(--color-text-secondary); }
+.blog-mentions a:hover { color: var(--color-brand-accent); }
+.blog-mention-date { display: block; color: var(--color-text-tertiary); font-size: 0.75rem; }
 
 /* Rankings cross-links from the comparison table.
    Two fixed slots: the figure right-aligns in the first so every rank shares an edge,

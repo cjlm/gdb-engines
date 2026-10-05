@@ -11,6 +11,8 @@ import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { isOpenSource, licenseSchema } from '../../lib/license-tier';
 import { databaseDates } from '../../lib/content-dates.mjs';
+import { mentionsByEngine } from '../../lib/blog-mentions';
+import { blogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
@@ -111,6 +113,10 @@ export async function getStaticPaths() {
   }
 
   const modifiedDates = databaseDates();
+  const mentions = mentionsByEngine(
+    (await blogPosts()).map((post) => ({ id: post.id, body: post.body ?? '', title: post.data.title, date: post.data.date })),
+    databases.map((d) => ({ slug: d.data.slug, name: d.data.name, aliases: d.data.aliases })),
+  );
 
   return databases.map((db) => {
     const curated = compareLinks(db.data.slug);
@@ -126,12 +132,13 @@ export async function getStaticPaths() {
         partOf: roundupsByEngine.get(db.data.slug) ?? [],
         // The entry's last commit, not the build date; omitted when git history is unavailable.
         modified: modifiedDates.get(db.data.slug) ?? null,
+        blogMentions: (mentions.get(db.data.slug) ?? []).map(({ id, title, date }) => ({ id, title, date })),
       },
     };
   });
 }
 
-const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence, modified } = Astro.props;
+const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence, modified, blogMentions } = Astro.props;
 
 // Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
 // is the thing this whole layer exists to avoid publishing.
@@ -535,6 +542,16 @@ function hostname(value: string): string {
             </ul>
           </details>
         )}
+      </section>
+    )}
+    {blogMentions.length > 0 && (
+      <section class="db-side-section">
+        <h2>On the blog</h2>
+        <ul class="blog-mentions">
+          {blogMentions.map((post) => (
+            <li><a href={`/blog/${post.id}/`}>{post.title}</a> <span class="blog-mention-date">{formatBlogDate(post.date)}</span></li>
+          ))}
+        </ul>
       </section>
     )}
       </aside>
