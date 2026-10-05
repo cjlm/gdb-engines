@@ -22,9 +22,11 @@ import { loadRankings } from '../../lib/rankings';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
+import { headToHeadLinks } from '../../lib/head-to-head';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import {
   pregeneratedPairList,
+  pregeneratedPairs,
   resolveRoundup,
   buildOverallRankMap,
   buildRankedMap,
@@ -88,6 +90,7 @@ export async function getStaticPaths() {
   }));
 
   const catalogue = databases.map((d) => d.data);
+  const published = pregeneratedPairs(ranking, comparable);
   const roundups = roundupDefs.flatMap((entry) => {
     const def = entry.data;
     const resolved = resolveRoundup(def, catalogue, ranking);
@@ -106,6 +109,7 @@ export async function getStaticPaths() {
         inactive: resolved.inactive,
         surveyedCount: resolved.surveyedCount,
         columnsSurveyedCount: resolved.columnsSurveyedCount,
+        headToHead: headToHeadLinks(resolved.columns, published),
         siblings: roundupDefs
           .filter((o) => o.data.slug !== def.slug)
           .slice(0, 3)
@@ -134,6 +138,7 @@ const {
   columnsSurveyedCount = 0,
   siblings = [],
   related = [],
+  headToHead = [],
 } = Astro.props;
 
 const isPair = kind === 'pair';
@@ -326,16 +331,6 @@ const cell = (engine: (typeof engines)[number], key: string): { text: string; cl
 const utm = (url?: string): string | null =>
   url ? `${url}${url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral` : null;
 
-// Each column engine links to its pair pages against the others — the main crawl path
-// into the pair set from a browsable page.
-const columnPairs = !isPair
-  ? engines.flatMap((x, i) =>
-      engines.slice(i + 1).map((y) => {
-        const [p, q] = x.slug < y.slug ? [x, y] : [y, x];
-        return { slug: `${p.slug}-vs-${q.slug}`, label: `${p.name} vs ${q.name}` };
-      })
-    )
-  : [];
 // Columns are picked survey-first, not in rank order, so the segment table is every
 // member that is not already a column — not the tail of the member list.
 const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug === m.slug)) : [];
@@ -505,11 +500,11 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
       </section>
     )}
 
-    {!isPair && columnPairs.length > 0 && (
+    {!isPair && headToHead.length > 0 && (
       <section class="related">
         <h2>Head to head</h2>
         <ul class="link-grid">
-          {columnPairs.map((p) => <li><a href={`/compare/${p.slug}/`}>{p.label}</a></li>)}
+          {headToHead.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
         </ul>
       </section>
     )}
