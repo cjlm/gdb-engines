@@ -26,6 +26,8 @@ const databases = defineCollection({
     status_note: z.string().optional(),
     previous_vendors: z.array(z.string()).optional(),
     previous_names: z.array(z.string()).optional(),
+    // Other names the engine goes by today ("KuzuDB"), matched like its name in blog posts.
+    aliases: z.array(z.string()).optional(),
     // Where this engine came from, keyed by parent. A key that is a catalogue slug links to that
     // entry; any other key names a project outside the catalogue and must give its `name`.
     lineage: z.record(

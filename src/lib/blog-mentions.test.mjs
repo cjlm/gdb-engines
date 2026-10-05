@@ -9,6 +9,7 @@ const engines = [
   { slug: "traverse", name: "Traverse" },
   { slug: "apache-age", name: "Apache AGE" },
   { slug: "duckdb", name: "DuckDB" },
+  { slug: "kuzu", name: "Kuzu", aliases: ["KuzuDB"] },
 ];
 const ids = (map, slug) => (map.get(slug) ?? []).map((p) => p.id);
 
@@ -40,4 +41,9 @@ test("needs a link for names that are ordinary words", () => {
 test("ignores fenced code", () => {
   const map = mentionsByEngine([{ id: "a", body: "Text.\n```\nimport Neo4j\n```\n" }], engines);
   assert.deepEqual(ids(map, "neo4j"), []);
+});
+
+test("matches an alias like the name", () => {
+  const map = mentionsByEngine([{ id: "a", body: "the successor to [KuzuDB](https://github.com/kuzudb/kuzu)" }], engines);
+  assert.deepEqual(ids(map, "kuzu"), ["a"]);
 });

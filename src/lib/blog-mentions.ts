@@ -2,7 +2,7 @@
  * Which blog posts mention which engines, so each profile can list the posts about it.
  *
  * A post mentions an engine when it links to the engine's profile (/db/<slug>/) or uses the
- * engine's name, case-sensitive and as a whole word, outside fenced code. Names that are also
+ * engine's name or one of its aliases, case-sensitive and as a whole word, outside fenced code. Names that are also
  * ordinary words count only as a link, so "traverse the graph" does not list Traverse.
  */
 export const LINK_ONLY_NAMES = new Set([
@@ -17,6 +17,7 @@ export interface MentionablePost {
 export interface MentionableEngine {
   slug: string;
   name: string;
+  aliases?: string[];
 }
 
 const escape = (text: string): string => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -30,8 +31,9 @@ export function mentionsByEngine<P extends MentionablePost>(
     const prose = post.body.replace(/```[\s\S]*?```/g, '');
     for (const engine of engines) {
       const linked = prose.includes(`/db/${engine.slug}/`) || prose.includes(`/db/${engine.slug})`);
-      const named = !LINK_ONLY_NAMES.has(engine.name)
-        && new RegExp(`(?<![\\w-])${escape(engine.name)}(?![\\w-])`).test(prose);
+      const named = [engine.name, ...(engine.aliases ?? [])]
+        .filter((name) => !LINK_ONLY_NAMES.has(name))
+        .some((name) => new RegExp(`(?<![\\w-])${escape(name)}(?![\\w-])`).test(prose));
       if (linked || named) result.set(engine.slug, [...(result.get(engine.slug) ?? []), post]);
     }
   }

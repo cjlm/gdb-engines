@@ -115,7 +115,7 @@ export async function getStaticPaths() {
   const modifiedDates = databaseDates();
   const mentions = mentionsByEngine(
     (await blogPosts()).map((post) => ({ id: post.id, body: post.body ?? '', title: post.data.title, date: post.data.date })),
-    databases.map((d) => ({ slug: d.data.slug, name: d.data.name })),
+    databases.map((d) => ({ slug: d.data.slug, name: d.data.name, aliases: d.data.aliases })),
   );
 
   return databases.map((db) => {
