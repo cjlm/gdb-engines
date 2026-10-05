@@ -1521,7 +1521,7 @@
             "kind": "database",
             "category": "Emerging",
             "status": "active",
-            "license": "ELv2",
+            "license": "Elastic-2.0",
             "implementationLanguage": "TypeScript",
             "queryLanguages": "Custom API"
           },
@@ -3438,13 +3438,13 @@
             "similarity": 0.7143
           },
           {
-            "source": "db:omnigraph",
-            "target": "db:rushdb",
-            "similarity": 0.5
-          },
-          {
             "source": "db:rushdb",
             "target": "db:stromadb",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "db:rushdb",
             "similarity": 0.5
           },
           {
