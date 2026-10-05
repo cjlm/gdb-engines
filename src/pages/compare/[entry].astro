@@ -75,6 +75,28 @@ export async function getStaticPaths() {
       pairsByEngine.set(slug, list);
     }
   }
+  // Three siblings per engine, each list led by the best-ranked other engine, so a pair page
+  // points at the comparisons a reader of it is likeliest to want next rather than at the
+  // alphabetically first ones.
+  const otherRank = (pairSlug: string, engine: string): number => {
+    const [x, y] = pairSlug.split('-vs-');
+    return rankMap.get(x === engine ? y! : x!) ?? Number.POSITIVE_INFINITY;
+  };
+  const siblingsOf = (engine: string, exclude: string): string[] =>
+    (pairsByEngine.get(engine) ?? [])
+      .filter((s) => s !== exclude)
+      .sort((p, q) => otherRank(p, engine) - otherRank(q, engine) || p.localeCompare(q));
+  const relatedPairs = (pair: { a: string; b: string; slug: string }): string[] => {
+    const fromA = siblingsOf(pair.a, pair.slug);
+    const fromB = siblingsOf(pair.b, pair.slug).filter((s) => !fromA.slice(0, 3).includes(s));
+    const picked = [...fromA.slice(0, 3), ...fromB.slice(0, 3)];
+    // Top up from either list when one engine has fewer than three siblings.
+    for (const s of [...fromA.slice(3), ...fromB.slice(3)]) {
+      if (picked.length >= 6) break;
+      if (!picked.includes(s)) picked.push(s);
+    }
+    return picked;
+  };
   const label = (slug: string): string =>
     slug.split('-vs-').map((s) => bySlug.get(s)?.name ?? s).join(' vs ');
 
@@ -83,10 +105,7 @@ export async function getStaticPaths() {
     props: {
       kind: 'pair' as const,
       engines: [bySlug.get(pair.a)!, bySlug.get(pair.b)!],
-      related: [...(pairsByEngine.get(pair.a) ?? []), ...(pairsByEngine.get(pair.b) ?? [])]
-        .filter((s) => s !== pair.slug)
-        .slice(0, 6)
-        .map((s) => ({ slug: s, label: label(s) })),
+      related: relatedPairs(pair).map((s) => ({ slug: s, label: label(s) })),
       ...shared,
     },
   }));

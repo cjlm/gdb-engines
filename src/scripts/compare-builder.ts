@@ -178,8 +178,11 @@ async function mount(root: HTMLElement): Promise<void> {
         continue;
       }
       if (existing) continue;
-      const slot = row.insertCell(-1);
+      // A header-row cell, so a <th>: its button's label names the would-be column.
+      const slot = document.createElement('th');
+      slot.scope = 'col';
       slot.className = 'add-col';
+      row.append(slot);
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'add-col-btn';
