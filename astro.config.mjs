@@ -1,53 +1,19 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import astroAgentAnnotate from 'astro-agent-annotate';
-import { execSync } from 'node:child_process';
+import { databaseDates, gitDate } from './src/lib/content-dates.mjs';
+import { loadRankings } from './src/lib/rankings.ts';
 
 // Fallback for pages whose real change date can't be derived from git.
 const buildDate = new Date().toISOString().split('T')[0];
 const garphieldOrigin =
   process.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
 
-/** Last git commit date (YYYY-MM-DD) touching any of `paths`, or null if unavailable. */
-function gitDate(...paths) {
-  try {
-    const quoted = paths.map((p) => `'${p}'`).join(' ');
-    const out = execSync(`git log -1 --format=%cs -- ${quoted}`, {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim();
-    return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
-  } catch {
-    return null;
-  }
-}
-
-/** slug -> last commit date of its TOML source, built with one git-log pass. */
-function databaseDates() {
-  const dates = new Map();
-  try {
-    const log = execSync('git log --format=%cs --name-only -- src/content/databases', {
-      encoding: 'utf8',
-      maxBuffer: 32 * 1024 * 1024,
-      stdio: ['ignore', 'pipe', 'ignore'],
-    });
-    let commitDate = null;
-    for (const line of log.split('\n')) {
-      if (/^\d{4}-\d{2}-\d{2}$/.test(line)) {
-        commitDate = line;
-      } else {
-        const slug = line.match(/^src\/content\/databases\/(.+)\.toml$/)?.[1];
-        if (slug && commitDate && !dates.has(slug)) dates.set(slug, commitDate);
-      }
-    }
-  } catch {
-    // git history unavailable (e.g. a shallow CI clone) — callers fall back to buildDate.
-  }
-  return dates;
-}
-
 const dbDates = databaseDates();
 const homepageDate = gitDate('src/content/databases', 'src/pages/index.astro') ?? buildDate;
+// Rankings, and the rank block on every comparison page, change when a new snapshot lands.
+const rankingDate = (await loadRankings())?.generatedAt?.slice(0, 10) ?? buildDate;
+const latest = (...dates) => dates.filter(Boolean).sort().at(-1);
 
 export default defineConfig({
   output: 'static',
@@ -80,8 +46,7 @@ export default defineConfig({
         const path = new URL(item.url).pathname;
         const dbSlug = path.match(/^\/db\/(.+)\/$/)?.[1];
         if (path.startsWith('/rankings/')) {
-          // Rankings regenerate from a monthly data refresh, so the build date is honest.
-          item.lastmod = buildDate;
+          item.lastmod = rankingDate;
           item.changefreq = 'monthly';
           item.priority = 0.8;
         } else if (dbSlug) {
@@ -91,12 +56,12 @@ export default defineConfig({
         } else if (path.startsWith('/compare/')) {
           // Pair pages are numerous and individually low-value, so they sit below engine
           // pages; the hub is the distributor and sits above both. The rank block
-          // regenerates monthly, so the build date is honest here too.
+          // changes with each rankings snapshot.
           const slug = path.match(/^\/compare\/(.+)\/$/)?.[1];
           const pairSlugs = slug?.split('-vs-') ?? [];
           if (pairSlugs.length === 2) {
             const dates = pairSlugs.map((s) => dbDates.get(s)).filter(Boolean);
-            item.lastmod = dates.length ? [...dates, buildDate].sort().at(-1) : buildDate;
+            item.lastmod = latest(...dates, rankingDate);
             item.changefreq = 'monthly';
             item.priority = 0.5;
           } else if (slug) {
@@ -106,11 +71,11 @@ export default defineConfig({
               gitDate(`src/content/roundups/${slug}.toml`),
               gitDate('src/content/databases'),
             ].filter(Boolean);
-            item.lastmod = [...dates, buildDate].sort().at(-1);
+            item.lastmod = latest(...dates, rankingDate);
             item.changefreq = 'monthly';
             item.priority = 0.7;
           } else {
-            item.lastmod = gitDate('src/pages/compare') ?? buildDate;
+            item.lastmod = latest(gitDate('src/pages/compare'), rankingDate);
             item.changefreq = 'weekly';
             item.priority = 0.8;
           }

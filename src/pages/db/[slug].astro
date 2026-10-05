@@ -10,6 +10,7 @@ import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { isOpenSource, licenseSchema } from '../../lib/license-tier';
+import { databaseDates } from '../../lib/content-dates.mjs';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
@@ -109,6 +110,8 @@ export async function getStaticPaths() {
       .map((other) => ({ name: nameBySlug.get(other) ?? other, href: `/compare/${pairSlug(slug, other)}/` }));
   }
 
+  const modifiedDates = databaseDates();
+
   return databases.map((db) => {
     const curated = compareLinks(db.data.slug);
     return {
@@ -121,12 +124,14 @@ export async function getStaticPaths() {
         githubStars: githubStars[db.data.slug] ?? null,
         evidence: evidenceBySlug.get(db.data.slug) ?? [],
         partOf: roundupsByEngine.get(db.data.slug) ?? [],
+        // The entry's last commit, not the build date; omitted when git history is unavailable.
+        modified: modifiedDates.get(db.data.slug) ?? null,
       },
     };
   });
 }
 
-const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence } = Astro.props;
+const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence, modified } = Astro.props;
 
 // Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
 // is the thing this whole layer exists to avoid publishing.
@@ -196,7 +201,7 @@ const pageJsonLd = JSON.stringify({
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }),
   ...(db.data.github_url && { "codeRepository": db.data.github_url }),
-  "dateModified": new Date().toISOString().split('T')[0],
+  ...(modified && { "dateModified": modified }),
 });
 
 const breadcrumbJsonLd = JSON.stringify({
