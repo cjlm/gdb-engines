@@ -1,13 +1,13 @@
 slug = "open-source-cypher-databases"
 title = "Open Source Cypher Graph Databases Compared"
 h1 = "Open source Cypher graph databases compared"
-lede = "Graph databases that speak Cypher or openCypher under a non-proprietary license."
+lede = "Graph databases that speak Cypher or openCypher under an open-source license."
 
 # All conditions AND together; list values are OR. Members are always active-only;
 # filtered-out inactive members are listed in the page footnote instead.
 [filter]
 query_languages = ["Cypher"]
-license_not = ["Proprietary"]
+open_source = true
 
 include = []
 exclude = []

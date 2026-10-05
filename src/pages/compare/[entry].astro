@@ -22,6 +22,8 @@ import { loadRankings } from '../../lib/rankings';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 import { loadSponsors, getSponsor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
+import { isOpenSource } from '../../lib/license-tier';
+import { rankMovement } from '../../lib/rank-movement';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import {
   pregeneratedPairList,
@@ -225,7 +227,7 @@ if (isPair) {
     : `Compare ${a.name} and ${b.name}: licenses, query languages, implementation languages, and ${updated ?? 'monthly'} popularity rankings.`;
 } else {
   const languages = [...new Set(members.map((m) => m.implementation_language).filter(Boolean))].slice(0, 2);
-  const openSource = members.filter((m) => m.license && m.license !== 'Proprietary').length;
+  const openSource = members.filter((m) => isOpenSource(m.license)).length;
   const sentences = [
     `${members.length} active ${def.h1.replace(/ compared$/, '').toLowerCase()} are in the catalogue.`,
   ];
@@ -262,17 +264,6 @@ const itemListJsonLd = JSON.stringify({
 });
 
 // --- Row builders ---------------------------------------------------------------------
-const fmtDelta = (d: number | 'new' | null): string => {
-  if (d === 'new') return 'new';
-  if (d === null || d === undefined) return '';
-  if (d === 0) return '=';
-  return d > 0 ? `▲${d}` : `▼${Math.abs(d)}`;
-};
-const deltaClass = (d: number | 'new' | null): string => {
-  if (d === 'new') return 'delta-new';
-  if (d === null || d === undefined || d === 0) return 'delta-flat';
-  return d > 0 ? 'delta-up' : 'delta-down';
-};
 const tierClass = (tier?: string): string =>
   tier ? `badge badge-${tier.toLowerCase().replace(/\s+/g, '-')}` : '';
 const pillar = (slug: string, key: string): string => {
@@ -374,7 +365,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
                 </a>
                 <span class="engine-head__meta">
                   <span class="num">{rankOf(e.slug) ? `#${rankOf(e.slug)}` : '—'}</span>
-                  <span class={`num ${deltaClass(rankedOf(e.slug)?.rankDelta1m ?? null)}`}>{fmtDelta(rankedOf(e.slug)?.rankDelta1m ?? null)}</span>
+                  <span class={`num ${rankMovement(rankedOf(e.slug)?.rankDelta1m).cls || 'delta-flat'}`}>{rankMovement(rankedOf(e.slug)?.rankDelta1m).text}</span>
                   {rankedOf(e.slug)?.tier && <span class={tierClass(rankedOf(e.slug).tier)}>{rankedOf(e.slug).tier}</span>}
                 </span>
               </th>
