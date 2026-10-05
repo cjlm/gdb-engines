@@ -28,7 +28,7 @@ notes = "Python and TypeScript SDKs are thin wrappers over the REST API; default
 
 [[claims]]
 field = "license"
-value = "ELv2"
+value = "Elastic-2.0"
 confidence = "high"
 method = "repo"
 checked = "2026-08-02"

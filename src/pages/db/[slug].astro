@@ -9,6 +9,7 @@ import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/fe
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
+import { isOpenSource, licenseSchema } from '../../lib/license-tier';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
@@ -190,8 +191,8 @@ const pageJsonLd = JSON.stringify({
     }
   }),
   "applicationCategory": categoryLabel,
-  ...(db.data.license && db.data.license !== 'Proprietary' && {
-    "license": `https://spdx.org/licenses/${db.data.license}`,
+  ...(licenseSchema(db.data.license) && { "license": licenseSchema(db.data.license) }),
+  ...(isOpenSource(db.data.license) && {
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }),
   ...(db.data.github_url && { "codeRepository": db.data.github_url }),

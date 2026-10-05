@@ -5,6 +5,7 @@
  * other.
  */
 import type { RankingFile, RankedEngine } from './rankings';
+import { licenseTier } from './license-tier';
 
 export interface Board {
   slug: string;
@@ -200,22 +201,6 @@ const blurbOverall =
 const blurbMovers =
   'Graph databases with the fastest-rising momentum this month, based on recent activity, community engagement and adoption signals.';
 
-/**
- * Maps an SPDX license string to its tier label. Mirrors the rankings repo's
- * licenseTier() so the comparison-table page can link a license to the right board.
- */
-function licenseTierLabel(spdx: string | null | undefined): string {
-  if (!spdx) return 'Other';
-  const lower = spdx.toLowerCase();
-  if (lower === 'proprietary') return 'Proprietary';
-  for (const tok of ['gpl', 'lgpl', 'agpl', 'sspl', 'eupl', 'osl']) {
-    if (lower.includes(tok)) return 'Copyleft';
-  }
-  const permissiveExact = new Set(['mit', 'apache-2.0', 'bsd-2-clause', 'bsd-3-clause', 'isc', 'mpl-2.0', 'postgresql', 'unlicense', 'zlib']);
-  if (permissiveExact.has(lower)) return 'Permissive';
-  if (lower.includes('bsd') || lower.includes('apache') || lower.includes('mit')) return 'Permissive';
-  return 'Other';
-}
 
 /**
  * Pre-computes the maps the comparison-table page needs to (a) link each badge to its
@@ -251,7 +236,7 @@ export function buildLinkMaps(ranking: RankingFile): {
     (k) => KIND_LABEL[k] ?? k
   );
   const licenseTierSlug = (spdx: string | null | undefined): string | null => {
-    const tier = licenseTierLabel(spdx);
+    const tier = licenseTier(spdx);
     return linkable(LICENSE_LABEL[tier] ?? tier);
   };
   const queryLanguageSlug = mapFor(Object.keys(ranking.byQueryLanguage), (k) => k);

@@ -11,6 +11,7 @@
  */
 import { PUBLISHED_PAIRS } from '../data/published-pairs';
 import { canonicalQueryLanguage } from './ranking-boards';
+import { isOpenSource } from './license-tier';
 import type { RankingFile } from './rankings';
 
 /** All-pairs among the top N engines by overall rank. */
@@ -218,7 +219,7 @@ export interface RoundupFilter {
   kind?: string[];
   category?: string[];
   license?: string[];
-  license_not?: string[];
+  open_source?: boolean;
   query_languages?: string[];
   implementation_language?: string[];
 }
@@ -251,7 +252,7 @@ function matchesFilter(db: RoundupDb, filter: RoundupFilter): boolean {
   if (filter.kind && !filter.kind.includes(db.kind)) return false;
   if (filter.category && !filter.category.includes(db.category)) return false;
   if (filter.license && !(db.license && filter.license.includes(db.license))) return false;
-  if (filter.license_not && (!db.license || filter.license_not.includes(db.license))) return false;
+  if (filter.open_source !== undefined && isOpenSource(db.license) !== filter.open_source) return false;
   if (filter.implementation_language && !(db.implementation_language && filter.implementation_language.includes(db.implementation_language))) {
     return false;
   }

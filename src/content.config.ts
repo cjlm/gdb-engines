@@ -113,7 +113,9 @@ const roundups = defineCollection({
       kind: z.array(z.string()).optional(),
       category: z.array(z.string()).optional(),
       license: z.array(z.string()).optional(),
-      license_not: z.array(z.string()).optional(),
+      // Open source by licence classification (src/lib/license-tier.ts), so
+      // source-available licences such as BUSL or SSPL are excluded.
+      open_source: z.boolean().optional(),
       query_languages: z.array(z.string()).optional(),
       implementation_language: z.array(z.string()).optional(),
     }),
