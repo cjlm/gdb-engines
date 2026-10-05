@@ -187,10 +187,8 @@ const blog = defineCollection({
 });
 
 /**
- * Hand-written guidance on a few high-demand pair pages, one file per published pair slug
- * (src/content/comparison-notes/<a>-vs-<b>.md). An exception to the no-prose rule in
- * docs/design/comparison-pages.md §2.5: written and checked by hand, never generated, and
- * every factual claim backed by a listed source.
+ * Hand-written guidance on selected pair pages, one file per published pair slug
+ * (src/content/comparison-notes/<a>-vs-<b>.md). Every factual claim is backed by a listed source.
  */
 const comparisonNotes = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/comparison-notes' }),
