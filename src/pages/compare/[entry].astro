@@ -606,6 +606,8 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
   .lead { color: var(--color-text); line-height: 1.55; max-width: 90ch; margin: 0.75rem 0 1.25rem; }
   .choosing { max-width: 90ch; margin: 0 0 1.5rem; line-height: 1.55; }
   .choosing h2 { margin-bottom: 0.5rem; }
+  /* The note's paragraphs come from rendered Markdown, outside this component's scope */
+  .choosing :global(p) { margin: 0 0 0.75rem; }
   .choosing-meta { font-size: 0.8125rem; color: var(--color-text-secondary); }
   .cross-link, .note { font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 1rem; }
   .cross-link a { color: var(--color-text); }
