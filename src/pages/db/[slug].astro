@@ -10,7 +10,7 @@ import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { isOpenSource, licenseSchema } from '../../lib/license-tier';
-import { pregeneratedPairs, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
+import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
@@ -86,20 +86,47 @@ export async function getStaticPaths() {
     return links;
   }
 
-  return databases.map(db => ({
-    params: { slug: db.data.slug },
-    props: {
-      db,
-      compareLinks: compareLinks(db.data.slug),
-      faviconUrl: faviconMap[db.data.slug] ?? null,
-      githubStars: githubStars[db.data.slug] ?? null,
-      evidence: evidenceBySlug.get(db.data.slug) ?? [],
-      partOf: roundupsByEngine.get(db.data.slug) ?? [],
-    },
-  }));
+  // Every published pair, indexed by engine, so each profile can list all of its comparisons.
+  // Without this most pair pages had no inbound link at all: the curated eight above and the
+  // pair pages' own related links concentrate on the same few highly ranked neighbours.
+  const pairsByEngine = new Map<string, string[]>();
+  for (const pair of pregeneratedPairList(
+    rankingFile,
+    databases.map((d) => ({ slug: d.data.slug, features: d.data.features }))
+  )) {
+    pairsByEngine.set(pair.a, [...(pairsByEngine.get(pair.a) ?? []), pair.b]);
+    pairsByEngine.set(pair.b, [...(pairsByEngine.get(pair.b) ?? []), pair.a]);
+  }
+  const byRankThenName = (x: string, y: string): number =>
+    (overallRanks.get(x) ?? Infinity) - (overallRanks.get(y) ?? Infinity)
+    || (nameBySlug.get(x) ?? x).localeCompare(nameBySlug.get(y) ?? y);
+
+  function allComparisons(slug: string, curated: { slug: string }[]): { name: string; href: string }[] {
+    const shown = new Set(curated.map((link) => link.slug));
+    return (pairsByEngine.get(slug) ?? [])
+      .filter((other) => !shown.has(other))
+      .sort(byRankThenName)
+      .map((other) => ({ name: nameBySlug.get(other) ?? other, href: `/compare/${pairSlug(slug, other)}/` }));
+  }
+
+  return databases.map((db) => {
+    const curated = compareLinks(db.data.slug);
+    return {
+      params: { slug: db.data.slug },
+      props: {
+        db,
+        compareLinks: curated,
+        moreComparisons: allComparisons(db.data.slug, curated),
+        faviconUrl: faviconMap[db.data.slug] ?? null,
+        githubStars: githubStars[db.data.slug] ?? null,
+        evidence: evidenceBySlug.get(db.data.slug) ?? [],
+        partOf: roundupsByEngine.get(db.data.slug) ?? [],
+      },
+    };
+  });
 }
 
-const { db, compareLinks: comparePeers, faviconUrl, githubStars, partOf, evidence } = Astro.props;
+const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence } = Astro.props;
 
 // Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
 // is the thing this whole layer exists to avoid publishing.
@@ -476,7 +503,7 @@ function hostname(value: string): string {
         )}
 
 
-    {comparePeers.length > 0 && (
+    {(comparePeers.length > 0 || moreComparisons.length > 0) && (
       <section class="db-side-section">
         <h2>Compare with</h2>
         <ul class="compare-with">
@@ -493,6 +520,16 @@ function hostname(value: string): string {
             </li>
           ))}
         </ul>
+        {moreComparisons.length > 0 && (
+          <details class="more-comparisons">
+            <summary>{moreComparisons.length} more {db.data.name} comparisons</summary>
+            <ul>
+              {moreComparisons.map((link) => (
+                <li><a href={link.href}><span class="sr-only">{db.data.name} </span>vs {link.name}</a></li>
+              ))}
+            </ul>
+          </details>
+        )}
       </section>
     )}
       </aside>
