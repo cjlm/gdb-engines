@@ -71,9 +71,9 @@ export default defineConfig({
     // Self-gates to `astro dev`; the production build is untouched.
     astroAgentAnnotate(),
     sitemap({
-      // /compare/custom/ is noindex; listing a noindex URL in a sitemap is a
-      // contradictory signal.
-      filter: (page) => !page.includes('/compare/custom/'),
+      // /compare/custom/ is noindex and /graph/ canonicalises to /graph/query-languages/;
+      // listing either in a sitemap is a contradictory signal.
+      filter: (page) => !page.includes('/compare/custom/') && new URL(page).pathname !== '/graph/',
       // Report an honest per-page lastmod so unchanged pages don't claim freshness
       // on every rebuild (which trains Google to ignore lastmod entirely).
       serialize(item) {
