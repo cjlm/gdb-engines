@@ -563,7 +563,7 @@
             "status": "active",
             "license": "BUSL-1.1",
             "implementationLanguage": "Rust",
-            "queryLanguages": "FlureeQL, SPARQL, GraphQL"
+            "queryLanguages": "SPARQL, JSON-LD Query, openCypher, GraphQL"
           },
           {
             "id": "db:frogql",
@@ -2555,17 +2555,17 @@
           {
             "source": "db:fluree",
             "target": "db:surrealdb",
-            "similarity": 0.4545
+            "similarity": 0.4167
           },
           {
             "source": "db:fluree",
             "target": "db:oxigraph",
-            "similarity": 0.4
+            "similarity": 0.3636
           },
           {
-            "source": "db:dydra",
+            "source": "db:altair-graph-lakehouse",
             "target": "db:fluree",
-            "similarity": 0.3636
+            "similarity": 0.3333
           },
           {
             "source": "db:frogql",
