@@ -692,6 +692,28 @@ table thead th.sticky-name-column {
   z-index: 11;
 }
 
+/* On a phone the rank and Name columns together are nearly as wide as the screen, so
+   pinning both left a sliver for the rest and a sideways swipe seemed to move only the
+   page. Only the rank stays pinned there; names scroll with the other columns. */
+@media (max-width: 39rem) {
+  table tbody .sticky-name-column {
+    position: static;
+  }
+
+  table .sticky-name-column {
+    left: auto;
+    box-shadow: none;
+  }
+
+  table thead th.sticky-name-column {
+    z-index: 10;
+  }
+
+  table .sticky-rank-column {
+    box-shadow: 1px 0 0 var(--color-border);
+  }
+}
+
 table thead th .header-container {
   display: flex;
   align-items: center;
