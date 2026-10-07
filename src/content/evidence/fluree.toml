@@ -6,32 +6,53 @@ slug = "fluree"
 
 [[claims]]
 field = "protocols"
-value = ["HTTP/REST", "SPARQL Protocol"]
+value = ["Bolt", "HTTP/REST", "SPARQL Protocol", "GraphQL (HTTP)"]
 confidence = "high"
 method = "repo"
-checked = "2026-07-31"
-notes = "fluree/db is an embeddable Clojure/JS library; Fluree Server wraps it with a JSON-LD/SPARQL HTTP API on default port 8090, and also exposes notify/subscribe endpoints over WebSocket (documented but no clean quotable prose found for that specific claim)."
+checked = "2026-10-06"
+notes = "Fluree DB 4.x is a Rust rewrite whose server ships in the fluree/db repository (`fluree server run`, Docker image fluree/server). It serves the JSON-LD/SPARQL HTTP API on default port 8090, a per-ledger GraphQL endpoint, and a Bolt listener for openCypher clients. The separate fluree/server repository previously cited here is the earlier Clojure server."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/fluree/server/main/README.md"
-  title = "Fluree Server"
-  quote = "Here are examples using curl to demonstrate key Fluree Server features."
+  url = "https://github.com/fluree/db/blob/main/docs/api/bolt.md"
+  title = "Bolt protocol"
+  quote = "Fluree speaks the Bolt protocol — Neo4j's binary wire protocol — against its openCypher surface."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/fluree/server/main/README.md"
-  title = "Fluree Server"
-  quote = "Fluree also supports SPARQL queries. Put the ledger name in the `FROM` clause:"
+  url = "https://github.com/fluree/db/blob/main/docs/api/bolt.md"
+  title = "Bolt protocol"
+  quote = "Official Neo4j drivers (Python, JavaScript, Java, Go, .NET) and most Bolt-compatible tooling connect unmodified."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db/blob/main/docs/api/overview.md"
+  title = "API Overview"
+  quote = "The Fluree HTTP API provides a complete RESTful interface for database operations."
+  verified = "matched"
+  checked = "2026-10-06"
 
   [[claims.sources]]
   url = "https://github.com/fluree/db"
   title = "Fluree DB"
   quote = "Docker — pre-configured HTTP server, ready to accept queries on port 8090."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db/blob/main/docs/api/endpoints.md"
+  title = "API Endpoints"
+  quote = "The `GET` form is provided for W3C SPARQL Protocol compliance."
+  verified = "matched"
+  checked = "2026-10-06"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db/blob/main/docs/query/graphql.md"
+  title = "GraphQL"
+  quote = "A GraphQL endpoint on every ledger, with the schema derived from what the ledger already contains."
+  verified = "matched"
+  checked = "2026-10-06"
 
 [[claims]]
 field = "license"
@@ -46,7 +67,7 @@ notes = "Corrected from the catalogue's current EPL-2.0: the repository's actual
   title = "LICENSE"
   quote = "SPDX-License-Identifier: BUSL-1.1 Business Source License 1.1 Parameters Licensor: Fluree, PBC"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"
 
 [[claims]]
 field = "released"
@@ -61,7 +82,7 @@ notes = "FlureeDB's own production-release announcement is dated August 22, 2018
   title = "FlureeDB is Production-Ready and Live | by Kevin Doubleday | Fluree PBC | Medium"
   quote = "The beta tag is off. Thanks to a fantastic crowd of developers who provided initial feedback from our late November beta release, FlureeDB is now available and ready to transform application development, power digital transformation"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"
 
 [[claims]]
 field = "implementation_language"
@@ -76,4 +97,4 @@ notes = "The current fluree/db repository's core is Rust; the project's own READ
   title = "fluree/db"
   quote = "**Rust library** — Embed Fluree directly in your application. No server process needed."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-06"

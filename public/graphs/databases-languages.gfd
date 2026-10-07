@@ -1503,11 +1503,6 @@
             "kind": "Query language"
           },
           {
-            "id": "language:FlureeQL",
-            "label": "FlureeQL",
-            "kind": "Query language"
-          },
-          {
             "id": "language:GFQL",
             "label": "GFQL",
             "kind": "Query language"
@@ -1555,6 +1550,11 @@
           {
             "id": "language:HelixQL",
             "label": "HelixQL",
+            "kind": "Query language"
+          },
+          {
+            "id": "language:JSON-LD Query",
+            "label": "JSON-LD Query",
             "kind": "Query language"
           },
           {
@@ -1991,12 +1991,17 @@
           },
           {
             "source": "db:fluree",
-            "target": "language:FlureeQL",
+            "target": "language:SPARQL",
             "relationship": "supports"
           },
           {
             "source": "db:fluree",
-            "target": "language:SPARQL",
+            "target": "language:JSON-LD Query",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:fluree",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
