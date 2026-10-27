@@ -131,12 +131,8 @@ function bipartiteDocument() {
 }
 
 function featureTokens(database) {
-  const tokens = [
-    `type:${database.type}`,
-    `kind:${database.kind}`,
-    `category:${database.category}`,
-  ];
-  if (database.license) tokens.push(`license:${database.license}`);
+  // Licence and category describe market position, not what an engine does, so they stay out.
+  const tokens = [`type:${database.type}`, `kind:${database.kind}`];
   if (database.implementationLanguage) {
     tokens.push(`implementation:${database.implementationLanguage}`);
   }
