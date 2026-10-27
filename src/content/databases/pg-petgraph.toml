@@ -1,0 +1,14 @@
+name = "pg_petgraph"
+vendor = "alitrack"
+slug = "pg-petgraph"
+description = "A PostgreSQL extension that exposes graph algorithms as plain SQL functions. Each function takes arrays of source and target node ids and returns a table, covering PageRank, betweenness, closeness and eigenvector centrality, strongly and weakly connected components, Louvain community detection, Dijkstra, topological sort and cycle detection."
+url = "https://github.com/alitrack/pg_petgraph"
+github_url = "https://github.com/alitrack/pg_petgraph"
+license = "MIT"
+implementation_language = "Rust"
+type = "Other"
+kind = "extension"
+query_languages = ["SQL"]
+released = "2026-07"
+category = "Emerging"
+gdotv_support = false
