@@ -28,6 +28,10 @@ const databases = await Promise.all(
       queryLanguages: Array.isArray(data.query_languages)
         ? data.query_languages.map(String)
         : [],
+      protocols: Array.isArray(data.protocols)
+        ? data.protocols.map(String).filter((protocol) => protocol !== "Unknown")
+        : [],
+      parents: Object.keys(data.lineage ?? {}),
     };
   }),
 );
@@ -139,6 +143,9 @@ function featureTokens(database) {
   for (const language of database.queryLanguages) {
     tokens.push(`query:${language}`);
   }
+  for (const protocol of database.protocols) {
+    tokens.push(`protocol:${protocol}`);
+  }
   return new Set(tokens.map((token) => token.toLocaleLowerCase()));
 }
 
@@ -188,6 +195,25 @@ function similarityDocument() {
         source: `db:${edge.source}`,
         target: `db:${edge.target}`,
         similarity: Number(edge.similarity.toFixed(4)),
+      });
+    }
+  }
+
+  // A fork or successor always sits next to its parent, whatever its metadata says.
+  const slugs = new Set(databases.map((database) => database.slug));
+  for (const database of databases) {
+    for (const parent of database.parents) {
+      if (!slugs.has(parent)) continue;
+      const pair = candidates.find(
+        (c) => (c.source === database.slug && c.target === parent)
+          || (c.source === parent && c.target === database.slug),
+      );
+      const key = `${pair.source}\0${pair.target}`;
+      if (links.has(key)) continue;
+      links.set(key, {
+        source: `db:${pair.source}`,
+        target: `db:${pair.target}`,
+        similarity: Number(pair.similarity.toFixed(4)),
       });
     }
   }

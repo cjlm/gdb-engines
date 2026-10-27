@@ -1978,43 +1978,43 @@
           },
           {
             "source": "db:4store",
-            "target": "db:sparkledb",
-            "similarity": 0.75
+            "target": "db:apache-jena-fuseki",
+            "similarity": 0.7143
           },
           {
             "source": "db:4store",
-            "target": "db:apache-jena-fuseki",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:aerospike",
-            "target": "db:janusgraph",
-            "similarity": 1
-          },
-          {
-            "source": "db:aerospike",
-            "target": "db:titan",
-            "similarity": 1
+            "target": "db:eclipse-rdf4j",
+            "similarity": 0.7143
           },
           {
             "source": "db:aerospike",
             "target": "db:apache-hugegraph",
-            "similarity": 0.8
+            "similarity": 0.75
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:janusgraph",
+            "similarity": 0.7143
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:youtrackdb",
+            "similarity": 0.7143
           },
           {
             "source": "db:agdb",
-            "target": "db:kglite",
-            "similarity": 0.8
+            "target": "db:loradb",
+            "similarity": 0.6667
           },
           {
             "source": "db:agdb",
-            "target": "db:frogql",
-            "similarity": 0.6
+            "target": "db:omnigraph",
+            "similarity": 0.6667
           },
           {
             "source": "db:agdb",
-            "target": "db:graphlite",
-            "similarity": 0.6
+            "target": "db:stromadb",
+            "similarity": 0.6667
           },
           {
             "source": "db:agensgraph",
@@ -2034,62 +2034,62 @@
           {
             "source": "db:akutan",
             "target": "db:google-cayley",
-            "similarity": 0.4286
+            "similarity": 0.4444
           },
           {
             "source": "db:akutan",
-            "target": "db:sparkledb",
+            "target": "db:gstore",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:akutan",
+            "target": "db:dgraph",
             "similarity": 0.4
-          },
-          {
-            "source": "db:4store",
-            "target": "db:akutan",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:alibaba-gdb",
-            "target": "db:fabric-graph",
-            "similarity": 0.6667
           },
           {
             "source": "db:alibaba-gdb",
             "target": "db:galaxybase",
-            "similarity": 0.6667
+            "similarity": 0.5
           },
           {
             "source": "db:alibaba-gdb",
-            "target": "db:gqldb",
-            "similarity": 0.6667
+            "target": "db:memgraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:alibaba-gdb",
+            "target": "db:graphscope",
+            "similarity": 0.4444
           },
           {
             "source": "db:allegrograph",
             "target": "db:dydra",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:allegrograph",
-            "target": "db:sparkledb",
-            "similarity": 0.6
+            "similarity": 0.75
           },
           {
             "source": "db:4store",
             "target": "db:allegrograph",
-            "similarity": 0.5
+            "similarity": 0.625
+          },
+          {
+            "source": "db:allegrograph",
+            "target": "db:apache-jena-fuseki",
+            "similarity": 0.625
           },
           {
             "source": "db:altair-graph-lakehouse",
-            "target": "db:gstore",
-            "similarity": 0.8
+            "target": "db:tentris",
+            "similarity": 0.625
           },
           {
             "source": "db:altair-graph-lakehouse",
             "target": "db:parliament",
-            "similarity": 0.8
+            "similarity": 0.5556
           },
           {
             "source": "db:altair-graph-lakehouse",
             "target": "db:qlever",
-            "similarity": 0.8
+            "similarity": 0.5556
           },
           {
             "source": "db:apache-age",
@@ -2102,144 +2102,149 @@
             "similarity": 1
           },
           {
-            "source": "db:aerospike",
-            "target": "db:apache-giraph",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:apache-giraph",
-            "target": "db:bitsy",
-            "similarity": 0.3333
-          },
-          {
             "source": "db:apache-giraph",
             "target": "db:chronograph",
             "similarity": 0.3333
           },
           {
-            "source": "db:apache-hugegraph",
+            "source": "db:apache-giraph",
             "target": "db:graphflow",
-            "similarity": 0.8
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:apache-giraph",
+            "target": "db:hypergraphdb",
+            "similarity": 0.3333
           },
           {
             "source": "db:apache-hugegraph",
             "target": "db:janusgraph",
-            "similarity": 0.8
+            "similarity": 0.75
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:huawei-ges",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:eclipse-rdf4j",
+            "similarity": 1
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:halyard",
+            "similarity": 1
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:marmotta-kiwi",
+            "similarity": 1
           },
           {
             "source": "db:apache-jena-fuseki",
             "target": "db:apache-rya",
-            "similarity": 1
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:eclipse-rdf4j",
-            "similarity": 1
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:halyard",
-            "similarity": 1
+            "similarity": 0.8333
           },
           {
             "source": "db:apache-rya",
             "target": "db:eclipse-rdf4j",
-            "similarity": 1
+            "similarity": 0.8333
           },
           {
             "source": "db:apache-rya",
             "target": "db:halyard",
-            "similarity": 1
+            "similarity": 0.8333
           },
           {
             "source": "db:arangodb",
             "target": "db:kinetica",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:arangodb",
             "target": "db:cosmos-db",
-            "similarity": 0.5
+            "similarity": 0.4444
           },
           {
             "source": "db:arangodb",
-            "target": "db:millenniumdb",
-            "similarity": 0.5
+            "target": "db:tigergraph",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "db:grafeo",
+            "similarity": 0.4706
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "db:nodedb",
+            "similarity": 0.4667
           },
           {
             "source": "db:arcadedb",
             "target": "db:orientdb",
-            "similarity": 0.7143
-          },
-          {
-            "source": "db:apache-hugegraph",
-            "target": "db:arcadedb",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:arcadedb",
-            "target": "db:cosmos-db",
-            "similarity": 0.5
+            "similarity": 0.4615
           },
           {
             "source": "db:astraeadb",
-            "target": "db:neo4j",
-            "similarity": 0.6667
+            "target": "db:gqldb",
+            "similarity": 0.5
           },
           {
             "source": "db:astraeadb",
             "target": "db:traverse",
-            "similarity": 0.6667
+            "similarity": 0.4545
           },
           {
             "source": "db:astraeadb",
-            "target": "db:fabric-graph",
-            "similarity": 0.6
+            "target": "db:neo4j",
+            "similarity": 0.4
           },
           {
             "source": "db:atomic-server",
             "target": "db:cozodb",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
             "source": "db:atomic-server",
             "target": "db:helixdb",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
             "source": "db:atomic-server",
             "target": "db:omnigraph",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
             "source": "db:attean",
             "target": "db:rdf-trine",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
             "source": "db:attean",
             "target": "db:oxirs",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
             "source": "db:attean",
             "target": "db:rdflib",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:bangdb",
             "target": "db:katanagraph",
-            "similarity": 1
+            "similarity": 0.6667
           },
           {
             "source": "db:bangdb",
-            "target": "db:bighorn",
-            "similarity": 0.6
+            "target": "db:neug",
+            "similarity": 0.5714
           },
           {
             "source": "db:bangdb",
-            "target": "db:kuzu",
-            "similarity": 0.6
+            "target": "db:ibm-system-g",
+            "similarity": 0.5
           },
           {
             "source": "db:bighorn",
@@ -2253,82 +2258,82 @@
           },
           {
             "source": "db:bighorn",
-            "target": "db:neug",
+            "target": "db:turbolynx",
             "similarity": 1
           },
           {
             "source": "db:bigquery-graph",
             "target": "db:spanner-graph",
-            "similarity": 1
+            "similarity": 0.875
           },
           {
             "source": "db:bigquery-graph",
-            "target": "db:tugraph",
-            "similarity": 0.6667
+            "target": "db:gqldb",
+            "similarity": 0.625
           },
           {
             "source": "db:bigquery-graph",
             "target": "db:ultipa",
-            "similarity": 0.6667
+            "similarity": 0.5556
           },
           {
             "source": "db:bitsy",
             "target": "db:chronograph",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
             "source": "db:bitsy",
             "target": "db:tinkergraph",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
             "source": "db:aerospike",
             "target": "db:bitsy",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
             "source": "db:apache-jena-fuseki",
             "target": "db:blazegraph",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:blazegraph",
-            "similarity": 0.8
+            "similarity": 0.8571
           },
           {
             "source": "db:blazegraph",
             "target": "db:eclipse-rdf4j",
-            "similarity": 0.8
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "db:halyard",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:4store",
+            "target": "db:brightstardb",
+            "similarity": 0.4444
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:brightstardb",
+            "similarity": 0.4444
           },
           {
             "source": "db:brightstardb",
-            "target": "db:quadstore",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:brightstardb",
-            "target": "db:oxilite",
-            "similarity": 0.4286
-          },
-          {
-            "source": "db:brightstardb",
-            "target": "db:sparkledb",
-            "similarity": 0.3333
+            "target": "db:eclipse-rdf4j",
+            "similarity": 0.4444
           },
           {
             "source": "db:bytegraph",
             "target": "db:g-tran",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
             "source": "db:bytegraph",
             "target": "db:ibm-system-g",
-            "similarity": 1
+            "similarity": 0.6667
           },
           {
             "source": "db:bytegraph",
-            "target": "db:cray-graph-engine",
+            "target": "db:tao",
             "similarity": 0.6
           },
           {
@@ -2337,14 +2342,9 @@
             "similarity": 1
           },
           {
-            "source": "db:aerospike",
-            "target": "db:chronograph",
+            "source": "db:chronograph",
+            "target": "db:titan",
             "similarity": 0.6
-          },
-          {
-            "source": "db:codemix-graph",
-            "target": "db:puppygraph",
-            "similarity": 0.5
           },
           {
             "source": "db:codemix-graph",
@@ -2352,44 +2352,44 @@
             "similarity": 0.5
           },
           {
-            "source": "db:apache-hugegraph",
-            "target": "db:codemix-graph",
-            "similarity": 0.4286
+            "source": "db:codemix-graph",
+            "target": "db:huawei-ges",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:codemix-graph",
+            "target": "db:puppygraph",
+            "similarity": 0.3333
           },
           {
             "source": "db:agdb",
             "target": "db:cogdb",
-            "similarity": 0.3333
+            "similarity": 0.4286
           },
           {
             "source": "db:akutan",
             "target": "db:cogdb",
-            "similarity": 0.3333
+            "similarity": 0.375
           },
           {
-            "source": "db:cogdb",
-            "target": "db:falkordblite",
+            "source": "db:brightstardb",
+            "target": "db:cogdb",
             "similarity": 0.3333
           },
           {
             "source": "db:comunica",
             "target": "db:ontop",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:comunica",
-            "target": "db:quadstore",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
             "source": "db:comunica",
             "target": "db:dydra",
-            "similarity": 0.4286
+            "similarity": 0.4444
           },
           {
-            "source": "db:cosmos-db",
-            "target": "db:kinetica",
-            "similarity": 0.8
+            "source": "db:comunica",
+            "target": "db:quadstore",
+            "similarity": 0.4286
           },
           {
             "source": "db:cosmos-db",
@@ -2398,103 +2398,113 @@
           },
           {
             "source": "db:cosmos-db",
-            "target": "db:marklogic",
-            "similarity": 0.5714
+            "target": "db:ibm-system-g",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:cosmos-db",
+            "target": "db:kinetica",
+            "similarity": 0.5
           },
           {
             "source": "db:cozodb",
             "target": "db:helixdb",
-            "similarity": 0.6
+            "similarity": 0.6667
           },
           {
             "source": "db:cozodb",
-            "target": "db:minigraf",
-            "similarity": 0.6
+            "target": "db:typedb",
+            "similarity": 0.5714
           },
           {
             "source": "db:cray-graph-engine",
-            "target": "db:g-tran",
-            "similarity": 0.6
+            "target": "db:tentris",
+            "similarity": 0.6667
           },
           {
             "source": "db:cray-graph-engine",
-            "target": "db:gstore",
-            "similarity": 0.6
+            "target": "db:parliament",
+            "similarity": 0.5714
           },
           {
-            "source": "db:data-graphs",
-            "target": "db:nodedb",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:data-graphs",
-            "target": "db:traverse",
-            "similarity": 0.6667
+            "source": "db:cray-graph-engine",
+            "target": "db:qlever",
+            "similarity": 0.5714
           },
           {
             "source": "db:data-graphs",
             "target": "db:surrealdb",
-            "similarity": 0.5714
+            "similarity": 0.5
           },
           {
-            "source": "db:aerospike",
-            "target": "db:datastax-enterprise",
-            "similarity": 0.8
+            "source": "db:data-graphs",
+            "target": "db:traverse",
+            "similarity": 0.5
           },
           {
-            "source": "db:datastax-enterprise",
-            "target": "db:janusgraph",
-            "similarity": 0.8
+            "source": "db:data-graphs",
+            "target": "db:grafeo",
+            "similarity": 0.4615
           },
           {
             "source": "db:datastax-enterprise",
             "target": "db:titan",
-            "similarity": 0.8
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:aerospike",
+            "target": "db:datastax-enterprise",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:datastax-enterprise",
+            "target": "db:janusgraph",
+            "similarity": 0.5
           },
           {
             "source": "db:dgraph",
             "target": "db:nornicdb",
-            "similarity": 0.6667
+            "similarity": 0.7
           },
           {
             "source": "db:dgraph",
             "target": "db:graphbase",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:dgraph",
-            "target": "db:raphtory",
-            "similarity": 0.5
+            "target": "db:gqldb",
+            "similarity": 0.4444
           },
           {
             "source": "db:dozerdb",
             "target": "db:ongdb",
-            "similarity": 0.6
+            "similarity": 0.7143
           },
           {
             "source": "db:dozerdb",
             "target": "db:neo4j",
-            "similarity": 0.5
+            "similarity": 0.625
           },
           {
-            "source": "db:aerospike",
-            "target": "db:dozerdb",
-            "similarity": 0.3333
+            "source": "db:dozerdb",
+            "target": "db:galaxybase",
+            "similarity": 0.375
           },
           {
             "source": "db:duck-rdf",
-            "target": "db:gstore",
-            "similarity": 0.6
+            "target": "db:tentris",
+            "similarity": 0.5
           },
           {
             "source": "db:duck-rdf",
             "target": "db:parliament",
-            "similarity": 0.6
+            "similarity": 0.4286
           },
           {
             "source": "db:duck-rdf",
             "target": "db:qlever",
-            "similarity": 0.6
+            "similarity": 0.4286
           },
           {
             "source": "db:duckgql",
@@ -2502,34 +2512,34 @@
             "similarity": 0.6
           },
           {
-            "source": "db:bigquery-graph",
-            "target": "db:duckgql",
-            "similarity": 0.5
+            "source": "db:duckgql",
+            "target": "db:ultipa",
+            "similarity": 0.4286
           },
           {
             "source": "db:duckgql",
             "target": "db:spanner-graph",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:bigquery-graph",
-            "target": "db:duckpgq",
-            "similarity": 0.5
+            "similarity": 0.375
           },
           {
             "source": "db:duckpgq",
             "target": "db:spanner-graph",
-            "similarity": 0.5
+            "similarity": 0.375
           },
           {
-            "source": "db:dydra",
-            "target": "db:sparkledb",
-            "similarity": 0.6
+            "source": "db:bighorn",
+            "target": "db:duckpgq",
+            "similarity": 0.3333
           },
           {
             "source": "db:dydra",
             "target": "db:stardog",
-            "similarity": 0.5714
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:4store",
+            "target": "db:dydra",
+            "similarity": 0.625
           },
           {
             "source": "db:eclipse-rdf4j",
@@ -2537,69 +2547,84 @@
             "similarity": 1
           },
           {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:marmotta-kiwi",
+            "similarity": 1
+          },
+          {
             "source": "db:fabric-graph",
             "target": "db:gqldb",
-            "similarity": 1
+            "similarity": 0.8
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:ultipa",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:graphbase",
+            "similarity": 0.6
           },
           {
             "source": "db:bighorn",
             "target": "db:falkordblite",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:falkordblite",
             "target": "db:kuzu",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:falkordblite",
             "target": "db:ladybugdb",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:faunadb",
             "target": "db:terminusdb",
-            "similarity": 0.4286
+            "similarity": 0.4444
           },
           {
             "source": "db:faunadb",
-            "target": "db:surrealdb",
-            "similarity": 0.375
+            "target": "db:graphbase",
+            "similarity": 0.4286
           },
           {
-            "source": "db:arcadedb",
+            "source": "db:arangodb",
             "target": "db:faunadb",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:atomic-server",
-            "target": "db:flockdb",
-            "similarity": 0.3333
+            "similarity": 0.375
           },
           {
             "source": "db:bytegraph",
             "target": "db:flockdb",
-            "similarity": 0.3333
+            "similarity": 0.2857
+          },
+          {
+            "source": "db:flockdb",
+            "target": "db:tao",
+            "similarity": 0.2857
           },
           {
             "source": "db:cozodb",
             "target": "db:flockdb",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:fluree",
-            "target": "db:oxigraph",
-            "similarity": 0.5714
-          },
-          {
-            "source": "db:altair-graph-lakehouse",
-            "target": "db:fluree",
-            "similarity": 0.5
+            "similarity": 0.25
           },
           {
             "source": "db:dydra",
             "target": "db:fluree",
             "similarity": 0.5
+          },
+          {
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:fluree",
+            "similarity": 0.4615
+          },
+          {
+            "source": "db:fluree",
+            "target": "db:ontotext-graphdb",
+            "similarity": 0.4615
           },
           {
             "source": "db:frogql",
@@ -2608,213 +2633,223 @@
           },
           {
             "source": "db:frogql",
-            "target": "db:loradb",
+            "target": "db:selene-db",
             "similarity": 0.6
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:frogql",
+            "similarity": 0.5
           },
           {
             "source": "db:g-tran",
             "target": "db:ibm-system-g",
-            "similarity": 1
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:weaver",
+            "similarity": 0.6667
           },
           {
             "source": "db:gaffer",
             "target": "db:prometheux",
-            "similarity": 0.4
+            "similarity": 0.5
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "db:gaffer",
+            "similarity": 0.375
           },
           {
             "source": "db:gaffer",
             "target": "db:vadalog",
-            "similarity": 0.4
-          },
-          {
-            "source": "db:apache-giraph",
-            "target": "db:gaffer",
             "similarity": 0.3333
           },
           {
             "source": "db:galaxybase",
-            "target": "db:rocketgraph",
-            "similarity": 1
-          },
-          {
-            "source": "db:galaxybase",
-            "target": "db:graphflow",
-            "similarity": 0.75
+            "target": "db:redisgraph-falkordb",
+            "similarity": 0.7143
           },
           {
             "source": "db:galaxybase",
             "target": "db:memgraph",
-            "similarity": 0.75
+            "similarity": 0.6667
           },
           {
-            "source": "db:falkordblite",
-            "target": "db:gfql",
-            "similarity": 0.5
+            "source": "db:galaxybase",
+            "target": "db:tugraph",
+            "similarity": 0.625
           },
           {
             "source": "db:gfql",
-            "target": "db:lance-csr",
+            "target": "db:lance-graph",
             "similarity": 0.5
           },
           {
             "source": "db:gfql",
             "target": "db:puppygraph",
-            "similarity": 0.5
+            "similarity": 0.4444
           },
           {
-            "source": "db:dgraph",
-            "target": "db:google-cayley",
-            "similarity": 0.375
+            "source": "db:gfql",
+            "target": "db:lance-csr",
+            "similarity": 0.4286
           },
           {
             "source": "db:dydra",
             "target": "db:google-cayley",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:google-cayley",
+            "target": "db:graphbase",
             "similarity": 0.375
           },
           {
-            "source": "db:astraeadb",
-            "target": "db:gqldb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:data-graphs",
-            "target": "db:grafeo",
-            "similarity": 0.5556
+            "source": "db:gqldb",
+            "target": "db:spanner-graph",
+            "similarity": 0.7143
           },
           {
             "source": "db:grafeo",
-            "target": "db:neptune",
-            "similarity": 0.5
+            "target": "db:traverse",
+            "similarity": 0.5714
           },
           {
             "source": "db:grafeo",
             "target": "db:surrealdb",
-            "similarity": 0.5
+            "similarity": 0.4667
           },
           {
             "source": "db:graph-engine",
             "target": "db:sones-graphdb",
-            "similarity": 0.6
+            "similarity": 0.5714
           },
           {
-            "source": "db:alibaba-gdb",
-            "target": "db:graph-engine",
+            "source": "db:graph-engine",
+            "target": "db:turingdb",
             "similarity": 0.5
           },
           {
             "source": "db:fabric-graph",
             "target": "db:graph-engine",
-            "similarity": 0.4
+            "similarity": 0.4286
           },
           {
-            "source": "db:graphbase",
-            "target": "db:raphtory",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:alibaba-gdb",
+            "source": "db:galaxybase",
             "target": "db:graphbase",
-            "similarity": 0.6667
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:infinitegraph",
+            "similarity": 0.6
           },
           {
             "source": "db:graphflow",
             "target": "db:rocketgraph",
-            "similarity": 0.75
+            "similarity": 0.6
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:ryugraph",
+            "similarity": 0.6
           },
           {
             "source": "db:graphlite",
-            "target": "db:loradb",
+            "target": "db:selene-db",
             "similarity": 0.6
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:graphlite",
+            "similarity": 0.5
           },
           {
             "source": "db:agensgraph",
             "target": "db:graphqlite",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
             "source": "db:apache-age",
             "target": "db:graphqlite",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
             "source": "db:graphqlite",
             "target": "db:pg-ladybug",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
             "source": "db:graphscope",
             "target": "db:huawei-ges",
-            "similarity": 1
+            "similarity": 0.6667
           },
           {
             "source": "db:graphscope",
-            "target": "db:memgraph",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:graphscope",
-            "target": "db:ryugraph",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:agdb",
-            "target": "db:grust",
+            "target": "db:puppygraph",
             "similarity": 0.6
           },
           {
-            "source": "db:grust",
-            "target": "db:omnigraph",
-            "similarity": 0.6
+            "source": "db:galaxybase",
+            "target": "db:graphscope",
+            "similarity": 0.5556
           },
           {
             "source": "db:grust",
             "target": "db:qbix-streams",
+            "similarity": 0.6
+          },
+          {
+            "source": "db:grust",
+            "target": "db:selene-db",
+            "similarity": 0.6
+          },
+          {
+            "source": "db:grust",
+            "target": "db:typegraph",
             "similarity": 0.6
           },
           {
             "source": "db:gstore",
             "target": "db:parliament",
-            "similarity": 1
+            "similarity": 0.625
           },
           {
             "source": "db:gstore",
             "target": "db:qlever",
-            "similarity": 1
+            "similarity": 0.625
           },
           {
             "source": "db:gstore",
             "target": "db:rdfox",
-            "similarity": 1
-          },
-          {
-            "source": "db:gun",
-            "target": "db:omnigraph",
-            "similarity": 0.6
+            "similarity": 0.625
           },
           {
             "source": "db:gun",
             "target": "db:qbix-streams",
-            "similarity": 0.6
+            "similarity": 0.5
+          },
+          {
+            "source": "db:gun",
+            "target": "db:omnigraph",
+            "similarity": 0.4286
           },
           {
             "source": "db:gun",
             "target": "db:recallgraph",
-            "similarity": 0.6
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:marmotta-kiwi",
+            "similarity": 1
           },
           {
             "source": "db:helixdb",
             "target": "db:typedb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:aerospike",
-            "target": "db:hgraphdb",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:bitsy",
-            "target": "db:hgraphdb",
-            "similarity": 0.3333
+            "similarity": 0.5714
           },
           {
             "source": "db:bytegraph",
@@ -2822,54 +2857,49 @@
             "similarity": 0.3333
           },
           {
+            "source": "db:chronograph",
+            "target": "db:hgraphdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:hgraphdb",
+            "target": "db:hypergraphdb",
+            "similarity": 0.3333
+          },
+          {
             "source": "db:huawei-ges",
-            "target": "db:memgraph",
-            "similarity": 0.8
+            "target": "db:turingdb",
+            "similarity": 0.7143
           },
           {
             "source": "db:huawei-ges",
             "target": "db:ryugraph",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
-            "source": "db:apache-giraph",
+            "source": "db:chronograph",
             "target": "db:hypergraphdb",
             "similarity": 0.3333
           },
           {
-            "source": "db:bangdb",
-            "target": "db:hypergraphdb",
-            "similarity": 0.3333
+            "source": "db:ibm-system-g",
+            "target": "db:weaver",
+            "similarity": 0.5714
           },
           {
-            "source": "db:bitsy",
-            "target": "db:hypergraphdb",
-            "similarity": 0.3333
-          },
-          {
-            "source": "db:cray-graph-engine",
-            "target": "db:ibm-system-g",
+            "source": "db:infinitegraph",
+            "target": "db:titan",
             "similarity": 0.6
           },
           {
             "source": "db:aerospike",
             "target": "db:infinitegraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:graphflow",
-            "target": "db:infinitegraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:infinitegraph",
-            "target": "db:janusgraph",
-            "similarity": 0.6
+            "similarity": 0.4286
           },
           {
             "source": "db:janusgraph",
-            "target": "db:titan",
-            "similarity": 1
+            "target": "db:youtrackdb",
+            "similarity": 0.7143
           },
           {
             "source": "db:bighorn",
@@ -2882,39 +2912,39 @@
             "similarity": 0.6
           },
           {
-            "source": "db:bighorn",
+            "source": "db:agdb",
             "target": "db:kglite",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
-            "source": "db:falkordblite",
+            "source": "db:bighorn",
             "target": "db:kglite",
-            "similarity": 0.5
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:frogql",
+            "target": "db:kglite",
+            "similarity": 0.4286
           },
           {
             "source": "db:kinetica",
             "target": "db:marklogic",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:kinetica",
-            "target": "db:sap-hana",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:kowari",
-            "target": "db:mulgara",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:kowari",
-            "similarity": 0.6
+            "similarity": 0.6364
           },
           {
             "source": "db:apache-rya",
             "target": "db:kowari",
-            "similarity": 0.6
+            "similarity": 0.5
+          },
+          {
+            "source": "db:kowari",
+            "target": "db:mulgara",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:kowari",
+            "similarity": 0.4286
           },
           {
             "source": "db:kuzu",
@@ -2923,43 +2953,33 @@
           },
           {
             "source": "db:kuzu",
-            "target": "db:neug",
+            "target": "db:turbolynx",
             "similarity": 1
           },
           {
             "source": "db:ladybugdb",
-            "target": "db:neug",
+            "target": "db:turbolynx",
             "similarity": 1
           },
           {
             "source": "db:lance-csr",
             "target": "db:lance-graph",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
-            "source": "db:lance-csr",
-            "target": "db:puppygraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:lance-graph",
-            "target": "db:pggraph",
-            "similarity": 0.5
+            "source": "db:kglite",
+            "target": "db:lance-csr",
+            "similarity": 0.4286
           },
           {
             "source": "db:lance-graph",
             "target": "db:puppygraph",
-            "similarity": 0.5
+            "similarity": 0.4444
           },
           {
             "source": "db:latticedb",
             "target": "db:loradb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:agdb",
-            "target": "db:latticedb",
-            "similarity": 0.3333
+            "similarity": 0.5
           },
           {
             "source": "db:bighorn",
@@ -2967,14 +2987,14 @@
             "similarity": 0.3333
           },
           {
-            "source": "db:livegraph",
-            "target": "db:zipg",
-            "similarity": 1
+            "source": "db:chronograph",
+            "target": "db:latticedb",
+            "similarity": 0.3333
           },
           {
-            "source": "db:bangdb",
-            "target": "db:livegraph",
-            "similarity": 0.6
+            "source": "db:livegraph",
+            "target": "db:zipg",
+            "similarity": 0.8
           },
           {
             "source": "db:katanagraph",
@@ -2982,64 +3002,69 @@
             "similarity": 0.6
           },
           {
-            "source": "db:agdb",
-            "target": "db:loradb",
+            "source": "db:livegraph",
+            "target": "db:triblespace",
             "similarity": 0.6
           },
           {
+            "source": "db:frogql",
+            "target": "db:loradb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphlite",
+            "target": "db:loradb",
+            "similarity": 0.5
+          },
+          {
             "source": "db:marklogic",
-            "target": "db:millenniumdb",
-            "similarity": 0.5714
+            "target": "db:virtuoso",
+            "similarity": 0.5
           },
           {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:marmotta-kiwi",
-            "similarity": 1
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:marmotta-kiwi",
-            "similarity": 1
-          },
-          {
-            "source": "db:eclipse-rdf4j",
-            "target": "db:marmotta-kiwi",
-            "similarity": 1
+            "source": "db:cosmos-db",
+            "target": "db:marklogic",
+            "similarity": 0.4615
           },
           {
             "source": "db:data-graphs",
             "target": "db:memgql",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:memgql",
-            "target": "db:surrealdb",
-            "similarity": 0.4286
+            "similarity": 0.375
           },
           {
             "source": "db:frogql",
             "target": "db:memgql",
-            "similarity": 0.3333
+            "similarity": 0.2857
+          },
+          {
+            "source": "db:grafeo",
+            "target": "db:memgql",
+            "similarity": 0.2857
           },
           {
             "source": "db:memgraph",
             "target": "db:ryugraph",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
             "source": "db:memgraph",
             "target": "db:sparksee",
-            "similarity": 1
+            "similarity": 0.8
           },
           {
-            "source": "db:memgraph",
-            "target": "db:turingdb",
-            "similarity": 1
+            "source": "db:cray-graph-engine",
+            "target": "db:millenniumdb",
+            "similarity": 0.5
           },
           {
             "source": "db:millenniumdb",
-            "target": "db:neptune",
-            "similarity": 0.5714
+            "target": "db:tentris",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:millenniumdb",
+            "target": "db:parliament",
+            "similarity": 0.4444
           },
           {
             "source": "db:minigraf",
@@ -3047,99 +3072,119 @@
             "similarity": 0.6
           },
           {
-            "source": "db:agdb",
+            "source": "db:cozodb",
+            "target": "db:minigraf",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:frogql",
             "target": "db:minigraf",
             "similarity": 0.3333
           },
           {
             "source": "db:apache-jena-fuseki",
             "target": "db:mulgara",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:mulgara",
-            "similarity": 0.8
+            "similarity": 0.75
           },
           {
             "source": "db:eclipse-rdf4j",
             "target": "db:mulgara",
-            "similarity": 0.8
+            "similarity": 0.75
           },
           {
-            "source": "db:memgraph",
-            "target": "db:nebulagraph",
-            "similarity": 0.6
+            "source": "db:halyard",
+            "target": "db:mulgara",
+            "similarity": 0.75
           },
           {
             "source": "db:nebulagraph",
             "target": "db:ryugraph",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:nebulagraph",
             "target": "db:sparksee",
-            "similarity": 0.6
+            "similarity": 0.5
+          },
+          {
+            "source": "db:memgraph",
+            "target": "db:nebulagraph",
+            "similarity": 0.4286
           },
           {
             "source": "db:neo4j",
             "target": "db:ongdb",
-            "similarity": 0.8
+            "similarity": 0.8571
           },
           {
             "source": "db:fabric-graph",
             "target": "db:neo4j",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:altair-graph-lakehouse",
-            "target": "db:neptune",
-            "similarity": 0.5714
-          },
-          {
-            "source": "db:cosmos-db",
-            "target": "db:neptune",
             "similarity": 0.5714
           },
           {
             "source": "db:graphscope",
             "target": "db:neptune",
-            "similarity": 0.5714
+            "similarity": 0.5385
           },
           {
-            "source": "db:nodedb",
-            "target": "db:sap-hana",
-            "similarity": 0.5714
+            "source": "db:altair-graph-lakehouse",
+            "target": "db:neptune",
+            "similarity": 0.4615
           },
           {
-            "source": "db:arcadedb",
+            "source": "db:apache-hugegraph",
+            "target": "db:neptune",
+            "similarity": 0.4615
+          },
+          {
+            "source": "db:bighorn",
+            "target": "db:neug",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:neug",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "db:neug",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:data-graphs",
             "target": "db:nodedb",
-            "similarity": 0.5
+            "similarity": 0.4545
+          },
+          {
+            "source": "db:kinetica",
+            "target": "db:nodedb",
+            "similarity": 0.4167
           },
           {
             "source": "db:galaxybase",
             "target": "db:nornicdb",
-            "similarity": 0.6
+            "similarity": 0.5556
           },
           {
-            "source": "db:graphbase",
+            "source": "db:graphscope",
             "target": "db:nornicdb",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
             "source": "db:bytegraph",
             "target": "db:objectivity-db",
-            "similarity": 0.6
+            "similarity": 0.5
+          },
+          {
+            "source": "db:objectivity-db",
+            "target": "db:tao",
+            "similarity": 0.5
           },
           {
             "source": "db:cray-graph-engine",
             "target": "db:objectivity-db",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:g-tran",
-            "target": "db:objectivity-db",
-            "similarity": 0.6
+            "similarity": 0.4286
           },
           {
             "source": "db:omnigraph",
@@ -3147,89 +3192,79 @@
             "similarity": 1
           },
           {
-            "source": "db:agdb",
-            "target": "db:omnigraph",
-            "similarity": 0.6
+            "source": "db:omnigraph",
+            "target": "db:rushdb",
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:ongdb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:ontop",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:ontop",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:ontotext-graphdb",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:ontotext-graphdb",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:ontotext-graphdb",
+            "similarity": 0.75
+          },
+          {
+            "source": "db:ontotext-graphdb",
+            "target": "db:oracle-graph",
+            "similarity": 0.5455
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:oracle-graph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:oracle-graph",
+            "similarity": 0.5
           },
           {
             "source": "db:aerospike",
-            "target": "db:ongdb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:ontop",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:ontop",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:eclipse-rdf4j",
-            "target": "db:ontop",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:ontotext-graphdb",
-            "similarity": 1
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:ontotext-graphdb",
-            "similarity": 1
-          },
-          {
-            "source": "db:eclipse-rdf4j",
-            "target": "db:ontotext-graphdb",
-            "similarity": 1
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:oracle-graph",
-            "similarity": 0.4286
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:oracle-graph",
-            "similarity": 0.4286
-          },
-          {
-            "source": "db:eclipse-rdf4j",
-            "target": "db:oracle-graph",
-            "similarity": 0.4286
-          },
-          {
-            "source": "db:orientdb",
-            "target": "db:youtrackdb",
-            "similarity": 0.6667
+            "target": "db:orientdb",
+            "similarity": 0.4444
           },
           {
             "source": "db:oxigraph",
             "target": "db:sparkledb",
-            "similarity": 0.75
+            "similarity": 0.8
+          },
+          {
+            "source": "db:oxigraph",
+            "target": "db:tentris",
+            "similarity": 0.6667
           },
           {
             "source": "db:4store",
             "target": "db:oxigraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:oxigraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:fluree",
-            "target": "db:oxilite",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
             "source": "db:oxigraph",
             "target": "db:oxilite",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
             "source": "db:oxilite",
@@ -3237,29 +3272,29 @@
             "similarity": 0.5
           },
           {
-            "source": "db:oxigraph",
-            "target": "db:oxirs",
-            "similarity": 0.6
+            "source": "db:brightstardb",
+            "target": "db:oxilite",
+            "similarity": 0.4444
           },
           {
-            "source": "db:oxirs",
-            "target": "db:rdf-trine",
-            "similarity": 0.6
+            "source": "db:oxigraph",
+            "target": "db:oxirs",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:pandadb",
+            "target": "db:turingdb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:pandadb",
+            "similarity": 0.5
           },
           {
             "source": "db:pandadb",
             "target": "db:quine",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:galaxybase",
-            "target": "db:pandadb",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:pandadb",
-            "target": "db:rocketgraph",
-            "similarity": 0.75
+            "similarity": 0.5
           },
           {
             "source": "db:parliament",
@@ -3270,6 +3305,11 @@
             "source": "db:parliament",
             "target": "db:rdfox",
             "similarity": 1
+          },
+          {
+            "source": "db:parliament",
+            "target": "db:tentris",
+            "similarity": 0.8333
           },
           {
             "source": "db:pg-ladybug",
@@ -3279,52 +3319,57 @@
           {
             "source": "db:pg-petgraph",
             "target": "db:pggraph",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
-            "source": "db:atomic-server",
+            "source": "db:hgraphdb",
             "target": "db:pg-petgraph",
             "similarity": 0.3333
           },
           {
-            "source": "db:cozodb",
+            "source": "db:minigraf",
             "target": "db:pg-petgraph",
             "similarity": 0.3333
           },
           {
             "source": "db:agensgraph",
             "target": "db:pggraph",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
             "source": "db:apache-age",
             "target": "db:pggraph",
-            "similarity": 0.5
+            "similarity": 0.5714
           },
           {
-            "source": "db:postgresql-sql-pgq",
-            "target": "db:redisgraph-falkordb",
-            "similarity": 0.6
+            "source": "db:pg-ladybug",
+            "target": "db:pggraph",
+            "similarity": 0.5714
           },
           {
-            "source": "db:alibaba-gdb",
+            "source": "db:agensgraph",
             "target": "db:postgresql-sql-pgq",
-            "similarity": 0.5
+            "similarity": 0.375
           },
           {
-            "source": "db:bigquery-graph",
+            "source": "db:apache-age",
             "target": "db:postgresql-sql-pgq",
-            "similarity": 0.5
+            "similarity": 0.375
+          },
+          {
+            "source": "db:pg-ladybug",
+            "target": "db:postgresql-sql-pgq",
+            "similarity": 0.375
           },
           {
             "source": "db:prometheux",
             "target": "db:vadalog",
-            "similarity": 1
+            "similarity": 0.75
           },
           {
-            "source": "db:apache-giraph",
+            "source": "db:cozodb",
             "target": "db:prometheux",
-            "similarity": 0.1667
+            "similarity": 0.2857
           },
           {
             "source": "db:apache-hugegraph",
@@ -3332,8 +3377,13 @@
             "similarity": 0.5
           },
           {
+            "source": "db:galaxybase",
+            "target": "db:puppygraph",
+            "similarity": 0.5
+          },
+          {
             "source": "db:qbix-streams",
-            "target": "db:recallgraph",
+            "target": "db:typegraph",
             "similarity": 0.6
           },
           {
@@ -3342,29 +3392,49 @@
             "similarity": 1
           },
           {
+            "source": "db:qlever",
+            "target": "db:tentris",
+            "similarity": 0.8333
+          },
+          {
             "source": "db:oxilite",
             "target": "db:quadstore",
-            "similarity": 0.5
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:brightstardb",
+            "target": "db:quadstore",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:huawei-ges",
+            "target": "db:quine",
+            "similarity": 0.625
           },
           {
             "source": "db:apache-hugegraph",
             "target": "db:quine",
-            "similarity": 0.6667
+            "similarity": 0.5
           },
           {
-            "source": "db:graphscope",
+            "source": "db:galaxybase",
             "target": "db:quine",
-            "similarity": 0.6667
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphbase",
+            "target": "db:raphtory",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:dgraph",
+            "target": "db:raphtory",
+            "similarity": 0.4444
           },
           {
             "source": "db:omnigraph",
             "target": "db:raphtory",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:raphtory",
-            "target": "db:stromadb",
-            "similarity": 0.6
+            "similarity": 0.4286
           },
           {
             "source": "db:rdf-trine",
@@ -3372,89 +3442,89 @@
             "similarity": 0.6
           },
           {
-            "source": "db:oxirs",
-            "target": "db:rdflib",
+            "source": "db:rdf-trine",
+            "target": "db:redland",
             "similarity": 0.6
+          },
+          {
+            "source": "db:rdflib",
+            "target": "db:redland",
+            "similarity": 0.6
+          },
+          {
+            "source": "db:rdfox",
+            "target": "db:tentris",
+            "similarity": 0.8333
+          },
+          {
+            "source": "db:qbix-streams",
+            "target": "db:recallgraph",
+            "similarity": 0.5
           },
           {
             "source": "db:agdb",
             "target": "db:recallgraph",
-            "similarity": 0.3333
+            "similarity": 0.4286
           },
           {
-            "source": "db:galaxybase",
+            "source": "db:memgraph",
             "target": "db:redisgraph-falkordb",
-            "similarity": 0.75
+            "similarity": 0.5
           },
           {
             "source": "db:redisgraph-falkordb",
-            "target": "db:rocketgraph",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:graphflow",
-            "target": "db:redisgraph-falkordb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:4store",
-            "target": "db:redland",
-            "similarity": 0.6
+            "target": "db:tugraph",
+            "similarity": 0.5
           },
           {
             "source": "db:attean",
             "target": "db:redland",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:oxirs",
-            "target": "db:redland",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:redstore",
-            "target": "db:sparkledb",
-            "similarity": 0.75
+            "similarity": 0.5
           },
           {
             "source": "db:apache-jena-fuseki",
             "target": "db:redstore",
-            "similarity": 0.6
+            "similarity": 0.7143
           },
           {
-            "source": "db:relationalai",
-            "target": "db:sql-server-graph",
-            "similarity": 0.3333
+            "source": "db:eclipse-rdf4j",
+            "target": "db:redstore",
+            "similarity": 0.7143
           },
           {
-            "source": "db:relationalai",
-            "target": "db:teradata-aster",
-            "similarity": 0.3333
+            "source": "db:cozodb",
+            "target": "db:relationalai",
+            "similarity": 0.375
+          },
+          {
+            "source": "db:helixdb",
+            "target": "db:relationalai",
+            "similarity": 0.375
           },
           {
             "source": "db:atomic-server",
             "target": "db:relationalai",
-            "similarity": 0.2857
+            "similarity": 0.3333
           },
           {
-            "source": "db:memgraph",
-            "target": "db:rocketgraph",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:gun",
-            "target": "db:rushdb",
+            "source": "db:rocketgraph",
+            "target": "db:ryugraph",
             "similarity": 0.6
           },
           {
-            "source": "db:omnigraph",
-            "target": "db:rushdb",
+            "source": "db:rocketgraph",
+            "target": "db:sparksee",
             "similarity": 0.6
           },
           {
             "source": "db:rushdb",
             "target": "db:stromadb",
-            "similarity": 0.6
+            "similarity": 0.6667
+          },
+          {
+            "source": "db:fabric-graph",
+            "target": "db:rushdb",
+            "similarity": 0.5
           },
           {
             "source": "db:ryugraph",
@@ -3462,64 +3532,49 @@
             "similarity": 1
           },
           {
-            "source": "db:ryugraph",
-            "target": "db:turingdb",
-            "similarity": 1
+            "source": "db:kinetica",
+            "target": "db:sap-hana",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:marklogic",
+            "target": "db:sap-hana",
+            "similarity": 0.4615
           },
           {
             "source": "db:cosmos-db",
             "target": "db:sap-hana",
-            "similarity": 0.5714
-          },
-          {
-            "source": "db:frogql",
-            "target": "db:selene-db",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:graphlite",
-            "target": "db:selene-db",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:grust",
-            "target": "db:selene-db",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:alibaba-gdb",
-            "target": "db:sones-graphdb",
-            "similarity": 0.5
+            "similarity": 0.4545
           },
           {
             "source": "db:fabric-graph",
             "target": "db:sones-graphdb",
-            "similarity": 0.4
+            "similarity": 0.5
           },
           {
-            "source": "db:spanner-graph",
-            "target": "db:tugraph",
-            "similarity": 0.6667
+            "source": "db:graphbase",
+            "target": "db:sones-graphdb",
+            "similarity": 0.5
           },
           {
             "source": "db:spanner-graph",
             "target": "db:ultipa",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:sparkledb",
+            "target": "db:tentris",
+            "similarity": 0.8
+          },
+          {
+            "source": "db:4store",
+            "target": "db:sparkledb",
             "similarity": 0.6667
           },
           {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:sparkledb",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:sparkledb",
-            "similarity": 0.75
-          },
-          {
-            "source": "db:sparksee",
-            "target": "db:turingdb",
-            "similarity": 1
+            "source": "db:huawei-ges",
+            "target": "db:sparksee",
+            "similarity": 0.6667
           },
           {
             "source": "db:sql-server-graph",
@@ -3529,227 +3584,152 @@
           {
             "source": "db:sql-server-graph",
             "target": "db:stellardb",
-            "similarity": 0.75
+            "similarity": 0.6
           },
           {
-            "source": "db:alibaba-gdb",
-            "target": "db:sql-server-graph",
-            "similarity": 0.6667
+            "source": "db:sql-server-graph",
+            "target": "db:youtrackdb",
+            "similarity": 0.5
           },
           {
             "source": "db:apache-jena-fuseki",
             "target": "db:stardog",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:stardog",
-            "similarity": 0.6667
+            "similarity": 0.75
           },
           {
             "source": "db:eclipse-rdf4j",
             "target": "db:stardog",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:galaxybase",
-            "target": "db:stellardb",
             "similarity": 0.75
           },
           {
-            "source": "db:rocketgraph",
-            "target": "db:stellardb",
+            "source": "db:halyard",
+            "target": "db:stardog",
             "similarity": 0.75
-          },
-          {
-            "source": "db:apache-jena-fuseki",
-            "target": "db:strabon",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:apache-rya",
-            "target": "db:strabon",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:eclipse-rdf4j",
-            "target": "db:strabon",
-            "similarity": 0.6667
-          },
-          {
-            "source": "db:agdb",
-            "target": "db:stromadb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:atomic-server",
-            "target": "db:stromadb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:bytegraph",
-            "target": "db:tao",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:cray-graph-engine",
-            "target": "db:tao",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:g-tran",
-            "target": "db:tao",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:gstore",
-            "target": "db:tentris",
-            "similarity": 1
-          },
-          {
-            "source": "db:parliament",
-            "target": "db:tentris",
-            "similarity": 1
-          },
-          {
-            "source": "db:qlever",
-            "target": "db:tentris",
-            "similarity": 1
           },
           {
             "source": "db:stellardb",
             "target": "db:teradata-aster",
-            "similarity": 0.75
+            "similarity": 0.6
           },
           {
-            "source": "db:alibaba-gdb",
-            "target": "db:teradata-aster",
-            "similarity": 0.6667
+            "source": "db:graphflow",
+            "target": "db:stellardb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "db:strabon",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "db:strabon",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:halyard",
+            "target": "db:strabon",
+            "similarity": 0.625
           },
           {
             "source": "db:surrealdb",
             "target": "db:terminusdb",
+            "similarity": 0.4545
+          },
+          {
+            "source": "db:cray-graph-engine",
+            "target": "db:tao",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:g-tran",
+            "target": "db:tao",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:teradata-aster",
+            "target": "db:youtrackdb",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphbase",
+            "target": "db:terminusdb",
             "similarity": 0.375
           },
           {
-            "source": "db:arcadedb",
-            "target": "db:terminusdb",
-            "similarity": 0.3333
+            "source": "db:huawei-ges",
+            "target": "db:tigergraph",
+            "similarity": 0.5714
           },
           {
-            "source": "db:memgraph",
-            "target": "db:tigergraph",
-            "similarity": 0.6
+            "source": "db:tigergraph",
+            "target": "db:turingdb",
+            "similarity": 0.5714
           },
           {
-            "source": "db:nebulagraph",
-            "target": "db:tigergraph",
-            "similarity": 0.6
+            "source": "db:tigergraph",
+            "target": "db:ultipa",
+            "similarity": 0.5714
           },
           {
-            "source": "db:ryugraph",
-            "target": "db:tigergraph",
+            "source": "db:tinkergraph",
+            "target": "db:titan",
             "similarity": 0.6
           },
           {
             "source": "db:aerospike",
-            "target": "db:tinkergraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:apache-hugegraph",
             "target": "db:titan",
-            "similarity": 0.8
+            "similarity": 0.6667
           },
           {
-            "source": "db:traverse",
-            "target": "db:tugraph",
+            "source": "db:janusgraph",
+            "target": "db:titan",
             "similarity": 0.6667
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:traverse",
+            "similarity": 0.5556
+          },
+          {
+            "source": "db:gqldb",
+            "target": "db:traverse",
+            "similarity": 0.5556
           },
           {
             "source": "db:agdb",
             "target": "db:triblespace",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
-            "source": "db:atomic-server",
-            "target": "db:triblespace",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:livegraph",
-            "target": "db:triblespace",
-            "similarity": 0.6
+            "source": "db:tugraph",
+            "target": "db:turingdb",
+            "similarity": 0.75
           },
           {
             "source": "db:memgraph",
             "target": "db:tugraph",
-            "similarity": 0.8
+            "similarity": 0.625
           },
           {
             "source": "db:ryugraph",
-            "target": "db:tugraph",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:sparksee",
-            "target": "db:tugraph",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:bighorn",
-            "target": "db:turbolynx",
-            "similarity": 1
-          },
-          {
-            "source": "db:kuzu",
-            "target": "db:turbolynx",
-            "similarity": 1
-          },
-          {
-            "source": "db:ladybugdb",
-            "target": "db:turbolynx",
-            "similarity": 1
+            "target": "db:turingdb",
+            "similarity": 0.6667
           },
           {
             "source": "db:atomic-server",
             "target": "db:typedb",
-            "similarity": 0.6
+            "similarity": 0.5
           },
           {
-            "source": "db:cozodb",
-            "target": "db:typedb",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:grust",
-            "target": "db:typegraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:qbix-streams",
-            "target": "db:typegraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:rushdb",
-            "target": "db:typegraph",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:tugraph",
+            "source": "db:gqldb",
             "target": "db:ultipa",
-            "similarity": 0.6667
+            "similarity": 0.5714
           },
           {
             "source": "db:apache-giraph",
             "target": "db:vadalog",
             "similarity": 0.1667
-          },
-          {
-            "source": "db:dozerdb",
-            "target": "db:velocitygraph",
-            "similarity": 0.3333
           },
           {
             "source": "db:duckgql",
@@ -3762,59 +3742,109 @@
             "similarity": 0.3333
           },
           {
-            "source": "db:marklogic",
+            "source": "db:graphqlite",
+            "target": "db:velocitygraph",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:oracle-graph",
             "target": "db:virtuoso",
-            "similarity": 0.5714
+            "similarity": 0.4545
           },
           {
             "source": "db:4store",
             "target": "db:virtuoso",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:kinetica",
-            "target": "db:virtuoso",
-            "similarity": 0.5
-          },
-          {
-            "source": "db:atomic-server",
-            "target": "db:weaver",
-            "similarity": 0.6
+            "similarity": 0.4444
           },
           {
             "source": "db:bytegraph",
             "target": "db:weaver",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:cray-graph-engine",
-            "target": "db:weaver",
-            "similarity": 0.6
-          },
-          {
-            "source": "db:aerospike",
-            "target": "db:youtrackdb",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:janusgraph",
-            "target": "db:youtrackdb",
-            "similarity": 0.8
+            "similarity": 0.5
           },
           {
             "source": "db:titan",
             "target": "db:youtrackdb",
-            "similarity": 0.8
-          },
-          {
-            "source": "db:bangdb",
-            "target": "db:zipg",
-            "similarity": 0.6
+            "similarity": 0.6667
           },
           {
             "source": "db:katanagraph",
             "target": "db:zipg",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:triblespace",
+            "target": "db:zipg",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "db:titan",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:falkordblite",
+            "target": "db:redisgraph-falkordb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:infinitegraph",
+            "target": "db:objectivity-db",
+            "similarity": 0.2857
+          },
+          {
+            "source": "db:graphflow",
+            "target": "db:kuzu",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:minigraf",
+            "target": "db:recallgraph",
+            "similarity": 0
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "db:neptune",
+            "similarity": 0.3846
+          },
+          {
+            "source": "db:graphscope",
+            "target": "db:neug",
+            "similarity": 0.4
+          },
+          {
+            "source": "db:neo4j",
+            "target": "db:pandadb",
+            "similarity": 0.2
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "db:pg-ladybug",
+            "similarity": 0.25
+          },
+          {
+            "source": "db:arangodb",
+            "target": "db:recallgraph",
+            "similarity": 0.1111
+          },
+          {
+            "source": "db:redland",
+            "target": "db:redstore",
+            "similarity": 0.4286
+          },
+          {
+            "source": "db:neo4j",
+            "target": "db:rushdb",
+            "similarity": 0.3333
+          },
+          {
+            "source": "db:kuzu",
+            "target": "db:ryugraph",
             "similarity": 0.6
+          },
+          {
+            "source": "db:orientdb",
+            "target": "db:youtrackdb",
+            "similarity": 0.4444
           }
         ]
       }
