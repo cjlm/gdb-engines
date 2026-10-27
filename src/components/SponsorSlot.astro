@@ -4,7 +4,7 @@ import { placementLink } from '../lib/sponsors';
 interface Props { sponsor: Sponsor; placement: Placement; }
 const { sponsor, placement } = Astro.props;
 ---
-<aside class="sponsor-slot">
+<aside class="sponsor-slot" data-sponsor-bar>
   <div class="sponsor-slot__tag">Sponsored</div>
   <a class="sponsor-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
      rel="noopener noreferrer sponsored" data-outbound="sponsor" data-placement={placement}>
@@ -58,6 +58,17 @@ const { sponsor, placement } = Astro.props;
   .sponsor-slot__arrow { color: var(--color-text-tertiary); transition: transform 120ms ease; }
   .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); color: var(--color-text); }
   @media (max-width: 32rem) {
-    .sponsor-slot__body { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+    .sponsor-slot__body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas: 'logo arrow' 'blurb blurb';
+      align-items: center;
+      gap: 0.35rem 0.75rem;
+      padding: 0.65rem 0.85rem;
+    }
+    .sponsor-slot__logo { grid-area: logo; }
+    .sponsor-slot__logo img { height: 20px; }
+    .sponsor-slot__arrow { grid-area: arrow; }
+    .sponsor-slot__blurb { grid-area: blurb; font-size: 0.8125rem; line-height: 1.45; }
   }
 </style>

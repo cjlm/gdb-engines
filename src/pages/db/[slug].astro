@@ -2,12 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import SponsorSlot from '../../components/SponsorSlot.astro';
 import LineageMap from '../../components/LineageMap.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { isOpenSource, licenseSchema } from '../../lib/license-tier';
 import { databaseDates } from '../../lib/content-dates.mjs';
@@ -20,6 +22,7 @@ import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
 import { layoutFamily } from '../../lib/lineage-layout';
 
 const ranking = await loadRankings();
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
 const catalogue = await getCollection('databases');
 const boards = ranking ? buildBoards(ranking, catalogue.map(({ data }) => data)) : [];
 
@@ -243,8 +246,9 @@ function hostname(value: string): string {
   jsonLd={[pageJsonLd, breadcrumbJsonLd]}
   canonical={`https://gdb-engines.com/db/${db.data.slug}/`}
 >
-  <SiteHeader />
+  <SiteHeader sponsor={headerSponsor} />
   <main class="db-page">
+    {headerSponsor && <SponsorSlot sponsor={headerSponsor} placement="header" />}
     <a href="/" class="back-link"><span aria-hidden="true">&larr;</span> Back to all databases</a>
 
     <header class="db-hero">
