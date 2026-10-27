@@ -63,3 +63,17 @@ test('parseSponsorFile rejects bad entries with the sponsor id in the message', 
   assert.throws(() => parseSponsorFile({ sponsors: [{ ...valid, link: 'http://acme.test' }] }), /acme.*https/);
   assert.throws(() => parseSponsorFile({ sponsors: [{ ...valid, logo: { light: 'x.png', dark: 'y.svg' } }] }), /acme.*svg/);
 });
+
+test('parseSponsorFile rejects impossible dates and reversed ranges', () => {
+  const parse = (fields) => parseSponsorFile({ sponsors: [{ ...valid, ...fields }] });
+  assert.throws(() => parse({ start: '2026-13-01' }), /acme.*start/);
+  assert.throws(() => parse({ start: '2026-02-30' }), /acme.*start/);
+  assert.throws(() => parse({ end: '2026-11-31' }), /acme.*end/);
+  assert.throws(() => parse({ start: '2026-11-01', end: '2026-10-01' }),
+    /acme.*end 2026-10-01 is before start 2026-11-01/);
+});
+
+test('parseSponsorFile rejects a tier other than founding or presenting', () => {
+  const parse = (fields) => parseSponsorFile({ sponsors: [{ ...valid, ...fields }] });
+  assert.throws(() => parse({ tier: 'gold' }), /acme.*tier.*gold/);
+});

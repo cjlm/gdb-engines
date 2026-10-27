@@ -13,6 +13,13 @@ const PLACEMENTS: ReadonlySet<string> = new Set(['header', 'ranking-banner', 'co
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const DAY_MS = 86_400_000;
 
+/** True for YYYY-MM-DD strings that name a real calendar day (rejects 2026-02-30, 2026-13-01). */
+function isRealDate(s: string): boolean {
+  if (!DATE.test(s)) return false;
+  const t = Date.parse(`${s}T00:00:00Z`);
+  return !Number.isNaN(t) && new Date(t).toISOString().startsWith(s);
+}
+
 interface RawLogo { light: string; dark: string; symbol_light?: string; symbol_dark?: string }
 export interface RawSponsor {
   id: string; name: string; tier: 'founding' | 'presenting';
@@ -51,8 +58,14 @@ function fail(id: string, problem: string): never {
 function checkEntry(s: RawSponsor): void {
   const id = s.id || '(no id)';
   if (!s.name || !s.tagline || !s.description) fail(id, 'name, tagline and description are required');
-  if (!DATE.test(s.start)) fail(id, `start must be YYYY-MM-DD, got "${s.start}"`);
-  if (s.end != null && !DATE.test(s.end)) fail(id, `end must be YYYY-MM-DD or null, got "${s.end}"`);
+  if (!isRealDate(s.start)) fail(id, `start must be YYYY-MM-DD, got "${s.start}"`);
+  if (s.end != null && !isRealDate(s.end)) {
+    fail(id, `end must be YYYY-MM-DD or null, got "${s.end}"`);
+  }
+  if (s.end != null && s.end < s.start) fail(id, `end ${s.end} is before start ${s.start}`);
+  if (s.tier !== 'founding' && s.tier !== 'presenting') {
+    fail(id, `tier must be founding or presenting, got "${s.tier}"`);
+  }
   if (!s.link?.startsWith('https://')) fail(id, 'link must be https');
   const bad = (s.placements ?? []).filter((p) => !PLACEMENTS.has(p));
   if (!s.placements?.length || bad.length) fail(id, `unknown or missing placement: ${bad.join(', ') || 'none'}`);
