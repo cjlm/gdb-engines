@@ -25,7 +25,7 @@ const tierLabel = { founding: 'Founding sponsor', presenting: 'Presenting sponso
             <a href={placementLink(s.link, 'sponsors-page')} target="_blank" rel="noopener noreferrer sponsored"
                data-outbound="sponsor" data-placement="sponsors-page">
               <img class="light-only" src={s.logo.light} alt={s.name} height="32" />
-              <img class="dark-only" src={s.logo.dark} alt="" aria-hidden="true" height="32" />
+              <img class="dark-only" src={s.logo.dark} alt={s.name} height="32" />
             </a>
             <p class="sponsor-card__tier">{tierLabel[s.tier]}</p>
             <p>{s.description}</p>

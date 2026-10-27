@@ -20,7 +20,7 @@ const { sponsor, placement } = Astro.props;
       <span class="sponsor-slot__label">GDB-Engines is sponsored by</span>
       <span class="sponsor-slot__logo">
         <img class="light-only" src={sponsor.logo.light} alt={sponsor.name} height="22" />
-        <img class="dark-only" src={sponsor.logo.dark} alt="" aria-hidden="true" height="22" />
+        <img class="dark-only" src={sponsor.logo.dark} alt={sponsor.name} height="22" />
       </span>
     </span>
     <span class="sponsor-slot__blurb">{sponsor.tagline}</span>

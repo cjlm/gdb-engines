@@ -37,7 +37,7 @@ Use a staged, brand-first collapse:
 - Do not use `space-evenly` for the compact primary navigation. The primary navigation may retain flexible width to preserve separation from the right-side utilities, but its contents use start alignment so extra space remains between the two groups rather than between individual navigation buttons.
 - Hide `.database-summary` at and below 64rem so it cannot collapse into a sliver when the search field returns. Keep the existing search-field cutoff at 55rem and the About-button treatment, now at 23.375rem (374 px; the homepage needs 375 px for the labelled button with four icons).
 
-The 39rem threshold is the last width before the labelled layout fits; the full layout remains intact at 625 px. The 27rem wordmark threshold follows measured fit rather than a device class: at 440 px the header has approximately 16 px between navigation and utilities, at 433 px it retains the configured 8 px separation, and at 432 px the wordmark is removed.
+The 39rem threshold is the last width before the labelled layout fits; the full layout remains intact at 625 px. The 30rem wordmark threshold follows measured fit rather than a device class: the homepage needs 474 px for the wordmark with four navigation icons, so `.header-brand` is hidden at and below 30rem (480 px) and shown above it.
 
 ## Compact Sponsorship Pane
 
