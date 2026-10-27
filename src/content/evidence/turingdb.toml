@@ -6,24 +6,31 @@ slug = "turingdb"
 
 [[claims]]
 field = "protocols"
-value = ["HTTP/REST"]
+value = ["HTTP/REST", "Native binary"]
 confidence = "high"
-method = "repo"
-checked = "2026-08-01"
-notes = "Python SDK offers a JSON backend and a binary (Turing proto) backend, but both ride HTTP against the daemon on :6666 — a payload encoding, not a separate wire protocol. Embedded mode is in-process and carries no protocol tag."
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "The server speaks JSON over HTTP by default. Started with USE_TURING_PROTO=1 it speaks TuringDB's own binary protocol on that port instead, used by the Python SDK's native backend. Corrects the August 2026 reading, which took the binary backend to be a payload encoding over HTTP; the docs have since been rewritten. Embedded mode is in-process and carries no protocol tag."
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
-  title = "Reference"
-  quote = "JSON payloads over HTTP against a running daemon"
-  verified = "mismatch"
+  title = "TuringDB Python SDK reference"
+  quote = "JSON over HTTP against a running server"
+  verified = "matched"
   checked = "2026-10-27"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
-  title = "Reference"
-  quote = "Binary (Turing proto) payloads over HTTP — faster; requires the compiled extension"
-  verified = "mismatch"
+  title = "TuringDB Python SDK reference"
+  quote = "The binary protocol is a server-side mode, selected once when the server starts with the environment variable USE_TURING_PROTO=1"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/pythonsdk/reference"
+  title = "TuringDB Python SDK reference"
+  quote = "A server speaks either JSON or the binary protocol on a given port"
+  verified = "matched"
   checked = "2026-10-27"
 
   [[claims.sources]]
@@ -42,10 +49,10 @@ checked = "2026-08-02"
 notes = "Corrected from 'BSL-1.1' to 'BUSL-1.1': the LICENSE file is the Business Source License 1.1 (shown as NOASSERTION on GitHub), whose SPDX id is BUSL-1.1, not BSL-1.1 (the unrelated Boost licence)."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/LICENSE"
-  title = "turingdb/LICENSE"
-  quote = "License 1.1 (BSL), the TuringDB Enterprise License (TEL). A copy of each licence"
-  verified = "unreachable"
+  url = "https://github.com/turing-db/turingdb/blob/main/licenses/BSL.txt"
+  title = "turingdb/licenses/BSL.txt"
+  quote = "BUSINESS SOURCE LICENSE (BSL) 1.1"
+  verified = "matched"
   checked = "2026-10-27"
 
   [[claims.sources]]
