@@ -52,3 +52,7 @@
 # 302'd every pre-generated pair, every roundup, and the builder itself — the latter
 # in an infinite loop). Unmatched comparison URLs are instead recovered client-side
 # by 404.astro, which forwards `-vs-` paths to the builder.
+
+# The sponsorship pitch moved into /sponsors/, which also lists current sponsors.
+/sponsor            /sponsors/                      301
+/sponsor/           /sponsors/                      301
