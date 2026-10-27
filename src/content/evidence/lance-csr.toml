@@ -1,0 +1,64 @@
+# Sources for values in src/content/databases/lance-csr.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "lance-csr"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "api"
+checked = "2026-10-26"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hyperdimensionalcomputingai/lance-csr/license"
+  title = "GitHub licence API — hyperdimensionalcomputingai/lance-csr"
+  quote = "\"spdx_id\": \"Apache-2.0\""
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "released"
+value = "2026-10"
+confidence = "medium"
+method = "api"
+checked = "2026-10-26"
+notes = "Repository creation date. The first PyPI release, 0.1.0, was uploaded 2026-10-24. The code descends from lance-graph, so the fork is the first public availability of lance-csr itself."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hyperdimensionalcomputingai/lance-csr"
+  title = "hyperdimensionalcomputingai/lance-csr (GitHub API repository metadata)"
+  quote = "\"created_at\": \"2026-10-24T01:11:31Z\""
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "The README states the engine is built in Rust."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hyperdimensionalcomputingai/lance-csr/main/README.md"
+  title = "README.md"
+  quote = "built in Rust on Apache DataFusion, with Python bindings"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "lineage.lance-graph.relation"
+value = "fork"
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hyperdimensionalcomputingai/lance-csr/main/README.md"
+  title = "README.md"
+  quote = "It is a fork of"
+  verified = "matched"
+  checked = "2026-10-27"
