@@ -64,6 +64,18 @@ test('parseSponsorFile rejects bad entries with the sponsor id in the message', 
   assert.throws(() => parseSponsorFile({ sponsors: [{ ...valid, logo: { light: 'x.png', dark: 'y.svg' } }] }), /acme.*svg/);
 });
 
+test('parseSponsorFile rejects logo paths that leave sponsors/<id>/', () => {
+  const parse = (light) => parseSponsorFile({ sponsors: [{ ...valid, logo: { ...valid.logo, light } }] });
+  assert.throws(() => parse('sponsors/acme/../other/l.svg'), /acme.*logo/);
+  assert.throws(() => parse('sponsors/other/l.svg'), /acme.*logo/);
+  assert.throws(() => parse('sponsors/acme/sub/l.svg'), /acme.*logo/);
+});
+
+test('parseSponsorFile ignores symbol logo keys', () => {
+  const logo = { ...valid.logo, symbol_light: 'anything', symbol_dark: 'anything' };
+  assert.equal(parseSponsorFile({ sponsors: [{ ...valid, logo }] }).length, 1);
+});
+
 test('parseSponsorFile rejects impossible dates and reversed ranges', () => {
   const parse = (fields) => parseSponsorFile({ sponsors: [{ ...valid, ...fields }] });
   assert.throws(() => parse({ start: '2026-13-01' }), /acme.*start/);

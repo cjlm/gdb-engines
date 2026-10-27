@@ -20,13 +20,13 @@ function isRealDate(s: string): boolean {
   return !Number.isNaN(t) && new Date(t).toISOString().startsWith(s);
 }
 
-interface RawLogo { light: string; dark: string; symbol_light?: string; symbol_dark?: string }
+interface RawLogo { light: string; dark: string }
 export interface RawSponsor {
   id: string; name: string; tier: 'founding' | 'presenting';
   tagline: string; description: string; link: string; engine_slug?: string;
   logo: RawLogo; start: string; end?: string | null; placements: Placement[];
 }
-export interface SponsorLogo { light: string; dark: string; symbolLight?: string; symbolDark?: string }
+export interface SponsorLogo { light: string; dark: string }
 export interface Sponsor extends Omit<RawSponsor, 'logo' | 'end'> { logo: SponsorLogo; end: string | null }
 
 const REPO = process.env.RANKINGS_REPO ?? 'cjlm/gdb-engines-rankings';
@@ -87,10 +87,11 @@ function checkPlacements(id: string, s: RawSponsor): void {
 }
 
 function checkLogos(id: string, s: RawSponsor): void {
-  for (const p of Object.values(s.logo ?? {})) {
-    if (!p?.endsWith('.svg')) fail(id, `logo paths must be .svg, got "${p}"`);
-  }
   if (!s.logo?.light || !s.logo?.dark) fail(id, 'logo.light and logo.dark (svg) are required');
+  const allowed = new RegExp(`^sponsors/${id}/[\\w.-]+\\.svg$`);
+  for (const p of [s.logo.light, s.logo.dark]) {
+    if (!allowed.test(p)) fail(id, `logo paths must match sponsors/${id}/<file>.svg, got "${p}"`);
+  }
 }
 
 function checkEntry(s: RawSponsor): void {
@@ -136,11 +137,8 @@ async function svgDataUri(path: string | undefined, token: string | undefined): 
 }
 
 async function resolveLogos(s: RawSponsor, token: string | undefined): Promise<Sponsor> {
-  const [light, dark, symbolLight, symbolDark] = await Promise.all([
-    svgDataUri(s.logo.light, token), svgDataUri(s.logo.dark, token),
-    svgDataUri(s.logo.symbol_light, token), svgDataUri(s.logo.symbol_dark, token),
-  ]);
-  return { ...s, end: s.end ?? null, logo: { light: light!, dark: dark!, symbolLight, symbolDark } };
+  const [light, dark] = await Promise.all([svgDataUri(s.logo.light, token), svgDataUri(s.logo.dark, token)]);
+  return { ...s, end: s.end ?? null, logo: { light: light!, dark: dark! } };
 }
 
 let cached: Promise<Sponsor[]> | undefined;

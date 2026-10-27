@@ -98,7 +98,15 @@ const { sponsor } = Astro.props;
     }
   }
 
-  :global(body:not(:has([data-sponsor-bar]))) .header-sponsor,
+  :global(body:not(:has([data-sponsor-bar]))) .header-sponsor {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 160ms ease,
+      visibility 0s linear 0s,
+      background-color 120ms ease;
+  }
+
   :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
     opacity: 1;
     visibility: visible;
