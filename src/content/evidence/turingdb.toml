@@ -16,22 +16,22 @@ notes = "Python SDK offers a JSON backend and a binary (Turing proto) backend, b
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "Reference"
   quote = "JSON payloads over HTTP against a running daemon"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-10-27"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "Reference"
   quote = "Binary (Turing proto) payloads over HTTP — faster; requires the compiled extension"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-10-27"
 
   [[claims.sources]]
   url = "https://github.com/turing-db/turingdb"
   title = "turing-db/turingdb"
   quote = "TuringDB is queried over HTTP; Neo4j and Memgraph over Bolt."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-27"
 
 [[claims]]
 field = "license"
@@ -46,14 +46,14 @@ notes = "Corrected from 'BSL-1.1' to 'BUSL-1.1': the LICENSE file is the Busines
   title = "turingdb/LICENSE"
   quote = "License 1.1 (BSL), the TuringDB Enterprise License (TEL). A copy of each licence"
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-10-27"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "TuringDB Community Edition is licensed under the Business Source License (BSL). See [LICENSE](https://github.com/turing-db/turingdb/blob/main/LICENSE) for details."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-27"
 
 [[claims]]
 field = "implementation_language"
@@ -68,7 +68,7 @@ notes = "Confirms the current value; README states the engine is built in C++, a
   title = "turingdb/README.md"
   quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-27"
 
 [[claims]]
 field = "released"
@@ -83,4 +83,701 @@ notes = "No tagged GitHub releases predate v1.20 (Feb 2026), and the GitHub repo
   title = "TuringDB (Wayback Machine snapshot, 2025-11-09)"
   quote = "Get answers in milliseconds from the fastest columnar in-memory graph database engine, featuring git-like versioning."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.active_development"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: regular commits and CI on GitHub. The repository's most recent commits are dated 2026-10-26 (GitHub API), and .github/workflows holds CI build, Docker and release workflows."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://github.com/turing-db/turingdb/blob/main/.github/workflows/ci_build.yml"
+  title = "turingdb/.github/workflows/ci_build.yml"
+  quote = "name: CI Build"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.commercial_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: the Enterprise tier includes engineering support."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Dedicated support & integrations"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.live_community"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: Discord, Slack and GitHub issues. Discord and the issue tracker are listed in the README; no public page mentioning Slack was found."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "chat with users and the team"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "report bugs or request features"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.open_source"
+value = 0
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: source-available under BSL 1.1, free for experimentation, benchmarks and academic use, paid for production. The pricing page labels the free tier 'Open-source', but the licence is the Business Source License, which is not an OSI-approved open-source licence."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB Community Edition is licensed under the Business Source License (BSL)."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.pricing"
+value = 0.5
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor score 0.5: free for non-production use, with Enterprise and Custom pricing published on the website. The pricing page shows the Community tier as free and Enterprise 'From $5,000'; Custom has no published price."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Deployment Self-hosted Price Free"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Best for Production at scale Deployment Cloud, on-prem, or hybrid Price From $5,000"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.trendiness"
+value = 0.25
+confidence = "low"
+method = "api"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). TuringDB did not give a score (it answered 'New entrant (2025), growing'), so this one is the catalogue's own estimate. Repo turing-db/turingdb has about 187 stars and went public in 2025-08, with commits through 2026-10-26. Comparable catalogue entries: nodedb (released 2026-04, about 235 stars) scores 0.0, memgraph (about 4.6k stars) 0.25, arcadedb (about 1.2k stars) 0.0, surrealdb and terminusdb 1.0. A young engine with modest traction and active commercial backing sits above the near-zero entries and well below the high-traction ones, hence 0.25."
+
+[[claims]]
+field = "features.containerization"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: official Docker image turingdbai/turingdb. The README documents it with the nightly tag."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "docker run -it turingdbai/turingdb:nightly turingdb"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.work_as_dedicated_instance"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: standalone server with an HTTP API, in the foreground or as a daemon."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "Starts the TuringDB server. This is the default command, running turingdb without a subcommand is equivalent to turingdb start."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "Run TuringDB as a background daemon"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.work_as_embedded"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: in-process inside Python."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB runs **in-process**, right inside your Python program, with no separate server to start."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.testing_in_memory_version"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: in-memory by design, and embedded mode suits testing. The server also has an -in-memory flag that skips writing graphs to disk."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "-in-memory Run without writing graphs to disk"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.operating_on_linux"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: Ubuntu 22.04+, on x86-64 and ARM64."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "Ubuntu Jammy 22.04 LTS or later"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/pythonsdk/reference"
+  title = "Reference"
+  quote = "The wheel supports Python 3.10 to 3.14 on Linux (x86_64, aarch64) and macOS 15 or later (arm64)."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.operating_on_windows"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: Linux and macOS only. The vendor stated it is not supported; no public page was found that says so."
+
+[[claims]]
+field = "features.saas_offering"
+value = 1
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: managed or hosted deployment on request. The pricing page lists cloud deployment for Enterprise and a 'Managed with you' deployment for Custom; no self-service hosted product was found."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Deployment Cloud, on-prem, or hybrid"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Deployment Managed with you"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.automatic_updates"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.client_side_caching"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: caching is server-side, so there is no client-side caching. The vendor stated it is not supported; no public page was found that says so."
+
+[[claims]]
+field = "features.data_versioning_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: Git-style versioning, immutable commits, time-travel queries."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/concepts/overview"
+  title = "What is TuringDB?"
+  quote = "Commit, branch, merge, and time-travel your data."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "Every change is an immutable commit you can branch, merge, roll back, and time-travel through at full speed"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.live_backups"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.cluster_rebalancing"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.data_distribution"
+value = 1
+confidence = "low"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. The repository's docs/DISTRIBUTED.md (last changed 2026-06-25) opens: \"Status: design exploration / decision record. Nothing here is implemented yet.\" The only public support is marketing: the pricing page lists 'Horizontal scale & high availability' under Enterprise."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Horizontal scale & high availability"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.high_availability"
+value = 1
+confidence = "low"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. The repository's docs/DISTRIBUTED.md (last changed 2026-06-25) opens: \"Status: design exploration / decision record. Nothing here is implemented yet.\" The only public support is marketing: the pricing page lists 'Horizontal scale & high availability' under Enterprise."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Horizontal scale & high availability"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.query_distribution"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.replication_support"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.data_types_defined"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: Int64, UInt64, Double, String, Bool, DateTime, List, Map, Embedding. The Functions and Types page lists the result column types and describes DateTime, Duration and Embedding values."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/functions"
+  title = "Functions and Types"
+  quote = "DateTime and Duration are first-class types:"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/functions"
+  title = "Functions and Types"
+  quote = "Embeddings are stored as ordinary properties (type Embedding)"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.logging_auditing"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: server logging, and commit history through the history and commit-description procedures. The pricing page also lists 'Data access & change logging' under Enterprise."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "Server logs are written to <turing-dir>/logs/turingdb.log."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/procedures"
+  title = "Procedures and Commands"
+  quote = "db.history() lists commits newest first."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Data access & change logging"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.object_graph_mapper"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.reactive_programming"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.documentation_up_to_date"
+value = 1
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: docs.turingdb.ai. The docs target the current v3 SDK and carry troubleshooting entries for the 3.0.2 server, which suggests they are maintained alongside releases; this is an inference, not a dated statement."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/pythonsdk/reference"
+  title = "Reference"
+  quote = "The SDK targets TuringDB v3: pin turingdb>=3.0.2 in your project"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.binary_protocol"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: native binary protocol with a Python binary client, alongside HTTP. Current docs describe it as a server mode (USE_TURING_PROTO=1) that replaces JSON on the port, which may no longer match the 'rides HTTP' note on the protocols claim."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "1 makes the server speak TuringDB’s binary protocol instead of JSON over HTTP."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/pythonsdk/reference"
+  title = "Reference"
+  quote = "A server in binary mode serves the binary protocol only"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.cli"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: interactive turingdb shell."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "Without -demon, turingdb start serves HTTP and opens an interactive Cypher shell."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.gui"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: built-in WebGL visualizer, started with turingdb -ui."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "Launches the built-in graph visualizer."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.multi_database"
+value = 1
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: multiple graphs per instance."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/vector-search"
+  title = "Vector Search"
+  quote = "A single vector index can serve searches across multiple graphs and commits"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/procedures"
+  title = "Procedures and Commands"
+  quote = "List the graphs currently loaded in the server"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.graph_native_data"
+value = 1
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: native labelled property graph with columnar storage."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "Nodes and edges carry unlimited properties, including large text"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.rest_api"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: HTTP API, port 6666 by default."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "The Python SDK is a thin client over a single endpoint, so you can query a server from any language."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "Prefer a long-running server (REST API on `http://localhost:6666`)?"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.query_language"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: an openCypher subset."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/cypher_subset"
+  title = "Cypher subset"
+  quote = "TuringDB follows openCypher closely, so the queries you know carry over."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.granular_locking"
+value = 1
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: zero-lock architecture. This is lock-free snapshot execution rather than fine-grained locking, so the match with the feature is the vendor's reading."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/concepts/zero_locking"
+  title = "Zero-Locking Architecture"
+  quote = "Writes never block reads, and reads never interfere with writes."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.multiple_isolation_levels"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: snapshot isolation only. No public page was found that says so."
+
+[[claims]]
+field = "features.read_committed_transaction"
+value = 1
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: snapshot isolation is stricter than read committed."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/concepts/snapshots"
+  title = "Snapshots Isolation"
+  quote = "You only see committed data"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.transaction_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: ACID with snapshot isolation, and commits are durably written to disk."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/concepts/snapshots"
+  title = "Snapshots Isolation"
+  quote = "TuringDB is Fully ACID-Compliant"
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "turingdb/README.md"
+  quote = "Fully [ACID](https://docs.turingdb.ai/concepts/snapshots) with snapshot isolation"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.constraints"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.schema_support"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: schema-optional, with types tracked automatically. No public page was found that says so."
+
+[[claims]]
+field = "features.secondary_indexes"
+value = 1
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: CREATE INDEX property and string indexes, plus vector indexes. Only the vector indexes are documented publicly. The repository's docs/indexing.md (a design note) says: \"We wish to have *indexes* which speed up retrieval of certain data from the DB.\" and describes CREATE INDEX in the future tense, and no CREATE INDEX page was found on docs.turingdb.ai. Worth raising with the vendor."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/vector-search"
+  title = "Vector Search"
+  quote = "A vector index is defined by a name, a dimension, a distance metric and, optionally, an index type."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.server_side_procedures"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: CALL db.*, gnn.* and an extensions framework."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/procedures"
+  title = "Procedures and Commands"
+  quote = "Procedures use the CALL syntax."
+  verified = "matched"
+  checked = "2026-10-27"
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/query/procedures"
+  title = "Procedures and Commands"
+  quote = "Extensions are native libraries that register extra procedure namespaces."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.triggers"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "features.authentication"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: API key and Bearer tokens."
+
+  [[claims.sources]]
+  url = "https://docs.turingdb.ai/commands"
+  title = "CLI Commands"
+  quote = "With -auth-on, send Authorization: Bearer <token>."
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.authorization"
+value = 1
+confidence = "low"
+method = "repo"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. In the repository, auth/Authenticator.h states: \"Verifies a single configured API key.\" and no users, roles or permissions were found. The pricing page lists 'Advanced security & permissions' under Enterprise, which may describe a non-public edition."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/pricing"
+  title = "TuringDB Pricing"
+  quote = "Advanced security & permissions"
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "features.data_encryption"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-10-26"
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
