@@ -55,22 +55,52 @@ function fail(id: string, problem: string): never {
   throw new Error(`[sponsors] ${id}: ${problem}. Fix sponsors.json in gdb-engines-rankings.`);
 }
 
-function checkEntry(s: RawSponsor): void {
-  const id = s.id || '(no id)';
-  if (!s.name || !s.tagline || !s.description) fail(id, 'name, tagline and description are required');
+function checkText(id: string, s: RawSponsor): void {
+  if (!s.name || !s.tagline || !s.description) {
+    fail(id, 'name, tagline and description are required');
+  }
+}
+
+function checkDates(id: string, s: RawSponsor): void {
   if (!isRealDate(s.start)) fail(id, `start must be YYYY-MM-DD, got "${s.start}"`);
   if (s.end != null && !isRealDate(s.end)) {
     fail(id, `end must be YYYY-MM-DD or null, got "${s.end}"`);
   }
   if (s.end != null && s.end < s.start) fail(id, `end ${s.end} is before start ${s.start}`);
+}
+
+function checkTier(id: string, s: RawSponsor): void {
   if (s.tier !== 'founding' && s.tier !== 'presenting') {
     fail(id, `tier must be founding or presenting, got "${s.tier}"`);
   }
+}
+
+function checkLink(id: string, s: RawSponsor): void {
   if (!s.link?.startsWith('https://')) fail(id, 'link must be https');
+}
+
+function checkPlacements(id: string, s: RawSponsor): void {
   const bad = (s.placements ?? []).filter((p) => !PLACEMENTS.has(p));
-  if (!s.placements?.length || bad.length) fail(id, `unknown or missing placement: ${bad.join(', ') || 'none'}`);
-  for (const p of Object.values(s.logo ?? {})) if (!p?.endsWith('.svg')) fail(id, `logo paths must be .svg, got "${p}"`);
+  if (!s.placements?.length || bad.length) {
+    fail(id, `unknown or missing placement: ${bad.join(', ') || 'none'}`);
+  }
+}
+
+function checkLogos(id: string, s: RawSponsor): void {
+  for (const p of Object.values(s.logo ?? {})) {
+    if (!p?.endsWith('.svg')) fail(id, `logo paths must be .svg, got "${p}"`);
+  }
   if (!s.logo?.light || !s.logo?.dark) fail(id, 'logo.light and logo.dark (svg) are required');
+}
+
+function checkEntry(s: RawSponsor): void {
+  const id = s.id || '(no id)';
+  checkText(id, s);
+  checkDates(id, s);
+  checkTier(id, s);
+  checkLink(id, s);
+  checkPlacements(id, s);
+  checkLogos(id, s);
 }
 
 export function parseSponsorFile(raw: unknown): RawSponsor[] {
