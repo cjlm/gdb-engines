@@ -33,9 +33,9 @@ Use a staged, brand-first collapse:
 
 - Above 39rem (624 px), show the wordmark and labelled Rankings/Graph/Compare links.
 - At and below 39rem, use a compact two-group layout. The left group contains the logo, wordmark, and the three icon-only navigation buttons, aligned from the left with a 0.25rem gap between navigation links. The right group keeps theme, About, and Options pinned to the right edge.
-- At and below 27rem (432 px), hide `.header-brand`. The left group then contains only the logo and three navigation icons, leaving the required gap before the utility group.
+- At and below 30rem (480 px), hide `.header-brand`. The left group then contains only the logo and four navigation icons, leaving the required gap before the utility group. (27rem until the Blog link made four icons; remeasured 2026-10-26: the homepage needs 474 px for the wordmark.)
 - Do not use `space-evenly` for the compact primary navigation. The primary navigation may retain flexible width to preserve separation from the right-side utilities, but its contents use start alignment so extra space remains between the two groups rather than between individual navigation buttons.
-- Hide `.database-summary` at and below 64rem so it cannot collapse into a sliver when the search field returns. Keep the existing search-field cutoff at 55rem and the special 22rem About-button treatment.
+- Hide `.database-summary` at and below 64rem so it cannot collapse into a sliver when the search field returns. Keep the existing search-field cutoff at 55rem and the About-button treatment, now at 23.375rem (374 px; the homepage needs 375 px for the labelled button with four icons).
 
 The 39rem threshold is the last width before the labelled layout fits; the full layout remains intact at 625 px. The 27rem wordmark threshold follows measured fit rather than a device class: at 440 px the header has approximately 16 px between navigation and utilities, at 433 px it retains the configured 8 px separation, and at 432 px the wordmark is removed.
 

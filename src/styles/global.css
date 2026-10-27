@@ -309,13 +309,13 @@ a {
     }
   }
 
-  @media (max-width: 27rem) {
+  @media (max-width: 30rem) {
     .header-brand {
       display: none;
     }
   }
 
-  @media (max-width: 22rem) {
+  @media (max-width: 23.375rem) {
     #help {
       width: 2rem;
       padding-inline: 0;
