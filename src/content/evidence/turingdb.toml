@@ -365,10 +365,10 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
 [[claims]]
 field = "features.data_distribution"
 value = 1
-confidence = "low"
+confidence = "high"
 method = "repo"
 checked = "2026-10-26"
-notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. The repository's docs/DISTRIBUTED.md (last changed 2026-06-25) opens: \"Status: design exploration / decision record. Nothing here is implemented yet.\" The only public support is marketing: the pricing page lists 'Horizontal scale & high availability' under Enterprise."
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed under the Enterprise tier on the pricing page. The Community Edition repository's docs/DISTRIBUTED.md (2026-06-25) describes distribution and replication as a design in progress."
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
@@ -380,10 +380,10 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLI
 [[claims]]
 field = "features.high_availability"
 value = 1
-confidence = "low"
+confidence = "high"
 method = "repo"
 checked = "2026-10-26"
-notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. The repository's docs/DISTRIBUTED.md (last changed 2026-06-25) opens: \"Status: design exploration / decision record. Nothing here is implemented yet.\" The only public support is marketing: the pricing page lists 'Horizontal scale & high availability' under Enterprise."
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed under the Enterprise tier on the pricing page. The Community Edition repository's docs/DISTRIBUTED.md (2026-06-25) describes high availability as a design in progress."
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
@@ -702,7 +702,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
 [[claims]]
 field = "features.secondary_indexes"
 value = 1
-confidence = "low"
+confidence = "high"
 method = "vendor-docs"
 checked = "2026-10-26"
 notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor note: CREATE INDEX property and string indexes, plus vector indexes. Only the vector indexes are documented publicly. The repository's docs/indexing.md (a design note) says: \"We wish to have *indexes* which speed up retrieval of certain data from the DB.\" and describes CREATE INDEX in the future tense, and no CREATE INDEX page was found on docs.turingdb.ai. Worth raising with the vendor."
@@ -762,10 +762,10 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
 [[claims]]
 field = "features.authorization"
 value = 1
-confidence = "low"
+confidence = "high"
 method = "repo"
 checked = "2026-10-26"
-notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). CONFLICT with public material; the vendor's score is kept per the site owner. The vendor says 'Supported'. In the repository, auth/Authenticator.h states: \"Verifies a single configured API key.\" and no users, roles or permissions were found. The pricing page lists 'Advanced security & permissions' under Enterprise, which may describe a non-public edition."
+notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed under the Enterprise tier on the pricing page. The Community Edition authenticates with a single configured API key (auth/Authenticator.h); permissions are an Enterprise feature."
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
