@@ -188,7 +188,7 @@ function similarityDocument() {
           a.source.localeCompare(b.source) ||
           a.target.localeCompare(b.target),
       )
-      .slice(0, 3);
+      .slice(0, 4);
     for (const edge of nearest) {
       const key = `${edge.source}\0${edge.target}`;
       links.set(key, {
