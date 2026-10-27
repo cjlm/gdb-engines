@@ -8,7 +8,7 @@ import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
-import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
       board,
       roundup: roundupByBoard.get(board.slug) ?? null,
       generatedAt: ranking.generatedAt,
-      sponsor: getSponsor(sponsors, board.slug),
+      sponsor: sponsorFor(sponsors, 'ranking-banner'),
       faviconMap,
       linkMaps,
       engineMeta,
@@ -109,7 +109,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
 
     <SponsorCTA />
 
-    {sponsor && <SponsorSlot sponsor={sponsor} />}
+    {sponsor && <SponsorSlot sponsor={sponsor} placement="ranking-banner" />}
 
     <CorrectionNotice />
 
