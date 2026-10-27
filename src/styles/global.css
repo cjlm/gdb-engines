@@ -27,6 +27,8 @@
   --color-background: #FFF;
   --color-border: #DDD;
   --color-surface: #EEE;
+  /* Glow strength behind sponsor bars (SponsorSlot); dark needs more to read. */
+  --sponsor-glow: 22%;
   --color-alpha-background: rgba(255, 255, 255, 0.75);
 
   --color-text: #333;
@@ -63,6 +65,7 @@
     --color-background: #1E1E1E;
     --color-border: #333;
     --color-surface: #111;
+    --sponsor-glow: 40%;
     --color-alpha-background: rgba(30, 30, 30, 0.75);
 
     --color-text: #FFF;
@@ -88,6 +91,7 @@
   --color-background: #1E1E1E;
   --color-border: #333;
   --color-surface: #111;
+  --sponsor-glow: 40%;
   --color-alpha-background: rgba(30, 30, 30, 0.75);
 
   --color-text: #FFF;

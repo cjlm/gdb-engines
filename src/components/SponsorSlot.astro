@@ -24,7 +24,7 @@ const { sponsor, placement } = Astro.props;
       </span>
     </span>
     <span class="sponsor-slot__blurb">{sponsor.tagline}</span>
-    <span class="sponsor-slot__arrow" aria-hidden="true">→</span>
+    <span class="sponsor-slot__more">Learn more <span class="sponsor-slot__arrow" aria-hidden="true">→</span></span>
   </a>
   <a class="sponsor-slot__about" href="/sponsors/">Our sponsors</a>
 </aside>
@@ -38,6 +38,11 @@ const { sponsor, placement } = Astro.props;
     margin: 0 0 1.25rem;
     overflow: hidden;
     background-color: var(--color-background);
+    /* Soft brand-tinted glow so the unit stands out from page content; static, and on
+       the box only, never the logo. */
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 10%, transparent),
+      0 0.4rem 1.5rem -0.25rem color-mix(in srgb, var(--color-brand-accent) var(--sponsor-glow), transparent);
   }
 
   .sponsor-slot__body {
@@ -76,8 +81,18 @@ const { sponsor, placement } = Astro.props;
     line-height: 1.45;
   }
 
-  .sponsor-slot__arrow { color: var(--color-text-tertiary); transition: transform 120ms ease; }
-  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); color: var(--color-text); }
+  .sponsor-slot__more {
+    flex-shrink: 0;
+    color: var(--color-brand-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .sponsor-slot__arrow { display: inline-block; transition: transform 120ms ease; }
+  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .sponsor-slot__arrow { transition: none; }
+  }
 
   .sponsor-slot__tag,
   .sponsor-slot__about {
@@ -134,13 +149,13 @@ const { sponsor, placement } = Astro.props;
     .sponsor-slot__body {
       display: grid;
       grid-template-columns: 1fr auto;
-      grid-template-areas: 'lead arrow' 'blurb blurb';
+      grid-template-areas: 'lead more' 'blurb blurb';
       gap: 0.35rem 0.75rem;
       padding: 0.65rem 0.85rem;
     }
     .sponsor-slot__lead { grid-area: lead; }
     .sponsor-slot__logo img { height: 20px; }
-    .sponsor-slot__arrow { grid-area: arrow; }
+    .sponsor-slot__more { grid-area: more; }
     .sponsor-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
   }
 </style>
