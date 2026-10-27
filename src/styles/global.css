@@ -193,9 +193,6 @@ a {
     flex: 0 0 auto;
   }
 
-  .light-only { display: block; }
-  .dark-only { display: none; }
-
   h1,
   .header-brand {
     font-family: var(--font-heading);
@@ -1131,6 +1128,10 @@ tr.row-deprecated:hover td {
 .icon-moon { display: block; }
 :root[data-theme="dark"] .icon-sun { display: block; }
 :root[data-theme="dark"] .icon-moon { display: none; }
+/* Theme-paired images. The base pair applies site-wide (sponsor logos sit outside the
+   header too); the rules below swap them for the dark theme. */
+.light-only { display: block; }
+.dark-only { display: none; }
 :root[data-theme="dark"] .light-only { display: none; }
 :root[data-theme="dark"] .dark-only { display: block; }
 @media (prefers-color-scheme: dark) {
