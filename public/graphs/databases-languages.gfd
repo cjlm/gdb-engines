@@ -707,6 +707,15 @@
             "status": "active"
           },
           {
+            "id": "db:lance-csr",
+            "label": "lance-csr",
+            "image": "https://gdb-engines.com/logos/lance-csr.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:lance-graph",
             "label": "Lance Graph",
             "image": "https://gdb-engines.com/logos/lance-graph.png",
@@ -973,6 +982,15 @@
             "image": "https://gdb-engines.com/logos/pg-ladybug.png",
             "kind": "Database",
             "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:pg-petgraph",
+            "label": "pg_petgraph",
+            "image": "https://gdb-engines.com/logos/pg-petgraph.png",
+            "kind": "Database",
+            "type": "Other",
             "category": "Emerging",
             "status": "active"
           },
@@ -2220,6 +2238,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:lance-csr",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:lance-graph",
             "target": "language:SQL",
             "relationship": "supports"
@@ -2441,6 +2464,11 @@
           },
           {
             "source": "db:pg-ladybug",
+            "target": "language:SQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:pg-petgraph",
             "target": "language:SQL",
             "relationship": "supports"
           },

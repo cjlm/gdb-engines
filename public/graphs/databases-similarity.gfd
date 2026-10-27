@@ -938,6 +938,18 @@
             "queryLanguages": "openCypher"
           },
           {
+            "id": "db:lance-csr",
+            "label": "lance-csr",
+            "image": "https://gdb-engines.com/logos/lance-csr.png",
+            "type": "Property Graph",
+            "kind": "query-engine",
+            "category": "Emerging",
+            "status": "active",
+            "license": "Apache-2.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "openCypher"
+          },
+          {
             "id": "db:lance-graph",
             "label": "Lance Graph",
             "image": "https://gdb-engines.com/logos/lance-graph.png",
@@ -1296,6 +1308,18 @@
             "license": "PostgreSQL",
             "implementationLanguage": "C",
             "queryLanguages": "openCypher, SQL"
+          },
+          {
+            "id": "db:pg-petgraph",
+            "label": "pg_petgraph",
+            "image": "https://gdb-engines.com/logos/pg-petgraph.png",
+            "type": "Other",
+            "kind": "extension",
+            "category": "Emerging",
+            "status": "active",
+            "license": "MIT",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "SQL"
           },
           {
             "id": "db:pggraph",
@@ -2184,7 +2208,7 @@
           },
           {
             "source": "db:atomic-server",
-            "target": "db:stromadb",
+            "target": "db:pg-petgraph",
             "similarity": 0.5
           },
           {
@@ -2749,7 +2773,7 @@
           },
           {
             "source": "db:grust",
-            "target": "db:omnigraph",
+            "target": "db:lance-csr",
             "similarity": 0.5
           },
           {
@@ -2913,6 +2937,21 @@
             "similarity": 0.7143
           },
           {
+            "source": "db:lance-csr",
+            "target": "db:lance-graph",
+            "similarity": 0.8571
+          },
+          {
+            "source": "db:agdb",
+            "target": "db:lance-csr",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:graphlite",
+            "target": "db:lance-csr",
+            "similarity": 0.5
+          },
+          {
             "source": "db:lance-graph",
             "target": "db:pggraph",
             "similarity": 0.625
@@ -2921,11 +2960,6 @@
             "source": "db:lance-graph",
             "target": "db:yugabytedb-mage",
             "similarity": 0.5556
-          },
-          {
-            "source": "db:agdb",
-            "target": "db:lance-graph",
-            "similarity": 0.4444
           },
           {
             "source": "db:bighorn",
@@ -3236,6 +3270,16 @@
             "source": "db:pg-ladybug",
             "target": "db:yugabytedb-mage",
             "similarity": 0.75
+          },
+          {
+            "source": "db:pg-petgraph",
+            "target": "db:pggraph",
+            "similarity": 0.5
+          },
+          {
+            "source": "db:duck-rdf",
+            "target": "db:pg-petgraph",
+            "similarity": 0.3333
           },
           {
             "source": "db:pggraph",

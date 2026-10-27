@@ -1,0 +1,17 @@
+name = "lance-csr"
+vendor = "HDC Labs"
+slug = "lance-csr"
+description = "A single-machine, openCypher-compatible graph query engine over Lance datasets, built in Rust on Apache DataFusion with Python bindings. A fork of Lance Graph that adds a compressed sparse row (CSR) adjacency index for multi-hop traversal, falling back to joins for hops the index cannot express."
+url = "https://lance-csr.hdclabs.ai/"
+github_url = "https://github.com/hyperdimensionalcomputingai/lance-csr"
+license = "Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "query-engine"
+query_languages = ["openCypher"]
+released = "2026-10"
+category = "Emerging"
+gdotv_support = false
+
+[lineage.lance-graph]
+relation = "fork"

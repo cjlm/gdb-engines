@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/pg-petgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "pg-petgraph"
+
+[[claims]]
+field = "license"
+value = "MIT"
+confidence = "high"
+method = "api"
+checked = "2026-10-26"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/alitrack/pg_petgraph/license"
+  title = "GitHub licence API — alitrack/pg_petgraph"
+  quote = "\"spdx_id\": \"MIT\""
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "released"
+value = "2026-07"
+confidence = "high"
+method = "api"
+checked = "2026-10-26"
+notes = "Repository creation date; the first tag, v0.1.0, was published the same day."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/alitrack/pg_petgraph"
+  title = "alitrack/pg_petgraph (GitHub API repository metadata)"
+  quote = "\"created_at\": \"2026-07-15T12:50:20Z\""
+  verified = "matched"
+  checked = "2026-10-27"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-10-26"
+notes = "The README states the extension is written in Rust with pgrx and petgraph."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/alitrack/pg_petgraph/main/README.md"
+  title = "README.md"
+  quote = "Graph algorithms for PostgreSQL, written in Rust"
+  verified = "matched"
+  checked = "2026-10-27"
