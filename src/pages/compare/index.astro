@@ -16,10 +16,12 @@ import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { loadRankings } from '../../lib/rankings';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { pregeneratedPairs, resolveRoundup, buildOverallRankMap, pairSlug } from '../../lib/comparisons';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
 
 const ranking = await loadRankings();
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
 const databases = await getCollection('databases');
 const roundupDefs = await getCollection('roundups');
 const faviconMap = await buildFaviconMap(databases);
@@ -95,7 +97,7 @@ const breadcrumbJsonLd = JSON.stringify({
 });
 ---
 <Layout title={title} description={description} canonical={canonical} jsonLd={[breadcrumbJsonLd]}>
-  <SiteHeader />
+  <SiteHeader sponsor={headerSponsor} />
   <main class="compare-hub">
     <h1>Compare graph databases side by side</h1>
     <p class="lead">

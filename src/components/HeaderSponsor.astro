@@ -9,10 +9,10 @@ interface Props {
 const { sponsor } = Astro.props;
 
 /**
- * Compact "Sponsored by [logo]" mention in the site header. It stays hidden while the
- * page's sponsor bar ([data-sponsor-bar]) is in view and fades in once the bar scrolls
- * under the header. Its box is always laid out at wide widths, so showing it never
- * moves anything else in the header.
+ * Compact "Sponsored by [logo]" mention in the site header. On pages with a sponsor bar
+ * ([data-sponsor-bar]) it stays hidden while the bar is in view and fades in once the bar
+ * scrolls under the header; on pages without one it shows from the start. Its box is
+ * always laid out at wide widths, so showing it never moves anything else in the header.
  *
  * The light-only/dark-only theme classes are global and set `display`, so the rules
  * below size the imgs but never toggle their `display`.
@@ -98,6 +98,7 @@ const { sponsor } = Astro.props;
     }
   }
 
+  :global(body:not(:has([data-sponsor-bar]))) .header-sponsor,
   :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
     opacity: 1;
     visibility: visible;
