@@ -20,7 +20,7 @@ import '../../styles/global.css';
 import { getCollection, render } from 'astro:content';
 import { loadRankings } from '../../lib/rankings';
 import { canonicalQueryLanguage } from '../../lib/ranking-boards';
-import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { headToHeadLinks } from '../../lib/head-to-head';
 import { isOpenSource } from '../../lib/license-tier';
@@ -51,7 +51,7 @@ export async function getStaticPaths() {
   ]);
   const rankMap = buildOverallRankMap(ranking);
   const rankedMap = buildRankedMap(ranking);
-  const sponsor = getSponsor(sponsors, 'compare');
+  const sponsor = sponsorFor(sponsors, 'compare-banner');
   const comparable = databases.map((d) => ({ slug: d.data.slug, features: d.data.features }));
 
   // Maps do not survive Astro's props serialisation, so hand over plain objects.
@@ -433,7 +433,7 @@ const tableMembers = !isPair ? members.filter((m) => !engines.some((e) => e.slug
       </table>
     </div>
 
-    {sponsor && !sponsoredHere && <SponsorSlot sponsor={sponsor} />}
+    {sponsor && !sponsoredHere && <SponsorSlot sponsor={sponsor} placement="compare-banner" />}
 
     <section class="features">
       <h2>

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import DatabaseLogo from '../components/DatabaseLogo.astro';
 import SponsorCTA from '../components/SponsorCTA.astro';
+import SponsorSlot from '../components/SponsorSlot.astro';
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, columnTooltips } from '../data/feature-metadata';
@@ -12,8 +13,10 @@ import { buildLinkMaps, canonicalQueryLanguage } from '../lib/ranking-boards';
 import { rankMovement } from '../lib/rank-movement';
 import { loadGithubStars, formatGithubStars } from '../lib/github-stars';
 import { sortProtocols } from '../lib/protocols';
+import { loadSponsors, sponsorFor } from '../lib/sponsors';
 
 const ranking = await loadRankings();
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
 const linkMaps = ranking ? buildLinkMaps(ranking) : null;
 
 const databases = await getCollection('databases');
@@ -82,12 +85,14 @@ const datasetJsonLd = JSON.stringify({
   jsonLd={[jsonLd, datasetJsonLd]}
   description={`Compare ${databases.length}+ graph databases side-by-side — features, licenses, query languages, and monthly popularity rankings.`}
 >
-  <SiteHeader comparisonControls sponsorBadge />
+  <SiteHeader comparisonControls sponsorBadge sponsor={headerSponsor} />
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
-  <div class="mobile-sponsor-pane">
-    <SponsorCTA compact />
+  <div class:list={['mobile-sponsor-pane', headerSponsor && 'mobile-sponsor-pane--sponsored']}>
+    {headerSponsor
+      ? <SponsorSlot sponsor={headerSponsor} placement="header" />
+      : <SponsorCTA compact />}
   </div>
 
   <main class="comparison-stage">
@@ -391,5 +396,19 @@ const datasetJsonLd = JSON.stringify({
     .comparison-stage {
       padding-top: 0;
     }
+  }
+
+  /* A live sponsor's bar sits above the table at every width. */
+  .mobile-sponsor-pane :global(.sponsor-slot) {
+    margin: 0;
+  }
+
+  .mobile-sponsor-pane--sponsored {
+    display: block;
+    padding: calc(var(--header-height) + 0.75rem) 0.75rem 0.75rem;
+  }
+
+  .mobile-sponsor-pane--sponsored + .comparison-stage {
+    padding-top: 0;
   }
 </style>

@@ -1,15 +1,32 @@
 ---
-import type { Sponsor } from '../lib/sponsors';
-interface Props { sponsor: Sponsor; }
-const { sponsor } = Astro.props;
+import type { Sponsor, Placement } from '../lib/sponsors';
+import { placementLink } from '../lib/sponsors';
+interface Props { sponsor: Sponsor; placement: Placement; }
+const { sponsor, placement } = Astro.props;
+
+/**
+ * Sponsor bar. Wide screens read as a sentence ("GDB-Engines is sponsored by [logo]",
+ * then the tagline) with an "Our sponsors" link to /sponsors/ at the end. At 45rem and
+ * below there is no room for the sentence, so a vertical "Sponsored" tag (also linking
+ * to /sponsors/) labels the unit instead. Visibility is toggled on these wrappers, never
+ * on the light-only/dark-only logo imgs.
+ */
 ---
-<aside class="sponsor-slot">
-  <div class="sponsor-slot__tag">Sponsored</div>
-  <a class="sponsor-slot__body" href={sponsor.link} target="_blank" rel="noopener noreferrer sponsored" data-outbound="sponsor">
-    <strong class="sponsor-slot__title">{sponsor.title}</strong>
-    <span class="sponsor-slot__blurb">{sponsor.blurb}</span>
-    <span class="sponsor-slot__arrow" aria-hidden="true">→</span>
+<aside class="sponsor-slot" data-sponsor-bar aria-label="Sponsored">
+  <a class="sponsor-slot__tag" href="/sponsors/" title="About sponsorship on GDB-Engines">Sponsored</a>
+  <a class="sponsor-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
+     rel="noopener noreferrer sponsored" data-outbound="sponsor" data-placement={placement}>
+    <span class="sponsor-slot__lead">
+      <span class="sponsor-slot__label">GDB-Engines is sponsored by</span>
+      <span class="sponsor-slot__logo">
+        <img class="light-only" src={sponsor.logo.light} alt={sponsor.name} height="22" />
+        <img class="dark-only" src={sponsor.logo.dark} alt={sponsor.name} height="22" />
+      </span>
+    </span>
+    <span class="sponsor-slot__blurb">{sponsor.tagline}</span>
+    <span class="sponsor-slot__more">Learn more <span class="sponsor-slot__arrow" aria-hidden="true">→</span></span>
   </a>
+  <a class="sponsor-slot__about" href="/sponsors/">Our sponsors</a>
 </aside>
 
 <style>
@@ -21,38 +38,124 @@ const { sponsor } = Astro.props;
     margin: 0 0 1.25rem;
     overflow: hidden;
     background-color: var(--color-background);
+    /* Soft brand-tinted glow so the unit stands out from page content; static, and on
+       the box only, never the logo. */
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 10%, transparent),
+      0 0.4rem 1.5rem -0.25rem color-mix(in srgb, var(--color-brand-accent) var(--sponsor-glow), transparent);
   }
-  .sponsor-slot__tag {
-    background: var(--color-surface);
-    color: var(--color-text-tertiary);
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.4rem 0.6rem;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid var(--color-border);
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-weight: 500;
-  }
+
   .sponsor-slot__body {
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    gap: 0.9rem;
+    padding: 0.7rem 1rem;
     text-decoration: none;
     color: var(--color-text);
     transition: background-color 120ms ease;
   }
   .sponsor-slot__body:hover { background-color: var(--color-surface); }
-  .sponsor-slot__title { font-weight: 600; white-space: nowrap; }
-  .sponsor-slot__blurb { color: var(--color-text-secondary); font-size: 0.9rem; flex: 1; }
-  .sponsor-slot__arrow { color: var(--color-text-tertiary); transition: transform 120ms ease; }
-  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); color: var(--color-text); }
+
+  .sponsor-slot__lead {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+  .sponsor-slot__label {
+    color: var(--color-text-tertiary);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+  .sponsor-slot__logo { display: flex; align-items: center; }
+  .sponsor-slot__logo img { height: 22px; width: auto; }
+
+  .sponsor-slot__blurb {
+    flex: 1;
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .sponsor-slot__more {
+    flex-shrink: 0;
+    color: var(--color-brand-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .sponsor-slot__arrow { display: inline-block; transition: transform 120ms ease; }
+  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .sponsor-slot__arrow { transition: none; }
+  }
+
+  .sponsor-slot__tag,
+  .sponsor-slot__about {
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    transition: color 120ms ease, background-color 120ms ease;
+  }
+  .sponsor-slot__tag:hover,
+  .sponsor-slot__about:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  .sponsor-slot__about {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 1rem;
+    border-left: 1px solid var(--color-border);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .sponsor-slot__tag {
+    display: none;
+    align-items: center;
+    padding: 0.4rem 0.6rem;
+    border-right: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .sponsor-slot__tag:focus-visible,
+  .sponsor-slot__about:focus-visible,
+  .sponsor-slot__body:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: -2px;
+  }
+
+  @media (max-width: 45rem) {
+    .sponsor-slot__tag { display: flex; }
+    .sponsor-slot__about,
+    .sponsor-slot__label { display: none; }
+    .sponsor-slot__body { gap: 0.75rem; padding: 0.75rem 1rem; }
+    .sponsor-slot__blurb { padding-left: 0; border-left: 0; }
+  }
+
   @media (max-width: 32rem) {
-    .sponsor-slot__body { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
-    .sponsor-slot__title { white-space: normal; }
+    .sponsor-slot__body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas: 'lead more' 'blurb blurb';
+      gap: 0.35rem 0.75rem;
+      padding: 0.65rem 0.85rem;
+    }
+    .sponsor-slot__lead { grid-area: lead; }
+    .sponsor-slot__logo img { height: 20px; }
+    .sponsor-slot__more { grid-area: more; }
+    .sponsor-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
   }
 </style>
