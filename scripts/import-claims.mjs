@@ -20,6 +20,8 @@ import { join } from 'node:path';
 import { parse } from 'smol-toml';
 import { readEvidence, writeEvidence } from './lib/evidence-file.mjs';
 import { upsertField } from './lib/toml-edit.mjs';
+import { PER_VALUE_FIELDS, unsupportedValues } from './lib/per-value-evidence.mjs';
+import { KG_CAPABILITIES, KG_KINDS } from '../src/lib/knowledge-graph.ts';
 
 const DB_DIR = 'src/content/databases';
 
@@ -32,6 +34,14 @@ const ANCHORS = {
   github_url: ['url', 'description'],
   vendor: ['name'],
   status: ['category', 'released', 'type'],
+  kg_kinds: ['ai_roles', 'description'],
+  kg_capabilities: ['protocols', 'query_languages', 'type'],
+};
+
+/** Closed vocabularies; a value outside them is dropped and reported. */
+const VOCABULARY = {
+  kg_kinds: new Set(KG_KINDS),
+  kg_capabilities: new Set(KG_CAPABILITIES),
 };
 
 const resultsDir = process.argv[2];
@@ -84,15 +94,29 @@ for (const file of readdirSync(resultsDir).filter((f) => f.endsWith('.json')).so
     const added = [];
 
     for (const claim of claims) {
-      const { field, value, confidence } = claim;
+      const { field, confidence } = claim;
 
       if (!ANCHORS[field]) { skipped.push(`${slug}: unsupported field "${field}".`); continue; }
       if (!['high', 'medium', 'low'].includes(confidence)) {
         skipped.push(`${slug}.${field}: bad confidence "${confidence}".`);
         continue;
       }
-      // An unresolved field stays absent rather than shipping the word "unknown" as a value.
-      if (value === 'unknown' || value === null || value === '') {
+      let value = claim.value;
+      if (VOCABULARY[field] && Array.isArray(value)) {
+        for (const v of value.filter((v) => !VOCABULARY[field].has(v))) {
+          skipped.push(`${slug}.${field}: "${v}" is not in the vocabulary.`);
+        }
+        value = value.filter((v) => VOCABULARY[field].has(v));
+      }
+      // A value with no source of its own is left out rather than published on another's quote.
+      if (PER_VALUE_FIELDS.includes(field) && Array.isArray(value)) {
+        const unsupported = unsupportedValues({ ...claim, value });
+        for (const v of unsupported) skipped.push(`${slug}.${field}: "${v}" has no source naming it.`);
+        value = value.filter((v) => !unsupported.includes(v));
+      }
+      // An unresolved field stays absent rather than shipping the word "unknown" as a value. An
+      // empty list is the same: the field is simply not set.
+      if (value === 'unknown' || value === null || value === '' || (Array.isArray(value) && value.length === 0)) {
         unknowns.push(`${slug}.${field}`);
         continue;
       }
@@ -111,9 +135,12 @@ for (const file of readdirSync(resultsDir).filter((f) => f.endsWith('.json')).so
         method: methodFor(claim.sources),
         checked: today,
         notes: claim.notes || undefined,
-        sources: (claim.sources ?? []).map((s) => ({
-          url: s.url, title: s.title, quote: s.quote, verified: 'unchecked',
-        })),
+        sources: (claim.sources ?? [])
+          // Sources for values dropped above would back nothing that ships.
+          .filter((s) => !PER_VALUE_FIELDS.includes(field) || value.includes(s.supports))
+          .map((s) => ({
+            url: s.url, title: s.title, quote: s.quote, supports: s.supports, verified: 'unchecked',
+          })),
       });
     }
 

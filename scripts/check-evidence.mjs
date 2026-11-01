@@ -16,6 +16,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'smol-toml';
+import { PER_VALUE_FIELDS, unsupportedValues } from './lib/per-value-evidence.mjs';
 
 const DB_DIR = 'src/content/databases';
 const EV_DIR = 'src/content/evidence';
@@ -26,6 +27,7 @@ const REQUIRE_EVIDENCE = [
   'license',
   'released',
   'implementation_language',
+  ...PER_VALUE_FIELDS,
 ];
 
 const errors = [];
@@ -108,6 +110,18 @@ if (existsSync(EV_DIR)) {
           `${where}: every quote for "${claim.field}" failed verification — the cited pages do ` +
           `not contain them. Re-research rather than republish.`,
         );
+      }
+      if (PER_VALUE_FIELDS.includes(claim.field)) {
+        for (const v of unsupportedValues(claim)) {
+          errors.push(`${where}: "${claim.field}" lists "${v}" but no source names it in \`supports\`.`);
+        }
+        // As for whole claims: a value fails only when every quote behind it is missing from its
+        // page. Unreachable and unchecked sources warn above and are simply not displayed.
+        const refuted = { ...claim, sources: sources.filter((s) => s.verified !== 'mismatch') };
+        for (const v of unsupportedValues(refuted)) {
+          if (unsupportedValues(claim).includes(v)) continue;
+          errors.push(`${where}: every quote backing "${claim.field}" value "${v}" failed verification.`);
+        }
       }
       for (const s of sources.filter((s) => s.verified === 'unchecked')) {
         warnings.push(`${where}: quote from ${s.url} not yet verified (run verify-quotes.mjs).`);

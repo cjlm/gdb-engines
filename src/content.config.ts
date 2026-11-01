@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { PROTOCOLS } from './lib/protocols';
+import { KG_CAPABILITIES, KG_KINDS } from './lib/knowledge-graph';
 
 const featureScore = z.number().min(0).max(1);
 const aiRole = z.enum(['agent-memory', 'graphrag']);
@@ -15,6 +16,10 @@ const databases = defineCollection({
     // Curated AI role classification. This is intentionally separate from the general
     // description: generic AI, vector, or graph language is not enough for inclusion.
     ai_roles: z.array(aiRole).default([]),
+    // Which kinds of knowledge graph the makers present the engine for, and which parts of a
+    // semantic knowledge graph stack it ships. See src/lib/knowledge-graph.ts.
+    kg_kinds: z.array(z.enum(KG_KINDS)).default([]),
+    kg_capabilities: z.array(z.enum(KG_CAPABILITIES)).default([]),
     url: z.string().url().optional(),
     github_url: z.string().url().optional(),
     license: z.string().optional(),
@@ -165,6 +170,9 @@ const evidence = defineCollection({
         url: z.string().url(),
         title: z.string().min(1),
         quote: z.string().min(1),
+        // For list fields checked value by value (kg_kinds, kg_capabilities): the value this
+        // source backs.
+        supports: z.string().optional(),
         // Written by verify-quotes.mjs, never by hand. `matched-archive` means the original
         // wouldn't load but an Internet Archive snapshot carries the quote.
         verified: z.enum(['matched', 'matched-archive', 'mismatch', 'unreachable', 'unchecked'])
