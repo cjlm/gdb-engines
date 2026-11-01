@@ -48,3 +48,19 @@ notes = "The README states the extension is written in Rust with pgrx and petgra
   quote = "Graph algorithms for PostgreSQL, written in Rust"
   verified = "matched"
   checked = "2026-10-27"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "PageRank, SCC, connected components, betweenness, closeness, eigenvector, Louvain, Dijkstra, toposort, is_cyclic as SQL functions. No vector search. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://github.com/alitrack/pg_petgraph"
+  title = "alitrack/pg_petgraph README"
+  quote = "Ten algorithms covering centrality, connectivity, community detection, ordering and cycle checking."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

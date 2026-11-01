@@ -91,3 +91,43 @@ notes = "Confirms current value. A former SAP HANA Core Platform developer's tec
   quote = "HANA is the in-house database powering many of SAP's products. It is written in C++ with Python tests, and the entire code base lives inside of a single git repository."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Applies to SAP HANA Cloud's Knowledge Graph Engine (RDF triple store, GA 2025). The separate HANA property-graph engine is not positioned for knowledge graphs in the sources checked. help.sap.com pages are JS-rendered and could not be quoted."
+
+  [[claims.sources]]
+  url = "https://learning.sap.com/courses/prd-hc-introduction/multi-model-sap-hana-cloud-knowledge-graph-engine_8188c56f-ae0a-45cb-949d-24c67fdae3ec"
+  title = "SAP Learning: Multi Model - SAP HANA Cloud Knowledge Graph Engine"
+  quote = "The SAP HANA Cloud knowledge graph engine facilitates working with knowledge graphs built on the RDF framework."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "SPARQL is supported (SPARQL_EXECUTE, SPARQL_TABLE) but no official page I could load states SPARQL 1.1 conformance, so left out. No documented RDFS/OWL reasoning, SHACL or R2RML found. Vector Engine and graph algorithms are HANA Cloud built-ins in the same database (vector functions over REAL_VECTOR columns; graph algorithms in the property-graph engine/GraphScript), not specific to the RDF engine."
+
+  [[claims.sources]]
+  url = "https://learning.sap.com/courses/prd-hc-introduction/sap-hana-cloud-vector-engine_318021b1-9784-48e8-9983-472df97ce59e"
+  title = "SAP Learning: SAP HANA Cloud Vector Engine"
+  quote = "These functions are included as part of SAP HANA Cloud’s library of Vector Functions"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://learning.sap.com/courses/prd-hc-introduction/multi-model-property-graph_5e0b1466-16ba-4d1d-ae57-79ebe2d6c86d"
+  title = "SAP Learning: Multi Model - Property Graph"
+  quote = "SAP-delivered graph algorithms that accelerate the development of new applications"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

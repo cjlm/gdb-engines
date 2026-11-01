@@ -62,3 +62,27 @@ checked = "2026-09-23"
   quote = "The database was formerly known as Kuzu."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Both via official extensions (vector, algo) documented on docs.ladybugdb.com. SHACL validation is only available through the separate ontobug tool, which delegates validation to the third-party rudof library, so it is not listed. No SPARQL, RDFS/OWL reasoning or R2RML."
+
+  [[claims.sources]]
+  url = "https://docs.ladybugdb.com/extensions/vector"
+  title = "LadybugDB docs: Vector search extension"
+  quote = "The vector extension provides a native disk-based HNSW vector index"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.ladybugdb.com/extensions/algo"
+  title = "LadybugDB docs: Algo extension"
+  quote = "The algo extension allows you to run common graph algorithms such as PageRank,"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

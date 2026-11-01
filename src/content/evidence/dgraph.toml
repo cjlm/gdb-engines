@@ -84,3 +84,35 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Indirect: overview lists knowledge graphs as a domain the model suits. Docs home describes Dgraph as a property graph database; RDF is only an N-Quad-style mutation/import format (no SPARQL, no RDF semantics), so 'semantic' not assigned. dgraph.io now redirects to docs.dgraph.io."
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/dgraph-overview"
+  title = "Dgraph Overview"
+  quote = "The graph model naturally represents connected data, making it straightforward to model domains like social networks, recommendation systems, knowledge graphs, access control systems"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector data type and HNSW similarity search since v24. Only k-shortest-path queries in DQL (a path query, not an algorithm library), so Graph algorithms not listed."
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/learn/howto/similarity-search"
+  title = "Vector Similarity Search in DQL"
+  quote = "This guide shows how to use vector embeddings and similarity search in Dgraph."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

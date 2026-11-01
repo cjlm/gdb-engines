@@ -107,3 +107,35 @@ notes = "The proposal is explicit that HugeGraph was written from scratch and is
   quote = "In the early stage of the project, we referred to the storage structure of Titan/Janus Graph"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "hugegraph-ai sub-project adds automated knowledge graph construction and GraphRAG."
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/"
+  title = "Apache HugeGraph"
+  quote = "it provides powerful Graph AI and graph computing capabilities for intelligent Q&A, recommendation systems, fraud detection, and knowledge graph applications"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Algorithms ship in official Apache HugeGraph sub-projects (hugegraph-computer, Vermeer): PageRank, Louvain, LPA, betweenness, closeness, triangle count etc. Vector search only via hugegraph-ai integrations with external vector stores, not counted."
+
+  [[claims.sources]]
+  url = "https://github.com/apache/incubator-hugegraph-computer"
+  title = "HugeGraph Computer README"
+  quote = "45+ algorithm implementations including distributed Triangle Count, Rings detection, and custom algorithm development framework"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

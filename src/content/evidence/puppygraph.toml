@@ -56,3 +56,59 @@ notes = "Confirms current value: PuppyGraph's public launch announcement is date
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20240314145914/https://www.businesswire.com/news/home/20240314998086/en/PuppyGraph-Launches-First-and-Only-Graph-Query-Engine"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual", "property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Zero-ETL graph query engine over warehouses/lakes/RDBMS, positioned for knowledge graphs/GraphRAG; property graph model queried in Gremlin and openCypher. property-graph is medium-strength (KG statements are on the GraphRAG page alongside Gremlin/Cypher support)."
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "Directly connect to various data sources and simplify knowledge graph creation with PuppyGraph—deploy and query in just 10 minutes."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "Build AI-native knowledge graphs in minutes."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/"
+  title = "PuppyGraph Docs"
+  quote = "PuppyGraph enables you to query your data as a graph by directly connecting to your data warehouses and lakes."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "PuppyGraph offers zero-ETL deployment, petabyte-scale analytics, flexible query language support (Gremlin and Cypher), and ultra-low latency"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Docs list PageRank, Louvain, Leiden, label propagation, WCC, connected components. No vector index, SPARQL, OWL, SHACL or R2RML found in docs (docs.puppygraph.com nav checked)."
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/graph-algorithms/"
+  title = "Graph Algorithms - PuppyGraph Docs"
+  quote = "PuppyGraph provides a wide range of graph algorithms to help you solve your graph problems."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

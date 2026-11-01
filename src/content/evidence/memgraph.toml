@@ -63,3 +63,51 @@ notes = "Matches current value; confirmed by the project's own repository descri
   quote = "Built in C/C++, it serves as the graph engine for GraphRAG pipelines, AI memory systems, and agentic workflows"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Docs have a 'Model a knowledge graph' guide and knowledge-graph creation tooling; Memgraph explicitly builds on LPG, not RDF (has an LPG vs RDF page, no RDF support)."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/data-modeling/knowledge-graph"
+  title = "Model a knowledge graph"
+  quote = "Memgraph is built on the Labeled Property Graph (LPG) model, one of the most flexible and intuitive ways to represent domain knowledge in graph form."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "MAGE is Memgraph's officially maintained algorithm library (bundled in the memgraph-mage image). No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/querying/vector-search"
+  title = "Vector search"
+  quote = "Vector search, also known as vector similarity search or nearest neighbor search, is a technique used to find the most similar items in a collection of data based on their vector representations."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/memgraph/memgraph"
+  title = "memgraph/memgraph README"
+  quote = "Built-in vector indexes power hybrid graph retrieval with similarity search in a single query, alongside text and geospatial indexes for keyword and location-aware queries."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/memgraph/memgraph"
+  title = "memgraph/memgraph README"
+  quote = "40+ graph algorithms in C++, Python, and CUDA including PageRank, community detection, GNN-based link prediction, temporal graph networks, embeddings, and native ML."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

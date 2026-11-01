@@ -6,6 +6,7 @@ url = "https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-gra
 license = "Proprietary"
 type = "Property Graph"
 query_languages = ["SQL"]
+kg_capabilities = ["Vector search"]
 released = "2017-04"
 category = "Enterprise"
 gdotv_support = false

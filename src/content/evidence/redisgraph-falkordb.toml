@@ -91,3 +91,51 @@ notes = "Matches current value, true of both the original RedisGraph codebase an
   quote = "Bringing new graph capabilities to Redis through a native C implementation with an emphasis on performance, FalkorDB is now available as an open source project."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "FalkorDB is an openCypher property graph database positioned for LLM/GraphRAG knowledge graphs."
+
+  [[claims.sources]]
+  url = "https://github.com/FalkorDB/FalkorDB"
+  title = "FalkorDB README"
+  quote = "Our goal is to build a high-performance Knowledge Graph tailored for Large Language Models (LLMs), prioritizing exceptionally low latency to ensure fast and efficient information delivery through our Graph Database."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.falkordb.com/"
+  title = "FalkorDB"
+  quote = "Build a knowledge graph from company data and ground LLM answers in it."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "HNSW vector index (cosine/euclidean). Algorithms: BFS, shortest paths, PageRank, betweenness/harmonic centrality, WCC, CDLP. No RDF/SPARQL features."
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/cypher/indexing/vector-index.html"
+  title = "Vector Indexing: Fast Similarity Search for GraphRAG - FalkorDB Docs"
+  quote = "FalkorDB supports vector indexes for similarity search on vector embeddings, essential for AI and machine learning applications."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/algorithms/"
+  title = "Graph Algorithms in FalkorDB: High-Performance Network Analysis - FalkorDB Docs"
+  quote = "FalkorDB offers a suite of graph algorithms optimized for high-performance graph analytics."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

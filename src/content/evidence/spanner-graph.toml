@@ -70,3 +70,43 @@ notes = "No public source tree exists for this managed feature. A Wikipedia comp
   quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Spanner Graph overview lists knowledge graphs among example use cases of its GQL property-graph interface; indirect (use-case list), hence medium."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/graph/overview"
+  title = "Spanner Graph overview"
+  quote = "Example use cases for graph databases include fraud detection, recommendations, cybersecurity, community detection, knowledge graphs, customer 360, data cataloging, and lineage tracking."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector: KNN distance functions plus ANN vector indexes usable in Spanner Graph queries. Graph algorithms (e.g. WeaklyConnectedComponents) are a Preview (Pre-GA) feature, Enterprise/Enterprise Plus editions only, built with Google Research Graph Mining."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/graph/perform-vector-similarity-search"
+  title = "Use vector search with Spanner Graph"
+  quote = "This page describes how to use vector search in Spanner Graph to find K-nearest neighbors (KNN) and approximate nearest neighbors (ANN)."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/graph/graph-algorithms-overview"
+  title = "Spanner Graph algorithms overview"
+  quote = "Graph algorithms are invoked as built-in function calls in Spanner Graph queries."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

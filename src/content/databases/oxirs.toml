@@ -1,6 +1,7 @@
 name = "OxiRS"
 slug = "oxirs"
 description = "A modular Rust toolkit for RDF and SPARQL providing a Jena TDB-compatible storage engine (oxirs-tdb) with B+Tree indexes and ACID transactions, a SPARQL query engine (oxirs-arq), and a shared RDF data model (oxirs-core)."
+kg_kinds = ["semantic"]
 url = "https://github.com/cool-japan/oxirs"
 github_url = "https://github.com/cool-japan/oxirs"
 license = "Apache-2.0"
@@ -9,6 +10,7 @@ type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "GraphQL (HTTP)"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 released = "2025-09"
 category = "Emerging"
 gdotv_support = false

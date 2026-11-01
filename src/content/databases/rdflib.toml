@@ -9,6 +9,7 @@ implementation_language = "Python"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2002"
 category = "Established"
 gdotv_support = true

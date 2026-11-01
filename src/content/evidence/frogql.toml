@@ -48,3 +48,19 @@ notes = "Confirms current value; the project describes itself as a Rust core wit
   quote = "Embedded GQL graph database in Rust. ISO/IEC 39075:2024 path patterns, Leapfrog-Triejoin runtime, single-file .gdb storage."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "NEAREST k ... TO <vector> clause over per-attribute sidecar files with an HNSW built offline (vec_build tool). No graph algorithm library."
+
+  [[claims.sources]]
+  url = "https://github.com/pleiad/frogql"
+  title = "pleiad/frogql README"
+  quote = "restricts a pattern to the nodes nearest a query vector."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

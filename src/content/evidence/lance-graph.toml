@@ -70,3 +70,35 @@ notes = "Confirms current value; the project's own README states the query engin
   quote = "Lance Graph is a Cypher-capable graph query engine built in Rust with Python bindings for building high-performance, scalable, and serverless multimodal knowledge graphs."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Ships a knowledge_graph package (CLI/API with LLM extraction) on top of the Cypher engine. Unity Catalog integration queries Delta/Parquet tables via SQL only, not presented as a graph/KG view, so 'virtual' not assigned."
+
+  [[claims.sources]]
+  url = "https://github.com/lance-format/lance-graph"
+  title = "lance-format/lance-graph README"
+  quote = "Lance Graph is a Cypher-capable graph query engine built in Rust with Python bindings for building high-performance, scalable, and serverless multimodal knowledge graphs."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Vector search evidenced in source module docs (Cypher UDFs vector_distance()/vector_similarity() and a VectorSearch API using Lance ANN indices), not in the README. No graph algorithm library found. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://github.com/lance-format/lance-graph/blob/main/crates/lance-graph/src/lance_vector_search.rs"
+  title = "lance_vector_search.rs"
+  quote = "This module provides a flexible API for vector similarity search that can work with:"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

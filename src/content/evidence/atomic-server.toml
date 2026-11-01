@@ -70,3 +70,27 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Atomic Server is the reference implementation of the Atomic Data spec, which its makers describe as linked data / a strict subset of RDF. The spec docs also say RDF-style URIs enable 'truly decentralized knowledge graphs'. It serves RDF/Turtle/N-Triples/JSON-LD and has an Ontology Editor (README). It is not a classic triple store; positioning is linked data rather than enterprise KG."
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/"
+  title = "Atomic Data Docs"
+  quote = "It combines the ease of use of JSON, the connectivity of RDF (linked data) and the reliability of type-safety."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.atomicdata.dev/interoperability/rdf.html"
+  title = "Atomic Data and RDF"
+  quote = "Using URIs (and more-so URLs, which are URIs that can be fetched) for everything is a great idea, since it helps with interoperability and enables truly decentralized knowledge graphs."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"

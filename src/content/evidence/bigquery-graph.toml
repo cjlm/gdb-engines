@@ -77,3 +77,35 @@ notes = "Google does not publish BigQuery’s implementation; the CMU Database o
   quote = "Project Type Commercial Written in C++, Java, Python"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Indirect: the overview's 'Benefits of BigQuery Graph' section lists knowledge graphs among the uses of graph databases. Graphs are defined as property graphs over existing BigQuery tables/views without replicating data or ETL; this is a zero-copy graph view, but over tables inside BigQuery itself rather than external systems and without knowledge-graph wording, so 'virtual' was not assigned (reviewer may reconsider)."
+
+  [[claims.sources]]
+  url = "https://docs.cloud.google.com/bigquery/docs/graph-overview"
+  title = "BigQuery Graph overview"
+  quote = "Graph databases are used for fraud detection, recommendations, community detection, knowledge graphs, customer profiles, data cataloging, and lineage tracking."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No built-in graph algorithm library found in BigQuery Graph docs (PageRank examples found are from third parties such as Neo4j GDS for BigQuery and PuppyGraph, which do not count). No SPARQL/RDF features."
+
+  [[claims.sources]]
+  url = "https://docs.cloud.google.com/bigquery/docs/graph-overview"
+  title = "BigQuery Graph overview"
+  quote = "Rich vector and full-text search capabilities integrate with graph, letting you use semantic meaning and keywords in graph analysis."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

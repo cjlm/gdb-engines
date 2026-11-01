@@ -9,6 +9,7 @@ implementation_language = "TypeScript"
 type = "Property Graph"
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search"]
 kind = "database"
 released = "2024-12"
 category = "Emerging"

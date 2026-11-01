@@ -8,6 +8,7 @@ implementation_language = "C++"
 type = "RDF"
 kind = "extension"
 query_languages = ["SPARQL"]
+kg_capabilities = ["R2RML mapping"]
 released = "2025-08"
 category = "Emerging"
 gdotv_support = false

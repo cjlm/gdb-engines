@@ -7,6 +7,7 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GraphQL"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search"]
 category = "Enterprise"
 gdotv_support = false
 released = "2013"

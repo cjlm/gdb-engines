@@ -48,3 +48,43 @@ notes = "Transwarp's own IPO disclosure describes StellarDB as a separately pric
   quote = "Discover，StellarDB 为图数据库组件，其价格相对较高，少量客户直接购买 TDH 套件 （即每套包括若干组件）。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Transwarp's StellarDB page (transwarp.cn/en redirects to transwarp.io) lists knowledge-graph solutions (e.g. bank retail, AML) among its use cases; StellarDB is an openCypher property graph DB."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.io/product/stellardb/"
+  title = "Transwarp StellarDB"
+  quote = "Knowledge graph of anti-money laundering"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.transwarp.io/product/stellardb/"
+  title = "Transwarp StellarDB"
+  quote = "Knowledge graph of bank retail"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in distributed algorithm library. No vector or RDF/SPARQL features found on the product page."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.io/product/stellardb/"
+  title = "Transwarp StellarDB"
+  quote = "Rich built-in algorithm library, dozens of out-of-the-box graph algorithms, optimized distributed parallel graph algorithm, industry leading 10 million-class subgraph computing efficiency."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

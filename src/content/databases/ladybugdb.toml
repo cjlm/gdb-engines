@@ -9,6 +9,7 @@ license = "MIT"
 implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 kind = "embedded"
 released = "2025-11"
 category = "Growing"

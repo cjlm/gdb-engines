@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
 protocols = ["gRPC", "HTTP/REST", "Bolt", "Gremlin (WebSocket)"]
+kg_capabilities = ["Graph algorithms"]
 released = "2020-12"
 category = "Growing"
 gdotv_support = false

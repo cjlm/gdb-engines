@@ -84,3 +84,19 @@ notes = "Confirms current value. GitHub byte counts show C++ (8.0MB) dwarfing ev
   quote = "Sometimes when you install clang via the package manager, it won’t be recognized by cmake as a C++ alternative."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "SPARQL 1.1 left out: README says \"fairly complete support for the SPARQL 1.1 standard\" and the wiki lists unsupported features (named graphs, most updates beyond INSERT/DELETE DATA). Vector search: native 1-D tensors with cosine-distance functions usable in SPARQL/MQL; no ANN index documented. No reasoning, SHACL, R2RML or algorithm library found."
+
+  [[claims.sources]]
+  url = "https://github.com/MillenniumDB/MillenniumDB/wiki/Working-with-tensors"
+  title = "Working with tensors - MillenniumDB Wiki"
+  quote = "we can operate this tensors with all the arithmetic operations as you would expect from a vectorial engine"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

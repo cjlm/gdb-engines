@@ -70,3 +70,51 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph", "virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "'virtual' is from the Neo4j Virtual Graph product (Aura), which creates a knowledge graph over existing data without moving it. RDF/OWL/SHACL support exists only via the Neo4j Labs neosemantics (n10s) plugin, which is not bundled, so 'semantic' not assigned."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/use-cases/knowledge-graph/"
+  title = "Neo4j knowledge graph use case"
+  quote = "You can quickly design, implement, and evolve your knowledge graph with Neo4j."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/product/virtual-graph/"
+  title = "Neo4j Virtual Graph"
+  quote = "Access deep, dynamic context by connecting your data in knowledge graphs across your entire data estate, without moving any data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Graph algorithms via the officially maintained Graph Data Science (GDS) library. SPARQL/RDFS/OWL/SHACL only through Neo4j Labs n10s plugin (not counted). No R2RML."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/"
+  title = "Cypher Manual: Vector indexes"
+  quote = "Vector indexes enable similarity searches and complex analytical queries by representing nodes or properties as vectors in a multidimensional space."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/graph-data-science/current/introduction/"
+  title = "GDS Manual: Introduction"
+  quote = "The Neo4j Graph Data Science (GDS) library provides efficiently implemented, parallel versions of common graph algorithms, exposed as Cypher procedures."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

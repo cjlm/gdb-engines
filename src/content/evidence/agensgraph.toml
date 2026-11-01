@@ -84,3 +84,18 @@ notes = "AgensGraph is a fork of PostgreSQL (itself written in C); GitHub's own 
   quote = "\"language\": \"C\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/skaiworldwide-oss/agensgraph"
+  title = "AgensGraph README"
+  quote = "Knowledge graph, embeddings (with pgvector ) and agent memory in one PostgreSQL database."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"

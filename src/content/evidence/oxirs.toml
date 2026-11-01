@@ -63,3 +63,75 @@ notes = "Confirms current value; the project describes itself as Rust-native and
   quote = "Rust-native, modular platform for Semantic Web, SPARQL 1.2, GraphQL, and AI-augmented reasoning"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Rust Semantic Web platform (Jena/Fuseki alternative); CLI initialises a knowledge graph. Medium confidence because the README itself admits earlier releases fabricated SHACL conformance and AI results; claims are self-reported."
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "A Rust-native, modular platform for Semantic Web, SPARQL 1.2, GraphQL, and AI-augmented reasoning"
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "Initialize a new knowledge graph"
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Reasoning is the oxirs-rule forward/backward rule engine covering RDFS/OWL/SWRL (feature matrix claims \"RDFS/OWL 2 DL\"; profile unverified). SHACL Core + SHACL-SPARQL in oxirs-shacl. Vector search in oxirs-vec (native HNSW). No R2RML found; no graph-algorithm library. All self-reported in README; the README notes previous fabricated conformance results were removed."
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "Complete SPARQL 1.1/1.2 implementation"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "Forward/backward rule engine (RDFS/OWL/SWRL)"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "Forward/backward rule engine (RDFS/OWL/SWRL)"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "SHACL Core + SHACL-SPARQL validator"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/cool-japan/oxirs"
+  title = "cool-japan/oxirs README"
+  quote = "Vector index abstractions (SciRS2, native HNSW)"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

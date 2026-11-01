@@ -85,3 +85,19 @@ notes = "A plugin distributed with Neo4j Community Edition rather than a fork of
   quote = "DozerDB is a free, GPL-licensed plugin that extends Neo4j® Community Edition with production-grade capabilities for demanding deployments."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "DozerDB compiles and publishes OpenGDS (an open build of the Graph Data Science library) per DozerDB release; it is an optional plugin jar but maintained and distributed by the DozerDB project, and enabled in their quick-start Docker command. Underlying Neo4j Community has native vector indexes, but DozerDB's own pages do not document it, so Vector search left out."
+
+  [[claims.sources]]
+  url = "https://dozerdb.org/"
+  title = "DozerDB"
+  quote = "We compile and publish Open GDS so the graph data science library runs on Neo4j Community"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

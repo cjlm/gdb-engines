@@ -48,3 +48,19 @@ notes = "The README describes it as a distributed graph database written in Rust
   quote = "object-store-native distributed graph database written in Rust"
   verified = "matched"
   checked = "2026-11-01"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Homepage headline positions HydraDB (Cypher graph database on object storage) as a knowledge graph for AI agents; also lists ontologies and knowledge graphs as use cases."
+
+  [[claims.sources]]
+  url = "https://hydradb.com"
+  title = "HydraDB home page"
+  quote = "The knowledge graph for AI"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"

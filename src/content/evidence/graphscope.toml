@@ -77,3 +77,19 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Graph Analytical Engine (GAE) ships built-in algorithms (PageRank, centralities, CDLP/LPA, k-core, BFS/SSSP, etc.). No SPARQL/RDF/OWL/SHACL/R2RML or vector index."
+
+  [[claims.sources]]
+  url = "https://graphscope.io/docs/latest/analytical_engine/builtin_algorithms.html"
+  title = "GraphScope docs: Built-in Algorithms"
+  quote = "The graph analytical engine (GAE) of GraphScope offers many built-in algorithms, which enable users to analyze their graph data with least effort."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

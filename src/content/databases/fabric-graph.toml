@@ -8,6 +8,7 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["GQL"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Graph algorithms"]
 released = "2025-10"
 category = "Enterprise"
 gdotv_support = false

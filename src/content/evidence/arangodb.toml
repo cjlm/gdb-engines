@@ -91,3 +91,50 @@ checked = "2026-09-23"
   quote = "It was originally named AvocadoDB. Later to avoid legal issues, the name was changed to ArangoDB in May 2012."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://arango.ai/use-cases/enterprise-knowledge-graphs/"
+  title = "Enterprise Knowledge Graphs • Arango"
+  quote = "Arango Data Platform for Knowledge Graphs Turn disconnected data into connected intelligence."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.arango.ai/arangodb/stable/graphs/"
+  title = "Graphs • ArangoDB docs"
+  quote = "ArangoDB’s graph model is that of a property graph"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector indexes (Faiss-based) since v3.12.4, behind the --vector-index startup option. The in-database Pregel graph algorithms were removed in v3.12; graph algorithms (PageRank, connected components, label propagation) now run in Graph Analytics Engines that are part of the Arango Contextual Data Platform rather than the core ArangoDB server, hence medium. AQL shortest-path traversals alone would not count. No SPARQL/RDF reasoning (ArangoRDF is a separate adapter)."
+
+  [[claims.sources]]
+  url = "https://docs.arango.ai/arangodb/stable/indexes-and-search/indexing/working-with-indexes/vector-indexes/"
+  title = "Vector indexes • ArangoDB 3.12"
+  quote = "Vector indexes let you index vector embeddings stored in documents."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.arango.ai/contextual-data-platform/graph-analytics/"
+  title = "Graph Analytics • Arango docs"
+  quote = "All imported data is held and processed in the main memory of the compute machines for very fast execution of graph algorithms such as connected components, label propagation, and PageRank."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

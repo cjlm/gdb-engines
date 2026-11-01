@@ -67,3 +67,26 @@ checked = "2026-08-26"
   quote = "\"Rust\": 1510213"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/AstraeaDB/AstraeaDB-Official"
+  title = "AstraeaDB README"
+  quote = "HNSW approximate nearest-neighbor index with cosine, Euclidean, and dot-product distance metrics"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/AstraeaDB/AstraeaDB-Official"
+  title = "AstraeaDB README"
+  quote = "Graph algorithms: PageRank (power iteration), connected/strongly-connected components (Tarjan's), degree/betweenness centrality (Brandes'), Louvain community detection"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

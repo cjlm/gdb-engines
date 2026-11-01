@@ -85,3 +85,67 @@ notes = "Joseki was Jena's earlier RDF and SPARQL server (first beta 2002)."
   quote = "Joseki is replaced by Apache Jena Fuseki."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Jena positions itself for Semantic Web and Linked Data; does not use the phrase 'knowledge graph' on the home page."
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/"
+  title = "Apache Jena - Home"
+  quote = "A free and open source Java framework for building Semantic Web and Linked Data applications."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Capabilities come from Jena modules bundled with/usable in Fuseki (ARQ, inference API, jena-shacl). OWL reasoner is a rule-based, incomplete implementation of the OWL/Lite subset (OWL, OWL Mini, OWL Micro configurations). Text search is Lucene full-text, not vector. No R2RML, vector search or graph algorithm library found."
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/fuseki2/"
+  title = "Apache Jena Fuseki"
+  quote = "Fuseki provides the SPARQL 1.1 protocols for query and update as well as the SPARQL Graph Store protocol"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/"
+  title = "Apache Jena - Home"
+  quote = "Query your RDF data using ARQ, a SPARQL 1.1 compliant engine."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/inference/"
+  title = "Reasoners and rule engines: Jena inference support"
+  quote = "RDFS rule reasoner: Implements a configurable subset of the RDFS entailments."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/inference/"
+  title = "Reasoners and rule engines: Jena inference support"
+  quote = "OWL, OWL Mini, OWL Micro Reasoners: A set of useful but incomplete implementation of the OWL/Lite subset of the OWL/Full language."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/shacl/"
+  title = "Apache Jena SHACL"
+  quote = "It implements SHACL Core and SHACL SPARQL Constraints."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"

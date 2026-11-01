@@ -77,3 +77,19 @@ notes = "Confirms current value. The project's first release describes itself as
   quote = "`oxigraph` Rust library with SPARQL 1.1 query support and memory, Sled and RocksDB stores."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No built-in reasoning, SHACL, R2RML, vector index or graph algorithms. Reasoning/SHACL are added by downstream projects (e.g. oxilite, OxiRS)."
+
+  [[claims.sources]]
+  url = "https://github.com/oxigraph/oxigraph"
+  title = "oxigraph/oxigraph README"
+  quote = "Most implementations are nearly fully conformant with the latest recommendations (1.1 for RDF, SPARQL and JSON-LD) with preliminary support for 1.2 RDF and SPARQL drafts."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

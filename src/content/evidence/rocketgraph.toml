@@ -62,3 +62,19 @@ notes = "Corrected from current value 2018-12: press coverage places the public 
   quote = "a property graph analytics company started by the co-founder and former chief executive of Cray Inc., has raised $2 million to launch a new graph analytics engine"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "xGT whole-graph algorithms: Louvain clustering, PageRank, SCC, WCC (invoked via CALL in TQL/openCypher). No vector index or semantic features found."
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/user_ref/graphanalytics/call.html"
+  title = "Calling Algorithms - xGT documentation"
+  quote = "xGT supports the following whole graph algorithms:"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

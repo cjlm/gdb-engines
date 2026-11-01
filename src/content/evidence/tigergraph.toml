@@ -70,3 +70,43 @@ notes = "TigerGraph's own architecture documentation states its core storage and
   quote = "The core components (GSE and GPE) are implemented in C++ for optimal performance."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Property graph DB; GraphRAG product page presents it as combining knowledge graphs and vector search. TigerGraph also publishes a knowledge-graph glossary page and CoPilot builds knowledge graphs from documents."
+
+  [[claims.sources]]
+  url = "https://www.tigergraph.com/graphrag/"
+  title = "Enterprise GraphRAG Powered by TigerGraph"
+  quote = "TigerGraph delivers connected context for AI — combining knowledge graphs, vector search, and real-time enterprise data to improve relevance, explainability, and decision quality."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL/RDF reasoning/SHACL/R2RML. Graph algorithms via the officially maintained GSQL Graph Data Science Library (centrality, community, path, similarity, classification, embeddings)."
+
+  [[claims.sources]]
+  url = "https://docs.tigergraph.com/gsql-ref/4.2/vector/"
+  title = "Vector Searches - GSQL Language Reference"
+  quote = "The TigerGraph database stores and indexes vectors efficiently, effectively serving as a multi-modal graph + vector database for AI applications."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.tigergraph.com/graph-ml/3.10/intro/overview"
+  title = "Graph Data Science Library overview"
+  quote = "Centrality Algorithms find the important vertices in a graph based on their connections with other vertices."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

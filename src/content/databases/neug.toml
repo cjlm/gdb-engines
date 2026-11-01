@@ -10,6 +10,7 @@ type = "Property Graph"
 kind = "embedded"
 query_languages = ["openCypher"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 released = "2026-03"
 category = "Emerging"
 gdotv_support = false

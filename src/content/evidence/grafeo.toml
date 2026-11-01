@@ -84,3 +84,66 @@ notes = "README states the engine is built in Rust; confirms current value."
   quote = "Grafeo is a graph database built in Rust from the ground up for speed and low memory use."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph", "semantic"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "Nodes with labels and properties, edges with types and properties. Ideal for social networks, knowledge graphs and application data."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "Triple-based storage (subject-predicate-object) with SPO/POS/OSP indexes. Ideal for semantic web, linked data and ontology-based applications."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "SHACL validation", "Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "RDF/SPARQL, SHACL, vector and algorithms are Cargo feature flags (rdf, shacl, ai, analytics) of the same project. No RDFS/OWL reasoning or R2RML found."
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "SPARQL (W3C 1.1) with SHACL validation and Ring Index WCOJ planner"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "W3C Shapes Constraint Language with all 28 Core constraint types and SHACL-SPARQL"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "O(log n) approximate nearest neighbor search with tunable recall"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://grafeo.dev/algorithms/"
+  title = "Graph Algorithms - Grafeo"
+  quote = "Grafeo includes a library of built-in graph algorithms for common analysis tasks, accessible via the db.algorithms() API."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

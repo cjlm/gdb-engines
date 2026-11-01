@@ -71,3 +71,59 @@ notes = "Confirms current value: RDFox's core is written in C++, with a Java wra
   quote = "It is cross-platform software written in C++ that comes with a Java wrapper allowing for easy integration with any Java-based solution."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Oxford Semantic Technologies is now owned by Samsung; site still at oxfordsemantic.tech."
+
+  [[claims.sources]]
+  url = "https://www.oxfordsemantic.tech"
+  title = "Oxford Semantic Technologies - RDFox"
+  quote = "RDFox is the only enterprise-grade knowledge graph and reasoner that can be embedded on edge and mobile devices."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "OWL reasoning", "SHACL validation", "Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materialisation on a best-effort basis; also SWRL and its own Datalog rule language. No explicit RDFS entailment regime documented (RDFS-style inference via rules/OWL axioms), so RDFS left out. Vector search = 'semantic index tuple tables' over embeddings from a bundled embedding model (RDFox 7.x). No R2RML (external data sources use RDFox's own tuple-table mapping). No graph algorithm library."
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/features-and-requirements.html"
+  title = "RDFox docs: Features and Requirements"
+  quote = "RDFox can answer SPARQL 1.1 queries"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/features-and-requirements.html"
+  title = "RDFox docs: Features and Requirements"
+  quote = "RDF data can be validated using the SHACL constraint language."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/reasoning.html"
+  title = "RDFox docs: Reasoning"
+  quote = "The translation of OWL 2 axioms into rules for the purpose of reasoning is performed on a best-effort basis."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/tuple-tables.html"
+  title = "RDFox docs: Tuple Tables"
+  quote = "A semantic index tuple table supports efficient repeated semantic similarity searches over a selected set of strings in a data store."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

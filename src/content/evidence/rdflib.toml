@@ -55,3 +55,19 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No built-in RDFS/OWL inference or SHACL in core; OWL 2 RL (owlrl) and SHACL (pySHACL) are separate RDFLib-family packages, not bundled in rdflib."
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/rdflib"
+  title = "RDFLib README (GitHub)"
+  quote = "supporting SPARQL 1.1 Queries and Update statements"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

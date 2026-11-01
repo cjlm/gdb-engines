@@ -84,3 +84,19 @@ checked = "2026-09-23"
   quote = "Neo4j under the hood"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Exact and HNSW vector indexes plus BM25 and hybrid search in the open-source engine (managed embeddings only in RushDB Cloud). No graph algorithm library or semantic features found."
+
+  [[claims.sources]]
+  url = "https://github.com/rush-db/rushdb"
+  title = "rush-db/rushdb README"
+  quote = "Vector indexes (exact and HNSW) over the vectors you supply, BM25 full-text indexes, and hybrid search that fuses both."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

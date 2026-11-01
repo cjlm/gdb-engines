@@ -77,3 +77,50 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/about/"
+  title = "About | Eclipse RDF4J"
+  quote = "It allows you to connect with SPARQL endpoints and create applications that leverage the power of Linked Data and Semantic Web"
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "SHACL validation"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "RDFS via SchemaCachingRDFSInferencer; rule-based reasoning via SPIN/custom rules but no OWL reasoner in core (OWL reasoning is offered by third-party stores such as GraphDB/Stardog). Full-text via Lucene/Elasticsearch/Solr, not vector. No R2RML or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/about/"
+  title = "About | Eclipse RDF4J"
+  quote = "RDF4J fully supports the SPARQL 1.1 query and update language for expressive querying"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/documentation/programming/repository/"
+  title = "The Repository API | Eclipse RDF4J"
+  quote = "to stack an RDF Schema inferencer on top of a memory store, we simply create a repository like so:"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/documentation/programming/shacl/"
+  title = "Validation With SHACL | Eclipse RDF4J"
+  quote = "The SHACL Engine works by analyzing the changes made in a transaction and creating a set of validation plans"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"

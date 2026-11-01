@@ -130,3 +130,83 @@ notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acq
   quote = "Unleash the full potential of your connected data with Rapidminer Graph Lakehouse."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic", "virtual"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Siemens product page now brands the family 'Rapidminer Graph Studio' (with Graph Lakehouse as its in-memory MPP engine) and says it 'is now part of Intelligence Center X'. Graph Lakehouse was formerly Altair Graph Lakehouse / AnzoGraph DB. 'virtual' rests on marketing language about a semantic layer that minimizes data movement and handling data 'virtualized'; it is a Graph Studio (platform) claim more than a Graph Lakehouse engine claim, hence medium confidence."
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Built on open W3C standards — RDF, SPARQL, OWL and SHACL — ensuring interoperability, no vendor lock-in and flexible querying across structured and unstructured data from diverse sources."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Create a rich, governed knowledge graph that operates across all your data."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Add a scalable semantic layer across your existing systems that minimizes data movement and duplication while delivering production-grade performance."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Handle data in-memory, virtualized or on-disk."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Inference engine runs RDFS-plus and supported OWL 2 RL rules (materialised via CREATE INFERENCES). Graph algorithms are referenced as a built-in SPARQL extension on the reference page, but I did not find a dedicated algorithm page on the current help site, so that value is medium. The Siemens page lists SHACL among the standards the Graph Studio family is built on, but I found no Graph Lakehouse doc for SHACL validation, so it is omitted. No vector search or R2RML evidence found for the engine."
+
+  [[claims.sources]]
+  url = "https://help.altair.com/graphlakehouse/userdoc/using-sparql.htm"
+  title = "SPARQL Query Language Reference | Graph Lakehouse"
+  quote = "Graph Lakehouse implements the standard SPARQL forms and functions described in the W3C SPARQL 1.1 Query Language specification."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://help.altair.com/graphlakehouse/userdoc/inferences.htm"
+  title = "Infer New Data (RDFS+ Inferencing) | Graph Lakehouse"
+  quote = "When Graph Lakehouse creates inferences, it scans the specified graph for any of the RDFS-plus and supported OWL 2 RL ontologies and generates new triples according to the W3C OWL 2 RL rules"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://help.altair.com/graphlakehouse/userdoc/inferences.htm"
+  title = "Infer New Data (RDFS+ Inferencing) | Graph Lakehouse"
+  quote = "When Graph Lakehouse creates inferences, it scans the specified graph for any of the RDFS-plus and supported OWL 2 RL ontologies and generates new triples according to the W3C OWL 2 RL rules"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://help.altair.com/graphlakehouse/userdoc/using-sparql.htm"
+  title = "SPARQL Query Language Reference | Graph Lakehouse"
+  quote = "Graph Lakehouse also provides several SQL-like and Microsoft Excel-like functions as well as support for more advanced operations like window aggregates, advanced grouping sets, and graph algorithms."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

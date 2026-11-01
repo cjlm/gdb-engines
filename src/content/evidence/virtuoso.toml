@@ -70,3 +70,59 @@ notes = "OpenLink's own FAQ confirms built-in engine functions are written in C;
   quote = "Virtuoso can extend SQL by import Java and .NET classes and functions as well as build-in SQL functions written in C."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic", "virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL without copying it."
+
+  [[claims.sources]]
+  url = "https://virtuoso.openlinksw.com/"
+  title = "OpenLink Virtuoso"
+  quote = "Build and deploy modern knowledge bases for AI agents and associated skills that manifest as knowledge graphs constructed using Linked Data principles."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.openlinksw.com/virtuoso/rdfviewsrdbms/"
+  title = "Virtuoso docs: Linked Data Views over RDBMS Data Source"
+  quote = "Linked Data Views map relational data into RDF and allow customizing RDF representation of locally stored RDF data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "R2RML mapping"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Query-time inference rule bases from RDFS triples (subClassOf, subPropertyOf) plus selected OWL constructs (sameAs, equivalentClass/Property, TransitiveProperty, inverseOf) - not a full OWL profile, so OWL reasoning left out. Native HNSW vector indexes appear only in the unreleased v7.2.18 development branch NEWS (latest release v7.2.17), so Vector search left out. No SHACL or graph algorithm library found in open-source docs."
+
+  [[claims.sources]]
+  url = "https://vos.openlinksw.com/owiki/wiki/VOS/VOSSparqlProtocol"
+  title = "Virtuoso SPARQL Query Service"
+  quote = "has been updated to support SPARQL 1.1"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.openlinksw.com/virtuoso/rdfsparqlrule/"
+  title = "Virtuoso docs: Inference Rules & Reasoning"
+  quote = "Such an inference context can be built from one or more graphs containing RDF Schema triples."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.openlinksw.com/virtuoso/r2rml/"
+  title = "Virtuoso docs: Virtuoso R2RML Support"
+  quote = "R2RML is a language for expressing customized mappings from relational databases to RDF data sets."
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"

@@ -84,3 +84,107 @@ notes = "Confirms the current value with a caveat: Oracle Graph is split. The RD
   quote = "PGX has two different runtimes: a single-machine shared memory runtime implemented in Java and a distributed runtime implemented in C++"
   verified = "mismatch"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic", "property-graph", "virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "RDF Knowledge Graph feature (W3C standards) plus SQL/PGQL property graphs (official tutorial builds a KG with PGQL). Virtual: RDF views expose relational data as virtual RDF triples via R2RML/Direct Mapping. Note: the catalogue URL https://www.oracle.com/database/graph/ now returns 404; the product page is https://www.oracle.com/database/integrated-graph-database/features/."
+
+  [[claims.sources]]
+  url = "https://www.oracle.com/database/integrated-graph-database/features/"
+  title = "Integrated Graph Database Features"
+  quote = "Use Oracle Graph, which adheres to W3C standards, for linked data, data integration, and knowledge graphs."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/rdf-graph-overview.html"
+  title = "RDF Graph Overview"
+  quote = "You can use Oracle SQL Developer to perform operations related to the RDF Knowledge Graph feature of Oracle Graph."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/learn/oci-graph-23ai"
+  title = "Create a Knowledge Graph with Oracle Autonomous Database and Property Graph Query Language"
+  quote = "This tutorial explores the concepts of graph theory, knowledge graphs, and how they are implemented using the Oracle Autonomous Database with Property Graph Query Language (PGQL)."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/rdf-views-relational-data-rdf.html"
+  title = "RDF Views: Publishing Relational Data as RDF"
+  quote = "Relational data is viewed as virtual RDF triples using one of the two forms of RDB2RDF mapping"
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "R2RML mapping", "Vector search", "Graph algorithms", "SHACL validation"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "OWL: native OWL inference engine with OWLPrime (and OWL 2 RL/user rulebases) via entailments (rules indexes). SPARQL 1.1 via SEM_MATCH and Jena/RDF4J adapters (docs describe SPARQL 1.1 constructs; no single full-compliance statement found). SHACL is via the Oracle RDF Graph Adapter for Eclipse RDF4J (official Oracle-shipped adapter), not the database core. Vector search is Oracle AI Vector Search in the same database, combined with RDF graphs for GraphRAG. Graph algorithms: PGX graph server built-ins (80+) and in-database DBMS_OGA functions."
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/using-sem_match-table-function-query-rdf-data.html"
+  title = "Using the SEM_MATCH Table Function to Query RDF Data"
+  quote = "SPARQL 1.1 features are supported within CONSTRUCT query patterns."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/sem_apis-create_entailment.html"
+  title = "SEM_APIS.CREATE_ENTAILMENT"
+  quote = "Creates an entailment (rules index) that can be used to perform OWL or RDFS inferencing, and optionally use user-defined rules."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/sem_apis-create_entailment.html"
+  title = "SEM_APIS.CREATE_ENTAILMENT"
+  quote = "Creates an entailment (rules index) that can be used to perform OWL or RDFS inferencing, and optionally use user-defined rules."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/rdf-views-relational-data-rdf.html"
+  title = "RDF Views: Publishing Relational Data as RDF"
+  quote = "described in W3C documents on Direct Mapping and R2RML mapping"
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.oracle.com/database/integrated-graph-database/features/"
+  title = "Integrated Graph Database Features"
+  quote = "The combination of AI Vector Search and RDF knowledge graph capabilities in Oracle AI Database makes it simple to extend retrieval-augmented generation (RAG) workflows with graph analysis"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/property-graph/26.4/spgdg/built-algorithms-graph-server-pgx.html"
+  title = "About Built-In Algorithms in the Graph Server (PGX)"
+  quote = "The graph server (PGX) contains a set of built-in algorithms that are available as Java and Python APIs."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/rdf-graph-support-eclipse-rdf4j-overview.html"
+  title = "Oracle RDF Graph Adapter for Eclipse RDF4J Overview"
+  quote = "Validating data with SHACL constraints"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"

@@ -2,6 +2,7 @@ name = "Atomic Server"
 vendor = "Ontola"
 slug = "atomic-server"
 description = "A lightweight Rust graph database built around the Atomic Data specification. Provides event-sourced versioning, hierarchical authorization, and real-time sync via WebSockets."
+kg_kinds = ["semantic"]
 url = "https://atomicserver.eu/"
 github_url = "https://github.com/ontola/atomic-server"
 license = "MIT"

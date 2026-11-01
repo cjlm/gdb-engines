@@ -55,3 +55,19 @@ notes = "Confirms current value. Alibaba Cloud's own developer-community article
   quote = "阿里云于2019年3月重磅发布了数据库新产品——图数据库（Graph Database，简称GDB），本文将从图数据库的基本背景知识说起，带你深入了解阿里云Cloud-Native图数据库GDB。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Knowledge graphs listed among suitable scenarios rather than a headline positioning. alibabacloud.com product page is JS-rendered; quote from the Alibaba Cloud help center (English)."
+
+  [[claims.sources]]
+  url = "https://help.aliyun.com/en/gdb/product-overview/what-is-gdb"
+  title = "What is Graph Database (GDB)?"
+  quote = "GDB is ideal for scenarios that involve highly interconnected datasets, such as social networking, fraud detection, recommendation engines, knowledge graphs, and network or IT operations."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"

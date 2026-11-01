@@ -63,3 +63,35 @@ notes = "Matches current value."
   quote = "Real-time GraphRAG engine optimized for LLMs — stream-native graph + vector + typed retrieval (Rust). Source-available."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Site and README present StromaDB as a streaming knowledge graph / GraphRAG engine. Data model is a typed graph of subject-predicate-object facts with a lightweight ontology (explicitly 'no axioms, no reasoner'); not RDF. property-graph is the nearest fit."
+
+  [[claims.sources]]
+  url = "https://stromadb.com/"
+  title = "StromaDB — real-time GraphRAG engine for LLMs"
+  quote = "a streaming knowledge graph where an LLM agent runs type-aware hybrid search"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, RDFS/OWL reasoning, SHACL, R2RML or graph-algorithm library found on site or README. Embeddings are supplied by the user (not computed) and indexed by the engine."
+
+  [[claims.sources]]
+  url = "https://stromadb.com/"
+  title = "StromaDB — real-time GraphRAG engine for LLMs"
+  quote = "Vector search filtered by node type, graph structure, and per-user permissions"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

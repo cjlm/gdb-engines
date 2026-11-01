@@ -70,3 +70,82 @@ notes = "Franz built AllegroGraph on top of its own Allegro Common Lisp platform
   quote = "It also develops Allegro Common Lisp, an implementation of Common Lisp, a dialect of Lisp (programming language). The functionality of AllegroGraph is made available through Java, Python, Common Lisp and other APIs."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://allegrograph.com/products/allegrograph/"
+  title = "AllegroGraph: The Knowledge Graph Platform for Agentic AI"
+  quote = "AllegroGraph unifies RDF, OWL, SPARQL, SHACL, rules, vector embeddings, documents, temporal data, and LLM integration in a single Neuro-Symbolic AI platform."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://allegrograph.com/products/allegrograph/"
+  title = "AllegroGraph: The Knowledge Graph Platform for Agentic AI"
+  quote = "AllegroGraph provides the enterprise Knowledge Graph foundation for building Context Graphs and powering trusted Agentic AI."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Two inference engines: dynamic RDFS++ reasoner (RDFS plus selected OWL predicates such as owl:sameAs, owl:inverseOf, owl:TransitiveProperty) and an OWL 2 RL materializer. Vector databases attach embeddings to triple-object literals, queried via llm:nearestNeighbor magic properties. Graph algorithms are the Social Network Analysis (SNA) library (centrality measures, cliques, paths, Leiden community detection). No built-in R2RML found."
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/sparql-reference.html"
+  title = "SPARQL Reference | AllegroGraph"
+  quote = "AllegroGraph implements the SPARQL 1.1 standard, with certain conformance notes"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/materializer.html"
+  title = "Materializer | AllegroGraph"
+  quote = "AllegroGraph has two different inference engines: one supports a superset of RDFS inference rules and the other supports OWL 2 RL."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/materializer.html"
+  title = "Materializer | AllegroGraph"
+  quote = "AllegroGraph has two different inference engines: one supports a superset of RDFS inference rules and the other supports OWL 2 RL."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/shacl.html"
+  title = "SHACL (Shapes Constraint Language) | AllegroGraph"
+  quote = "SHACL allows you to validate that your data is conforming to desired requirements."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/llmembed.html"
+  title = "LLM Embedding and Vector Databases | AllegroGraph"
+  quote = "An Allegrograph Vector Database associates embeddings with literals found in the triple objects of a graph database."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/sna-magic-properties.html"
+  title = "Introduction to SNA magic properties | AllegroGraph"
+  quote = "we can get actor degree centrality for each actor in an ego group by building a group with the sna:egoGroup function and then using sna:actorDegreeCentrality"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

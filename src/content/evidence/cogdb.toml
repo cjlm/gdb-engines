@@ -70,3 +70,43 @@ notes = "README states this directly; GitHub language stats show 100% Python."
   quote = "CogDB is a persistent, embedded graph database implemented in Python."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Docs list knowledge graphs as an ideal use case. CogDB is a triple store that loads RDF N-Triples (repo topics include rdf, linkeddata, knowledge-graph), but it has no SPARQL or ontology support, so 'semantic' is a loose fit; it is not a property graph. Treat as medium."
+
+  [[claims.sources]]
+  url = "https://cogdb.io/docs"
+  title = "CogDB Docs"
+  quote = "Knowledge graphs and semantic search applications"
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/arun1729/cog"
+  title = "arun1729/cog README"
+  quote = "CogDB can load a graph stored as N-Triples, a serialization format for RDF."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Queried via its own Torque API, not SPARQL. Traversal includes BFS/DFS but no graph algorithm library."
+
+  [[claims.sources]]
+  url = "https://github.com/arun1729/cog"
+  title = "arun1729/cog README"
+  quote = "CogDB supports word embeddings with SIMD-optimized similarity search powered by SimSIMD"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

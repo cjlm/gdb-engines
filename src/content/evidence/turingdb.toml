@@ -788,3 +788,35 @@ confidence = "low"
 method = "vendor-docs"
 checked = "2026-10-26"
 notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Property graph DB (openCypher); use-cases page presents it for organisational and biomedical knowledge graphs and GraphRAG."
+
+  [[claims.sources]]
+  url = "https://www.turingdb.ai/use-cases"
+  title = "TuringDB use cases"
+  quote = "Turn scattered documents and databases into one queryable, versioned knowledge graph for your organisation."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Graph algorithms left out: docs list only a Shortest Path algorithm page, not a library. No SPARQL/RDF/SHACL/R2RML."
+
+  [[claims.sources]]
+  url = "https://github.com/turing-db/turingdb"
+  title = "turing-db/turingdb"
+  quote = "Run native kNN over your embeddings and chain the results straight into Cypher traversals"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

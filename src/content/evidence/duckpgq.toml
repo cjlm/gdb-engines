@@ -48,3 +48,19 @@ notes = "Confirms current value; the VLDB paper describes the extension's UDFs a
   quote = "with the help of some scalar User Defined Functions (UDFs) implemented in C++ that the module provides"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Local clustering coefficient, weakly connected components and PageRank as table functions. Vector search would come from DuckDB's separate VSS extension, so not listed."
+
+  [[claims.sources]]
+  url = "https://duckpgq.org/documentation/graph_functions/"
+  title = "DuckPGQ Graph Functions"
+  quote = "DuckPGQ provides a range of graph algorithms that allow you to conveniently analyze your data directly within DuckDB."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
