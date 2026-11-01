@@ -39,7 +39,7 @@ function tomlValue(value) {
 }
 
 const CLAIM_KEYS = ['field', 'value', 'confidence', 'method', 'checked', 'notes'];
-const SOURCE_KEYS = ['url', 'title', 'quote', 'verified', 'archive_url', 'checked'];
+const SOURCE_KEYS = ['url', 'title', 'quote', 'supports', 'verified', 'archive_url', 'checked'];
 
 function emitKeys(target, keys, indent = '') {
   const lines = [];

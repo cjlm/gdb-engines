@@ -38,6 +38,8 @@ gdotv_support = false
 - `gdotv_support` — whether the database is supported by G.V()
 - `icon` — optional custom favicon filename in `public/logos/`
 - `github_url` — canonical GitHub repository URL. Its star count is derived at build time rather than stored in TOML
+- `kg_kinds` — which kinds of knowledge graph the makers present the engine for: `semantic` (ontology-based), `property-graph`, `virtual` (over data left in other systems). Every value needs its own sourced quote
+- `kg_capabilities` — knowledge graph parts the engine ships itself: `SPARQL 1.1`, `RDFS reasoning`, `OWL reasoning`, `SHACL validation`, `R2RML mapping`, `Vector search`, `Graph algorithms`. Every value needs its own sourced quote
 
 Databases that have been scored in the research paper also include a `[features]` section with 43 feature scores (each a value of `0`, `0.5`, or `1`).
 

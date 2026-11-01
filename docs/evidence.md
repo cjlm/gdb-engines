@@ -4,7 +4,8 @@ Catalogue values used to be unsourced assertions. This is the layer that fixes t
 collected under it carries the pages it came from, every citation is mechanically checked, and only
 confirmed sources are published.
 
-`protocols`, `license`, `released` and `implementation_language` are covered across the catalogue.
+`protocols`, `license`, `released`, `implementation_language`, `kg_kinds` and `kg_capabilities` are covered
+across the catalogue.
 Each `lineage.<parent>.relation` (where an engine was forked from or built on) must carry a claim
 wherever it is set. Feature scores are not yet covered.
 
@@ -44,6 +45,10 @@ checked = "2026-07-31"
   verified = "matched"
   checked = "2026-07-31"
 ```
+
+`kg_kinds` and `kg_capabilities` are checked value by value instead of as a whole list: each source
+names the value it backs in `supports`, and every listed value needs a source of its own
+(`scripts/lib/per-value-evidence.mjs`). One good quote for SPARQL says nothing about a reasoner.
 
 `value` restates the catalogue value the sources were gathered for. That redundancy is the point —
 see the build gate below.
