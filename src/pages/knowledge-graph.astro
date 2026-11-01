@@ -92,7 +92,7 @@ const breadcrumbJsonLd = JSON.stringify({
     <p class="answer">
       A knowledge graph is an ontology filled with real data: things named from a controlled vocabulary,
       typed by an ontology that machines can reason over, and connected into a graph that can be queried.
-      That is the definition from the practice that coined the architecture, and the one Jessica Talisman
+      That is the strict definition, and the one Jessica Talisman
       builds on in <a href="#book"><cite>Ontology Pipeline</cite></a>. In everyday use the term covers at least
       five other things, and they differ from each other more than the shared name suggests.
     </p>
@@ -160,8 +160,8 @@ const breadcrumbJsonLd = JSON.stringify({
         “Knowledge graph” now often means entities and relations a language model pulled out of documents, used
         to ground its answers: the approach Microsoft Research published as
         <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024. These graphs are fast to build and usually have no ontology behind them, so the
-        same company can appear as three nodes. Talisman's warning applies: extraction is only as good as the
-        vocabulary and ontology that type it.
+        same company can appear as three nodes. Talisman's warning applies: the vocabulary and ontology that
+        type an extraction set the limit on its quality.
         {examples.graphrag.length > 0 && <> Engines used for it: <EngineList engines={examples.graphrag} />.</>}
       </p>
 
@@ -192,7 +192,7 @@ const breadcrumbJsonLd = JSON.stringify({
         <li><strong>Controlled vocabulary</strong>: one agreed, unambiguous term for each thing.</li>
         <li><strong>Metadata standards</strong>: what each term is about and where it came from.</li>
         <li><strong>Taxonomy</strong>: the terms arranged broad to narrow, parent and child.</li>
-        <li><strong>Thesaurus</strong>: synonyms, related terms and matches to other vocabularies added.</li>
+        <li><strong>Thesaurus</strong>: the taxonomy with synonyms, related terms and matches to other vocabularies.</li>
         <li><strong>Ontology</strong>: formal classes, properties and logic, so a machine can reason.</li>
         <li><strong>Knowledge graph</strong>: the ontology populated with real instance data.</li>
       </ol>

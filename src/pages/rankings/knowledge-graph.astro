@@ -110,7 +110,7 @@ const breadcrumbJsonLd = JSON.stringify({
     {top.length >= 3 && (
       <p class="lead">
         {engines.length} engines ranked, {semanticCount} semantic and {propertyCount} property graph, {updated}.
-        <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads with a score of {top[0].score.toFixed(1)}, followed by
+        <a href={`/db/${top[0].slug}/`}>{top[0].name}</a> leads on the monthly popularity score with {top[0].score.toFixed(1)}, followed by
         <a href={`/db/${top[1].slug}/`}>{top[1].name}</a> ({top[1].score.toFixed(1)}) and
         <a href={`/db/${top[2].slug}/`}>{top[2].name}</a> ({top[2].score.toFixed(1)}).
       </p>
