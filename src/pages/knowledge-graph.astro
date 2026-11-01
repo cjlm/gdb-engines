@@ -94,7 +94,7 @@ const breadcrumbJsonLd = JSON.stringify({
       typed by an ontology that machines can reason over, and connected into a graph that can be queried.
       That is the strict definition, and the one Jessica Talisman
       builds on in <a href="#book"><cite>Ontology Pipeline</cite></a>. In everyday use the term covers at least
-      five other things, and they differ from each other more than the shared name suggests.
+      five other things.
     </p>
 
     {board && (
@@ -139,7 +139,7 @@ const breadcrumbJsonLd = JSON.stringify({
       <p>
         The same semantic model laid over data that stays where it is. Mappings translate graph queries into
         queries against relational databases or warehouses at run time, so nothing is copied;
-        <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a> is the usual language for them. It keeps the vocabulary
+        <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a> is the usual mapping language. It keeps the vocabulary
         and the ontology and swaps the stored knowledge base for live sources.
         {examples.virtual.length > 0 && <> Examples: <EngineList engines={examples.virtual} />.</>}
       </p>
@@ -160,8 +160,8 @@ const breadcrumbJsonLd = JSON.stringify({
         “Knowledge graph” now often means entities and relations a language model pulled out of documents, used
         to ground its answers: the approach Microsoft Research published as
         <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024. These graphs are fast to build and usually have no ontology behind them, so the
-        same company can appear as three nodes. Talisman's warning applies: the vocabulary and ontology that
-        type an extraction set the limit on its quality.
+        same company can appear as three nodes. Talisman's warning applies: the vocabulary and ontology behind an
+        extraction set the limit on its quality.
         {examples.graphrag.length > 0 && <> Engines used for it: <EngineList engines={examples.graphrag} />.</>}
       </p>
 
