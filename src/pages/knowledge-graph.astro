@@ -148,7 +148,7 @@ const breadcrumbJsonLd = JSON.stringify({
       <p>
         Many graph database vendors use the term for any graph of connected business entities stored as labelled
         nodes and edges with properties. The knowledge base is real; the vocabulary and ontology often live in
-        application code or a schema convention rather than a shared, machine-readable model. Neo4j's own answer
+        application code or a schema convention, not in a shared, machine-readable model. Neo4j's own answer
         to <a href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/" rel="noopener">whether
         a knowledge graph is a graph database</a> draws the same line between the store and the knowledge in it.
         {examples.property.length > 0 && <> Leading engines: <EngineList engines={examples.property} />.</>}
@@ -168,7 +168,7 @@ const breadcrumbJsonLd = JSON.stringify({
       <p>
         AI agents increasingly keep what they learn in a graph, with time attached to each fact, as in Zep's
         <a href="https://arxiv.org/abs/2501.13956" rel="noopener">temporal knowledge graph</a>. The graph is
-        written by the agent as it works and serves recall rather than shared meaning.
+        written by the agent as it works, and its job is recall: what this agent saw, and when.
         {examples.memory.length > 0 && <> Engines used for it: <EngineList engines={examples.memory} />.</>}
       </p>
 
