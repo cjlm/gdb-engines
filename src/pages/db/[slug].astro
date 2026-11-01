@@ -18,6 +18,7 @@ import { blogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
+import { kgCapabilityDescriptions, kgKindLabels } from '../../lib/knowledge-graph';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
 import { layoutFamily } from '../../lib/lineage-layout';
 
@@ -151,6 +152,8 @@ const fieldLabels: Record<string, string> = {
   released: 'Released',
   implementation_language: 'Language',
   previous_names: 'Previous names',
+  kg_kinds: 'Knowledge graph kinds',
+  kg_capabilities: 'Knowledge graph capabilities',
 };
 
 /** Lineage claims are keyed per parent (`lineage.<parent>.relation`), so they share one label. */
@@ -163,6 +166,10 @@ const citedClaims = evidence
     ...claim,
     sources: claim.sources.filter((s) => s.verified === 'matched' || s.verified === 'matched-archive'),
   }))
+  // Value-by-value fields show only the values whose own quote checked out.
+  .map((claim) => claim.sources.some((s) => s.supports) && Array.isArray(claim.value)
+    ? { ...claim, value: claim.value.filter((v) => claim.sources.some((s) => s.supports === v)) }
+    : claim)
   .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
 const lineageFamily = familyOf(buildFamilies(catalogue), db.data.slug);
@@ -436,6 +443,18 @@ function hostname(value: string): string {
         <>
           <dt>Protocols</dt>
           <dd class="meta-list">{sortProtocols(db.data.protocols).map((protocol) => <span>{protocol}</span>)}</dd>
+        </>
+      )}
+      {db.data.kg_kinds.length > 0 && (
+        <>
+          <dt><a href="/rankings/knowledge-graph/">Knowledge Graph</a></dt>
+          <dd class="meta-list">{db.data.kg_kinds.map((kind) => <span>{kgKindLabels[kind]}</span>)}</dd>
+        </>
+      )}
+      {db.data.kg_capabilities.length > 0 && (
+        <>
+          <dt>KG Capabilities</dt>
+          <dd class="meta-list">{db.data.kg_capabilities.map((capability) => <span title={kgCapabilityDescriptions[capability]}>{capability}</span>)}</dd>
         </>
       )}
           </dl>
