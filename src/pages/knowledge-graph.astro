@@ -49,7 +49,7 @@ const faq = [
   },
   {
     q: 'Should a knowledge graph use RDF or a property graph?',
-    a: 'RDF if the graph has to share meaning across systems or organisations, or reason over an ontology: its standards (RDFS, OWL, SKOS, SHACL, SPARQL) cover every layer. A property graph if the work is mostly traversal and analytics inside one application and the schema can live in code. Many engines now do both.',
+    a: 'Use RDF if the graph has to share meaning across systems or organisations, or reason over an ontology. Its standards (RDFS, OWL, SKOS, SHACL, SPARQL) cover every layer. Use a property graph if the work is mostly traversal and analytics inside one application and the schema can live in code. Many engines now do both.',
   },
   {
     q: 'Is an LLM-extracted graph a knowledge graph?',
@@ -94,7 +94,7 @@ const breadcrumbJsonLd = JSON.stringify({
       typed by an ontology that machines can reason over, and connected into a graph that can be queried.
       That is the definition from the practice that coined the architecture, and the one Jessica Talisman
       builds on in <a href="#book"><cite>Ontology Pipeline</cite></a>. In everyday use the term covers at least
-      five other things too, and they differ from each other more than the shared name suggests.
+      five other things, and they differ from each other more than the shared name suggests.
     </p>
 
     {board && (
@@ -117,7 +117,7 @@ const breadcrumbJsonLd = JSON.stringify({
     <section id="meanings">
       <h2>Six meanings of “knowledge graph”</h2>
       <p>
-        Talisman makes the point directly: systems that share the name can differ from one another more than
+        Talisman says it directly: systems that share the name can differ from one another more than
         either differs from systems called something else entirely. The six below are the ones a reader is most
         likely to meet. They are ordered by how much of the semantic stack each one keeps.
       </p>
@@ -137,9 +137,9 @@ const breadcrumbJsonLd = JSON.stringify({
 
       <h3>2. A virtual knowledge graph</h3>
       <p>
-        The same semantic model laid over data that stays where it is. Mappings, typically
-        <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a>, translate graph queries into queries
-        against relational databases or warehouses at run time, so nothing is copied. It keeps the vocabulary
+        The same semantic model laid over data that stays where it is. Mappings translate graph queries into
+        queries against relational databases or warehouses at run time, so nothing is copied;
+        <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a> is the usual language for them. It keeps the vocabulary
         and the ontology and swaps the stored knowledge base for live sources.
         {examples.virtual.length > 0 && <> Examples: <EngineList engines={examples.virtual} />.</>}
       </p>
@@ -148,17 +148,18 @@ const breadcrumbJsonLd = JSON.stringify({
       <p>
         Many graph database vendors use the term for any graph of connected business entities stored as labelled
         nodes and edges with properties. The knowledge base is real; the vocabulary and ontology usually live in
-        application code or a schema convention that only that application reads. Neo4j's own answer
-        to <a href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/" rel="noopener">whether
-        a knowledge graph is a graph database</a> draws the same line between the store and the knowledge in it.
+        application code or a schema convention that only that application reads. Neo4j draws the same line
+        between the store and the knowledge in it when it answers
+        <a href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/" rel="noopener">whether
+        a knowledge graph is a graph database</a>.
         {examples.property.length > 0 && <> Leading engines: <EngineList engines={examples.property} />.</>}
       </p>
 
       <h3>4. A graph extracted by an LLM for GraphRAG</h3>
       <p>
-        Since Microsoft Research published <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a>
-        in 2024, “knowledge graph” often means entities and relations a language model pulled out of documents,
-        used to ground its answers. These graphs are fast to build and usually have no ontology behind them, so the
+        “Knowledge graph” now often means entities and relations a language model pulled out of documents, used
+        to ground its answers: the approach Microsoft Research published as
+        <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024. These graphs are fast to build and usually have no ontology behind them, so the
         same company can appear as three nodes. Talisman's warning applies: extraction is only as good as the
         vocabulary and ontology that type it.
         {examples.graphrag.length > 0 && <> Engines used for it: <EngineList engines={examples.graphrag} />.</>}
@@ -168,15 +169,15 @@ const breadcrumbJsonLd = JSON.stringify({
       <p>
         AI agents increasingly keep what they learn in a graph, with time attached to each fact, as in Zep's
         <a href="https://arxiv.org/abs/2501.13956" rel="noopener">temporal knowledge graph</a>. The graph is
-        written by the agent as it works, and its job is recall: what this agent saw, and when.
+        written by the agent as it works, so it can recall what it saw and when.
         {examples.memory.length > 0 && <> Engines used for it: <EngineList engines={examples.memory} />.</>}
       </p>
 
       <h3>6. Google's Knowledge Graph</h3>
       <p>
         The panel beside search results. Google <a href="https://blog.google/products/search/introducing-knowledge-graph-things-not/" rel="noopener">introduced
-        it in 2012</a> as “things, not strings”, and it made the term familiar. It is one company's product, not
-        a kind of software you can buy, though it is built on the same ideas as the first meaning.
+        it in 2012</a> as “things, not strings”, and it made the term familiar. It is one company's product, not a
+        category of software, though it is built on the same ideas as the first meaning.
       </p>
     </section>
 
@@ -196,7 +197,7 @@ const breadcrumbJsonLd = JSON.stringify({
         <li><strong>Knowledge graph</strong>: the ontology populated with real instance data.</li>
       </ol>
       <p>
-        The database arrives at the last step. Most “best knowledge graph database” lists start there, which is why
+        A database enters at the last step. Most “best knowledge graph database” lists start there, which is why
         they compare products that answer different questions. Skipping the earlier stages is how a graph ends up
         with three nodes for one company.
       </p>
@@ -205,9 +206,9 @@ const breadcrumbJsonLd = JSON.stringify({
     <section id="parts">
       <h2>The parts, and which a database supplies</h2>
       <p>
-        The book separates the parts every knowledge graph needs from the ones chosen per project. The right-hand
-        column is what we check each engine for on the <a href="/rankings/knowledge-graph/">ranking</a>, from its
-        own documentation.
+        <cite>Ontology Pipeline</cite> separates the parts every knowledge graph needs from the ones chosen per
+        project. For the <a href="/rankings/knowledge-graph/">ranking</a>, we check each engine's own documentation
+        for the parts in the right-hand column.
       </p>
       <div class="table-wrap">
         <table class="parts">
@@ -241,8 +242,8 @@ const breadcrumbJsonLd = JSON.stringify({
     <section id="book">
       <BookCredit />
       <p class="further">
-        For a survey of definitions from the research side, see Hogan et al., <a href="https://arxiv.org/abs/2003.02320" rel="noopener">“Knowledge Graphs”</a>
-        (2020). To compare engines, start with the <a href="/rankings/knowledge-graph/">knowledge graph ranking</a>,
+        See Hogan et al., <a href="https://arxiv.org/abs/2003.02320" rel="noopener">“Knowledge Graphs”</a>
+        (2020), for a survey of definitions from the research side. To compare engines, start with the <a href="/rankings/knowledge-graph/">knowledge graph ranking</a>,
         the <a href="/rankings/rdf/">RDF ranking</a> or <a href="/compare/rdf-triplestores/">RDF triplestores compared</a>.
       </p>
     </section>
