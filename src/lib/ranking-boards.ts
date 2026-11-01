@@ -36,6 +36,7 @@ export interface CatalogueRankingMeta {
   protocols?: readonly string[];
   description?: string;
   ai_roles?: readonly string[];
+  kg_kinds?: readonly string[];
 }
 
 const splitInsufficient = (engines: RankedEngine[]): { ranked: RankedEngine[]; insufficientCount: number } => {
@@ -134,6 +135,10 @@ const isGraphOverRelational = (db: CatalogueRankingMeta): boolean =>
 const hasAiRole = (db: CatalogueRankingMeta, role: 'agent-memory' | 'graphrag'): boolean =>
   isActiveCatalogueEntry(db) && db.ai_roles?.includes(role) === true;
 
+// Sourced per engine: the makers present it for at least one kind of knowledge graph.
+const isKnowledgeGraph = (db: CatalogueRankingMeta): boolean =>
+  isActiveCatalogueEntry(db) && (db.kg_kinds?.length ?? 0) > 0;
+
 const isAgentMemory = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'agent-memory');
 const isGraphRag = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'graphrag');
 
@@ -148,6 +153,16 @@ interface SegmentDefinition {
 }
 
 const SEGMENTS: SegmentDefinition[] = [
+  {
+    // Rendered by its own page, src/pages/rankings/knowledge-graph.astro, which adds tabs per
+    // kind of knowledge graph and the capability matrix.
+    slug: 'knowledge-graph',
+    title: 'Knowledge Graph Databases, Ranked Monthly',
+    h1: 'Knowledge Graph Databases, Ranked Monthly',
+    shortLabel: 'Knowledge Graph',
+    blurb: 'Databases and engines whose makers build them for knowledge graphs, semantic, property graph or virtual, ranked monthly across adoption, activity, community and research signals.',
+    match: isKnowledgeGraph,
+  },
   {
     slug: 'postgresql-graph-extensions',
     title: 'PostgreSQL Graph Extensions, Ranked Monthly',

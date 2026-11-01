@@ -1,0 +1,8 @@
+---
+/** "A, B and C" with each engine linked to its page. */
+interface Props { engines: { slug: string; name: string }[] }
+const { engines } = Astro.props;
+---
+{engines.map((e, i) => (
+  <>{i > 0 && (i === engines.length - 1 ? ' and ' : ', ')}<a href={`/db/${e.slug}/`}>{e.name}</a></>
+))}
