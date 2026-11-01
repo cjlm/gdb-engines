@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/hydradb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "hydradb"
+
+[[claims]]
+field = "license"
+value = "AGPL-3.0"
+confidence = "high"
+method = "api"
+checked = "2026-10-31"
+notes = "SPDX identifier as classified by GitHub from the repository licence file."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hydra-db/hydradb/license"
+  title = "GitHub licence API — hydra-db/hydradb"
+  quote = "\"spdx_id\": \"AGPL-3.0\""
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "released"
+value = "2026-07"
+confidence = "high"
+method = "api"
+checked = "2026-10-31"
+notes = "Repository creation date; the earliest tag is v0.1.0."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/hydra-db/hydradb"
+  title = "hydra-db/hydradb (GitHub API repository metadata)"
+  quote = "\"created_at\": \"2026-07-03T05:34:15Z\""
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-10-31"
+notes = "The README describes it as a distributed graph database written in Rust."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hydra-db/hydradb/main/README.md"
+  title = "README.md"
+  quote = "object-store-native distributed graph database written in Rust"
+  verified = "matched"
+  checked = "2026-11-01"
