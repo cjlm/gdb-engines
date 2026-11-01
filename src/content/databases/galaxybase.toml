@@ -2,6 +2,7 @@ name = "GalaxyBase"
 vendor = "CreateLink"
 slug = "galaxybase"
 description = "A distributed property graph database with native graph storage, focused on real-time deep link analytics across large-scale datasets."
+kg_kinds = ["property-graph"]
 url = "https://www.galaxybase.com/"
 license = "Proprietary"
 type = "Property Graph"

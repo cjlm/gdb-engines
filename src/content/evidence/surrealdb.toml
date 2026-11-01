@@ -99,3 +99,35 @@ notes = "The README says SurrealDB can run embedded in-app and in the browser vi
   quote = "Given that it’s a single Rust binary, SurrealDB can run embedded (in‐app), in the browser (via WebAssembly), in the edge, self-hosted as single backend node, or in a distributed cluster in the cloud."
   verified = "matched"
   checked = "2026-11-04"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Multi-model (documents + graph edges via RELATE); knowledge graphs are an advertised use case."
+
+  [[claims.sources]]
+  url = "https://github.com/surrealdb/surrealdb"
+  title = "SurrealDB README"
+  quote = "SurrealDB is used for data-intensive systems such as applications requiring multiple data types, data layer for AI agents, knowledge graphs"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in HNSW and DiskANN vector indexes. No SPARQL/RDF reasoning/SHACL/R2RML. No graph algorithm library (PageRank, community detection) found in docs; graph support is traversal/recursive queries."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/docs/surrealdb/models/vector"
+  title = "SurrealDB docs: Vector search model"
+  quote = "brute force vs HNSW vs DISKANN, parameters, and the query cheat sheet"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

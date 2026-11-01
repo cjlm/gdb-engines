@@ -114,3 +114,27 @@ notes = "The README says NeuG runs in-process, with an optional service mode on 
   quote = "Run NeuG in-process for local agent workflows and low-overhead analytics."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector search (HNSW) and GDS are official NeuG extensions loaded with LOAD. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://neug.io/docs/extensions/vector_search/"
+  title = "NeuG Vector Search extension"
+  quote = "The vector search extension enables efficient similarity search over graph data by combining vector storage, distance computation, and HNSW-based approximate nearest neighbor (ANN) indexing."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://neug.io/docs/extensions/load_gds/"
+  title = "NeuG GDS extension"
+  quote = "The GDS extension provides a collection of graph algorithms that run on projected subgraphs."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

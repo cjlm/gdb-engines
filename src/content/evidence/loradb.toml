@@ -74,3 +74,35 @@ notes = "The README describes an in-process graph store with no daemons; the HTT
   quote = "It parses, analyzes, compiles, and executes a Cypher-like query language against an in-process graph store - with no daemons, no clusters, and no schema migrations."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Only a passing mention of knowledge graphs among target workloads in the 'Why LoraDB' FAQ; primary positioning is AI agent memory/context graphs."
+
+  [[claims.sources]]
+  url = "https://loradb.com/docs/why"
+  title = "Why LoraDB"
+  quote = "Because the workloads LoraDB targets — AI agents, robot scene graphs, permission inference, retrieval over knowledge graphs — touch every node they care about on every query."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "CREATE VECTOR INDEX with exact flat scan or opt-in HNSW. Functions reference lists no graph algorithms (PageRank/community/centrality). No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://loradb.com/docs"
+  title = "What is LoraDB"
+  quote = "Vector indexes are exact flat scans by default; approximate HNSW search is opt-in per index"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

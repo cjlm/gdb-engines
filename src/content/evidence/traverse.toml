@@ -92,3 +92,27 @@ notes = "Traverse documents an embedded mode that runs queries in-process as a l
   quote = "Add Traverse as a library and run queries in-process, with no server to manage."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, RDF reasoning, SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse"
+  title = "Traverse"
+  quote = "An HNSW vector index with quantization, BM25 full-text search, and text and point indexes."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse"
+  title = "Traverse"
+  quote = "36+ algorithms callable from Cypher: PageRank, Louvain, shortest paths, similarity, embeddings and more."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

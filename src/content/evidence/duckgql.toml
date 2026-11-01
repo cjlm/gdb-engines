@@ -67,3 +67,19 @@ notes = "DuckGQL is a DuckDB extension loaded with LOAD duckgql, so it runs insi
   quote = "DuckGQL is available from DuckDB Community Extensions:"
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "algo.* procedures over an explicit CSR layer (PageRank, Louvain, components, centrality, triangle count). No vector index of its own."
+
+  [[claims.sources]]
+  url = "https://github.com/rahul-iyer/duckdb-gql"
+  title = "rahul-iyer/duckdb-gql README"
+  quote = "Explicit CSR-backed BFS, DFS, unweighted and weighted SSSP, PageRank, weak and strong components, Louvain community detection"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

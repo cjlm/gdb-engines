@@ -60,3 +60,35 @@ notes = "The README describes LatticeDB as an embedded, single-file database wit
   quote = "LatticeDB is an embedded, single-file graph database that lets local applications query the same data by relationship, semantics, and text, then consume durable graph and application events from the same file."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "README's main example builds a knowledge graph, but the README also says Graph RAG/agent memory/local knowledge tools are example workloads, 'not the definition of the engine'."
+
+  [[claims.sources]]
+  url = "https://github.com/jeffhajewski/latticedb"
+  title = "jeffhajewski/latticedb README"
+  quote = "A complete example: create a small knowledge graph with documents and authors, store embeddings, index text, then query across all three search modes."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Native HNSW vector index. No graph algorithm library found in README. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://github.com/jeffhajewski/latticedb"
+  title = "jeffhajewski/latticedb README"
+  quote = "Embedded property-graph database with native vector and full-text indexing."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

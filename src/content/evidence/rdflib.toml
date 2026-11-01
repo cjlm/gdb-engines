@@ -77,3 +77,19 @@ notes = "RDFLib is a pure Python package that runs in the application process, w
   quote = "RDFLib is a pure Python package for working with [RDF](http://www.w3.org/RDF/)."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No built-in RDFS/OWL inference or SHACL in core; OWL 2 RL (owlrl) and SHACL (pySHACL) are separate RDFLib-family packages, not bundled in rdflib."
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/rdflib"
+  title = "RDFLib README (GitHub)"
+  quote = "supporting SPARQL 1.1 Queries and Update statements"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

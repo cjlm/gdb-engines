@@ -9,6 +9,7 @@ type = "RDF"
 kind = "extension"
 embeddable = true
 query_languages = ["SPARQL"]
+kg_capabilities = ["R2RML mapping"]
 released = "2025-08"
 category = "Emerging"
 gdotv_support = false

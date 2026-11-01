@@ -122,3 +122,19 @@ notes = "Companies House lists Vaticle Ltd as the company's name from May 2021 t
   quote = "VATICLE LTD 06 May 2021 - 29 Jan 2025"
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_kinds"
+value = ["semantic"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "TypeDB markets itself for knowledge graphs via 'semantic modelling' with a strongly typed schema (entity-relation-attribute, TypeQL). It is NOT RDF/OWL-based; 'semantic' here reflects ontology-style semantic modelling only. Reviewer may prefer [] if 'semantic' is reserved for RDF stacks. Vendor renamed from Vaticle to TypeDB. Quote verification caveat: typedb.com serves server-rendered HTML (containing the quote) to simple user agents such as curl default/Mozilla/5.0, but a client-rendered shell without it to full Chrome user-agent strings."
+
+  [[claims.sources]]
+  url = "https://typedb.com/use-cases/knowledge-graphs"
+  title = "TypeDB in Knowledge Graphs"
+  quote = "TypeDB combines semantic modelling, strong typing, and database-enforced integrity to help organisations build knowledge graphs they can rely on in production."
+  supports = "semantic"
+  verified = "matched"
+  checked = "2026-11-01"

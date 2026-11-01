@@ -63,3 +63,27 @@ notes = "The vendor site says Sparksee is embedded in the application with no se
   quote = "Embedded in your application — no server tier, no network hop."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in algorithms package: traversal (BFS/DFS), single-pair shortest path (BFS/Dijkstra), strongly/weakly connected components, Scalable Community Detection (SCD). No vector or semantic features found."
+
+  [[claims.sources]]
+  url = "https://www.sparsity-technologies.com/sparksee"
+  title = "Sparksee - Sparsity"
+  quote = "Our built-in algorithms accelerate the creation of applications with out-of-the-box tooling."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.sparsity-technologies.com/doc-sparksee/sparkseepython/html/classsparksee_1_1CommunitiesSCD.html"
+  title = "SparkseePython: CommunitiesSCD"
+  quote = "Implementation of the community detection algorithm \"Scalable Community Detection\" based on the paper"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
