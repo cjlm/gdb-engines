@@ -1,6 +1,5 @@
 ---
 import { CHART_HEIGHT, CHART_WIDTH, starChart } from '../lib/star-chart';
-import { formatCompactCount } from '../lib/format-number';
 import type { StarPoint, StarSource } from '../lib/star-history';
 
 interface Props {
@@ -39,12 +38,12 @@ const sourceNote =
       ? `${sourceNotes.slice(0, -1).join(', ')} and ${sourceNotes.at(-1)}`
       : sourceNotes[0]}.`
     : '';
-const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
 ---
 <figure class="star-chart" title={sourceNote || undefined}>
   <p class="star-chart-summary">
-    <strong>{count(last.stars)}</strong> stars
+    <strong>{count(last.stars)}</strong> GitHub stars
     <span>{change} since {dateLabel(first.date, 'short')}</span>
+    <a class="star-chart-sources" href="/about/#github-stars">Sources</a>
   </p>
   <div class="star-chart-plot" role="img" aria-label={summary}>
     <svg
@@ -52,9 +51,9 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      {chart.yTicks.map((tick) => (
+      {chart.yTicks.filter((tick) => tick.value === 0).map((tick) => (
         <line
-          class:list={['star-chart-gridline', tick.value === 0 && 'is-baseline']}
+          class="star-chart-gridline is-baseline"
           x1="0"
           x2={CHART_WIDTH}
           y1={`${tick.offset}%`}
@@ -73,11 +72,6 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
       <path class="star-chart-area" d={chart.area} />
       <path class="star-chart-line" d={chart.line} />
     </svg>
-    {gridlines.map((tick) => (
-      <span class="star-chart-ylabel" style={`top: ${tick.offset}%`} aria-hidden="true">
-        {formatCompactCount(tick.value)}
-      </span>
-    ))}
     <span
       class="star-chart-end"
       style={`left: ${chart.end.x}%; top: ${chart.end.y}%`}
@@ -87,19 +81,20 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
   <div class="star-chart-axis" aria-hidden="true">
     <span class="is-start">{dateLabel(first.date, 'short')}</span>
     {chart.xTicks.map((tick) => (
-      <span class="is-year" style={`left: ${tick.offset}%`}>{tick.value}</span>
+      <span
+        class:list={['is-year', (tick.offset < 18 || tick.offset > 82) && 'is-near-end']}
+        style={`left: ${tick.offset}%`}
+      >{tick.value}</span>
     ))}
     <span class="is-end">{dateLabel(last.date, 'short')}</span>
   </div>
 </figure>
 
 <style>
+  /* Sits in the hero below the primary links: no panel of its own, scale from zero. */
   .star-chart {
-    margin: 0;
-    padding: 0.875rem 1rem 0.75rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--db-radius);
-    background: var(--db-panel);
+    margin: 1.5rem 0 0;
+    max-width: 40rem;
   }
 
   .star-chart-summary {
@@ -107,7 +102,7 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.25rem 0.5rem;
-    margin: 0 0 1.75rem;
+    margin: 0 0 0.75rem;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
   }
@@ -115,19 +110,28 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
   .star-chart-summary strong {
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
 
-  .star-chart-summary span {
+  .star-chart-summary span,
+  .star-chart-sources {
     color: var(--color-text-tertiary);
     font-size: 0.8125rem;
   }
 
+  .star-chart-sources {
+    margin-left: auto;
+  }
+
+  .star-chart-sources:hover {
+    color: var(--color-brand-accent);
+  }
+
   .star-chart-plot {
     position: relative;
-    height: 7.5rem;
+    height: 4.5rem;
     margin-right: 0.3rem;
   }
 
@@ -168,23 +172,11 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     vector-effect: non-scaling-stroke;
   }
 
-  .star-chart-ylabel {
-    position: absolute;
-    left: 0;
-    transform: translateY(-115%);
-    padding-right: 0.25rem;
-    background: var(--db-panel);
-    color: var(--color-text-tertiary);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    line-height: 1;
-  }
-
   .star-chart-end {
     position: absolute;
     width: 0.5rem;
     height: 0.5rem;
-    border: 2px solid var(--db-panel);
+    border: 2px solid var(--color-background);
     border-radius: 50%;
     background: var(--color-brand-accent);
     box-sizing: content-box;
@@ -208,5 +200,12 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     position: absolute;
     top: 0;
     transform: translateX(-50%);
+  }
+
+  /* On a narrow chart, year labels near either end would run into the end dates. */
+  @media (max-width: 30rem) {
+    .star-chart-axis .is-near-end {
+      visibility: hidden;
+    }
   }
 </style>
