@@ -92,3 +92,33 @@ notes = "TypeDB CE is installed and run as a server (`typedb server`), with Clou
   quote = "To stop a local TypeDB server, close the terminal where it runs or press kbd:[Ctrl+C]."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "vendor"
+value = "TypeDB"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The company behind TypeDB trades as TypeDB Ltd (company number 08766237)."
+
+  [[claims.sources]]
+  url = "https://typedb.com/legal/terms-of-service"
+  title = "TypeDB Terms of Service"
+  quote = "TypeDB Ltd is a company registered in England and Wales under company number 08766237"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "previous_vendors"
+value = ["Vaticle"]
+confidence = "high"
+method = "web"
+checked = "2026-11-03"
+notes = "Companies House lists Vaticle Ltd as the company's name from May 2021 to January 2025, and Grakn Labs Limited before that."
+
+  [[claims.sources]]
+  url = "https://find-and-update.company-information.service.gov.uk/company/08766237"
+  title = "TYPEDB LTD — Companies House"
+  quote = "VATICLE LTD 06 May 2021 - 29 Jan 2025"
+  verified = "matched"
+  checked = "2026-11-03"
