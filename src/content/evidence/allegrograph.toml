@@ -94,29 +94,6 @@ notes = "AllegroGraph is installed and run as a server, and client APIs such as 
   checked = "2026-11-03"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://allegrograph.com/products/allegrograph/"
-  title = "AllegroGraph: The Knowledge Graph Platform for Agentic AI"
-  quote = "AllegroGraph unifies RDF, OWL, SPARQL, SHACL, rules, vector embeddings, documents, temporal data, and LLM integration in a single Neuro-Symbolic AI platform."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://allegrograph.com/products/allegrograph/"
-  title = "AllegroGraph: The Knowledge Graph Platform for Agentic AI"
-  quote = "AllegroGraph provides the enterprise Knowledge Graph foundation for building Context Graphs and powering trusted Agentic AI."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search", "Graph algorithms"]
 confidence = "high"

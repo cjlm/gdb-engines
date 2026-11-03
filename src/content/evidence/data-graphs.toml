@@ -66,19 +66,11 @@ notes = "Vendor site states the engine is built in Rust; matches current value."
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "property-graph"]
+value = ["property-graph"]
 confidence = "medium"
 method = "vendor-docs"
 checked = "2026-11-01"
 notes = "Data Graphs (Data Language) describes a hybrid model: ontology/JSON-LD semantics with property-label graphs queried via OpenCypher/GQL. The platform is the knowledge graph product; the graph database is the engine underneath."
-
-  [[claims.sources]]
-  url = "https://datagraphs.com/platform"
-  title = "Platform | Data Graphs"
-  quote = "Best of ontology-based and property-label graphs. JSON-LD payloads, OpenCypher/GQL queries."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://datagraphs.com/platform"
@@ -93,14 +85,6 @@ notes = "Data Graphs (Data Language) describes a hybrid model: ontology/JSON-LD 
   title = "Platform | Data Graphs"
   quote = "From zero to AI-ready knowledge graph in days, not months"
   supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://datagraphs.com/graph-database"
-  title = "Graph database | Data Graphs"
-  quote = "Best of property-label and RDF/OWL ontology semantics. JSON-LD payloads for W3C RDF compatibility."
-  supports = "semantic"
   verified = "matched"
   checked = "2026-11-01"
 

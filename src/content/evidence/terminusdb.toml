@@ -122,19 +122,3 @@ notes = "TerminusDB is installed via Docker, Snap or source and runs as a server
   quote = "You should be able to view TerminusDB running by default at `localhost:6363`"
   verified = "matched"
   checked = "2026-11-03"
-
-[[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "repo"
-checked = "2026-11-01"
-notes = "RDF/JSON-LD-based document graph; maintained by DFRNT. Not SPARQL-based (WOQL Datalog + GraphQL)."
-
-  [[claims.sources]]
-  url = "https://github.com/terminusdb/terminusdb"
-  title = "TerminusDB README"
-  quote = "TerminusDB allows you to link JSON and JSON-LD documents in a semantic knowledge graph through a powerful document API"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"

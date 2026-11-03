@@ -2,7 +2,6 @@ name = "oxilite"
 vendor = "Volodymyr Pavlyshyn"
 slug = "oxilite"
 description = "An Oxigraph-compatible RDF database and SPARQL engine that stores quads in plain SQLite, running in-process via rusqlite, against a system libsqlite3, or on Cloudflare D1. Compiles each SPARQL query into a single SQL statement and mirrors Oxigraph's Rust API, with RDFS/OWL reasoning, SHACL validation, and openCypher queries over the same data."
-kg_kinds = ["semantic"]
 url = "https://oxilitedb.com"
 github_url = "https://github.com/Volland/oxilite"
 license = "MIT OR Apache-2.0"

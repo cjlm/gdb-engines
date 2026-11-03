@@ -88,19 +88,11 @@ notes = "Virtuoso runs as a server; even its \"Lite\"/embedded deployment ships 
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "virtual"]
+value = ["virtual"]
 confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-01"
 notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL without copying it."
-
-  [[claims.sources]]
-  url = "https://virtuoso.openlinksw.com/"
-  title = "OpenLink Virtuoso"
-  quote = "Build and deploy modern knowledge bases for AI agents and associated skills that manifest as knowledge graphs constructed using Linked Data principles."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/rdfviewsrdbms/"

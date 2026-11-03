@@ -6,6 +6,7 @@
  */
 import type { RankingFile, RankedEngine } from './rankings';
 import { licenseTier } from './license-tier';
+import { kgKindsOf } from './knowledge-graph';
 
 export interface Board {
   slug: string;
@@ -37,6 +38,7 @@ export interface CatalogueRankingMeta {
   description?: string;
   ai_roles?: readonly string[];
   kg_kinds?: readonly string[];
+  kg_capabilities?: readonly string[];
 }
 
 const splitInsufficient = (engines: RankedEngine[]): { ranked: RankedEngine[]; insufficientCount: number } => {
@@ -135,9 +137,9 @@ const isGraphOverRelational = (db: CatalogueRankingMeta): boolean =>
 const hasAiRole = (db: CatalogueRankingMeta, role: 'agent-memory' | 'graphrag'): boolean =>
   isActiveCatalogueEntry(db) && db.ai_roles?.includes(role) === true;
 
-// Sourced per engine: the makers present it for at least one kind of knowledge graph.
+// Sourced per engine: it answers SPARQL itself, or its makers present it for knowledge graphs.
 const isKnowledgeGraph = (db: CatalogueRankingMeta): boolean =>
-  isActiveCatalogueEntry(db) && (db.kg_kinds?.length ?? 0) > 0;
+  isActiveCatalogueEntry(db) && kgKindsOf(db).length > 0;
 
 const isAgentMemory = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'agent-memory');
 const isGraphRag = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'graphrag');
