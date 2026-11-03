@@ -76,13 +76,21 @@ field = "kg_kinds"
 value = ["virtual"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL without copying it."
+checked = "2026-11-03"
+notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL; the product page says external sources map in as virtual tables or RDF Views without copying them out of the systems that own them. The product page states RDF Views over external sources are a Commercial Edition feature (views over local tables are in the open-source edition)."
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/rdfviewsrdbms/"
   title = "Virtuoso docs: Linked Data Views over RDBMS Data Source"
   quote = "Linked Data Views map relational data into RDF and allow customizing RDF representation of locally stored RDF data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.openlinksw.com/virtuoso/"
+  title = "OpenLink Virtuoso Universal Server"
+  quote = "External SQL, NoSQL, and API sources map in as virtual tables or RDF Views — federated into the same queryable layer without copying them out of the systems that already own them."
   supports = "virtual"
   verified = "matched"
   checked = "2026-11-03"
