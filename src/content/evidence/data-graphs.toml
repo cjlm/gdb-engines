@@ -78,7 +78,7 @@ notes = "Data Graphs (Data Language) describes a hybrid model: ontology/JSON-LD 
   quote = "Best of ontology-based and property-label graphs. JSON-LD payloads, OpenCypher/GQL queries."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://datagraphs.com/platform"
@@ -86,20 +86,4 @@ notes = "Data Graphs (Data Language) describes a hybrid model: ontology/JSON-LD 
   quote = "From zero to AI-ready knowledge graph in days, not months"
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
-field = "kg_capabilities"
-value = ["Vector search"]
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Vector retrieval is a platform (SaaS) capability combined with GQL graph traversal for hybrid RAG; not documented as an index inside the graph database engine itself, hence medium. No SPARQL, reasoning, SHACL, R2RML or graph algorithm library documented."
-
-  [[claims.sources]]
-  url = "https://datagraphs.com/platform"
-  title = "Platform | Data Graphs"
-  quote = "Combine graph traversal (GQL) and vector search."
-  supports = "Vector search"
-  verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
