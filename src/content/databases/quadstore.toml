@@ -10,6 +10,7 @@ type = "RDF"
 kind = "embedded"
 embeddable = true
 query_languages = ["SPARQL"]
+kg_extension_capabilities = ["SPARQL 1.1"]
 released = "2017-03"
 category = "Emerging"
 gdotv_support = false
