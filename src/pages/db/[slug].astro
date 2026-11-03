@@ -292,33 +292,12 @@ function hostname(value: string): string {
 
       <p class="description">{db.data.description}</p>
 
-      {(db.data.url || db.data.github_url) && (
+      {db.data.url && (
         <div class="db-actions" aria-label="Primary links">
-          {db.data.url && (
-            <a class="db-action db-action-primary" href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
-              Visit website
-              <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
-            </a>
-          )}
-          {db.data.github_url && (
-            <a
-              class="db-action"
-              href={db.data.github_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-outbound="engine-github"
-              data-db={db.data.slug}
-              aria-label={typeof githubStars === 'number'
-                ? `GitHub repository, ${githubStars.toLocaleString('en-US')} stars`
-                : 'GitHub repository'}
-            >
-              <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
-              GitHub
-              {typeof githubStars === 'number' && starHistory.length === 0 && (
-                <span class="db-action-meta">{formatGithubStars(githubStars)} stars</span>
-              )}
-            </a>
-          )}
+          <a class="db-action db-action-primary" href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
+            Visit website
+            <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+          </a>
         </div>
       )}
 
@@ -342,13 +321,14 @@ function hostname(value: string): string {
                 <li>
                   <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
                     <span>
-                      <strong class="external-github">
-                        <svg width="14" height="14" aria-hidden="true"><use href="#icon-github" /></svg>
-                        GitHub repository
-                      </strong>
-                      <small>{repoPath(db.data.github_url)}</small>
+                      <strong>GitHub repository</strong>
+                      <small>
+                        {repoPath(db.data.github_url)}
+                        {typeof githubStars === 'number' && starHistory.length === 0 &&
+                          ` · ${formatGithubStars(githubStars)} stars`}
+                      </small>
                     </span>
-                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+                    <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
                   </a>
                 </li>
               )}
