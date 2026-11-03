@@ -45,7 +45,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
         ></iframe>
       </div>
       <div class="similarity-selection" aria-live="polite">
-        <span class="similarity-hint">Click a database for its peers. Double-click to open it.</span>
+        <span class="similarity-hint">Click a database for its peers. Click it again to open its page.</span>
         <a class="similarity-open" href="/" hidden></a>
         <button class="similarity-expand" type="button" hidden></button>
       </div>
@@ -62,10 +62,8 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   import { prepareGarphieldDocument } from '../lib/garphield-document.mjs';
   import { expand, neighbourhoodDocument } from '../lib/similarity-neighbourhood.mjs';
 
-  /** Two clicks on the same node this close together count as a double-click. */
-  const DOUBLE_CLICK_MS = 400;
   // No minimap, toolbar or wordmark: the panel is small and sits inside the page's own design.
-  const EMBED_CHROME = '';
+  const EMBED_CHROME = '-wordmark';
 
   const root = document.querySelector<HTMLElement>('[data-similarity-neighbourhood]');
   const frame = root?.querySelector<HTMLIFrameElement>('.similarity-frame');
@@ -115,7 +113,6 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     const labels = new Map(graph.nodes.map((node) => [node.id, String(node.label ?? node.id)]));
     let shown = expand(graph, new Set(), focus);
     let selected = '';
-    let lastClick = { id: '', at: 0 };
 
     async function draw() {
       const document = neighbourhoodDocument(source, shown, focus);
@@ -139,11 +136,10 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     }
 
     driver.on('nodeClick', ({ nodeId }) => {
-      const now = performance.now();
       const id = nodeId ?? '';
-      const doubleClick = id !== '' && id === lastClick.id && now - lastClick.at < DOUBLE_CLICK_MS;
-      lastClick = { id, at: now };
-      if (doubleClick && id !== focus) {
+      // The embed reports a double-click as one click, so a second click on the selected
+      // database is what opens it.
+      if (id && id === selected && id !== focus) {
         window.location.href = `/db/${encodeURIComponent(id.slice(3))}/`;
         return;
       }

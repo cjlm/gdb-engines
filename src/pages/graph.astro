@@ -254,6 +254,7 @@ function timelineTypeClass(type: string): string {
           class="garphield-frame visualization-view"
           data-document="/graphs/databases-similarity.gfd"
           data-edge-width-scale="0.6"
+          data-chrome="minimap,toolbar,search"
           title="Graph databases linked by catalog similarity"
           loading="eager"
           aria-hidden="true"
@@ -487,6 +488,9 @@ function timelineTypeClass(type: string): string {
       const contexts = new Map(
         frames.map((frame) => {
           const embedUrl = new URL('/embed', origin);
+          if (frame.dataset.chrome) {
+            embedUrl.searchParams.set('chrome', frame.dataset.chrome);
+          }
           if (frame.dataset.edgeWidthScale) {
             embedUrl.searchParams.set('edgeWidthScale', frame.dataset.edgeWidthScale);
           }
@@ -783,7 +787,12 @@ function timelineTypeClass(type: string): string {
         await Promise.all(urls.map(preloadImage));
       }
 
+      // Clicking the selected database again opens its page. The embed reports a double-click
+      // as a single click, so this is the gesture it can pass on, as on the timeline.
+      let selectedNodeId = '';
+
       function clearSelection() {
+        selectedNodeId = '';
         selection.replaceChildren();
         selection.hidden = true;
       }
@@ -818,18 +827,9 @@ function timelineTypeClass(type: string): string {
         selection.hidden = false;
       }
 
-      /** Two clicks on the same node this close together count as a double-click. */
-      const DOUBLE_CLICK_MS = 400;
-      let lastNodeClick = { nodeId: '', at: 0 };
       for (const context of contexts.values()) {
         context.driver.on('nodeClick', (payload) => {
           if (context !== activeContext) return;
-          const now = performance.now();
-          const doubleClick =
-            Boolean(payload.nodeId) &&
-            payload.nodeId === lastNodeClick.nodeId &&
-            now - lastNodeClick.at < DOUBLE_CLICK_MS;
-          lastNodeClick = { nodeId: payload.nodeId ?? '', at: now };
           if (!payload.nodeId) {
             clearSelection();
             return;
@@ -845,7 +845,7 @@ function timelineTypeClass(type: string): string {
           const href = isDatabase
             ? `/db/${encodeURIComponent(String(node.id).slice(3))}/`
             : '';
-          if (doubleClick && href) {
+          if (href && payload.nodeId === selectedNodeId) {
             window.location.href = href;
             return;
           }
@@ -854,6 +854,7 @@ function timelineTypeClass(type: string): string {
             imageUrl: typeof node.image === 'string' ? node.image : '',
             href,
           });
+          selectedNodeId = payload.nodeId;
         });
         context.driver.on('error', (payload) => {
           if (context === activeContext) {
