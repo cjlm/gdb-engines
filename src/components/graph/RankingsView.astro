@@ -1,0 +1,492 @@
+---
+import { getCollection } from 'astro:content';
+import { layoutRankChart } from '../../lib/rank-chart';
+import { methodologyVersions, rankSeries, type RankSnapshot } from '../../lib/rank-history';
+
+interface Props {
+  /** The last ranking run of each month, oldest first; see loadMonthlyRankings. */
+  months: RankSnapshot[];
+  faviconMap: Record<string, string>;
+}
+
+const { months, faviconMap } = Astro.props;
+const TOP_OPTIONS = [10, 20, 50];
+const DEFAULT_TOP = 20;
+const catalogue = new Set((await getCollection('databases')).map(({ data }) => data.slug));
+const charts = TOP_OPTIONS.map((topN) => layoutRankChart(rankSeries(months, topN), topN));
+
+const monthName = (month: string, style: 'short' | 'long') =>
+  new Date(`${month}-01T00:00:00Z`).toLocaleDateString('en-US', {
+    month: style,
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+const firstMonth = months[0]?.date.slice(0, 7) ?? '';
+const lastMonth = months.at(-1)?.date.slice(0, 7) ?? '';
+const versions = methodologyVersions(months);
+const status = `${monthName(firstMonth, 'short')} – ${monthName(lastMonth, 'short')}`;
+const maxTop = Math.max(...TOP_OPTIONS);
+const summary = rankSeries(months, maxTop);
+const seriesBySlug = new Map(summary.map((entry) => [entry.slug, entry.points]));
+const versionList = versions.map((version) => `v${version}`).join(', ');
+const ranksText = (points: { month: string; rank: number | null }[]) =>
+  points
+    .map(({ month, rank }) => `${monthName(month, 'short')}: ${rank ?? 'not ranked'}`)
+    .join(', ');
+---
+
+<section
+  id="rankings-view"
+  class="rankings-view visualization-view"
+  aria-label="Graph database overall rank by month"
+  aria-hidden="true"
+  data-static-view="rankings"
+  data-status={`${status} · ${months.length} monthly rankings`}
+>
+  <div class="rank-controls">
+    <fieldset class="rank-top">
+      <legend class="sr-only">Engines shown</legend>
+      {
+        TOP_OPTIONS.map((topN) => (
+          <label>
+            <input type="radio" name="rank-top" value={topN} checked={topN === DEFAULT_TOP} />
+            <span>Top {topN}</span>
+          </label>
+        ))
+      }
+    </fieldset>
+    <p class="rank-hint">
+      Overall rank in each month's ranking. Hover or focus a line to follow it; engines that
+      enter or leave the top run to the lower edge.
+    </p>
+    {
+      versions.length > 1 && (
+        <p class="rank-note">
+          {`These months were ranked under ${versions.length} methodology versions `}
+          {`(${versionList}), so some moves reflect changes to the method rather than to the `}
+          engines.
+        </p>
+      )
+    }
+  </div>
+
+  {
+    charts.map((chart) => (
+      <figure class="rank-chart" data-top={chart.topN}>
+        <div
+          class="rank-scroll"
+          tabindex="0"
+          role="region"
+          aria-label={`Bump chart of the top ${chart.topN}, scrollable`}
+        >
+          <svg
+            class="rank-svg"
+            viewBox={`0 0 ${chart.width} ${chart.height}`}
+            width={chart.width}
+            height={chart.height}
+            style={`--rank-font: ${chart.topN === 50 ? 10.5 : 12}px`}
+          >
+            <g class="rank-grid" aria-hidden="true">
+              {chart.columns.map((column) => (
+                <>
+                  <line x1={column.x} x2={column.x} y1={28} y2={chart.edgeY} />
+                  <text class="rank-month" x={column.x} y={14}>
+                    {column.label}
+                  </text>
+                  {column.year && (
+                    <text class="rank-year" x={column.x} y={26}>
+                      {column.year}
+                    </text>
+                  )}
+                </>
+              ))}
+              {chart.rows.map((row) => (
+                <text class="rank-axis" x={14} y={row.y}>
+                  {row.rank}
+                </text>
+              ))}
+              <line
+                class="rank-edge"
+                x1={chart.columns[0]?.x ?? 0}
+                x2={chart.columns.at(-1)?.x ?? 0}
+                y1={chart.edgeY}
+                y2={chart.edgeY}
+              />
+              <text class="rank-axis rank-axis--edge" x={14} y={chart.edgeY}>
+                {chart.topN}+
+              </text>
+            </g>
+            {[...chart.lines].reverse().map((line) => (
+              <g class:list={['rank-line', !line.inCurrentTop && 'rank-line--out']}>
+                <g aria-hidden="true">
+                <path class="rank-path" d={line.path} />
+                {line.stubs.map((stub) => (
+                  <path class="rank-stub" d={stub} />
+                ))}
+                <path class="rank-hit" d={[line.path, ...line.stubs].join(' ')} />
+                {line.markers.map((marker) => (
+                  <g class:list={['rank-marker', !marker.inTop && 'rank-marker--edge']}>
+                    <circle class="rank-dot" cx={marker.x} cy={marker.y} r="3" />
+                    <circle class="rank-badge" cx={marker.x} cy={marker.y} r="9.5" />
+                    <text x={marker.x} y={marker.y}>
+                      {marker.label}
+                    </text>
+                  </g>
+                ))}
+                </g>
+                {(() => {
+                  const logo = faviconMap[line.slug];
+                  const { x, y } = line.label;
+                  const textX = x + (line.inCurrentTop ? 22 : 0) + (logo ? 20 : 0);
+                  const name = `${line.name}: ${ranksText(seriesBySlug.get(line.slug) ?? [])}`;
+                  const content = (
+                    <>
+                      {line.inCurrentTop && (
+                        <text class="rank-label-rank" x={x + 16} y={y}>
+                          {line.current}
+                        </text>
+                      )}
+                      {logo && (
+                        <>
+                          <circle
+                            class="rank-logo-back"
+                            cx={x + (line.inCurrentTop ? 30 : 8)}
+                            cy={y}
+                            r="8"
+                          />
+                          <image
+                            href={logo}
+                            x={x + (line.inCurrentTop ? 23 : 1)}
+                            y={y - 7}
+                            width="14"
+                            height="14"
+                          />
+                        </>
+                      )}
+                      <text class="rank-label-name" x={textX} y={y}>
+                        {line.name}
+                      </text>
+                    </>
+                  );
+                  return catalogue.has(line.slug) ? (
+                    <a class="rank-label" href={`/db/${line.slug}/`} aria-label={name}>
+                      {content}
+                    </a>
+                  ) : (
+                    <g class="rank-label" tabindex="0" role="img" aria-label={name}>
+                      {content}
+                    </g>
+                  );
+                })()}
+              </g>
+            ))}
+          </svg>
+        </div>
+      </figure>
+    ))
+  }
+  <table class="sr-only">
+    <caption>
+      Overall rank by month for every engine in the top {maxTop} in any month, {status}
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Engine</th>
+        {months.map((month) => <th scope="col">{monthName(month.date.slice(0, 7), 'long')}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        summary.map((entry) => (
+          <tr>
+            <th scope="row">{entry.name}</th>
+            {entry.points.map((point) => (
+              <td>{point.rank ?? 'not ranked'}</td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</section>
+
+<script>
+  /* Lines end at the right, where today's names are, so start scrolled to that end. */
+  for (const scroller of document.querySelectorAll<HTMLElement>('.rank-scroll')) {
+    let touched = false;
+    scroller.addEventListener('pointerdown', () => (touched = true), { passive: true });
+    new ResizeObserver(() => {
+      if (!touched) scroller.scrollLeft = scroller.scrollWidth;
+    }).observe(scroller);
+  }
+</script>
+
+<style is:global>
+  .rankings-view {
+    overflow-y: auto;
+    padding: 0.75rem 1.25rem 1.25rem;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .rankings-view .rank-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .rankings-view .rank-top {
+    display: flex;
+    padding: 0.15rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+  }
+
+  .rankings-view .rank-top label {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .rankings-view .rank-top input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .rankings-view .rank-top span {
+    display: inline-block;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .rankings-view .rank-top input:checked + span {
+    background: var(--color-background);
+    color: var(--color-text);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  .rankings-view .rank-top input:focus-visible + span {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .rankings-view .rank-hint,
+  .rankings-view .rank-note {
+    margin: 0;
+    flex: 1 1 22rem;
+  }
+
+  .rankings-view .rank-note {
+    padding: 0.4rem 0.65rem;
+    border-left: 3px solid var(--color-brand-accent);
+    background: color-mix(in srgb, var(--color-brand-accent) 8%, transparent);
+    color: var(--color-text);
+  }
+
+  .rankings-view .rank-note a {
+    color: var(--color-brand-accent);
+  }
+
+  .rankings-view .rank-chart {
+    margin: 0;
+  }
+
+  .rankings-view:has(input[value='10']:checked) .rank-chart:not([data-top='10']),
+  .rankings-view:has(input[value='20']:checked) .rank-chart:not([data-top='20']),
+  .rankings-view:has(input[value='50']:checked) .rank-chart:not([data-top='50']) {
+    display: none;
+  }
+
+  .rankings-view .rank-scroll {
+    overflow-x: auto;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .rankings-view .rank-scroll:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .rankings-view .rank-svg {
+    display: block;
+    margin-inline: auto;
+    font-family: var(--font-mono);
+    font-size: var(--rank-font);
+  }
+
+  .rankings-view .rank-svg text {
+    dominant-baseline: central;
+    fill: var(--color-text-secondary);
+  }
+
+  .rankings-view .rank-grid line {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .rankings-view .rank-grid .rank-edge {
+    stroke-dasharray: 2 4;
+  }
+
+  .rankings-view .rank-month,
+  .rankings-view .rank-year {
+    text-anchor: middle;
+  }
+
+  .rankings-view .rank-month {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .rankings-view .rank-svg .rank-month {
+    fill: var(--color-text);
+  }
+
+  .rankings-view .rank-year {
+    font-size: 10px;
+  }
+
+  .rankings-view .rank-axis {
+    text-anchor: middle;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rankings-view .rank-svg .rank-axis--edge {
+    fill: var(--color-text-tertiary);
+    font-size: 10px;
+  }
+
+  .rankings-view .rank-line {
+    transition: opacity 120ms ease;
+  }
+
+  .rankings-view .rank-path,
+  .rankings-view .rank-stub,
+  .rankings-view .rank-hit {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .rankings-view .rank-path {
+    stroke: var(--color-text-tertiary);
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+
+  .rankings-view .rank-stub {
+    stroke: var(--color-text-tertiary);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+    opacity: 0.3;
+  }
+
+  .rankings-view .rank-hit {
+    stroke: transparent;
+    stroke-width: 12;
+    pointer-events: stroke;
+  }
+
+  .rankings-view .rank-dot {
+    fill: var(--color-text-tertiary);
+  }
+
+  .rankings-view .rank-marker--edge .rank-dot {
+    opacity: 0.5;
+  }
+
+  .rankings-view .rank-badge,
+  .rankings-view .rank-marker text {
+    visibility: hidden;
+  }
+
+  .rankings-view .rank-badge {
+    fill: var(--color-brand-accent);
+  }
+
+  .rankings-view .rank-svg .rank-marker text {
+    fill: var(--color-background);
+    font-size: 10px;
+    font-weight: 600;
+    text-anchor: middle;
+  }
+
+  .rankings-view .rank-label {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .rankings-view .rank-label-rank {
+    text-anchor: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rankings-view .rank-svg .rank-label-name {
+    fill: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: calc(var(--rank-font) + 1px);
+  }
+
+  .rankings-view .rank-logo-back {
+    fill: #fff;
+    stroke: var(--color-border);
+  }
+
+  .rankings-view .rank-line--out .rank-path {
+    opacity: 0.3;
+  }
+
+  .rankings-view .rank-line--out .rank-label {
+    opacity: 0;
+  }
+
+  .rankings-view .rank-svg:has(.rank-line:is(:hover, :focus-within))
+    .rank-line:not(:hover, :focus-within) {
+    opacity: 0.12;
+  }
+
+  .rankings-view .rank-line:is(:hover, :focus-within) .rank-path,
+  .rankings-view .rank-line:is(:hover, :focus-within) .rank-stub {
+    stroke: var(--color-brand-accent);
+    stroke-width: 3;
+    opacity: 1;
+  }
+
+  .rankings-view .rank-line:is(:hover, :focus-within) :is(.rank-badge, .rank-marker text) {
+    visibility: visible;
+  }
+
+  .rankings-view .rank-line:is(:hover, :focus-within) .rank-label {
+    opacity: 1;
+  }
+
+  .rankings-view .rank-label:focus-visible {
+    outline: none;
+  }
+
+  .rankings-view .rank-line:is(:hover, :focus-within) .rank-label-name {
+    fill: var(--color-brand-accent);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 48rem) {
+    .graph-stage .rankings-view.active {
+      position: relative;
+      height: auto;
+      overflow: visible;
+      padding: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rankings-view .rank-line {
+      transition: none;
+    }
+  }
+</style>

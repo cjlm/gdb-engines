@@ -1,10 +1,13 @@
 ---
 import GraphPage from '../graph.astro';
+import { loadMonthlyRankings } from '../../lib/rank-history';
 
-type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage';
+type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage' | 'rankings';
 
-export function getStaticPaths() {
-  return (['query-languages', 'similarity', 'timeline', 'lineage'] as const).map((view) => ({
+export async function getStaticPaths() {
+  const views: GraphView[] = ['query-languages', 'similarity', 'timeline', 'lineage'];
+  if ((await loadMonthlyRankings()).length >= 2) views.push('rankings');
+  return views.map((view) => ({
     params: { view },
     props: { initialView: view },
   }));

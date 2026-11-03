@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SponsorCTA from '../components/SponsorCTA.astro';
 import LineageMap from '../components/LineageMap.astro';
+import RankingsView from '../components/graph/RankingsView.astro';
+import { loadMonthlyRankings } from '../lib/rank-history';
 import { buildFamilies } from '../lib/lineage';
 import { getDatabaseCount } from '../lib/database-count';
 import { loadSponsors, sponsorFor } from '../lib/sponsors';
@@ -10,7 +12,7 @@ import { buildFaviconMap } from '../lib/favicon-map';
 import { getCollection } from 'astro:content';
 import '../styles/global.css';
 
-type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage';
+type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage' | 'rankings';
 
 interface Props {
   initialView?: GraphView;
@@ -50,6 +52,13 @@ const viewMetadata: Record<
     modelDescription: 'Where each engine came from: forks, derivatives and former names.',
     canonical: 'https://gdb-engines.com/graph/lineage/',
   },
+  rankings: {
+    title: 'Graph database rankings over time — GDB-Engines',
+    description:
+      'Follow how graph databases have moved in the GDB-Engines overall ranking, month by month.',
+    modelDescription: 'Overall rank of each engine month by month, from the GDB-Engines rankings.',
+    canonical: 'https://gdb-engines.com/graph/rankings/',
+  },
 };
 const currentView = viewMetadata[initialView];
 
@@ -65,6 +74,7 @@ const isCompactFamily = (family: (typeof lineageFamilies)[number]) => family.sta
 const branchingFamilies = lineageFamilies.filter((family) => !isCompactFamily(family));
 const compactFamilies = lineageFamilies.filter(isCompactFamily);
 const faviconMap = await buildFaviconMap(databaseEntries);
+const rankMonths = await loadMonthlyRankings();
 const timelineDatabases = databaseEntries.map(({ data }) => ({
   name: data.name,
   slug: data.slug,
@@ -221,6 +231,21 @@ function timelineTypeClass(type: string): string {
             >
               Lineage
             </a>
+            {rankMonths.length >= 2 && (
+              <a
+                href="/graph/rankings/"
+                class:list={['model-button', initialView === 'rankings' && 'active']}
+                data-view="rankings"
+                data-description={viewMetadata.rankings.modelDescription}
+                data-mobile-description="Overall rank of each engine, month by month."
+                data-page-title={viewMetadata.rankings.title}
+                data-page-description={viewMetadata.rankings.description}
+                data-canonical={viewMetadata.rankings.canonical}
+                aria-current={initialView === 'rankings' ? 'page' : undefined}
+              >
+                Rankings
+              </a>
+            )}
           </nav>
           <div id="similarity-control" hidden>
             <label class="similarity-threshold-control">
@@ -419,6 +444,7 @@ function timelineTypeClass(type: string): string {
             ))}
           </div>
         </section>
+        {rankMonths.length >= 2 && <RankingsView months={rankMonths} faviconMap={faviconMap} />}
       </div>
     </section>
 
@@ -463,6 +489,14 @@ function timelineTypeClass(type: string): string {
     const buttons = [
       ...document.querySelectorAll<HTMLAnchorElement>('.model-button'),
     ];
+    // Views rendered in full at build time by their own component: the panel names its view
+    // in data-static-view and its status-line text in data-status.
+    const staticPanels = new Map(
+      [...document.querySelectorAll<HTMLElement>('[data-static-view]')].map((panel) => [
+        panel.dataset.staticView ?? '',
+        panel,
+      ]),
+    );
 
     if (
       page instanceof HTMLElement &&
@@ -1016,7 +1050,9 @@ function timelineTypeClass(type: string): string {
 
         const staticViews = { timeline, lineage: lineageView };
         const activeView =
-          staticViews[activeButton?.dataset.view ?? ''] ?? activeContext?.frame;
+          staticViews[activeButton?.dataset.view ?? ''] ??
+          staticPanels.get(activeButton?.dataset.view ?? '') ??
+          activeContext?.frame;
         if (!activeView) return Promise.resolve();
 
         graphStage.classList.add('switching');
@@ -1085,6 +1121,7 @@ function timelineTypeClass(type: string): string {
         timeline.setAttribute('aria-hidden', 'true');
         timelineScroll.tabIndex = -1;
         hideLineage();
+        hideStaticPanels();
         activeContext = context;
         updateGraphStatus(graph);
         graphStage.style.removeProperty('height');
@@ -1105,6 +1142,7 @@ function timelineTypeClass(type: string): string {
           context.frame.tabIndex = -1;
         }
         hideLineage();
+        hideStaticPanels();
         timeline.classList.add('ready', 'active');
         timeline.setAttribute('aria-hidden', 'false');
         timelineScroll.tabIndex = -1;
@@ -1138,6 +1176,7 @@ function timelineTypeClass(type: string): string {
         }
         timeline.classList.remove('active');
         timeline.setAttribute('aria-hidden', 'true');
+        hideStaticPanels();
         lineageView.classList.add('ready', 'active');
         lineageView.setAttribute('aria-hidden', 'false');
         activeContext = null;
@@ -1149,6 +1188,39 @@ function timelineTypeClass(type: string): string {
         graphStage.removeAttribute('aria-busy');
         hasRendered = true;
         scrollToLineageFamily();
+      }
+
+      function hideStaticPanels() {
+        for (const panel of staticPanels.values()) {
+          panel.classList.remove('active');
+          panel.setAttribute('aria-hidden', 'true');
+        }
+        graphStage.classList.remove('static-view-active');
+      }
+
+      async function renderStaticPanel(panel: HTMLElement, version, viewHidden) {
+        await viewHidden;
+        if (version !== loadVersion) return;
+
+        for (const context of contexts.values()) {
+          context.frame.classList.remove('active');
+          context.frame.setAttribute('aria-hidden', 'true');
+          context.frame.tabIndex = -1;
+        }
+        timeline.classList.remove('active');
+        timeline.setAttribute('aria-hidden', 'true');
+        hideLineage();
+        hideStaticPanels();
+        panel.classList.add('ready', 'active');
+        panel.setAttribute('aria-hidden', 'false');
+        activeContext = null;
+        activeDocument = null;
+        status.textContent = panel.dataset.status ?? '';
+        graphStage.style.removeProperty('height');
+        graphStage.classList.remove('timeline-active', 'switching');
+        graphStage.classList.add('ready', 'static-view-active');
+        graphStage.removeAttribute('aria-busy');
+        hasRendered = true;
       }
 
       function scrollToLineageFamily() {
@@ -1198,6 +1270,11 @@ function timelineTypeClass(type: string): string {
         }
         if (button.dataset.view === 'lineage') {
           await renderLineage(version, viewHidden);
+          return;
+        }
+        const staticPanel = staticPanels.get(button.dataset.view ?? '');
+        if (staticPanel) {
+          await renderStaticPanel(staticPanel, version, viewHidden);
           return;
         }
 
@@ -2011,7 +2088,7 @@ function timelineTypeClass(type: string): string {
         box-shadow: none;
       }
 
-      .graph-stage:not(.lineage-active):not(.timeline-active) {
+      .graph-stage:not(.lineage-active):not(.timeline-active):not(.static-view-active) {
         height: 70svh;
       }
 
@@ -2106,14 +2183,16 @@ function timelineTypeClass(type: string): string {
       }
 
       .graph-stage.lineage-active,
-      .graph-stage.timeline-active {
+      .graph-stage.timeline-active,
+      .graph-stage.static-view-active {
         display: block;
         min-height: 0;
         overflow: visible;
       }
 
       .lineage-active .graph-status-row,
-      .timeline-active .graph-status-row {
+      .timeline-active .graph-status-row,
+      .static-view-active .graph-status-row {
         position: sticky;
         top: var(--header-height);
         z-index: 5;
@@ -2122,7 +2201,8 @@ function timelineTypeClass(type: string): string {
       }
 
       .lineage-active .visualization-views,
-      .timeline-active .visualization-views {
+      .timeline-active .visualization-views,
+      .static-view-active .visualization-views {
         height: auto;
         border-radius: 0 0 0.75rem 0.75rem;
       }
