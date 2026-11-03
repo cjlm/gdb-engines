@@ -167,10 +167,8 @@ const citedClaims = evidence
     ...claim,
     sources: claim.sources.filter((s) => s.verified === 'matched' || s.verified === 'matched-archive'),
   }))
-  // Value-by-value fields show only the values whose own quote checked out.
-  .map((claim) => claim.sources.some((s) => s.supports) && Array.isArray(claim.value)
-    ? { ...claim, value: claim.value.filter((v) => claim.sources.some((s) => s.supports === v)) }
-    : claim)
+  // Value-by-value fields need no filter here: check-evidence fails the build unless every
+  // listed value has a matched quote of its own.
   .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
 const kgKinds = kgKindsOf(db.data);

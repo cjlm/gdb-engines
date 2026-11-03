@@ -2,10 +2,18 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { unsupportedValues } from './per-value-evidence.mjs';
 
-const source = (supports, verified = 'unchecked') => ({ url: 'https://example.com', quote: 'q', supports, verified });
+const source = (supports, verified = 'unchecked') => ({
+  url: 'https://example.com',
+  quote: 'q',
+  supports,
+  verified,
+});
 
 test('every value backed by its own source passes', () => {
-  const claim = { value: ['SPARQL 1.1', 'SHACL validation'], sources: [source('SPARQL 1.1'), source('SHACL validation')] };
+  const claim = {
+    value: ['SPARQL 1.1', 'SHACL validation'],
+    sources: [source('SPARQL 1.1'), source('SHACL validation')],
+  };
   assert.deepEqual(unsupportedValues(claim), []);
 });
 
@@ -15,14 +23,18 @@ test('a source for one value does not back another', () => {
 });
 
 test('a source without supports backs nothing', () => {
-  const claim = { value: ['semantic'], sources: [{ url: 'https://example.com', quote: 'q' }] };
-  assert.deepEqual(unsupportedValues(claim), ['semantic']);
+  const claim = { value: ['virtual'], sources: [{ url: 'https://example.com', quote: 'q' }] };
+  assert.deepEqual(unsupportedValues(claim), ['virtual']);
 });
 
 test('publishedOnly ignores quotes that failed or are unchecked', () => {
   const claim = {
     value: ['SPARQL 1.1', 'RDFS reasoning', 'Vector search'],
-    sources: [source('SPARQL 1.1', 'matched'), source('RDFS reasoning', 'mismatch'), source('Vector search', 'matched-archive')],
+    sources: [
+      source('SPARQL 1.1', 'matched'),
+      source('RDFS reasoning', 'mismatch'),
+      source('Vector search', 'matched-archive'),
+    ],
   };
   assert.deepEqual(unsupportedValues(claim, { publishedOnly: true }), ['RDFS reasoning']);
 });

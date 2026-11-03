@@ -113,12 +113,15 @@ for (const file of readdirSync(resultsDir).filter((f) => f.endsWith('.json')).so
       // A value with no source of its own is left out rather than published on another's quote.
       if (PER_VALUE_FIELDS.includes(field) && Array.isArray(value)) {
         const unsupported = unsupportedValues({ ...claim, value });
-        for (const v of unsupported) skipped.push(`${slug}.${field}: "${v}" has no source naming it.`);
+        for (const v of unsupported) {
+          skipped.push(`${slug}.${field}: "${v}" has no source naming it.`);
+        }
         value = value.filter((v) => !unsupported.includes(v));
       }
       // An unresolved field stays absent rather than shipping the word "unknown" as a value. An
       // empty list is the same: the field is simply not set.
-      if (value === 'unknown' || value === null || value === '' || (Array.isArray(value) && value.length === 0)) {
+      const empty = Array.isArray(value) && value.length === 0;
+      if (value === 'unknown' || value === null || value === '' || empty) {
         unknowns.push(`${slug}.${field}`);
         continue;
       }

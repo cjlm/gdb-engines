@@ -113,7 +113,9 @@ if (existsSync(EV_DIR)) {
       }
       if (PER_VALUE_FIELDS.includes(claim.field)) {
         for (const v of unsupportedValues(claim)) {
-          errors.push(`${where}: "${claim.field}" lists "${v}" but no source names it in \`supports\`.`);
+          errors.push(
+            `${where}: "${claim.field}" lists "${v}" but no source names it in \`supports\`.`,
+          );
         }
         // The catalogue value is what the site and the rankings publish, so each value needs a
         // quote that verify-quotes.mjs has matched. Drop or re-source a value whose quotes are
