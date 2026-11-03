@@ -23,7 +23,7 @@ notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's
   url = "https://cloud.google.com/bigquery/docs/write-api"
   title = "Introduction to the Storage Write API (gRPC) | BigQuery | Google Cloud Documentation"
   quote = "Introduction to the Storage Write API (gRPC)"
-  verified = "mismatch"
+  verified = "matched"
   checked = "2026-11-03"
 
   [[claims.sources]]

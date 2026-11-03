@@ -52,7 +52,8 @@ notes = "Refined from year-only '2015': Dgraph's own historical README documents
   url = "https://discuss.dgraph.io/t/releasing-dgraph-1-0-production-ready-graph-database-dgraph-blog/2037"
   title = "Releasing Dgraph 1.0: Production-Ready Graph Database - Dgraph Blog - Blog - Discuss Dgraph"
   quote = "Dgraph started around end-August, picked up steam in mid-October, and v0.1 was released in early-December, 2015."
-  verified = "unreachable"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260611145512/https://discuss.dgraph.io/t/releasing-dgraph-1-0-production-ready-graph-database-dgraph-blog/2037"
   checked = "2026-11-03"
 
 [[claims]]

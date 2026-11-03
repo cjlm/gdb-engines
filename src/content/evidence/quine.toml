@@ -23,7 +23,8 @@ notes = "Cypher and admin operations go through the /api/v2/ JSON REST API; a se
   url = "https://quine.io/learn/standing-queries/wiretap/"
   title = "Standing Query Wiretap - Streaming Graph for Data Pipelines"
   quote = "The standing query wiretap enables observing a standing query's results in real time over a WebSocket connection."
-  verified = "unreachable"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260607172327/https://quine.io/learn/standing-queries/wiretap/"
   checked = "2026-11-03"
 
 [[claims]]

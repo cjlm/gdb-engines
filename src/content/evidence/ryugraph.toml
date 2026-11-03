@@ -38,7 +38,8 @@ notes = "Confirms current value. RyuGraph's repo was created the same week Kuzu'
   url = "https://blog.ryugraph.io/posts/introducing-predictable-labs-and-ryugraph"
   title = "A New Chapter: Introducing Predictable Labs, Inc. and RyuGraph"
   quote = "the Kuzu Github repository was archived on October 10, 2025. This marked the end of the Kuzu team's work on the project as they moved on to new pursuits."
-  verified = "unreachable"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260513125043/https://blog.ryugraph.io/posts/introducing-predictable-labs-and-ryugraph"
   checked = "2026-11-03"
 
 [[claims]]

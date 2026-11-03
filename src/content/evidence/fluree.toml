@@ -81,8 +81,7 @@ notes = "FlureeDB's own production-release announcement is dated August 22, 2018
   url = "https://medium.com/fluree/flureedb-is-production-ready-and-live-86bce82665dc"
   title = "FlureeDB is Production-Ready and Live | by Kevin Doubleday | Fluree PBC | Medium"
   quote = "The beta tag is off. Thanks to a fantastic crowd of developers who provided initial feedback from our late November beta release, FlureeDB is now available and ready to transform application development, power digital transformation"
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20240812043411/https://medium.com/fluree/flureedb-is-production-ready-and-live-86bce82665dc"
+  verified = "unreachable"
   checked = "2026-11-03"
 
 [[claims]]

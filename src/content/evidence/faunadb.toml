@@ -24,7 +24,8 @@ notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent c
   url = "https://docs.fauna.com/fauna/current/"
   title = "Home - Fauna Docs"
   quote = "The Fauna service will be ending on May 30, 2025."
-  verified = "unreachable"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20250614072336/https://docs.fauna.com/fauna/current/"
   checked = "2026-11-03"
 
   [[claims.sources]]
@@ -68,8 +69,7 @@ notes = "Confirms current value; Fauna's own launch announcement describes the d
   url = "https://fauna.com/blog/welcome-to-the-jungle"
   title = "Welcome to the Jungle"
   quote = "Fauna is production-ready and available now in managed beta in the cloud, on-premises, and in hybrid deployments."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20250615031449/https://fauna.com/blog/welcome-to-the-jungle"
+  verified = "unreachable"
   checked = "2026-11-03"
 
 [[claims]]
