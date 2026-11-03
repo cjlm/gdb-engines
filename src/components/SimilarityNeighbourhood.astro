@@ -63,8 +63,6 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
   // No minimap, toolbar or wordmark: the panel is small and sits inside the page's own design.
   const EMBED_CHROME = '-wordmark';
-  // Peers are drawn at the embed's smallest logo size; a larger node size lifts that floor.
-  const STYLE = { nodeSize: 1.4, linkWidth: 0.6 };
 
   const root = document.querySelector<HTMLElement>('[data-similarity-neighbourhood]');
   const frame = root?.querySelector<HTMLIFrameElement>('.similarity-frame');
@@ -107,6 +105,9 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     const embedUrl = new URL('/embed', root.dataset.garphieldOrigin);
     embedUrl.searchParams.set('chrome', EMBED_CHROME);
     embedUrl.searchParams.set('scrollZoom', 'false');
+    embedUrl.searchParams.set('edgeWidthScale', '0.6');
+    // Peers are drawn at the embed's smallest logo size; scaling lifts that floor.
+    embedUrl.searchParams.set('nodeSizeScale', '1.4');
     const driver = createGarphield(frame, { embedUrl, timeoutMs: 30_000 });
     const [source] = await Promise.all([loadSource(root.dataset.document ?? ''), driver.ready()]);
     const graph = source.datasets[0].graph;
@@ -116,7 +117,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
     async function draw() {
       const document = neighbourhoodDocument(source, shown, focus);
-      await driver.setDocument(prepareGarphieldDocument(document, effectiveTheme(), STYLE));
+      await driver.setDocument(prepareGarphieldDocument(document, effectiveTheme()));
     }
 
     function select(id: string) {

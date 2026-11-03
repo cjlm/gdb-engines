@@ -20,24 +20,6 @@ test("prepares a themed clone without mutating the generated document", async ()
   assert.notEqual(prepared, source);
 });
 
-test("host style overrides the saved mark style and keeps the rest", async () => {
-  const { prepareGarphieldDocument } = await import(
-    "./garphield-document.mjs"
-  );
-  const source = {
-    config: {
-      current: {
-        state: { theme: "light", style: { linkWidth: 2, curvature: 0.3 } },
-      },
-    },
-  };
-
-  const prepared = prepareGarphieldDocument(source, "dark", { linkWidth: 0.6 });
-
-  assert.deepEqual(prepared.config.current.state.style, { linkWidth: 0.6, curvature: 0.3 });
-  assert.equal(source.config.current.state.style.linkWidth, 2);
-});
-
 test("preserves a legacy document without current view state", async () => {
   const { prepareGarphieldDocument } = await import(
     "./garphield-document.mjs"
