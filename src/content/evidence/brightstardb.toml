@@ -77,3 +77,19 @@ notes = "Confirms current value."
   quote = "The code-base is now being developed and compiled under VS2015 using C# 6.0 constructs. To compile BrightstarDB you will require a minimum of Visual Studio 2015 Express or Mono 4.0."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 Query, Update and Graph Store Protocol per the BrightstarDB 1.13 docs. No RDFS/OWL reasoning, SHACL or R2RML is documented."
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/latest/SPARQL_Endpoint/"
+  title = "SPARQL Endpoint - BrightstarDB documentation"
+  quote = "The BrightstarDB service supports query, update and the graph store protocols as specified in the SPARQL 1.1 W3C recommendation."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

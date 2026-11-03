@@ -9,6 +9,7 @@ implementation_language = "C"
 type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2000"
 category = "Established"
 status = "inactive"

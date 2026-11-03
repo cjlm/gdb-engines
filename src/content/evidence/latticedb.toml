@@ -51,16 +51,16 @@ field = "kg_kinds"
 value = ["property-graph"]
 confidence = "medium"
 method = "repo"
-checked = "2026-11-01"
-notes = "README's main example builds a knowledge graph, but the README also says Graph RAG/agent memory/local knowledge tools are example workloads, 'not the definition of the engine'."
+checked = "2026-11-03"
+notes = "Embedded labeled property graph (Cypher) with vectors and full-text search. The docs have a dedicated 'Knowledge Graph Modeling' guide for LatticeDB. The README notes Graph RAG/agent memory/local knowledge tools are example workloads rather than the definition of the engine, but the makers do document building knowledge graphs with it."
 
   [[claims.sources]]
-  url = "https://github.com/jeffhajewski/latticedb"
-  title = "jeffhajewski/latticedb README"
-  quote = "A complete example: create a small knowledge graph with documents and authors, store embeddings, index text, then query across all three search modes."
+  url = "https://docs.latticedb.org/guides/knowledge-graph"
+  title = "Knowledge Graph Modeling - LatticeDB Documentation"
+  quote = "This guide covers data modeling patterns for knowledge graphs in LatticeDB."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -76,4 +76,4 @@ notes = "Native HNSW vector index. No graph algorithm library found in README. N
   quote = "Embedded property-graph database with native vector and full-text indexing."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

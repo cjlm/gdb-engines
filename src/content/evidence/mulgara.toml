@@ -98,3 +98,19 @@ checked = "2026-09-23"
   quote = "The initial release is a fork from Kowari v1.1, as of August 1, 2005."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["RDFS reasoning"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RDFS reasoning via the Krule/RLog rules engine; the repository ships RDFS rule data (rules/rdfs.dl, rules/rdfs-krule.rdf). OWL reasoning not recorded: makers claim only 'a good portion of OWL support', no profile. SPARQL 1.1 not recorded: news and release notes describe SPARQL fixes and extensions (e.g. transitive predicate modifiers) but never claim SPARQL 1.1. No SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "http://mulgara.org/news.html"
+  title = "Mulgara news"
+  quote = "This release introduces the RDF Logic programming language \"RLog\". Programs for RDFS and SKOS are both available, along with a good portion of OWL support."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"

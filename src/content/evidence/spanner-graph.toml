@@ -74,18 +74,26 @@ notes = "No public source tree exists for this managed feature. A Wikipedia comp
 [[claims]]
 field = "kg_kinds"
 value = ["property-graph"]
-confidence = "medium"
+confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Spanner Graph overview lists knowledge graphs among example use cases of its GQL property-graph interface; indirect (use-case list), hence medium."
+checked = "2026-11-03"
+notes = "Google Cloud's reference architecture for GraphRAG builds a knowledge graph from input files with Gemini and stores it in Spanner Graph (a GQL property graph); the product page has a 'Knowledge graph' section with how-tos. The earlier source (knowledge graphs in the overview's use-case list) was dropped."
 
   [[claims.sources]]
-  url = "https://cloud.google.com/spanner/docs/graph/overview"
-  title = "Spanner Graph overview"
-  quote = "Example use cases for graph databases include fraud detection, recommendations, cybersecurity, community detection, knowledge graphs, customer 360, data cataloging, and lineage tracking."
+  url = "https://docs.cloud.google.com/architecture/gen-ai-graphrag-spanner"
+  title = "GraphRAG infrastructure for generative AI using Spanner Graph (Google Cloud Architecture Center)"
+  quote = "The function stores the knowledge graph in a Spanner Graph database"
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/products/spanner/graph"
+  title = "Spanner Graph product page"
+  quote = "With Spanner Graph, you can develop knowledge graphs that capture the complex connections between entities"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -101,7 +109,7 @@ notes = "Vector: KNN distance functions plus ANN vector indexes usable in Spanne
   quote = "This page describes how to use vector search in Spanner Graph to find K-nearest neighbors (KNN) and approximate nearest neighbors (ANN)."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://cloud.google.com/spanner/docs/graph/graph-algorithms-overview"
@@ -109,4 +117,4 @@ notes = "Vector: KNN distance functions plus ANN vector indexes usable in Spanne
   quote = "Graph algorithms are invoked as built-in function calls in Spanner Graph queries."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

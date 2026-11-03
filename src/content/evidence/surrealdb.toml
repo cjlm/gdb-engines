@@ -83,16 +83,16 @@ field = "kg_kinds"
 value = ["property-graph"]
 confidence = "high"
 method = "repo"
-checked = "2026-11-01"
-notes = "Multi-model (documents + graph edges via RELATE); knowledge graphs are an advertised use case."
+checked = "2026-11-03"
+notes = "Multi-model database (documents plus graph edges via RELATE, edges carrying their own properties). SurrealDB has a dedicated 'Knowledge graphs' use-case page presenting schema-as-ontology, typed edges and vector search for building knowledge graphs. Replaces the README use-case-list source."
 
   [[claims.sources]]
-  url = "https://github.com/surrealdb/surrealdb"
-  title = "SurrealDB README"
-  quote = "SurrealDB is used for data-intensive systems such as applications requiring multiple data types, data layer for AI agents, knowledge graphs"
+  url = "https://surrealdb.com/use-cases/knowledge-graphs"
+  title = "Knowledge graphs | Use cases | SurrealDB"
+  quote = "Build knowledge graphs with SurrealDB. Ontology, rich edges and vector search, in one database."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -108,4 +108,4 @@ notes = "Built-in HNSW and DiskANN vector indexes. No SPARQL/RDF reasoning/SHACL
   quote = "brute force vs HNSW vs DISKANN, parameters, and the query cheat sheet"
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

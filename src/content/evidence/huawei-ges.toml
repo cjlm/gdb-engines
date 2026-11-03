@@ -80,22 +80,6 @@ notes = "No official Huawei documentation states the implementation language; th
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["property-graph"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Knowledge Graph is listed as a GES application scenario; GES is a property graph service (Gremlin/Cypher/GQL)."
-
-  [[claims.sources]]
-  url = "https://www.huaweicloud.com/intl/en-us/product/ges.html"
-  title = "Huawei Cloud Graph Engine Service"
-  quote = "GES-based knowledge graphs integrate various kinds of heterogeneous data, enabling larger graph scales and higher performance."
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Graph algorithms", "Vector search"]
 confidence = "medium"
@@ -109,7 +93,7 @@ notes = "Algorithms: high confidence from product page. Vector: the user guide s
   quote = "Supports the PageRank, K-core, Shortest Path, Label Propagation, Triangle Count, Link Prediction, and many other algorithms."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0066.html"
@@ -117,4 +101,4 @@ notes = "Algorithms: high confidence from product page. Vector: the user guide s
   quote = "After enabling this function, the created graph supports both full-text indexing and vector indexing."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

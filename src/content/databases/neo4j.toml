@@ -12,6 +12,7 @@ type = "Property Graph"
 query_languages = ["Cypher", "GQL"]
 protocols = ["Bolt", "HTTP/REST"]
 kg_capabilities = ["Vector search", "Graph algorithms"]
+kg_extension_capabilities = ["RDFS reasoning", "SHACL validation"]
 released = "2007"
 category = "Established"
 gdotv_support = true

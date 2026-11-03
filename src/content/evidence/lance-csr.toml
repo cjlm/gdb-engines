@@ -68,8 +68,8 @@ field = "kg_kinds"
 value = ["property-graph", "virtual"]
 confidence = "medium"
 method = "repo"
-checked = "2026-11-01"
-notes = "property-graph is explicit (openCypher over Lance node/edge tables for multimodal knowledge graphs). virtual is inferred: the README says the knowledge graph runs on the existing Lance datasets rather than a second copy in a separate graph database, i.e. a graph view over lakehouse data without copying it in. Project is alpha."
+checked = "2026-11-03"
+notes = "property-graph: enabling multimodal knowledge graphs is one of the README's three stated aims and has its own section on the docs home page; the engine is openCypher over Lance node/edge datasets. virtual: the makers say lance-csr runs path traversals over the existing Lance datasets so the knowledge graph works on one copy of the data instead of a second copy in a separate graph database, i.e. the graph is built over data left where it is. Project is alpha."
 
   [[claims.sources]]
   url = "https://github.com/hyperdimensionalcomputingai/lance-csr"
@@ -77,7 +77,7 @@ notes = "property-graph is explicit (openCypher over Lance node/edge tables for 
   quote = "Enable multimodal knowledge graphs."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://lance-csr.hdclabs.ai/"
@@ -85,7 +85,7 @@ notes = "property-graph is explicit (openCypher over Lance node/edge tables for 
   quote = "lance-csr runs path traversals over those same datasets, so your knowledge graph works on one copy of the data instead of a second copy in a separate graph database."
   supports = "virtual"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -101,4 +101,4 @@ notes = "Vector functions in Cypher plus a VectorSearch builder, with use of a L
   quote = "Knowledge graphs often carry embeddings next to their structure. lance-csr gives you two ways to use them:"
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

@@ -79,30 +79,6 @@ notes = "Confirms current value; the engine (RKGS) and Rel language are implemen
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["virtual"]
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "RelationalAI presents itself as a 'relational knowledge graph coprocessor' running inside Snowflake, materialising Snowflake data into a knowledge graph without extraction or pipelines (data stays in the customer's Snowflake account). It is neither RDF nor property-graph (relational/semantic-model paradigm), so virtual is the closest fit; note it materialises (CDC) within Snowflake rather than purely query-time federation. Current site now brands it as a 'decision intelligence platform' with 'semantic models'."
-
-  [[claims.sources]]
-  url = "https://www.relational.ai/post/rai-now-available-in-snowflake"
-  title = "RelationalAI now available in Snowflake"
-  quote = "Data can be materialized into a knowledge graph without extracting data or configuring pipelines and results returned to Snowflake tables for use by anyone through existing tools and processes within the organization."
-  supports = "virtual"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://www.relational.ai/post/rai-now-available-in-snowflake"
-  title = "RelationalAI now available in Snowflake"
-  quote = "Customer data never leaves the boundary of a Snowflake account."
-  supports = "virtual"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Graph algorithms"]
 confidence = "high"
@@ -116,7 +92,7 @@ notes = "Graph reasoner with degree/eigenvector/betweenness centrality, PageRank
   quote = "RelationalAI provides built-in graph algorithms to utilize these relationships for detecting centrality, similarity, and communities, as well as predicting links and paths."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.relational.ai/build/guides/reasoning/graph/run-an-algorithm/"
@@ -124,4 +100,4 @@ notes = "Graph reasoner with degree/eigenvector/betweenness centrality, PageRank
   quote = "Graph algorithms are a powerful tool for deriving insights from the concepts and relationships in your semantic model."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

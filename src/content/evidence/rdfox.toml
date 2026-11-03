@@ -74,11 +74,11 @@ notes = "Confirms current value: RDFox's core is written in C++, with a Java wra
 
 [[claims]]
 field = "kg_capabilities"
-value = ["SPARQL 1.1", "OWL reasoning", "SHACL validation", "Vector search"]
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materialisation on a best-effort basis; also SWRL and its own Datalog rule language. No explicit RDFS entailment regime documented (RDFS-style inference via rules/OWL axioms), so RDFS left out. Vector search = 'semantic index tuple tables' over embeddings from a bundled embedding model (RDFox 7.x). No R2RML (external data sources use RDFox's own tuple-table mapping). No graph algorithm library."
+checked = "2026-11-03"
+notes = "RDFS: RDFS schema triples (e.g. rdfs:subClassOf) in a named graph are parsed as OWL axioms (importaxioms) and materialised as rules, and the builtin <rdfox:TBoxReasoning> rule set partially encodes RDFS/OWL vocabulary semantics; there is no separate named RDFS entailment regime. OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materialisation on a best-effort basis; also SWRL and its own Datalog rule language. Vector search = 'semantic index tuple tables' over embeddings from a bundled embedding model (RDFox 7.x). No R2RML (external data sources use RDFox's own tuple-table mapping). No graph algorithm library."
 
   [[claims.sources]]
   url = "https://docs.oxfordsemantic.tech/features-and-requirements.html"
@@ -86,7 +86,7 @@ notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materiali
   quote = "RDFox can answer SPARQL 1.1 queries"
   supports = "SPARQL 1.1"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.oxfordsemantic.tech/features-and-requirements.html"
@@ -94,7 +94,7 @@ notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materiali
   quote = "RDF data can be validated using the SHACL constraint language."
   supports = "SHACL validation"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.oxfordsemantic.tech/reasoning.html"
@@ -102,7 +102,7 @@ notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materiali
   quote = "The translation of OWL 2 axioms into rules for the purpose of reasoning is performed on a best-effort basis."
   supports = "OWL reasoning"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.oxfordsemantic.tech/tuple-tables.html"
@@ -110,4 +110,12 @@ notes = "OWL 2 axioms (OWL 2 RL-style) translated to Datalog rules for materiali
   quote = "A semantic index tuple table supports efficient repeated semantic similarity searches over a selected set of strings in a data store."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/reasoning.html"
+  title = "RDFox documentation: Reasoning"
+  quote = "The rules of <rdfox:TBoxReasoning> partially encode the semantics of the RDFS and OWL vocabularies; in particular, it will add rules representing the relation rdfs:subClassOf as transitive and reflexive"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"

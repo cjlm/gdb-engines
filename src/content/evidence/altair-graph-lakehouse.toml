@@ -134,18 +134,10 @@ notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acq
 [[claims]]
 field = "kg_kinds"
 value = ["virtual"]
-confidence = "medium"
+confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Siemens product page now brands the family 'Rapidminer Graph Studio' (with Graph Lakehouse as its in-memory MPP engine) and says it 'is now part of Intelligence Center X'. Graph Lakehouse was formerly Altair Graph Lakehouse / AnzoGraph DB. 'virtual' rests on marketing language about a semantic layer that minimizes data movement and handling data 'virtualized'; it is a Graph Studio (platform) claim more than a Graph Lakehouse engine claim, hence medium confidence."
-
-  [[claims.sources]]
-  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
-  title = "Rapidminer Graph Studio | Siemens"
-  quote = "Add a scalable semantic layer across your existing systems that minimizes data movement and duplication while delivering production-grade performance."
-  supports = "virtual"
-  verified = "matched"
-  checked = "2026-11-01"
+checked = "2026-11-03"
+notes = "virtual: the Graph Lakehouse engine docs say its Graph Data Interface (GDI) can create a virtual graph that accesses the source only when needed without ingesting the data into Graph Lakehouse; the Siemens product page also says Graph Lakehouse handles data 'in-memory, virtualized or on-disk'. The Graph Studio 'minimizes data movement' marketing line was dropped (it is a platform claim, and 'minimizes' is not 'leaves in place'). Siemens now brands the family Rapidminer Graph Studio, with Graph Lakehouse (formerly Altair Graph Lakehouse / AnzoGraph DB) as its in-memory MPP engine."
 
   [[claims.sources]]
   url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
@@ -153,7 +145,15 @@ notes = "Siemens product page now brands the family 'Rapidminer Graph Studio' (w
   quote = "Handle data in-memory, virtualized or on-disk."
   supports = "virtual"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://help.altair.com/graphlakehouse/userdoc/gdi-intro.htm"
+  title = "Introduction to the Graph Data Interface (Graph Lakehouse docs)"
+  quote = "you can load source data into Graph Lakehouse or create a virtual graph that accesses the source only when it is needed without ingesting the data into Graph Lakehouse"
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -169,7 +169,7 @@ notes = "Inference engine runs RDFS-plus and supported OWL 2 RL rules (materiali
   quote = "Graph Lakehouse implements the standard SPARQL forms and functions described in the W3C SPARQL 1.1 Query Language specification."
   supports = "SPARQL 1.1"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://help.altair.com/graphlakehouse/userdoc/inferences.htm"
@@ -177,7 +177,7 @@ notes = "Inference engine runs RDFS-plus and supported OWL 2 RL rules (materiali
   quote = "When Graph Lakehouse creates inferences, it scans the specified graph for any of the RDFS-plus and supported OWL 2 RL ontologies and generates new triples according to the W3C OWL 2 RL rules"
   supports = "RDFS reasoning"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://help.altair.com/graphlakehouse/userdoc/inferences.htm"
@@ -185,7 +185,7 @@ notes = "Inference engine runs RDFS-plus and supported OWL 2 RL rules (materiali
   quote = "When Graph Lakehouse creates inferences, it scans the specified graph for any of the RDFS-plus and supported OWL 2 RL ontologies and generates new triples according to the W3C OWL 2 RL rules"
   supports = "OWL reasoning"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://help.altair.com/graphlakehouse/userdoc/using-sparql.htm"
@@ -193,4 +193,4 @@ notes = "Inference engine runs RDFS-plus and supported OWL 2 RL rules (materiali
   quote = "Graph Lakehouse also provides several SQL-like and Microsoft Excel-like functions as well as support for more advanced operations like window aggregates, advanced grouping sets, and graph algorithms."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

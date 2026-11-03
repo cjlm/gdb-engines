@@ -48,3 +48,35 @@ notes = "Confirms current value; the project's own README states it is written i
   quote = "Quadstore is a LevelDB-backed RDF graph database / triplestore for JavaScript\nruntimes (browsers, Node.js, Deno, Bun, ...) written in TypeScript."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_extension_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Quadstore itself is an RDF/JS quad store with no query engine; SPARQL is answered by quadstore-comunica, a separate package from the same quadstorejs organisation (a bundled Comunica distribution), so SPARQL 1.1 is recorded as an extension capability, not built-in. The 1.1 level rests on quadstore-comunica's build running the W3C SPARQL 1.1 Query and Update test suites rather than an explicit conformance statement, hence medium. No reasoning, SHACL, R2RML, vector index or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://github.com/quadstorejs/quadstore"
+  title = "quadstore README"
+  quote = "Supports SPARQL queries via quadstore-comunica, a tailored configuration and distribution of the Comunica querying framework"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/quadstorejs/quadstore-comunica"
+  title = "quadstore-comunica README"
+  quote = "a SPARQL query engine powered by Comunica and optimized for use with quadstore"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/quadstorejs/quadstore-comunica"
+  title = "quadstore-comunica README"
+  quote = "run SPARQL 1.1 / Query test suite"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

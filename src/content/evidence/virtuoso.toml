@@ -76,8 +76,8 @@ field = "kg_kinds"
 value = ["virtual"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL without copying it."
+checked = "2026-11-03"
+notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or remote via ODBC/JDBC, into RDF queried by SPARQL; the product page says external sources map in as virtual tables or RDF Views without copying them out of the systems that own them. The product page states RDF Views over external sources are a Commercial Edition feature (views over local tables are in the open-source edition)."
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/rdfviewsrdbms/"
@@ -85,15 +85,23 @@ notes = "Virtual: Linked Data Views (and R2RML) map relational data, local or re
   quote = "Linked Data Views map relational data into RDF and allow customizing RDF representation of locally stored RDF data."
   supports = "virtual"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.openlinksw.com/virtuoso/"
+  title = "OpenLink Virtuoso Universal Server"
+  quote = "External SQL, NoSQL, and API sources map in as virtual tables or RDF Views — federated into the same queryable layer without copying them out of the systems that already own them."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
-value = ["SPARQL 1.1", "RDFS reasoning", "R2RML mapping"]
-confidence = "high"
+value = ["SPARQL 1.1", "RDFS reasoning", "SHACL validation", "R2RML mapping"]
+confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Query-time inference rule bases from RDFS triples (subClassOf, subPropertyOf) plus selected OWL constructs (sameAs, equivalentClass/Property, TransitiveProperty, inverseOf) - not a full OWL profile, so OWL reasoning left out. Native HNSW vector indexes appear only in the unreleased v7.2.18 development branch NEWS (latest release v7.2.17), so Vector search left out. No SHACL or graph algorithm library found in open-source docs."
+checked = "2026-11-03"
+notes = "SHACL: built-in DB.DBA.SHACL_COMPILE_SG compiles shapes into validator procedures that write a validation report graph (how-to posted by OpenLink on its community site; SHACL arrived in a Virtuoso 8.3 maintenance release and the open-source edition's NEWS does not mention it, so it may be Enterprise-only). Query-time inference rule bases from RDFS triples (subClassOf, subPropertyOf) plus selected OWL constructs (sameAs, equivalentClass/Property, TransitiveProperty, inverseOf) - the docs say other RDFS/OWL information is not taken into account, not a full OWL profile, so OWL reasoning left out. Native HNSW vector indexes appear only in the unreleased v7.2.18 development branch NEWS (latest release v7.2.17), so Vector search left out. No graph algorithm library found."
 
   [[claims.sources]]
   url = "https://vos.openlinksw.com/owiki/wiki/VOS/VOSSparqlProtocol"
@@ -101,7 +109,7 @@ notes = "Query-time inference rule bases from RDFS triples (subClassOf, subPrope
   quote = "has been updated to support SPARQL 1.1"
   supports = "SPARQL 1.1"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/rdfsparqlrule/"
@@ -109,7 +117,7 @@ notes = "Query-time inference rule bases from RDFS triples (subClassOf, subPrope
   quote = "Such an inference context can be built from one or more graphs containing RDF Schema triples."
   supports = "RDFS reasoning"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/r2rml/"
@@ -117,4 +125,12 @@ notes = "Query-time inference rule bases from RDFS triples (subClassOf, subPrope
   quote = "R2RML is a language for expressing customized mappings from relational databases to RDF data sets."
   supports = "R2RML mapping"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://community.openlinksw.com/t/virtuoso-and-the-shapes-constraint-language-shacl/5121"
+  title = "OpenLink Software Community: Virtuoso and the Shapes Constraint Language (SHACL)"
+  quote = "Virtuoso implements SHACL support via built-in functions that compile and execute shape validations against RDF data."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-03"
