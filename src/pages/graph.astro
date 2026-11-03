@@ -818,9 +818,18 @@ function timelineTypeClass(type: string): string {
         selection.hidden = false;
       }
 
+      /** Two clicks on the same node this close together count as a double-click. */
+      const DOUBLE_CLICK_MS = 400;
+      let lastNodeClick = { nodeId: '', at: 0 };
       for (const context of contexts.values()) {
         context.driver.on('nodeClick', (payload) => {
           if (context !== activeContext) return;
+          const now = performance.now();
+          const doubleClick =
+            Boolean(payload.nodeId) &&
+            payload.nodeId === lastNodeClick.nodeId &&
+            now - lastNodeClick.at < DOUBLE_CLICK_MS;
+          lastNodeClick = { nodeId: payload.nodeId ?? '', at: now };
           if (!payload.nodeId) {
             clearSelection();
             return;
@@ -833,12 +842,17 @@ function timelineTypeClass(type: string): string {
 
           const label = String(node.label ?? node.id);
           const isDatabase = String(node.id).startsWith('db:');
+          const href = isDatabase
+            ? `/db/${encodeURIComponent(String(node.id).slice(3))}/`
+            : '';
+          if (doubleClick && href) {
+            window.location.href = href;
+            return;
+          }
           showSelection({
             label,
             imageUrl: typeof node.image === 'string' ? node.image : '',
-            href: isDatabase
-              ? `/db/${encodeURIComponent(String(node.id).slice(3))}/`
-              : '',
+            href,
           });
         });
         context.driver.on('error', (payload) => {
