@@ -77,3 +77,27 @@ notes = "Confirmed by the launch post title and the dedicated Rust driver docume
   quote = "Introducing Traverse: A High-Performance Graph Database Built in Rust"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, RDF reasoning, SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse"
+  title = "Traverse"
+  quote = "An HNSW vector index with quantization, BM25 full-text search, and text and point indexes."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse"
+  title = "Traverse"
+  quote = "36+ algorithms callable from Cypher: PageRank, Louvain, shortest paths, similarity, embeddings and more."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

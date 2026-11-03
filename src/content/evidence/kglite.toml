@@ -70,3 +70,43 @@ notes = "The published wheel declares a Rust implementation alongside its Python
   quote = "\"Programming Language :: Rust\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Embedded Cypher knowledge graph for LLM agents. It has a declared \"Ontology\" layer, but its docs say it is SKOS-like annotations with no entailment or reasoning, and it can load N-Triples, so semantic is not claimed."
+
+  [[claims.sources]]
+  url = "https://kglite.readthedocs.io"
+  title = "KGLite documentation"
+  quote = "KGLite is a knowledge graph that runs inside your process."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector: embeddings stored alongside nodes with similarity search and an opt-in HNSW index (build_vector_index()). Algorithms: centrality (betweenness, PageRank etc.), community detection, components, k-core, shortest path. Ontology docs say \"There is no entailment, no open-world semantics and no reasoning\", so no RDFS/OWL. No SPARQL, SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://kglite.readthedocs.io/en/latest/python/guides/semantic-search.html"
+  title = "KGLite: Semantic Search"
+  quote = "Store embedding vectors alongside nodes and query them with fast similarity search."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://kglite.readthedocs.io/en/latest/python/guides/graph-algorithms.html"
+  title = "KGLite: Graph Algorithms"
+  quote = "All centrality methods return a ResultView of {type, title, id, score} rows, sorted by score descending."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

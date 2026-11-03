@@ -63,3 +63,27 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms", "Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Algorithms include PageRank, centrality, community detection, temporal motifs. Vector: built-in vectors module embeds graph entities as documents (user-supplied embedding function) and runs similarity queries over the VectorisedGraph. No RDF/SPARQL features."
+
+  [[claims.sources]]
+  url = "https://docs.raphtory.com/v0.17/docs/algorithms"
+  title = "Algorithms & Analytics | Pometry Docs"
+  quote = "Raphtory implements many of the standard algorithms you expect within a graph library"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.raphtory.com/v0.17/docs/algorithms/vectorisation"
+  title = "Vectorisation & Search | Pometry Docs"
+  quote = "you can perform similarity queries and feed the results into an LLM to ground it's responses in your data."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

@@ -10,6 +10,7 @@ type = "RDF"
 kind = "embedded"
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search"]
 released = "2018-07"
 category = "Emerging"
 gdotv_support = false

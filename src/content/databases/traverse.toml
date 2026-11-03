@@ -9,6 +9,7 @@ type = "Property Graph"
 kind = "database"
 query_languages = ["openCypher", "GQL"]
 protocols = ["HTTP/REST", "Bolt", "gRPC", "WebSocket"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 released = "2026-03"
 category = "Emerging"
 gdotv_support = false

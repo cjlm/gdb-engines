@@ -70,3 +70,35 @@ notes = "Confirms current value. Build-from-source instructions use `go build`, 
   quote = "git clone https://github.com/orneryd/NornicDB.git\ncd NornicDB\ngo build -o nornicdb ./cmd/nornicdb"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Graph algorithms (PageRank, betweenness, closeness, Louvain, label propagation, WCC) are NornicDB extensions under apoc.algo.*; most gds.* algorithms are not implemented. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://github.com/orneryd/NornicDB/blob/main/docs/neo4j-migration/feature-parity.md"
+  title = "NornicDB Neo4j feature parity"
+  quote = "All index types supported: B-tree, full-text (Lucene-compatible), vector (HNSW), composite (multi-property), token lookup, range indexes."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/orneryd/NornicDB"
+  title = "orneryd/NornicDB README"
+  quote = "Hybrid retrieval is where NornicDB is materially different from vector-only stacks: the query shape is vector search followed by graph expansion in the same engine."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/orneryd/NornicDB/blob/main/docs/neo4j-migration/feature-parity.md"
+  title = "NornicDB Neo4j feature parity"
+  quote = "Some of these algorithms exist as NornicDB extensions under apoc.algo.* (tables above)"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

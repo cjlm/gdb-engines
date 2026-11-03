@@ -70,3 +70,59 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Virtual Knowledge Graph (OBDA) system exposing relational sources as RDF knowledge graphs via R2RML mappings and ontologies."
+
+  [[claims.sources]]
+  url = "https://github.com/ontop/ontop"
+  title = "ontop/ontop README"
+  quote = "These graphs are virtual, which means that data remains in the data sources instead of being moved to another database."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["R2RML mapping", "RDFS reasoning", "OWL reasoning"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "OWL profile: OWL 2 QL (query rewriting). SPARQL 1.1 left out: docs say it supports \"the majority of SPARQL 1.1 features\" and the compliance page lists unsupported/partial features. R2RML is \"almost fully compliant\". No SHACL, vector search or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/guide/"
+  title = "Introduction | Ontop"
+  quote = "Supports R2RML and Ontop mappings"
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/guide/compliance.html"
+  title = "Standards compliance | Ontop"
+  quote = "The latest version of Ontop is almost fully compliant with the R2RML"
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/guide/"
+  title = "Introduction | Ontop"
+  quote = "Supports RDFS and OWL 2 QL ontologies"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/guide/"
+  title = "Introduction | Ontop"
+  quote = "Supports RDFS and OWL 2 QL ontologies"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"

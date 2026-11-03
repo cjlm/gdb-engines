@@ -71,3 +71,35 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "HelixDB learning-center docs explain storing a knowledge graph as its labeled property graph."
+
+  [[claims.sources]]
+  url = "https://docs.helix-db.com/learn/graph-databases/what-is-a-knowledge-graph"
+  title = "HelixDB docs: What is a knowledge graph?"
+  quote = "How does HelixDB store a knowledge graph?"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Native ANN vector search plus BM25, prefiltered by graph traversal. No graph algorithm library, RDF/SPARQL, OWL, SHACL or R2RML found."
+
+  [[claims.sources]]
+  url = "https://github.com/HelixDB/helix-db"
+  title = "HelixDB/helix-db README"
+  quote = "Approximate nearest-neighbor search, prefiltered by graph traversal."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

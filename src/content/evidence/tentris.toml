@@ -63,3 +63,19 @@ notes = "The commercial repository (tentris/tentris) publishes only packaging sc
   quote = "Building was tested with Clang 17 & 19. As C++ standard template library, only"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Site markets 'reason over' knowledge graphs but documents no RDFS/OWL entailment; no SHACL, R2RML, vector index or graph algorithm library found."
+
+  [[claims.sources]]
+  url = "https://tentris.io/"
+  title = "Tentris - RDF Graph Database"
+  quote = "SPARQL 1.1 & RDF 1.1 graph query support"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

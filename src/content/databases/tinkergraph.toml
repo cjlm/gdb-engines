@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Property Graph"
 query_languages = ["Gremlin"]
+kg_capabilities = ["Graph algorithms"]
 kind = "embedded"
 released = "2009"
 category = "Established"

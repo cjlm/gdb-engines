@@ -9,6 +9,7 @@ implementation_language = "Rust"
 type = "Other"
 kind = "extension"
 query_languages = ["SQL"]
+kg_capabilities = ["Graph algorithms"]
 released = "2026-07"
 category = "Emerging"
 gdotv_support = false

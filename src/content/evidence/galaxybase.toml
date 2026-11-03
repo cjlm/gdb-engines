@@ -55,3 +55,19 @@ notes = "Vendor's own English-language product page describes Create Link (Galax
   quote = "Create Link is the first domestic commercial graph database supplier with fully independent intellectual property rights, dedicated to providing world-class graph database products and graph intelligence services."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vendor (CreateLink) GraphRAG product page describes extracting knowledge with LLMs to build a private-domain knowledge graph imported into Galaxybase. Homepage case studies also cite knowledge graph deployments, and the makers' VLDB 2024 paper says they built knowledge graphs (Ming Dynasty literature, State Grid power grid) on its property graph model (PDF, not quoted)."
+
+  [[claims.sources]]
+  url = "https://www.galaxybase.com/graphRag"
+  title = "知寰Hybrid RAG - Galaxybase"
+  quote = "快速构建私域知识图谱，结构化导入Galaxybase银河图数据库中。"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"

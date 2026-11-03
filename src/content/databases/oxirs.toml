@@ -9,6 +9,7 @@ type = "RDF"
 kind = "library"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "GraphQL (HTTP)"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 released = "2025-09"
 category = "Emerging"
 gdotv_support = false

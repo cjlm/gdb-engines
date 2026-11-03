@@ -78,3 +78,27 @@ notes = "No official Huawei documentation states the implementation language; th
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20240102012547/https://www.programmersought.com/article/1768563146/"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms", "Vector search"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Algorithms: high confidence from product page. Vector: the user guide says graphs created with the full-text/vector indexing option support vector indexing (mutually exclusive with fine-grained permission control); no GES page found documenting vector index types or query syntax, hence medium. No SPARQL/RDF/OWL/SHACL/R2RML."
+
+  [[claims.sources]]
+  url = "https://www.huaweicloud.com/intl/en-us/product/ges.html"
+  title = "Huawei Cloud Graph Engine Service"
+  quote = "Supports the PageRank, K-core, Shortest Path, Label Propagation, Triangle Count, Link Prediction, and many other algorithms."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0066.html"
+  title = "GES User Guide: Creating a Custom Graph"
+  quote = "After enabling this function, the created graph supports both full-text indexing and vector indexing."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

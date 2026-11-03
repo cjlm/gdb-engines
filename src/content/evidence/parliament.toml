@@ -84,3 +84,19 @@ checked = "2026-09-23"
   quote = "Parliament's initial development was funded by DARPA through the DAML program under the name DAML DB"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["RDFS reasoning"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Parliament's rule engine implements all RDFS inference rules plus selected elements of OWL RL (quote is from the user guide's LaTeX source, where \\ac{rdfs}/\\ac{owl} are acronym macros). OWL reasoning not recorded: selected elements of OWL RL are not a complete OWL profile. SPARQL 1.1 not recorded: the docs mention SPARQL, SPARQL Update graph management and GeoSPARQL (via Jena), but never state SPARQL 1.1 support. No SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://github.com/raytheonbbn/parliament/blob/master/doc/UserGuide/Introduction.tex"
+  title = "Parliament User Guide: Introduction (LaTeX source)"
+  quote = "rule engine currently implements all of the inference rules of \\ac{rdfs} plus selected elements of \\ac{owl} RL."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"

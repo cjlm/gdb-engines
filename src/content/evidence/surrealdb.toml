@@ -77,3 +77,35 @@ notes = "Confirms the current value."
   quote = "the decision was made to re-build using Rust, in order to enforce data-sharing guarantees"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Multi-model database (documents plus graph edges via RELATE, edges carrying their own properties). SurrealDB has a dedicated 'Knowledge graphs' use-case page presenting schema-as-ontology, typed edges and vector search for building knowledge graphs. Replaces the README use-case-list source."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/use-cases/knowledge-graphs"
+  title = "Knowledge graphs | Use cases | SurrealDB"
+  quote = "Build knowledge graphs with SurrealDB. Ontology, rich edges and vector search, in one database."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in HNSW and DiskANN vector indexes. No SPARQL/RDF reasoning/SHACL/R2RML. No graph algorithm library (PageRank, community detection) found in docs; graph support is traversal/recursive queries."
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/docs/surrealdb/models/vector"
+  title = "SurrealDB docs: Vector search model"
+  quote = "brute force vs HNSW vs DISKANN, parameters, and the query cheat sheet"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

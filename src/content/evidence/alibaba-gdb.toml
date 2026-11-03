@@ -55,3 +55,27 @@ notes = "Confirms current value. Alibaba Cloud's own developer-community article
   quote = "阿里云于2019年3月重磅发布了数据库新产品——图数据库（Graph Database，简称GDB），本文将从图数据库的基本背景知识说起，带你深入了解阿里云Cloud-Native图数据库GDB。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The Alibaba Cloud help center has a dedicated 'Knowledge graphs' use-case guide for GDB that stores knowledge-graph triples in GDB's property graph (subjects/objects as vertices, predicates as edges) and queries them with Gremlin. The earlier source (knowledge graphs as one item in the product overview's scenario list) was dropped as too weak. alibabacloud.com product page is JS-rendered."
+
+  [[claims.sources]]
+  url = "https://help.aliyun.com/en/gdb/use-cases/knowledge-graphs"
+  title = "Knowledge graphs - Graph Database use cases (Alibaba Cloud help center)"
+  quote = "Alibaba Cloud Graph Database (GDB) supports property graphs. In a property graph, the basic storage elements are vertices, edges, and properties."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://help.aliyun.com/en/gdb/use-cases/knowledge-graphs"
+  title = "Knowledge graphs - Graph Database use cases (Alibaba Cloud help center)"
+  quote = "In a knowledge graph trituple, the subject and object are stored as vertices, and the predicate is stored as an edge."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"

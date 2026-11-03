@@ -55,3 +55,51 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "No built-in RDFS/OWL inference or SHACL in core rdflib; OWL 2 RL/RDFS inference (OWL-RL) and SHACL (pySHACL) come from separate RDFLib-organisation packages and are recorded as extension capabilities."
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/rdflib"
+  title = "RDFLib README (GitHub)"
+  quote = "supporting SPARQL 1.1 Queries and Update statements"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_extension_capabilities"
+value = ["RDFS reasoning", "OWL reasoning", "SHACL validation"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "OWL-RL (OWL 2 RL plus basic RDFS forward-chaining inference) and pySHACL (SHACL validator) are separate packages published under the RDFLib GitHub organisation, the same makers as rdflib, and operate on rdflib Graph objects; they are not bundled in rdflib itself."
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/OWL-RL"
+  title = "RDFLib/OWL-RL README"
+  quote = "A simple implementation of the OWL2 RL Profile, as well as a basic RDFS inference, on top of RDFLib, based on forward-chaining."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/OWL-RL"
+  title = "RDFLib/OWL-RL README"
+  quote = "A simple implementation of the OWL2 RL Profile, as well as a basic RDFS inference, on top of RDFLib, based on forward-chaining."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/RDFLib/pySHACL"
+  title = "RDFLib/pySHACL README"
+  quote = "This is a pure Python module which allows for the validation of RDF graphs against Shapes Constraint Language (SHACL) graphs."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-03"

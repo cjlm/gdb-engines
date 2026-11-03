@@ -55,3 +55,19 @@ notes = "A Cargo workspace of Rust crates; confirms current value."
   quote = "Grust is a modern property graph API for Rust."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "The grust-algorithms crate (in the same workspace, enabled via the \"algorithms\" facade feature) provides BFS, weighted shortest paths, components, PageRank, DFS, multi-source BFS and topological order, callable from Cypher CALL."
+
+  [[claims.sources]]
+  url = "https://github.com/querygraph/grust"
+  title = "querygraph/grust README"
+  quote = "components, PageRank, DFS, multi-source BFS and topological order."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

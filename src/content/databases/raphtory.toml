@@ -9,6 +9,7 @@ implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["GraphQL"]
 protocols = ["GraphQL (HTTP)"]
+kg_capabilities = ["Graph algorithms", "Vector search"]
 released = "2020-12"
 category = "Emerging"
 gdotv_support = false

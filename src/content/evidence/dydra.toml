@@ -91,3 +91,19 @@ notes = "The SPARQL query engine SPOCQ (the project's stated core) is built in L
   quote = "cl-ndbapi: Common Lisp bindings for the C++ NDB API of RonDB, published at https://github.com/datagraph/cl-ndbapi"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 query and update per Dydra's own docs. No reasoning, SHACL or R2RML found in the public docs."
+
+  [[claims.sources]]
+  url = "https://docs.dydra.com/sparql"
+  title = "Dydra docs: SPARQL"
+  quote = "Dydra supports SPARQL 1.1 query and update."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

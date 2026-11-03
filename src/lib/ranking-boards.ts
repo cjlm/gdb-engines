@@ -6,6 +6,7 @@
  */
 import type { RankingFile, RankedEngine } from './rankings';
 import { licenseTier } from './license-tier';
+import { kgKindsOf } from './knowledge-graph';
 
 export interface Board {
   slug: string;
@@ -36,6 +37,8 @@ export interface CatalogueRankingMeta {
   protocols?: readonly string[];
   description?: string;
   ai_roles?: readonly string[];
+  kg_kinds?: readonly string[];
+  kg_capabilities?: readonly string[];
 }
 
 const splitInsufficient = (engines: RankedEngine[]): { ranked: RankedEngine[]; insufficientCount: number } => {
@@ -134,6 +137,10 @@ const isGraphOverRelational = (db: CatalogueRankingMeta): boolean =>
 const hasAiRole = (db: CatalogueRankingMeta, role: 'agent-memory' | 'graphrag'): boolean =>
   isActiveCatalogueEntry(db) && db.ai_roles?.includes(role) === true;
 
+// Sourced per engine: it answers SPARQL itself, or its makers present it for knowledge graphs.
+const isKnowledgeGraph = (db: CatalogueRankingMeta): boolean =>
+  isActiveCatalogueEntry(db) && kgKindsOf(db).length > 0;
+
 const isAgentMemory = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'agent-memory');
 const isGraphRag = (db: CatalogueRankingMeta): boolean => hasAiRole(db, 'graphrag');
 
@@ -148,6 +155,19 @@ interface SegmentDefinition {
 }
 
 const SEGMENTS: SegmentDefinition[] = [
+  {
+    // Rendered by its own page, src/pages/rankings/knowledge-graph.astro, which adds tabs per
+    // kind of knowledge graph and the capability matrix.
+    slug: 'knowledge-graph',
+    title: 'Knowledge Graph Databases, Ranked Monthly',
+    h1: 'Knowledge Graph Databases, Ranked Monthly',
+    shortLabel: 'Knowledge Graph',
+    blurb:
+      'Engines for semantic, property graph and virtual knowledge graphs, ranked monthly ' +
+      'across adoption, activity, community and research signals. An engine is listed if it ' +
+      'answers SPARQL itself, or if its makers present it for building knowledge graphs.',
+    match: isKnowledgeGraph,
+  },
   {
     slug: 'postgresql-graph-extensions',
     title: 'PostgreSQL Graph Extensions, Ranked Monthly',

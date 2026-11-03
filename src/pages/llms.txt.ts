@@ -51,6 +51,7 @@ export const GET: APIRoute = async () => {
 
 - [Overall ranking](https://gdb-engines.com/rankings/overall/): Top graph databases by blended score, refreshed monthly.
 - [Movers](https://gdb-engines.com/rankings/movers/): Engines with the fastest-rising momentum month-over-month.
+- [Knowledge graph databases](https://gdb-engines.com/rankings/knowledge-graph/): Engines for semantic, property graph and virtual knowledge graphs, with sourced capabilities (SPARQL 1.1, reasoning, SHACL, R2RML, vector search, graph algorithms).
 - [PostgreSQL graph extensions](https://gdb-engines.com/rankings/postgresql-graph-extensions/): Graph extensions that run inside PostgreSQL or a PostgreSQL-compatible engine.
 - [Graph layers for relational databases](https://gdb-engines.com/rankings/graph-layers-relational-databases/): Graph layers that add graph capabilities to relational data or query it in place.
 - [Graph systems for agent memory](https://gdb-engines.com/rankings/graph-databases-agent-memory/): Graph systems used as memory and context stores for AI agents.
@@ -87,6 +88,10 @@ ${pairs.representative}
 ## Source
 
 - [GitHub repository](https://github.com/cjlm/gdb-engines): Source TOML data + Astro site, open to contributions.
+
+## Guides
+
+- [What is a knowledge graph?](https://gdb-engines.com/knowledge-graph/): Six things the term means, how a knowledge graph is built (after Jessica Talisman's Ontology Pipeline), and which parts a database supplies.
 
 ## Research basis
 

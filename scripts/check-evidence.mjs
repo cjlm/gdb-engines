@@ -16,6 +16,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'smol-toml';
+import { PER_VALUE_FIELDS, unsupportedValues } from './lib/per-value-evidence.mjs';
 
 const DB_DIR = 'src/content/databases';
 const EV_DIR = 'src/content/evidence';
@@ -26,6 +27,7 @@ const REQUIRE_EVIDENCE = [
   'license',
   'released',
   'implementation_language',
+  ...PER_VALUE_FIELDS,
 ];
 
 const errors = [];
@@ -108,6 +110,24 @@ if (existsSync(EV_DIR)) {
           `${where}: every quote for "${claim.field}" failed verification — the cited pages do ` +
           `not contain them. Re-research rather than republish.`,
         );
+      }
+      if (PER_VALUE_FIELDS.includes(claim.field)) {
+        for (const v of unsupportedValues(claim)) {
+          errors.push(
+            `${where}: "${claim.field}" lists "${v}" but no source names it in \`supports\`.`,
+          );
+        }
+        // The catalogue value is what the site and the rankings publish, so each value needs a
+        // quote that verify-quotes.mjs has matched. Drop or re-source a value whose quotes are
+        // unchecked, unreachable or missing from the page.
+        const unsupported = unsupportedValues(claim);
+        for (const v of unsupportedValues(claim, { publishedOnly: true })) {
+          if (unsupported.includes(v)) continue;
+          errors.push(
+            `${where}: no verified quote backs "${claim.field}" value "${v}". ` +
+            `Run verify-quotes.mjs, then re-source or drop the value.`,
+          );
+        }
       }
       for (const s of sources.filter((s) => s.verified === 'unchecked')) {
         warnings.push(`${where}: quote from ${s.url} not yet verified (run verify-quotes.mjs).`);

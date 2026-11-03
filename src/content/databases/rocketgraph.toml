@@ -10,6 +10,7 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher"]
 protocols = ["gRPC"]
+kg_capabilities = ["Graph algorithms"]
 released = "2019-04"
 category = "Emerging"
 gdotv_support = false

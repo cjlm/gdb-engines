@@ -1,0 +1,293 @@
+---
+/**
+ * The knowledge graph board's body on /rankings/knowledge-graph/: the ranking split into tabs by
+ * kind, and a table of the knowledge graph capabilities each engine ships or adds by extension.
+ */
+import { getCollection } from 'astro:content';
+import RankingTable from './RankingTable.astro';
+import type { RankedEngine } from '../lib/rankings';
+import type { buildLinkMaps } from '../lib/ranking-boards';
+import {
+  KG_CAPABILITIES,
+  kgCapabilityDescriptions,
+  kgKindLabels,
+  kgKindsOf,
+  type KgCapability,
+  type KgKind,
+} from '../lib/knowledge-graph';
+
+interface Props {
+  engines: RankedEngine[];
+  faviconMap: Record<string, string>;
+  linkMaps: ReturnType<typeof buildLinkMaps>;
+  engineMeta: Record<string, { description: string; githubUrl?: string; url?: string }>;
+}
+
+const { engines, faviconMap, linkMaps, engineMeta } = Astro.props;
+const catalogue = new Map((await getCollection('databases')).map(({ data }) => [data.slug, data]));
+const kindsOf = (e: RankedEngine): KgKind[] => {
+  const db = catalogue.get(e.slug);
+  return db ? kgKindsOf(db) : [];
+};
+const rolesOf = (e: RankedEngine): readonly string[] => catalogue.get(e.slug)?.ai_roles ?? [];
+const shortKind = (kind: KgKind) => kgKindLabels[kind].split(' (')[0];
+
+type Support = 'built-in' | 'extension' | 'none';
+function support(e: RankedEngine, capability: KgCapability): Support {
+  const db = catalogue.get(e.slug);
+  if (db?.kg_capabilities.includes(capability)) return 'built-in';
+  if (db?.kg_extension_capabilities.includes(capability)) return 'extension';
+  return 'none';
+}
+
+interface Tab {
+  id: string;
+  heading: string;
+  label: string;
+  lede: string;
+  engines: RankedEngine[];
+  more?: { href: string; label: string };
+}
+const kindTab = (kind: KgKind, lede: string): Tab => ({
+  id: kind,
+  heading: `${shortKind(kind)} engines`,
+  label: shortKind(kind),
+  lede,
+  engines: engines.filter((e) => kindsOf(e).includes(kind)),
+});
+const tabs: Tab[] = [
+  {
+    id: 'all',
+    heading: 'All knowledge graph engines',
+    label: 'All',
+    lede: 'Every engine on this ranking, of any kind.',
+    engines,
+  },
+  kindTab(
+    'semantic',
+    'Engines that answer SPARQL 1.1 themselves, so they store RDF and can hold an ontology ' +
+      'as data alongside the facts.',
+  ),
+  kindTab(
+    'property-graph',
+    'Labelled property graph databases whose makers present them for building knowledge graphs.',
+  ),
+  kindTab(
+    'virtual',
+    'Engines that build a knowledge graph over data left where it is, in relational ' +
+      'databases, warehouses or lakes.',
+  ),
+  {
+    id: 'graphrag',
+    heading: 'Engines also used for GraphRAG',
+    label: 'GraphRAG',
+    lede: 'Knowledge graph engines also used to ground LLM answers in a graph.',
+    engines: engines.filter((e) => rolesOf(e).includes('graphrag')),
+    more: {
+      href: '/rankings/graph-databases-graphrag-knowledge-grounding/',
+      label: 'Full GraphRAG ranking',
+    },
+  },
+  {
+    id: 'agent-memory',
+    heading: 'Engines also used as agent memory',
+    label: 'Agent memory',
+    lede: 'Knowledge graph engines also used as memory for AI agents.',
+    engines: engines.filter((e) => rolesOf(e).includes('agent-memory')),
+    more: { href: '/rankings/graph-databases-agent-memory/', label: 'Full agent memory ranking' },
+  },
+].filter((t) => t.engines.length > 0);
+---
+<p class="kg-guide-link">
+  <a href="/knowledge-graph/">What the term means, and how to tell the kinds apart &rarr;</a>
+</p>
+
+<div class="kg-tabs">
+  {tabs.map((tab, i) => (
+    <input
+      type="radio"
+      name="kg-tab"
+      id={`kg-tab-${tab.id}`}
+      class="kg-tab-input"
+      checked={i === 0}
+      aria-controls={`kg-tab-panel-${tab.id}`}
+    />
+  ))}
+  <div class="kg-tab-labels">
+    {tabs.map((tab) => (
+      <label for={`kg-tab-${tab.id}`} class="kg-tab-label">
+        {tab.label} <span class="count">{tab.engines.length}</span>
+      </label>
+    ))}
+  </div>
+  {tabs.map((tab) => (
+    <section
+      id={`kg-tab-panel-${tab.id}`}
+      class={`kg-tab-panel kg-tab-panel-${tab.id}`}
+      aria-labelledby={`kg-tab-heading-${tab.id}`}
+    >
+      <h2 id={`kg-tab-heading-${tab.id}`}>{tab.heading}</h2>
+      <p class="tab-lede">
+        {tab.lede}
+        {tab.more && <> <a href={tab.more.href}>{tab.more.label} &rarr;</a></>}
+      </p>
+      <RankingTable
+        engines={tab.engines}
+        faviconMap={faviconMap}
+        linkMaps={linkMaps}
+        engineMeta={engineMeta}
+      />
+    </section>
+  ))}
+</div>
+
+<section class="kg-capabilities" aria-labelledby="kg-capabilities-heading">
+  <h2 id="kg-capabilities-heading">What each engine brings to a knowledge graph</h2>
+  <p>
+    A database holds the facts. A semantic knowledge graph also needs a vocabulary and an
+    ontology, and may add a reasoner, validation, data virtualisation, vector retrieval and graph
+    algorithms. The columns follow those parts, as Jessica Talisman lays them out in
+    <cite>Ontology Pipeline</cite>.
+  </p>
+  <p>
+    A tick means the engine ships it. A hollow circle means an extension from the same makers adds
+    it, such as Neo4j Labs' neosemantics. A dot means we found no official source for either; a
+    third-party tool may still supply it. The first five columns are RDF standards, so a property
+    graph database reaches them only through an extension or a separate tool.
+  </p>
+  <div class="capability-table-wrap">
+    <table class="capability-table">
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Engine</th>
+          <th>Kind</th>
+          {KG_CAPABILITIES.map((c) => (
+            <th class="cap" title={kgCapabilityDescriptions[c]}>{c}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {engines.map((e, i) => (
+          <tr>
+            <td class="num">{i + 1}</td>
+            <td><a href={`/db/${e.slug}/#sources`}>{e.name}</a></td>
+            <td class="kinds">{kindsOf(e).map(shortKind).join(', ')}</td>
+            {KG_CAPABILITIES.map((c) => {
+              const s = support(e, c);
+              return (
+                <td class="cap">
+                  {s === 'built-in' && <span aria-label="Ships it" title={c}>&#10003;</span>}
+                  {s === 'extension' && (
+                    <span class="ext" aria-label="Added by the makers' extension" title={c}>
+                      &#9675;
+                    </span>
+                  )}
+                  {s === 'none' && <span class="no" aria-label="No source found">·</span>}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="method">
+    Kinds and capabilities come from the makers' documentation and repositories. Each value carries
+    a verbatim quote, listed with its source on the engine's page, and a value is published only
+    once its quote has been refetched and found on the cited page. Engines are ordered by the
+    monthly <a href="/rankings/overall/">popularity score</a>: adoption, activity, community and
+    research signals.
+  </p>
+</section>
+
+<style>
+  .kg-guide-link { margin: 0 0 1rem; font-size: 0.9rem; }
+  .kg-guide-link a,
+  .tab-lede a,
+  .kg-capabilities a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+  }
+  .tab-lede,
+  .kg-capabilities p {
+    color: var(--color-text-secondary);
+    max-width: 90ch;
+    line-height: 1.55;
+  }
+  .kg-capabilities p { margin: 0 0 0.75rem; }
+  h2 { font-size: 1.15rem; margin: 1.5rem 0 0.4rem; color: var(--color-text); }
+
+  .kg-tab-input { position: absolute; opacity: 0; pointer-events: none; }
+  .kg-tab-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1.25rem 0 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kg-tab-label {
+    cursor: pointer;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+  }
+  .kg-tab-label .count { color: var(--color-text-tertiary); font-size: 0.8rem; }
+  .kg-tab-panel { display: none; }
+  .kg-tab-panel h2 { margin-top: 1rem; }
+  /* One rule per tab: the checked radio shows its panel and marks its label. */
+  #kg-tab-all:checked ~ .kg-tab-panel-all,
+  #kg-tab-semantic:checked ~ .kg-tab-panel-semantic,
+  #kg-tab-property-graph:checked ~ .kg-tab-panel-property-graph,
+  #kg-tab-virtual:checked ~ .kg-tab-panel-virtual,
+  #kg-tab-graphrag:checked ~ .kg-tab-panel-graphrag,
+  #kg-tab-agent-memory:checked ~ .kg-tab-panel-agent-memory { display: block; }
+  #kg-tab-all:checked ~ .kg-tab-labels [for='kg-tab-all'],
+  #kg-tab-semantic:checked ~ .kg-tab-labels [for='kg-tab-semantic'],
+  #kg-tab-property-graph:checked ~ .kg-tab-labels [for='kg-tab-property-graph'],
+  #kg-tab-virtual:checked ~ .kg-tab-labels [for='kg-tab-virtual'],
+  #kg-tab-graphrag:checked ~ .kg-tab-labels [for='kg-tab-graphrag'],
+  #kg-tab-agent-memory:checked ~ .kg-tab-labels [for='kg-tab-agent-memory'] {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: -1px;
+    border-bottom: 1px solid var(--color-background);
+  }
+  .kg-tab-input:focus-visible ~ .kg-tab-labels {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .capability-table-wrap { width: 100%; max-width: 100%; overflow-x: auto; }
+  .capability-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .capability-table th,
+  .capability-table td {
+    padding: 0.35rem 0.55rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+  .capability-table th.cap {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    font-weight: 500;
+    vertical-align: bottom;
+  }
+  .capability-table td.cap { text-align: center; }
+  .capability-table .ext { color: var(--color-text-secondary); }
+  .capability-table .no { color: var(--color-text-tertiary); }
+  .capability-table .kinds { color: var(--color-text-secondary); white-space: nowrap; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .method { font-size: 0.85rem; }
+</style>

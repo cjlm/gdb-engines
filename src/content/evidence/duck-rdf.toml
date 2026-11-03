@@ -45,3 +45,27 @@ checked = "2026-08-26"
   quote = "\"C++\": 207673"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "R2RML mapping"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 recorded with a caveat: the makers document a subset of SPARQL 1.1 (SELECT and ASK only; CONSTRUCT/DESCRIBE, GRAPH/FROM NAMED, SERVICE, updates and some builtins are rejected), translated to SQL over DuckDB tables via an R2RML/YARRRML mapping rather than executed by a SPARQL engine, and the README calls SPARQL support 'very experimental' - hence medium. R2RML/YARRRML mappings are used for writing RDF and, in reverse, for SPARQL-to-SQL translation. Distributed as a DuckDB Community Extension. No reasoning, SHACL, vector index or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://github.com/nonodename/duck_rdf"
+  title = "nonodename/duck_rdf README"
+  quote = "writing using R2RML or YARRRML mappings querying either remote sources or using a subset of SPARQL and the R2RML/Yarrrml mappings in reverse"
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/nonodename/duck_rdf/blob/main/docs/sparql.md"
+  title = "duck_rdf docs: SPARQL 1.1 Support"
+  quote = "Translation covers a large, useful subset of SPARQL 1.1"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

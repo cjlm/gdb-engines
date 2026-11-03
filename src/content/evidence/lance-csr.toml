@@ -62,3 +62,43 @@ checked = "2026-10-26"
   quote = "It is a fork of"
   verified = "matched"
   checked = "2026-10-27"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph", "virtual"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "property-graph: enabling multimodal knowledge graphs is one of the README's three stated aims and has its own section on the docs home page; the engine is openCypher over Lance node/edge datasets. virtual: the makers say lance-csr runs path traversals over the existing Lance datasets so the knowledge graph works on one copy of the data instead of a second copy in a separate graph database, i.e. the graph is built over data left where it is. Project is alpha."
+
+  [[claims.sources]]
+  url = "https://github.com/hyperdimensionalcomputingai/lance-csr"
+  title = "hyperdimensionalcomputingai/lance-csr README"
+  quote = "Enable multimodal knowledge graphs."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://lance-csr.hdclabs.ai/"
+  title = "lance-csr documentation home"
+  quote = "lance-csr runs path traversals over those same datasets, so your knowledge graph works on one copy of the data instead of a second copy in a separate graph database."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector functions in Cypher plus a VectorSearch builder, with use of a Lance ANN index. Docs say graph algorithms are not part of this project (pointing to separate HDC Labs work). No RDF/SPARQL/OWL/SHACL/R2RML."
+
+  [[claims.sources]]
+  url = "https://lance-csr.hdclabs.ai/vector-search/"
+  title = "lance-csr: Vector search"
+  quote = "Knowledge graphs often carry embeddings next to their structure. lance-csr gives you two ways to use them:"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

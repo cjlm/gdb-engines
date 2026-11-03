@@ -84,3 +84,59 @@ notes = "README states the engine is built in Rust; confirms current value."
   quote = "Grafeo is a graph database built in Rust from the ground up for speed and low memory use."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Supports both LPG and RDF. The official Knowledge Graph tutorial builds a movie knowledge graph with labeled property graph nodes and edges (GQL INSERT) and validates it with SHACL. Replaces the README use-case-list source."
+
+  [[claims.sources]]
+  url = "https://grafeo.dev/tutorials/knowledge-graph/"
+  title = "Knowledge Graph - Grafeo"
+  quote = "This tutorial builds a knowledge graph about movies, actors, directors and genres."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "SHACL validation", "Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "RDF/SPARQL, SHACL, vector and algorithms are Cargo feature flags (rdf, shacl, ai, analytics) of the same project. No RDFS/OWL reasoning or R2RML found."
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "SPARQL (W3C 1.1) with SHACL validation and Ring Index WCOJ planner"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "W3C Shapes Constraint Language with all 28 Core constraint types and SHACL-SPARQL"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/GrafeoDB/grafeo"
+  title = "GrafeoDB/grafeo README"
+  quote = "O(log n) approximate nearest neighbor search with tunable recall"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://grafeo.dev/algorithms/"
+  title = "Graph Algorithms - Grafeo"
+  quote = "Grafeo includes a library of built-in graph algorithms for common analysis tasks, accessible via the db.algorithms() API."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

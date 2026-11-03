@@ -70,3 +70,19 @@ notes = "Confirms the current value; GitHub reports Java as the repository's pri
   quote = "\"watchers_count\": 115,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["RDFS reasoning"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RDFS reasoning is partial: the manual lists rdfs:subClassOf and rdfs:subPropertyOf (no domain/range), plus selected OWL properties (equivalentProperty, inverseOf, SymmetricProperty, TransitiveProperty in beta, sameAs); those OWL items are not an OWL profile, so OWL reasoning is not recorded. SPARQL 1.1 not recorded: Rya's docs say only that it supports SPARQL queries via RDF4J and never state 1.1. No SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://github.com/apache/rya/blob/master/extras/rya.manual/src/site/markdown/sm-infer.md"
+  title = "Apache Rya manual: Inferencing"
+  quote = "Apache Rya currently provides simple inferencing. The supported list of inferred relationships include: - rdfs:subClassOf - rdfs:subPropertyOf"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"

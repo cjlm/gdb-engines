@@ -48,3 +48,43 @@ notes = "Confirms the current value; README describes it as TypeScript-first and
   quote = "TypeScript-first embedded knowledge graph library."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "TypeScript library over SQLite/PostgreSQL that the makers' site presents as an embedded knowledge graph library built on property graph modeling ('The Knowledge Graph for TypeScript'). Also offers 'practical ontology support' (subClassOf, implies, inverseOf, disjointWith) but is not RDF-based, so semantic not listed. Replaces the README quote, which did not mention knowledge graphs."
+
+  [[claims.sources]]
+  url = "https://typegraph.dev"
+  title = "TypeGraph - The Knowledge Graph for TypeScript"
+  quote = "TypeGraph is a TypeScript-first embedded knowledge graph library. It brings property graph modeling and practical ontology support to your existing SQLite or PostgreSQL database"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "Vector search runs through the backend's vector extension (pgvector, sqlite-vec, libSQL native vectors) via TypeGraph's built-in API in the same database. Algorithms API: shortest path, reachability, degree, WCC, label propagation, PageRank (README says no broad community/centrality suites). Ontology relations are not OWL reasoning."
+
+  [[claims.sources]]
+  url = "https://github.com/nicia-ai/typegraph"
+  title = "nicia-ai/typegraph"
+  quote = "Run vector and hybrid search across every backend — pgvector, sqlite-vec, and libSQL/Turso native vectors"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/nicia-ai/typegraph"
+  title = "nicia-ai/typegraph"
+  quote = "label propagation, and global/personalized PageRank, but not broad community"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

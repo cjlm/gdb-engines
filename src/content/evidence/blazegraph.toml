@@ -77,3 +77,27 @@ notes = "Confirms current value."
   quote = "Blazegraph™ is a standards-based, high-performance, scalable, open-source graph database. Written entirely in Java, the platform supports Blueprints and RDF/ SPARQL 1.1 family of specifications, including Query, Update, Basic Federated Query, and Service Description."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 Query, Update, Basic Federated Query and Service Description per the makers' wiki. Inference is RDFS+ (RDFS plus a few OWL constructs) by eager materialization with incremental truth maintenance. OWL reasoning not recorded: the makers describe only 'a little bit of OWL', not an OWL profile. Blazegraph also ships a GAS graph-mining API, not assessed here. No SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database/wiki/About_Blazegraph"
+  title = "About Blazegraph (Blazegraph wiki)"
+  quote = "the platform supports Blueprints and RDF / SPARQL 1.1 family of specifications, including Query, Update, Basic Federated Query, and Service Description."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/blazegraph/database/wiki/InferenceAndTruthMaintenance"
+  title = "Inference and Truth Maintenance (Blazegraph wiki)"
+  quote = "Bigdata bundles support for RDFS+ (RDFS plus a little bit of OWL) as well as some simpler profiles."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"

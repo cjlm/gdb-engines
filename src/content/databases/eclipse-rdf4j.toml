@@ -10,6 +10,7 @@ implementation_language = "Java"
 type = "RDF"
 query_languages = ["SPARQL"]
 protocols = ["HTTP/REST", "SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning", "SHACL validation"]
 released = "2002"
 category = "Established"
 gdotv_support = true

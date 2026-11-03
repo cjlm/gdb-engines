@@ -70,3 +70,19 @@ notes = "Confirms current value."
   quote = "cargo build --workspace\ncargo test  --workspace\n```\n\nNotes:\n\n- Rust stable toolchain, edition 2024"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "nearest() vector ranking over Lance IVF indexes, fused with full-text via rrf(). No graph algorithm library found. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://www.omnigraph.dev/docs/queries-search/search"
+  title = "OmniGraph Search"
+  quote = "OmniGraph combines vector, full-text, and graph patterns in one .gq query."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

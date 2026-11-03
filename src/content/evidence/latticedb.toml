@@ -45,3 +45,35 @@ checked = "2026-08-26"
   quote = "\"Zig\": 3332248"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Embedded labeled property graph (Cypher) with vectors and full-text search. The docs have a dedicated 'Knowledge Graph Modeling' guide for LatticeDB. The README notes Graph RAG/agent memory/local knowledge tools are example workloads rather than the definition of the engine, but the makers do document building knowledge graphs with it."
+
+  [[claims.sources]]
+  url = "https://docs.latticedb.org/guides/knowledge-graph"
+  title = "Knowledge Graph Modeling - LatticeDB Documentation"
+  quote = "This guide covers data modeling patterns for knowledge graphs in LatticeDB."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Native HNSW vector index. No graph algorithm library found in README. No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://github.com/jeffhajewski/latticedb"
+  title = "jeffhajewski/latticedb README"
+  quote = "Embedded property-graph database with native vector and full-text indexing."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

@@ -32,3 +32,51 @@ notes = "The vendor offers a restricted free Community Edition for personal and 
   quote = "Free to use for personal and non-commercial purposes. No license key required."
   verified = "unreachable"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ultipa's Enterprise Knowledge Graph solution page (a dedicated page about building KGs) says 'Ultipa Graph provides powerful capabilities for building and querying enterprise knowledge graphs' and its call to action is the GQLDB Playground; Ultipa's docs index names the current product 'GQLDB (Ultipa Graph v6)', so the page is about GQLDB. The separate 'ultipa' entry (Ultipa Graph v5) gets no kg_kinds: no knowledge-graph page or guide is about v5 specifically (the v5 graph-database docs do not mention knowledge graphs). GQLDB is an ISO GQL property graph with a built-in ontology layer (OWL/RDF classes, IRIs, RDF import/export, SPARQL federation)."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/solutions/enterprise-knowledge-graph"
+  title = "Ultipa: Enterprise Knowledge Graph"
+  quote = "Ultipa Graph provides powerful capabilities for building and querying enterprise knowledge graphs."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["OWL reasoning", "Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "OWL: query-time inference over OWL axioms (SUBCLASS OF, EQUIVALENT TO, unionOf/intersectionOf/oneOf, SYMMETRIC, TRANSITIVE, INVERSE OF, SUBPROPERTY OF, PROPERTY CHAIN); no named OWL 2 profile given. Not listed: SPARQL 1.1 (only federation to remote SPARQL endpoints via FROM SERVICE, GQLDB itself is queried with GQL); RDFS reasoning (subclass/subproperty inference exists but DOMAIN/RANGE are used for validation, not entailment); SHACL (validation uses its own ontology enforcement modes, not SHACL); no R2RML. Vector index is HNSW. Algorithms are compiled into the database."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/ontology"
+  title = "GQLDB docs: Ontology Introduction"
+  quote = "Subclass closure, OWL characteristics, and class / property constructors (union, intersection, oneOf, equivalence), at query time"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/ai-and-vectors/vector-index"
+  title = "GQLDB docs: Vector Index"
+  quote = "GQLDB's vector index is built on HNSW (Hierarchical Navigable Small World), a graph-based algorithm for approximate nearest neighbor (ANN) search."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/graph-algorithms"
+  title = "Ultipa docs: Graph Algorithms Introduction"
+  quote = "Ultipa provides a rich set of built-in graph algorithms for analytical insights from graph data."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

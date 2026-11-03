@@ -98,3 +98,51 @@ checked = "2026-09-23"
   quote = "Kinetica, formerly known as GPUdb, is making a bit of a splash"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Kinetica presents knowledge-graph building through kgr, its open-source GraphRAG tool that writes into a Kinetica property graph. No RDF/ontology-store positioning."
+
+  [[claims.sources]]
+  url = "https://www.kinetica.com/tools/graph-rag"
+  title = "GraphRAG (kgr) | Kinetica"
+  quote = "A knowledge graph that learns its own ontology."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.kinetica.com/tools/graph-rag"
+  title = "GraphRAG (kgr) | Kinetica"
+  quote = "kgr extracts entities and relations, evolves the schema to fit them, and lands everything in a live Kinetica property graph"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found; Kinetica is SQL-based. Graph solvers (shortest path, PageRank, centrality) are built in and callable from SQL."
+
+  [[claims.sources]]
+  url = "https://docs.kinetica.com/7.2/vector_search/"
+  title = "Vector Search - Kinetica Docs"
+  quote = "Once a table has been created with vector type and a set of embeddings have been loaded into the table, a variety of K-nearest neighbor searches can be performed on the data set."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.kinetica.com/features/graph-analytics"
+  title = "Graph | Kinetica"
+  quote = "Generic solvers (shortest path, PageRank, centrality), purpose-built matchers"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

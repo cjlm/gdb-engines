@@ -8,6 +8,7 @@ license = "Proprietary"
 type = "Property Graph"
 query_languages = ["openCypher", "SQL"]
 protocols = ["Thrift"]
+kg_capabilities = ["Graph algorithms"]
 category = "Emerging"
 gdotv_support = false
 released = "2018-05"

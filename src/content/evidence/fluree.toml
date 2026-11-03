@@ -98,3 +98,75 @@ notes = "The current fluree/db repository's core is Rust; the project's own READ
   quote = "**Rust library** — Embed Fluree directly in your application. No server process needed."
   verified = "matched"
   checked = "2026-10-06"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Virtual: Apache Iceberg and R2RML graph sources let Parquet warehouses and relational stores be queried in place alongside native ledger data."
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "Apache Iceberg / R2RML — query Parquet warehouses and relational stores as first-class graph sources alongside native Fluree data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "R2RML mapping", "Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Reasoning: RDFS, OWL 2 QL and OWL 2 RL, plus Datalog rules. Vector search is HNSW, embedded or via a remote fluree-search service. No graph algorithm library found."
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "Full SPARQL 1.1 with zero compliance failures against the W3C test suite."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "RDFS subclass/subproperty reasoning, OWL 2 RL forward-chaining, and user-defined Datalog rules."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "RDFS subclass/subproperty reasoning, OWL 2 RL forward-chaining, and user-defined Datalog rules."
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "SHACL validation — declarative shape constraints enforced at transaction time, with violations reported per-target, per-property."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "Apache Iceberg / R2RML — query Parquet warehouses and relational stores as first-class graph sources alongside native Fluree data."
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/fluree/db"
+  title = "fluree/db README"
+  quote = "BM25 full-text search and HNSW vector similarity are built into the query engine — not bolted-on external services."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

@@ -62,3 +62,27 @@ checked = "2026-09-23"
   quote = "This is a fork from the original kuzu/kuzudb"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Vector index and algo (PageRank, Louvain, WCC/SCC, k-core, shortest paths) are official Kuzu extensions; README says v0.11.3 pre-installs algo, fts, json and vector. Repo archived Oct 2026."
+
+  [[claims.sources]]
+  url = "https://github.com/Kineviz/bighorn"
+  title = "Kineviz/bighorn README"
+  quote = "Native full text search and vector index"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://kineviz.github.io/bighorndb-docs/extensions/algo"
+  title = "Bighorn docs - Algo extension"
+  quote = "The algo extension allows you to run common graph algorithms such as PageRank, Connected Components, and Louvain on the graph stored in Kuzu."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

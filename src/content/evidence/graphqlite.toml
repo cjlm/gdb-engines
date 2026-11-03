@@ -55,3 +55,35 @@ notes = "Confirms current value; GraphQLite is a SQLite extension and GitHub's b
   quote = "An SQLite extension that adds graph database capabilities using the Cypher query language."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Official tutorial \"Building a Knowledge Graph\"; GitHub topics include knowledge-graph and graph-rag."
+
+  [[claims.sources]]
+  url = "https://colliery-io.github.io/graphqlite/tutorials/knowledge-graph/"
+  title = "GraphQLite: Building a Knowledge Graph"
+  quote = "This tutorial builds a research publication knowledge graph in Python."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Built-in PageRank, degree/betweenness/closeness/eigenvector centrality, Louvain, Leiden, label propagation, WCC/SCC, Dijkstra, BFS/DFS. No built-in vector index (docs only describe using it alongside other SQLite extensions); no RDF/SPARQL features."
+
+  [[claims.sources]]
+  url = "https://github.com/colliery-io/graphqlite"
+  title = "colliery-io/graphqlite README"
+  quote = "A SQLite extension that adds graph database capabilities with Cypher query language support and built-in graph algorithms."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

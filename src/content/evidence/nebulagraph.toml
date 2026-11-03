@@ -70,3 +70,43 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Knowledge Graphs is a listed solution on nebula-graph.io; README also lists knowledge graphs among main uses."
+
+  [[claims.sources]]
+  url = "https://www.nebula-graph.io/solutions-knowledge-graphs"
+  title = "NebulaGraph Knowledge Graphs solution"
+  quote = "NebulaGraph’s property graph model adapts to evolving business logic, enabling rapid knowledge graph updates as new entities and relationships emerge."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/vesoft-inc/nebula"
+  title = "vesoft-inc/nebula README"
+  quote = "NebulaGraph has been widely used for social media, recommendation systems, knowledge graphs, security, capital flows, AI, etc."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Graph algorithms via NebulaGraph Algorithm (official vesoft-inc Spark/GraphX package, separate from the core server). No built-in vector index found in the open-source 3.8 docs (vector features, if any, are in newer commercial editions; not verified). No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found in official docs."
+
+  [[claims.sources]]
+  url = "https://docs.nebula-graph.io/3.8.0/graph-computing/nebula-algorithm/"
+  title = "NebulaGraph Algorithm"
+  quote = "The lib repository provides 10 common graph algorithms."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

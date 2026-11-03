@@ -10,6 +10,7 @@ type = "Property Graph"
 kind = "database"
 query_languages = ["GQL", "Cypher"]
 protocols = ["gRPC", "Native binary"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 released = "2026-02"
 category = "Emerging"
 gdotv_support = false

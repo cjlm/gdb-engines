@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["GQL"]
+kg_capabilities = ["Vector search"]
 kind = "embedded"
 released = "2026-05"
 category = "Emerging"

@@ -77,3 +77,51 @@ notes = "Reuses Oxigraph's crates for the data model, parsers and SPARQL algebra
   quote = "Data model, all RDF parsers and serializers, the SPARQL parser and algebra, result formats, XSD datatypes, and a fallback evaluator"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "OWL: per-query OWL QL entailment by rewriting and OWL 2 RL materialization (SQL fixpoint rules or the reasonable crate). SHACL/ShEx via rudof in oxilite-validate. Vector search only on the Turso backend. Datalog rules also supported. No R2RML or graph-algorithm library."
+
+  [[claims.sources]]
+  url = "https://github.com/Volland/oxilite"
+  title = "Volland/oxilite README"
+  quote = "Full SPARQL 1.1 query and update compiled to SQL"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/Volland/oxilite"
+  title = "Volland/oxilite README"
+  quote = "entailment by rewriting against a small materialized TBox closure. Queries stay single statements and there are no extra writes."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/Volland/oxilite"
+  title = "Volland/oxilite README"
+  quote = "OWL 2 RL materialization is available on request via"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/Volland/oxilite"
+  title = "Volland/oxilite README"
+  quote = "RDFS / OWL reasoning; SHACL / ShEx validation;"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/Volland/oxilite"
+  title = "Volland/oxilite README"
+  quote = "embeddings stored as literals get vector indexes"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

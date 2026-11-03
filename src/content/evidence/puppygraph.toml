@@ -56,3 +56,67 @@ notes = "Confirms current value: PuppyGraph's public launch announcement is date
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20240314145914/https://www.businesswire.com/news/home/20240314998086/en/PuppyGraph-Launches-First-and-Only-Graph-Query-Engine"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph", "virtual"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "virtual: zero-ETL graph query engine that queries warehouses, lakes and RDBMS in place (docs home; the GraphRAG page says LLMs query data lakes and relational databases in place). The tagline 'Build AI-native knowledge graphs in minutes' was dropped as a virtual source because it says nothing about leaving data in place. property-graph: the makers' GraphRAG product page presents PuppyGraph for knowledge graph creation with Gremlin and Cypher, and their 'How to Build a Knowledge Graph' guide places PuppyGraph among the openCypher property graph systems; the property-graph angle comes from the query languages and model rather than an explicit 'property graph knowledge graph' statement, hence medium."
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "Directly connect to various data sources and simplify knowledge graph creation with PuppyGraph—deploy and query in just 10 minutes."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/"
+  title = "PuppyGraph Docs"
+  quote = "PuppyGraph enables you to query your data as a graph by directly connecting to your data warehouses and lakes."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "PuppyGraph offers zero-ETL deployment, petabyte-scale analytics, flexible query language support (Gremlin and Cypher), and ultra-low latency"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/graph-rag"
+  title = "PuppyGraph GraphRAG"
+  quote = "See how PuppyGraph’s Text-to-Cypher capabilities let LLMs instantly query your data lakes and relational databases in place."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.puppygraph.com/blog/how-to-build-knowledge-graph"
+  title = "How to Build a Knowledge Graph (PuppyGraph)"
+  quote = "The most common graph query languages are openCypher (supported by PuppyGraph, Neo4j, and other property graph systems)"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Docs list PageRank, Louvain, Leiden, label propagation, WCC, connected components. No vector index, SPARQL, OWL, SHACL or R2RML found in docs (docs.puppygraph.com nav checked)."
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/graph-algorithms/"
+  title = "Graph Algorithms - PuppyGraph Docs"
+  quote = "PuppyGraph provides a wide range of graph algorithms to help you solve your graph problems."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

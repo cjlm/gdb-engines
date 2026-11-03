@@ -818,6 +818,18 @@
             "queryLanguages": "Gremlin, openCypher"
           },
           {
+            "id": "db:hydradb",
+            "label": "HydraDB",
+            "image": "https://gdb-engines.com/logos/hydradb.png",
+            "type": "Property Graph",
+            "kind": "database",
+            "category": "Emerging",
+            "status": "active",
+            "license": "AGPL-3.0",
+            "implementationLanguage": "Rust",
+            "queryLanguages": "openCypher"
+          },
+          {
             "id": "db:hypergraphdb",
             "label": "HyperGraphDB",
             "image": "https://gdb-engines.com/logos/hypergraphdb.png",
@@ -2842,6 +2854,21 @@
             "similarity": 0.625
           },
           {
+            "source": "db:hydradb",
+            "target": "db:traverse",
+            "similarity": 0.625
+          },
+          {
+            "source": "db:galaxybase",
+            "target": "db:hydradb",
+            "similarity": 0.5714
+          },
+          {
+            "source": "db:hydradb",
+            "target": "db:rocketgraph",
+            "similarity": 0.5714
+          },
+          {
             "source": "db:bitsy",
             "target": "db:hypergraphdb",
             "similarity": 0.5
@@ -3122,13 +3149,13 @@
             "similarity": 0.7143
           },
           {
-            "source": "db:nodedb",
-            "target": "db:stellardb",
+            "source": "db:hydradb",
+            "target": "db:nodedb",
             "similarity": 0.4444
           },
           {
             "source": "db:nodedb",
-            "target": "db:turingdb",
+            "target": "db:stellardb",
             "similarity": 0.4444
           },
           {
@@ -3367,6 +3394,11 @@
             "similarity": 0.5
           },
           {
+            "source": "db:hydradb",
+            "target": "db:raphtory",
+            "similarity": 0.5
+          },
+          {
             "source": "db:omnigraph",
             "target": "db:raphtory",
             "similarity": 0.5
@@ -3375,11 +3407,6 @@
             "source": "db:raphtory",
             "target": "db:stromadb",
             "similarity": 0.5
-          },
-          {
-            "source": "db:astraeadb",
-            "target": "db:raphtory",
-            "similarity": 0.4444
           },
           {
             "source": "db:oxirs",
@@ -3527,6 +3554,11 @@
             "similarity": 0.5
           },
           {
+            "source": "db:hydradb",
+            "target": "db:sones-graphdb",
+            "similarity": 0.5
+          },
+          {
             "source": "db:galaxybase",
             "target": "db:sones-graphdb",
             "similarity": 0.375
@@ -3535,11 +3567,6 @@
             "source": "db:rocketgraph",
             "target": "db:sones-graphdb",
             "similarity": 0.375
-          },
-          {
-            "source": "db:chronograph",
-            "target": "db:sones-graphdb",
-            "similarity": 0.3333
           },
           {
             "source": "db:alibaba-gdb",

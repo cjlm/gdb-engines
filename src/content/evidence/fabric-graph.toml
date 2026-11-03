@@ -55,3 +55,19 @@ notes = "Confirms current value; public preview rollout began 1 October 2025, an
   quote = "Graph lets you model and explore relationships across your organizational data, unlocking powerful insights for scenarios like fraud detection, supply chain optimization, and customer 360° views"
   verified = "unreachable"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Overview comparison table states built-in graph analytics algorithms; no dedicated algorithm reference page found to name them. No vector index in Graph docs; no SPARQL/RDF."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/fabric/graph/overview"
+  title = "What is graph in Microsoft Fabric?"
+  quote = "graph is compatible with the new GQL standard and includes built-in graph analytics algorithms."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

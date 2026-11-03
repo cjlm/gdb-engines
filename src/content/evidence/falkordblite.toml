@@ -84,3 +84,35 @@ checked = "2026-09-23"
   quote = "FalkorDBLite is a self-contained Python interface to the FalkorDB graph database."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Inherited from the bundled FalkorDB module (HNSW vector index; algo.* procedures incl. PageRank, betweenness, WCC, CDLP). Not separately documented for FalkorDBLite beyond 'Full FalkorDB graph capabilities'."
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/operations/falkordblite"
+  title = "FalkorDBLite docs"
+  quote = "Full FalkorDB graph capabilities via the language SDKs"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/cypher/indexing/vector-index"
+  title = "FalkorDB Vector Indexing"
+  quote = "FalkorDB supports vector indexes for similarity search on vector embeddings, essential for AI and machine learning applications."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.falkordb.com/algorithms"
+  title = "Graph Algorithms in FalkorDB"
+  quote = "FalkorDB offers a suite of graph algorithms optimized for high-performance graph analytics."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

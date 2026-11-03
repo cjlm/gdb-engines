@@ -84,3 +84,19 @@ notes = "AgensGraph is a fork of PostgreSQL (itself written in C); GitHub's own 
   quote = "\"language\": \"C\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "PostgreSQL-based property graph database (Cypher). SKAI Worldwide's AgensGraph product page answers knowledge-graph use directly and names AgensGraph as the core engine of ONTOVIA, the makers' knowledge graph product; the README also has an 'AI and agents' section (knowledge graph plus pgvector, GraphRAG, MCP knowledge-graph memory). Replaces the README bullet source. Medium-strength: an FAQ answer on the product page rather than a dedicated guide."
+
+  [[claims.sources]]
+  url = "https://skaiworldwide.com/en/products/agensgraph"
+  title = "AgensGraph | SKAI Worldwide"
+  quote = "Can it be used for knowledge graphs and RAG? Yes. It connects scattered data through relationships and turns it into knowledge, forming the foundation for Graph RAG. It is the core engine of ONTOVIA, our knowledge AI product."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"

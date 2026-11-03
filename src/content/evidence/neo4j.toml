@@ -70,3 +70,75 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph", "virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "'virtual' is from the Neo4j Virtual Graph product (Aura), which creates a knowledge graph over existing data without moving it. Neo4j does not answer SPARQL, so it is not semantic; the Neo4j Labs neosemantics (n10s) plugin adds RDF import/export, basic RDFS inference and SHACL validation (see kg_extension_capabilities)."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/use-cases/knowledge-graph/"
+  title = "Neo4j knowledge graph use case"
+  quote = "You can quickly design, implement, and evolve your knowledge graph with Neo4j."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/product/virtual-graph/"
+  title = "Neo4j Virtual Graph"
+  quote = "Access deep, dynamic context by connecting your data in knowledge graphs across your entire data estate, without moving any data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Graph algorithms via the officially maintained Graph Data Science (GDS) library. RDFS-style inference and SHACL validation come only from the Neo4j Labs neosemantics (n10s) plugin, so they are recorded under kg_extension_capabilities, not here. No SPARQL endpoint and no R2RML."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/"
+  title = "Cypher Manual: Vector indexes"
+  quote = "Vector indexes enable similarity searches and complex analytical queries by representing nodes or properties as vectors in a multidimensional space."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/graph-data-science/current/introduction/"
+  title = "GDS Manual: Introduction"
+  quote = "The Neo4j Graph Data Science (GDS) library provides efficiently implemented, parallel versions of common graph algorithms, exposed as Cypher procedures."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_extension_capabilities"
+value = ["RDFS reasoning", "SHACL validation"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Both values come from Neo4j Labs neosemantics (n10s), a plugin Neo4j publishes as a Labs project and does not bundle with the database. RDFS reasoning is partial: n10s runs query-time inference over class hierarchies (rdfs:subClassOf imported as SCO, via n10s.inference.nodesLabelled/hasLabel) and relationship hierarchies (rdfs:subPropertyOf). The docs say 'basic inferencing' and show no domain/range inference. OWL reasoning is not recorded: n10s imports OWL ontologies but documents no inference in any OWL profile. SHACL validation: the docs say 'we cover a significant portion of the SHACL language but not all'. SPARQL 1.1 is not recorded because n10s imports and exports RDF but does not answer SPARQL queries. R2RML is not recorded: n10s 'model mapping' renames vocabulary on import/export and is not R2RML or RML."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/labs/neosemantics/4.3/inference/"
+  title = "Neosemantics (n10s) docs: Inferencing/Reasoning"
+  quote = "we can use rdfs:subPropertyOf to create hierarchies of relationships, or in other words to state that all resources connected by one relationship are also implicitly connected by any parent relationship."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/labs/neosemantics/4.3/validation/"
+  title = "Neosemantics (n10s) docs: Validating Neo4j graphs against SHACL"
+  quote = "Neosemantics uses the W3C standard Shapes Constraint Language (SHACL) as the formalism to describe such graph constraints."
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-03"

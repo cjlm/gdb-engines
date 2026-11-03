@@ -46,3 +46,35 @@ checked = "2026-08-26"
   quote = "\"Rust\": 11849595"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms", "Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Native selene-algorithms crate (structural, pathfinding, centrality, community) exposed as CALL algo.*; HNSW/IVF vector indexes and ANN search procedures."
+
+  [[claims.sources]]
+  url = "https://github.com/jscott3201/selene-db"
+  title = "selene-db README"
+  quote = "ISO/IEC 39075:2024 GQL, native graph algorithms, first-class dense vectors,"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/jscott3201/selene-db"
+  title = "selene-db README"
+  quote = "Native graph algorithms, projection catalogs, free functions, and the"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/jscott3201/selene-db"
+  title = "selene-db README"
+  quote = "exact scoring/search, HNSW and IVF indexes, batch scoring, graph-expanded scoring, maintained candidate state, index stats, and rebuild APIs."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

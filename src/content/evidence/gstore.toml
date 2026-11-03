@@ -85,3 +85,27 @@ notes = "en.gstore.cn and www.gstore.cn are both serving an expired TLS certific
   quote = "Different from the traditional relational database-based knowledge graph data management, gStore is a native RDF data management system based on the Native Graph Model"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "SPARQL 1.1 omitted: the intro claims SPARQL 1.1 support, but the README says not all SPARQL 1.1 syntax is supported and property paths are beyond its capabilities. gStore 1.3 added an inference engine for 'property inference and relationship inference based on ontology models', but the docs do not state RDFS or OWL entailment, so neither is listed. Graph algorithms include Personalized PageRank, SSSP, label propagation, WCC, clustering coefficient, Louvain, betweenness centrality."
+
+  [[claims.sources]]
+  url = "https://github.com/pkumod/gStore"
+  title = "pkumod/gStore README"
+  quote = "Implementation of the Personalized PageRank (PPR) extension function, which can be invoked in the SELECT clause to calculate the correlation between entities."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/pkumod/gStore"
+  title = "pkumod/gStore README"
+  quote = "Added four advanced functions: Diameter Estimation (diameterEstimation), Betweenness Centrality (betweennessCentrality)"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

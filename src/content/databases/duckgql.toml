@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Property Graph"
 kind = "extension"
 query_languages = ["GQL"]
+kg_capabilities = ["Graph algorithms"]
 released = "2026-07"
 category = "Emerging"
 gdotv_support = false

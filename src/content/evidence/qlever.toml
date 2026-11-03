@@ -70,3 +70,19 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No RDFS/OWL reasoning, SHACL, R2RML, vector index or graph-algorithm library found. Docs note some deviations from the SPARQL 1.1 standard (OPTIONAL with FILTER semantics)."
+
+  [[claims.sources]]
+  url = "https://github.com/ad-freiburg/qlever"
+  title = "ad-freiburg/qlever README"
+  quote = "QLever implements the full SPARQL 1.1 standard, including federated queries, named graphs, the Graph Store HTTP Protocol, and updates."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

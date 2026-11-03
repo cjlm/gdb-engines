@@ -63,3 +63,27 @@ notes = "No current value was set. The memgraph.com/memgraph-zero page states Me
   quote = "| [antlr4rust](https://crates.io/crates/antlr4rust)         | ANTLR4 parser runtime for Rust                     | BSD-3-Clause     |"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "MemGQL is a federated GQL engine over existing stores (PostgreSQL, ClickHouse, Snowflake, etc.) via a mapping file; the docs present it as a federated knowledge graph with data left in place. The overlaid model is a GQL property graph, but it is not positioned as a stored property-graph KG."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/memgraph-zero/memgql/use-cases/enterprise-context"
+  title = "Enterprise Context - MemGQL"
+  quote = "MemGQL solves this by providing a federated knowledge graph that overlays canonical context"
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/memgraph-zero/memgql/use-cases/enterprise-context"
+  title = "Enterprise Context - MemGQL"
+  quote = "The underlying data stays in place; only the graph view is unified."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"

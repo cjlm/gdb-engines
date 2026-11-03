@@ -70,3 +70,19 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Algorithms are exposed through GFQL call() as officially maintained PyGraphistry wrappers (compute_cugraph, compute_igraph, NetworkX subset) that delegate to cuGraph/igraph, which are optional dependencies. No SPARQL/RDF/OWL/SHACL/R2RML; PyGraphistry offers UMAP embeddings but no vector similarity index."
+
+  [[claims.sources]]
+  url = "https://pygraphistry.readthedocs.io/en/latest/gfql/builtin_calls.html"
+  title = "GFQL Built-in Call Reference"
+  quote = "The Call operation in GFQL provides access to a curated set of graph algorithms, transformations, and visualization methods."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

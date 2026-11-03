@@ -70,3 +70,19 @@ notes = "The project's own ISWC 2018 resource paper states Comunica is implement
   quote = "Comunica is implemented in TypeScript/JavaScript as a collection of Node modules, which are able to run in Web browsers using native Web technologies."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "The supported-specifications page now lists SPARQL 1.2 Query Language/Update (a superset of SPARQL 1.1) rather than naming 1.1 directly, hence medium. Entailment regimes listed as not supported. The official comunica-feature-reasoning repo was archived on 27 May 2026, so reasoning is not listed. No SHACL, R2RML, vector or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://comunica.dev/docs/query/advanced/specifications/"
+  title = "Comunica – Supported specifications"
+  quote = "SPARQL 1.2 Query Language"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

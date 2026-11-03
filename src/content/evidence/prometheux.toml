@@ -63,3 +63,43 @@ notes = "Prometheux was started by researchers from the Oxford and TU Wien knowl
   quote = "Prometheux has seamlessly integrated the RAPIDS accelerator for Apache Spark into their proprietary knowledge graph management system, Vadalog Parallel"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Virtual is explicit (dedicated Virtual Knowledge Graph page; reads sources in place at query time). Semantic is medium: positioned as an 'ontology-native' engine, imports OWL ontologies and RDF data by translating them into Vadalog rules (Vadalingo), but its native model is Datalog/Vadalog, not an RDF store."
+
+  [[claims.sources]]
+  url = "https://www.prometheux.ai/capabilities/virtual-knowledge-graph.html"
+  title = "Virtual Knowledge Graph: Query a Graph Without Moving Data | Prometheux"
+  quote = "A virtual knowledge graph reads the systems of record directly, at query time."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.prometheux.ai/capabilities/virtual-knowledge-graph.html"
+  title = "Virtual Knowledge Graph: Query a Graph Without Moving Data | Prometheux"
+  quote = "Each source is read in place at query time. Nothing is loaded into a separate graph store."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in Vadalog graph algorithms (shortest paths, connected components, degree/betweenness centrality, PageRank). Not listed: OWL reasoning (OWL ontologies are translated to Vadalog rules via Vadalingo, but no OWL profile/entailment semantics are documented; reasoning is Warded Datalog+/- rules); SPARQL (only a data source for RDF triple stores, no SPARQL endpoint found); Vector search (Vadalog AI functions compute embeddings and similarity, but no vector index documented; Qdrant is a connector). No SHACL or R2RML found."
+
+  [[claims.sources]]
+  url = "https://docs.prometheux.ai/vadalog/graph-analytics"
+  title = "Graph Analytics - Prometheux Docs"
+  quote = "Built-in graph algorithms in Vadalog including transitive closure, shortest paths, connected components, and centrality measures."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

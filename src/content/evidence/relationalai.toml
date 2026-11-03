@@ -77,3 +77,27 @@ notes = "Confirms current value; the engine (RKGS) and Rel language are implemen
   quote = "our cloud hosted next generation knowledge graph management system is a highly performant database and query optimization engine, and it's written 100% in Julia"
   verified = "unreachable"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Graph reasoner with degree/eigenvector/betweenness centrality, PageRank, Louvain etc. Rules-based reasoning is its own Datalog-style language (not OWL). No SPARQL, SHACL, R2RML or vector index found in docs.relational.ai llms.txt."
+
+  [[claims.sources]]
+  url = "https://www.relational.ai/post/rai-now-available-in-snowflake"
+  title = "RelationalAI now available in Snowflake"
+  quote = "RelationalAI provides built-in graph algorithms to utilize these relationships for detecting centrality, similarity, and communities, as well as predicting links and paths."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.relational.ai/build/guides/reasoning/graph/run-an-algorithm/"
+  title = "Run a Graph Algorithm | RelationalAI Docs"
+  quote = "Graph algorithms are a powerful tool for deriving insights from the concepts and relationships in your semantic model."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

@@ -55,3 +55,19 @@ notes = "Vendor's own Terms of Service asserts full IP ownership with no open-so
   quote = "Proprietary"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Product page says index configuration supports word vectors/embeddings; similarity-search details are not documented on the page. No SPARQL, RDFS/OWL, SHACL, R2RML or graph algorithm library found on the product page."
+
+  [[claims.sources]]
+  url = "https://factnexus.com/graphbase/"
+  title = "FactNexus GraphBase"
+  quote = "GraphBase also lets you configure how your graph is indexed - including support for word vectors/embeddings and"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

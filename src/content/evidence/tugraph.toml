@@ -85,3 +85,27 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector index (HNSW, KnnSearch/RangeSearch) documented in the Chinese docs; English page for it 404s. 34 built-in graph analysis algorithms. No SPARQL/RDF/SHACL/R2RML."
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/zh-cn/latest/8.query/3.vector_index.html"
+  title = "Vector index — TuGraph 文档"
+  quote = "根据向量搜索出点，返回age小于30的点，然后再查这些点的一度邻居是谁。"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/en/latest/2.introduction/3.what-is-tugraph.html"
+  title = "What is TuGraph"
+  quote = "Built-in 34 graph analysis algorithm"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

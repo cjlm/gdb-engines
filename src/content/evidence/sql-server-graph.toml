@@ -40,3 +40,19 @@ notes = "Graph support first shipped in SQL Server 2017 CTP 2.0, announced 19 Ap
   quote = "We are excited to announce the first version of graph extensions to SQL Server."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector search is a SQL Server 2025 / Azure SQL engine feature (VECTOR type, VECTOR_DISTANCE, ANN index), usable on node/edge tables since they are ordinary tables; not graph-specific. Graph algorithms not listed: only the SHORTEST_PATH function in MATCH, which is a path query, not an algorithm library."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors"
+  title = "Vectors and embeddings - SQL Server"
+  quote = "This allows you to store the embeddings alongside the data they represent, and to perform vector search queries to find similar data points."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

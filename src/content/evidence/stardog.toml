@@ -77,3 +77,74 @@ notes = "Stardog's creators (Clark & Parsia) describe it as a lightweight, pure 
   quote = "Kendall Clark will present Stardog, the forthcoming commercial RDF database from C&P, featuring full OWL2 reasoning capabilities and fast query performance in a lightweight, pure Java implementation."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/virtual-graphs/"
+  title = "Stardog docs: Virtual Graphs"
+  quote = "Virtual Graphs , which let you declaratively map data into a Stardog knowledge graph and query it via Stardog in situ"
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "R2RML mapping", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Query-time reasoning; Blackout reasoner supports OWL 2 profiles (QL/RL/EL/DL), Stride (beta) a smaller subset. Graph algorithms (PageRank, label propagation, connected components) run via the official Stardog Spark connector on an external Spark cluster, not inside the server (medium for that value). Vector store exists in Voicebox/BITES for unstructured data; no engine-level vector index documented, so Vector search left out (docs vector-search URL 404s)."
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/query-stardog/"
+  title = "Stardog docs: Query Stardog"
+  quote = "It supports SPARQL 1.1 ."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/inference-engine/"
+  title = "Stardog docs: Inference Engine"
+  quote = "Blackout is the more mature reasoner implementation that supports more of the RDFS and OWL specifications"
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/inference-engine/"
+  title = "Stardog docs: Inference Engine"
+  quote = "The Blackout reasoner supports the expressivity of OWL 2 profiles"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/data-quality-constraints"
+  title = "Stardog docs: Data Quality Constraints"
+  quote = "Stardog supports all the features in the core SHACL Language with the following exceptions"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/virtual-graphs/"
+  title = "Stardog docs: Virtual Graphs"
+  quote = "Standard R2RML, which is indicated using --format r2rml in the virtual add CLI command."
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/graph-analytics/"
+  title = "Stardog docs: Graph Analytics"
+  quote = "Stardog Spark connector allows users to easily run graph analytics algorithms such as PageRank, Connected Components, Label Propagation and more."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

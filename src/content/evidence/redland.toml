@@ -48,3 +48,19 @@ notes = "Project homepage describes the libraries as C libraries."
   quote = "Redland is a set of free software C libraries that provide support for the Resource Description Framework (RDF)."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Partial SPARQL 1.1: Redland's query layer is Rasqal (same maker, one of the Redland libraries; librdf.org says Redland queries 'with SPARQL and RDQL using the Rasqal RDF Query Library'). Rasqal documents unimplemented 1.1 parts: BIND scope, VALUES, EXISTS/NOT EXISTS, SERVICE/federated query, among others. Rasqal states it is not an inference engine; no RDFS/OWL reasoning, SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://librdf.org/rasqal/"
+  title = "Rasqal RDF Query Library"
+  quote = "Rasqal implements most of the SPARQL 1.1 Query Language and SPARQL 1.1 Update W3C Recommendations 21 March 2013 including aggregates, subqueries, expression in SELECT, assignment, short form for CONSTRUCT and all the new set of builtin functions and operators."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

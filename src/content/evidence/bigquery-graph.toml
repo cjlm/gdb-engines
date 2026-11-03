@@ -77,3 +77,43 @@ notes = "Google does not publish BigQuery’s implementation; the CMU Database o
   quote = "Project Type Commercial Written in C++, Java, Python"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Google's official codelab builds a knowledge graph (entities/relationships extracted with Gemini) and queries it as a BigQuery property graph with GQL. The earlier source (knowledge graphs in the overview's list of graph-database uses) was dropped as a use-case list item. Graphs are property graphs defined over existing BigQuery tables; Google's GA blog post (cloud.google.com/blog/products/data-analytics/bigquery-graph-connecting-data-and-ai-at-scale/) also describes a 'virtual knowledge graph' over Iceberg/other-cloud tables 'without data movement', which a reviewer may consider for 'virtual' (not assigned here)."
+
+  [[claims.sources]]
+  url = "https://codelabs.developers.google.com/gke/ai-toolkit-lab-3"
+  title = "Scale Distributed Data Processing with GKE to build a Knowledge Graph in BigQuery (Google Codelabs)"
+  quote = "Scale Distributed Data Processing with GKE to build a Knowledge Graph in BigQuery"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://codelabs.developers.google.com/gke/ai-toolkit-lab-3"
+  title = "Scale Distributed Data Processing with GKE to build a Knowledge Graph in BigQuery (Google Codelabs)"
+  quote = "Finally, you will store this data in BigQuery and use the new BigQuery Property Graph feature to analyze the relationships."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No built-in graph algorithm library found in BigQuery Graph docs (PageRank examples found are from third parties such as Neo4j GDS for BigQuery and PuppyGraph, which do not count). No SPARQL/RDF features."
+
+  [[claims.sources]]
+  url = "https://docs.cloud.google.com/bigquery/docs/graph-overview"
+  title = "BigQuery Graph overview"
+  quote = "Rich vector and full-text search capabilities integrate with graph, letting you use semantic meaning and keywords in graph analysis."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

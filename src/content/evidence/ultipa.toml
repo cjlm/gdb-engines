@@ -47,3 +47,27 @@ notes = "Confirms the current value; no source repository or open licence exists
   quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
   verified = "unreachable"
   checked = "2026-08-26"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "v5 only. No SPARQL/RDFS/OWL/SHACL/R2RML in v5 docs (RDF only as an import format via Ultipa Transporter)."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/gql/vector-index"
+  title = "Vector Index - Ultipa Docs"
+  quote = "A vector index is designed to efficiently store and manage high-dimensional vectors (or embeddings), enabling fast retrieval of similar vectors based on a chosen similarity metric."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/graph-analytics-algorithms"
+  title = "Introduction - Graph Analytics & Algorithms"
+  quote = "Ultipa offers a rich set of graph algorithms designed for gaining analytical insights from graph data."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

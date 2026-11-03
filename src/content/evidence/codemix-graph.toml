@@ -48,3 +48,27 @@ notes = "README describes the engine as TypeScript-first; matches current value.
   quote = "A fully type-safe, TypeScript-first in-memory property graph database with a Cypher-like query language"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "TypeScript in-memory property graph database; makers describe it as the knowledge graph database of their product."
+
+  [[claims.sources]]
+  url = "https://github.com/codemix/graph"
+  title = "codemix/graph README"
+  quote = "This is the knowledge graph database for the codemix product intelligence platform."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://codemix.com/graph"
+  title = "codemix graph"
+  quote = "when we were building codemix we needed a structured knowledge graph, so we adapted the code"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"

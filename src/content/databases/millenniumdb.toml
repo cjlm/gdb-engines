@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Multiple"
 query_languages = ["GQL", "SPARQL"]
 protocols = ["SPARQL Protocol", "WebSocket"]
+kg_capabilities = ["SPARQL 1.1", "Vector search"]
 released = "2021"
 category = "Emerging"
 gdotv_support = false

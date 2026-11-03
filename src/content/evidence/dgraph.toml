@@ -84,3 +84,19 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Vector data type and HNSW similarity search since v24. Only k-shortest-path queries in DQL (a path query, not an algorithm library), so Graph algorithms not listed."
+
+  [[claims.sources]]
+  url = "https://docs.dgraph.io/learn/howto/similarity-search"
+  title = "Vector Similarity Search in DQL"
+  quote = "This guide shows how to use vector embeddings and similarity search in Dgraph."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"

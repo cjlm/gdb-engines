@@ -7,6 +7,7 @@ implementation_language = "C++"
 type = "Multiple"
 query_languages = ["SQL", "openCypher", "GraphScript"]
 protocols = ["Native binary", "JDBC/ODBC"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 url = "https://www.sap.com/products/technology-platform/hana.html"
 released = "2010-11"
 category = "Enterprise"

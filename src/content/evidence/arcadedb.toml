@@ -85,3 +85,50 @@ notes = "Self-described 'conceptual fork': a new engine that reuses OrientDB's S
   quote = "ArcadeDB reuses OrientDB's SQL engine (heavily modified) and some utility classes."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["property-graph"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://arcadedb.com/knowledge-graphs.html"
+  title = "Knowledge Graph Database: Build & Query | ArcadeDB"
+  quote = "ArcadeDB's native JVector engine stores vector embeddings directly on knowledge graph nodes."
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://arcadedb.com/knowledge-graphs.html"
+  title = "Knowledge Graph Database: Build & Query | ArcadeDB"
+  quote = "Model entities and relationships as a graph, search by meaning with vectors, match by text with full-text indexing, and track knowledge evolution with time series — all in a single database"
+  supports = "property-graph"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No SPARQL, RDFS/OWL reasoning, SHACL or R2RML found."
+
+  [[claims.sources]]
+  url = "https://arcadedb.com/knowledge-graphs.html"
+  title = "Knowledge Graph Database: Build & Query | ArcadeDB"
+  quote = "JVector uses a DiskANN + HNSW hybrid algorithm with SIMD acceleration for near-exact nearest-neighbor search at millisecond latency."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://github.com/ArcadeData/arcadedb"
+  title = "ArcadeData/arcadedb README"
+  quote = "70+ Built-in Graph Algorithms — Pathfinding, centrality, community detection, link prediction, graph embeddings, and more — all available out of the box"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

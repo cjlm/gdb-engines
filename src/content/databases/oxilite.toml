@@ -9,6 +9,7 @@ implementation_language = "Rust"
 type = "RDF"
 query_languages = ["SPARQL", "openCypher"]
 protocols = ["SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 kind = "embedded"
 released = "2026-09"
 category = "Emerging"

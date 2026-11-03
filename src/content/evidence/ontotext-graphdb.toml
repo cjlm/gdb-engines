@@ -163,3 +163,75 @@ checked = "2026-09-23"
   quote = "GraphDB is a plugin SAIL component for the RDF4J framework."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_kinds"
+value = ["virtual"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "RDF/SPARQL semantic graph database with ontologies and inference; also offers data virtualization over relational databases via its bundled Ontop integration (virtual repositories with R2RML/OBDA mappings). Now branded Graphwise GraphDB."
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/virtualization.html"
+  title = "Accessing relational databases with data virtualization - GraphDB 11.5 documentation"
+  quote = "data virtualization capabilities enable direct access using SPARQL to relational databases, eliminating the need to replicate data."
+  supports = "virtual"
+  verified = "matched"
+  checked = "2026-11-01"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "R2RML mapping", "Vector search"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "OWL: predefined rulesets incl. owl-horst (pD*), owl-max, owl2-rl, owl2-ql; forward-chaining total materialization. SHACL via RDF4J ShaclSail bundled in GraphDB. R2RML via bundled Ontop (virtual repositories). Vector search (medium): the built-in similarity plugin uses a random-indexing vector space model; embedding-based vector search otherwise goes through Elasticsearch/OpenSearch connectors (external). Graph path search (shortest/all paths) exists but no algorithm library, so Graph algorithms left out."
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/sparql-compliance.html"
+  title = "SPARQL compliance - GraphDB 11.5 documentation"
+  quote = "SPARQL 1.1 Query provides more powerful query constructions compared to SPARQL 1.0."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/reasoning.html"
+  title = "Reasoning - GraphDB 11.5 documentation"
+  quote = "RDFS inference is achieved using a set of axiomatic triples and entailment rules."
+  supports = "RDFS reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/reasoning.html"
+  title = "Reasoning - GraphDB 11.5 documentation"
+  quote = "OWL dialect close to OWL-Horst"
+  supports = "OWL reasoning"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/shacl-validation.html"
+  title = "SHACL validation - GraphDB 11.5 documentation"
+  quote = "is supported by GraphDB via RDF4J"
+  supports = "SHACL validation"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/virtualization.html"
+  title = "Accessing relational databases with data virtualization - GraphDB 11.5 documentation"
+  quote = "An R2RML or OBDA mapping file describing the mapping of SPARQL queries to SQL data"
+  supports = "R2RML mapping"
+  verified = "matched"
+  checked = "2026-11-01"
+
+  [[claims.sources]]
+  url = "https://graphdb.ontotext.com/documentation/11.5/semantic-similarity-searches.html"
+  title = "Semantic similarity searches - GraphDB 11.5 documentation"
+  quote = "The similarity plugin integrates the semantic vectors library and the underlying Random Indexing algorithm."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

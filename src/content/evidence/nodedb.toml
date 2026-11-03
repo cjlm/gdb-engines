@@ -98,3 +98,27 @@ notes = "Confirms current value. GitHub reports the repo as 99.9% Rust, and the 
   quote = "git clone https://github.com/NodeDB-Lab/nodedb.git\ncd nodedb\ncargo build --release\ncargo install cargo-nextest --locked  # one-time\ncargo nextest run --all-features"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, reasoning, SHACL or R2RML. Graph engine ships 13 native algorithms (PageRank, WCC, etc. via GRAPH ALGO). Pre-1.0 public preview."
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/storage-engines/vector"
+  title = "Vector Engine - NodeDB"
+  quote = "It uses a custom HNSW index with multiple quantization levels and hardware-accelerated distance math."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/storage-engines/graph"
+  title = "Graph Engine - NodeDB"
+  quote = "Sub-millisecond multi-hop traversals, 13 native algorithms, Cypher-subset pattern matching, and GraphRAG fusion."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

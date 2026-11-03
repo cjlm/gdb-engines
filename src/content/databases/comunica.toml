@@ -10,6 +10,7 @@ type = "RDF"
 kind = "query-engine"
 query_languages = ["SPARQL", "GraphQL"]
 protocols = ["SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2018-06"
 category = "Emerging"
 gdotv_support = false
