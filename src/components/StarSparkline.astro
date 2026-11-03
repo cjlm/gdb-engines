@@ -1,0 +1,64 @@
+---
+import { sparklinePath, type StarPoint } from '../lib/star-history';
+
+interface Props {
+  points: StarPoint[];
+}
+
+const WIDTH = 64;
+const HEIGHT = 18;
+/** Room for the stroke and end dot inside the box. */
+const INSET = 2;
+
+const { points } = Astro.props;
+const first = points[0]!;
+const last = points[points.length - 1]!;
+const path = sparklinePath(points, WIDTH - INSET * 2, HEIGHT - INSET * 2);
+const month = (date: string) =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+const count = (stars: number) => stars.toLocaleString('en-US');
+const summary =
+  `GitHub stars, ${count(first.stars)} in ${month(first.date)} ` +
+  `to ${count(last.stars)} in ${month(last.date)}`;
+---
+<svg
+  class="star-sparkline"
+  width={WIDTH}
+  height={HEIGHT}
+  viewBox={`${-INSET} ${-INSET} ${WIDTH} ${HEIGHT}`}
+  role="img"
+  aria-label={summary}
+>
+  <title>{summary}</title>
+  <defs>
+    <marker id="star-sparkline-end" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="4"
+      markerHeight="4" markerUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.75" />
+    </marker>
+  </defs>
+  <path d={path} marker-end="url(#star-sparkline-end)" />
+</svg>
+
+<style>
+  .star-sparkline {
+    flex: 0 0 auto;
+    margin-left: auto;
+    overflow: visible;
+  }
+
+  .star-sparkline path {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .star-sparkline circle {
+    fill: var(--color-brand-accent);
+  }
+</style>
