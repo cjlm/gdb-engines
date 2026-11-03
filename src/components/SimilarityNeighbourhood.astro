@@ -58,7 +58,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
 <script>
   import { createGarphield } from 'garphield';
-  import { prepareGarphieldDocument } from '../lib/garphield-document.mjs';
+  import { prepareGarphieldDocument, setEmbedAccent } from '../lib/garphield-document.mjs';
   import { expand, neighbourhoodDocument } from '../lib/similarity-neighbourhood.mjs';
 
   // No minimap, toolbar or wordmark: the panel is small and sits inside the page's own design.
@@ -104,6 +104,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     const focus = root.dataset.focus ?? '';
     const embedUrl = new URL('/embed', root.dataset.garphieldOrigin);
     embedUrl.searchParams.set('chrome', EMBED_CHROME);
+    setEmbedAccent(embedUrl);
     embedUrl.searchParams.set('scrollZoom', 'false');
     embedUrl.searchParams.set('edgeWidthScale', '0.6');
     // Peers are drawn at the embed's smallest logo size; scaling lifts that floor.
