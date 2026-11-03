@@ -9,7 +9,6 @@ license = "Proprietary"
 type = "Multiple"
 query_languages = ["openCypher", "GQL"]
 protocols = ["HTTP/REST"]
-kg_capabilities = ["Vector search"]
 implementation_language = "Rust"
 released = "2021-06"
 category = "Emerging"
