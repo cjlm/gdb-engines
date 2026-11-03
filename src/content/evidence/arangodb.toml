@@ -106,3 +106,48 @@ notes = "The README's getting-started path is to run the arangod server (or a Do
   quote = "Start the server `arangod` if the installer did not do it for you."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "features.binary_protocol"
+value = 0
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "ArangoDB 3.12 removed VelocyStream, its only binary protocol; clients now talk HTTP."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.12/incompatible-changes-in-3-12/"
+  title = "Incompatible changes in ArangoDB 3.12"
+  quote = "asynchronous binary protocol VelocyStream is no longer supported."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "features.operating_on_windows"
+value = 0.5
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Native Windows packages were dropped in 3.12; Windows users run the official Docker image, which the rubric scores 0.5."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.12/incompatible-changes-in-3-12/"
+  title = "Incompatible changes in ArangoDB 3.12"
+  quote = "The native platform support for the Windows and macOS operating systems has been removed"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "features.testing_in_memory_version"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The in-memory MMFiles engine was removed in 3.7, leaving RocksDB as the only storage engine."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.7/incompatible-changes-in-3-7/"
+  title = "Incompatible changes in ArangoDB 3.7"
+  quote = "In ArangoDB 3.7, the only available storage engine is the RocksDB storage engine"
+  verified = "matched"
+  checked = "2026-11-03"
