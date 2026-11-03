@@ -55,3 +55,19 @@ notes = "Confirms current value: RDF::Trine is a CPAN distribution written in an
   quote = "RDF::Trine - An RDF Framework for Perl\n\n=head1 VERSION\n\nThis document describes RDF::Trine version 1.019"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "kg_extension_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RDF::Trine itself is a storage/parsing framework without a query engine; SPARQL 1.1 comes from RDF::Query, a separate CPAN distribution by the same author in the same perlrdf repository, built for RDF::Trine, so recorded as an extension capability. No reasoning, SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://github.com/kasei/perlrdf/blob/master/RDF-Query/README"
+  title = "RDF::Query README (perlrdf repository)"
+  quote = "RDF::Query - A SPARQL 1.1 Query implementation for use with RDF::Trine."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

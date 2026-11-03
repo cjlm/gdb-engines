@@ -99,3 +99,19 @@ notes = "Built as Sail modules for OpenRDF Sesame, the project since renamed Ecl
   quote = "The KiWi triple store is a high performance transactional triple store backend for OpenRDF Sesame building on top of a relational database"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 via the KiWi SPARQL module (translates most constructs to SQL, on top of OpenRDF Sesame). KiWi also has an optional rule-based (sKWRL, Datalog-like) forward-chaining reasoner, but the makers document no shipped RDFS or OWL rule set (the example program is SKOS), so RDFS/OWL reasoning is not recorded. No SHACL or R2RML."
+
+  [[claims.sources]]
+  url = "https://marmotta.apache.org/kiwi/sparql.html"
+  title = "Apache Marmotta - KiWi Native SPARQL"
+  quote = "The KiWi SPARQL module offers optimized SPARQL 1.1 query support for typical cases by translating parts of a SPARQL query directly into SQL."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
