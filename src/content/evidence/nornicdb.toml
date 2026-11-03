@@ -72,22 +72,6 @@ notes = "Confirms current value. Build-from-source instructions use `go build`, 
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["property-graph"]
-confidence = "medium"
-method = "repo"
-checked = "2026-11-01"
-notes = "README lists Knowledge Graphs as a use case and says it is built for knowledge systems; Neo4j-compatible property graph."
-
-  [[claims.sources]]
-  url = "https://github.com/orneryd/NornicDB"
-  title = "orneryd/NornicDB README"
-  quote = "Knowledge Graphs — Auto-organizing knowledge bases"
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Vector search", "Graph algorithms"]
 confidence = "medium"
@@ -101,7 +85,7 @@ notes = "Graph algorithms (PageRank, betweenness, closeness, Louvain, label prop
   quote = "All index types supported: B-tree, full-text (Lucene-compatible), vector (HNSW), composite (multi-property), token lookup, range indexes."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/orneryd/NornicDB"
@@ -109,7 +93,7 @@ notes = "Graph algorithms (PageRank, betweenness, closeness, Louvain, label prop
   quote = "Hybrid retrieval is where NornicDB is materially different from vector-only stacks: the query shape is vector search followed by graph expansion in the same engine."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/orneryd/NornicDB/blob/main/docs/neo4j-migration/feature-parity.md"
@@ -117,4 +101,4 @@ notes = "Graph algorithms (PageRank, betweenness, closeness, Louvain, label prop
   quote = "Some of these algorithms exist as NornicDB extensions under apoc.algo.* (tables above)"
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

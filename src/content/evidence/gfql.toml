@@ -72,22 +72,6 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["property-graph"]
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "GFQL docs list knowledge graphs among typical uses of the dataframe-native property-graph query engine; no dedicated KG positioning beyond that."
-
-  [[claims.sources]]
-  url = "https://pygraphistry.readthedocs.io/en/latest/gfql/overview.html"
-  title = "GFQL Overview"
-  quote = "Typical uses include cybersecurity, fraud detection, financial analysis, and knowledge graphs."
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Graph algorithms"]
 confidence = "medium"
@@ -101,4 +85,4 @@ notes = "Algorithms are exposed through GFQL call() as officially maintained PyG
   quote = "The Call operation in GFQL provides access to a curated set of graph algorithms, transformations, and visualization methods."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

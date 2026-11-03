@@ -100,22 +100,6 @@ notes = "Confirms current value. GitHub reports the repo as 99.9% Rust, and the 
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["property-graph"]
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Graph engine docs list knowledge graphs as a use case; product site pitches GraphRAG at the database layer. No RDF support."
-
-  [[claims.sources]]
-  url = "https://nodedb.dev/docs/storage-engines/graph"
-  title = "Graph Engine - NodeDB"
-  quote = "Knowledge graphs and entity relationships"
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Vector search", "Graph algorithms"]
 confidence = "high"
@@ -129,7 +113,7 @@ notes = "No SPARQL, reasoning, SHACL or R2RML. Graph engine ships 13 native algo
   quote = "It uses a custom HNSW index with multiple quantization levels and hardware-accelerated distance math."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://nodedb.dev/docs/storage-engines/graph"
@@ -137,4 +121,4 @@ notes = "No SPARQL, reasoning, SHACL or R2RML. Graph engine ships 13 native algo
   quote = "Sub-millisecond multi-hop traversals, 13 native algorithms, Cypher-subset pattern matching, and GraphRAG fusion."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

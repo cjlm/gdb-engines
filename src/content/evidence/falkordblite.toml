@@ -86,30 +86,6 @@ checked = "2026-09-23"
   checked = "2026-09-23"
 
 [[claims]]
-field = "kg_kinds"
-value = ["property-graph"]
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Indirect: FalkorDBLite is the embedded runtime of FalkorDB (bundles Redis plus the FalkorDB module) and its docs page promises full FalkorDB graph capabilities; FalkorDB's docs position the engine for knowledge graphs/GraphRAG. The FalkorDBLite README itself does not mention knowledge graphs."
-
-  [[claims.sources]]
-  url = "https://docs.falkordb.com/operations/falkordblite"
-  title = "FalkorDBLite: Embedded Graph Database for Python and TypeScript"
-  quote = "Full FalkorDB graph capabilities via the language SDKs"
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://docs.falkordb.com/"
-  title = "FalkorDB Documentation"
-  quote = "Turn unstructured sources into a knowledge graph and query it from your GenAI app."
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Vector search", "Graph algorithms"]
 confidence = "medium"
@@ -123,7 +99,7 @@ notes = "Inherited from the bundled FalkorDB module (HNSW vector index; algo.* p
   quote = "Full FalkorDB graph capabilities via the language SDKs"
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/cypher/indexing/vector-index"
@@ -131,7 +107,7 @@ notes = "Inherited from the bundled FalkorDB module (HNSW vector index; algo.* p
   quote = "FalkorDB supports vector indexes for similarity search on vector embeddings, essential for AI and machine learning applications."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/algorithms"
@@ -139,4 +115,4 @@ notes = "Inherited from the bundled FalkorDB module (HNSW vector index; algo.* p
   quote = "FalkorDB offers a suite of graph algorithms optimized for high-performance graph analytics."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
