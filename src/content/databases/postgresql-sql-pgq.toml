@@ -1,8 +1,8 @@
 name = "PostgreSQL SQL/PGQ"
 vendor = "PostgreSQL Global Development Group"
 slug = "postgresql-sql-pgq"
-description = "Native SQL:2023 property graph query support coming to PostgreSQL, exposing graph pattern matching through the GRAPH_TABLE construct over property graphs defined on existing tables. Property graphs are processed like views and executed as standard relational queries by the existing planner."
-url = "https://www.postgresql.org/docs/devel/queries-graph.html"
+description = "Native SQL:2023 property graph query support developed for PostgreSQL, exposing graph pattern matching through the GRAPH_TABLE construct over property graphs defined on existing tables. It was committed to the development branch in March 2026 and reverted in September 2026 before any release shipped it."
+url = "https://web.archive.org/web/20260903051849/https://www.postgresql.org/docs/devel/queries-graph.html"
 license = "PostgreSQL"
 implementation_language = "C"
 type = "Property Graph"
@@ -11,4 +11,6 @@ query_languages = ["SQL/PGQ"]
 released = "2026-03"
 protocols = ["PostgreSQL wire"]
 category = "Emerging"
+status = "inactive"
+status_note = "Reverted from the PostgreSQL development branch in September 2026 before release."
 gdotv_support = false
