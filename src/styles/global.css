@@ -343,7 +343,7 @@ a {
   padding: 0.675rem 0;
   color: var(--color-text);
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   transition: color 120ms ease;
 }
 .ranks-list a:hover { color: var(--color-brand-accent); }
@@ -362,7 +362,7 @@ a {
   border: 1px solid var(--color-border);
   border-radius: 0.75rem;
   background: color-mix(in srgb, var(--color-background) 86%, var(--color-surface));
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 .sources > summary {
@@ -371,7 +371,7 @@ a {
   align-items: baseline;
   gap: 0.5rem;
   color: var(--color-text-secondary);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   list-style-position: outside;
@@ -392,12 +392,16 @@ a {
   align-items: baseline;
   gap: 0.5rem;
   margin: 0 0 0.4rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 .claim-field { font-weight: 600; }
-.claim-value { color: var(--color-text-secondary); font-family: var(--font-mono); font-size: 0.75rem; }
+.claim-value {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
 .claim-confidence {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-text-tertiary);
@@ -406,7 +410,7 @@ a {
 .claim-notes {
   max-width: 70ch;
   margin: 0 0 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
 }
 .claim-sources { list-style: none; padding: 0; margin: 0; }
@@ -417,13 +421,13 @@ a {
   padding: 0 0 0 0.75rem;
   border-left: 2px solid var(--color-border);
   color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 .claim-sources blockquote::before { content: '\201C'; }
 .claim-sources blockquote::after { content: '\201D'; }
 .claim-sources cite { font-style: normal; }
-.claim-checked { font-size: 0.6875rem; color: var(--color-text-tertiary); }
+.claim-checked { font-size: 0.75rem; color: var(--color-text-tertiary); }
 
 .compare-with {
   list-style: none;
@@ -439,7 +443,7 @@ a {
   padding: 0.675rem 0;
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   transition: color 120ms ease;
 }
 .compare-with a:hover { color: var(--color-brand-accent); }
@@ -450,7 +454,7 @@ a {
 }
 .more-comparisons {
   border-top: 1px solid var(--color-border);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 .more-comparisons summary {
   padding: 0.675rem 0;
@@ -467,12 +471,12 @@ a {
 .more-comparisons li { padding: 0.2rem 0; break-inside: avoid; }
 .more-comparisons a { color: var(--color-text-secondary); text-decoration: none; }
 .more-comparisons a:hover { color: var(--color-brand-accent); }
-.blog-mentions { list-style: none; padding: 0; margin: 0; font-size: 0.8125rem; }
+.blog-mentions { list-style: none; padding: 0; margin: 0; font-size: 0.875rem; }
 .blog-mentions li { padding: 0.4rem 0; }
 .blog-mentions li + li { border-top: 1px solid var(--color-border); }
 .blog-mentions a { color: var(--color-text-secondary); }
 .blog-mentions a:hover { color: var(--color-brand-accent); }
-.blog-mention-date { display: block; color: var(--color-text-tertiary); font-size: 0.75rem; }
+.blog-mention-date { display: block; color: var(--color-text-tertiary); font-size: 0.8125rem; }
 
 /* Rankings cross-links from the comparison table.
    Two fixed slots: the figure right-aligns in the first so every rank shares an edge,
@@ -1351,7 +1355,7 @@ thead [role="tooltip"]::after {
   gap: 0.45rem;
   margin-bottom: 1rem;
   color: var(--color-text-tertiary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
 }
@@ -1426,7 +1430,7 @@ thead [role="tooltip"]::after {
   border-radius: 0.5rem;
   background: var(--color-background);
   color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   transition: border-color 120ms ease, color 120ms ease, transform 120ms ease;
@@ -1447,7 +1451,7 @@ thead [role="tooltip"]::after {
   border-left: 1px solid var(--color-border);
   color: var(--color-text-tertiary);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
 }
 .db-snapshot {
@@ -1468,7 +1472,7 @@ thead [role="tooltip"]::after {
 }
 .db-snapshot dt {
   color: var(--color-text-tertiary);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 .db-snapshot dd {
   margin-top: 0.2rem;
@@ -1508,7 +1512,7 @@ thead [role="tooltip"]::after {
 .db-page h3 {
   margin-bottom: 0.375rem;
   color: var(--color-text-tertiary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 .db-page .meta-grid {
@@ -1529,7 +1533,7 @@ thead [role="tooltip"]::after {
 .db-page .meta-grid dd:last-child { border-bottom: 0; }
 .db-page .meta-grid dt {
   color: var(--color-text-tertiary);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 .db-page .meta-grid dd {
   margin: 0;
@@ -1570,7 +1574,7 @@ thead [role="tooltip"]::after {
 }
 .db-page .feature-name {
   color: var(--color-text-secondary);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 .db-page .feature-score-visual {
   display: flex;
@@ -1586,7 +1590,7 @@ thead [role="tooltip"]::after {
   flex: 0 0 3rem;
   color: var(--color-text-tertiary);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
@@ -1603,7 +1607,7 @@ thead [role="tooltip"]::after {
 }
 .db-page .feature-meaning {
   color: var(--color-text-tertiary);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   line-height: 1.35;
 }
 
@@ -1645,13 +1649,13 @@ thead [role="tooltip"]::after {
   flex-direction: column;
 }
 .external-list strong {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 .external-list small {
   overflow: hidden;
   color: var(--color-text-tertiary);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
