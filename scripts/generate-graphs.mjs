@@ -3,7 +3,10 @@ import { join } from "node:path";
 import { parse } from "smol-toml";
 
 const SOURCE_DIR = "src/content/databases";
-const OUTPUT_DIR = "public/graphs";
+// `--out <dir>` writes somewhere else, so a check can compare without touching tracked files.
+const outIndex = process.argv.indexOf("--out");
+const OUTPUT_DIR = outIndex === -1 ? "public/graphs" : process.argv[outIndex + 1];
+if (!OUTPUT_DIR) throw new Error("--out needs a directory, e.g. --out /tmp/graphs");
 const SITE_ORIGIN = (
   process.env.PUBLIC_SITE_ORIGIN ?? "https://gdb-engines.com"
 ).replace(/\/+$/, "");
