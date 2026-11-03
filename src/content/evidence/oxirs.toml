@@ -65,30 +65,6 @@ notes = "Confirms current value; the project describes itself as Rust-native and
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "medium"
-method = "repo"
-checked = "2026-11-01"
-notes = "Rust Semantic Web platform (Jena/Fuseki alternative); CLI initialises a knowledge graph. Medium confidence because the README itself admits earlier releases fabricated SHACL conformance and AI results; claims are self-reported."
-
-  [[claims.sources]]
-  url = "https://github.com/cool-japan/oxirs"
-  title = "cool-japan/oxirs README"
-  quote = "A Rust-native, modular platform for Semantic Web, SPARQL 1.2, GraphQL, and AI-augmented reasoning"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://github.com/cool-japan/oxirs"
-  title = "cool-japan/oxirs README"
-  quote = "Initialize a new knowledge graph"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 confidence = "medium"

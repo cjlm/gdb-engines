@@ -80,18 +80,10 @@ notes = "Stardog's creators (Clark & Parsia) describe it as a lightweight, pure 
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "virtual"]
+value = ["virtual"]
 confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://www.stardog.com/"
-  title = "Stardog home"
-  quote = "As the long-standing experts in semantics and knowledge graphs, Stardog does just that"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://docs.stardog.com/virtual-graphs/"

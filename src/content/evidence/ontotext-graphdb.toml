@@ -166,27 +166,11 @@ checked = "2026-09-23"
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "virtual"]
+value = ["virtual"]
 confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-01"
 notes = "RDF/SPARQL semantic graph database with ontologies and inference; also offers data virtualization over relational databases via its bundled Ontop integration (virtual repositories with R2RML/OBDA mappings). Now branded Graphwise GraphDB."
-
-  [[claims.sources]]
-  url = "https://graphwise.ai/components/graphdb/"
-  title = "Graphwise GraphDB | Semantic Graph Database"
-  quote = "Graphwise GraphDB is an enterprise-grade semantic graph database that supports RDF and SPARQL"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://graphdb.ontotext.com/documentation/11.5/"
-  title = "What is GraphDB? - GraphDB 11.5 documentation"
-  quote = "People who focus on the technologies and standards for creating and taking advantage of knowledge graphs."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://graphdb.ontotext.com/documentation/11.5/virtualization.html"

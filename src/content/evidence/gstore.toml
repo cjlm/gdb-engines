@@ -87,21 +87,6 @@ notes = "en.gstore.cn and www.gstore.cn are both serving an expired TLS certific
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://mod.icst.pku.edu.cn/english/gstore_1/introduction_1/index.htm"
-  title = "gStore Introduction"
-  quote = "gStore is an open source database system (usually called Triple Store) for RDF knowledge graphs."
-  supports = "semantic"
-  verified = "unreachable"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Graph algorithms"]
 confidence = "high"

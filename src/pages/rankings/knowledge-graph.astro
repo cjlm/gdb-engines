@@ -12,7 +12,13 @@ import { loadRankings, type RankedEngine } from '../../lib/rankings';
 import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
 import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { buildFaviconMap } from '../../lib/favicon-map';
-import { KG_CAPABILITIES, kgCapabilityDescriptions, kgKindLabels, type KgKind } from '../../lib/knowledge-graph';
+import {
+  KG_CAPABILITIES,
+  kgCapabilityDescriptions,
+  kgKindLabels,
+  kgKindsOf,
+  type KgKind,
+} from '../../lib/knowledge-graph';
 
 const ranking = await loadRankings();
 if (!ranking) return Astro.redirect('/rankings/');
@@ -32,7 +38,10 @@ const engineMeta = Object.fromEntries(
 );
 
 const engines = board.engines;
-const kindsOf = (e: RankedEngine): readonly string[] => catalogue.get(e.slug)?.kg_kinds ?? [];
+const kindsOf = (e: RankedEngine): readonly KgKind[] => {
+  const db = catalogue.get(e.slug);
+  return db ? kgKindsOf(db) : [];
+};
 const rolesOf = (e: RankedEngine): readonly string[] => catalogue.get(e.slug)?.ai_roles ?? [];
 const capabilitiesOf = (e: RankedEngine): readonly string[] => catalogue.get(e.slug)?.kg_capabilities ?? [];
 
@@ -161,7 +170,7 @@ const breadcrumbJsonLd = JSON.stringify({
               <tr>
                 <td class="num">{i + 1}</td>
                 <td><a href={`/db/${e.slug}/#sources`}>{e.name}</a></td>
-                <td class="kinds">{kindsOf(e).map((k) => kgKindLabels[k as KgKind].split(' (')[0]).join(', ')}</td>
+                <td class="kinds">{kindsOf(e).map((k) => kgKindLabels[k].split(' (')[0]).join(', ')}</td>
                 {KG_CAPABILITIES.map((c) => (
                   <td class="cap">{capabilitiesOf(e).includes(c) ? <span aria-label="Yes" title={c}>&#10003;</span> : <span class="no" aria-label="No source found">·</span>}</td>
                 ))}

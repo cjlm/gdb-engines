@@ -100,19 +100,3 @@ notes = "Confirms the catalogue's existing DFRNT attribution is current. DFRNT t
   quote = "DFRNT is the company that provides commercial hosting, enterprise support, and a comprehensive user interface for TerminusDB."
   verified = "matched"
   checked = "2026-08-02"
-
-[[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "repo"
-checked = "2026-11-01"
-notes = "RDF/JSON-LD-based document graph; maintained by DFRNT. Not SPARQL-based (WOQL Datalog + GraphQL)."
-
-  [[claims.sources]]
-  url = "https://github.com/terminusdb/terminusdb"
-  title = "TerminusDB README"
-  quote = "TerminusDB allows you to link JSON and JSON-LD documents in a semantic knowledge graph through a powerful document API"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"

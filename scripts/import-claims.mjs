@@ -36,12 +36,14 @@ const ANCHORS = {
   status: ['category', 'released', 'type'],
   kg_kinds: ['ai_roles', 'description'],
   kg_capabilities: ['protocols', 'query_languages', 'type'],
+  kg_extension_capabilities: ['kg_capabilities', 'protocols', 'query_languages', 'type'],
 };
 
 /** Closed vocabularies; a value outside them is dropped and reported. */
 const VOCABULARY = {
   kg_kinds: new Set(KG_KINDS),
   kg_capabilities: new Set(KG_CAPABILITIES),
+  kg_extension_capabilities: new Set(KG_CAPABILITIES),
 };
 
 const resultsDir = process.argv[2];

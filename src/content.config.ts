@@ -20,6 +20,7 @@ const databases = defineCollection({
     // semantic knowledge graph stack it ships. See src/lib/knowledge-graph.ts.
     kg_kinds: z.array(z.enum(KG_KINDS)).default([]),
     kg_capabilities: z.array(z.enum(KG_CAPABILITIES)).default([]),
+    kg_extension_capabilities: z.array(z.enum(KG_CAPABILITIES)).default([]),
     url: z.string().url().optional(),
     github_url: z.string().url().optional(),
     license: z.string().optional(),
@@ -170,8 +171,8 @@ const evidence = defineCollection({
         url: z.string().url(),
         title: z.string().min(1),
         quote: z.string().min(1),
-        // For list fields checked value by value (kg_kinds, kg_capabilities): the value this
-        // source backs.
+        // For list fields checked value by value (scripts/lib/per-value-evidence.mjs): the value
+        // this source backs.
         supports: z.string().optional(),
         // Written by verify-quotes.mjs, never by hand. `matched-archive` means the original
         // wouldn't load but an Internet Archive snapshot carries the quote.

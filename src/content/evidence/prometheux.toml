@@ -66,7 +66,7 @@ notes = "Prometheux was started by researchers from the Oxford and TU Wien knowl
 
 [[claims]]
 field = "kg_kinds"
-value = ["virtual", "semantic"]
+value = ["virtual"]
 confidence = "medium"
 method = "vendor-docs"
 checked = "2026-11-01"
@@ -85,22 +85,6 @@ notes = "Virtual is explicit (dedicated Virtual Knowledge Graph page; reads sour
   title = "Virtual Knowledge Graph: Query a Graph Without Moving Data | Prometheux"
   quote = "Each source is read in place at query time. Nothing is loaded into a separate graph store."
   supports = "virtual"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://docs.prometheux.ai/"
-  title = "Prometheux Docs - Introduction"
-  quote = "Prometheux is an ontology-native data processing engine that allows you to define executable ontologies for querying and processing data across multiple systems."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://docs.prometheux.ai/integrations/api-endpoints/vadalingo"
-  title = "Vadalingo - Prometheux Docs"
-  quote = "Translate SQL queries, RDF data, and OWL ontologies into Vadalog programs."
-  supports = "semantic"
   verified = "matched"
   checked = "2026-11-01"
 

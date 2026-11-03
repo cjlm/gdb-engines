@@ -133,27 +133,11 @@ notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acq
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "virtual"]
+value = ["virtual"]
 confidence = "medium"
 method = "vendor-docs"
 checked = "2026-11-01"
 notes = "Siemens product page now brands the family 'Rapidminer Graph Studio' (with Graph Lakehouse as its in-memory MPP engine) and says it 'is now part of Intelligence Center X'. Graph Lakehouse was formerly Altair Graph Lakehouse / AnzoGraph DB. 'virtual' rests on marketing language about a semantic layer that minimizes data movement and handling data 'virtualized'; it is a Graph Studio (platform) claim more than a Graph Lakehouse engine claim, hence medium confidence."
-
-  [[claims.sources]]
-  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
-  title = "Rapidminer Graph Studio | Siemens"
-  quote = "Built on open W3C standards — RDF, SPARQL, OWL and SHACL — ensuring interoperability, no vendor lock-in and flexible querying across structured and unstructured data from diverse sources."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
-  title = "Rapidminer Graph Studio | Siemens"
-  quote = "Create a rich, governed knowledge graph that operates across all your data."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"

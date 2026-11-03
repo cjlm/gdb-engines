@@ -18,7 +18,7 @@ import { blogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { sortProtocols } from '../../lib/protocols';
-import { kgCapabilityDescriptions, kgKindLabels } from '../../lib/knowledge-graph';
+import { kgCapabilityDescriptions, kgKindLabels, kgKindsOf } from '../../lib/knowledge-graph';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
 import { layoutFamily } from '../../lib/lineage-layout';
 
@@ -154,6 +154,7 @@ const fieldLabels: Record<string, string> = {
   previous_names: 'Previous names',
   kg_kinds: 'Knowledge graph kinds',
   kg_capabilities: 'Knowledge graph capabilities',
+  kg_extension_capabilities: 'Knowledge graph capabilities via extension',
 };
 
 /** Lineage claims are keyed per parent (`lineage.<parent>.relation`), so they share one label. */
@@ -172,6 +173,7 @@ const citedClaims = evidence
     : claim)
   .filter((claim) => claim.sources.length > 0);
 const engineRanks = getEngineRanks(boards, db.data.slug);
+const kgKinds = kgKindsOf(db.data);
 const lineageFamily = familyOf(buildFamilies(catalogue), db.data.slug);
 // A map that fits beside the sidebar sits under Details; a wider one gets the full page width.
 const MAIN_COLUMN_MAP_WIDTH = 700;
@@ -445,16 +447,30 @@ function hostname(value: string): string {
           <dd class="meta-list">{sortProtocols(db.data.protocols).map((protocol) => <span>{protocol}</span>)}</dd>
         </>
       )}
-      {db.data.kg_kinds.length > 0 && (
+      {kgKinds.length > 0 && (
         <>
           <dt><a href="/rankings/knowledge-graph/">Knowledge Graph</a></dt>
-          <dd class="meta-list">{db.data.kg_kinds.map((kind) => <span>{kgKindLabels[kind]}</span>)}</dd>
+          <dd class="meta-list">{kgKinds.map((kind) => <span>{kgKindLabels[kind]}</span>)}</dd>
         </>
       )}
       {db.data.kg_capabilities.length > 0 && (
         <>
           <dt>KG Capabilities</dt>
-          <dd class="meta-list">{db.data.kg_capabilities.map((capability) => <span title={kgCapabilityDescriptions[capability]}>{capability}</span>)}</dd>
+          <dd class="meta-list">
+            {db.data.kg_capabilities.map((capability) => (
+              <span title={kgCapabilityDescriptions[capability]}>{capability}</span>
+            ))}
+          </dd>
+        </>
+      )}
+      {db.data.kg_extension_capabilities.length > 0 && (
+        <>
+          <dt>KG Capabilities via extension</dt>
+          <dd class="meta-list">
+            {db.data.kg_extension_capabilities.map((capability) => (
+              <span title={kgCapabilityDescriptions[capability]}>{capability}</span>
+            ))}
+          </dd>
         </>
       )}
           </dl>

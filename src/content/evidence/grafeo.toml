@@ -87,7 +87,7 @@ notes = "README states the engine is built in Rust; confirms current value."
 
 [[claims]]
 field = "kg_kinds"
-value = ["property-graph", "semantic"]
+value = ["property-graph"]
 confidence = "high"
 method = "repo"
 checked = "2026-11-01"
@@ -97,14 +97,6 @@ checked = "2026-11-01"
   title = "GrafeoDB/grafeo README"
   quote = "Nodes with labels and properties, edges with types and properties. Ideal for social networks, knowledge graphs and application data."
   supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://github.com/GrafeoDB/grafeo"
-  title = "GrafeoDB/grafeo README"
-  quote = "Triple-based storage (subject-predicate-object) with SPO/POS/OSP indexes. Ideal for semantic web, linked data and ontology-based applications."
-  supports = "semantic"
   verified = "matched"
   checked = "2026-11-01"
 

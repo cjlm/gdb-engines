@@ -79,30 +79,6 @@ notes = "Reuses Oxigraph's crates for the data model, parsers and SPARQL algebra
   checked = "2026-09-23"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "repo"
-checked = "2026-11-01"
-notes = "Oxigraph-compatible RDF/SPARQL store on SQLite marketed as a knowledge graph in plain SQLite, with ontologies and a schema registry."
-
-  [[claims.sources]]
-  url = "https://github.com/Volland/oxilite"
-  title = "Volland/oxilite README"
-  quote = "want a knowledge graph in the same file, backed up and replicated with the same tools."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://oxilitedb.com"
-  title = "oxilite: SPARQL on SQLite"
-  quote = "oxilite is an Oxigraph-compatible RDF database and SPARQL engine that stores everything in SQLite."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "SHACL validation", "Vector search"]
 confidence = "high"

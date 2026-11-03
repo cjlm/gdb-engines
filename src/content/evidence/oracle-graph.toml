@@ -87,27 +87,11 @@ notes = "Confirms the current value with a caveat: Oracle Graph is split. The RD
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "property-graph", "virtual"]
+value = ["property-graph", "virtual"]
 confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-01"
 notes = "RDF Knowledge Graph feature (W3C standards) plus SQL/PGQL property graphs (official tutorial builds a KG with PGQL). Virtual: RDF views expose relational data as virtual RDF triples via R2RML/Direct Mapping. Note: the catalogue URL https://www.oracle.com/database/graph/ now returns 404; the product page is https://www.oracle.com/database/integrated-graph-database/features/."
-
-  [[claims.sources]]
-  url = "https://www.oracle.com/database/integrated-graph-database/features/"
-  title = "Integrated Graph Database Features"
-  quote = "Use Oracle Graph, which adheres to W3C standards, for linked data, data integration, and knowledge graphs."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://docs.oracle.com/en/database/oracle/oracle-database/23/rdfrm/rdf-graph-overview.html"
-  title = "RDF Graph Overview"
-  quote = "You can use Oracle SQL Developer to perform operations related to the RDF Knowledge Graph feature of Oracle Graph."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://docs.oracle.com/en/learn/oci-graph-23ai"

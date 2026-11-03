@@ -8,7 +8,7 @@
  * value it backs in `supports`.
  */
 
-export const PER_VALUE_FIELDS = ['kg_kinds', 'kg_capabilities'];
+export const PER_VALUE_FIELDS = ['kg_kinds', 'kg_capabilities', 'kg_extension_capabilities'];
 
 const PUBLISHED = new Set(['matched', 'matched-archive']);
 

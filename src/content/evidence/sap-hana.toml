@@ -93,22 +93,6 @@ notes = "Confirms current value. A former SAP HANA Core Platform developer's tec
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "Applies to SAP HANA Cloud's Knowledge Graph Engine (RDF triple store, GA 2025). The separate HANA property-graph engine is not positioned for knowledge graphs in the sources checked. help.sap.com pages are JS-rendered and could not be quoted."
-
-  [[claims.sources]]
-  url = "https://learning.sap.com/courses/prd-hc-introduction/multi-model-sap-hana-cloud-knowledge-graph-engine_8188c56f-ae0a-45cb-949d-24c67fdae3ec"
-  title = "SAP Learning: Multi Model - SAP HANA Cloud Knowledge Graph Engine"
-  quote = "The SAP HANA Cloud knowledge graph engine facilitates working with knowledge graphs built on the RDF framework."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["Vector search", "Graph algorithms"]
 confidence = "medium"

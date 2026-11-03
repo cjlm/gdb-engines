@@ -2,7 +2,6 @@ name = "SAP Hana"
 vendor = "SAP"
 slug = "sap-hana"
 description = "A multi-model in-memory database with built-in graph engine supporting both property graphs and knowledge graphs. Provides built-in graph algorithms for path finding and network analysis. Part of SAP Business Technology Platform."
-kg_kinds = ["semantic"]
 license = "Proprietary"
 implementation_language = "C++"
 type = "Multiple"

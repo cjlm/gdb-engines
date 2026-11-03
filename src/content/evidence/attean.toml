@@ -87,22 +87,6 @@ notes = "Same author; parts of RDF::Trine were ported into Attean."
   checked = "2026-09-23"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "medium"
-method = "repo"
-checked = "2026-11-01"
-notes = "README calls Attean a 'Semantic Web Framework' for RDF and SPARQL; it does not use the words knowledge graph, ontology or linked data, hence medium."
-
-  [[claims.sources]]
-  url = "https://github.com/kasei/attean"
-  title = "kasei/attean README"
-  quote = "Attean is a Perl framework for working with RDF data and SPARQL queries."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1"]
 confidence = "high"

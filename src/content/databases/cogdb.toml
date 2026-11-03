@@ -2,7 +2,6 @@ name = "CogDB"
 vendor = "NodeFn Inc."
 slug = "cogdb"
 description = "An embedded graph database for Python with built-in persistence, traversal, and semantic vector search. It runs entirely in-process, stores graph data as triples, and exposes Torque, a Python-native API for querying relationships."
-kg_kinds = ["semantic"]
 url = "https://cogdb.io"
 github_url = "https://github.com/arun1729/cog"
 license = "MIT"

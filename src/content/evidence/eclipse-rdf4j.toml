@@ -79,21 +79,6 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://rdf4j.org/about/"
-  title = "About | Eclipse RDF4J"
-  quote = "It allows you to connect with SPARQL endpoints and create applications that leverage the power of Linked Data and Semantic Web"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1", "RDFS reasoning", "SHACL validation"]
 confidence = "high"

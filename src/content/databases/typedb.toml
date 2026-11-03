@@ -4,7 +4,6 @@ slug = "typedb"
 previous_names = ["Grakn"]
 description = "A polymorphic database that natively models inheritance hierarchies, dependencies, and conceptual schemas using its TypeQL query language. Supports clustering for scalability and a cloud-agnostic deployment model."
 ai_roles = ["graphrag"]
-kg_kinds = ["semantic"]
 url = "https://typedb.com/"
 github_url = "https://github.com/typedb/typedb"
 license = "MPL-2.0"

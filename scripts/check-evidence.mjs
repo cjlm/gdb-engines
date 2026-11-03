@@ -115,12 +115,16 @@ if (existsSync(EV_DIR)) {
         for (const v of unsupportedValues(claim)) {
           errors.push(`${where}: "${claim.field}" lists "${v}" but no source names it in \`supports\`.`);
         }
-        // As for whole claims: a value fails only when every quote behind it is missing from its
-        // page. Unreachable and unchecked sources warn above and are simply not displayed.
-        const refuted = { ...claim, sources: sources.filter((s) => s.verified !== 'mismatch') };
-        for (const v of unsupportedValues(refuted)) {
-          if (unsupportedValues(claim).includes(v)) continue;
-          errors.push(`${where}: every quote backing "${claim.field}" value "${v}" failed verification.`);
+        // The catalogue value is what the site and the rankings publish, so each value needs a
+        // quote that verify-quotes.mjs has matched. Drop or re-source a value whose quotes are
+        // unchecked, unreachable or missing from the page.
+        const unsupported = unsupportedValues(claim);
+        for (const v of unsupportedValues(claim, { publishedOnly: true })) {
+          if (unsupported.includes(v)) continue;
+          errors.push(
+            `${where}: no verified quote backs "${claim.field}" value "${v}". ` +
+            `Run verify-quotes.mjs, then re-source or drop the value.`,
+          );
         }
       }
       for (const s of sources.filter((s) => s.verified === 'unchecked')) {

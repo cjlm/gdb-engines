@@ -8,7 +8,7 @@ import { getCollection } from 'astro:content';
 import { loadRankings } from '../lib/rankings';
 import { buildBoards } from '../lib/ranking-boards';
 import { loadSponsors, sponsorFor } from '../lib/sponsors';
-import type { KgKind } from '../lib/knowledge-graph';
+import { kgKindsOf, type KgKind } from '../lib/knowledge-graph';
 
 const databases = await getCollection('databases');
 const catalogue = new Map(databases.map(({ data }) => [data.slug, data]));
@@ -23,7 +23,10 @@ const updated = ranking ? new Date(ranking.generatedAt).toLocaleDateString('en-G
 function leaders(match: (slug: string) => boolean, n = 4) {
   return (board?.engines ?? []).filter((e) => match(e.slug)).slice(0, n);
 }
-const ofKind = (kind: KgKind) => (slug: string) => catalogue.get(slug)?.kg_kinds.includes(kind) ?? false;
+const ofKind = (kind: KgKind) => (slug: string) => {
+  const db = catalogue.get(slug);
+  return db ? kgKindsOf(db).includes(kind) : false;
+};
 const ofRole = (role: 'graphrag' | 'agent-memory') => (slug: string) => catalogue.get(slug)?.ai_roles.includes(role) ?? false;
 const examples = {
   semantic: leaders(ofKind('semantic')),

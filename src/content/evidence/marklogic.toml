@@ -114,30 +114,6 @@ checked = "2026-09-23"
   checked = "2026-09-23"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "vendor-docs"
-checked = "2026-11-01"
-notes = "RDF triple store with SPARQL and ontologies; Progress markets an Enterprise Knowledge Graph architecture pattern."
-
-  [[claims.sources]]
-  url = "https://www.progress.com/marklogic/solutions/enterprise-knowledge-graph"
-  title = "Enterprise Knowledge Graph Database | Progress MarkLogic"
-  quote = "Put information in context to make smarter decisions, accelerate innovation, and enable secure data sharing with an enterprise knowledge graph."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://docs.progress.com/bundle/marklogic-server-develop-with-semantic-graphs-12/page/topics/intro.html"
-  title = "Introduction to Semantic Graphs (MarkLogic Server 12.0)"
-  quote = "The power of a knowledge graph is the ability to define the relationships between disparate facts and provides context for those facts."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "Vector search"]
 confidence = "high"

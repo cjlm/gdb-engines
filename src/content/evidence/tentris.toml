@@ -65,22 +65,6 @@ notes = "The commercial repository (tentris/tentris) publishes only packaging sc
   checked = "2026-08-02"
 
 [[claims]]
-field = "kg_kinds"
-value = ["semantic"]
-confidence = "high"
-method = "repo"
-checked = "2026-11-01"
-notes = "Now marketed at tentris.io (TentrisDB) with community/commercial editions; ISWC 2020 paper site remains at tentris.dice-research.org."
-
-  [[claims.sources]]
-  url = "https://github.com/tentris/tentris"
-  title = "Tentris README"
-  quote = "Tentris is an efficient disk-based graph database for RDF knowledge graphs and implements the SPARQL query language"
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-[[claims]]
 field = "kg_capabilities"
 value = ["SPARQL 1.1"]
 confidence = "medium"

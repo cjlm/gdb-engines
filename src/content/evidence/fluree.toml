@@ -101,19 +101,11 @@ notes = "The current fluree/db repository's core is Rust; the project's own READ
 
 [[claims]]
 field = "kg_kinds"
-value = ["semantic", "virtual"]
+value = ["virtual"]
 confidence = "high"
 method = "repo"
 checked = "2026-11-01"
 notes = "Virtual: Apache Iceberg and R2RML graph sources let Parquet warehouses and relational stores be queried in place alongside native ledger data."
-
-  [[claims.sources]]
-  url = "https://flur.ee/"
-  title = "Fluree"
-  quote = "Fluree AI turns your structured and unstructured data into one knowledge graph, governed by your ontology."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
 
   [[claims.sources]]
   url = "https://github.com/fluree/db"

@@ -73,7 +73,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
 
 [[claims]]
 field = "kg_kinds"
-value = ["virtual", "semantic"]
+value = ["virtual"]
 confidence = "high"
 method = "repo"
 checked = "2026-11-01"
@@ -84,22 +84,6 @@ notes = "Virtual Knowledge Graph (OBDA) system exposing relational sources as RD
   title = "ontop/ontop README"
   quote = "These graphs are virtual, which means that data remains in the data sources instead of being moved to another database."
   supports = "virtual"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://github.com/ontop/ontop"
-  title = "ontop/ontop README"
-  quote = "Ontop is a Virtual Knowledge Graph system. It exposes the content of arbitrary relational databases as knowledge graphs."
-  supports = "semantic"
-  verified = "matched"
-  checked = "2026-11-01"
-
-  [[claims.sources]]
-  url = "https://github.com/ontop/ontop"
-  title = "ontop/ontop README"
-  quote = "It relies on R2RML mappings and can take advantage of lightweight ontologies."
-  supports = "semantic"
   verified = "matched"
   checked = "2026-11-01"
 
