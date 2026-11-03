@@ -1,0 +1,17 @@
+---
+import GarphieldFrame from './GarphieldFrame.astro';
+---
+
+<GarphieldFrame
+  viewId="query-languages"
+  title="Graph databases linked by query language"
+/>
+
+<script>
+  import { queryLanguageStatus } from '../../lib/graph-status.mjs';
+  import { mountGarphieldView } from './garphield-frame';
+
+  const frame = document.querySelector<HTMLIFrameElement>('[data-graph-view="query-languages"]');
+  if (!frame) throw new Error('Query-language view: its iframe is missing from the page.');
+  mountGarphieldView(frame, { status: queryLanguageStatus });
+</script>
