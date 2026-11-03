@@ -10,9 +10,12 @@ interface Props {
 
 const DOCUMENT_PATH = '/graphs/databases-similarity.gfd';
 const { slug, name } = Astro.props;
-const source = JSON.parse(readFileSync(resolve(process.cwd(), 'public', DOCUMENT_PATH.slice(1)), 'utf8'));
+const documentFile = resolve(process.cwd(), 'public', DOCUMENT_PATH.slice(1));
+const source = JSON.parse(readFileSync(documentFile, 'utf8'));
 const graph = source.datasets[0].graph;
-const labels = new Map(graph.nodes.map((node: { id: string; label: string }) => [node.id, node.label]));
+const labels = new Map<string, string>(
+  graph.nodes.map((node: { id: string; label: string }) => [node.id, node.label]),
+);
 const peers = neighbourIds(graph, `db:${slug}`).map((id: string) => ({
   slug: id.slice(3),
   name: labels.get(id) ?? id.slice(3),
