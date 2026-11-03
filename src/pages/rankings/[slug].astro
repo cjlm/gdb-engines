@@ -8,7 +8,7 @@ import SponsorSlot from '../../components/SponsorSlot.astro';
 import '../../styles/global.css';
 import { loadRankings } from '../../lib/rankings';
 import { buildBoards, buildLinkMaps } from '../../lib/ranking-boards';
-import { loadSponsors, getSponsor } from '../../lib/sponsors';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import { getCollection } from 'astro:content';
 import { buildFaviconMap } from '../../lib/favicon-map';
 
@@ -46,7 +46,8 @@ export async function getStaticPaths() {
       board,
       roundup: roundupByBoard.get(board.slug) ?? null,
       generatedAt: ranking.generatedAt,
-      sponsor: getSponsor(sponsors, board.slug),
+      sponsor: sponsorFor(sponsors, 'ranking-banner'),
+      headerSponsor: sponsorFor(sponsors, 'header'),
       faviconMap,
       linkMaps,
       engineMeta,
@@ -54,7 +55,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { board, roundup, generatedAt, sponsor, faviconMap, linkMaps, engineMeta } = Astro.props;
+const { board, roundup, generatedAt, sponsor, headerSponsor, faviconMap, linkMaps, engineMeta } = Astro.props;
 const canonical = `https://gdb-engines.com/rankings/${board.slug}/`;
 const ogImage = `https://gdb-engines.com/og/rankings/${board.slug}.png`;
 const updated = new Date(generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
@@ -89,7 +90,7 @@ const isMovers = board.group === 'movers';
 const scoreLabel = isMovers ? 'momentum' : 'score';
 ---
 <Layout title={`${board.title} — GDB-Engines Rankings`} description={board.metaDescription} canonical={canonical} ogImage={ogImage} jsonLd={[itemListJsonLd, breadcrumbJsonLd]}>
-  <SiteHeader />
+  <SiteHeader sponsor={headerSponsor} />
   <main class="ranking-page">
     <nav class="breadcrumb"><a href="/rankings/">GDB-Engines Rankings</a> &rsaquo; {board.h1}</nav>
     <h1>{board.h1}</h1>
@@ -107,9 +108,7 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
       <p class="roundup-link">Compare these side by side: <a href={`/compare/${roundup.slug}/`}>{roundup.h1} &rarr;</a></p>
     )}
 
-    <SponsorCTA />
-
-    {sponsor && <SponsorSlot sponsor={sponsor} />}
+    {sponsor ? <SponsorSlot sponsor={sponsor} placement="ranking-banner" /> : <SponsorCTA />}
 
     <CorrectionNotice />
 

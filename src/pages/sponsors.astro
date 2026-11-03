@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+import { getDatabaseCount } from '../lib/database-count';
+import { loadSponsors, placementLink } from '../lib/sponsors';
+
+const dbCount = await getDatabaseCount();
+const sponsors = (await loadSponsors()).filter((s) => s.placements.includes('sponsors-page'));
+const tierLabel = { founding: 'Founding sponsor', presenting: 'Presenting sponsor' } as const;
+---
+<Layout
+  title="Sponsors | GDB-Engines"
+  description="The companies sponsoring GDB-Engines, and how to sponsor the graph database rankings yourself. Rankings and methodology are never adjusted for sponsors."
+  canonical="https://gdb-engines.com/sponsors/"
+>
+  <SiteHeader />
+  <main class="sponsor-page">
+    <h1>Sponsors</h1>
+
+    {sponsors.length > 0 && (
+      <ul class="sponsor-list">
+        {sponsors.map((s) => (
+          <li class="sponsor-card">
+            <a href={placementLink(s.link, 'sponsors-page')} target="_blank" rel="noopener noreferrer sponsored"
+               data-outbound="sponsor" data-placement="sponsors-page">
+              <img class="light-only" src={s.logo.light} alt={s.name} height="32" />
+              <img class="dark-only" src={s.logo.dark} alt={s.name} height="32" />
+            </a>
+            <p class="sponsor-card__tier">{tierLabel[s.tier]}</p>
+            <p>{s.description}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <h2>Sponsor GDB-Engines</h2>
+    <p>GDB-Engines Rankings publishes monthly popularity boards covering {dbCount}+ graph databases across data model, query language, implementation language and license.</p>
+    <p>If you'd like to sponsor a ranking page please get in touch:</p>
+    <p class="contact"><a href="mailto:sponsor@gdb-engines.com">sponsor@gdb-engines.com</a></p>
+    <p>Please note, the underlying ranking methodology and scores are never adjusted for sponsors.</p>
+  </main>
+</Layout>
+
+<style>
+  .sponsor-page { max-width: 720px; margin: 0 auto; padding: calc(var(--header-height) + 2rem) 1.25rem 3rem; line-height: 1.6; color: var(--color-text-secondary); }
+  h1 { font-size: 1.5rem; margin: 0 0 1rem; color: var(--color-text); }
+  h2 { font-size: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.25rem; margin-top: 2rem; color: var(--color-text); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .contact { font-size: 1.05rem; margin: 1.5rem 0; }
+  .contact a { color: var(--color-text); text-decoration: none; font-weight: 500; }
+  .contact a:hover { text-decoration: underline; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: 0.4rem; }
+  .sponsor-list { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 1rem; }
+  .sponsor-card { border: 1px solid var(--color-border); border-radius: 6px; padding: 1.25rem; margin: 0; }
+  .sponsor-card img { height: 32px; width: auto; }
+  .sponsor-card__tier { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-tertiary); margin: 0.75rem 0 0.25rem; }
+</style>

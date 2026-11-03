@@ -27,6 +27,8 @@
   --color-background: #FFF;
   --color-border: #DDD;
   --color-surface: #EEE;
+  /* Glow strength behind sponsor bars (SponsorSlot); dark needs more to read. */
+  --sponsor-glow: 22%;
   --color-alpha-background: rgba(255, 255, 255, 0.75);
 
   --color-text: #333;
@@ -63,6 +65,7 @@
     --color-background: #1E1E1E;
     --color-border: #333;
     --color-surface: #111;
+    --sponsor-glow: 40%;
     --color-alpha-background: rgba(30, 30, 30, 0.75);
 
     --color-text: #FFF;
@@ -88,6 +91,7 @@
   --color-background: #1E1E1E;
   --color-border: #333;
   --color-surface: #111;
+  --sponsor-glow: 40%;
   --color-alpha-background: rgba(30, 30, 30, 0.75);
 
   --color-text: #FFF;
@@ -192,9 +196,6 @@ a {
     width: 1.75rem;
     flex: 0 0 auto;
   }
-
-  .light-only { display: block; }
-  .dark-only { display: none; }
 
   h1,
   .header-brand {
@@ -309,13 +310,13 @@ a {
     }
   }
 
-  @media (max-width: 27rem) {
+  @media (max-width: 30rem) {
     .header-brand {
       display: none;
     }
   }
 
-  @media (max-width: 22rem) {
+  @media (max-width: 23.375rem) {
     #help {
       width: 2rem;
       padding-inline: 0;
@@ -1131,6 +1132,10 @@ tr.row-deprecated:hover td {
 .icon-moon { display: block; }
 :root[data-theme="dark"] .icon-sun { display: block; }
 :root[data-theme="dark"] .icon-moon { display: none; }
+/* Theme-paired images. The base pair applies site-wide (sponsor logos sit outside the
+   header too); the rules below swap them for the dark theme. */
+.light-only { display: block; }
+.dark-only { display: none; }
 :root[data-theme="dark"] .light-only { display: none; }
 :root[data-theme="dark"] .dark-only { display: block; }
 @media (prefers-color-scheme: dark) {

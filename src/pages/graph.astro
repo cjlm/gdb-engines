@@ -5,6 +5,7 @@ import SponsorCTA from '../components/SponsorCTA.astro';
 import LineageMap from '../components/LineageMap.astro';
 import { buildFamilies } from '../lib/lineage';
 import { getDatabaseCount } from '../lib/database-count';
+import { loadSponsors, sponsorFor } from '../lib/sponsors';
 import { buildFaviconMap } from '../lib/favicon-map';
 import { getCollection } from 'astro:content';
 import '../styles/global.css';
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const initialView = Astro.props.initialView ?? 'query-languages';
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
 const viewMetadata: Record<
   GraphView,
   { title: string; description: string; modelDescription: string; canonical: string }
@@ -132,7 +134,7 @@ function timelineTypeClass(type: string): string {
   description={`${currentView.description} Compare ${databaseCount} graph databases.`}
   canonical={currentView.canonical}
 >
-  <SiteHeader />
+  <SiteHeader sponsor={headerSponsor} />
 
   <main
     class="graph-page"

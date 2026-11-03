@@ -1,0 +1,14 @@
+name = "HydraDB"
+vendor = "HydraDB"
+slug = "hydradb"
+description = "An object-store-native distributed graph database written in Rust, built on SlateDB with S3-compatible storage as the durable source of truth. Queries a subset of openCypher over Bolt, so Neo4j drivers connect unmodified, or over an HTTPS API, with query nodes and indexers scaling independently of storage."
+url = "https://hydradb.com"
+github_url = "https://github.com/hydra-db/hydradb"
+license = "AGPL-3.0"
+implementation_language = "Rust"
+type = "Property Graph"
+kind = "database"
+query_languages = ["openCypher"]
+released = "2026-07"
+category = "Emerging"
+gdotv_support = false

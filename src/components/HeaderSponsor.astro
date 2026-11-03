@@ -1,0 +1,153 @@
+---
+import type { Sponsor } from '../lib/sponsors';
+import { placementLink } from '../lib/sponsors';
+
+interface Props {
+  sponsor: Sponsor;
+}
+
+const { sponsor } = Astro.props;
+
+/**
+ * Compact "Sponsored by [logo]" mention in the site header. On pages with a sponsor bar
+ * ([data-sponsor-bar]) it stays hidden while the bar is in view and fades in once the bar
+ * scrolls under the header; on pages without one it shows from the start. Its box is
+ * always laid out at wide widths, so showing it never moves anything else in the header.
+ *
+ * The light-only/dark-only theme classes are global and set `display`, so the rules
+ * below size the imgs but never toggle their `display`.
+ */
+---
+<a
+  class="header-sponsor"
+  href={placementLink(sponsor.link, 'header')}
+  target="_blank"
+  rel="noopener noreferrer sponsored"
+  data-outbound="sponsor"
+  data-placement="header"
+  aria-label={`Sponsored by ${sponsor.name}`}
+>
+  <span class="header-sponsor__label">Sponsored by</span>
+  <span class="header-sponsor__logo">
+    <img class="light-only" src={sponsor.logo.light} alt="" height="16" />
+    <img class="dark-only" src={sponsor.logo.dark} alt="" height="16" />
+  </span>
+</a>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const bar = document.querySelector('[data-sponsor-bar]');
+
+  if (header && bar) {
+    const headerHeight = header.getBoundingClientRect().height;
+    const observer = new IntersectionObserver(
+      ([entry]) => header.toggleAttribute('data-sponsor-bar-out', !entry?.isIntersecting),
+      { rootMargin: `-${Math.round(headerHeight)}px 0px 0px 0px` },
+    );
+    observer.observe(bar);
+  }
+</script>
+
+<style>
+  .header-sponsor {
+    display: none;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.55rem;
+    height: 2rem;
+    /* Matches the 0.75rem gap between the right-hand header controls. */
+    margin: 0 0.25rem 0 auto;
+    padding: 0 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.35rem;
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 160ms ease,
+      visibility 0s linear 160ms,
+      background-color 120ms ease;
+  }
+
+  /* Shown only where the header has room for it beside the labelled navigation; the
+     homepage header also carries the search field, so it waits until 72rem. */
+  @media (min-width: 56rem) {
+    :global(.site-header:not(:has(.search-container))) .header-sponsor {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 72.0625rem) {
+    .header-sponsor {
+      display: inline-flex;
+    }
+  }
+
+  /* The page summary shares the left group with the mention's reserved box. Rather than
+     truncate it to an ellipsis, it waits for the widths where both fit in full. */
+  @media (max-width: 75rem) {
+    :global(.site-header:has(.header-sponsor) .database-summary) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 88rem) {
+    :global(.site-header:has(.header-sponsor):has(.search-container) .database-summary) {
+      display: none;
+    }
+  }
+
+  :global(body:not(:has([data-sponsor-bar]))) .header-sponsor {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 160ms ease,
+      visibility 0s linear 0s,
+      background-color 120ms ease;
+  }
+
+  :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 160ms ease,
+      visibility 0s linear 0s,
+      background-color 120ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header-sponsor,
+    :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
+      transition: none;
+    }
+  }
+
+  .header-sponsor:hover {
+    background-color: var(--color-surface);
+  }
+
+  .header-sponsor:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .header-sponsor__label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .header-sponsor__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-sponsor__logo img {
+    height: 16px;
+    width: auto;
+  }
+</style>

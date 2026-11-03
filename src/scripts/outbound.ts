@@ -32,6 +32,8 @@ function report(event: MouseEvent): void {
   };
   const database = link.dataset.db;
   if (database) properties.database = database;
+  const placement = link.dataset.placement;
+  if (placement) properties.placement = placement;
 
   track('outbound: clicked', properties);
 }
