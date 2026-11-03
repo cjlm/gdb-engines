@@ -253,6 +253,7 @@ function timelineTypeClass(type: string): string {
         <iframe
           class="garphield-frame visualization-view"
           data-document="/graphs/databases-similarity.gfd"
+          data-edge-width-scale="0.6"
           title="Graph databases linked by catalog similarity"
           loading="eager"
           aria-hidden="true"
@@ -485,8 +486,12 @@ function timelineTypeClass(type: string): string {
         buttons[0];
       const contexts = new Map(
         frames.map((frame) => {
+          const embedUrl = new URL('/embed', origin);
+          if (frame.dataset.edgeWidthScale) {
+            embedUrl.searchParams.set('edgeWidthScale', frame.dataset.edgeWidthScale);
+          }
           const driver = createGarphield(frame, {
-            embedUrl: new URL('/embed', origin),
+            embedUrl,
             timeoutMs: 30_000,
           });
           return [
