@@ -17,7 +17,7 @@ notes = "Auto-manages an embedded Redis server with the FalkorDB module (RESP pr
   title = "FalkorDB/falkordblite"
   quote = "It provides a built-in Redis server with FalkorDB module that is automatically installed, configured and managed when the bindings are used."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,14 +32,14 @@ notes = "Confirms current value for the graph engine itself: falkordblite's own 
   title = "LICENSE.txt"
   quote = "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/FalkorDB/falkordblite"
   title = "FalkorDB/falkordblite"
   quote = "FalkorDBLite is Free software under the New BSD license, see LICENSE.txt for details."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Confirms current value; GitHub repo created 2025-10-12, and the first P
   title = "falkordblite"
   quote = "\"created_at\": \"2025-10-12T18:35:54Z\","
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirms current value for the distributed package itself: the falkordb
   title = "FalkorDB/falkordblite"
   quote = "FalkorDBLite is a self-contained Python interface to the FalkorDB graph database."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.redisgraph-falkordb.relation"
@@ -83,4 +83,26 @@ checked = "2026-09-23"
   title = "FalkorDB/falkordblite"
   quote = "FalkorDBLite is a self-contained Python interface to the FalkorDB graph database."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "FalkorDBLite is a Python package that starts, configures and stops a bundled Redis server with the FalkorDB module as a child process of the application (redislite-style); nothing is deployed or run separately."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/FalkorDB/falkordblite/master/README.md"
+  title = "FalkorDBLite README"
+  quote = "FalkorDBLite combines the power of Redis and FalkorDB graph database in an embedded Python package."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/FalkorDB/falkordblite/master/README.md"
+  title = "FalkorDBLite README"
+  quote = "It provides a built-in Redis server with FalkorDB module that is automatically installed, configured and managed when the bindings are used."
+  verified = "matched"
+  checked = "2026-11-03"

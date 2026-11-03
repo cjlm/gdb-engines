@@ -6,6 +6,7 @@ url = "https://dydra.com/"
 license = "Proprietary"
 implementation_language = "Common Lisp"
 type = "RDF"
+embeddable = false
 query_languages = ["SPARQL", "GraphQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2011"

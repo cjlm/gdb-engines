@@ -47,3 +47,25 @@ notes = "Confirms the current value; no source repository or open licence exists
   quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
   verified = "unreachable"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ultipa v5 runs as shard, HDC, name and meta servers, with graph data sharded across multiple server instances."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Ultipa Graph Database v5 architecture"
+  quote = "Sharding refers to the process of dividing a large graph in the database into smaller chunks called shards, which are stored across multiple servers (or instances)."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs/v5/graph-database"
+  title = "Ultipa Graph Database v5 architecture"
+  quote = "Each shard server also handles computation."
+  verified = "matched"
+  checked = "2026-11-03"

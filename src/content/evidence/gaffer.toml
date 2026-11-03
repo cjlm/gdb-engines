@@ -85,3 +85,25 @@ notes = "Confirms current value."
   quote = "Written in Java, Gaffer is a “framework that makes it easy to store large-scale graphs in which the nodes and edges have statistics such as counts, histograms and sketches,” GCHQ stated in the project description."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Gaffer is a Java framework used by building a Graph object in Java code; with the in-memory Java Map Store the whole store lives in the application JVM, while Accumulo and REST deployments are also supported."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/gchq/Gaffer/develop/README.md"
+  title = "Gaffer README"
+  quote = "Several storage options are available, including Accumulo and an in-memory Java Map Store."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://gchq.github.io/gaffer-doc/latest/administration-guide/gaffer-stores/map-store.html"
+  title = "Map Store - Gaffer Documentation"
+  quote = "As an in-memory cache of some data that has been retrieved from a larger store."
+  verified = "matched"
+  checked = "2026-11-03"

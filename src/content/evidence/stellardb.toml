@@ -48,3 +48,18 @@ notes = "Transwarp's own IPO disclosure describes StellarDB as a separately pric
   quote = "Discover，StellarDB 为图数据库组件，其价格相对较高，少量客户直接购买 TDH 套件 （即每套包括若干组件）。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Transwarp describes StellarDB as a distributed graph database whose data is spread across cluster nodes; no embedded or library mode is documented."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.cn/en/product/stellardb"
+  title = "Transwarp StellarDB"
+  quote = "Transwarp StellarDB is a distributed graph database built for enterprise-level graph applications, which quickly finds correlations between data and provides powerful algorithm analysis capabilities."
+  verified = "matched"
+  checked = "2026-11-03"

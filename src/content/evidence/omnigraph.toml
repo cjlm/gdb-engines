@@ -70,3 +70,25 @@ notes = "Confirms current value."
   quote = "cargo build --workspace\ncargo test  --workspace\n```\n\nNotes:\n\n- Rust stable toolchain, edition 2024"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Besides the CLI and HTTP server, the engine is a library that an embedded caller can use directly."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/architecture.md"
+  title = "OmniGraph architecture"
+  quote = "An embedded caller may use the engine directly; the CLI may use an embedded store or the HTTP API; the server hosts multiple graphs from one applied cluster revision."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/concepts/index.md"
+  title = "OmniGraph concepts"
+  quote = "The embedded engine, CLI, and HTTP server share the same graph semantics."
+  verified = "matched"
+  checked = "2026-11-03"

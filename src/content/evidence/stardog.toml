@@ -77,3 +77,18 @@ notes = "Stardog's creators (Clark & Parsia) describe it as a lightweight, pure 
   quote = "Kendall Clark will present Stardog, the forthcoming commercial RDF database from C&P, featuring full OWL2 reasoning capabilities and fast query performance in a lightweight, pure Java implementation."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Stardog removed its embedded (in-JVM) server in Stardog 9; current versions run only as an external server."
+
+  [[claims.sources]]
+  url = "https://docs.stardog.com/additional-resources/migration-guide"
+  title = "Migration Guide - Stardog Documentation"
+  quote = "For this reason, the capability to run Stardog in embedded mode has been completely removed in Stardog 9."
+  verified = "matched"
+  checked = "2026-11-03"

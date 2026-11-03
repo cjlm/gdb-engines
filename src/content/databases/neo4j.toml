@@ -8,6 +8,7 @@ github_url = "https://github.com/neo4j/neo4j"
 license = "GPL-3.0"
 implementation_language = "Java"
 type = "Property Graph"
+embeddable = true
 query_languages = ["Cypher", "GQL"]
 protocols = ["Bolt", "HTTP/REST"]
 released = "2007"

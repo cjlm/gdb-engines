@@ -84,3 +84,18 @@ notes = "Confirms current value. GitHub byte counts show C++ (8.0MB) dwarfing ev
   quote = "Sometimes when you install clang via the package manager, it won’t be recognized by cmake as a C++ alternative."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "The wiki workflow is to import data, start the mdb server, then query it through the web interface or HTTP; no library/embedded mode is documented."
+
+  [[claims.sources]]
+  url = "https://github.com/MillenniumDB/MillenniumDB/wiki/Creating-and-running-a-database"
+  title = "Creating and running a database · MillenniumDB Wiki"
+  quote = "After creating the database, the server can be started with the following command:"
+  verified = "matched"
+  checked = "2026-11-03"

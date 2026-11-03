@@ -84,3 +84,18 @@ notes = "Confirms the current value with a caveat: Oracle Graph is split. The RD
   quote = "PGX has two different runtimes: a single-machine shared memory runtime implemented in Java and a distributed runtime implemented in C++"
   verified = "mismatch"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The in-memory graph server (PGX) can be used as a library in embedded mode, running in the same JVM as the client application; the database-resident parts are server-side."
+
+  [[claims.sources]]
+  url = "https://docs.oracle.com/en/database/oracle/property-graph/22.3/spgdg/developing-applications-using-graph-server-functionality-library.html"
+  title = "Developing Applications Using Graph Server Functionality as a Library"
+  quote = "This means a local PGX instance is created and runs in the same JVM as the client."
+  verified = "matched"
+  checked = "2026-11-03"

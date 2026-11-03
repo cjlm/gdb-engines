@@ -6,6 +6,7 @@ url = "https://www.bytedance.com/"
 license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
+embeddable = false
 query_languages = ["Gremlin"]
 protocols = ["Unknown"]
 released = "2018"

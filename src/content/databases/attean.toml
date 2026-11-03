@@ -8,6 +8,7 @@ license = "GPL-1.0-or-later OR Artistic-1.0-Perl"
 implementation_language = "Perl"
 type = "RDF"
 kind = "library"
+embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
 released = "2014-09"

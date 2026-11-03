@@ -70,3 +70,18 @@ notes = "Corrected from C, which describes the core Aerospike Database engine, n
   quote = "Aerospike Graph Service (AGS) is a JVM process that speaks the standard\nTinkerPop Gremlin wire protocol over WebSocket and stores its data in\nan Aerospike cluster."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Aerospike Graph is delivered as the Aerospike Graph Service (AGS), which applications reach over the Gremlin driver; no in-process mode is documented."
+
+  [[claims.sources]]
+  url = "https://aerospike.com/docs/graph/graph-and-java-basics"
+  title = "Aerospike Graph and Java basics"
+  quote = "Connect to Aerospike Graph Service from a Java application using the Gremlin driver."
+  verified = "matched"
+  checked = "2026-11-03"

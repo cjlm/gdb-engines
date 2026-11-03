@@ -7,6 +7,7 @@ github_url = "https://github.com/thatdot/quine"
 license = "MIT + Commons Clause"
 implementation_language = "Scala"
 type = "Property Graph"
+embeddable = false
 query_languages = ["openCypher", "Gremlin"]
 protocols = ["HTTP/REST", "WebSocket"]
 released = "2022-02"

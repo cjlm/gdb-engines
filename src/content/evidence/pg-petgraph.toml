@@ -48,3 +48,25 @@ notes = "The README states the extension is written in Rust with pgrx and petgra
   quote = "Graph algorithms for PostgreSQL, written in Rust"
   verified = "matched"
   checked = "2026-10-27"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "pg_petgraph is a PostgreSQL extension (CREATE EXTENSION), so it runs inside a PostgreSQL server, not in the client process."
+
+  [[claims.sources]]
+  url = "https://github.com/alitrack/pg_petgraph"
+  title = "pg_petgraph on GitHub"
+  quote = "Graph algorithms for PostgreSQL, written in Rust with pgrx and petgraph."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/alitrack/pg_petgraph/main/README.md"
+  title = "pg_petgraph README"
+  quote = "Requires Rust 1.96+ and a PostgreSQL 16/17/18 development environment."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -70,3 +70,18 @@ notes = "Confirmed; no change from current value."
   quote = "GUN (also known as Graph Universe Node, gun.js, and gunDB) is an open source, offline-first, real-time, decentralized, graph database written in JavaScript for the web browser."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "GUN is a JavaScript library loaded via a script tag or npm and run inside the browser or Node process; the README describes it as built to live inside any browser with no servers required."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amark/gun/master/README.md"
+  title = "GUN README"
+  quote = "The goal was to build a P2P database that could survive living inside **any** browser, and could correctly sync data between **any** device after assuming **any** offline-first activity."
+  verified = "matched"
+  checked = "2026-11-03"

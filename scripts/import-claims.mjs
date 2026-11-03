@@ -32,6 +32,7 @@ const ANCHORS = {
   github_url: ['url', 'description'],
   vendor: ['name'],
   status: ['category', 'released', 'type'],
+  embeddable: ['kind', 'type'],
 };
 
 const resultsDir = process.argv[2];

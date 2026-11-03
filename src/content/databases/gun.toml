@@ -7,6 +7,7 @@ github_url = "https://github.com/amark/gun"
 license = "Zlib OR MIT OR Apache-2.0"
 implementation_language = "JavaScript"
 type = "Property Graph"
+embeddable = true
 query_languages = ["Custom API"]
 protocols = ["WebSocket"]
 released = "2014"

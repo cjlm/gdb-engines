@@ -59,3 +59,25 @@ checked = "2026-08-26"
   quote = "\"Rust\": 2205638"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README defines embedded as running in the same process and says CozoDB is embeddable, with Rust, Python, NodeJS, mobile and WASM in-browser builds, plus an optional client-server mode."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/cozodb/cozo/main/README.md"
+  title = "CozoDB README"
+  quote = "We say CozoDB is _embeddable_ instead of _embedded_ since you can also use it in client-server mode, which can make better use of server resources and allow much more concurrency than in embedded mode."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/cozodb/cozo/main/README.md"
+  title = "CozoDB README"
+  quote = "A database is _embedded_ if it runs in the same process as your main program."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -62,3 +62,18 @@ checked = "2026-09-23"
   quote = "The database was formerly known as Kuzu."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes Ladybug as an embedded graph database."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/LadybugDB/ladybug/main/README.md"
+  title = "Ladybug README"
+  quote = "Ladybug is an embedded graph database built for query speed and scalability."
+  verified = "matched"
+  checked = "2026-11-03"

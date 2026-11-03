@@ -6,6 +6,7 @@ github_url = "https://github.com/dubey/weaver"
 license = "BSD-3-Clause"
 implementation_language = "C++"
 type = "Other"
+embeddable = false
 query_languages = ["Custom API"]
 protocols = ["Native binary"]
 released = "2014-12"

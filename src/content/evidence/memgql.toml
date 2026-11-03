@@ -63,3 +63,18 @@ notes = "No current value was set. The memgraph.com/memgraph-zero page states Me
   quote = "| [antlr4rust](https://crates.io/crates/antlr4rust)         | ANTLR4 parser runtime for Rust                     | BSD-3-Clause     |"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "MemGQL is a federated query service that clients reach over the Bolt protocol."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/memgraph-zero/memgql"
+  title = "MemGQL"
+  quote = "Clients connect via the Bolt protocol (port 7688) using any Bolt-compatible driver."
+  verified = "matched"
+  checked = "2026-11-03"

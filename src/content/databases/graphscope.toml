@@ -7,6 +7,7 @@ github_url = "https://github.com/alibaba/GraphScope"
 license = "Apache-2.0"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = false
 query_languages = ["Gremlin", "openCypher"]
 protocols = ["gRPC", "HTTP/REST", "Bolt", "Gremlin (WebSocket)"]
 released = "2020-12"

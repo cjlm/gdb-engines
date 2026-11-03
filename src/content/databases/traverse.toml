@@ -7,6 +7,7 @@ license = "Proprietary"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "database"
+embeddable = true
 query_languages = ["openCypher", "GQL"]
 protocols = ["HTTP/REST", "Bolt", "gRPC", "WebSocket"]
 released = "2026-03"

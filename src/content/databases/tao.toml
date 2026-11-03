@@ -6,6 +6,7 @@ url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-grap
 license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
+embeddable = false
 query_languages = ["TAO API"]
 protocols = ["Unknown"]
 released = "2012-05"

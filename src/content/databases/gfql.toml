@@ -8,6 +8,7 @@ license = "BSD-3-Clause"
 implementation_language = "Python"
 type = "Property Graph"
 kind = "query-engine"
+embeddable = true
 query_languages = ["GFQL", "openCypher"]
 protocols = ["HTTP/REST"]
 released = "2023"

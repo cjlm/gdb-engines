@@ -48,3 +48,18 @@ notes = "Confirms current value; the VLDB paper describes the extension's UDFs a
   quote = "with the help of some scalar User Defined Functions (UDFs) implemented in C++ that the module provides"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "DuckPGQ is a DuckDB extension, and DuckDB is an in-process engine; the site states it performs in-process graph analytics."
+
+  [[claims.sources]]
+  url = "https://duckpgq.org/"
+  title = "DuckPGQ"
+  quote = "Leverages DuckDB for efficient, in-process graph analytics."
+  verified = "matched"
+  checked = "2026-11-03"

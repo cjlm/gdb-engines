@@ -32,7 +32,7 @@ const viewMetadata: Record<
     title: 'Graph database similarity map — GDB-Engines',
     description: 'Explore graph databases linked to their nearest catalogue peers.',
     modelDescription:
-      'Link each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages.',
+      'Link each database to its four nearest catalog peers by data model, kind, whether it runs embedded, implementation language, query languages and protocols, with rarer shared traits counting for more, and every fork to its parent.',
     canonical: 'https://gdb-engines.com/graph/similarity/',
   },
   timeline: {
@@ -180,7 +180,7 @@ function timelineTypeClass(type: string): string {
               ]}
               data-view="similarity"
               data-document="/graphs/databases-similarity.gfd"
-              data-description="Link each database to its nearest catalog peers using type, kind, category, license, implementation language, and query languages."
+              data-description="Link each database to its four nearest catalog peers by data model, kind, whether it runs embedded, implementation language, query languages and protocols, with rarer shared traits counting for more, and every fork to its parent."
               data-mobile-description="Databases linked to their nearest catalog peers."
               data-page-title={viewMetadata.similarity.title}
               data-page-description={`${viewMetadata.similarity.description} Compare ${databaseCount} graph databases.`}
@@ -253,6 +253,7 @@ function timelineTypeClass(type: string): string {
         <iframe
           class="garphield-frame visualization-view"
           data-document="/graphs/databases-similarity.gfd"
+          data-edge-width-scale="0.6"
           title="Graph databases linked by catalog similarity"
           loading="eager"
           aria-hidden="true"
@@ -485,8 +486,12 @@ function timelineTypeClass(type: string): string {
         buttons[0];
       const contexts = new Map(
         frames.map((frame) => {
+          const embedUrl = new URL('/embed', origin);
+          if (frame.dataset.edgeWidthScale) {
+            embedUrl.searchParams.set('edgeWidthScale', frame.dataset.edgeWidthScale);
+          }
           const driver = createGarphield(frame, {
-            embedUrl: new URL('/embed', origin),
+            embedUrl,
             timeoutMs: 30_000,
           });
           return [

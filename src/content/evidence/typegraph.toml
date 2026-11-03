@@ -48,3 +48,18 @@ notes = "Confirms the current value; README describes it as TypeScript-first and
   quote = "TypeScript-first embedded knowledge graph library."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "TypeGraph is a TypeScript library that runs inside the application and stores data in an existing SQL database (SQLite in-process, or PostgreSQL), with no separate graph service."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/nicia-ai/typegraph/main/README.md"
+  title = "TypeGraph README"
+  quote = "TypeScript-first embedded knowledge graph library."
+  verified = "matched"
+  checked = "2026-11-03"

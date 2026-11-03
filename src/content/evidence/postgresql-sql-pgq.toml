@@ -63,3 +63,18 @@ notes = "Confirms current value."
   quote = "Although the PostgreSQL backend is written in C, it is possible to write extensions in C++ if these guidelines are followed:"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SQL/PGQ is a feature of the PostgreSQL server, and PostgreSQL docs state it uses a client/server model with a server process accepting client connections."
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/docs/current/tutorial-arch.html"
+  title = "PostgreSQL Documentation: Architectural Fundamentals"
+  quote = "In database jargon, PostgreSQL uses a client/server model."
+  verified = "matched"
+  checked = "2026-11-03"

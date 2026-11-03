@@ -71,3 +71,25 @@ notes = "Confirms current value: RDFox's core is written in C++, with a Java wra
   quote = "It is cross-platform software written in C++ that comes with a Java wrapper allowing for easy integration with any Java-based solution."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RDFox's Java, C and C++ APIs start the RDFox server inside the application's own process and access it in-memory."
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/apis.html"
+  title = "RDFox APIs"
+  quote = "Programmatic control of RDFox® can be gained remotely via a RESTful API exposed through an HTTP endpoint or in-memory via the Java, C, and C++ APIs."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://docs.oxfordsemantic.tech/apis.html"
+  title = "RDFox APIs"
+  quote = "Only one server can be started per process."
+  verified = "matched"
+  checked = "2026-11-03"

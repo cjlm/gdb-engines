@@ -8,6 +8,7 @@ license = "PostgreSQL"
 implementation_language = "C"
 type = "Property Graph"
 kind = "extension"
+embeddable = false
 query_languages = ["openCypher", "SQL"]
 protocols = ["PostgreSQL wire"]
 released = "2026-07"

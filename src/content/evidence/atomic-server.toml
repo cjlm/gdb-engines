@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The atomic_lib Rust crate that powers AtomicServer is documented as an embeddable data engine whose local store needs no HTTP server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/atomicdata-dev/atomic-server/develop/lib/README.md"
+  title = "atomic_lib README"
+  quote = "It powers AtomicServer and native and browser applications. A local store does not require an HTTP server."
+  verified = "matched"
+  checked = "2026-11-03"

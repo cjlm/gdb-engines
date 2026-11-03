@@ -6,6 +6,7 @@ url = "https://allegrograph.com/"
 license = "Proprietary"
 implementation_language = "Common Lisp"
 type = "RDF"
+embeddable = false
 query_languages = ["SPARQL", "Prolog"]
 protocols = ["HTTP/REST", "SPARQL Protocol"]
 released = "2004"

@@ -63,3 +63,18 @@ notes = "Matches current value; confirmed by the project's own repository descri
   quote = "Built in C/C++, it serves as the graph engine for GraphRAG pipelines, AI memory systems, and agentic workflows"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Memgraph is installed as a server (Docker, Kubernetes, Linux package) or used as Memgraph Cloud, and clients connect over Bolt; no embedded mode is documented."
+
+  [[claims.sources]]
+  url = "https://memgraph.com/docs/getting-started/install-memgraph"
+  title = "Install Memgraph"
+  quote = "Memgraph runs in Docker, on Kubernetes, in Memgraph Cloud and as a native Linux package."
+  verified = "matched"
+  checked = "2026-11-03"

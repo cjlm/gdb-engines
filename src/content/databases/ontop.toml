@@ -10,6 +10,7 @@ type = "RDF"
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
 kind = "query-engine"
+embeddable = true
 released = "2009"
 category = "Established"
 gdotv_support = false

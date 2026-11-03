@@ -77,3 +77,18 @@ checked = "2026-09-23"
   quote = "AGE is an acronym for A Graph Extension and is inspired by Bitnine's AgensGraph, a multi-model database fork of PostgreSQL."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Apache AGE is an extension to PostgreSQL, a server database, so it does not run in the client process."
+
+  [[claims.sources]]
+  url = "https://age.apache.org/"
+  title = "Apache AGE"
+  quote = "PostgreSQL, a popular relational database, can also function as a graph database through the use of an extension called Apache AGE."
+  verified = "matched"
+  checked = "2026-11-03"

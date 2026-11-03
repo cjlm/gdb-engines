@@ -10,6 +10,7 @@ github_url = "https://github.com/FalkorDB/FalkorDB"
 license = "SSPL-1.0"
 implementation_language = "C"
 type = "Property Graph"
+embeddable = false
 query_languages = ["openCypher"]
 protocols = ["Redis RESP", "Bolt", "HTTP/REST"]
 released = "2018-07"

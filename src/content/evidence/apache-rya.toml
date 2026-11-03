@@ -70,3 +70,25 @@ notes = "Confirms the current value; GitHub reports Java as the repository's pri
   quote = "\"watchers_count\": 115,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Rya is an RDF4J extension whose storage lives in a columnar index store such as an Accumulo cluster, and it is deployed as a web application on Tomcat, so a separate store and server are required."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/apache/rya/master/README.md"
+  title = "Apache Rya README"
+  quote = "[Apache Rya] is a scalable RDF Store that is built on top of a Columnar Index Store (such as Accumulo)."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/apache/rya/master/README.md"
+  title = "Apache Rya README"
+  quote = "Start the Tomcat server. `./bin/startup.sh`"
+  verified = "matched"
+  checked = "2026-11-03"

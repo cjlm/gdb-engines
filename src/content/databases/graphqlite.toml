@@ -9,6 +9,7 @@ implementation_language = "C"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "extension"
+embeddable = true
 released = "2025-07"
 category = "Emerging"
 gdotv_support = false

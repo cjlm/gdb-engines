@@ -77,3 +77,25 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "OrientDB documents embedding the server inside a Java application, where the application uses the database directly in local mode without a remote connection."
+
+  [[claims.sources]]
+  url = "https://orientdb.dev/docs/3.2.x/internals/Embedded-Server.html"
+  title = "Embed the Server - OrientDB Manual"
+  quote = "Embedding an OrientDB Server inside a Java application has several advantages and interesting features:"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://orientdb.dev/docs/3.2.x/internals/Embedded-Server.html"
+  title = "Embed the Server - OrientDB Manual"
+  quote = "Java application that runs embedded with the server can bypass the remote connection and use the database directly with local mode ."
+  verified = "matched"
+  checked = "2026-11-03"

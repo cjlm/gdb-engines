@@ -91,3 +91,18 @@ notes = "Confirms current value. A former SAP HANA Core Platform developer's tec
   quote = "HANA is the in-house database powering many of SAP's products. It is written in C++ with Python tests, and the entire code base lives inside of a single git repository."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SAP HANA is a database server; SAP HANA Cloud is sold as a database as a service, so applications connect over the network."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/2025id_/https://www.sap.com/products/data-cloud/hana.html"
+  title = "SAP HANA Cloud (archived)"
+  quote = "It’s also a database as a service, offering greater flexibility."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "C"
 type = "Property Graph"
 kind = "extension"
+embeddable = false
 query_languages = ["openCypher", "SQL"]
 protocols = ["PostgreSQL wire"]
 released = "2020-07"

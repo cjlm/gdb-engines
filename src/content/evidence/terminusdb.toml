@@ -100,3 +100,18 @@ notes = "Confirms the catalogue's existing DFRNT attribution is current. DFRNT t
   quote = "DFRNT is the company that provides commercial hosting, enterprise support, and a comprehensive user interface for TerminusDB."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "TerminusDB is installed via Docker, Snap or source and runs as a server on localhost:6363; the listed Python, JS and Rust packages are clients."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/terminusdb/terminusdb/main/README.md"
+  title = "TerminusDB README"
+  quote = "You should be able to view TerminusDB running by default at `localhost:6363`"
+  verified = "matched"
+  checked = "2026-11-03"

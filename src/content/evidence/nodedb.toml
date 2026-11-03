@@ -98,3 +98,18 @@ notes = "Confirms current value. GitHub reports the repo as 99.9% Rust, and the 
   quote = "git clone https://github.com/NodeDB-Lab/nodedb.git\ncd nodedb\ncargo build --release\ncargo install cargo-nextest --locked  # one-time\ncargo nextest run --all-features"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "NodeDB's README says the engine embeds on device and in the browser (NodeDB-Lite, WASM) as well as running as a distributed server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/NodeDB-Lab/nodedb/main/README.md"
+  title = "NodeDB README"
+  quote = "Durable, queryable, access-guarded memory for AI agents that runs where the agent runs — embedded on device, offline-capable, and syncing to a distributed server when connected."
+  verified = "matched"
+  checked = "2026-11-03"

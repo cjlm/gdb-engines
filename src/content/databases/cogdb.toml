@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Python"
 type = "RDF"
 kind = "embedded"
+embeddable = true
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
 released = "2018-07"

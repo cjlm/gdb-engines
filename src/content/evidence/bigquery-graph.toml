@@ -77,3 +77,18 @@ notes = "Google does not publish BigQuery’s implementation; the CMU Database o
   quote = "Project Type Commercial Written in C++, Java, Python"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "BigQuery Graph runs inside BigQuery, which Google describes as a fully managed, serverless platform; there is no in-process option."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/bigquery/docs/introduction"
+  title = "BigQuery overview"
+  quote = "BigQuery is a fully managed, AI-ready data platform that helps you manage and analyze your data."
+  verified = "matched"
+  checked = "2026-11-03"

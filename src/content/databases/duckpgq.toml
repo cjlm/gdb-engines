@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "C++"
 type = "Property Graph"
 kind = "extension"
+embeddable = true
 query_languages = ["SQL/PGQ"]
 released = "2023"
 category = "Emerging"

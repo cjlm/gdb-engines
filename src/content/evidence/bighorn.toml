@@ -62,3 +62,18 @@ checked = "2026-09-23"
   quote = "This is a fork from the original kuzu/kuzudb"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Bighorn is a fork of Kuzu and its README keeps Kuzu's description as an embedded, serverless graph database."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Kineviz/bighorn/master/README.md"
+  title = "Bighorn README"
+  quote = "Kuzu is an embedded graph database built for query speed and scalability."
+  verified = "matched"
+  checked = "2026-11-03"

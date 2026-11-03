@@ -70,3 +70,25 @@ notes = "Franz built AllegroGraph on top of its own Allegro Common Lisp platform
   quote = "It also develops Allegro Common Lisp, an implementation of Common Lisp, a dialect of Lisp (programming language). The functionality of AllegroGraph is made available through Java, Python, Common Lisp and other APIs."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "AllegroGraph is installed and run as a server, and client APIs such as Python access that server; Lisp code can run inside the server image itself, which is not an embedded mode for other applications."
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/agraph-introduction.html"
+  title = "AllegroGraph Introduction"
+  quote = "The Python API offers convenient and efficient access to an AllegroGraph server from a Python-based application."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://franz.com/agraph/support/documentation/server-installation.html"
+  title = "AllegroGraph Server Installation"
+  quote = "There are two methods of installation for the AllegroGraph server, one for administrators and one for non-administrators."
+  verified = "matched"
+  checked = "2026-11-03"

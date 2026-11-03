@@ -46,3 +46,18 @@ checked = "2026-08-26"
   quote = "\"Rust\": 11849595"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README says applications run the engine in process and there is no bundled server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/jscott3201/selene-db/main/README.md"
+  title = "selene-db README"
+  quote = "Applications depend on the `selene-db` facade, own their network and security boundary, and run the engine in process."
+  verified = "matched"
+  checked = "2026-11-03"

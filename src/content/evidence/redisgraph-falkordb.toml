@@ -91,3 +91,18 @@ notes = "Matches current value, true of both the original RedisGraph codebase an
   quote = "Bringing new graph capabilities to Redis through a native C implementation with an emphasis on performance, FalkorDB is now available as an open source project."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "FalkorDB is a Redis module that must be loaded into a Redis server, which clients reach over the network."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/FalkorDB/FalkorDB/master/README.md"
+  title = "FalkorDB README"
+  quote = "FalkorDB is hosted by [Redis](https://redis.io), so you'll first have to load it as a Module to a Redis server."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -63,3 +63,18 @@ notes = "Confirms current value; the project describes itself as Rust-native and
   quote = "Rust-native, modular platform for Semantic Web, SPARQL 1.2, GraphQL, and AI-augmented reasoning"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "OxiRS is published as Rust library crates; the oxirs-tdb README shows adding the crate as a Cargo dependency and opening a TdbStore directly in application code."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/cool-japan/oxirs/master/storage/oxirs-tdb/README.md"
+  title = "OxiRS TDB README"
+  quote = "A high-performance, ACID-compliant RDF storage engine with multi-version concurrency control (MVCC) and advanced transaction support."
+  verified = "matched"
+  checked = "2026-11-03"

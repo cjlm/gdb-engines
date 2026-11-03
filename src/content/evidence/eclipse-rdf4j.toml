@@ -77,3 +77,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RDF4J repositories such as MemoryStore and NativeStore are created directly inside a Java program via SailRepository, with no server needed."
+
+  [[claims.sources]]
+  url = "https://rdf4j.org/documentation/programming/repository/"
+  title = "The Repository API - RDF4J"
+  quote = "The repository that is created by the above code is volatile: its contents are lost when the object is garbage collected or when your Java program is shut down."
+  verified = "matched"
+  checked = "2026-11-03"

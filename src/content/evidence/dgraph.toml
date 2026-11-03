@@ -84,3 +84,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Dgraph is a distributed, sharded database run as a cluster (or standalone Docker cluster) reached over gRPC/HTTP; no embedded mode is documented."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hypermodeinc/dgraph/main/README.md"
+  title = "Dgraph README"
+  quote = "Dgraph is a horizontally scalable and distributed GraphQL database with a graph backend."
+  verified = "matched"
+  checked = "2026-11-03"

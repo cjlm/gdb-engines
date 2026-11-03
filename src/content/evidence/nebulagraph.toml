@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "NebulaGraph runs as three separate services (Graph, Storage, Meta) in a storage/compute-separated cluster that clients connect to."
+
+  [[claims.sources]]
+  url = "https://docs.nebula-graph.io/3.8.0/1.introduction/3.nebula-graph-architecture/1.architecture-overview/"
+  title = "Architecture overview - NebulaGraph Database Manual"
+  quote = "NebulaGraph consists of three services: the Graph Service, the Storage Service, and the Meta Service."
+  verified = "matched"
+  checked = "2026-11-03"

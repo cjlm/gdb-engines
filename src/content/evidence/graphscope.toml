@@ -77,3 +77,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "The Python package is a client: creating a session launches a separate coordinator that manages the back-end engines, so the engine does not run inside the application process."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/alibaba/GraphScope/main/README.md"
+  title = "GraphScope README"
+  quote = "A session tries to launch a `coordinator`, which is the entry for the back-end engines."
+  verified = "matched"
+  checked = "2026-11-03"

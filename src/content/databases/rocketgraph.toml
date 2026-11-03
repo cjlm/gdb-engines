@@ -8,6 +8,7 @@ url = "https://rocketgraph.com/"
 github_url = "https://github.com/trovares/pyxgt"
 license = "Proprietary"
 type = "Property Graph"
+embeddable = false
 query_languages = ["openCypher"]
 protocols = ["gRPC"]
 released = "2019-04"

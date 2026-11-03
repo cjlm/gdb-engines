@@ -77,3 +77,18 @@ notes = "Confirms current value. The project's first release describes itself as
   quote = "`oxigraph` Rust library with SPARQL 1.1 query support and memory, Sled and RocksDB stores."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Oxigraph is a Rust library with Python bindings and a WebAssembly JS package, in addition to the server binary."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/oxigraph/oxigraph/main/README.md"
+  title = "Oxigraph README"
+  quote = "WebAssembly is used to package Oxigraph into a NodeJS compatible NPM package."
+  verified = "matched"
+  checked = "2026-11-03"

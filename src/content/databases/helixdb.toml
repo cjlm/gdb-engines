@@ -11,6 +11,7 @@ type = "Other"
 query_languages = ["HelixQL"]
 protocols = ["HTTP/REST"]
 kind = "database"
+embeddable = true
 released = "2025-02"
 category = "Emerging"
 gdotv_support = false

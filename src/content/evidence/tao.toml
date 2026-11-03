@@ -71,3 +71,18 @@ notes = "Confirms current value; no primary Facebook/Meta source states the lang
   quote = "The TAO caching layer is run on the servers by a collection of daemons, mostly written in C and C++."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Meta's TAO post says client requests are always sent to caching clusters running TAO servers."
+
+  [[claims.sources]]
+  url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-graph/"
+  title = "TAO: The power of the graph"
+  quote = "Client requests are always sent to caching clusters running TAO servers."
+  verified = "matched"
+  checked = "2026-11-03"

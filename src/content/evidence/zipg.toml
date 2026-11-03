@@ -70,3 +70,25 @@ notes = "pdclab/zipg returns 404, as does anuragkh/zipg (the account its own REA
   quote = "ZipG is a distributed graph store that serves queries on compressed graphs."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "ZipG is a distributed research store whose servers listen on network ports and are reached by a Thrift Java client."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/README.md"
+  title = "ZipG README"
+  quote = "ZipG is a distributed graph store that serves queries on compressed graphs."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/README.md"
+  title = "ZipG README"
+  quote = "Ensure that all instances have passwordless ssh access to each other, and ports `11001-11099` are open on the `server` instances."
+  verified = "matched"
+  checked = "2026-11-03"

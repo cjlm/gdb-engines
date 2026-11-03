@@ -77,3 +77,18 @@ notes = "Confirmed by the launch post title and the dedicated Rust driver docume
   quote = "Introducing Traverse: A High-Performance Graph Database Built in Rust"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Traverse documents an embedded mode that runs queries in-process as a library, plus a WebAssembly browser build."
+
+  [[claims.sources]]
+  url = "https://truespar.com/traverse"
+  title = "Traverse - Truespar"
+  quote = "Add Traverse as a library and run queries in-process, with no server to manage."
+  verified = "matched"
+  checked = "2026-11-03"

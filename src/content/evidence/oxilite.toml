@@ -77,3 +77,18 @@ notes = "Reuses Oxigraph's crates for the data model, parsers and SPARQL algebra
   quote = "Data model, all RDF parsers and serializers, the SPARQL parser and algebra, result formats, XSD datatypes, and a fallback evaluator"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "oxilite's default backend runs SQLite in-process via rusqlite; Rust, Node and Python packages open a local SQLite file directly."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Volland/oxilite/main/crates/oxilite-rusqlite/README.md"
+  title = "oxilite-rusqlite README"
+  quote = "**In-process SQLite backend for oxilite**, built on rusqlite with a bundled SQLite."
+  verified = "matched"
+  checked = "2026-11-03"

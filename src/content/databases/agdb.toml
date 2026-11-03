@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "embedded"
+embeddable = true
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
 released = "2023-06"

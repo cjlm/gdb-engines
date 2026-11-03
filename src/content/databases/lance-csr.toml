@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "query-engine"
+embeddable = true
 query_languages = ["openCypher"]
 released = "2026-10"
 category = "Emerging"

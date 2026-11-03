@@ -8,6 +8,7 @@ github_url = "https://github.com/eBay/akutan"
 license = "Apache-2.0"
 implementation_language = "Go"
 type = "RDF"
+embeddable = false
 query_languages = ["Custom API"]
 protocols = ["gRPC", "HTTP/REST"]
 released = "2019-04"

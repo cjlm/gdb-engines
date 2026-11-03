@@ -8,6 +8,7 @@ license = "AGPL-3.0"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "database"
+embeddable = false
 query_languages = ["openCypher"]
 released = "2026-07"
 category = "Emerging"

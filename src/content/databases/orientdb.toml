@@ -8,6 +8,7 @@ github_url = "https://github.com/orientechnologies/orientdb"
 license = "Apache-2.0"
 implementation_language = "Java"
 type = "Multiple"
+embeddable = true
 query_languages = ["SQL", "Gremlin"]
 protocols = ["Native binary", "HTTP/REST"]
 released = "2010"
