@@ -113,16 +113,16 @@ field = "kg_kinds"
 value = ["property-graph"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "hugegraph-ai sub-project adds automated knowledge graph construction and GraphRAG."
+checked = "2026-11-03"
+notes = "Property graph database (Gremlin/Cypher). The HugeGraph docs have a HugeGraph-AI quickstart for the project's own hugegraph-ai sub-project (hugegraph-llm, hugegraph-llm-sdk for property-graph extraction), which builds knowledge graphs in HugeGraph and serves GraphRAG. Replaces the homepage use-case-list source."
 
   [[claims.sources]]
-  url = "https://hugegraph.apache.org/"
-  title = "Apache HugeGraph"
-  quote = "it provides powerful Graph AI and graph computing capabilities for intelligent Q&A, recommendation systems, fraud detection, and knowledge graph applications"
+  url = "https://hugegraph.apache.org/docs/quickstart/hugegraph-ai/"
+  title = "HugeGraph-AI | Apache HugeGraph"
+  quote = "hugegraph-ai provides Python clients for HugeGraph, graph machine learning tools, and LLM tools for knowledge graph construction and GraphRAG applications."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -138,4 +138,4 @@ notes = "Algorithms ship in official Apache HugeGraph sub-projects (hugegraph-co
   quote = "45+ algorithm implementations including distributed Triangle Count, Rings detection, and custom algorithm development framework"
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

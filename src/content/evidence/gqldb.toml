@@ -36,10 +36,10 @@ notes = "The vendor offers a restricted free Community Edition for personal and 
 [[claims]]
 field = "kg_kinds"
 value = ["property-graph"]
-confidence = "high"
+confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "GQLDB (Ultipa Graph v6) is an ISO GQL property graph with a built-in ontology layer (OWL/RDF classes, IRIs, RDF import/export, SPARQL federation). The Enterprise Knowledge Graph solution page refers to Ultipa Graph, which the docs index identifies as GQLDB (Ultipa Graph v6)."
+checked = "2026-11-03"
+notes = "Ultipa's Enterprise Knowledge Graph solution page (a dedicated page about building KGs) says 'Ultipa Graph provides powerful capabilities for building and querying enterprise knowledge graphs' and its call to action is the GQLDB Playground; Ultipa's docs index names the current product 'GQLDB (Ultipa Graph v6)', so the page is about GQLDB. The separate 'ultipa' entry (Ultipa Graph v5) gets no kg_kinds: no knowledge-graph page or guide is about v5 specifically (the v5 graph-database docs do not mention knowledge graphs). GQLDB is an ISO GQL property graph with a built-in ontology layer (OWL/RDF classes, IRIs, RDF import/export, SPARQL federation)."
 
   [[claims.sources]]
   url = "https://www.ultipa.com/solutions/enterprise-knowledge-graph"
@@ -47,7 +47,7 @@ notes = "GQLDB (Ultipa Graph v6) is an ISO GQL property graph with a built-in on
   quote = "Ultipa Graph provides powerful capabilities for building and querying enterprise knowledge graphs."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -63,7 +63,7 @@ notes = "OWL: query-time inference over OWL axioms (SUBCLASS OF, EQUIVALENT TO, 
   quote = "Subclass closure, OWL characteristics, and class / property constructors (union, intersection, oneOf, equivalence), at query time"
   supports = "OWL reasoning"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.ultipa.com/docs/ai-and-vectors/vector-index"
@@ -71,7 +71,7 @@ notes = "OWL: query-time inference over OWL axioms (SUBCLASS OF, EQUIVALENT TO, 
   quote = "GQLDB's vector index is built on HNSW (Hierarchical Navigable Small World), a graph-based algorithm for approximate nearest neighbor (ANN) search."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.ultipa.com/docs/graph-algorithms"
@@ -79,4 +79,4 @@ notes = "OWL: query-time inference over OWL axioms (SUBCLASS OF, EQUIVALENT TO, 
   quote = "Ultipa provides a rich set of built-in graph algorithms for analytical insights from graph data."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"

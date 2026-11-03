@@ -133,16 +133,8 @@ field = "kg_kinds"
 value = ["property-graph"]
 confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-01"
-notes = "AWS lists knowledge graphs as a Neptune use case and supports both RDF/SPARQL and property graphs; AWS does not tie knowledge graphs to one model specifically. Bedrock Knowledge Bases GraphRAG uses Neptune for its knowledge graph."
-
-  [[claims.sources]]
-  url = "https://docs.aws.amazon.com/neptune/latest/userguide/intro.html"
-  title = "What Is Amazon Neptune?"
-  quote = "Neptune powers graph use cases such as recommendation engines, fraud detection, knowledge graphs, drug discovery, and network security."
-  supports = "property-graph"
-  verified = "matched"
-  checked = "2026-11-01"
+checked = "2026-11-03"
+notes = "Kept on the AWS Neptune knowledge-graph page (the knowledge-graphs-on-aws URL now redirects to aws.amazon.com/neptune/graph-and-ai/), a dedicated page on understanding and building knowledge graphs with Neptune, including Bedrock Knowledge Bases GraphRAG that uses Neptune (Neptune Analytics, a property graph) for its knowledge graph. The page does not tie knowledge graphs to the property-graph model specifically (Neptune also supports RDF/SPARQL), hence medium. The use-case list item in the user guide intro was dropped."
 
   [[claims.sources]]
   url = "https://aws.amazon.com/neptune/knowledge-graphs-on-aws/"
@@ -150,7 +142,7 @@ notes = "AWS lists knowledge graphs as a Neptune use case and supports both RDF/
   quote = "Amazon Bedrock Knowledge Bases automates the entire workflow and uses Amazon Neptune under the hood for its knowledge graph technology."
   supports = "property-graph"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "kg_capabilities"
@@ -166,7 +158,7 @@ notes = "Vector search and the algorithm library are in Neptune Analytics (the i
   quote = "Amazon Neptune is compatible with SPARQL 1.1."
   supports = "SPARQL 1.1"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html"
@@ -174,7 +166,7 @@ notes = "Vector search and the algorithm library are in Neptune Analytics (the i
   quote = "It supports a library of optimized graph analytic algorithms, low-latency graph queries, and vector search capabilities within graph traversals."
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.aws.amazon.com/neptune-analytics/latest/userguide/algorithms.html"
@@ -182,4 +174,4 @@ notes = "Vector search and the algorithm library are in Neptune Analytics (the i
   quote = "Neptune Analytics provides a set of optimized in-database implementations of common graph algorithms that are exposed as openCypher procedures."
   supports = "Graph algorithms"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
