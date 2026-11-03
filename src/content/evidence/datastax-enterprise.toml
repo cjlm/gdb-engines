@@ -106,3 +106,32 @@ notes = "DSE docs describe a self-managed distributed database cluster that clie
   quote = "Your client applications can send read and write requests to any node in the cluster."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "status"
+value = "deprecated"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "IBM withdrew DataStax Enterprise 6.x from marketing on 2025-10-31; it remains supported until 2027-12-31, with extended support to 2031. IBM's DataStax product page now lists Astra DB, Hyper-Converged Database and Langflow, not DSE. DSE Graph is still documented for DSE 6.9, so the product is wound down rather than gone."
+
+  [[claims.sources]]
+  url = "https://www.ibm.com/support/pages/ibm-datastax-enterprise6x"
+  title = "IBM DataStax Enterprise 6.x — Product lifecycle"
+  quote = "Withdrawn from Market 31-Oct-2025"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.ibm.com/support/pages/ibm-datastax-enterprise6x"
+  title = "IBM DataStax Enterprise 6.x — Product lifecycle"
+  quote = "Transition to Extended/Sustained or End of Support 31-Dec-2027"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://community.ibm.com/community/user/blogs/datastax-pm-team-datastax-pm-team/2025/10/02/ibm-datastax"
+  title = "IBM DataStax — IBM Community"
+  quote = "DataStax Enterprise will be a component of the IBM watsonx.data Premium offering."
+  verified = "matched"
+  checked = "2026-11-03"

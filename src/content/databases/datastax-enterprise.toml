@@ -3,7 +3,7 @@ vendor = "IBM"
 previous_vendors = ["DataStax"]
 slug = "datastax-enterprise"
 description = "A property graph database built on Apache Cassandra, forked from the Titan graph database. Uses TinkerPop for graph traversal and includes DataStax Studio for interactive querying and visualization."
-url = "https://www.datastax.com/products/datastax-enterprise"
+url = "https://docs.datastax.com/en/dse/6.9/graph/about-graph.html"
 license = "Proprietary"
 implementation_language = "Java"
 type = "Property Graph"
@@ -12,6 +12,8 @@ query_languages = ["Gremlin", "CQL"]
 protocols = ["Native binary"]
 released = "2016-04"
 category = "Established"
+status = "deprecated"
+status_note = "IBM withdrew DSE 6.x from sale in October 2025; support runs to December 2027."
 gdotv_support = true
 
 [lineage.titan]
