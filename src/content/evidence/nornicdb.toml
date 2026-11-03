@@ -70,3 +70,18 @@ notes = "Confirms current value. Build-from-source instructions use `go build`, 
   quote = "git clone https://github.com/orneryd/NornicDB.git\ncd NornicDB\ngo build -o nornicdb ./cmd/nornicdb"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "The Go package pkg/nornicdb is documented in source as the API for embedded use (nornicdb.Open on a data directory), though the README leads with server deployment."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/orneryd/NornicDB/main/pkg/nornicdb/db.go"
+  title = "NornicDB pkg/nornicdb/db.go"
+  quote = "Package nornicdb provides the main API for embedded NornicDB usage."
+  verified = "matched"
+  checked = "2026-11-03"

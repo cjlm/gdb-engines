@@ -6,6 +6,7 @@ url = "https://www.ultipa.com/products/gqldb"
 license = "Proprietary"
 type = "Property Graph"
 kind = "database"
+embeddable = true
 query_languages = ["GQL"]
 protocols = ["gRPC", "HTTP/REST"]
 category = "Growing"

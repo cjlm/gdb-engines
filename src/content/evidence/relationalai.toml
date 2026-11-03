@@ -77,3 +77,18 @@ notes = "Confirms current value; the engine (RKGS) and Rel language are implemen
   quote = "our cloud hosted next generation knowledge graph management system is a highly performant database and query optimization engine, and it's written 100% in Julia"
   verified = "unreachable"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "RelationalAI runs as a Native App inside the customer Snowflake account, and the PyRel client sends queries to it there."
+
+  [[claims.sources]]
+  url = "https://docs.relational.ai/"
+  title = "RelationalAI Docs"
+  quote = "PyRel sends queries to the RelationalAI Native App to run against data within your Snowflake perimeter."
+  verified = "matched"
+  checked = "2026-11-03"

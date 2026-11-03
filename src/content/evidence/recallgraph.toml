@@ -92,3 +92,18 @@ notes = "Built as an ArangoDB Foxx microservice."
   quote = "It is a Foxx Microservice for ArangoDB"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "RecallGraph is a Foxx microservice installed inside an ArangoDB server and accessed through its REST API."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/RecallGraph/RecallGraph/master/README.md"
+  title = "RecallGraph README"
+  quote = "RecallGraph installs like any other _Foxx Microservice_ inside a database, on an ArangoDB instance."
+  verified = "matched"
+  checked = "2026-11-03"

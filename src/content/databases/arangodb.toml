@@ -9,6 +9,7 @@ github_url = "https://github.com/arangodb/arangodb"
 license = "BUSL-1.1"
 implementation_language = "C++"
 type = "Multiple"
+embeddable = false
 query_languages = ["AQL"]
 protocols = ["HTTP/REST"]
 released = "2012-03"

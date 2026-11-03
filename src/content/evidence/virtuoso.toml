@@ -70,3 +70,18 @@ notes = "OpenLink's own FAQ confirms built-in engine functions are written in C;
   quote = "Virtuoso can extend SQL by import Java and .NET classes and functions as well as build-in SQL functions written in C."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Virtuoso runs as a server; even its \"Lite\"/embedded deployment ships a server executable that clients connect to over a local socket."
+
+  [[claims.sources]]
+  url = "https://vos.openlinksw.com/owiki/wiki/VOS/VirtTipsAndTricksGuideVirtLiteGuide"
+  title = "Virtuoso Lite Mode Installation and Configuration Guide"
+  quote = "Especially for embedded use, we now allow restricting the listener to be a Unix socket, which allows client connections only from the localhost."
+  verified = "matched"
+  checked = "2026-11-03"

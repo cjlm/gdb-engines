@@ -6,6 +6,7 @@ url = "https://www.huaweicloud.com/intl/en-us/product/ges.html"
 license = "Proprietary"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = false
 query_languages = ["Gremlin", "openCypher"]
 protocols = ["HTTP/REST"]
 released = "2017-12"

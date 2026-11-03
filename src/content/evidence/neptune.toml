@@ -127,3 +127,18 @@ notes = "AWS has never said so itself. The link rests on the Blazegraph team (in
   quote = "it seems to be based on Blazegraph, a well-known graph database that rumor has it was acquired by Amazon last year"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Neptune is a fully managed AWS service reached over network endpoints."
+
+  [[claims.sources]]
+  url = "https://docs.aws.amazon.com/neptune/latest/userguide/intro.html"
+  title = "What Is Amazon Neptune?"
+  quote = "Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets."
+  verified = "matched"
+  checked = "2026-11-03"

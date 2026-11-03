@@ -8,6 +8,7 @@ url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
 license = "Proprietary"
 implementation_language = "C++"
 type = "RDF"
+embeddable = false
 query_languages = ["SPARQL", "openCypher"]
 protocols = ["gRPC", "SPARQL Protocol", "Bolt"]
 released = "2018"

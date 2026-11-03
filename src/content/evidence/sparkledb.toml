@@ -41,3 +41,18 @@ confidence = "low"
 method = "web"
 checked = "2026-08-02"
 notes = "Unsubstantiated. No archived snapshot between 2013 and 2015 states a licence; the product appears never to have shipped beyond an announced beta. Proprietary is inferred from it being a closed commercial offering, not from any source saying so."
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Archived vendor pages describe SparkleDB as a database server (scaling to many server nodes) accessed by clients such as ODBC; no embedded mode is mentioned."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20140709153701/http://www.sparkledb.net/SPARQL-Database-Server/overview.aspx"
+  title = "SparkleDB SPARQL Database Server"
+  quote = "Use these industry-proven standards to protect the traffic between your servers, between the server and the clients, and between server nodes."
+  verified = "matched"
+  checked = "2026-11-03"

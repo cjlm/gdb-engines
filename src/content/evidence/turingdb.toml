@@ -788,3 +788,18 @@ confidence = "low"
 method = "vendor-docs"
 checked = "2026-10-26"
 notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor stated it is not supported. No public page was found that says so."
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README says TuringDB runs in-process inside a Python program with no separate server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
+  title = "TuringDB README"
+  quote = "TuringDB runs in-process, right inside your Python program, with no separate server to start."
+  verified = "matched"
+  checked = "2026-11-03"

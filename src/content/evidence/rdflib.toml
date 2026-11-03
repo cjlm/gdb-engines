@@ -55,3 +55,25 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "RDFLib is a pure Python package that runs in the application process, with in-memory and Berkeley DB stores built in."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/RDFLib/rdflib/main/README.md"
+  title = "RDFLib README"
+  quote = "This core RDFLib package includes store implementations for in-memory storage and persistent storage on top of the Berkeley DB."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/RDFLib/rdflib/main/README.md"
+  title = "RDFLib README"
+  quote = "RDFLib is a pure Python package for working with [RDF](http://www.w3.org/RDF/)."
+  verified = "matched"
+  checked = "2026-11-03"

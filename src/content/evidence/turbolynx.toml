@@ -48,3 +48,18 @@ notes = "Confirms the current value; README states the engine core is C++17, and
   quote = "Fast, scalable OLAP graph database in C++17."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states TurboLynx embeds directly into the calling process like DuckDB or SQLite, with no separate server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/turbolynx-dslab/TurboLynx/main/README.md"
+  title = "TurboLynx README"
+  quote = "It provides a Cypher query interface backed by a cost-based optimizer (ORCA), extent-based columnar storage, and embeds directly into the calling process like DuckDB or SQLite — no separate server to manage."
+  verified = "matched"
+  checked = "2026-11-03"

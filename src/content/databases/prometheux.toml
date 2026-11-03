@@ -9,6 +9,7 @@ type = "Other"
 query_languages = ["Vadalog"]
 protocols = ["HTTP/REST"]
 kind = "query-engine"
+embeddable = false
 released = "2022"
 category = "Growing"
 gdotv_support = false

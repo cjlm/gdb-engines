@@ -63,3 +63,18 @@ notes = "Confirms current value."
   quote = "The app servers (affectionately called \"flapps\") are written in Scala, are stateless, and are horizontally scalable."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "FlockDB runs as a service with a Thrift interface that clients (e.g. the Ruby gem) connect to; there is no embedded mode."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/twitter-archive/flockdb/master/doc/demo.markdown"
+  title = "FlockDB demo"
+  quote = "The flockdb interface is thrift, so you can talk to it in many different languages, but the raw thrift interface isn't as expressive as the one in the ruby client, which adds some nice syntactic sugar for creating queries."
+  verified = "matched"
+  checked = "2026-11-03"

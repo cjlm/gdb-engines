@@ -85,3 +85,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "TuGraph documents an embedded mode in which it works like a library inside the application process."
+
+  [[claims.sources]]
+  url = "https://tugraph-db.readthedocs.io/en/latest/9.olap%26procedure/1.procedure/4.Python-procedure.html"
+  title = "TuGraph Python embedded API"
+  quote = "Similar to SQLite and Neo4j, TuGraph can work in embedded mode. In embedded mode, it works like a library."
+  verified = "matched"
+  checked = "2026-11-03"

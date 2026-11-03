@@ -8,6 +8,7 @@ github_url = "https://github.com/blazegraph/database"
 license = "GPL-2.0"
 implementation_language = "Java"
 type = "RDF"
+embeddable = true
 query_languages = ["SPARQL", "Gremlin"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2007"

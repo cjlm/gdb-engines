@@ -7,6 +7,7 @@ github_url = "https://github.com/apache/jena"
 license = "Apache-2.0"
 implementation_language = "Java"
 type = "RDF"
+embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
 released = "2010-10"

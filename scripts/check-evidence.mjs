@@ -26,6 +26,7 @@ const REQUIRE_EVIDENCE = [
   'license',
   'released',
   'implementation_language',
+  'embeddable',
 ];
 
 const errors = [];
@@ -130,6 +131,15 @@ for (const [slug, { file, data }] of databases) {
         `for a project outside the catalogue, not both or neither.`,
       );
     }
+  }
+  // The feature survey scores embedding separately; the two must not tell readers different things.
+  const surveyed = data.features?.work_as_embedded;
+  if (typeof data.embeddable === 'boolean' && typeof surveyed === 'number'
+    && data.embeddable !== surveyed > 0) {
+    errors.push(
+      `${join(DB_DIR, file)}: embeddable = ${data.embeddable} but features.work_as_embedded = ` +
+      `${surveyed}. Correct whichever the evidence contradicts.`,
+    );
   }
   for (const field of [...REQUIRE_EVIDENCE, ...lineageFields]) {
     if (fieldValue(data, field) === undefined) continue;

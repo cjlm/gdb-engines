@@ -63,3 +63,18 @@ notes = "Confirms current value, though ByteGraph is split across two layers: By
   quote = "从上述描述可以看出，bgkv 的性能和内存使用效率是非常关键的，因此 采用 C++ 编写。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The VLDB paper describes ByteGraph as an internal distributed graph database with geographic replication for fault tolerance, run in production at ByteDance; there is no library or public in-process form."
+
+  [[claims.sources]]
+  url = "https://www.vldb.org/pvldb/volumes/15/paper/ByteGraph%3A%20A%20High-Performance%20Distributed%20Graph%20Database%20in%20ByteDance"
+  title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance (PVLDB 15)"
+  quote = "There are several key designs in ByteGraph that make it efficient for processing our workloads, including edge-trees to store adjacency lists for high parallelism and low memory usage, adaptive optimizations on thread pools and indexes, and geographic replications to achieve fault tolerance and availability."
+  verified = "matched"
+  checked = "2026-11-03"

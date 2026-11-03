@@ -10,6 +10,7 @@ type = "RDF"
 query_languages = ["SPARQL", "openCypher"]
 protocols = ["SPARQL Protocol"]
 kind = "embedded"
+embeddable = true
 released = "2026-09"
 category = "Emerging"
 gdotv_support = false

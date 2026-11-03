@@ -70,3 +70,18 @@ notes = "README states this directly; GitHub language stats show 100% Python."
   quote = "CogDB is a persistent, embedded graph database implemented in Python."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README says CogDB is imported into the Python application and needs no server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/arun1729/cog/master/README.md"
+  title = "CogDB README"
+  quote = "There is no server to run and no setup overhead. You simply import it into your Python application."
+  verified = "matched"
+  checked = "2026-11-03"

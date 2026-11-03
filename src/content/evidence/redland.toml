@@ -48,3 +48,18 @@ notes = "Project homepage describes the libraries as C libraries."
   quote = "Redland is a set of free software C libraries that provide support for the Resource Description Framework (RDF)."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Redland is a set of C libraries linked into applications, providing in-memory and persistent RDF storage without a server."
+
+  [[claims.sources]]
+  url = "http://librdf.org/"
+  title = "Redland RDF Libraries"
+  quote = "Redland is a set of free software C libraries that provide support for the Resource Description Framework (RDF)."
+  verified = "matched"
+  checked = "2026-11-03"

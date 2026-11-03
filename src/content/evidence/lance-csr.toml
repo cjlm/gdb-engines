@@ -62,3 +62,18 @@ checked = "2026-10-26"
   quote = "It is a fork of"
   verified = "matched"
   checked = "2026-10-27"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states the engine runs on one machine inside your process with no server to operate."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hyperdimensionalcomputingai/lance-csr/main/README.md"
+  title = "lance-csr README"
+  quote = "An openCypher-compatible engine on top of the Lance format that runs on one machine, inside your process, with no server to operate."
+  verified = "matched"
+  checked = "2026-11-03"

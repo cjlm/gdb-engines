@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "Rust"
 type = "Multiple"
 kind = "query-engine"
+embeddable = false
 query_languages = ["GQL"]
 protocols = ["Bolt"]
 released = "2026-03"

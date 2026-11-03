@@ -55,3 +55,18 @@ notes = "Confirms current value: RDF::Trine is a CPAN distribution written in an
   quote = "RDF::Trine - An RDF Framework for Perl\n\n=head1 VERSION\n\nThis document describes RDF::Trine version 1.019"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "RDF::Trine is a Perl library whose models and stores, including an in-memory store, run inside the calling program."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kasei/perlrdf/master/RDF-Trine/lib/RDF/Trine.pm"
+  title = "RDF::Trine (POD)"
+  quote = "An in-memory, non-persistant triple store. Typically used for temporary data."
+  verified = "matched"
+  checked = "2026-11-03"

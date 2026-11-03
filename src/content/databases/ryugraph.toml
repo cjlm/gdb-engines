@@ -8,6 +8,7 @@ github_url = "https://github.com/predictable-labs/ryugraph"
 license = "MIT"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = true
 query_languages = ["openCypher"]
 released = "2025-10"
 category = "Emerging"

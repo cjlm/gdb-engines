@@ -45,3 +45,18 @@ checked = "2026-08-26"
   quote = "\"Zig\": 3332248"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes LatticeDB as an embedded, single-file database with no server, used through native bindings in the application process."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/jeffhajewski/latticedb/main/README.md"
+  title = "LatticeDB README"
+  quote = "LatticeDB is an embedded, single-file graph database that lets local applications query the same data by relationship, semantics, and text, then consume durable graph and application events from the same file."
+  verified = "matched"
+  checked = "2026-11-03"

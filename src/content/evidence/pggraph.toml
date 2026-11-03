@@ -77,3 +77,18 @@ notes = "Confirms current value. pgGraph is a PostgreSQL extension built with th
   quote = "Rust toolchain (`1.96`, pinned by `graph/rust-toolchain.toml`) - `cargo-pgrx` 0.19.1"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "pgGraph is a PostgreSQL extension, so it runs inside the PostgreSQL server rather than the client process."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Evokoa/pgGraph/main/README.md"
+  title = "pgGraph README"
+  quote = "pgGraph is a PostgreSQL extension for running graph search, traversal, shortest path, and relationship queries directly against ordinary PostgreSQL tables."
+  verified = "matched"
+  checked = "2026-11-03"

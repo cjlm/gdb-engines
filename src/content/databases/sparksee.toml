@@ -7,6 +7,7 @@ url = "https://www.sparsity-technologies.com/"
 license = "Proprietary"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = true
 query_languages = ["openCypher"]
 released = "2008"
 category = "Established"

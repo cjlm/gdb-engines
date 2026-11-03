@@ -7,6 +7,7 @@ github_url = "https://github.com/oxigraph/oxigraph"
 license = "Apache-2.0 OR MIT"
 implementation_language = "Rust"
 type = "RDF"
+embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
 released = "2020-08"

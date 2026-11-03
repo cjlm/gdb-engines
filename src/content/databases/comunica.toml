@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "TypeScript"
 type = "RDF"
 kind = "query-engine"
+embeddable = true
 query_languages = ["SPARQL", "GraphQL"]
 protocols = ["SPARQL Protocol"]
 released = "2018-06"

@@ -63,3 +63,18 @@ notes = "The www subdomain 404s and its TLS certificate doesn't even cover 'www'
   quote = "For more information, please visit the official website at: http://hypergraphdb.org"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes HyperGraphDB as embeddable and usable as an embedded object-oriented database (a Java library)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hypergraphdb/hypergraphdb/master/README.md"
+  title = "HyperGraphDB README"
+  quote = "It is a graph database designed specifically for artificial intelligence and semantic web projects, it can also be used as an embedded object-oriented database for projects of all sizes."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -8,6 +8,7 @@ github_url = "https://github.com/hypermodeinc/dgraph"
 license = "Apache-2.0"
 implementation_language = "Go"
 type = "Property Graph"
+embeddable = false
 query_languages = ["DQL", "GraphQL"]
 protocols = ["gRPC", "HTTP/REST", "GraphQL (HTTP)"]
 released = "2015-12"

@@ -21,6 +21,9 @@ const databases = defineCollection({
     implementation_language: z.string().optional(),
     type: z.enum(['Property Graph', 'RDF', 'Multiple', 'Other']),
     kind: z.enum(['database', 'extension', 'query-engine', 'embedded', 'library']).default('database'),
+    // Whether the engine can run inside the application's own process, as a library or embedded
+    // mode, whatever its primary kind. Absent where research couldn't settle it.
+    embeddable: z.boolean().optional(),
     category: z.enum(['Established', 'Enterprise', 'Growing', 'Emerging']),
     status: z.enum(['active', 'inactive', 'deprecated']).default('active'),
     status_note: z.string().optional(),

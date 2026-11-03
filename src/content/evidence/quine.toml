@@ -70,3 +70,18 @@ notes = "Confirmed; no change from current value."
   quote = "Quine is written in Scala and released as open source."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes Quine as a server-side program that consumes streams."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/thatdot/quine/main/README.md"
+  title = "Quine README"
+  quote = "Quine is a streaming graph interpreter; a server-side program that consumes data, builds it into a stateful graph structure, and runs live computation on that graph to answer questions or compute results."
+  verified = "matched"
+  checked = "2026-11-03"

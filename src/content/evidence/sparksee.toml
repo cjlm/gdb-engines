@@ -48,3 +48,18 @@ notes = "Confirms current value."
   quote = "Sparksee (formerly known as DEX) is a high-performance and scalable graph database management system written in C++."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The vendor site says Sparksee is embedded in the application with no server tier."
+
+  [[claims.sources]]
+  url = "https://www.sparsity-technologies.com/"
+  title = "Sparsity Technologies"
+  quote = "Embedded in your application — no server tier, no network hop."
+  verified = "matched"
+  checked = "2026-11-03"

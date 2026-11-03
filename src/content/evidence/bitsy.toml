@@ -70,3 +70,18 @@ notes = "Confirms current value; Bitsy is a Maven/Java project distributed on Ma
   quote = "The project **build time requirement** is [Apache Maven](https://maven.apache.org/), at least version 3.9 and Java 21.\nThe project **run time requirement is Java 8**."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes Bitsy as an embeddable graph database (a Java library on Maven Central compatible with TinkerPop3)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lambdazen/bitsy/master/README.md"
+  title = "Bitsy README"
+  quote = "Bitsy is a small, fast, embeddable, durable in-memory graph database that is compatible with Tinkerpop3."
+  verified = "matched"
+  checked = "2026-11-03"

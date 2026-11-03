@@ -9,6 +9,7 @@ implementation_language = "Zig"
 type = "Property Graph"
 query_languages = ["Cypher"]
 kind = "embedded"
+embeddable = true
 released = "2026-01"
 category = "Emerging"
 gdotv_support = false

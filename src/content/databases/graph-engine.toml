@@ -8,6 +8,7 @@ github_url = "https://github.com/microsoft/GraphEngine"
 license = "MIT"
 implementation_language = "C#"
 type = "Property Graph"
+embeddable = true
 query_languages = ["LIKQ"]
 protocols = ["Native binary", "HTTP/REST"]
 released = "2015-05"

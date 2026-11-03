@@ -48,3 +48,18 @@ notes = "README describes the engine as TypeScript-first; matches current value.
   quote = "A fully type-safe, TypeScript-first in-memory property graph database with a Cypher-like query language"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "@codemix/graph is an npm package with no native dependencies that runs wherever Node or a bundler runs, and the graph is constructed in application code (new Graph with InMemoryGraphStorage or Yjs storage)."
+
+  [[claims.sources]]
+  url = "https://codemix.com/graph"
+  title = "CodeMix Graph"
+  quote = "Install the package from npm — no native dependencies, runs anywhere Node or a bundler can."
+  verified = "matched"
+  checked = "2026-11-03"

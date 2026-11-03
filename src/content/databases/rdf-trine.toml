@@ -8,6 +8,7 @@ license = "Artistic-1.0-Perl OR GPL-1.0-or-later"
 implementation_language = "Perl"
 type = "RDF"
 kind = "library"
+embeddable = true
 query_languages = ["SPARQL"]
 released = "2008-02"
 category = "Emerging"

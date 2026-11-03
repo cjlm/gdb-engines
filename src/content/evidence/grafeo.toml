@@ -84,3 +84,18 @@ notes = "README states the engine is built in Rust; confirms current value."
   quote = "Grafeo is a graph database built in Rust from the ground up for speed and low memory use."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states Grafeo runs embedded as a library as well as a standalone server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo/main/README.md"
+  title = "Grafeo README"
+  quote = "It runs embedded as a library or as a standalone server, with in-memory or persistent storage and full ACID transactions."
+  verified = "matched"
+  checked = "2026-11-03"

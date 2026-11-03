@@ -55,3 +55,18 @@ notes = "GitHub REST API for the repository's first commit (message \"init\") sh
   quote = "\"author\": {\n      \"name\": \"Jan-Paul Bultmann\",\n      \"email\": \"jp@bultmann.eu\",\n      \"date\": \"2020-09-17T18:52:44Z\"\n    }"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README calls TribleSpace an embedded knowledge graph stored in one append-only file or S3 endpoint, used as a Rust library with no server required."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/triblespace/triblespace-rs/main/README.md"
+  title = "TribleSpace README"
+  quote = "**TribleSpace** is an embedded knowledge graph built from immutable facts, content-addressed blobs, and grow-only collections."
+  verified = "matched"
+  checked = "2026-11-03"

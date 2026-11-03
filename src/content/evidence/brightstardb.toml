@@ -77,3 +77,18 @@ notes = "Confirms current value."
   quote = "The code-base is now being developed and compiled under VS2015 using C# 6.0 constructs. To compile BrightstarDB you will require a minimum of Visual Studio 2015 Express or Mono 4.0."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "BrightstarDB connection strings include an embedded type that opens stores directly from the local file system in-process, alongside remote server connections."
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/latest/Connection_Strings/"
+  title = "Connection Strings - BrightstarDB documentation"
+  quote = "Uses the embedded BrightstarDB server to directly open stores from the local file system."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -63,3 +63,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states Raphtory can be run embedded (pip install, in-process Python/Rust library) or as a GraphQL server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/Pometry/Raphtory/master/README.md"
+  title = "Raphtory README"
+  quote = "It can be ran embedded or as a server instance using GraphQL, supports time traveling, full-text search, multilayer modelling, and advanced analytics beyond simple querying like automatic risk detection, dynamic scoring, and temporal motifs."
+  verified = "matched"
+  checked = "2026-11-03"

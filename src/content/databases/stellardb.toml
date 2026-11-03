@@ -6,6 +6,7 @@ description = "A distributed property graph database using compressed storage wi
 url = "https://www.transwarp.cn/en/product/stellardb"
 license = "Proprietary"
 type = "Property Graph"
+embeddable = false
 query_languages = ["openCypher", "SQL"]
 protocols = ["Thrift"]
 category = "Emerging"

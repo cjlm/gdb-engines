@@ -77,3 +77,18 @@ notes = "Confirms current value."
   quote = "Blazegraph™ is a standards-based, high-performance, scalable, open-source graph database. Written entirely in Java, the platform supports Blueprints and RDF/ SPARQL 1.1 family of specifications, including Query, Update, Basic Federated Query, and Service Description."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The Blazegraph wiki states it can be deployed as an embedded database as well as a standalone server or cluster."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/wiki/blazegraph/database/About_Blazegraph.md"
+  title = "About Blazegraph (Blazegraph wiki)"
+  quote = "The database supports multi-tenancy and can be deployed as an embedded database, a standalone server, a highly available replication cluster, and as a horizontally-sharded federation of services similar to Google¹s bigtable, Apache Accumulo, or Cassandra."
+  verified = "matched"
+  checked = "2026-11-03"

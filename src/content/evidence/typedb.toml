@@ -77,3 +77,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"MPL-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "TypeDB CE is installed and run as a server (`typedb server`), with Cloud and Enterprise as hosted/managed editions; clients connect via drivers."
+
+  [[claims.sources]]
+  url = "https://typedb.com/docs/home/install/ce"
+  title = "Install TypeDB CE"
+  quote = "To stop a local TypeDB server, close the terminal where it runs or press kbd:[Ctrl+C]."
+  verified = "matched"
+  checked = "2026-11-03"

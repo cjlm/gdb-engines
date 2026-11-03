@@ -5,6 +5,7 @@ description = "A managed cloud graph database service on Alibaba Cloud, using th
 url = "https://www.alibabacloud.com/product/graph-database"
 license = "Proprietary"
 type = "Property Graph"
+embeddable = false
 protocols = ["Gremlin (WebSocket)", "Bolt"]
 released = "2019-03"
 category = "Enterprise"

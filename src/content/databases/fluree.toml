@@ -9,6 +9,7 @@ github_url = "https://github.com/fluree/db"
 license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "RDF"
+embeddable = true
 query_languages = ["SPARQL", "JSON-LD Query", "openCypher", "GraphQL"]
 protocols = ["Bolt", "HTTP/REST", "SPARQL Protocol", "GraphQL (HTTP)"]
 released = "2018-08"

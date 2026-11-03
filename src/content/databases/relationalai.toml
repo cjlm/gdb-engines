@@ -7,6 +7,7 @@ url = "https://relational.ai/"
 license = "Proprietary"
 implementation_language = "Julia"
 type = "Other"
+embeddable = false
 query_languages = ["Rel", "SQL"]
 protocols = ["HTTP/REST"]
 released = "2022"

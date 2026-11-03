@@ -70,3 +70,18 @@ notes = "The GitHub language-stats quote was rejected as non-contiguous; the arX
   quote = "G-Tran was implemented in C++, currently with 46K+ lines of code."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "G-Tran is an RDMA-based distributed database whose workers run as an MPI cluster; it is not offered as an in-process library."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/yaobaiwei/GTran/master/README.md"
+  title = "G-Tran README"
+  quote = "G-Tran is an *Remote Direct Memory Access (RDMA)*-enabled distributed in-memory graph database with serializable and snapshot isolation support."
+  verified = "matched"
+  checked = "2026-11-03"

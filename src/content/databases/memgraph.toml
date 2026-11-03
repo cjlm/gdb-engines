@@ -8,6 +8,7 @@ github_url = "https://github.com/memgraph/memgraph"
 license = "BUSL-1.1"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = false
 query_languages = ["openCypher"]
 protocols = ["Bolt"]
 released = "2020-05"

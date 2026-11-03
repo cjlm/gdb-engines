@@ -8,6 +8,7 @@ url = "https://graphwise.ai/components/graphdb/"
 license = "Proprietary"
 implementation_language = "Java"
 type = "RDF"
+embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST", "JDBC/ODBC", "GraphQL (HTTP)"]
 released = "2005"

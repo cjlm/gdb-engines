@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "database"
+embeddable = false
 query_languages = ["GQL", "Cypher"]
 protocols = ["gRPC", "Native binary"]
 released = "2026-02"

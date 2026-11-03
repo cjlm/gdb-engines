@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "JavaScript"
 type = "Property Graph"
 kind = "extension"
+embeddable = false
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
 released = "2019-04"

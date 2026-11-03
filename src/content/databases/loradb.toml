@@ -8,6 +8,7 @@ license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "embedded"
+embeddable = true
 query_languages = ["Cypher"]
 protocols = ["HTTP/REST"]
 released = "2026-04"

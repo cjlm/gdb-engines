@@ -84,3 +84,18 @@ checked = "2026-09-23"
   quote = "Neo4j under the hood"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "RushDB 3.x is a Rust server binary that clients and SDKs reach over HTTP, PostgreSQL wire, gRPC or Bolt, or a managed RushDB Cloud; no embedded library is offered."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/main/README.md"
+  title = "RushDB README"
+  quote = "`rushdb serve` runs the server; `rushdb up` runs a local node."
+  verified = "matched"
+  checked = "2026-11-03"

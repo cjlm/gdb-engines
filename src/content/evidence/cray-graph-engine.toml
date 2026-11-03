@@ -63,3 +63,18 @@ notes = "Matches current value; the engine's back end was a C++ (Coarray C++) ap
   quote = "The back end query engine of CGE is written as a distributed application using Coarray C++ as the underlying distribution mechanism."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The archived product page presents CGE as software running on Cray Urika-GX and XC supercomputer systems; it does not document an embeddable library."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20190102234520/https://www.cray.com/products/analytics/cray-graph-engine"
+  title = "Cray Graph Engine (archived)"
+  quote = "The Cray Graph Engine, running on our Urika-GX agile analytics platform and Cray XC series supercomputers with Urika-XC analytics , is often 1-2 orders of magnitude faster than the competition, running on a similarly-sized system."
+  verified = "matched"
+  checked = "2026-11-03"

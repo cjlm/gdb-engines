@@ -55,3 +55,18 @@ notes = "Confirms current value; public preview rollout began 1 October 2025, an
   quote = "Graph lets you model and explore relationships across your organizational data, unlocking powerful insights for scenarios like fraud detection, supply chain optimization, and customer 360° views"
   verified = "unreachable"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Graph in Microsoft Fabric is a workload of the Fabric SaaS platform, so it cannot run inside a client process."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview"
+  title = "What is Microsoft Fabric"
+  quote = "Fabric is delivered as a software-as-a-service (SaaS) platform and uses OneLake as a centralized, logical data lake for storing and accessing data across all workloads."
+  verified = "matched"
+  checked = "2026-11-03"

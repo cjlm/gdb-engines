@@ -84,3 +84,18 @@ checked = "2026-09-23"
   quote = "Parliament's initial development was funded by DARPA through the DAML program under the name DAML DB"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The Parliament user guide lists use as an in-process library (a Jena Model backed by Parliament) besides the server deployment."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/raytheonbbn/parliament/main/doc/UserGuide/DeployingAndUsing.tex"
+  title = "Parliament User Guide - Deploying and Using Parliament"
+  quote = "\\ac{pmnt} can also be used with other servlet engines such as Tomcat and Glassfish (see Section~\\ref{section-parliament-with-jena-and-tomcat}) or as an in-process library (Section~\\ref{section-parliament-in-process})."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -107,3 +107,18 @@ notes = "The proposal is explicit that HugeGraph was written from scratch and is
   quote = "In the early stage of the project, we referred to the storage structure of Titan/Janus Graph"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "HugeGraph is run as the HugeGraph Server service; its API module provides an HTTP service in front of the core, and only the RocksDB backend is embedded (in the server), not the graph engine in client apps."
+
+  [[claims.sources]]
+  url = "https://hugegraph.apache.org/docs/quickstart/hugegraph/hugegraph-server/"
+  title = "HugeGraph Server Quick Start"
+  quote = "API provides the HTTP service and delegates client requests to Core."
+  verified = "matched"
+  checked = "2026-11-03"

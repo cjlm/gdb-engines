@@ -85,3 +85,18 @@ notes = "Joseki was Jena's earlier RDF and SPARQL server (first beta 2002)."
   quote = "Joseki is replaced by Apache Jena Fuseki."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The Fuseki docs describe running Fuseki inside a JVM application as an embedded triplestore via the jena-fuseki-main dependency."
+
+  [[claims.sources]]
+  url = "https://jena.apache.org/documentation/fuseki2/fuseki-embedded.html"
+  title = "Apache Jena - Fuseki : Embedded Server"
+  quote = "Fuseki can be run within a larger JVM application as an embedded triplestore."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -55,3 +55,18 @@ notes = "Confirms current value; GraphQLite is a SQLite extension and GitHub's b
   quote = "An SQLite extension that adds graph database capabilities using the Cypher query language."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "GraphQLite is a SQLite extension, and SQLite is an in-process engine; the README states no server is required."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/colliery-io/graphqlite/main/README.md"
+  title = "GraphQLite README"
+  quote = "Store and query graph data directly in SQLite—combining the simplicity of a single-file, zero-config embedded database with Cypher's expressive power for modeling relationships."
+  verified = "matched"
+  checked = "2026-11-03"

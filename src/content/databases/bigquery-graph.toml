@@ -7,6 +7,7 @@ url = "https://cloud.google.com/bigquery/docs/reference/standard-sql/graph-intro
 license = "Proprietary"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = false
 query_languages = ["GQL", "SQL/PGQ"]
 protocols = ["HTTP/REST", "gRPC", "JDBC/ODBC"]
 released = "2026-04"

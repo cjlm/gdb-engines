@@ -71,3 +71,18 @@ notes = "Matches current value; C++ dominates the repository's language byte cou
   quote = "\"C++\":1167195,\"Python\":164225"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Weaver is described as a distributed graph store; no library or embedded mode is documented."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/dubey/weaver/master/README.md"
+  title = "Weaver README"
+  quote = "Weaver is a distributed, scalable, and strongly consistent graph store."
+  verified = "unreachable"
+  checked = "2026-11-03"

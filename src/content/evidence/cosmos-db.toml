@@ -105,3 +105,18 @@ checked = "2026-09-23"
   quote = "we decided to make Cosmos DB generally available to external developers in 2015 in the form of Azure DocumentDB"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Cosmos DB is a fully managed Azure database service; applications reach it over the network."
+
+  [[claims.sources]]
+  url = "https://learn.microsoft.com/en-us/azure/cosmos-db/introduction"
+  title = "Azure Cosmos DB - Database for the AI Era"
+  quote = "Azure Cosmos DB is a fully managed NoSQL and vector database."
+  verified = "matched"
+  checked = "2026-11-03"

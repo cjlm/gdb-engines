@@ -91,3 +91,18 @@ notes = "The SPARQL query engine SPOCQ (the project's stated core) is built in L
   quote = "cl-ndbapi: Common Lisp bindings for the C++ NDB API of RonDB, published at https://github.com/datagraph/cl-ndbapi"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The vendor homepage describes Dydra as a cloud-hosted graph database service."
+
+  [[claims.sources]]
+  url = "https://dydra.com/"
+  title = "Dydra"
+  quote = "Dydra is a powerful graph database in the cloud, allowing your business to make the most of highly connected data, such as social networks."
+  verified = "matched"
+  checked = "2026-11-03"

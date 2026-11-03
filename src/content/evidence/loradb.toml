@@ -59,3 +59,18 @@ checked = "2026-08-26"
   quote = "\"Rust\": 4372191"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes an in-process graph store with no daemons; the HTTP server is optional."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lora-db/lora/main/README.md"
+  title = "LoraDB README"
+  quote = "It parses, analyzes, compiles, and executes a Cypher-like query language against an in-process graph store - with no daemons, no clusters, and no schema migrations."
+  verified = "matched"
+  checked = "2026-11-03"
