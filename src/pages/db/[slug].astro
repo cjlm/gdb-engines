@@ -18,6 +18,8 @@ import { mentionsByEngine } from '../../lib/blog-mentions';
 import { blogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
+import { loadStarHistory, starSeries } from '../../lib/star-history';
+import StarHistoryChart from '../../components/StarHistoryChart.astro';
 import { sortProtocols } from '../../lib/protocols';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
 import { layoutFamily } from '../../lib/lineage-layout';
@@ -38,10 +40,12 @@ export async function getStaticPaths() {
   );
   const overallRanks = buildOverallRankMap(rankingFile);
   const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
-  const [faviconMap, githubStars] = await Promise.all([
+  const [faviconMap, githubStars, starHistory] = await Promise.all([
     buildFaviconMap(databases),
     loadGithubStars(databases),
+    loadStarHistory(),
   ]);
+  const today = new Date().toISOString().slice(0, 10);
 
   // §3.6 reverse index: which roundups each engine belongs to, capped at three. Built once
   // here rather than re-resolving every roundup on all 143 engine pages.
@@ -132,6 +136,12 @@ export async function getStaticPaths() {
         moreComparisons: allComparisons(db.data.slug, curated),
         faviconUrl: faviconMap[db.data.slug] ?? null,
         githubStars: githubStars[db.data.slug] ?? null,
+        starHistory: starSeries(
+          starHistory,
+          { slug: db.data.slug, githubUrl: db.data.github_url },
+          githubStars[db.data.slug] ?? null,
+          today
+        ),
         evidence: evidenceBySlug.get(db.data.slug) ?? [],
         partOf: roundupsByEngine.get(db.data.slug) ?? [],
         // The entry's last commit, not the build date; omitted when git history is unavailable.
@@ -142,7 +152,18 @@ export async function getStaticPaths() {
   });
 }
 
-const { db, compareLinks: comparePeers, moreComparisons, faviconUrl, githubStars, partOf, evidence, modified, blogMentions } = Astro.props;
+const {
+  db,
+  compareLinks: comparePeers,
+  moreComparisons,
+  faviconUrl,
+  githubStars,
+  starHistory,
+  partOf,
+  evidence,
+  modified,
+  blogMentions,
+} = Astro.props;
 
 // Only quotes confirmed present on the live page are shown as sources. A citation nobody checked
 // is the thing this whole layer exists to avoid publishing.
@@ -233,6 +254,17 @@ const latestEvidenceCheck = citedClaims
   .at(-1);
 const primaryRank = engineRanks.find(({ board }) => board.slug === 'overall') ?? engineRanks[0];
 
+/** "owner/repo" from a GitHub URL, or the hostname for anything else. */
+function repoPath(value: string): string {
+  try {
+    const url = new URL(value);
+    const path = url.pathname.split('/').filter(Boolean).slice(0, 2).join('/');
+    return url.hostname.endsWith('github.com') && path ? path : hostname(value);
+  } catch {
+    return value;
+  }
+}
+
 function hostname(value: string): string {
   try {
     return new URL(value).hostname.replace(/^www\./, '');
@@ -261,33 +293,16 @@ function hostname(value: string): string {
 
       <p class="description">{db.data.description}</p>
 
-      {(db.data.url || db.data.github_url) && (
+      {db.data.url && (
         <div class="db-actions" aria-label="Primary links">
-          {db.data.url && (
-            <a class="db-action db-action-primary" href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
-              Visit website
-              <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
-            </a>
-          )}
-          {db.data.github_url && (
-            <a
-              class="db-action"
-              href={db.data.github_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-outbound="engine-github"
-              data-db={db.data.slug}
-              aria-label={typeof githubStars === 'number'
-                ? `GitHub repository, ${githubStars.toLocaleString('en-US')} stars`
-                : 'GitHub repository'}
-            >
-              <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
-              GitHub
-              {typeof githubStars === 'number' && <span class="db-action-meta">{formatGithubStars(githubStars)} stars</span>}
-            </a>
-          )}
+          <a class="db-action db-action-primary" href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" data-outbound="engine-site" data-db={db.data.slug}>
+            Visit website
+            <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
+          </a>
         </div>
       )}
+
+      {starHistory.length > 0 && <StarHistoryChart points={starHistory} />}
 
       </div>
 
@@ -306,7 +321,14 @@ function hostname(value: string): string {
               {db.data.github_url && (
                 <li>
                   <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
-                    <span><strong>GitHub repository</strong><small>{typeof githubStars === 'number' ? `${githubStars.toLocaleString('en-US')} stars` : hostname(db.data.github_url)}</small></span>
+                    <span>
+                      <strong>GitHub repository</strong>
+                      <small>
+                        {repoPath(db.data.github_url)}
+                        {typeof githubStars === 'number' && starHistory.length === 0 &&
+                          ` · ${formatGithubStars(githubStars)} stars`}
+                      </small>
+                    </span>
                     <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
                   </a>
                 </li>

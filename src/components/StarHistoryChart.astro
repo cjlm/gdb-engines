@@ -1,0 +1,212 @@
+---
+import { CHART_HEIGHT, CHART_WIDTH, starChart } from '../lib/star-chart';
+import type { StarPoint, StarSource } from '../lib/star-history';
+
+interface Props {
+  points: StarPoint[];
+}
+
+const { points } = Astro.props;
+const first = points[0]!;
+const last = points.at(-1)!;
+const chart = starChart(points);
+
+const dateLabel = (date: string, month: 'short' | 'long') =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+    month,
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+const count = (stars: number) => stars.toLocaleString('en-US');
+const gained = last.stars - first.stars;
+const change =
+  gained === 0 ? 'unchanged' : `${gained > 0 ? 'up' : 'down'} ${count(Math.abs(gained))}`;
+const summary =
+  `GitHub stars over time: ${count(first.stars)} in ${dateLabel(first.date, 'long')}, ` +
+  `${count(last.stars)} in ${dateLabel(last.date, 'long')}.`;
+
+const sources = new Set<StarSource>(points.map((point) => point.source));
+const firstSnapshot = points.find((point) => point.source === 'snapshot');
+const sourceNotes = [
+  sources.has('wayback') && 'Internet Archive copies of the GitHub page',
+  sources.has('gharchive') && 'GH Archive star events for 2023–24 (estimated)',
+  firstSnapshot && `monthly counts since ${dateLabel(firstSnapshot.date, 'short')}`,
+].filter((note): note is string => Boolean(note));
+const sourceNote =
+  sourceNotes.length > 0
+    ? `From ${sourceNotes.length > 1
+      ? `${sourceNotes.slice(0, -1).join(', ')} and ${sourceNotes.at(-1)}`
+      : sourceNotes[0]}.`
+    : '';
+---
+<figure class="star-chart" title={sourceNote || undefined}>
+  <p class="star-chart-summary">
+    <strong>{count(last.stars)}</strong> GitHub stars
+    <span>{change} since {dateLabel(first.date, 'short')}</span>
+    <a class="star-chart-sources" href="/about/#github-stars">Sources</a>
+  </p>
+  <div class="star-chart-plot" role="img" aria-label={summary}>
+    <svg
+      viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {chart.yTicks.filter((tick) => tick.value === 0).map((tick) => (
+        <line
+          class="star-chart-gridline is-baseline"
+          x1="0"
+          x2={CHART_WIDTH}
+          y1={`${tick.offset}%`}
+          y2={`${tick.offset}%`}
+        />
+      ))}
+      {chart.xTicks.map((tick) => (
+        <line
+          class="star-chart-gridline is-year"
+          x1={`${tick.offset}%`}
+          x2={`${tick.offset}%`}
+          y1="0"
+          y2={CHART_HEIGHT}
+        />
+      ))}
+      <path class="star-chart-area" d={chart.area} />
+      <path class="star-chart-line" d={chart.line} />
+    </svg>
+    <span
+      class="star-chart-end"
+      style={`left: ${chart.end.x}%; top: ${chart.end.y}%`}
+      aria-hidden="true"
+    ></span>
+  </div>
+  <div class="star-chart-axis" aria-hidden="true">
+    <span class="is-start">{dateLabel(first.date, 'short')}</span>
+    {chart.xTicks.map((tick) => (
+      <span
+        class:list={['is-year', (tick.offset < 18 || tick.offset > 82) && 'is-near-end']}
+        style={`left: ${tick.offset}%`}
+      >{tick.value}</span>
+    ))}
+    <span class="is-end">{dateLabel(last.date, 'short')}</span>
+  </div>
+</figure>
+
+<style>
+  /* Sits in the hero below the primary links: no panel of its own, scale from zero. */
+  .star-chart {
+    margin: 1.5rem 0 0;
+    max-width: 40rem;
+  }
+
+  .star-chart-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.5rem;
+    margin: 0 0 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .star-chart-summary strong {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .star-chart-summary span,
+  .star-chart-sources {
+    color: var(--color-text-tertiary);
+    font-size: 0.8125rem;
+  }
+
+  .star-chart-sources {
+    margin-left: auto;
+    font-size: 0.75rem;
+  }
+
+  .star-chart-sources:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .star-chart-plot {
+    position: relative;
+    height: 4.5rem;
+    margin-right: 0.3rem;
+  }
+
+  .star-chart-plot svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .star-chart-gridline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .star-chart-gridline.is-baseline {
+    stroke: var(--color-text-tertiary);
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+
+  .star-chart-gridline.is-year {
+    opacity: 0.6;
+  }
+
+  .star-chart-area {
+    fill: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  .star-chart-line {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .star-chart-end {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-sizing: content-box;
+    transform: translate(-50%, -50%);
+  }
+
+  .star-chart-axis {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 1rem;
+    margin-top: 0.35rem;
+    margin-right: 0.3rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
+
+  .star-chart-axis .is-year {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  /* On a narrow chart, year labels near either end would run into the end dates. */
+  @media (max-width: 30rem) {
+    .star-chart-axis .is-near-end {
+      visibility: hidden;
+    }
+  }
+</style>
