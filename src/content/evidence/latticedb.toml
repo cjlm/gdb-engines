@@ -37,13 +37,13 @@ field = "implementation_language"
 value = "Zig"
 confidence = "high"
 method = "api"
-checked = "2026-08-26"
+checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/jeffhajewski/latticedb/languages"
-  title = "LatticeDB languages — GitHub API"
-  quote = "\"Zig\": 3332248"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/jeffhajewski/latticedb"
+  title = "GitHub repository API — jeffhajewski/latticedb"
+  quote = "\"language\": \"Zig\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

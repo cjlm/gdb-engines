@@ -46,14 +46,14 @@ field = "implementation_language"
 value = "Python"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value. GFQL is a Python library shipped as part of the PyGraphistry package."
 
   [[claims.sources]]
   url = "https://pygraphistry.readthedocs.io/en/latest/gfql/index.html"
   title = "GFQL: The Dataframe-Native Graph Query Language"
-  quote = "By being native to accelerated Python data-science technologies such as Apache Arrow, NumPy, NVIDIA RAPIDS, and Graphistry, it can already handle workloads like 100M+ edges in interactive time on a single machine."
-  verified = "mismatch"
+  quote = "GFQL is a graph query language that runs directly on Python dataframes."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

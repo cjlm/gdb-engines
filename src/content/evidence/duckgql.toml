@@ -37,13 +37,13 @@ field = "implementation_language"
 value = "C++"
 confidence = "high"
 method = "api"
-checked = "2026-08-26"
+checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/rahul-iyer/duckdb-gql/languages"
-  title = "DuckGQL languages — GitHub API"
-  quote = "\"C++\": 3039451"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/rahul-iyer/duckdb-gql"
+  title = "GitHub repository API — rahul-iyer/duckdb-gql"
+  quote = "\"language\": \"C++\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

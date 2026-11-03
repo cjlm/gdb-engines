@@ -68,7 +68,7 @@ field = "implementation_language"
 value = "Java"
 confidence = "medium"
 method = "vendor-docs"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value with a caveat: Oracle Graph is split. The RDF/property-graph storage lives inside the C-based Oracle Database kernel, but the headline graph analytics engine (PGX, Parallel Graph AnalytiX) that Oracle Graph leads with is written in Java, with a C++ distributed runtime variant."
 
   [[claims.sources]]
@@ -81,8 +81,8 @@ notes = "Confirms the current value with a caveat: Oracle Graph is split. The RD
   [[claims.sources]]
   url = "https://www.vldb.org/pvldb/vol9/p1317-iosup.pdf"
   title = "LDBC Graphalytics: A Benchmark for Large-Scale Graph Analysis"
-  quote = "PGX has two different runtimes: a single-machine shared memory runtime implemented in Java and a distributed runtime implemented in C++"
-  verified = "mismatch"
+  quote = "PGX has two different runtimes: a single-machine shared memory runtime\nimplemented in Java"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

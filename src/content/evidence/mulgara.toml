@@ -53,7 +53,7 @@ field = "released"
 value = "2006"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value. Mulgara's own release notes explicitly label v1.0.0 the initial release of Mulgara, posted August 19, 2006, after forking from the Kowari project (whose own lineage traces back to a 2003 beta) over a trademark dispute with Northrop Grumman."
 
   [[claims.sources]]
@@ -66,8 +66,8 @@ notes = "Confirms current value. Mulgara's own release notes explicitly label v1
   [[claims.sources]]
   url = "http://www.mulgara.org/release.html"
   title = "Mulgara Project Release Notes"
-  quote = "Mulgara has been upgraded to use Java 1.5. It will no longer build or run on Java 1.4 or below.\n\nPosted by Paula on August 19, 2006"
-  verified = "mismatch"
+  quote = "v1.0.0 August 19, 2006 This is the initial release of Mulgara."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

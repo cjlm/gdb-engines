@@ -24,14 +24,21 @@ field = "license"
 value = "Apache-2.0"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value."
 
   [[claims.sources]]
   url = "https://janusgraph.org/"
   title = "JanusGraph"
-  quote = "All functionality is totally free. No need to buy commercial licenses. JanusGraph is fully Open Source under the Apache 2 license."
-  verified = "mismatch"
+  quote = "JanusGraph is fully open source under the Apache 2.0 license."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/JanusGraph/janusgraph/a59ae8d8024207598eada34998d867617df51adf/LICENSE.txt"
+  title = "JanusGraph LICENSE.txt"
+  quote = "The code of JanusGraph is under the APACHE-2.0 license."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]
@@ -61,14 +68,14 @@ field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "JanusGraph's docs/README describe it only in general terms without stating 'Java' in prose; the project's pom.xml (Maven build, maven-compiler-plugin config) is direct, unambiguous evidence it's a Java codebase."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/JanusGraph/janusgraph/master/pom.xml"
-  title = "pom.xml - JanusGraph/janusgraph"
-  quote = "<artifactId>maven-compiler-plugin</artifactId>\n                    <version>3.13.0</version>\n                    <configuration>\n                        <source>${compiler.source}</source>\n                        <target>${compiler.target}</target>\n                        <compilerArgs>\n                            <arg>-Xmaxerrs</arg>\n                            <arg>500</arg>\n                            <arg>-Xlint:unchecked</arg>\n                        </compilerArgs>\n                    </configuration>\n                </plugin>"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/JanusGraph/janusgraph"
+  title = "GitHub repository API — JanusGraph/janusgraph"
+  quote = "\"language\": \"Java\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

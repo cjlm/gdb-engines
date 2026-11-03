@@ -60,15 +60,15 @@ notes = "Confirmed; no change from current value."
 field = "license"
 value = "MIT"
 confidence = "high"
-method = "api"
-checked = "2026-08-02"
-notes = "SPDX identifier as classified by GitHub from the repository licence file."
+method = "repo"
+checked = "2026-11-03"
+notes = "GitHub no longer classifies the licence file (NOASSERTION), so this cites the LICENSE file itself at a fixed commit."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/ontola/atomic-server/license"
-  title = "GitHub licence API — ontola/atomic-server"
-  quote = "\"spdx_id\": \"MIT\""
-  verified = "mismatch"
+  url = "https://raw.githubusercontent.com/ontola/atomic-server/46d02239b3c1594613c165713ac022d845c76fba/LICENSE"
+  title = "ontola/atomic-server LICENSE"
+  quote = "MIT License\n\nCopyright (c) 2020 Joep Meindertsma"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

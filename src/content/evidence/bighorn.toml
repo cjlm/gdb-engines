@@ -39,14 +39,14 @@ field = "implementation_language"
 value = "C++"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value; Bighorn inherits Kuzu's C++ codebase, and GitHub reports C++ as the repository's primary language."
 
   [[claims.sources]]
   url = "https://api.github.com/repos/Kineviz/bighorn"
-  title = "Kineviz/bighorn (GitHub API repository object)"
-  quote = "\"watchers_count\": 132,\n  \"language\": \"C++\",\n  \"has_issues\": false,"
-  verified = "mismatch"
+  title = "GitHub repository API — Kineviz/bighorn"
+  quote = "\"language\": \"C++\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

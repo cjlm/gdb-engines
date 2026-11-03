@@ -9,7 +9,7 @@ field = "protocols"
 value = ["HTTP/REST", "JDBC/ODBC", "PostgreSQL wire"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-01"
+checked = "2026-11-03"
 notes = "Kinetica documents three independent client channels: a REST/JSON API (wrapped by its language SDKs), official ODBC and JDBC drivers, and a separate PostgreSQL Wire Protocol listener on port 5432 for any Postgres-compatible client. pass_A's gap was omitting the documented Postgres wire protocol page."
 
   [[claims.sources]]
@@ -20,10 +20,10 @@ notes = "Kinetica documents three independent client channels: a REST/JSON API (
   checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://docs.kinetica.com/7.2/connectors/sql_guide/"
-  title = "ODBC/JDBC Connector Guide | Kinetica Docs"
-  quote = "Kinetica provides a SQL interface through its ODBC & JDBC drivers, which run on Linux, Mac, & Windows."
-  verified = "mismatch"
+  url = "https://docs.kinetica.com/content/connectors/sql_guide"
+  title = "JDBC Connector Guide - Kinetica Docs"
+  quote = "JDBC connections require the Kinetica JDBC driver."
+  verified = "matched"
   checked = "2026-11-03"
 
   [[claims.sources]]

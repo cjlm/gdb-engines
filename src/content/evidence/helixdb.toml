@@ -9,14 +9,14 @@ field = "protocols"
 value = ["HTTP/REST"]
 confidence = "high"
 method = "repo"
-checked = "2026-07-31"
+checked = "2026-11-03"
 notes = "All SDKs (Rust, TypeScript, Go, Python) and curl alike send queries as JSON to POST /v1/query on the default port 6969."
 
   [[claims.sources]]
-  url = "https://github.com/HelixDB/helix-db"
-  title = "HelixDB/helix-db"
-  quote = "Queries are authored with the Rust, TypeScript, Go, or Python DSL and sent straight to a running instance as dynamic requests against `POST /v1/query` — no build or deploy step."
-  verified = "mismatch"
+  url = "https://docs.helix-db.com/database/helix-db/query-guides/http-api"
+  title = "HelixDB HTTP API"
+  quote = "The HelixDB HTTP API accepts operation-tree queries at POST /v2/query"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

@@ -47,14 +47,14 @@ field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value; GitHub reports Java as the repository's primary language."
 
   [[claims.sources]]
   url = "https://api.github.com/repos/apache/giraph"
-  title = "apache/giraph (GitHub API repository object)"
-  quote = "\"watchers_count\": 620,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
-  verified = "mismatch"
+  title = "GitHub repository API — apache/giraph"
+  quote = "\"language\": \"Java\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

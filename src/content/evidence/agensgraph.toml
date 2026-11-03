@@ -9,7 +9,7 @@ field = "protocols"
 value = ["PostgreSQL wire"]
 confidence = "high"
 method = "repo"
-checked = "2026-07-31"
+checked = "2026-11-03"
 notes = "AgensGraph is a PostgreSQL fork; its JDBC driver connects on the standard Postgres port (5432) and default docker mapping confirms this."
 
   [[claims.sources]]
@@ -22,8 +22,8 @@ notes = "AgensGraph is a PostgreSQL fork; its JDBC driver connects on the standa
   [[claims.sources]]
   url = "https://pigsty.io/docs/pgsql/kernel/agensgraph/"
   title = "AgensGraph | PIGSTY"
-  quote = "From the client side, AgensGraph still speaks the PostgreSQL wire protocol, so normal PostgreSQL clients, drivers, and connection pools can connect directly."
-  verified = "mismatch"
+  quote = "AgensGraph uses the PostgreSQL wire protocol."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]
@@ -70,13 +70,6 @@ confidence = "high"
 method = "api"
 checked = "2026-08-02"
 notes = "AgensGraph is a fork of PostgreSQL (itself written in C); GitHub's own language detection agrees."
-
-  [[claims.sources]]
-  url = "https://raw.githubusercontent.com/skaiworldwide-oss/agensgraph/main/README.md"
-  title = "README.md (skaiworldwide-oss/agensgraph)"
-  quote = "AgensGraph is built on the robust PostgreSQL RDBMS, providing a highly reliable, fully-featured platform ready for enterprise use."
-  verified = "mismatch"
-  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://api.github.com/repos/skaiworldwide-oss/agensgraph"

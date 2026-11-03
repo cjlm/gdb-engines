@@ -38,13 +38,13 @@ field = "implementation_language"
 value = "Rust"
 confidence = "high"
 method = "api"
-checked = "2026-08-26"
+checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/jscott3201/selene-db/languages"
-  title = "selene-db languages — GitHub API"
-  quote = "\"Rust\": 11849595"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/jscott3201/selene-db"
+  title = "GitHub repository API — jscott3201/selene-db"
+  quote = "\"language\": \"Rust\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

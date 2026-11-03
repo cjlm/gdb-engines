@@ -75,14 +75,14 @@ field = "implementation_language"
 value = "Rust"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "README states the engine is built in Rust; confirms current value."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo/main/README.md"
+  url = "https://raw.githubusercontent.com/GrafeoDB/grafeo/77f616ec2cf7581baed999ee08a9bdb8ac30c4a0/README.md"
   title = "GrafeoDB/grafeo README.md"
-  quote = "Grafeo is a graph database built in Rust from the ground up for speed and low memory use."
-  verified = "mismatch"
+  quote = "Grafeo is a graph database built in Rust from the ground up for speed and efficient memory use."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

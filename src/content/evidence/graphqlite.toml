@@ -24,14 +24,14 @@ field = "released"
 value = "2025-07"
 confidence = "medium"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value; the repository was created 2025-07-19 and its oldest commit is dated 2025-07-21, but no explicit announcement of first public availability was found."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/colliery-io/graphqlite/commits?per_page=1&page=254"
-  title = "colliery-io/graphqlite commits (oldest, via GitHub API)"
-  quote = "\"date\": \"2025-07-21T09:02:23Z\"\n      },\n      \"message\": \"checkpoint: before we start implementing lemo\","
-  verified = "mismatch"
+  url = "https://api.github.com/repos/colliery-io/graphqlite/commits/e6e4a661e4879b7c20b3f29bc7404d3e6c572eb8"
+  title = "colliery-io/graphqlite oldest commit (GitHub API)"
+  quote = "\"date\": \"2025-07-21T09:02:23Z\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]
@@ -39,14 +39,14 @@ field = "implementation_language"
 value = "C"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value; GraphQLite is a SQLite extension and GitHub's byte-count breakdown is C-dominant, with Python and Rust present only as binding layers."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/colliery-io/graphqlite/languages"
-  title = "colliery-io/graphqlite languages (GitHub API)"
-  quote = "\"C\": 2991801,\n  \"Python\": 363307,\n  \"Rust\": 276410,"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/colliery-io/graphqlite"
+  title = "GitHub repository API — colliery-io/graphqlite"
+  quote = "\"language\": \"C\""
+  verified = "matched"
   checked = "2026-11-03"
 
   [[claims.sources]]

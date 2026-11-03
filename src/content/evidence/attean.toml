@@ -16,8 +16,7 @@ notes = "Core Attean is a Perl library used embedded; SPARQL 1.1 Protocol server
   url = "https://metacpan.org/pod/Attean"
   title = "Attean - A Semantic Web Framework - metacpan.org"
   quote = "Attean provides APIs for parsing, storing, querying, and serializing Semantic Web (RDF and SPARQL) data."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20260903052020/https://metacpan.org/pod/Attean"
+  verified = "unreachable"
   checked = "2026-11-03"
 
   [[claims.sources]]
@@ -62,14 +61,14 @@ field = "implementation_language"
 value = "Perl"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value; Attean is described as a Perl framework and GitHub reports Perl as the repository's primary language."
 
   [[claims.sources]]
   url = "https://api.github.com/repos/kasei/attean"
-  title = "kasei/attean (GitHub API repository object)"
-  quote = "\"watchers_count\": 19,\n  \"language\": \"Perl\",\n  \"has_issues\": true,"
-  verified = "mismatch"
+  title = "GitHub repository API — kasei/attean"
+  quote = "\"language\": \"Perl\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

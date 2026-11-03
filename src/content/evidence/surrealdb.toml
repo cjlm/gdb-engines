@@ -9,14 +9,14 @@ field = "protocols"
 value = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-01"
+checked = "2026-11-03"
 notes = "GraphQL, previously behind an experimental flag, became stable and enabled by default in SurrealDB 3.0 (Feb 2026), served at POST /graphql; this confirms and strengthens pass_B's addition over pass_A. The shared RPC protocol runs over both HTTP and WebSocket, with WebSocket adding live queries and stateful sessions; embedding as a library is not a network protocol and gets no tag."
 
   [[claims.sources]]
   url = "https://surrealdb.com/docs/reference/rest-api/rpc-protocol"
   title = "RPC protocol | SurrealDB Docs"
-  quote = "It is used internally by our client SDKs, and supports both HTTP and WebSocket based communication."
-  verified = "mismatch"
+  quote = "It is used internally by our client SDKs, and is served over WebSocket, HTTP and"
+  verified = "matched"
   checked = "2026-11-03"
 
   [[claims.sources]]

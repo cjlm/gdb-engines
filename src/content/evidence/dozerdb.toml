@@ -61,14 +61,14 @@ field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "It is a Neo4j plugin built as a Java uber-jar; matches current value."
 
   [[claims.sources]]
-  url = "https://github.com/DozerDB/dozerdb-plugin"
-  title = "DozerDB/dozerdb-plugin"
-  quote = "Please ensure you use java 17 or above when working on the plugin."
-  verified = "mismatch"
+  url = "https://raw.githubusercontent.com/DozerDB/dozerdb-plugin/5a64eac185947211557243c0bbad8001b69ef360/pom.xml"
+  title = "dozerdb-plugin pom.xml"
+  quote = "<java.version>21</java.version>"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

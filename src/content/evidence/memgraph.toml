@@ -39,14 +39,14 @@ field = "released"
 value = "2020-05"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Corrected from 2018: Memgraph's own history page states Memgraph 1.0 in May 2020 was the first publicly available, production-ready release; earlier years were internal development."
 
   [[claims.sources]]
-  url = "https://memgraph.com/about-us"
-  title = "About us"
-  quote = "Launched the first publicly available and production-ready version of Memgraph 1.0 and Memgraph Cloud."
-  verified = "mismatch"
+  url = "https://memgraph.com/blog/announcing-memgraph-1-0-enterprise-ready-real-time-graph-database"
+  title = "Announcing Memgraph 1.0!"
+  quote = "May 13, 2020 Already used by everyone from solo developers to Fortune 500 enterprises, Memgraph 1.0 is now publicly available"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

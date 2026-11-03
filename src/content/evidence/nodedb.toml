@@ -82,14 +82,14 @@ field = "implementation_language"
 value = "Rust"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value. GitHub reports the repo as 99.9% Rust, and the project is built and installed via cargo."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/NodeDB-Lab/nodedb/languages"
-  title = "NodeDB-Lab/nodedb languages (GitHub API)"
-  quote = "\"Rust\":36403613,\"Python\":72927,\"Shell\":14836,\"Dockerfile\":3339"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/NodeDB-Lab/nodedb"
+  title = "GitHub repository API — NodeDB-Lab/nodedb"
+  quote = "\"language\": \"Rust\""
+  verified = "matched"
   checked = "2026-11-03"
 
   [[claims.sources]]

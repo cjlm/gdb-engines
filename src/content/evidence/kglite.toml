@@ -9,7 +9,7 @@ field = "protocols"
 value = ["Bolt"]
 confidence = "high"
 method = "repo"
-checked = "2026-07-31"
+checked = "2026-11-03"
 notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server binary is a sibling crate that serves a loaded graph over the Neo4j Bolt v5 wire protocol on port 7687."
 
   [[claims.sources]]
@@ -20,10 +20,10 @@ notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server 
   checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://github.com/kkollsga/kglite"
+  url = "https://raw.githubusercontent.com/kkollsga/kglite/373d51e7d2d16047dbfcd75c648aa5ea55c39341/README.md"
   title = "kkollsga/kglite"
-  quote = "The interactive shell, Bolt-server, and MCP-server binaries are sibling Rust crates wrapping the same engine."
-  verified = "mismatch"
+  quote = "The shell, Bolt-server, and\nMCP-server binaries are sibling crates wrapping it."
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

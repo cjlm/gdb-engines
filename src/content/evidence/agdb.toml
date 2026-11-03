@@ -61,14 +61,14 @@ field = "implementation_language"
 value = "Rust"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms current value. The crate's own Cargo.toml is a Rust package manifest (using the Rust-specific 'edition' field), and GitHub's byte-count stats show Rust dominant (2.2M bytes) over all other languages in the repo."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/agnesoft/agdb/master/agdb/Cargo.toml"
-  title = "Cargo.toml"
-  quote = "[package]\nname = \"agdb\"\nversion = \"0.13.2\"\nedition = \"2024\"\nlicense = \"Apache-2.0\"\nhomepage = \"https://github.com/agnesoft/agdb\"\nrepository = \"https://github.com/agnesoft/agdb\""
-  verified = "mismatch"
+  url = "https://api.github.com/repos/agnesoft/agdb"
+  title = "GitHub repository API — agnesoft/agdb"
+  quote = "\"language\": \"Rust\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

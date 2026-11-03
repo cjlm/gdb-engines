@@ -68,14 +68,14 @@ field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Matches current value; Java accounts for the overwhelming majority of the repository's code by byte count."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/JetBrains/youtrackdb/languages"
-  title = "JetBrains/youtrackdb languages (GitHub API)"
-  quote = "\"Java\":34522232,\"Python\":1003675"
-  verified = "mismatch"
+  url = "https://api.github.com/repos/JetBrains/youtrackdb"
+  title = "GitHub repository API — JetBrains/youtrackdb"
+  quote = "\"language\": \"Java\""
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

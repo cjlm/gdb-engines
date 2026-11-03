@@ -31,14 +31,14 @@ field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Confirms the current value; TinkerGraph is implemented as a Java class within the TinkerPop codebase."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/apache/tinkerpop/master/tinkergraph-gremlin/src/main/java/org/apache/tinkerpop/gremlin/tinkergraph/structure/TinkerGraph.java"
-  title = "TinkerGraph.java - apache/tinkerpop"
+  url = "https://raw.githubusercontent.com/apache/tinkerpop/3.7.4/tinkergraph-gremlin/src/main/java/org/apache/tinkerpop/gremlin/tinkergraph/structure/TinkerGraph.java"
+  title = "TinkerGraph.java at 3.7.4 - apache/tinkerpop"
   quote = "protected Map<Object, Vertex> vertices = new ConcurrentHashMap<>();\n    protected Map<Object, Edge> edges = new ConcurrentHashMap<>();"
-  verified = "mismatch"
+  verified = "matched"
   checked = "2026-11-03"
 
 [[claims]]

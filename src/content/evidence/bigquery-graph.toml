@@ -9,7 +9,7 @@ field = "protocols"
 value = ["HTTP/REST", "gRPC", "JDBC/ODBC"]
 confidence = "medium"
 method = "vendor-docs"
-checked = "2026-08-01"
+checked = "2026-11-03"
 notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's general client surface: jobs.query over the REST API, the gRPC-based Storage Read/Write APIs for bulk result transfer and streaming inserts, and Google-documented Simba JDBC/ODBC drivers; no protocol documentation is specific to the Graph feature itself."
 
   [[claims.sources]]
@@ -22,7 +22,7 @@ notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's
   [[claims.sources]]
   url = "https://cloud.google.com/bigquery/docs/write-api"
   title = "Introduction to the Storage Write API (gRPC) | BigQuery | Google Cloud Documentation"
-  quote = "You can use the BigQuery Storage Write API (gRPC) to stream data into BigQuery."
+  quote = "Introduction to the Storage Write API (gRPC)"
   verified = "mismatch"
   checked = "2026-11-03"
 
