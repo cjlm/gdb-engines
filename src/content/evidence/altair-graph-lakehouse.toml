@@ -136,13 +136,15 @@ notes = "Siemens still names the engine Rapidminer Graph Lakehouse. Rapidminer G
   url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
   title = "Rapidminer Graph Studio | Siemens"
   quote = "The Rapidminer Graph Lakehouse is the high-performance, in-memory MPP (Massively Parallel Processing) query and transformation engine that powers every knowledge graph deployment in Rapidminer Graph Studio."
-  verified = "unchecked"
+  verified = "matched"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
   title = "Rapidminer Graph Studio | Siemens"
   quote = "Rapidminer Graph Studio is now part of Intelligence Center x."
-  verified = "unchecked"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
