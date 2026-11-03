@@ -617,6 +617,15 @@
             "status": "active"
           },
           {
+            "id": "db:hydradb",
+            "label": "HydraDB",
+            "image": "https://gdb-engines.com/logos/hydradb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:hypergraphdb",
             "label": "HyperGraphDB",
             "image": "https://gdb-engines.com/logos/hypergraphdb.png",
@@ -2179,6 +2188,11 @@
           },
           {
             "source": "db:huawei-ges",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:hydradb",
             "target": "language:openCypher",
             "relationship": "supports"
           },
