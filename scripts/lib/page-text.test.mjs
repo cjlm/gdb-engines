@@ -5,11 +5,15 @@ import { pageText } from './page-text.mjs';
 const words = (html) => pageText(html).replace(/\s+/g, ' ').trim();
 
 test('drops script, style and svg blocks with their contents', () => {
-  assert.equal(words('<p>Kept</p><script>var x = 1;</script><style>p{}</style><svg><text>chart</text></svg>'), 'Kept');
+  const html =
+    '<p>Kept</p><script>var x = 1;</script><style>p{}</style><svg><text>chart</text></svg>';
+  assert.equal(words(html), 'Kept');
 });
 
 test('a self-closing svg does not swallow the text after it', () => {
-  const html = '<svg class="edges" aria-hidden="true"/><h3><span>The</span> <span>knowledge</span> <span>graph</span></h3><svg><path/></svg>';
+  const html =
+    '<svg class="edges" aria-hidden="true"/>' +
+    '<h3><span>The</span> <span>knowledge</span> <span>graph</span></h3><svg><path/></svg>';
   assert.equal(words(html), 'The knowledge graph');
 });
 
