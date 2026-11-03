@@ -5,7 +5,7 @@
  * labels and the end marker are positioned in percentages by HTML, so text stays its normal
  * size at any width.
  */
-import { area, curveMonotoneX, line } from 'd3-shape';
+import { curveMonotoneX, line } from 'd3-shape';
 import type { StarPoint } from './star-history';
 
 /** The viewBox the paths are drawn in. */
@@ -82,9 +82,10 @@ export function starChart(points: StarPoint[]): StarChart {
     yTicks.push({ value, offset: round((toY(value) / CHART_HEIGHT) * 100) });
   }
 
+  const path = line<StarPoint>().x(x).y(y).curve(curveMonotoneX)(points) ?? '';
   return {
-    line: line<StarPoint>().x(x).y(y).curve(curveMonotoneX)(points) ?? '',
-    area: area<StarPoint>().x(x).y0(CHART_HEIGHT).y1(y).curve(curveMonotoneX)(points) ?? '',
+    line: path,
+    area: `${path}L${CHART_WIDTH},${CHART_HEIGHT}L0,${CHART_HEIGHT}Z`,
     yTicks,
     xTicks: yearTicks(first, last, toX),
     end: {

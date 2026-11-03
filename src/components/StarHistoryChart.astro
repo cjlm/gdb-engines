@@ -57,15 +57,15 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
           class:list={['star-chart-gridline', tick.value === 0 && 'is-baseline']}
           x1="0"
           x2={CHART_WIDTH}
-          y1={(tick.offset / 100) * CHART_HEIGHT}
-          y2={(tick.offset / 100) * CHART_HEIGHT}
+          y1={`${tick.offset}%`}
+          y2={`${tick.offset}%`}
         />
       ))}
       {chart.xTicks.map((tick) => (
         <line
           class="star-chart-gridline is-year"
-          x1={(tick.offset / 100) * CHART_WIDTH}
-          x2={(tick.offset / 100) * CHART_WIDTH}
+          x1={`${tick.offset}%`}
+          x2={`${tick.offset}%`}
           y1="0"
           y2={CHART_HEIGHT}
         />
@@ -108,7 +108,7 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.25rem 0.5rem;
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
   }
