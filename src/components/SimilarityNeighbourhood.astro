@@ -1,0 +1,275 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { nearbyIds } from '../lib/similarity-neighbourhood.mjs';
+
+interface Props {
+  slug: string;
+  name: string;
+}
+
+const DOCUMENT_PATH = '/graphs/databases-similarity.gfd';
+const LISTED_PEERS = 16;
+const { slug, name } = Astro.props;
+const documentFile = resolve(process.cwd(), 'public', DOCUMENT_PATH.slice(1));
+const source = JSON.parse(readFileSync(documentFile, 'utf8'));
+const graph = source.datasets[0].graph;
+const labels = new Map<string, string>(
+  graph.nodes.map((node: { id: string; label: string }) => [node.id, node.label]),
+);
+const peers = nearbyIds(graph, `db:${slug}`, LISTED_PEERS).map((id: string) => ({
+  slug: id.slice(3),
+  name: labels.get(id) ?? id.slice(3),
+}));
+const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
+---
+{peers.length > 0 && (
+  <section
+    class="db-section similarity-neighbourhood"
+    aria-labelledby="similar-heading"
+    data-similarity-neighbourhood
+    data-focus={`db:${slug}`}
+    data-document={DOCUMENT_PATH}
+    data-garphield-origin={garphieldOrigin}
+  >
+    <div class="db-section-heading">
+      <h2 id="similar-heading">Similar databases</h2>
+      <a class="similarity-map-link" href="/graph/similarity/">Full similarity map</a>
+    </div>
+    <div class="db-lineage-panel similarity-panel">
+      <div class="similarity-stage">
+        <iframe
+          class="similarity-frame"
+          title={`Databases most similar to ${name}`}
+          tabindex="-1"
+          aria-hidden="true"
+        ></iframe>
+      </div>
+      <div class="similarity-selection" aria-live="polite" hidden>
+        <a class="similarity-open" href="/"></a>
+        <button class="similarity-expand" type="button" hidden></button>
+      </div>
+      <p class="similarity-peers" aria-label={`Databases similar to ${name}`}>
+        {peers.map((peer) => <a href={`/db/${peer.slug}/`}>{peer.name}</a>)}
+      </p>
+    </div>
+  </section>
+)}
+
+<script>
+  import { createGarphield } from 'garphield';
+  import { prepareGarphieldDocument, setEmbedAccent } from '../lib/garphield-document.mjs';
+  import { expand, neighbourhoodDocument } from '../lib/similarity-neighbourhood.mjs';
+
+  // No minimap, toolbar or wordmark: the panel is small and sits inside the page's own design.
+  const EMBED_CHROME = '-wordmark';
+
+  const root = document.querySelector<HTMLElement>('[data-similarity-neighbourhood]');
+  const frame = root?.querySelector<HTMLIFrameElement>('.similarity-frame');
+  const selection = root?.querySelector<HTMLElement>('.similarity-selection');
+  const openLink = root?.querySelector<HTMLAnchorElement>('.similarity-open');
+  const expandButton = root?.querySelector<HTMLButtonElement>('.similarity-expand');
+
+  const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  function effectiveTheme(): 'light' | 'dark' {
+    const explicit = document.documentElement.dataset.theme;
+    if (explicit === 'light' || explicit === 'dark') return explicit;
+    return colorScheme.matches ? 'dark' : 'light';
+  }
+
+  async function loadSource(path: string) {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`Could not load ${path}: HTTP ${response.status}`);
+    const source = await response.json();
+    // Generated documents carry production logo URLs; point them at the dev server locally.
+    if (import.meta.env.DEV) {
+      for (const node of source.datasets[0].graph.nodes) {
+        if (typeof node.image !== 'string') continue;
+        const image = new URL(node.image);
+        if (image.origin === 'https://gdb-engines.com') {
+          node.image = new URL(image.pathname, window.location.origin).href;
+        }
+      }
+    }
+    return source;
+  }
+
+  async function mount(
+    root: HTMLElement,
+    frame: HTMLIFrameElement,
+    selection: HTMLElement,
+    openLink: HTMLAnchorElement,
+    expandButton: HTMLButtonElement,
+  ) {
+    const focus = root.dataset.focus ?? '';
+    const embedUrl = new URL('/embed', root.dataset.garphieldOrigin);
+    embedUrl.searchParams.set('chrome', EMBED_CHROME);
+    setEmbedAccent(embedUrl);
+    embedUrl.searchParams.set('scrollZoom', 'false');
+    embedUrl.searchParams.set('edgeWidthScale', '0.6');
+    // Peers are drawn at the embed's smallest logo size; scaling lifts that floor.
+    embedUrl.searchParams.set('nodeSizeScale', '1.4');
+    const driver = createGarphield(frame, { embedUrl, timeoutMs: 30_000 });
+    const [source] = await Promise.all([loadSource(root.dataset.document ?? ''), driver.ready()]);
+    const graph = source.datasets[0].graph;
+    const labels = new Map(graph.nodes.map((node) => [node.id, String(node.label ?? node.id)]));
+    let shown = expand(graph, new Set(), focus);
+    let selected = '';
+
+    async function draw() {
+      const document = neighbourhoodDocument(source, shown, focus);
+      await driver.setDocument(prepareGarphieldDocument(document, effectiveTheme()));
+    }
+
+    function select(id: string) {
+      selected = id;
+      selection.hidden = !id;
+      if (!id) return;
+      const label = labels.get(id) ?? id;
+      openLink.href = `/db/${encodeURIComponent(id.slice(3))}/`;
+      openLink.textContent = id === focus ? `${label} (this page)` : `Open ${label} →`;
+      const unexpanded = expand(graph, shown, id).size > shown.size;
+      expandButton.textContent = `Show ${label}'s peers`;
+      expandButton.hidden = !unexpanded;
+    }
+
+    driver.on('nodeClick', ({ nodeId }) => {
+      const id = nodeId ?? '';
+      // The embed reports a double-click as one click, so a second click on the selected
+      // database is what opens it.
+      if (id && id === selected && id !== focus) {
+        window.location.href = `/db/${encodeURIComponent(id.slice(3))}/`;
+        return;
+      }
+      select(labels.has(id) ? id : '');
+    });
+
+    expandButton.addEventListener('click', () => {
+      if (!selected) return;
+      shown = expand(graph, shown, selected);
+      select(selected);
+      void draw();
+    });
+
+    const syncTheme = () => void driver.setTheme({ colorScheme: effectiveTheme() });
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+    colorScheme.addEventListener('change', () => {
+      if (!document.documentElement.dataset.theme) syncTheme();
+    });
+
+    await driver.setTheme({ colorScheme: effectiveTheme() });
+    await draw();
+    frame.removeAttribute('tabindex');
+    frame.setAttribute('aria-hidden', 'false');
+    root.classList.add('ready');
+  }
+
+  if (root && frame && selection && openLink && expandButton) {
+    // The embed is a full app; load it only when the reader scrolls near the panel.
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      mount(root, frame, selection, openLink, expandButton).catch((error: unknown) => {
+        root.classList.add('failed');
+        console.error('Similarity neighbourhood failed to load', error);
+      });
+    }, { rootMargin: '200px' });
+    observer.observe(root);
+  }
+</script>
+
+<style>
+  .similarity-neighbourhood .db-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .similarity-map-link {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .similarity-panel {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .similarity-stage {
+    height: 22rem;
+  }
+
+  .similarity-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .ready .similarity-frame {
+    opacity: 1;
+  }
+
+  .failed .similarity-stage,
+  .failed .similarity-selection {
+    display: none;
+  }
+
+  .similarity-selection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+  }
+
+  .similarity-selection[hidden],
+  .similarity-selection [hidden] {
+    display: none;
+  }
+
+  .similarity-expand {
+    font: inherit;
+    font-size: 0.875rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+
+  .similarity-expand:hover {
+    color: var(--color-brand-accent);
+  }
+
+  /* One line that scrolls sideways and fades out at the right edge. */
+  .similarity-peers {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.6rem 3rem 0.6rem 0.75rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 calc(100% - 5rem), transparent);
+  }
+
+  .similarity-peers a {
+    color: var(--color-text-secondary);
+  }
+
+  .similarity-peers a:hover {
+    color: var(--color-brand-accent);
+  }
+</style>
