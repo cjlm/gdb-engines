@@ -1,6 +1,7 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parse } from "smol-toml";
+import { nearest, scorePairs } from "./lib/similarity.mjs";
 
 const SOURCE_DIR = "src/content/databases";
 const OUTPUT_DIR = "public/graphs";
@@ -31,6 +32,17 @@ const databases = await Promise.all(
       protocols: Array.isArray(data.protocols)
         ? data.protocols.map(String).filter((protocol) => protocol !== "Unknown")
         : [],
+      embeddable: typeof data.embeddable === "boolean" ? data.embeddable : null,
+      description: String(data.description ?? ""),
+      names: [
+        data.name,
+        data.slug,
+        data.vendor,
+        ...(data.previous_names ?? []),
+        ...(data.aliases ?? []),
+      ]
+        .filter(Boolean)
+        .map(String),
       parents: Object.keys(data.lineage ?? {}),
     };
   }),
@@ -134,68 +146,18 @@ function bipartiteDocument() {
   });
 }
 
-function featureTokens(database) {
-  // Licence and category describe market position, not what an engine does, so they stay out.
-  const tokens = [`type:${database.type}`, `kind:${database.kind}`];
-  if (database.implementationLanguage) {
-    tokens.push(`implementation:${database.implementationLanguage}`);
-  }
-  for (const language of database.queryLanguages) {
-    tokens.push(`query:${language}`);
-  }
-  for (const protocol of database.protocols) {
-    tokens.push(`protocol:${protocol}`);
-  }
-  return new Set(tokens.map((token) => token.toLocaleLowerCase()));
-}
-
-function jaccard(left, right) {
-  let intersection = 0;
-  for (const token of left) {
-    if (right.has(token)) intersection += 1;
-  }
-  return intersection / (left.size + right.size - intersection);
-}
-
 function similarityDocument() {
-  const tokens = new Map(
-    databases.map((database) => [database.slug, featureTokens(database)]),
-  );
-  const candidates = [];
-  for (let left = 0; left < databases.length; left += 1) {
-    for (let right = left + 1; right < databases.length; right += 1) {
-      const source = databases[left];
-      const target = databases[right];
-      candidates.push({
-        source: source.slug,
-        target: target.slug,
-        similarity: jaccard(tokens.get(source.slug), tokens.get(target.slug)),
-      });
-    }
-  }
+  const pairs = scorePairs(databases);
+  const link = (pair) => ({
+    source: `db:${pair.source}`,
+    target: `db:${pair.target}`,
+    similarity: Number(pair.similarity.toFixed(4)),
+  });
 
   const links = new Map();
   for (const database of databases) {
-    const nearest = candidates
-      .filter(
-        (candidate) =>
-          candidate.source === database.slug ||
-          candidate.target === database.slug,
-      )
-      .sort(
-        (a, b) =>
-          b.similarity - a.similarity ||
-          a.source.localeCompare(b.source) ||
-          a.target.localeCompare(b.target),
-      )
-      .slice(0, 4);
-    for (const edge of nearest) {
-      const key = `${edge.source}\0${edge.target}`;
-      links.set(key, {
-        source: `db:${edge.source}`,
-        target: `db:${edge.target}`,
-        similarity: Number(edge.similarity.toFixed(4)),
-      });
+    for (const pair of nearest(pairs, database.slug, 4)) {
+      links.set(`${pair.source}\0${pair.target}`, link(pair));
     }
   }
 
@@ -204,17 +166,12 @@ function similarityDocument() {
   for (const database of databases) {
     for (const parent of database.parents) {
       if (!slugs.has(parent)) continue;
-      const pair = candidates.find(
+      const pair = pairs.find(
         (c) => (c.source === database.slug && c.target === parent)
           || (c.source === parent && c.target === database.slug),
       );
       const key = `${pair.source}\0${pair.target}`;
-      if (links.has(key)) continue;
-      links.set(key, {
-        source: `db:${pair.source}`,
-        target: `db:${pair.target}`,
-        similarity: Number(pair.similarity.toFixed(4)),
-      });
+      if (!links.has(key)) links.set(key, link(pair));
     }
   }
 
@@ -227,6 +184,7 @@ function similarityDocument() {
     license: database.license,
     implementationLanguage: database.implementationLanguage,
     queryLanguages: database.queryLanguages.join(", "),
+    embeddable: database.embeddable,
   }));
 
   return document("Database similarity", nodes, [...links.values()], {
