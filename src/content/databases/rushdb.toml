@@ -1,19 +1,16 @@
 name = "RushDB"
 vendor = "RushDB"
 slug = "rushdb"
-description = "A property graph database built on Neo4j that auto-normalizes JSON and CSV input into a labeled property graph with automatic relationship detection and type inference."
+description = "A property graph database that auto-normalizes JSON input into a labeled property graph with automatic relationship detection and type inference. Version 3 is a single Rust binary queried through its JSON query language, SQL, Cypher, Gremlin or Mongo-style documents; the 2.x line was built on Neo4j."
 url = "https://rushdb.com/"
 github_url = "https://github.com/rush-db/rushdb"
-license = "Elastic-2.0"
-implementation_language = "TypeScript"
+license = "Apache-2.0"
+implementation_language = "Rust"
 type = "Property Graph"
-query_languages = ["Custom API"]
-protocols = ["HTTP/REST"]
+query_languages = ["Custom API", "SQL", "Cypher", "Gremlin"]
+protocols = ["HTTP/REST", "Bolt", "PostgreSQL wire"]
 kind = "database"
 embeddable = false
 released = "2024-12"
 category = "Emerging"
 gdotv_support = false
-
-[lineage.neo4j]
-relation = "based-on"
