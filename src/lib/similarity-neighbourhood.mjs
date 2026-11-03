@@ -14,6 +14,24 @@ export function neighbourIds(graph, id) {
     .map((link) => (link.source === id ? link.target : link.source));
 }
 
+/**
+ * Engines near `id`, nearest first: its neighbours, then theirs, at most `limit` of them.
+ * Each ring keeps the order of the neighbour it was reached through.
+ */
+export function nearbyIds(graph, id, limit) {
+  const seen = new Set([id]);
+  const ring = neighbourIds(graph, id);
+  const nearby = [];
+  for (const peers of [ring, ring.flatMap((peer) => neighbourIds(graph, peer))]) {
+    for (const peer of peers) {
+      if (seen.has(peer)) continue;
+      seen.add(peer);
+      nearby.push(peer);
+    }
+  }
+  return nearby.slice(0, limit);
+}
+
 /** A new set holding `ids`, `id` and every neighbour of `id`. */
 export function expand(graph, ids, id) {
   return new Set([...ids, id, ...neighbourIds(graph, id)]);

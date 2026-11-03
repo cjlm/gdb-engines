@@ -1,7 +1,7 @@
 ---
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { neighbourIds } from '../lib/similarity-neighbourhood.mjs';
+import { nearbyIds } from '../lib/similarity-neighbourhood.mjs';
 
 interface Props {
   slug: string;
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const DOCUMENT_PATH = '/graphs/databases-similarity.gfd';
+const LISTED_PEERS = 16;
 const { slug, name } = Astro.props;
 const documentFile = resolve(process.cwd(), 'public', DOCUMENT_PATH.slice(1));
 const source = JSON.parse(readFileSync(documentFile, 'utf8'));
@@ -16,7 +17,7 @@ const graph = source.datasets[0].graph;
 const labels = new Map<string, string>(
   graph.nodes.map((node: { id: string; label: string }) => [node.id, node.label]),
 );
-const peers = neighbourIds(graph, `db:${slug}`).map((id: string) => ({
+const peers = nearbyIds(graph, `db:${slug}`, LISTED_PEERS).map((id: string) => ({
   slug: id.slice(3),
   name: labels.get(id) ?? id.slice(3),
 }));
@@ -44,15 +45,11 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
           aria-hidden="true"
         ></iframe>
       </div>
-      <div class="similarity-selection" aria-live="polite">
-        <span class="similarity-hint">
-          Click a database for its peers. Click it again to open its page.
-        </span>
-        <a class="similarity-open" href="/" hidden></a>
+      <div class="similarity-selection" aria-live="polite" hidden>
+        <a class="similarity-open" href="/"></a>
         <button class="similarity-expand" type="button" hidden></button>
       </div>
-      <p class="similarity-peers">
-        <span>Closest to {name}:</span>
+      <p class="similarity-peers" aria-label={`Databases similar to ${name}`}>
         {peers.map((peer) => <a href={`/db/${peer.slug}/`}>{peer.name}</a>)}
       </p>
     </div>
@@ -69,7 +66,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
   const root = document.querySelector<HTMLElement>('[data-similarity-neighbourhood]');
   const frame = root?.querySelector<HTMLIFrameElement>('.similarity-frame');
-  const hint = root?.querySelector<HTMLElement>('.similarity-hint');
+  const selection = root?.querySelector<HTMLElement>('.similarity-selection');
   const openLink = root?.querySelector<HTMLAnchorElement>('.similarity-open');
   const expandButton = root?.querySelector<HTMLButtonElement>('.similarity-expand');
 
@@ -100,7 +97,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   async function mount(
     root: HTMLElement,
     frame: HTMLIFrameElement,
-    hint: HTMLElement,
+    selection: HTMLElement,
     openLink: HTMLAnchorElement,
     expandButton: HTMLButtonElement,
   ) {
@@ -109,6 +106,8 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     embedUrl.searchParams.set('chrome', EMBED_CHROME);
     embedUrl.searchParams.set('scrollZoom', 'false');
     embedUrl.searchParams.set('edgeWidthScale', '0.6');
+    // Peers are drawn at the embed's smallest logo size; scaling lifts that floor.
+    embedUrl.searchParams.set('nodeSizeScale', '1.4');
     const driver = createGarphield(frame, { embedUrl, timeoutMs: 30_000 });
     const [source] = await Promise.all([loadSource(root.dataset.document ?? ''), driver.ready()]);
     const graph = source.datasets[0].graph;
@@ -123,12 +122,8 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
     function select(id: string) {
       selected = id;
-      hint.hidden = Boolean(id);
-      openLink.hidden = !id;
-      if (!id) {
-        expandButton.hidden = true;
-        return;
-      }
+      selection.hidden = !id;
+      if (!id) return;
       const label = labels.get(id) ?? id;
       openLink.href = `/db/${encodeURIComponent(id.slice(3))}/`;
       openLink.textContent = id === focus ? `${label} (this page)` : `Open ${label} →`;
@@ -171,12 +166,12 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     root.classList.add('ready');
   }
 
-  if (root && frame && hint && openLink && expandButton) {
+  if (root && frame && selection && openLink && expandButton) {
     // The embed is a full app; load it only when the reader scrolls near the panel.
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
       observer.disconnect();
-      mount(root, frame, hint, openLink, expandButton).catch((error: unknown) => {
+      mount(root, frame, selection, openLink, expandButton).catch((error: unknown) => {
         root.classList.add('failed');
         console.error('Similarity neighbourhood failed to load', error);
       });
@@ -194,7 +189,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   }
 
   .similarity-map-link {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     color: var(--color-text-secondary);
   }
 
@@ -220,11 +215,6 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     opacity: 1;
   }
 
-  .similarity-hint {
-    font-size: 0.8125rem;
-    color: var(--color-text-tertiary);
-  }
-
   .failed .similarity-stage,
   .failed .similarity-selection {
     display: none;
@@ -240,13 +230,14 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     font-size: 0.875rem;
   }
 
+  .similarity-selection[hidden],
   .similarity-selection [hidden] {
     display: none;
   }
 
   .similarity-expand {
     font: inherit;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     padding: 0.2rem 0.6rem;
     border: 1px solid var(--color-border);
     border-radius: 999px;
@@ -259,14 +250,25 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     color: var(--color-brand-accent);
   }
 
+  /* One line that scrolls sideways and fades out at the right edge. */
   .similarity-peers {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.75rem;
+    gap: 0.75rem;
     margin: 0;
-    padding: 0.6rem 0.75rem;
+    padding: 0.6rem 3rem 0.6rem 0.75rem;
     border-top: 1px solid var(--color-border);
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 calc(100% - 5rem), transparent);
+  }
+
+  .similarity-peers a {
     color: var(--color-text-secondary);
+  }
+
+  .similarity-peers a:hover {
+    color: var(--color-brand-accent);
   }
 </style>

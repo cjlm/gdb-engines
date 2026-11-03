@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { expand, neighbourhoodDocument, neighbourIds } from './similarity-neighbourhood.mjs';
+import {
+  expand,
+  nearbyIds,
+  neighbourhoodDocument,
+  neighbourIds,
+} from './similarity-neighbourhood.mjs';
 
 const link = (source, target, similarity) => ({ source, target, similarity });
 
@@ -23,6 +28,12 @@ function document() {
 
 test('neighbours come from links in either direction, most similar first', () => {
   assert.deepEqual(neighbourIds(graph, 'a'), ['c', 'b']);
+});
+
+test('nearby engines list neighbours first, then their neighbours, once each', () => {
+  assert.deepEqual(nearbyIds(graph, 'a', 10), ['c', 'b', 'd']);
+  assert.deepEqual(nearbyIds(graph, 'a', 2), ['c', 'b']);
+  assert.deepEqual(nearbyIds(graph, 'd', 10), ['c', 'a', 'b']);
 });
 
 test('expanding adds the node and its neighbours without dropping what was shown', () => {
