@@ -57,6 +57,15 @@ const breadcrumbJsonLd = JSON.stringify({
     <p><a href="/rankings/">GDB-Engines Rankings</a> is a separate monthly popularity ranking covering every active engine in the catalog. Engines are ranked overall and across boards split by data model, engine kind, landscape segment, query language, and implementation language, plus a movers board surfacing the biggest changes month-on-month.</p>
     <p>Scores blend signals across four pillars — adoption, activity, community, and research — drawing on public data sources across the web. The methodology is fixed in advance and is not adjusted for sponsors.</p>
 
+    <h2 id="github-stars">GitHub star history</h2>
+    <p>
+      The star charts on database pages join three sources. Before 2023, and from mid-2024, they
+      use star counts from Internet Archive copies of each repository's GitHub page. From
+      February 2023 to June 2024 they add monthly estimates counted from GH Archive star events.
+      Since May 2026 they use the counts recorded by each monthly ranking run, ending with
+      today's count from GitHub.
+    </p>
+
     <h2>API</h2>
     <p>A JSON API is available at <code>/api.json</code> containing all database entries and their metadata. Example usage:</p>
     <div class="code-block"><code>curl https://gdb-engines.com/api.json</code></div>

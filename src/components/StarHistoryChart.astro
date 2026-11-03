@@ -33,7 +33,7 @@ const sourceNotes = [
   sources.has('gharchive') && 'GH Archive star events for 2023–24 (estimated)',
   firstSnapshot && `monthly counts since ${dateLabel(firstSnapshot.date, 'short')}`,
 ].filter((note): note is string => Boolean(note));
-const caption =
+const sourceNote =
   sourceNotes.length > 0
     ? `From ${sourceNotes.length > 1
       ? `${sourceNotes.slice(0, -1).join(', ')} and ${sourceNotes.at(-1)}`
@@ -41,7 +41,7 @@ const caption =
     : '';
 const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
 ---
-<figure class="star-chart">
+<figure class="star-chart" title={sourceNote || undefined}>
   <p class="star-chart-summary">
     <strong>{count(last.stars)}</strong> stars
     <span>{change} since {dateLabel(first.date, 'short')}</span>
@@ -91,7 +91,6 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     ))}
     <span class="is-end">{dateLabel(last.date, 'short')}</span>
   </div>
-  {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
 <style>
@@ -108,7 +107,7 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.25rem 0.5rem;
-    margin: 0 0 1rem;
+    margin: 0 0 1.75rem;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
   }
@@ -209,12 +208,5 @@ const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
     position: absolute;
     top: 0;
     transform: translateX(-50%);
-  }
-
-  .star-chart figcaption {
-    margin-top: 0.6rem;
-    color: var(--color-text-tertiary);
-    font-size: 0.75rem;
-    line-height: 1.45;
   }
 </style>

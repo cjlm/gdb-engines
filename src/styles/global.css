@@ -1502,6 +1502,17 @@ thead [role="tooltip"]::after {
 .db-section-heading {
   margin-bottom: 0.875rem;
 }
+.db-section-heading:has(.db-section-note) {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.db-section-note {
+  color: var(--color-text-tertiary);
+  font-size: 0.8125rem;
+}
+.db-section-note:hover { color: var(--color-brand-accent); }
 .db-page h2 {
   font-family: var(--font-heading);
   font-size: 1.0625rem;
