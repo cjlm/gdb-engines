@@ -162,7 +162,10 @@ const SEGMENTS: SegmentDefinition[] = [
     title: 'Knowledge Graph Databases, Ranked Monthly',
     h1: 'Knowledge Graph Databases, Ranked Monthly',
     shortLabel: 'Knowledge Graph',
-    blurb: 'Databases and engines whose makers build them for knowledge graphs, semantic, property graph or virtual, ranked monthly across adoption, activity, community and research signals.',
+    blurb:
+      'Engines for semantic, property graph and virtual knowledge graphs, ranked monthly ' +
+      'across adoption, activity, community and research signals. An engine is listed if it ' +
+      'answers SPARQL itself, or if its makers present it for building knowledge graphs.',
     match: isKnowledgeGraph,
   },
   {
