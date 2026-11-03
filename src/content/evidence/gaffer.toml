@@ -17,14 +17,14 @@ notes = "Ships a full REST API for a deployed graph instance, and is equally usa
   title = "Using the REST API - Gaffer Docs"
   quote = "When a graph is deployed, a REST (or RESTful) API will be available at a predefined address."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/gchq/Gaffer/master/README.md"
   title = "Gaffer"
   quote = "To use Gaffer from the Java API the only required dependencies are the Gaffer graph module and a store module"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — gchq/Gaffer"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "status"
@@ -54,7 +54,7 @@ notes = "GitHub reports the repository as archived, which is read-only and signa
   title = "GitHub repository API — gchq/Gaffer"
   quote = "\"archived\": true"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -69,7 +69,7 @@ notes = "Corrects current year-only '2015' to 2015-12: GCHQ open-sourced Gaffer 
   title = "GCHQ open-sources surveillance graph database software on GitHub"
   quote = "The UK’s Government Communications Headquarters (GCHQ) has created an account on the repository code hosting service GitHub and open-sourced its first project, Gaffer."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -84,7 +84,7 @@ notes = "Confirms current value."
   title = "GCHQ open-sources surveillance graph database software on GitHub"
   quote = "Written in Java, Gaffer is a “framework that makes it easy to store large-scale graphs in which the nodes and edges have statistics such as counts, histograms and sketches,” GCHQ stated in the project description."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

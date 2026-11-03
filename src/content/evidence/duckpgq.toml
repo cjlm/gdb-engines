@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — cwida/duckpgq-extension"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "GitHub repo created 2023-04-05 and the VLDB demo paper citing the artif
   title = "DuckPGQ: Bringing SQL/PGQ to DuckDB"
   quote = "Daniel ten Wolde, Gábor Szárnyas, and Peter Boncz. DuckPGQ: Bringing SQL/PGQ to DuckDB. PVLDB, 16(12): 4034 - 4037, 2023."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value; the VLDB paper describes the extension's UDFs a
   title = "DuckPGQ: Bringing SQL/PGQ to DuckDB"
   quote = "with the help of some scalar User Defined Functions (UDFs) implemented in C++ that the module provides"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

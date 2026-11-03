@@ -17,21 +17,21 @@ notes = "REST(JSON) and SPARQL 1.1 Protocol (query/update/graph-store) are both 
   title = "Connection Strings — BrightstarDB documentation"
   quote = "Uses the embedded BrightstarDB server to directly open stores from the local file system."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://brightstardb.readthedocs.io/en/1.13.3/HTTP_API/"
   title = "HTTP API — BrightstarDB 1.13.3 documentation"
   quote = "The HTTP API is the network interface to a BrightstarDB server. It allows access to BrightstarDB from just about any programming language using basic HTTP operations and JSON data structures."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://brightstardb.readthedocs.io/en/1.13.3/HTTP_API/"
   title = "HTTP API — BrightstarDB 1.13.3 documentation"
   quote = "This endpoint implements the query operations defined in the W3C SPARQL 1.1 Protocol specification."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,7 +46,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — BrightstarDB/BrightstarDB"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -61,7 +61,7 @@ notes = "Confirms current value: the public beta was announced on the W3C semant
   title = "ANN: BrightstarDB Native .NET NoSQL Triple Store from Graham Moore on 2012-02-07 (semantic-web@w3.org from February 2012)"
   quote = "Networked Planet is excited to announce the public beta of its native\n..NET triple store, BrightstarDB."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Confirms current value."
   title = "What's New — BrightstarDB 1.13 documentation"
   quote = "The code-base is now being developed and compiled under VS2015 using C# 6.0 constructs. To compile BrightstarDB you will require a minimum of Visual Studio 2015 Express or Mono 4.0."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

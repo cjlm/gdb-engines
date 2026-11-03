@@ -17,14 +17,14 @@ notes = "Delivered as a Snowflake Native App; the PyRel client connects over HTT
   title = "Set Up Direct Access"
   quote = "Clients using Direct Access connect securely to the RAI Native App’s ingress endpoint over the public internet."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.relational.ai/api/python/v1.5/client/"
   title = "client | RelationalAI Docs"
   quote = "The root clients lazily create transports (SQL/HTTP) on first use."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Confirms current value; RelationalAI is a hosted commercial service wit
   title = "RelationalAI Unveils the AI Coprocessor and Runs Securely in the Snowflake Data Cloud with New Snowpark Container Services"
   quote = "RelationalAI has brought to market the industry's first AI coprocessor, based on relational knowledge graphs, enabling teams to efficiently build intelligent apps"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Corrected from current value 2021: RelationalAI's own year-in-review po
   title = "RelationalAI Year in Review, 2022"
   quote = "It was a great year for us --- we came out of stealth, grew our team, participated in fantastic conferences and events"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,14 +69,14 @@ notes = "Confirms current value; the engine (RKGS) and Rel language are implemen
   title = "RelationalAI & Julia – RelationalAI"
   quote = "highlights how we've used Julia to develop our RKGS and modeling language Rel"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://news.ycombinator.com/item?id=24736328"
   title = "We use Julia in production at RelationalAI | Hacker News"
   quote = "our cloud hosted next generation knowledge graph management system is a highly performant database and query optimization engine, and it's written 100% in Julia"
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

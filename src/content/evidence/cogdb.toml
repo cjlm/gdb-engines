@@ -17,14 +17,14 @@ notes = "Primarily an embedded Python library; g.serve() exposes an HTTP endpoin
   title = "CogDB – Embedded Graph Database for Python | Graphs, Vectors, Search | Open Source"
   quote = "No server. No config. Runs in notebooks, apps, even your browser."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/arun1729/cog"
   title = "arun1729/cog"
   quote = "Serve a graph over HTTP and query it from another process or machine:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — arun1729/cog"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "First PyPI upload (0.0.3) confirms the current value."
   title = "cogdb PyPI JSON API"
   quote = "\"python_version\":\"py2\",\"requires_python\":null,\"size\":5988,\"upload_time\":\"2018-07-09T02:20:39\",\"upload_time_iso_8601\":\"2018-07-09T02:20:39.823856Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "README states this directly; GitHub language stats show 100% Python."
   title = "arun1729/cog"
   quote = "CogDB is a persistent, embedded graph database implemented in Python."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

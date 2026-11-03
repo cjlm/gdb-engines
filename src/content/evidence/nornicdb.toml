@@ -17,14 +17,14 @@ notes = "gRPC surface is Qdrant-compatible (Points.Search/Query) plus an additiv
   title = "orneryd/NornicDB"
   quote = "It speaks Neo4j's language through Bolt and Cypher, exposes REST, GraphQL, and gRPC interfaces, and can preserve Qdrant-style client workflows where that helps migration."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/orneryd/NornicDB"
   title = "orneryd/NornicDB"
   quote = "Qdrant gRPC API Compatible — Works with Qdrant-style gRPC vector workflows"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — orneryd/NornicDB"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Confirms current value. The repo's own pre-1.1 changelog gives v1.0.0 a
   title = "changes-before-1.1.x.md — orneryd/NornicDB"
   quote = "`v1.0.0` - First standalone release (December 6, 2024)\n- `v1.0.6` - 2025-12-12"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirms current value. Build-from-source instructions use `go build`, 
   title = "README.md — orneryd/NornicDB"
   quote = "git clone https://github.com/orneryd/NornicDB.git\ncd NornicDB\ngo build -o nornicdb ./cmd/nornicdb"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

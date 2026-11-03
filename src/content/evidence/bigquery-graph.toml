@@ -17,21 +17,21 @@ notes = "GQL is just another BigQuery SQL dialect, so it inherits the platform's
   title = "BigQuery API | Google Cloud Documentation"
   quote = "Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://cloud.google.com/bigquery/docs/write-api"
   title = "Introduction to the Storage Write API (gRPC) | BigQuery | Google Cloud Documentation"
   quote = "You can use the BigQuery Storage Write API (gRPC) to stream data into BigQuery."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://cloud.google.com/bigquery/docs/reference/odbc-jdbc-drivers"
   title = "Use the Simba ODBC and JDBC drivers for BigQuery | Google Cloud Documentation"
   quote = "The Simba Open Database Connectivity (ODBC) and Java Database Connectivity (JDBC) drivers for BigQuery connect your applications to BigQuery, letting you use BigQuery features with your preferred tooling and infrastructure."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -46,7 +46,7 @@ notes = "Google's own blog post announcing BigQuery Graph's public preview match
   title = "Introducing BigQuery Graph | Google Cloud Blog"
   quote = "Today, we're thrilled to announce that BigQuery Graph is now available in preview."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -61,7 +61,7 @@ notes = "Closed hosted service with no published licence terms; recorded as prop
   title = "BigQuery — Database of Databases"
   quote = "Operating System Hosted License Proprietary"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Google does not publish BigQuery’s implementation; the CMU Database o
   title = "BigQuery — Database of Databases"
   quote = "Project Type Commercial Written in C++, Java, Python"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

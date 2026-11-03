@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — pleiad/frogql"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms current value: the GitHub repo was created 2026-04-01 but the 
   title = "frogql · PyPI JSON API"
   quote = "\"filename\":\"frogql-0.1.0-cp38-abi3-macosx_10_12_x86_64.whl\",\"has_sig\":false,\"md5_digest\":\"68a10e4d4a019e150bc624e00b9996a0\",\"packagetype\":\"bdist_wheel\",\"python_version\":\"cp38\",\"requires_python\":\">=3.8\",\"size\":942096,\"upload_time\":\"2026-05-05T21:04:11\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value; the project describes itself as a Rust core wit
   title = "pleiad/frogql"
   quote = "Embedded GQL graph database in Rust. ISO/IEC 39075:2024 path patterns, Leapfrog-Triejoin runtime, single-file .gdb storage."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

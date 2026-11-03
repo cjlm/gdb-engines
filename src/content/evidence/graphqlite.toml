@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — colliery-io/graphqlite"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -31,8 +31,8 @@ notes = "Confirms current value; the repository was created 2025-07-19 and its o
   url = "https://api.github.com/repos/colliery-io/graphqlite/commits?per_page=1&page=254"
   title = "colliery-io/graphqlite commits (oldest, via GitHub API)"
   quote = "\"date\": \"2025-07-21T09:02:23Z\"\n      },\n      \"message\": \"checkpoint: before we start implementing lemo\","
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -46,15 +46,15 @@ notes = "Confirms current value; GraphQLite is a SQLite extension and GitHub's b
   url = "https://api.github.com/repos/colliery-io/graphqlite/languages"
   title = "colliery-io/graphqlite languages (GitHub API)"
   quote = "\"C\": 2991801,\n  \"Python\": 363307,\n  \"Rust\": 276410,"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/colliery-io/graphqlite/main/README.md"
   title = "colliery-io/graphqlite README.md"
   quote = "An SQLite extension that adds graph database capabilities using the Cypher query language."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

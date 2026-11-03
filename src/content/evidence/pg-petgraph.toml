@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — alitrack/pg_petgraph"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Repository creation date; the first tag, v0.1.0, was published the same
   title = "alitrack/pg_petgraph (GitHub API repository metadata)"
   quote = "\"created_at\": \"2026-07-15T12:50:20Z\""
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "The README states the extension is written in Rust with pgrx and petgra
   title = "README.md"
   quote = "Graph algorithms for PostgreSQL, written in Rust"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,21 +17,21 @@ notes = "Kinetica documents three independent client channels: a REST/JSON API (
   title = "API Concepts | Kinetica Docs"
   quote = "The following shows the means of connecting to Kinetica via the various APIs available."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.kinetica.com/7.2/connectors/sql_guide/"
   title = "ODBC/JDBC Connector Guide | Kinetica Docs"
   quote = "Kinetica provides a SQL interface through its ODBC & JDBC drivers, which run on Linux, Mac, & Windows."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.kinetica.com/7.2/connectors/psql_wire_protocol/"
   title = "PostgreSQL Wire Protocol | Kinetica Docs"
   quote = "Point any client able to make use of PostgreSQL Wire Protocol at Kinetica on port 5432 to connect."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,14 +46,14 @@ notes = "Confirms current value; independent tech press explicitly describes Kin
   title = "Kinetica aims to speed users onto its graphics chip database train - SiliconANGLE"
   quote = "Kinetica is a proprietary architecture that works with other data stores and visualization engines"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.nextplatform.com/ai/2016/09/23/pushing-database-scalability-up-and-out-with-gpus/1654008"
   title = "Pushing Database Scalability Up And Out With GPUs"
   quote = "GPUdb and now Kinetica are not open source, and it is not clear they will ever be."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -68,7 +68,7 @@ notes = "Confirms current value; Kinetica's predecessor company GIS Federal was 
   title = "Kinetica (software)"
   quote = "In 2009, Amit Vij and Nima Neghaban founded GIS Federal, a developer of software they called GPUdb."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -83,7 +83,7 @@ notes = "Confirms current value via a secondary catalog source; Kinetica has not
   title = "Kinetica · Database of Databases"
   quote = "Written in C, C++"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -97,7 +97,7 @@ checked = "2026-09-23"
   title = "Pushing Database Scalability Up And Out With GPUs - The Next Platform"
   quote = "Kinetica, formerly known as GPUdb, is making a bit of a splash"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

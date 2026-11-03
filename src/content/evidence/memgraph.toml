@@ -17,7 +17,7 @@ notes = "Bolt server defaults to port 7687. Separate HTTP metrics (9091) and Web
   title = "Configuration"
   quote = "This section contains the list of flags that are used to configure the Bolt protocol used by Memgraph."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Corrected SPDX id from BSL-1.1: the licenses/BSL.txt file in the repo i
   title = "BSL.txt"
   quote = "The Licensor hereby grants you the right to copy, modify, create derivative works, redistribute, and make non-production use of the Licensed Work."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -46,8 +46,8 @@ notes = "Corrected from 2018: Memgraph's own history page states Memgraph 1.0 in
   url = "https://memgraph.com/about-us"
   title = "About us"
   quote = "Launched the first publicly available and production-ready version of Memgraph 1.0 and Memgraph Cloud."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "Matches current value; confirmed by the project's own repository descri
   title = "memgraph/memgraph"
   quote = "Built in C/C++, it serves as the graph engine for GraphRAG pipelines, AI memory systems, and agentic workflows"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

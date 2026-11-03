@@ -16,15 +16,16 @@ notes = "Core Attean is a Perl library used embedded; SPARQL 1.1 Protocol server
   url = "https://metacpan.org/pod/Attean"
   title = "Attean - A Semantic Web Framework - metacpan.org"
   quote = "Attean provides APIs for parsing, storing, querying, and serializing Semantic Web (RDF and SPARQL) data."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260903052020/https://metacpan.org/pod/Attean"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://hexmos.com/freedevtools/man-pages/library-functions/string-manipulation/atteanx-endpoint/"
   title = "AtteanX::Endpoint - SPARQL 1.1 Protocol Endpoint - Manual Page | Free DevTools by Hexmos"
   quote = "The AtteanX::Endpoint class implements a PSGI SPARQL Protocol endpoint."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +40,7 @@ notes = "Corrects the current value of Artistic-2.0. Attean ships no separate LI
   title = "kasei/attean README.md (raw)"
   quote = "This program is free software; you can redistribute it and/or modify it under\nthe same terms as Perl itself."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +55,7 @@ notes = "Confirms the current value; the CPAN Changes file records version 0.001
   title = "Attean Changes file (CPAN source)"
   quote = "0.001  2014-09-27\n\n - (Addition) Initial release."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -68,8 +69,8 @@ notes = "Confirms the current value; Attean is described as a Perl framework and
   url = "https://api.github.com/repos/kasei/attean"
   title = "kasei/attean (GitHub API repository object)"
   quote = "\"watchers_count\": 19,\n  \"language\": \"Perl\",\n  \"has_issues\": true,"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.rdf-trine.relation"
@@ -84,7 +85,7 @@ notes = "Same author; parts of RDF::Trine were ported into Attean."
   title = "kasei/attean meta/changes.ttl"
   quote = "Ported RDF::Trine::Serializer::RDFXML to AtteanX::Serializer::RDFXML"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

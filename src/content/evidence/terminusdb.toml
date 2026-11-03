@@ -17,14 +17,14 @@ notes = "Document/REST API and GraphQL are both served over HTTP on the default 
   title = "README.md · terminusdb/terminusdb"
   quote = "Use REST API as a proper graph query language with deep link discovery, path queries and linked data"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/terminusdb/terminusdb/blob/main/README.md"
   title = "README.md · terminusdb/terminusdb"
   quote = "Use GraphQL as a proper graph query language with deep link discovery and path queries"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -38,8 +38,8 @@ notes = "TerminusDB's own launch announcement was published October 1, 2019, ref
   url = "https://medium.com/terminusdb/today-we-release-terminusdb-the-database-for-data-people-36cfd3f81d3f"
   title = "TerminusDB — the database for data people."
   quote = "The development of Terminus has been a nine-year labour of love, devotion, frustration and pain. You can imagine how delighted we are to release TerminusDB to the world."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "TerminusDB's own internals documentation states the query engine is wri
   title = "TerminusDB Internals"
   quote = "TerminusDB is built around a datalog engine written in Prolog with a very fast and memory-efficient immutable graph storage layer optimised for version control."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — terminusdb/terminusdb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
@@ -83,8 +83,8 @@ notes = "terminusdb.com is unreachable (confirmed via direct fetch: connection f
   url = "https://terminusdb.org/"
   title = "TerminusDB, Document Graph Database with Git-for-data"
   quote = "TerminusDB is the Open Source Knowledge Graph Database with Git-like Version Control combining JSON and RDF with high precision temporal reasoning."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "vendor"
@@ -98,8 +98,8 @@ notes = "Confirms the catalogue's existing DFRNT attribution is current. DFRNT t
   url = "https://terminusdb.org/docs/what-is-dfrnt/"
   title = "What is DFRNT Hub?"
   quote = "DFRNT is the company that provides commercial hosting, enterprise support, and a comprehensive user interface for TerminusDB."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

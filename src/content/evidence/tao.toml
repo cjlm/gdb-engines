@@ -17,7 +17,7 @@ notes = "Facebook-internal and closed-source; the 2013 USENIX paper describes a 
   title = "TAO: Facebook's Distributed Data Store for the Social Graph"
   quote = "so to avoid head-of-line blocking on multiplexed connections we use a protocol with out-of-order responses."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "TAO is an internal Facebook/Meta system, never released as source or a 
   title = "TAO: Facebook's Distributed Data Store for the Social Graph (USENIX ATC '13)"
   quote = "TAO is deployed at Facebook as a single geographically distributed instance."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -46,16 +46,15 @@ notes = "Confirms current value with a month: development started in 2009, but T
   url = "https://dl.acm.org/doi/10.1145/2213836.2213957"
   title = "TAO: how facebook serves the social graph | SIGMOD '12"
   quote = "TAO is a distributed implementation of the fbobject and association API that has been serving production traffic at Facebook for more than 2 years."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20240915023028/https://dl.acm.org/doi/10.1145/2213836.2213957"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://engineering.fb.com/2013/06/25/core-data/tao-the-power-of-the-graph/"
   title = "TAO: The power of the graph - Engineering at Meta"
   quote = "In early 2009, a team of Facebook infrastructure engineers started to work on TAO (“The Associations and Objects”)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -70,7 +69,7 @@ notes = "Confirms current value; no primary Facebook/Meta source states the lang
   title = "The TAO of Facebook data management - Computerworld"
   quote = "The TAO caching layer is run on the servers by a collection of daemons, mostly written in C and C++."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

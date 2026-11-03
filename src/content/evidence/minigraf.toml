@@ -17,7 +17,7 @@ notes = "Confirms current value. The repo's own README states the dual-license c
   title = "minigraf README"
   quote = "Licensed under either of:\n\n- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)\n- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)\n\nat your option."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms current value using the crates.io registry: the crate's first 
   title = "minigraf - crates.io API"
   quote = "\"crate\":\"minigraf\",\"num\":\"0.19.0\",\"dl_path\":\"/api/v1/crates/minigraf/0.19.0/download\",\"readme_path\":\"/api/v1/crates/minigraf/0.19.0/readme\",\"updated_at\":\"2026-04-08T03:26:13.144496Z\",\"created_at\":\"2026-04-08T03:26:13.144496Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value. crates.io's own line-count analysis of the publ
   title = "minigraf - crates.io API"
   quote = "\"linecounts\":{\"languages\":{\"Rust\":{\"code_lines\":24338,\"comment_lines\":1611,\"files\":36}},\"total_code_lines\":24338"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.recallgraph.relation"
@@ -62,7 +62,7 @@ notes = "Same author. Described as a spiritual successor with a different techno
   title = "RecallGraph/RecallGraph"
   quote = "Minigraf is a spiritual successor, not a port."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

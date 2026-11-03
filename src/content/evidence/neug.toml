@@ -16,15 +16,15 @@ notes = "Default Embedded Mode is a linked library (Python/Node.js); calling db.
   url = "https://github.com/alibaba/neug"
   title = "alibaba/neug"
   quote = "Embedded Mode: Optimized for analytical workloads including bulk data loading, complex pattern matching, and graph analytics"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://graphscope.io/neug/en/reference/cpp_api/service/"
   title = "NeugDBService"
   quote = "NeugDBService provides an HTTP interface layer for the NeuG graph database, enabling remote query execution over HTTP."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — alibaba/neug"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -53,8 +53,8 @@ notes = "Confirms current value. The project's own README changelog dates the v0
   url = "https://raw.githubusercontent.com/alibaba/neug/main/README.md"
   title = "alibaba/neug README"
   quote = "**2026-05** — NeuG v0.1.2: [`LOAD FROM`](https://graphscope.io/neug/en/data_io/load_data/), [Parquet](https://graphscope.io/neug/en/extensions/load_parquet/) & [HTTPFS](https://graphscope.io/neug/en/extensions/load_httpfs/) extensions\n- **2026-03** — NeuG v0.1 released"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,14 +69,14 @@ notes = "Confirms current value. C++ dwarfs every other language in GitHub's byt
   title = "alibaba/neug README"
   quote = "Our C++ Cypher compiler is adapted from Kùzu's implementation"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://api.github.com/repos/alibaba/neug/languages"
   title = "alibaba/neug languages (GitHub API)"
   quote = "\"C++\":8936536,\"Python\":1128597,\"Shell\":146835,\"Java\":140944,\"CMake\":134237"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.graphscope.relation"
@@ -90,7 +90,7 @@ checked = "2026-09-23"
   title = "alibaba/neug README"
   quote = "GraphScope Flex, the engine foundation behind NeuG"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.kuzu.relation"
@@ -105,7 +105,7 @@ notes = "Only the Cypher compiler; the engine itself is GraphScope Flex."
   title = "alibaba/neug README"
   quote = "Our C++ Cypher compiler is adapted from Kùzu's implementation"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

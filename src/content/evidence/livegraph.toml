@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — thu-pacman/LiveGraph"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms current value; the introducing paper was published in March 20
   title = "README.md"
   quote = "Proc. VLDB Endow. 13, 7 (March 2020), 1020–1034. DOI:https://doi.org/10.14778/3384345.3384351"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value; the README lists a C++17/TBB/OpenMP build depen
   title = "README.md"
   quote = "[CMake](https://gitlab.kitware.com/cmake/cmake)\n - [TBB](https://github.com/oneapi-src/oneTBB) \n - OpenMP and C++17\n - AVX-2"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

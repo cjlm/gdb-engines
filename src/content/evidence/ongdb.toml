@@ -17,7 +17,7 @@ notes = "Docker image binds 7474 (HTTP) and 7687 (Bolt), matching its Neo4j 3.4 
   title = "graphfoundation/ongdb - Docker Image"
   quote = "for HTTP and Bolt access to the ONgDB API."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Confirms current value. The repository mixes a GPLv3-licensed Community
   title = "README.asciidoc — graphfoundation/ongdb"
   quote = "Our Community edition (in the link:community/[community/] directory) is GPLv3. Our Enterprise edition (link:enterprise/[enterprise/]) is differently licensed under the AGPLv3."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -46,9 +46,8 @@ notes = "Confirms current value. Graph Foundation, Inc. was formed around June 2
   url = "https://casetext.com/case/neo4j-inc-v-graph-found-inc"
   title = "Neo4j, Inc. v. Graph Found., Inc. — Casetext"
   quote = "Plaintiff alleges that Defendant GFI was formed on or around June 21, 2018 in response to Plaintiff's decision to cease offering the Enterprise Edition on an open source basis."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20230105175031/https://casetext.com/case/neo4j-inc-v-graph-found-inc"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -63,7 +62,7 @@ notes = "Confirms current value. No page states 'written in Java' outright, but 
   title = "README.asciidoc — graphfoundation/ongdb"
   quote = "ONgDB is built using http://maven.apache.org/[Apache Maven] version 3.6. Maven requires more memory than the standard configuration"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.neo4j.relation"
@@ -77,7 +76,7 @@ checked = "2026-09-23"
   title = "graphfoundation/ongdb"
   quote = "ONgDB is an independent fork of Neo4j® Enterprise Edition licensed under AGPLv3 and/or Community Edition licensed under GPLv3"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

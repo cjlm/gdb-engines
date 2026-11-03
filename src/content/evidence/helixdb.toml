@@ -16,8 +16,8 @@ notes = "All SDKs (Rust, TypeScript, Go, Python) and curl alike send queries as 
   url = "https://github.com/HelixDB/helix-db"
   title = "HelixDB/helix-db"
   quote = "Queries are authored with the Rust, TypeScript, Go, or Python DSL and sent straight to a running instance as dynamic requests against `POST /v1/query` — no build or deploy step."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,14 +32,14 @@ notes = "Matches current value. The founders' Show HN post announcing the first 
   title = "Show HN: HelixDB, Open-Source Hybrid Graph-Vector Database | Hacker News"
   quote = "We're super excited to release the first version of our Graph Database!"
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://hn.algolia.com/api/v1/items/43155338"
   title = "Item 43155338 - Hacker News API (Algolia)"
   quote = "\"created_at\":\"2025-02-24T02:44:03.000Z\",\"created_at_i\":1740365043,\"id\":43155338,\"options\":[],\"parent_id\":null,\"points\":4,\"story_id\":43155338,\"text\":\"Hey HN!<p>A friend and I have been working on HelixDB, a graph-vector database, part-time at university."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -53,9 +53,8 @@ notes = "Matches current value; the founders state directly that HelixDB is writ
   url = "https://news.ycombinator.com/item?id=43975423"
   title = "HelixDB – Open-source vector-graph database for AI applications (Rust) | Hacker News"
   quote = "It’s written in Rust and our initial focus is on supporting RAG."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20250520064418/https://news.ycombinator.com/item?id=43975423"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -70,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — HelixDB/helix-db"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

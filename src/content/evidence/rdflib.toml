@@ -17,14 +17,14 @@ notes = "Confirms the current value. RDFLib's own project history page marks the
   title = "Home | RDFlib"
   quote = "1.1.1 | 12 Nov 2002 | First release!"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://lists.w3.org/Archives/Public/www-rdf-interest/2002Nov/0045.html"
   title = "Announcement: RDFLib-1.1.0 Released from Daniel Krech on 2002-11-06 (www-rdf-interest@w3.org from November 2002)"
   quote = "This is a development release and is the first release in the new 1.1.x development branch."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -39,7 +39,7 @@ notes = "Used the package metadata description in pyproject.toml rather than the
   title = "pyproject.toml - RDFLib/rdflib"
   quote = "RDFLib is a Python library for working with RDF,"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -54,7 +54,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — RDFLib/rdflib"
   quote = "\"spdx_id\": \"BSD-3-Clause\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

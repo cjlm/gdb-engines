@@ -17,14 +17,14 @@ notes = "Confirms the current dual-license value; the crate manifest declares th
   title = "triblespace-rs/Cargo.toml"
   quote = "license = \"MIT OR Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/triblespace/triblespace-rs/main/LICENSE-MIT"
   title = "triblespace-rs/LICENSE-MIT"
   quote = "Permission is hereby granted, free of charge, to any person obtaining a copy"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -39,7 +39,7 @@ notes = "Confirms the current value; the crate's own manifest describes it as a 
   title = "triblespace-rs/Cargo.toml"
   quote = "rust-version = \"1.89\"\ndescription = \"The Triblespace: A lightweight knowledge base for rust.\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "GitHub REST API for the repository's first commit (message \"init\") sh
   title = "GitHub API - triblespace-rs initial commit"
   quote = "\"author\": {\n      \"name\": \"Jan-Paul Bultmann\",\n      \"email\": \"jp@bultmann.eu\",\n      \"date\": \"2020-09-17T18:52:44Z\"\n    }"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

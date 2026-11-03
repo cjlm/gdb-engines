@@ -17,14 +17,14 @@ notes = "Server defaults to a TCP binary protocol; the -c flag can switch it to 
   title = "sachin-sinha/BangDB"
   quote = "defines if server runs as tcp server or http (rest) server or both (hybrid), default is tcp server"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/sachin-sinha/BangDB"
   title = "sachin-sinha/BangDB"
   quote = "The core client is written in C++, it uses TCP socket to communicate."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Confirms the current value via BangDB's own documentation, which lists 
   title = "BangDB Server - Documentation"
   quote = "License - 4.1 Community : BSD 3 4.2 Enterprise : Custom"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "Corrects the current value of 2021-11, which is actually the BangDB 2.0
   title = "IQLECT provides insights in real-time, makes data analytics affordable - The Financial Express"
   quote = "In 2012, I developed BangDB, a high performance nosql database and one of the core components of IQLECT platform, for developers to capture data in with higher speed in efficient manner."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://web.archive.org/web/20130711173414/http://www.bangdb.com/"
   title = "IQLECT (Wayback Machine capture, 11 Jul 2013)"
   quote = "BangDB, High Performance NoSqlDB BigData Buffer, Real Time Big Data"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Confirms the current value via BangDB's own documentation, which states
   title = "BangDB Server - Documentation"
   quote = "Language - 3.1 Server : C++ 3.2 Client : C++, Java, Python [ upcoming ]"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

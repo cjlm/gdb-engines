@@ -17,14 +17,14 @@ notes = "QLever implements SPARQL 1.1 Protocol plus the Graph Store HTTP Protoco
   title = "QLever README"
   quote = "QLever implements the full SPARQL 1.1 standard, including federated queries,\nnamed graphs, the Graph Store HTTP Protocol, and updates."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.qlever.dev/rebuild-index/"
   title = "Rebuild index - QLever Documentation"
   quote = "Alternatively, you can trigger the rebuild via the QLever HTTP API as described\nbelow."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Refined from year-only 2017 to month: QLever was first published and pr
   title = "QLever: A Query Engine for Efficient SPARQL+Text Search"
   quote = "CIKM’17, November 6–10, 2017, Singapore. © 2017 Copyright held by the owner/author(s). Publication rights licensed to ACM."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Matches current value; confirmed by GitHub language statistics (98.1% C
   title = "ad-freiburg/qlever"
   quote = "QLever can also be used as an embedded database, that is, without the standard client-server setup but running in-process inside your own C++ code."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — ad-freiburg/qlever"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

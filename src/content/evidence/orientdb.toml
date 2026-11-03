@@ -17,14 +17,14 @@ notes = "Binary protocol (port 2424) is the primary high-performance client prot
   title = "Binary Protocol - OrientDB"
   quote = "The OrientDB binary protocol is the fastest way to interface a client application to an OrientDB Server instance."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://orientdb.dev/docs/develop/misc/OrientDB-REST.html"
   title = "Rest API - OrientDB"
   quote = "OrientDB RESTful HTTP protocol allows to talk with a OrientDB Server instance using the HTTP protocol and JSON."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,14 +39,14 @@ notes = "Confirms the current value: OrientDB was authored by Luca Garulli in 20
   title = "OrientDB - Wikipedia"
   quote = "OrientDB was originally authored by Luca Garulli in 2010. Luca wrote it as a Java rewrite of the fast persistent layer of Orient ODBMS database"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://dbdb.io/db/orientdb"
   title = "OrientDB · Database of Databases"
   quote = "OrientDB was originally developed by Luca Garulli in 2010. Luca rewrote the fast persistent layer of OrientDB ODBMS in Java as OrientDB."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -61,7 +61,7 @@ notes = "Confirms the current value."
   title = "OrientDB - Wikipedia"
   quote = "OrientDB is an open source NoSQL database management system written in Java."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -76,7 +76,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — orientechnologies/orientdb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

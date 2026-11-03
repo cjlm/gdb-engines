@@ -17,14 +17,14 @@ notes = "A separate client executable connects over the network (ZeroMQ-based me
   title = "G-Tran"
   quote = "a fully decentralized system architecture by leveraging the benefits of RDMA to avoid the bottleneck from centralized transaction coordinating"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/yaobaiwei/GTran/master/docs/Tutorial.md"
   title = "G-Tran Tutorial"
   quote = "To start the G-Tran client, the user only needs to execute the script we provide as follow"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — yaobaiwei/GTran"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Corrects current '2021' (the year of the arXiv paper) to 2019-03: the G
   title = "yaobaiwei/GTran — GitHub API repository metadata"
   quote = "\"pushed_at\":\"2022-04-06T13:46:58Z\",\"git_url\":\"git://github.com/yaobaiwei/GTran.git\",\"ssh_url\":\"git@github.com:yaobaiwei/GTran.git\",\"clone_url\":\"https://github.com/yaobaiwei/GTran.git\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "The GitHub language-stats quote was rejected as non-contiguous; the arX
   title = "G-Tran: Making Distributed Graph Transactions Fast"
   quote = "G-Tran was implemented in C++, currently with 46K+ lines of code."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "LadybugDB, a community fork of the archived Kuzu project, shipped its f
   title = "The Weekly Edge: New Gremlin Contributor, 2 Graph Releases, Ontologies in Aura, & More [7 November 2025]"
   quote = "On Wednesday, LadybugDB announced its first post-Kuzu release, which mostly focused on providing continuity for Kuzu users and ensuring contributors retain copyright on their own works"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -31,8 +31,8 @@ notes = "Ladybug is Kuzu's successor/rename and shares its build system. The CMa
   url = "https://raw.githubusercontent.com/LadybugDB/ladybug/master/CMakeLists.txt"
   title = "CMakeLists.txt - LadybugDB/ladybug"
   quote = "cmake_minimum_required(VERSION 3.15)\n\nproject(Lbug VERSION 0.19.0 LANGUAGES CXX C)"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -47,7 +47,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — LadybugDB/ladybug"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.kuzu.relation"
@@ -61,7 +61,7 @@ checked = "2026-09-23"
   title = "LadybugDB/ladybug"
   quote = "The database was formerly known as Kuzu."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

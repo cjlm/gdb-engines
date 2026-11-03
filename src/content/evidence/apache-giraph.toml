@@ -25,7 +25,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — apache/giraph"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -40,7 +40,7 @@ notes = "Confirms the current value: Giraph's own news page dates its first (inc
   title = "Giraph - Welcome To Apache Giraph!"
   quote = "February 6, 2012: Giraph 0.1-incubating released. The Giraph PPMC is excited to announce that version 0.1 has been released."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,8 +54,8 @@ notes = "Confirms the current value; GitHub reports Java as the repository's pri
   url = "https://api.github.com/repos/apache/giraph"
   title = "apache/giraph (GitHub API repository object)"
   quote = "\"watchers_count\": 620,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

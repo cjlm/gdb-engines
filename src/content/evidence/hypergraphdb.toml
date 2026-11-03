@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — hypergraphdb/hypergraphdb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms current value 2007; the project's own SVN repo (later mirrored
   title = "HyperGraphDB · Database of Databases"
   quote = "Originated from an AI project called OpenCog in 2007. This project aims to build an open source framework for AGI, and HyperGraphDB is a component of the project that will handle long-term storage of complex representations."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value Java; storage layer is built on Berkeley DB."
   title = "Kobrix Software, Official Blog: HyperGraphDB 1.0 Released"
   quote = "HyperGraphDB is a Java based product built on top of the Berkeley DB storage library."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
@@ -62,7 +62,7 @@ notes = "The www subdomain 404s and its TLS certificate doesn't even cover 'www'
   title = "GitHub - hypergraphdb/hypergraphdb"
   quote = "For more information, please visit the official website at: http://hypergraphdb.org"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "Transwarp's official company history places the StellarDB launch in May
   title = "Company Profile - Transwarp"
   quote = "Launched distributed analytical database ArgoDB and distributed graph database StellarDB"
   verified = "matched"
-  checked = "2026-08-06"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "protocols"
@@ -32,7 +32,7 @@ notes = "Official Python client PyStellarDB is built on PyHive and connects with
   title = "WarpCloud/PyStellarDB"
   quote = "PyStellarDB is a Python API for executing Transwarp Exetended OpenCypher(TEoC) and Hive query. It could also generate a RDD object which could be used in PySpark."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -47,7 +47,7 @@ notes = "Transwarp's own IPO disclosure describes StellarDB as a separately pric
   title = "关于星环信息科技（上海）股份有限公司 首次公开发行股票并在科创板上市申请文件的 首轮审核问询函的回复"
   quote = "Discover，StellarDB 为图数据库组件，其价格相对较高，少量客户直接购买 TDH 套件 （即每套包括若干组件）。"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,14 +17,14 @@ notes = "gRPC, with a co-located Arrow Flight endpoint, is the sole client proto
   title = "Launch Notes — Rocketgraph 2.6.1 documentation"
   quote = "Removed the REST API from the Python library, server, and documentation."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.rocketgraph.com/launch_notes/index.html"
   title = "Launch Notes — Rocketgraph 2.6.1 documentation"
   quote = "Improved stability and performance of connection between Python client and xgtd server by switching to using gRPC instead of REST as the default communication protocol."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Confirms current value; xGT is sold as commercial software (free trial,
   title = "Rocketgraphai/pyxgt"
   quote = "This process requires subscribing to the Rocketgraph xGT product"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "Corrected from current value 2018-12: press coverage places the public 
   title = "Startup Trovares Brings HPC to Graph Analytics"
   quote = "Along with the launch of its xGT graph analytics tool, Seattle-based Trovares announced the close of a Series A funding round."
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://siliconangle.com/2019/04/17/trovares-reels-2m-high-performance-graph-analytics-engine/"
   title = "Trovares reels in $2M for high-performance graph analytics engine - SiliconANGLE"
   quote = "a property graph analytics company started by the co-founder and former chief executive of Cray Inc., has raised $2 million to launch a new graph analytics engine"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

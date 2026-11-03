@@ -17,28 +17,28 @@ notes = "The server speaks JSON over HTTP by default. Started with USE_TURING_PR
   title = "TuringDB Python SDK reference"
   quote = "JSON over HTTP against a running server"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "TuringDB Python SDK reference"
   quote = "The binary protocol is a server-side mode, selected once when the server starts with the environment variable USE_TURING_PROTO=1"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "TuringDB Python SDK reference"
   quote = "A server speaks either JSON or the binary protocol on a given port"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/turing-db/turingdb"
   title = "turing-db/turingdb"
   quote = "TuringDB is queried over HTTP; Neo4j and Memgraph over Bolt."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -53,14 +53,14 @@ notes = "Corrected from 'BSL-1.1' to 'BUSL-1.1': the LICENSE file is the Busines
   title = "turingdb/licenses/BSL.txt"
   quote = "BUSINESS SOURCE LICENSE (BSL) 1.1"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "TuringDB Community Edition is licensed under the Business Source License (BSL). See [LICENSE](https://github.com/turing-db/turingdb/blob/main/LICENSE) for details."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -75,7 +75,7 @@ notes = "Confirms the current value; README states the engine is built in C++, a
   title = "turingdb/README.md"
   quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -90,7 +90,7 @@ notes = "No tagged GitHub releases predate v1.20 (Feb 2026), and the GitHub repo
   title = "TuringDB (Wayback Machine snapshot, 2025-11-09)"
   quote = "Get answers in milliseconds from the fastest columnar in-memory graph database engine, featuring git-like versioning."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.active_development"
@@ -105,14 +105,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/turing-db/turingdb/blob/main/.github/workflows/ci_build.yml"
   title = "turingdb/.github/workflows/ci_build.yml"
   quote = "name: CI Build"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.commercial_support"
@@ -127,7 +127,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "TuringDB Pricing"
   quote = "Dedicated support & integrations"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.live_community"
@@ -142,14 +142,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "chat with users and the team"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "report bugs or request features"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.open_source"
@@ -164,7 +164,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "TuringDB Community Edition is licensed under the Business Source License (BSL)."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.pricing"
@@ -179,14 +179,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "TuringDB Pricing"
   quote = "Deployment Self-hosted Price Free"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
   title = "TuringDB Pricing"
   quote = "Best for Production at scale Deployment Cloud, on-prem, or hybrid Price From $5,000"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.trendiness"
@@ -209,7 +209,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "docker run -it turingdbai/turingdb:nightly turingdb"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.work_as_dedicated_instance"
@@ -224,14 +224,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "Starts the TuringDB server. This is the default command, running turingdb without a subcommand is equivalent to turingdb start."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/commands"
   title = "CLI Commands"
   quote = "Run TuringDB as a background daemon"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.work_as_embedded"
@@ -246,7 +246,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "TuringDB runs **in-process**, right inside your Python program, with no separate server to start."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.testing_in_memory_version"
@@ -261,7 +261,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "-in-memory Run without writing graphs to disk"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.operating_on_linux"
@@ -276,14 +276,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "Ubuntu Jammy 22.04 LTS or later"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "Reference"
   quote = "The wheel supports Python 3.10 to 3.14 on Linux (x86_64, aarch64) and macOS 15 or later (arm64)."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.operating_on_windows"
@@ -306,14 +306,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "TuringDB Pricing"
   quote = "Deployment Cloud, on-prem, or hybrid"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
   title = "TuringDB Pricing"
   quote = "Deployment Managed with you"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.automatic_updates"
@@ -344,14 +344,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "What is TuringDB?"
   quote = "Commit, branch, merge, and time-travel your data."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "Every change is an immutable commit you can branch, merge, roll back, and time-travel through at full speed"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.live_backups"
@@ -382,7 +382,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed
   title = "TuringDB Pricing"
   quote = "Horizontal scale & high availability"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.high_availability"
@@ -397,7 +397,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed
   title = "TuringDB Pricing"
   quote = "Horizontal scale & high availability"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.query_distribution"
@@ -428,14 +428,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Functions and Types"
   quote = "DateTime and Duration are first-class types:"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/query/functions"
   title = "Functions and Types"
   quote = "Embeddings are stored as ordinary properties (type Embedding)"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.logging_auditing"
@@ -450,21 +450,21 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "Server logs are written to <turing-dir>/logs/turingdb.log."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/query/procedures"
   title = "Procedures and Commands"
   quote = "db.history() lists commits newest first."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.turingdb.ai/pricing"
   title = "TuringDB Pricing"
   quote = "Data access & change logging"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.object_graph_mapper"
@@ -495,7 +495,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Reference"
   quote = "The SDK targets TuringDB v3: pin turingdb>=3.0.2 in your project"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.binary_protocol"
@@ -510,14 +510,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "1 makes the server speak TuringDB’s binary protocol instead of JSON over HTTP."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/pythonsdk/reference"
   title = "Reference"
   quote = "A server in binary mode serves the binary protocol only"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.cli"
@@ -532,7 +532,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "Without -demon, turingdb start serves HTTP and opens an interactive Cypher shell."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.gui"
@@ -547,7 +547,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "Launches the built-in graph visualizer."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.multi_database"
@@ -562,14 +562,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Vector Search"
   quote = "A single vector index can serve searches across multiple graphs and commits"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/query/procedures"
   title = "Procedures and Commands"
   quote = "List the graphs currently loaded in the server"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.graph_native_data"
@@ -584,14 +584,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "turingdb/README.md"
   quote = "TuringDB is a high-performance, in-memory, column-oriented graph database engine, built in C++ for analytical, AI-driven, and read-intensive workloads."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "Nodes and edges carry unlimited properties, including large text"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.rest_api"
@@ -606,14 +606,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "The Python SDK is a thin client over a single endpoint, so you can query a server from any language."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "Prefer a long-running server (REST API on `http://localhost:6666`)?"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.query_language"
@@ -628,7 +628,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Cypher subset"
   quote = "TuringDB follows openCypher closely, so the queries you know carry over."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.granular_locking"
@@ -643,7 +643,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Zero-Locking Architecture"
   quote = "Writes never block reads, and reads never interfere with writes."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.multiple_isolation_levels"
@@ -666,7 +666,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Snapshots Isolation"
   quote = "You only see committed data"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.transaction_support"
@@ -681,14 +681,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Snapshots Isolation"
   quote = "TuringDB is Fully ACID-Compliant"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/turing-db/turingdb/main/README.md"
   title = "turingdb/README.md"
   quote = "Fully [ACID](https://docs.turingdb.ai/concepts/snapshots) with snapshot isolation"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.constraints"
@@ -719,7 +719,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Vector Search"
   quote = "A vector index is defined by a name, a dimension, a distance metric and, optionally, an index type."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.server_side_procedures"
@@ -734,14 +734,14 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "Procedures and Commands"
   quote = "Procedures use the CALL syntax."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.turingdb.ai/query/procedures"
   title = "Procedures and Commands"
   quote = "Extensions are native libraries that register extra procedure namespaces."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.triggers"
@@ -764,7 +764,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Vendor
   title = "CLI Commands"
   quote = "With -auth-on, send Authorization: Bearer <token>."
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.authorization"
@@ -779,7 +779,7 @@ notes = "Vendor-confirmed by TuringDB (email to GDB-Engines, 2026-10-26). Listed
   title = "TuringDB Pricing"
   quote = "Advanced security & permissions"
   verified = "matched"
-  checked = "2026-10-27"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "features.data_encryption"

@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — Kineviz/bighorn"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms the current value; Bighorn is Kineviz's fork of the archived K
   title = "KuzuDB graph database abandoned, community mulls options"
   quote = "As an open source project, Kuzu can be forked, and one company, Kineviz, has already done so, under the name bighorn."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -46,8 +46,8 @@ notes = "Confirms the current value; Bighorn inherits Kuzu's C++ codebase, and G
   url = "https://api.github.com/repos/Kineviz/bighorn"
   title = "Kineviz/bighorn (GitHub API repository object)"
   quote = "\"watchers_count\": 132,\n  \"language\": \"C++\",\n  \"has_issues\": false,"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.kuzu.relation"
@@ -61,7 +61,7 @@ checked = "2026-09-23"
   title = "Kineviz/bighorn README"
   quote = "This is a fork from the original kuzu/kuzudb"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

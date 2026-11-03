@@ -16,15 +16,15 @@ notes = "Server mode runs an Axum-based HTTP server; a local, no-server embedded
   url = "https://github.com/ModernRelay/omnigraph"
   title = "ModernRelay/omnigraph"
   quote = "Axum HTTP server, cluster-first, runs N graphs under /graphs/{id}/…"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/ModernRelay/omnigraph"
   title = "ModernRelay/omnigraph"
   quote = "1-min setup to try it: an embedded, local file-backed graph (no server, no object store)."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — ModernRelay/omnigraph"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "First crates.io publication, April 2026."
   title = "crates.io API — omnigraph-cli"
   quote = "\"created_at\":\"2026-04-14T19:30:46.785846Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -68,8 +68,8 @@ notes = "Confirms current value."
   url = "https://raw.githubusercontent.com/ModernRelay/omnigraph/main/README.md"
   title = "README.md — ModernRelay/omnigraph"
   quote = "cargo build --workspace\ncargo test  --workspace\n```\n\nNotes:\n\n- Rust stable toolchain, edition 2024"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "mismatch"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

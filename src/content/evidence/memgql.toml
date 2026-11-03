@@ -17,7 +17,7 @@ notes = "Federated GQL engine fronted by its own Bolt server on port 7688 (disti
   title = "MemGQL"
   quote = "Clients connect via the Bolt protocol (port 7688) using any Bolt-compatible driver."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Confirms current value; MemGQL Community is distributed as a free binar
   title = "Licensing"
   quote = "MemGQL Enterprise is licensed under the Memgraph Enterprise License (MEL). If you are interested in MemGQL Enterprise, please contact us."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "Confirms current value; the changelog's earliest entry is v0.1.0 on Mar
   title = "MemGQL Changelog"
   quote = "## MemGQL v0.1.0 - March 29th, 2026\n\n- GQL parser with ISO/IEC 39075 standard support including quantified path patterns"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "No current value was set. The memgraph.com/memgraph-zero page states Me
   title = "Licensing"
   quote = "| [antlr4rust](https://crates.io/crates/antlr4rust)         | ANTLR4 parser runtime for Rust                     | BSD-3-Clause     |"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
