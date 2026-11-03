@@ -87,11 +87,11 @@ notes = "Confirms current value. GitHub byte counts show C++ (8.0MB) dwarfing ev
 
 [[claims]]
 field = "kg_capabilities"
-value = ["Vector search"]
+value = ["SPARQL 1.1", "Vector search"]
 confidence = "medium"
 method = "repo"
-checked = "2026-11-01"
-notes = "SPARQL 1.1 left out: README says \"fairly complete support for the SPARQL 1.1 standard\" and the wiki lists unsupported features (named graphs, most updates beyond INSERT/DELETE DATA). Vector search: native 1-D tensors with cosine-distance functions usable in SPARQL/MQL; no ANN index documented. No reasoning, SHACL, R2RML or algorithm library found."
+checked = "2026-11-03"
+notes = "SPARQL 1.1 recorded with a caveat: the README claims 'fairly complete' SPARQL 1.1 support, and the wiki lists unsupported features (named graphs, most updates beyond INSERT/DELETE DATA); the project describes itself as still in development. Vector search: native tensors with cosine-distance functions usable in SPARQL/MQL, plus an engine-level HNSW tensor index created by an update query (CREATE HNSW INDEX), so the earlier 'no ANN index' concern no longer applies. No reasoning, SHACL, R2RML or algorithm library found."
 
   [[claims.sources]]
   url = "https://github.com/MillenniumDB/MillenniumDB/wiki/Working-with-tensors"
@@ -99,4 +99,20 @@ notes = "SPARQL 1.1 left out: README says \"fairly complete support for the SPAR
   quote = "we can operate this tensors with all the arithmetic operations as you would expect from a vectorial engine"
   supports = "Vector search"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/MillenniumDB/MillenniumDB"
+  title = "MillenniumDB README"
+  quote = "RDF, with a fairly complete support for the SPARQL 1.1 standard."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://github.com/MillenniumDB/MillenniumDB/wiki/Working-with-tensors"
+  title = "MillenniumDB wiki: Working with tensors"
+  quote = "An update query for creating an HNSW tensor index would be something like the following:"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
