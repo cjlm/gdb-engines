@@ -43,11 +43,11 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
           tabindex="-1"
           aria-hidden="true"
         ></iframe>
-        <p class="similarity-hint">Click a database to expand it. Double-click to open its page.</p>
       </div>
-      <div class="similarity-selection" aria-live="polite" hidden>
-        <a class="similarity-open" href="/"></a>
-        <button class="similarity-expand" type="button"></button>
+      <div class="similarity-selection" aria-live="polite">
+        <span class="similarity-hint">Click a database for its peers. Double-click to open it.</span>
+        <a class="similarity-open" href="/" hidden></a>
+        <button class="similarity-expand" type="button" hidden></button>
       </div>
       <p class="similarity-peers">
         <span>Closest to {name}:</span>
@@ -69,7 +69,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
   const root = document.querySelector<HTMLElement>('[data-similarity-neighbourhood]');
   const frame = root?.querySelector<HTMLIFrameElement>('.similarity-frame');
-  const selection = root?.querySelector<HTMLElement>('.similarity-selection');
+  const hint = root?.querySelector<HTMLElement>('.similarity-hint');
   const openLink = root?.querySelector<HTMLAnchorElement>('.similarity-open');
   const expandButton = root?.querySelector<HTMLButtonElement>('.similarity-expand');
 
@@ -100,7 +100,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   async function mount(
     root: HTMLElement,
     frame: HTMLIFrameElement,
-    selection: HTMLElement,
+    hint: HTMLElement,
     openLink: HTMLAnchorElement,
     expandButton: HTMLButtonElement,
   ) {
@@ -124,8 +124,10 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
     function select(id: string) {
       selected = id;
+      hint.hidden = Boolean(id);
+      openLink.hidden = !id;
       if (!id) {
-        selection.hidden = true;
+        expandButton.hidden = true;
         return;
       }
       const label = labels.get(id) ?? id;
@@ -134,7 +136,6 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       const unexpanded = expand(graph, shown, id).size > shown.size;
       expandButton.textContent = `Show ${label}'s peers`;
       expandButton.hidden = !unexpanded;
-      selection.hidden = false;
     }
 
     driver.on('nodeClick', ({ nodeId }) => {
@@ -172,12 +173,12 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     root.classList.add('ready');
   }
 
-  if (root && frame && selection && openLink && expandButton) {
+  if (root && frame && hint && openLink && expandButton) {
     // The embed is a full app; load it only when the reader scrolls near the panel.
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
       observer.disconnect();
-      mount(root, frame, selection, openLink, expandButton).catch((error: unknown) => {
+      mount(root, frame, hint, openLink, expandButton).catch((error: unknown) => {
         root.classList.add('failed');
         console.error('Similarity neighbourhood failed to load', error);
       });
@@ -205,7 +206,6 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   }
 
   .similarity-stage {
-    position: relative;
     height: 22rem;
   }
 
@@ -223,16 +223,12 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   }
 
   .similarity-hint {
-    position: absolute;
-    left: 0.75rem;
-    bottom: 0.5rem;
-    margin: 0;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     color: var(--color-text-tertiary);
-    pointer-events: none;
   }
 
-  .failed .similarity-stage {
+  .failed .similarity-stage,
+  .failed .similarity-selection {
     display: none;
   }
 
@@ -246,8 +242,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     font-size: 0.875rem;
   }
 
-  .similarity-selection[hidden],
-  .similarity-expand[hidden] {
+  .similarity-selection [hidden] {
     display: none;
   }
 
