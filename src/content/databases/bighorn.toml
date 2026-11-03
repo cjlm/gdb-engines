@@ -12,6 +12,8 @@ embeddable = true
 query_languages = ["openCypher"]
 released = "2025-10"
 category = "Emerging"
+status = "inactive"
+status_note = "Repository archived on GitHub; last pushed in August 2026."
 gdotv_support = false
 
 [lineage.kuzu]

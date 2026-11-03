@@ -77,3 +77,18 @@ notes = "Bighorn is a fork of Kuzu and its README keeps Kuzu's description as an
   quote = "Kuzu is an embedded graph database built for query speed and scalability."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "status"
+value = "inactive"
+confidence = "high"
+method = "api"
+checked = "2026-11-03"
+notes = "GitHub reports the repository as archived (read-only); the last push was on 2026-08-10."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/Kineviz/bighorn"
+  title = "GitHub repository API — Kineviz/bighorn"
+  quote = "\"archived\": true"
+  verified = "matched"
+  checked = "2026-11-03"
