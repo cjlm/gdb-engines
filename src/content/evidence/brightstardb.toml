@@ -92,3 +92,19 @@ notes = "BrightstarDB connection strings include an embedded type that opens sto
   quote = "Uses the embedded BrightstarDB server to directly open stores from the local file system."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "SPARQL 1.1 Query, Update and Graph Store Protocol per the BrightstarDB 1.13 docs. No RDFS/OWL reasoning, SHACL or R2RML is documented."
+
+  [[claims.sources]]
+  url = "https://brightstardb.readthedocs.io/en/latest/SPARQL_Endpoint/"
+  title = "SPARQL Endpoint - BrightstarDB documentation"
+  quote = "The BrightstarDB service supports query, update and the graph store protocols as specified in the SPARQL 1.1 W3C recommendation."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-03"

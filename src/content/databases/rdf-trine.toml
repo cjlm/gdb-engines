@@ -10,6 +10,7 @@ type = "RDF"
 kind = "library"
 embeddable = true
 query_languages = ["SPARQL"]
+kg_extension_capabilities = ["SPARQL 1.1"]
 released = "2008-02"
 category = "Emerging"
 status = "inactive"
