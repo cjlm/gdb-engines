@@ -17,8 +17,8 @@ import { mentionsByEngine } from '../../lib/blog-mentions';
 import { blogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
-import { loadStarSnapshots, starSeries } from '../../lib/star-history';
-import StarSparkline from '../../components/StarSparkline.astro';
+import { loadStarHistory, starSeries } from '../../lib/star-history';
+import StarHistoryChart from '../../components/StarHistoryChart.astro';
 import { sortProtocols } from '../../lib/protocols';
 import { buildFamilies, familyOf, RELATION_PHRASES } from '../../lib/lineage';
 import { layoutFamily } from '../../lib/lineage-layout';
@@ -39,10 +39,10 @@ export async function getStaticPaths() {
   );
   const overallRanks = buildOverallRankMap(rankingFile);
   const rankOrder = [...overallRanks.entries()].sort((x, y) => x[1] - y[1]).map(([slug]) => slug);
-  const [faviconMap, githubStars, starSnapshots] = await Promise.all([
+  const [faviconMap, githubStars, starHistory] = await Promise.all([
     buildFaviconMap(databases),
     loadGithubStars(databases),
-    loadStarSnapshots(),
+    loadStarHistory(),
   ]);
   const today = new Date().toISOString().slice(0, 10);
 
@@ -136,7 +136,10 @@ export async function getStaticPaths() {
         faviconUrl: faviconMap[db.data.slug] ?? null,
         githubStars: githubStars[db.data.slug] ?? null,
         starHistory: starSeries(
-          starSnapshots, db.data.slug, githubStars[db.data.slug] ?? null, today
+          starHistory,
+          { slug: db.data.slug, githubUrl: db.data.github_url },
+          githubStars[db.data.slug] ?? null,
+          today
         ),
         evidence: evidenceBySlug.get(db.data.slug) ?? [],
         partOf: roundupsByEngine.get(db.data.slug) ?? [],
@@ -324,8 +327,7 @@ function hostname(value: string): string {
                 <li>
                   <a href={db.data.github_url} target="_blank" rel="noopener noreferrer" data-outbound="engine-github" data-db={db.data.slug}>
                     <span><strong>GitHub repository</strong><small>{typeof githubStars === 'number' ? `${githubStars.toLocaleString('en-US')} stars` : hostname(db.data.github_url)}</small></span>
-                    {starHistory.length > 0 && <StarSparkline points={starHistory} />}
-                    <svg width="15" height="15" aria-hidden="true"><use href="#icon-github" /></svg>
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-external" /></svg>
                   </a>
                 </li>
               )}
@@ -459,6 +461,15 @@ function hostname(value: string): string {
       )}
           </dl>
         </section>
+
+        {starHistory.length > 0 && (
+          <section class="db-section db-stars" aria-labelledby="stars-heading">
+            <div class="db-section-heading">
+              <h2 id="stars-heading">GitHub stars</h2>
+            </div>
+            <StarHistoryChart points={starHistory} />
+          </section>
+        )}
 
         {lineageFamily && lineageInColumn && (
           <section class="db-section db-lineage" aria-labelledby="lineage-heading">

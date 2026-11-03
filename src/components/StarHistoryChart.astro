@@ -1,0 +1,220 @@
+---
+import { CHART_HEIGHT, CHART_WIDTH, starChart } from '../lib/star-chart';
+import { formatCompactCount } from '../lib/format-number';
+import type { StarPoint, StarSource } from '../lib/star-history';
+
+interface Props {
+  points: StarPoint[];
+}
+
+const { points } = Astro.props;
+const first = points[0]!;
+const last = points.at(-1)!;
+const chart = starChart(points);
+
+const dateLabel = (date: string, month: 'short' | 'long') =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+    month,
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+const count = (stars: number) => stars.toLocaleString('en-US');
+const gained = last.stars - first.stars;
+const change =
+  gained === 0 ? 'unchanged' : `${gained > 0 ? 'up' : 'down'} ${count(Math.abs(gained))}`;
+const summary =
+  `GitHub stars over time: ${count(first.stars)} in ${dateLabel(first.date, 'long')}, ` +
+  `${count(last.stars)} in ${dateLabel(last.date, 'long')}.`;
+
+const sources = new Set<StarSource>(points.map((point) => point.source));
+const firstSnapshot = points.find((point) => point.source === 'snapshot');
+const sourceNotes = [
+  sources.has('wayback') && 'Internet Archive copies of the GitHub page',
+  sources.has('gharchive') && 'GH Archive star events for 2023–24 (estimated)',
+  firstSnapshot && `monthly counts since ${dateLabel(firstSnapshot.date, 'short')}`,
+].filter((note): note is string => Boolean(note));
+const caption =
+  sourceNotes.length > 0
+    ? `From ${sourceNotes.length > 1
+      ? `${sourceNotes.slice(0, -1).join(', ')} and ${sourceNotes.at(-1)}`
+      : sourceNotes[0]}.`
+    : '';
+const gridlines = chart.yTicks.filter((tick) => tick.value > 0);
+---
+<figure class="star-chart">
+  <p class="star-chart-summary">
+    <strong>{count(last.stars)}</strong> stars
+    <span>{change} since {dateLabel(first.date, 'short')}</span>
+  </p>
+  <div class="star-chart-plot" role="img" aria-label={summary}>
+    <svg
+      viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {chart.yTicks.map((tick) => (
+        <line
+          class:list={['star-chart-gridline', tick.value === 0 && 'is-baseline']}
+          x1="0"
+          x2={CHART_WIDTH}
+          y1={(tick.offset / 100) * CHART_HEIGHT}
+          y2={(tick.offset / 100) * CHART_HEIGHT}
+        />
+      ))}
+      {chart.xTicks.map((tick) => (
+        <line
+          class="star-chart-gridline is-year"
+          x1={(tick.offset / 100) * CHART_WIDTH}
+          x2={(tick.offset / 100) * CHART_WIDTH}
+          y1="0"
+          y2={CHART_HEIGHT}
+        />
+      ))}
+      <path class="star-chart-area" d={chart.area} />
+      <path class="star-chart-line" d={chart.line} />
+    </svg>
+    {gridlines.map((tick) => (
+      <span class="star-chart-ylabel" style={`top: ${tick.offset}%`} aria-hidden="true">
+        {formatCompactCount(tick.value)}
+      </span>
+    ))}
+    <span
+      class="star-chart-end"
+      style={`left: ${chart.end.x}%; top: ${chart.end.y}%`}
+      aria-hidden="true"
+    ></span>
+  </div>
+  <div class="star-chart-axis" aria-hidden="true">
+    <span class="is-start">{dateLabel(first.date, 'short')}</span>
+    {chart.xTicks.map((tick) => (
+      <span class="is-year" style={`left: ${tick.offset}%`}>{tick.value}</span>
+    ))}
+    <span class="is-end">{dateLabel(last.date, 'short')}</span>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .star-chart {
+    margin: 0;
+    padding: 0.875rem 1rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--db-radius);
+    background: var(--db-panel);
+  }
+
+  .star-chart-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.5rem;
+    margin: 0 0 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .star-chart-summary strong {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .star-chart-summary span {
+    color: var(--color-text-tertiary);
+    font-size: 0.8125rem;
+  }
+
+  .star-chart-plot {
+    position: relative;
+    height: 7.5rem;
+    margin-right: 0.3rem;
+  }
+
+  .star-chart-plot svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .star-chart-gridline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .star-chart-gridline.is-baseline {
+    stroke: var(--color-text-tertiary);
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+
+  .star-chart-gridline.is-year {
+    opacity: 0.6;
+  }
+
+  .star-chart-area {
+    fill: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  .star-chart-line {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .star-chart-ylabel {
+    position: absolute;
+    left: 0;
+    transform: translateY(-115%);
+    padding-right: 0.25rem;
+    background: var(--db-panel);
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+  }
+
+  .star-chart-end {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 2px solid var(--db-panel);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-sizing: content-box;
+    transform: translate(-50%, -50%);
+  }
+
+  .star-chart-axis {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 1rem;
+    margin-top: 0.35rem;
+    margin-right: 0.3rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
+
+  .star-chart-axis .is-year {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  .star-chart figcaption {
+    margin-top: 0.6rem;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+</style>
