@@ -47,3 +47,18 @@ notes = "Ultipa's GQLDB product page lists an Embedded deployment that runs dire
   quote = "Run directly in your application process with zero external dependencies."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "lineage.ultipa.relation"
+value = "successor"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ultipa's documentation index presents GQLDB as Ultipa Graph v6, alongside the separate Ultipa Graph v5 docs."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs"
+  title = "Ultipa Documentation"
+  quote = "GQLDB (Ultipa Graph v6)"
+  verified = "matched"
+  checked = "2026-11-03"

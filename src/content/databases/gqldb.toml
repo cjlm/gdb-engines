@@ -11,3 +11,6 @@ query_languages = ["GQL"]
 protocols = ["gRPC", "HTTP/REST"]
 category = "Growing"
 gdotv_support = false
+
+[lineage.ultipa]
+relation = "successor"
