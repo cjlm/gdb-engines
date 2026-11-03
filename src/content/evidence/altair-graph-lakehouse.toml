@@ -122,8 +122,8 @@ field = "name"
 value = "Rapidminer Graph Lakehouse"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
-notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acquisition of Altair."
+checked = "2026-11-03"
+notes = "Siemens still names the engine Rapidminer Graph Lakehouse. Rapidminer Graph Studio is the wider knowledge graph platform built on it (the former Anzo platform), now part of Intelligence Center X, so the catalogue keeps the engine's name."
 
   [[claims.sources]]
   url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
@@ -131,6 +131,18 @@ notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acq
   quote = "Unleash the full potential of your connected data with Rapidminer Graph Lakehouse."
   verified = "matched"
   checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "The Rapidminer Graph Lakehouse is the high-performance, in-memory MPP (Massively Parallel Processing) query and transformation engine that powers every knowledge graph deployment in Rapidminer Graph Studio."
+  verified = "unchecked"
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio | Siemens"
+  quote = "Rapidminer Graph Studio is now part of Intelligence Center x."
+  verified = "unchecked"
 
 [[claims]]
 field = "embeddable"
