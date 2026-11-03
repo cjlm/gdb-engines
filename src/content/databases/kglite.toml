@@ -9,6 +9,7 @@ license = "MIT"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "embedded"
+embeddable = true
 query_languages = ["openCypher", "Custom API"]
 protocols = ["Bolt"]
 released = "2026-06"

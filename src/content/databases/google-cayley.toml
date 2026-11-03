@@ -8,6 +8,7 @@ github_url = "https://github.com/cayleygraph/cayley"
 license = "Apache-2.0"
 implementation_language = "Go"
 type = "RDF"
+embeddable = true
 query_languages = ["Gizmo", "GraphQL", "MQL"]
 protocols = ["HTTP/REST"]
 released = "2014-06"

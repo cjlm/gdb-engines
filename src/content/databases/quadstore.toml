@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "TypeScript"
 type = "RDF"
 kind = "embedded"
+embeddable = true
 query_languages = ["SPARQL"]
 released = "2017-03"
 category = "Emerging"

@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "C++"
 type = "Property Graph"
 kind = "extension"
+embeddable = true
 query_languages = ["GQL"]
 released = "2026-07"
 category = "Emerging"

@@ -85,3 +85,18 @@ notes = "Self-described 'conceptual fork': a new engine that reuses OrientDB's S
   quote = "ArcadeDB reuses OrientDB's SQL engine (heavily modified) and some utility classes."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README lists embedded use from any JVM language (and Python bindings) alongside remote access over HTTP and wire protocols."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ArcadeData/arcadedb/main/README.md"
+  title = "ArcadeDB README"
+  quote = "Embedded from any language on top of the Java Virtual Machine"
+  verified = "matched"
+  checked = "2026-11-03"

@@ -55,3 +55,25 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "TinkerPop reference docs describe the embedded JVM mode where graphs such as TinkerGraph are instantiated directly (TinkerGraph.open()) in the application."
+
+  [[claims.sources]]
+  url = "https://tinkerpop.apache.org/docs/current/reference/"
+  title = "TinkerPop Documentation"
+  quote = "Graphs that allow this sort of direct instantiation are obviously ones that are JVM-based (or have a JVM-based connector) and directly implement TinkerPop interfaces."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://tinkerpop.apache.org/docs/current/reference/"
+  title = "TinkerPop Documentation"
+  quote = "TinkerGraph is a single machine, in-memory (with optional persistence), graph engine that provides both OLTP and OLAP functionality."
+  verified = "matched"
+  checked = "2026-11-03"

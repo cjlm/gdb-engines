@@ -5,6 +5,7 @@ description = "A graph layer within Microsoft SQL Server and Azure SQL that stor
 url = "https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-graph-overview"
 license = "Proprietary"
 type = "Property Graph"
+embeddable = false
 query_languages = ["SQL"]
 released = "2017-04"
 category = "Enterprise"

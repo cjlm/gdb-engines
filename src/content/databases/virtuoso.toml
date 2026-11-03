@@ -7,6 +7,7 @@ github_url = "https://github.com/openlink/virtuoso-opensource"
 license = "GPL-2.0"
 implementation_language = "C"
 type = "Multiple"
+embeddable = false
 query_languages = ["SQL", "SPARQL"]
 protocols = ["SPARQL Protocol", "JDBC/ODBC"]
 released = "1998"

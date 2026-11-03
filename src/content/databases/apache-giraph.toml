@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "Java"
 type = "Property Graph"
 kind = "query-engine"
+embeddable = false
 query_languages = ["Java API"]
 protocols = ["Unknown"]
 released = "2012-02"

@@ -10,6 +10,7 @@ type = "Property Graph"
 query_languages = ["SQL", "openCypher"]
 protocols = ["HTTP/REST"]
 kind = "query-engine"
+embeddable = true
 released = "2025-09"
 category = "Emerging"
 gdotv_support = false

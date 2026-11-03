@@ -78,3 +78,18 @@ notes = "No official Huawei documentation states the implementation language; th
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20240102012547/https://www.programmersought.com/article/1768563146/"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Huawei describes GES as a cloud service based on the Eywa kernel, accessed through the Huawei Cloud console and APIs."
+
+  [[claims.sources]]
+  url = "https://support.huaweicloud.com/intl/en-us/ges_faq/ges_02_0002.html"
+  title = "What Is GES? - Graph Engine Service FAQs"
+  quote = "Eywa is a self-developed graph engine kernel, and GES is a cloud service based on Eywa."
+  verified = "matched"
+  checked = "2026-11-03"

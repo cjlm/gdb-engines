@@ -48,3 +48,18 @@ notes = "Confirms current value; README build prerequisites and GitHub's languag
   quote = "Before building GraphLite, you need to install Rust and a C compiler/linker."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README describes GraphLite as an embedded, SQLite-style graph database with no client-server architecture."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/GraphLite-AI/GraphLite/main/README.md"
+  title = "GraphLite README"
+  quote = "GraphLite uses a single binary and is an ideal solution for applications requiring graph database capabilities without the complexity of client-server architectures."
+  verified = "matched"
+  checked = "2026-11-03"

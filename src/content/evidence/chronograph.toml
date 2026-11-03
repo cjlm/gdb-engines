@@ -48,3 +48,25 @@ notes = "Confirms current value, though the parent Chronos monorepo (which conta
   quote = "This project is dedicated to providing efficient and easy-to-use versioned database persistence solutions for the Java Virtual Machine. It is written in Java and Kotlin, and some parts also make use of Groovy."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "ChronoGraph is a JVM library added as a Maven dependency and instantiated in the application via ChronoGraph.FACTORY; no server is involved."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/MartinHaeusler/chronos/master/readme.md"
+  title = "Chronos README"
+  quote = "This project is dedicated to providing **efficient** and **easy-to-use** versioned database persistence solutions for the Java Virtual Machine."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/MartinHaeusler/chronos/master/org.chronos.chronograph/readme.md"
+  title = "ChronoGraph README"
+  quote = "ChronoGraph instances need to be closed explicitly by calling `graph.close()`!"
+  verified = "matched"
+  checked = "2026-11-03"

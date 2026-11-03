@@ -27,6 +27,7 @@ import { tmpdir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { EVIDENCE_DIR, writeEvidence } from './lib/evidence-file.mjs';
+import { pageText } from './lib/page-text.mjs';
 
 const CONCURRENCY = 5;
 const TIMEOUT_MS = 20_000;
@@ -107,12 +108,6 @@ function pdfText(buffer) {
  * reads as a word in the middle of the sentence, so an accurately copied quote fails. Nobody
  * quotes a footnote marker, so removing them costs nothing.
  */
-function pageText(html) {
-  return html
-    .replace(/<(script|style|noscript|svg|sup)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
-    .replace(/<!--[\s\S]*?-->/g, ' ')
-    .replace(/<[^>]+>/g, ' ');
-}
 
 /**
  * Reduces text to a bare sequence of lowercase words.

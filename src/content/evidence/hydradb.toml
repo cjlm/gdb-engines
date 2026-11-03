@@ -48,3 +48,25 @@ notes = "The README describes it as a distributed graph database written in Rust
   quote = "object-store-native distributed graph database written in Rust"
   verified = "matched"
   checked = "2026-11-01"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "HydraDB runs as query/indexer nodes over object storage, reached via Bolt or an HTTPS API; the README's local setup starts a server node."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hydra-db/hydradb/main/README.md"
+  title = "HydraDB README"
+  quote = "It combines durable graph storage on SlateDB with snapshot-consistent OpenCypher queries, GraphBLAS traversal, Neo4j-compatible Bolt connectivity, and an HTTPS query API."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hydra-db/hydradb/main/README.md"
+  title = "HydraDB README"
+  quote = "The following starts a single plaintext development node backed by a local directory."
+  verified = "matched"
+  checked = "2026-11-03"

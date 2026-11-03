@@ -55,3 +55,18 @@ notes = "Confirms current value. Alibaba Cloud's own developer-community article
   quote = "阿里云于2019年3月重磅发布了数据库新产品——图数据库（Graph Database，简称GDB），本文将从图数据库的基本背景知识说起，带你深入了解阿里云Cloud-Native图数据库GDB。"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Alibaba Cloud documents GDB only as a provisioned cloud instance reached through an endpoint/connection string; there is no library or embedded mode."
+
+  [[claims.sources]]
+  url = "https://www.alibabacloud.com/help/ros/developer-reference/aliyun-graphdatabase-dbinstance"
+  title = "ALIYUN::GraphDatabase::DbInstance resource type - Resource Orchestration Service"
+  quote = "ConnectionString: the endpoint of the instance."
+  verified = "matched"
+  checked = "2026-11-03"

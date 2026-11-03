@@ -124,3 +124,18 @@ notes = "Fauna Inc. sunset the hosted database service on May 30, 2025 and has n
   quote = "The Fauna service will be ending on May 30, 2025. For more information, read the announcement ."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Fauna was a serverless managed database service accessed over an HTTPS API."
+
+  [[claims.sources]]
+  url = "https://web.archive.org/web/20250618121636/https://fauna.com/"
+  title = "Fauna (archived)"
+  quote = "Delivered as an HTTPS API, Fauna offers token-based authentication and eliminates connection pooling or session management."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -7,6 +7,7 @@ license = "MIT OR Apache-2.0"
 implementation_language = "Rust"
 type = "Other"
 kind = "embedded"
+embeddable = true
 query_languages = ["Custom API"]
 released = "2020"
 category = "Emerging"

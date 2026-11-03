@@ -85,3 +85,18 @@ notes = "en.gstore.cn and www.gstore.cn are both serving an expired TLS certific
   quote = "Different from the traditional relational database-based knowledge graph data management, gStore is a native RDF data management system based on the Native Graph Model"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "gStore's API docs describe application access only through the ghttp HTTP server and the gserver socket server."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/pkumod/gStore/master/docs/API.md"
+  title = "gStore API documentation"
+  quote = "This Chapter guides you to use our API for accessing gStore. We provide HTTP api(suggested) and socket api, corresponding to ghttp and gserver respectively."
+  verified = "matched"
+  checked = "2026-11-03"

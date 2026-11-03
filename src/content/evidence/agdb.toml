@@ -70,3 +70,18 @@ notes = "Confirms current value. The crate's own Cargo.toml is a Rust package ma
   quote = "[package]\nname = \"agdb\"\nversion = \"0.13.2\"\nedition = \"2024\"\nlicense = \"Apache-2.0\"\nhomepage = \"https://github.com/agnesoft/agdb\"\nrepository = \"https://github.com/agnesoft/agdb\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The quickstart is for the embedded/application database, added with `cargo add agdb` and opened in-process via Db::new; a server mode is optional."
+
+  [[claims.sources]]
+  url = "https://agdb.agnesoft.com/docs/guides/quickstart"
+  title = "Quickstart - agdb"
+  quote = "The following is the quickstart guide for the agdb embedded/application database."
+  verified = "matched"
+  checked = "2026-11-03"

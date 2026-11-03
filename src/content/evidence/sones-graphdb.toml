@@ -63,3 +63,25 @@ notes = "Confirms current value; GitHub byte-count and Wikipedia both identify C
   quote = "\"C#\": 8014026,\n  \"JavaScript\": 225448,\n  \"Shell\": 6980"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "The sones C# API docs say you instantiate a GraphDB inside your own project and call its API directly for solutions on the same host; REST and other connectors are optional."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/sones/sones/master/Documentation/pages/connectors/graphdsapi.txt"
+  title = "GraphDB API Interface (sones docs)"
+  quote = "You have to instantiate a sones GraphDB and will get the API as public methods of your GraphDB instance."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/sones/sones/master/Documentation/pages/connectors/graphdsapi.txt"
+  title = "GraphDB API Interface (sones docs)"
+  quote = "It is really easy to integrate a GraphDB instance in your project."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -7,6 +7,7 @@ github_url = "https://github.com/TuGraph-family/tugraph-db"
 license = "Apache-2.0"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = true
 query_languages = ["openCypher", "GQL"]
 protocols = ["HTTP/REST", "Bolt", "Native binary"]
 released = "2022-09"

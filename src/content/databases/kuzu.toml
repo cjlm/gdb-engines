@@ -10,6 +10,7 @@ implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "embedded"
+embeddable = true
 released = "2022-11"
 category = "Emerging"
 status = "deprecated"

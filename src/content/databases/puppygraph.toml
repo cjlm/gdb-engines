@@ -9,6 +9,7 @@ type = "Property Graph"
 query_languages = ["Gremlin", "openCypher"]
 protocols = ["Bolt", "Gremlin (WebSocket)", "HTTP/REST"]
 kind = "query-engine"
+embeddable = false
 released = "2024-03"
 category = "Growing"
 gdotv_support = true

@@ -55,3 +55,18 @@ notes = "A Cargo workspace of Rust crates; confirms current value."
   quote = "Grust is a modern property graph API for Rust."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Grust is a Rust library API used from application code, shipping a deterministic in-memory store and an adapter that embeds LadybugDB in-process; other adapters talk to external databases."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/querygraph/grust/main/README.md"
+  title = "Grust README"
+  quote = "`grust-ladybug` embeds LadybugDB directly through the Rust `lbug` 0.20.4 crate."
+  verified = "matched"
+  checked = "2026-11-03"

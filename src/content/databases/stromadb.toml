@@ -9,6 +9,7 @@ license = "Elastic-2.0"
 implementation_language = "Rust"
 type = "Property Graph"
 kind = "database"
+embeddable = false
 query_languages = ["Custom API"]
 protocols = ["HTTP/REST"]
 released = "2026-07"

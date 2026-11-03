@@ -32,3 +32,18 @@ notes = "The vendor offers a restricted free Community Edition for personal and 
   quote = "Free to use for personal and non-commercial purposes. No license key required."
   verified = "unreachable"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ultipa's GQLDB product page lists an Embedded deployment that runs directly in the application process."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/products/gqldb"
+  title = "Ultipa GQLDB"
+  quote = "Run directly in your application process with zero external dependencies."
+  verified = "matched"
+  checked = "2026-11-03"

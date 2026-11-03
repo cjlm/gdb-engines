@@ -70,3 +70,18 @@ notes = "No public source tree exists for this managed feature. A Wikipedia comp
   quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Spanner Graph is part of Google Cloud Spanner, a fully managed cloud database service."
+
+  [[claims.sources]]
+  url = "https://cloud.google.com/spanner/docs/overview"
+  title = "Spanner overview"
+  quote = "Spanner is a fully managed database so it automatically provides comprehensive infrastructure management features, but there are some application-specific management actions that may be required depending on your workload."
+  verified = "matched"
+  checked = "2026-11-03"

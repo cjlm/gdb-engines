@@ -62,3 +62,18 @@ notes = "Confirms current value; a TinkerPop 3 client layer distributed via Mave
   quote = "HGraphDB is a client layer for using HBase as a graph database. It is an implementation of the Apache TinkerPop 3 interfaces."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "HGraphDB is a client-side TinkerPop layer that requires a running HBase cluster for storage, so a separate server is always required."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rayokota/hgraphdb/master/README.md"
+  title = "HGraphDB README"
+  quote = "HGraphDB is a client layer for using HBase as a graph database."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -33,3 +33,25 @@ notes = "The SQL-GR graph engine was announced with Aster Discovery Platform 6 o
   quote = "The innovations in the Aster Discovery Platform include Teradata Aster SQL-GR™, a graph engine"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Aster (nCluster) was a massively parallel database built from queen, worker and loader node classes, so it always ran as a cluster that clients connected to."
+
+  [[claims.sources]]
+  url = "https://www.infoq.com/news/2008/09/aster_mapreduce"
+  title = "Aster Data Systems announces In-Database MapReduce (InfoQ)"
+  quote = "The nCluster database is labeled by Aster as a massively parallel processing (MPP) database."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.computerworld.com/article/1395099/startup-launches-internet-scale-database.html"
+  title = "Startup launches 'Internet-scale' database (Computerworld)"
+  quote = "Nodes in the “worker” layer store data on locally attached disks for querying."
+  verified = "matched"
+  checked = "2026-11-03"

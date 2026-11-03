@@ -8,6 +8,7 @@ implementation_language = "Java"
 type = "Other"
 query_languages = ["Gremlin"]
 kind = "extension"
+embeddable = false
 released = "2016-11"
 category = "Emerging"
 status = "inactive"

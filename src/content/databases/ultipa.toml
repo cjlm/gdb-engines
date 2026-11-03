@@ -6,6 +6,7 @@ url = "https://www.ultipa.com/docs/v5/graph-database"
 license = "Proprietary"
 implementation_language = "C++"
 type = "Property Graph"
+embeddable = false
 query_languages = ["GQL", "UQL"]
 protocols = ["HTTP/REST"]
 category = "Growing"

@@ -7,6 +7,7 @@ url = "https://www.cray.com/"
 license = "Proprietary"
 implementation_language = "C++"
 type = "Other"
+embeddable = false
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
 released = "2015-03"

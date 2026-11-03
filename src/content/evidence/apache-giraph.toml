@@ -56,3 +56,18 @@ notes = "Confirms the current value; GitHub reports Java as the repository's pri
   quote = "\"watchers_count\": 620,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Giraph jobs run on a Hadoop cluster; the quick start deploys a pseudo-distributed Hadoop cluster before running Giraph, and no in-process library mode is documented for applications."
+
+  [[claims.sources]]
+  url = "https://giraph.apache.org/quick_start.html"
+  title = "Apache Giraph - Quick Start"
+  quote = "In what follows, we will deploy a single-node, pseudo-distributed Hadoop cluster on one physical machine."
+  verified = "matched"
+  checked = "2026-11-03"

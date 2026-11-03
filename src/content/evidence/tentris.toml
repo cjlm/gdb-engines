@@ -63,3 +63,18 @@ notes = "The commercial repository (tentris/tentris) publishes only packaging sc
   quote = "Building was tested with Clang 17 & 19. As C++ standard template library, only"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The Tentris Python package offers a native TentrisStore that embeds Tentris in the Python process (Linux only, in-memory), besides the HTTP server."
+
+  [[claims.sources]]
+  url = "https://docs.tentris.io/running_with_python.html"
+  title = "Python - Tentris Documentation"
+  quote = "With the native TentrisStore , Tentris is embedded in Python applications."
+  verified = "matched"
+  checked = "2026-11-03"

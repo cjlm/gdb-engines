@@ -67,3 +67,18 @@ checked = "2026-08-26"
   quote = "\"Rust\": 1510213"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README documents a TCP/gRPC server reached by client libraries; an embedded mode without a server process is listed only as planned (for the MCP component)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/AstraeaDB/AstraeaDB-Official/main/README.md"
+  title = "AstraeaDB README"
+  quote = "Crawl gets a server running and teaches the basics, with parallel Python and R tracks so you pick a language once and stay in it."
+  verified = "matched"
+  checked = "2026-11-03"

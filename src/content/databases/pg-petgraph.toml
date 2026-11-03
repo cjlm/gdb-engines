@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "Rust"
 type = "Other"
 kind = "extension"
+embeddable = false
 query_languages = ["SQL"]
 released = "2026-07"
 category = "Emerging"

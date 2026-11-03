@@ -48,3 +48,18 @@ notes = "Confirms current value; the project describes itself as a Rust core wit
   quote = "Embedded GQL graph database in Rust. ISO/IEC 39075:2024 path patterns, Leapfrog-Triejoin runtime, single-file .gdb storage."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README documents using froGQL as an embedded database from Rust via frogql::Connection, like SQLite."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/pleiad/frogql/main/README.md"
+  title = "froGQL README"
+  quote = "use froGQL as an embedded database from Rust (`frogql::Connection`)"
+  verified = "matched"
+  checked = "2026-11-03"

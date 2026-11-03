@@ -70,3 +70,25 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Neo4j ships both as a server and as an embeddable Java component (Neo4j embedded)."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/neo4j/neo4j/dev/README.asciidoc"
+  title = "Neo4j README"
+  quote = "Neo4j is available both as a standalone server, or an embeddable component."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/docs/java-reference/current/java-embedded/"
+  title = "Using Neo4j embedded in Java applications"
+  quote = "This section describes how to use Neo4j embedded in Java applications."
+  verified = "matched"
+  checked = "2026-11-03"

@@ -48,3 +48,18 @@ notes = "Confirms current value; the project's own README states it is written i
   quote = "Quadstore is a LevelDB-backed RDF graph database / triplestore for JavaScript\nruntimes (browsers, Node.js, Deno, Bun, ...) written in TypeScript."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Quadstore is a TypeScript library that runs inside JavaScript runtimes, including browsers, over a LevelDB-style backend."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/quadstorejs/quadstore/master/README.md"
+  title = "Quadstore README"
+  quote = "Quadstore is a LevelDB-backed RDF graph database / triplestore for JavaScript runtimes (browsers, Node.js, Deno, Bun, ...) written in TypeScript."
+  verified = "matched"
+  checked = "2026-11-03"

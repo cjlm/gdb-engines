@@ -77,3 +77,18 @@ notes = "Confirms the current value."
   quote = "the decision was made to re-build using Rust, in order to enforce data-sharing guarantees"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README says SurrealDB can run embedded in-app and in the browser via WebAssembly, as well as server and cluster modes."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/surrealdb/surrealdb/main/README.md"
+  title = "SurrealDB README"
+  quote = "Given that it’s a single Rust binary, SurrealDB can run embedded (in‐app), in the browser (via WebAssembly), in the edge, self-hosted as single backend node, or in a distributed cluster in the cloud."
+  verified = "matched"
+  checked = "2026-11-03"

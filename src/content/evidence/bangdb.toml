@@ -77,3 +77,18 @@ notes = "Confirms the current value via BangDB's own documentation, which states
   quote = "Language - 3.1 Server : C++ 3.2 Client : C++, Java, Python [ upcoming ]"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README lists an Embedded flavor in which BangDB becomes part of the user process, alongside server and distributed flavors."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/sachin-sinha/BangDB/master/README.md"
+  title = "BangDB README"
+  quote = "Embedded - BangDB becomes part of the user process. Similar to BerkeleyDB or LevelDB."
+  verified = "matched"
+  checked = "2026-11-03"

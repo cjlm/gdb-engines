@@ -5,6 +5,7 @@ description = "A multi-model in-memory database with built-in graph engine suppo
 license = "Proprietary"
 implementation_language = "C++"
 type = "Multiple"
+embeddable = false
 query_languages = ["SQL", "openCypher", "GraphScript"]
 protocols = ["Native binary", "JDBC/ODBC"]
 url = "https://www.sap.com/products/technology-platform/hana.html"

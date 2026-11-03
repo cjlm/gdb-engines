@@ -8,6 +8,7 @@ github_url = "https://github.com/surrealdb/surrealdb"
 license = "BUSL-1.1"
 implementation_language = "Rust"
 type = "Multiple"
+embeddable = true
 query_languages = ["SurrealQL", "GraphQL", "GQL"]
 protocols = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
 released = "2022-07"

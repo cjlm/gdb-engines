@@ -45,3 +45,25 @@ checked = "2026-08-26"
   quote = "\"C++\": 3039451"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "DuckGQL is a DuckDB extension loaded with LOAD duckgql, so it runs inside DuckDB, an in-process engine."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rahul-iyer/duckdb-gql/main/README.md"
+  title = "DuckGQL README"
+  quote = "It combines graph pattern queries and mutations with DuckDB's native relational storage and execution engine, plus an explicit CSR layer for graph algorithms."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rahul-iyer/duckdb-gql/main/README.md"
+  title = "DuckGQL README"
+  quote = "DuckGQL is available from DuckDB Community Extensions:"
+  verified = "matched"
+  checked = "2026-11-03"

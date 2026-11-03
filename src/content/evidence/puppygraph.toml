@@ -56,3 +56,18 @@ notes = "Confirms current value: PuppyGraph's public launch announcement is date
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20240314145914/https://www.businesswire.com/news/home/20240314998086/en/PuppyGraph-Launches-First-and-Only-Graph-Query-Engine"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "PuppyGraph is deployed as a server/cluster (Docker, marketplace images, Helm) of controlplane, leader and compute nodes; no library mode is documented."
+
+  [[claims.sources]]
+  url = "https://docs.puppygraph.com/installation/cluster-deployment/"
+  title = "Cluster Deployment - PuppyGraph Docs"
+  quote = "A PuppyGraph cluster has three node types: a controlplane node, leader nodes, and compute nodes."
+  verified = "matched"
+  checked = "2026-11-03"

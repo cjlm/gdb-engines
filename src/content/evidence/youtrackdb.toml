@@ -98,3 +98,18 @@ checked = "2026-09-23"
   quote = "Thankfully for the YouTrack project, the OrientDB project has a new chance in its bumpy life to be reborn as the YouTrackDB project."
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states YouTrackDB supports embedded and client-server deployment and ships a youtrackdb-embedded artifact."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/JetBrains/youtrackdb/develop/README.md"
+  title = "YouTrackDB README"
+  quote = "YouTrackDB is a **general-purpose** object-oriented graph database that supports both **embedded and client-server** deployment models."
+  verified = "matched"
+  checked = "2026-11-03"

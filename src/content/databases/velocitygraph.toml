@@ -8,6 +8,7 @@ license = "Proprietary"
 implementation_language = "C#"
 type = "Property Graph"
 kind = "extension"
+embeddable = true
 query_languages = ["LINQ"]
 released = "2013-05"
 category = "Emerging"

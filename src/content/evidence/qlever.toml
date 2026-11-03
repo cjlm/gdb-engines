@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states QLever can run as an embedded database in-process inside C++ code."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/ad-freiburg/qlever/master/README.md"
+  title = "QLever README"
+  quote = "QLever can also be used as an embedded database, that is, without the standard client-server setup but running in-process inside your own C++ code."
+  verified = "matched"
+  checked = "2026-11-03"

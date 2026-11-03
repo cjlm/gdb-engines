@@ -70,3 +70,18 @@ notes = "TigerGraph's own architecture documentation states its core storage and
   quote = "The core components (GSE and GPE) are implemented in C++ for optimal performance."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "TigerGraph is self-managed on Linux servers or used as the fully managed Savanna cloud; clients connect over REST/GSQL, with no embedded mode."
+
+  [[claims.sources]]
+  url = "https://docs.tigergraph.com/tigergraph-server/current/intro/"
+  title = "Welcome to TigerGraph DB"
+  quote = "The TigerGraph® self-managed database runs on standard Linux servers, with everything built-in."
+  verified = "matched"
+  checked = "2026-11-03"

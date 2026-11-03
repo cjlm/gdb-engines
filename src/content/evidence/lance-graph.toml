@@ -70,3 +70,25 @@ notes = "Confirms current value; the project's own README states the query engin
   quote = "Lance Graph is a Cypher-capable graph query engine built in Rust with Python bindings for building high-performance, scalable, and serverless multimodal knowledge graphs."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "Lance Graph is a Rust crate with a Python package that wraps the query engine; queries run in the calling process over Arrow tables."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lance-format/lance-graph/main/README.md"
+  title = "Lance Graph README"
+  quote = "Lance Graph is a Cypher-capable graph query engine built in Rust with Python bindings for building high-performance, scalable, and serverless multimodal knowledge graphs."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/lance-format/lance-graph/main/README.md"
+  title = "Lance Graph README"
+  quote = "`lance_graph` – thin wrapper around the Rust query engine"
+  verified = "matched"
+  checked = "2026-11-03"

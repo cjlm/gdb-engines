@@ -84,3 +84,18 @@ notes = "AgensGraph is a fork of PostgreSQL (itself written in C); GitHub's own 
   quote = "\"language\": \"C\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "AgensGraph operation manual states it uses the PostgreSQL client/server model, with a server process accepting client connections."
+
+  [[claims.sources]]
+  url = "https://tech.skaiworldwide.com/docs/en/agensgraph/17/operation_manual/architecture.html"
+  title = "Architecture — AgensGraph documentation"
+  quote = "AgensGraph uses the same client/server model as PostgreSQL."
+  verified = "matched"
+  checked = "2026-11-03"

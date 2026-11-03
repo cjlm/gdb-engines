@@ -70,3 +70,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ontop docs say it can still be used as a Java API through RDF4J (in-process), although the HTTP SPARQL endpoint is recommended; data stays in an external relational database."
+
+  [[claims.sources]]
+  url = "https://ontop-vkg.org/guide/getting-started.html"
+  title = "Getting started | Ontop"
+  quote = "Because such a Java API would add many dependencies to your project and constraint you to use certain versions of Java."
+  verified = "matched"
+  checked = "2026-11-03"

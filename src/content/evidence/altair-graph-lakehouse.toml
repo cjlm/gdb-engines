@@ -130,3 +130,18 @@ notes = "Siemens brands the product Rapidminer Graph Lakehouse following its acq
   quote = "Unleash the full potential of your connected data with Rapidminer Graph Lakehouse."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The vendor describes it as a distributed, Kubernetes-deployed MPP engine reached via HTTP/REST, Arrow Flight and BI tools; no in-process mode."
+
+  [[claims.sources]]
+  url = "https://www.siemens.com/en-us/products/rapidminer/graph-studio/"
+  title = "Rapidminer Graph Studio"
+  quote = "Kubernetes-native — deploys in your cloud environment (AWS, Azure, GCP) and scales horizontally"
+  verified = "matched"
+  checked = "2026-11-03"

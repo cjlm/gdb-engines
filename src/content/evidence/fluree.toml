@@ -98,3 +98,18 @@ notes = "The current fluree/db repository's core is Rust; the project's own READ
   quote = "**Rust library** — Embed Fluree directly in your application. No server process needed."
   verified = "matched"
   checked = "2026-10-06"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README documents a Rust library mode that embeds Fluree in the application with no server process."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/fluree/db/main/README.md"
+  title = "Fluree README"
+  quote = "Embed Fluree directly in your application. No server process needed."
+  verified = "matched"
+  checked = "2026-11-03"

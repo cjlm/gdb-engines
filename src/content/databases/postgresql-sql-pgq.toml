@@ -6,6 +6,7 @@ url = "https://www.postgresql.org/docs/devel/queries-graph.html"
 license = "PostgreSQL"
 implementation_language = "C"
 type = "Property Graph"
+embeddable = false
 query_languages = ["SQL/PGQ"]
 released = "2026-03"
 protocols = ["PostgreSQL wire"]

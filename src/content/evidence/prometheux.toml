@@ -63,3 +63,18 @@ notes = "Prometheux was started by researchers from the Oxford and TU Wien knowl
   quote = "Prometheux has seamlessly integrated the RAPIDS accelerator for Apache Spark into their proprietary knowledge graph management system, Vadalog Parallel"
   verified = "matched"
   checked = "2026-09-23"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Every documented deployment is a platform: Prometheux Cloud, self-hosted Docker/Kubernetes, a Snowflake Native App or Databricks; the Python SDK is a client to it. No in-process library is offered."
+
+  [[claims.sources]]
+  url = "https://docs.prometheux.ai/get-started/installation/overview"
+  title = "Installation - Prometheux Documentation"
+  quote = "Prometheux can be deployed in multiple ways depending on your infrastructure and requirements."
+  verified = "matched"
+  checked = "2026-11-03"

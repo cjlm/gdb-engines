@@ -63,3 +63,18 @@ notes = "Matches current value."
   quote = "Real-time GraphRAG engine optimized for LLMs — stream-native graph + vector + typed retrieval (Rust). Source-available."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "medium"
+method = "repo"
+checked = "2026-11-03"
+notes = "StromaDB's supported surfaces are the CLI, HTTP server and MCP; its Rust crates are published only as internal crates for those binaries, not as a supported embedding API."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/katsut/stromadb/main/crates/stroma-db/Cargo.toml"
+  title = "stromadb-store Cargo.toml"
+  quote = "Internal crate published for the StromaDB binaries; no API stability guarantees pre-1.0 — the supported surfaces are the CLI, HTTP server, and MCP."
+  verified = "matched"
+  checked = "2026-11-03"

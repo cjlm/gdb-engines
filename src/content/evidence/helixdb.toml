@@ -71,3 +71,18 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "HelixDB documents an embedded mode in which the SDK opens the database inside the application process without HTTP."
+
+  [[claims.sources]]
+  url = "https://docs.helix-db.com/database/helix-db/start-here/local-development/embedded-database"
+  title = "Embedded database - HelixDB docs"
+  quote = "Embedded clients execute operation-tree requests without HTTP. The process opens a writer or read-only handle against memory, disk, or S3-compatible object storage."
+  verified = "matched"
+  checked = "2026-11-03"

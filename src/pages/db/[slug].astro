@@ -4,6 +4,7 @@ import DatabaseLogo from '../../components/DatabaseLogo.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
 import LineageMap from '../../components/LineageMap.astro';
+import SimilarityNeighbourhood from '../../components/SimilarityNeighbourhood.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import { featureGroups, featureDisplayNames, scoreMeanings } from '../../data/feature-metadata';
@@ -474,6 +475,7 @@ function hostname(value: string): string {
           </section>
         )}
 
+        <SimilarityNeighbourhood slug={db.data.slug} name={db.data.name} />
 
     {db.data.features && (
       <section class="db-section db-features" aria-labelledby="features-heading">

@@ -70,3 +70,18 @@ notes = "The published wheel declares a Rust implementation alongside its Python
   quote = "\"Programming Language :: Rust\""
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The README states the engine runs in-process inside Python/Rust with no external database service."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/kkollsga/kglite/main/README.md"
+  title = "KGLite README"
+  quote = "The graph engine runs in-process without an external database service."
+  verified = "matched"
+  checked = "2026-11-03"

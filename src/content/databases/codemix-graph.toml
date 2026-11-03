@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "TypeScript"
 type = "Property Graph"
 kind = "library"
+embeddable = true
 query_languages = ["Gremlin", "openCypher"]
 released = "2026-04"
 category = "Emerging"

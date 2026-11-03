@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Property Graph"
 query_languages = ["openCypher"]
 kind = "embedded"
+embeddable = true
 released = "2025-12"
 category = "Emerging"
 gdotv_support = false

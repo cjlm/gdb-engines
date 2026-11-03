@@ -8,6 +8,7 @@ license = "Apache-2.0"
 implementation_language = "C++"
 type = "Property Graph"
 kind = "embedded"
+embeddable = true
 query_languages = ["openCypher"]
 protocols = ["HTTP/REST"]
 released = "2026-03"

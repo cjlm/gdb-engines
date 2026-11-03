@@ -45,3 +45,25 @@ checked = "2026-08-26"
   quote = "\"C++\": 207673"
   verified = "matched"
   checked = "2026-08-26"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "Duck RDF is a DuckDB community extension loaded with INSTALL/LOAD into a DuckDB session; DuckDB is an in-process engine, so the extension runs in-process too."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/nonodename/duck_rdf/main/README.md"
+  title = "duck_rdf README"
+  quote = "rdf is a DuckDB Community Extension."
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/nonodename/duck_rdf/main/README.md"
+  title = "duck_rdf README"
+  quote = "Read, write and manipulate RDF within DuckDB."
+  verified = "matched"
+  checked = "2026-11-03"

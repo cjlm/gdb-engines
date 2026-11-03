@@ -8,6 +8,7 @@ license = "MPL-2.0"
 implementation_language = "Rust"
 type = "Other"
 kind = "database"
+embeddable = true
 query_languages = ["Datalog"]
 protocols = ["HTTP/REST"]
 released = "2022-10"

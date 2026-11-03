@@ -10,6 +10,7 @@ type = "Property Graph"
 query_languages = ["Gremlin"]
 protocols = ["Gremlin (WebSocket)"]
 kind = "embedded"
+embeddable = true
 released = "2013-07"
 category = "Emerging"
 gdotv_support = false

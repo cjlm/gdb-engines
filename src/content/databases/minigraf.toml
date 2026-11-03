@@ -8,6 +8,7 @@ license = "MIT OR Apache-2.0"
 implementation_language = "Rust"
 type = "Other"
 kind = "embedded"
+embeddable = true
 query_languages = ["Datalog"]
 released = "2026-04"
 category = "Emerging"

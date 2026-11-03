@@ -8,6 +8,7 @@ license = "MIT"
 implementation_language = "TypeScript"
 type = "Property Graph"
 kind = "library"
+embeddable = true
 query_languages = ["Custom API"]
 released = "2026-02"
 category = "Emerging"

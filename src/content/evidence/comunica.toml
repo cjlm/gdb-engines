@@ -70,3 +70,18 @@ notes = "The project's own ISWC 2018 resource paper states Comunica is implement
   quote = "Comunica is implemented in TypeScript/JavaScript as a collection of Node modules, which are able to run in Web browsers using native Web technologies."
   verified = "matched"
   checked = "2026-08-02"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Comunica is a JavaScript library that runs inside Node.js applications or client-side in browsers, so the query engine executes in the application's process."
+
+  [[claims.sources]]
+  url = "https://comunica.dev/docs/query/getting_started/query_browser_app/"
+  title = "Querying in a JavaScript browser app"
+  quote = "Comunica can run in both Node.js JavaScript applications, and as client-side applications in Web browsers."
+  verified = "matched"
+  checked = "2026-11-03"
