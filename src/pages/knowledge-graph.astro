@@ -14,10 +14,14 @@ const databases = await getCollection('databases');
 const catalogue = new Map(databases.map(({ data }) => [data.slug, data]));
 const ranking = await loadRankings();
 const board = ranking
-  ? buildBoards(ranking, databases.map(({ data }) => data)).find((b) => b.slug === 'knowledge-graph')
+  ? buildBoards(ranking, databases.map(({ data }) => data))
+      .find((b) => b.slug === 'knowledge-graph')
   : undefined;
 const headerSponsor = sponsorFor(await loadSponsors(), 'header');
-const updated = ranking ? new Date(ranking.generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' }) : null;
+const updated = ranking
+  ? new Date(ranking.generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+  : null;
+const updatedNote = updated ? `, updated ${updated}` : '';
 
 /** The top-ranked engines of one kind, for the examples in each section. */
 function leaders(match: (slug: string) => boolean, n = 4) {
@@ -27,7 +31,8 @@ const ofKind = (kind: KgKind) => (slug: string) => {
   const db = catalogue.get(slug);
   return db ? kgKindsOf(db).includes(kind) : false;
 };
-const ofRole = (role: 'graphrag' | 'agent-memory') => (slug: string) => catalogue.get(slug)?.ai_roles.includes(role) ?? false;
+const ofRole = (role: 'graphrag' | 'agent-memory') => (slug: string) =>
+  catalogue.get(slug)?.ai_roles.includes(role) ?? false;
 const examples = {
   semantic: leaders(ofKind('semantic')),
   property: leaders(ofKind('property-graph')),
@@ -39,24 +44,41 @@ const examples = {
 const canonical = 'https://gdb-engines.com/knowledge-graph/';
 const title = 'What Is a Knowledge Graph? Six Things the Term Means';
 const description =
-  'A knowledge graph is an ontology filled with real data. The term also names Google’s search panel, property graphs, GraphRAG, agent memory and virtual graphs. How to tell them apart.';
+  'Knowledge graph has no single agreed definition. The term covers ontology-backed RDF graphs, ' +
+  'virtual graphs, property graphs, GraphRAG, agent memory and Google’s search panel. ' +
+  'How to tell them apart.';
 
 const faq = [
   {
     q: 'Is a knowledge graph a graph database?',
-    a: 'No. A graph database can store a knowledge graph, as its knowledge base, but a knowledge graph also needs a vocabulary that names things consistently and an ontology that defines how they relate.',
+    a:
+      'No. A graph database can store a knowledge graph, as its knowledge base, but a ' +
+      'knowledge graph also needs a vocabulary that names things consistently and a model of ' +
+      'how they relate.',
   },
   {
     q: 'What is the difference between a knowledge graph and a vector database?',
-    a: 'A vector database finds things that are similar; a knowledge graph records how things are related and why. Vector search is one of the optional parts of a knowledge graph architecture, used to retrieve candidates that the graph then connects and explains.',
+    a:
+      'A vector database finds things that are similar; a knowledge graph records how things ' +
+      'are related and why. Vector search is an optional part of a knowledge graph ' +
+      'architecture, used to retrieve candidates that the graph then connects and explains.',
   },
   {
     q: 'Should a knowledge graph use RDF or a property graph?',
-    a: 'Use RDF if the graph has to share meaning across systems or organisations, or reason over an ontology. Its standards (RDFS, OWL, SKOS, SHACL, SPARQL) cover every layer. Use a property graph if the work is mostly traversal and analytics inside one application and the schema can live in code. Many engines now do both.',
+    a:
+      'Use RDF if the graph has to share meaning across systems or organisations, or reason ' +
+      'over an ontology. Its standards (RDFS, OWL, SKOS, SHACL, SPARQL) cover every layer. Use ' +
+      'a property graph if the work is mostly traversal and analytics inside one application ' +
+      'and the schema can live in code. Several engines support both, natively or through an ' +
+      'extension.',
   },
   {
     q: 'Is an LLM-extracted graph a knowledge graph?',
-    a: 'It is a graph of entities and relations pulled from text. It becomes a knowledge graph once its terms are reconciled to a vocabulary and its relations are typed by an ontology; without them, “MSFT” and “Microsoft Corporation” stay two different nodes.',
+    a:
+      'It is a graph of entities and relations pulled from text. Under the strict definition ' +
+      'it becomes a knowledge graph once its terms are reconciled to a vocabulary and its ' +
+      'relations are typed by an ontology; without them, “MSFT” and “Microsoft Corporation” ' +
+      'stay two different nodes.',
   },
 ];
 
@@ -68,14 +90,28 @@ const articleJsonLd = JSON.stringify({
   url: canonical,
   publisher: { '@type': 'Organization', name: 'GDB-Engines', url: 'https://gdb-engines.com' },
   citation: [
-    { '@type': 'Book', name: 'Ontology Pipeline: A Framework for Knowledge Engineering', author: { '@type': 'Person', name: 'Jessica Talisman' }, publisher: 'Technics Publications', url: 'https://technicspub.com/ontology-pipeline/' },
-    { '@type': 'ScholarlyArticle', name: 'Knowledge Graphs', url: 'https://arxiv.org/abs/2003.02320' },
+    {
+      '@type': 'Book',
+      name: 'Ontology Pipeline: A Framework for Knowledge Engineering',
+      author: { '@type': 'Person', name: 'Jessica Talisman' },
+      publisher: 'Technics Publications',
+      url: 'https://technicspub.com/ontology-pipeline/',
+    },
+    {
+      '@type': 'ScholarlyArticle',
+      name: 'Knowledge Graphs',
+      url: 'https://arxiv.org/abs/2003.02320',
+    },
   ],
 });
 const faqJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  mainEntity: faq.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
 });
 const breadcrumbJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -86,24 +122,34 @@ const breadcrumbJsonLd = JSON.stringify({
   ],
 });
 ---
-<Layout title={`${title} — GDB-Engines`} description={description} canonical={canonical} ogType="article" jsonLd={[articleJsonLd, faqJsonLd, breadcrumbJsonLd]}>
+<Layout
+  title={`${title} — GDB-Engines`}
+  description={description}
+  canonical={canonical}
+  ogType="article"
+  jsonLd={[articleJsonLd, faqJsonLd, breadcrumbJsonLd]}
+>
   <SiteHeader sponsor={headerSponsor} />
   <main class="kg-guide">
     <nav class="breadcrumb"><a href="/">GDB-Engines</a> &rsaquo; Knowledge graph</nav>
     <h1>What is a knowledge graph? Six things the term means</h1>
 
     <p class="answer">
-      A knowledge graph is an ontology filled with real data: things named from a controlled vocabulary,
-      typed by an ontology that machines can reason over, and connected into a graph that can be queried.
-      That is the strict definition, and the one Jessica Talisman
-      builds on in <a href="#book"><cite>Ontology Pipeline</cite></a>. In everyday use the term covers at least
-      five other things.
+      There is no single agreed definition: Hogan et al.'s
+      <a href="https://arxiv.org/abs/2003.02320" rel="noopener">survey</a> collects many. What
+      they share is a graph of facts whose meaning is written down, not left in application code.
+      The strictest version, which Jessica Talisman builds on in
+      <a href="#book"><cite>Ontology Pipeline</cite></a>, is an ontology filled with real data:
+      things named from a controlled vocabulary, typed by an ontology that machines can reason
+      over, and connected into a graph that can be queried. In everyday use the term covers at
+      least five other things.
     </p>
 
     {board && (
       <p class="to-ranking">
-        Looking for software? <a href="/rankings/knowledge-graph/">Knowledge graph databases, ranked monthly</a>:
-        {board.engines.length} engines, split by the kinds below{updated ? `, updated ${updated}` : ''}.
+        Looking for software?
+        <a href="/rankings/knowledge-graph/">Knowledge graph databases, ranked monthly</a>:
+        {board.engines.length} engines, split by the kinds below{updatedNote}.
       </p>
     )}
 
@@ -120,116 +166,191 @@ const breadcrumbJsonLd = JSON.stringify({
     <section id="meanings">
       <h2>Six meanings of “knowledge graph”</h2>
       <p>
-        Talisman says it directly: systems that share the name can differ from one another more than
-        either differs from systems called something else entirely. The six below are the ones a reader is most
-        likely to meet. They are ordered by how much of the semantic stack each one keeps.
+        Systems that share the name can differ from one another more than either differs from
+        systems called something else. The first three meanings are about how the graph is
+        modelled and stored, the next two are uses that grew up around language models, and the
+        last is the product that made the term familiar.
       </p>
 
       <h3>1. A semantic knowledge graph</h3>
       <p>
-        The original sense, and the strictest. Concepts come from a controlled vocabulary, usually published as
-        a <a href="https://www.w3.org/TR/skos-reference/" rel="noopener">SKOS</a> thesaurus; classes and
-        relations are defined in an ontology, in <a href="https://www.w3.org/TR/rdf11-concepts/" rel="noopener">RDF</a>
-        Schema or <a href="https://www.w3.org/TR/owl2-overview/" rel="noopener">OWL</a>; facts are stored as RDF
-        triples and queried with <a href="https://www.w3.org/TR/sparql11-overview/" rel="noopener">SPARQL</a>. A
-        reasoner can derive facts nobody stated, and <a href="https://www.w3.org/TR/shacl/" rel="noopener">SHACL</a>
-        shapes check that the data fits the model. This is the architecture the rest of this page measures
-        against.
-        {examples.semantic.length > 0 && <> Leading engines: <EngineList engines={examples.semantic} />.</>}
+        The strictest sense, built on W3C standards. Concepts come from a controlled vocabulary,
+        usually published as a
+        <a href="https://www.w3.org/TR/skos-reference/" rel="noopener">SKOS</a> thesaurus; classes
+        and relations are defined in an ontology, in
+        <a href="https://www.w3.org/TR/rdf11-concepts/" rel="noopener">RDF</a> Schema or
+        <a href="https://www.w3.org/TR/owl2-overview/" rel="noopener">OWL</a>; facts are stored as
+        RDF triples and queried with
+        <a href="https://www.w3.org/TR/sparql11-overview/" rel="noopener">SPARQL</a>. A reasoner
+        can derive facts nobody stated, and
+        <a href="https://www.w3.org/TR/shacl/" rel="noopener">SHACL</a> shapes check that the data
+        fits the model. The ranking counts an engine as semantic when it answers SPARQL 1.1
+        itself.
+        {examples.semantic.length > 0 && (
+          <> Leading engines: <EngineList engines={examples.semantic} />.</>
+        )}
       </p>
 
       <h3>2. A virtual knowledge graph</h3>
       <p>
-        The same semantic model laid over data that stays where it is. Mappings translate graph queries into
-        queries against relational databases or warehouses at run time, so nothing is copied;
-        <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a> is the usual mapping language. It keeps the vocabulary
-        and the ontology and swaps the stored knowledge base for live sources.
+        The same semantic model laid over data that stays where it is. Mappings translate graph
+        queries into queries against relational databases or warehouses at run time, so nothing
+        is copied; <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a> is the usual
+        mapping language. It keeps the vocabulary and the ontology and swaps the stored knowledge
+        base for live sources.
         {examples.virtual.length > 0 && <> Examples: <EngineList engines={examples.virtual} />.</>}
       </p>
 
       <h3>3. A property graph called a knowledge graph</h3>
       <p>
-        Many graph database vendors use the term for any graph of connected business entities stored as labelled
-        nodes and edges with properties. The knowledge base is real; the vocabulary and ontology usually live in
-        application code or a schema convention that only that application reads. Neo4j draws the same line
-        between the store and the knowledge in it when it answers
-        <a href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/" rel="noopener">whether
-        a knowledge graph is a graph database</a>.
-        {examples.property.length > 0 && <> Leading engines: <EngineList engines={examples.property} />.</>}
+        Many graph database vendors use the term for a graph of connected business entities stored
+        as labelled nodes and edges with properties. The knowledge base is real; the vocabulary
+        and ontology usually live in application code or a schema convention that only that
+        application reads. Some vendors close part of the gap with an extension of their own:
+        Neo4j Labs' neosemantics, for one, imports RDF and validates against SHACL. Neo4j draws
+        the line between the store and the knowledge in it when it answers
+        <a
+          href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/"
+          rel="noopener"
+        >whether a knowledge graph is a graph database</a>.
+        {examples.property.length > 0 && (
+          <> Leading engines: <EngineList engines={examples.property} />.</>
+        )}
       </p>
 
       <h3>4. A graph extracted by an LLM for GraphRAG</h3>
       <p>
-        “Knowledge graph” now often means entities and relations a language model pulled out of documents, used
-        to ground its answers: the approach Microsoft Research published as
-        <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024. These graphs are fast to build and usually have no ontology behind them, so the
-        same company can appear as three nodes. Talisman's warning applies: the vocabulary and ontology behind an
-        extraction set the limit on its quality.
-        {examples.graphrag.length > 0 && <> Engines used for it: <EngineList engines={examples.graphrag} />.</>}
+        “Knowledge graph” now often means entities and relations a language model pulled out of
+        documents, used to ground its answers: the approach Microsoft Research published as
+        <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024. These
+        graphs are fast to build and usually have no ontology behind them, so the same company can
+        appear as three nodes. The vocabulary and ontology behind an extraction set the limit on
+        its quality.
+        {examples.graphrag.length > 0 && (
+          <> Engines used for it: <EngineList engines={examples.graphrag} />.</>
+        )}
       </p>
 
       <h3>5. Agent memory</h3>
       <p>
-        AI agents increasingly keep what they learn in a graph, with time attached to each fact, as in Zep's
-        <a href="https://arxiv.org/abs/2501.13956" rel="noopener">temporal knowledge graph</a>. The graph is
-        written by the agent as it works, so it can recall what it saw and when.
-        {examples.memory.length > 0 && <> Engines used for it: <EngineList engines={examples.memory} />.</>}
+        AI agents increasingly keep what they learn in a graph, with time attached to each fact,
+        as in Zep's <a href="https://arxiv.org/abs/2501.13956" rel="noopener">temporal knowledge
+        graph</a>. The graph is written by the agent as it works, so it can recall what it saw
+        and when.
+        {examples.memory.length > 0 && (
+          <> Engines used for it: <EngineList engines={examples.memory} />.</>
+        )}
       </p>
 
       <h3>6. Google's Knowledge Graph</h3>
       <p>
-        The panel beside search results. Google <a href="https://blog.google/products/search/introducing-knowledge-graph-things-not/" rel="noopener">introduced
-        it in 2012</a> as “things, not strings”, and it made the term familiar. It is one company's product, not a
-        category of software, though it is built on the same ideas as the first meaning.
+        The panel beside search results. Google
+        <a
+          href="https://blog.google/products/search/introducing-knowledge-graph-things-not/"
+          rel="noopener"
+        >introduced it in 2012</a> as “things, not strings”, and it is what made the term widely
+        known. It is
+        one company's product, not a category of software.
       </p>
     </section>
 
     <section id="pipeline">
       <h2>How a knowledge graph gets built</h2>
       <p>
-        Talisman's <cite>Ontology Pipeline</cite> sets out the order of work, derived from librarians' workflows
-        and the <a href="https://www.niso.org/publications/ansiniso-z3919-2005-r2010" rel="noopener">ANSI/NISO
-        Z39.19</a> standard for controlled vocabularies. Each stage prepares the material for the next:
+        Talisman's <cite>Ontology Pipeline</cite> sets out an order of work drawn from librarians'
+        practice and the
+        <a
+          href="https://www.niso.org/publications/ansiniso-z3919-2005-r2010"
+          rel="noopener"
+        >ANSI/NISO Z39.19</a> standard for controlled vocabularies. Each stage prepares the material
+        for the
+        next:
       </p>
       <ol class="stages">
-        <li><strong>Controlled vocabulary</strong>: one agreed, unambiguous term for each thing.</li>
-        <li><strong>Metadata standards</strong>: what each term is about and where it came from.</li>
+        <li>
+          <strong>Controlled vocabulary</strong>: one agreed, unambiguous term for each thing.
+        </li>
+        <li>
+          <strong>Metadata standards</strong>: what each term is about and where it came from.
+        </li>
         <li><strong>Taxonomy</strong>: the terms arranged broad to narrow, parent and child.</li>
-        <li><strong>Thesaurus</strong>: the taxonomy with synonyms, related terms and matches to other vocabularies.</li>
-        <li><strong>Ontology</strong>: formal classes, properties and logic, so a machine can reason.</li>
+        <li>
+          <strong>Thesaurus</strong>: the taxonomy with synonyms, related terms and matches to
+          other vocabularies.
+        </li>
+        <li>
+          <strong>Ontology</strong>: formal classes, properties and logic, so a machine can reason.
+        </li>
         <li><strong>Knowledge graph</strong>: the ontology populated with real instance data.</li>
       </ol>
       <p>
-        A database enters at the last step. Most “best knowledge graph database” lists start there, which is why
-        they compare products that answer different questions. Skipping the earlier stages is how a graph ends up
-        with three nodes for one company.
+        A database enters at the last step. Most “best knowledge graph database” lists start
+        there, which is why they compare products that answer different questions. Skipping the
+        earlier stages is how a graph ends up with three nodes for one company.
       </p>
     </section>
 
     <section id="parts">
       <h2>The parts, and which a database supplies</h2>
       <p>
-        <cite>Ontology Pipeline</cite> separates the parts every knowledge graph needs from the ones chosen per
-        project. For the <a href="/rankings/knowledge-graph/">ranking</a>, we check each engine's own documentation
-        for the parts in the right-hand column.
+        A knowledge graph needs a vocabulary, an ontology and a knowledge base; the other parts are
+        chosen per project. The vocabulary and the ontology are data the team writes, not
+        features of an engine, so the <a href="/rankings/knowledge-graph/">ranking</a> checks each
+        engine's documentation only for the parts in the right-hand column.
       </p>
       <div class="table-wrap">
         <table class="parts">
-          <thead><tr><th>Part</th><th>Needed?</th><th>What it does</th><th>What we check in the engine</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Part</th><th>Needed?</th><th>What it does</th><th>What we check in the engine</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>Vocabulary</td><td>Required</td><td>Names the world: taxonomy and thesaurus, usually SKOS</td><td>Stored as data in any RDF store</td></tr>
-            <tr><td>Ontology</td><td>Required</td><td>Defines the logic for reasoning about it: RDFS, OWL 2</td><td>RDFS reasoning, OWL reasoning</td></tr>
-            <tr><td>Knowledge base</td><td>Required</td><td>Stores what is known: a triple store or labelled property graph</td><td>Every engine on the ranking</td></tr>
-            <tr><td>Reasoner</td><td>Optional</td><td>Derives facts the ontology implies</td><td>OWL reasoning</td></tr>
-            <tr><td>Validation</td><td>Optional</td><td>Checks data against the model</td><td>SHACL validation</td></tr>
-            <tr><td>Data virtualisation</td><td>Optional</td><td>Reads relational sources as graph</td><td>R2RML mapping</td></tr>
-            <tr><td>Query layer</td><td>Required</td><td>SPARQL, with GraphQL for application developers</td><td>SPARQL 1.1</td></tr>
-            <tr><td>Vector retrieval</td><td>Optional</td><td>Similarity search over embeddings</td><td>Vector search</td></tr>
-            <tr><td>Graph algorithms</td><td>Optional</td><td>Structural and network analytics</td><td>Graph algorithms</td></tr>
+            <tr>
+              <td>Vocabulary</td><td>Required</td>
+              <td>Names the world: taxonomy and thesaurus, usually SKOS</td>
+              <td>Nothing: it is data</td>
+            </tr>
+            <tr>
+              <td>Ontology</td><td>Required</td>
+              <td>Defines classes and relations: RDFS, OWL 2</td><td>Nothing: it is data</td>
+            </tr>
+            <tr>
+              <td>Knowledge base</td><td>Required</td>
+              <td>Stores what is known: a triple store or labelled property graph</td>
+              <td>Every engine on the ranking</td>
+            </tr>
+            <tr>
+              <td>Query language</td><td>Required</td>
+              <td>Reads the graph: SPARQL for RDF; Cypher, GQL or Gremlin for property graphs</td>
+              <td>SPARQL 1.1</td>
+            </tr>
+            <tr>
+              <td>Reasoner</td><td>Optional</td>
+              <td>Derives facts the ontology implies</td><td>RDFS reasoning, OWL reasoning</td>
+            </tr>
+            <tr>
+              <td>Validation</td><td>Optional</td>
+              <td>Checks data against the model</td><td>SHACL validation</td>
+            </tr>
+            <tr>
+              <td>Data virtualisation</td><td>Optional</td>
+              <td>Reads relational sources as a graph</td><td>R2RML mapping</td>
+            </tr>
+            <tr>
+              <td>Vector retrieval</td><td>Optional</td>
+              <td>Similarity search over embeddings</td><td>Vector search</td>
+            </tr>
+            <tr>
+              <td>Graph algorithms</td><td>Optional</td>
+              <td>Structural and network analytics</td><td>Graph algorithms</td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <p class="note">Parts and roles adapted from <cite>Ontology Pipeline</cite>, Table 16 and the enterprise knowledge graph architecture in chapter 6.</p>
+      <p class="note">
+        Parts adapted from the knowledge graph architecture in <cite>Ontology Pipeline</cite>.
+      </p>
     </section>
 
     <section id="questions">
@@ -245,29 +366,55 @@ const breadcrumbJsonLd = JSON.stringify({
     <section id="book">
       <BookCredit />
       <p class="further">
-        See Hogan et al., <a href="https://arxiv.org/abs/2003.02320" rel="noopener">“Knowledge Graphs”</a>
-        (2020), for a survey of definitions from the research side. To compare engines, start with the <a href="/rankings/knowledge-graph/">knowledge graph ranking</a>,
-        {ranking && <>the <a href="/rankings/rdf/">RDF ranking</a> or </>}<a href="/compare/rdf-triplestores/">RDF triplestores compared</a>.
+        See Hogan et al., <a href="https://arxiv.org/abs/2003.02320" rel="noopener">“Knowledge
+        Graphs”</a> (2020), for a survey of definitions from the research side. To compare
+        engines, start with the <a href="/rankings/knowledge-graph/">knowledge graph ranking</a>,
+        {ranking && <>the <a href="/rankings/rdf/">RDF ranking</a> or </>}
+        <a href="/compare/rdf-triplestores/">RDF triplestores compared</a>.
       </p>
     </section>
   </main>
 </Layout>
 
 <style>
-  .kg-guide { padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem; max-width: 78ch; margin: 0 auto; }
+  .kg-guide {
+    padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem;
+    max-width: 78ch;
+    margin: 0 auto;
+  }
   .breadcrumb { font-size: 0.85rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
   .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
   h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 0.75rem; color: var(--color-text); }
   h2 { font-size: 1.3rem; margin: 2.25rem 0 0.5rem; color: var(--color-text); }
   h3 { font-size: 1.05rem; margin: 1.4rem 0 0.3rem; color: var(--color-text); }
   p, li { line-height: 1.65; color: var(--color-text); }
-  a { color: var(--color-text); text-decoration-color: var(--color-brand-accent); text-underline-offset: 2px; }
+  a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-brand-accent);
+    text-underline-offset: 2px;
+  }
   .answer { font-size: 1.08rem; }
-  .to-ranking { padding: 0.6rem 0.9rem; border-radius: 6px; background: var(--color-surface); color: var(--color-text-secondary); }
-  .toc ol { margin: 1rem 0; padding-left: 1.2rem; color: var(--color-text-secondary); font-size: 0.95rem; }
+  .to-ranking {
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+  .toc ol {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+  }
   .stages li { margin: 0.25rem 0; }
   .table-wrap { overflow-x: auto; }
   .parts { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
-  .parts th, .parts td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  .parts th,
+  .parts td {
+    text-align: left;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
   .note, .further { font-size: 0.9rem; color: var(--color-text-secondary); }
 </style>

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import RankingTable from '../../components/RankingTable.astro';
+import KnowledgeGraphBoard from '../../components/KnowledgeGraphBoard.astro';
 import CorrectionNotice from '../../components/CorrectionNotice.astro';
 import SponsorCTA from '../../components/SponsorCTA.astro';
 import SponsorSlot from '../../components/SponsorSlot.astro';
@@ -40,8 +41,7 @@ export async function getStaticPaths() {
     roundups.filter((r) => r.data.ranking_board).map((r) => [r.data.ranking_board, { slug: r.data.slug, h1: r.data.h1 }])
   );
 
-  // The knowledge graph board has its own page (rankings/knowledge-graph.astro).
-  const boards = buildBoards(ranking, databases.map(({ data }) => data)).filter((b) => b.slug !== 'knowledge-graph');
+  const boards = buildBoards(ranking, databases.map(({ data }) => data));
   return boards.map((board) => ({
     params: { slug: board.slug },
     props: {
@@ -114,7 +114,22 @@ const scoreLabel = isMovers ? 'momentum' : 'score';
 
     <CorrectionNotice />
 
-    <RankingTable engines={board.engines} scoreField={isMovers ? 'momentum' : 'score'} faviconMap={faviconMap} linkMaps={linkMaps} engineMeta={engineMeta} />
+    {board.slug === 'knowledge-graph' ? (
+      <KnowledgeGraphBoard
+        engines={board.engines}
+        faviconMap={faviconMap}
+        linkMaps={linkMaps}
+        engineMeta={engineMeta}
+      />
+    ) : (
+      <RankingTable
+        engines={board.engines}
+        scoreField={isMovers ? 'momentum' : 'score'}
+        faviconMap={faviconMap}
+        linkMaps={linkMaps}
+        engineMeta={engineMeta}
+      />
+    )}
     {board.insufficientCount > 0 && (
       <p class="insufficient-note">
         {board.insufficientCount} additional {board.insufficientCount === 1 ? 'engine has' : 'engines have'} too little public signal to be ranked.
