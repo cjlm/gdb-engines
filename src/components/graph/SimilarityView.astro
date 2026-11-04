@@ -1,0 +1,75 @@
+---
+import GarphieldFrame from './GarphieldFrame.astro';
+---
+
+<GarphieldFrame
+  viewId="similarity"
+  title="Graph databases linked by catalog similarity"
+  chrome="minimap,toolbar,search"
+  edgeWidthScale={0.6}
+/>
+
+<script>
+  import { similarityStatus, similarityThresholdLabel } from '../../lib/graph-status.mjs';
+  import { mountGarphieldView, type GarphieldView } from './garphield-frame';
+
+  const frame = document.querySelector<HTMLIFrameElement>('[data-graph-view="similarity"]');
+  const input = document.querySelector('#similarity-threshold');
+  const output = document.querySelector('#similarity-value');
+  if (
+    !frame ||
+    !(input instanceof HTMLInputElement) ||
+    !(output instanceof HTMLOutputElement)
+  ) {
+    throw new Error('Similarity view: its iframe or threshold control is missing from the page.');
+  }
+
+  const threshold = () => Number(input.value);
+  let appliedThreshold: number | null = null;
+  let filterVersion = 0;
+  let filterFrame = 0;
+
+  // Only send a filter the embed does not already have, so returning to the view leaves its
+  // drawing untouched.
+  async function applyFilter(view: GarphieldView) {
+    const min = threshold();
+    if (min === appliedThreshold) return;
+    const version = ++filterVersion;
+    try {
+      await view.driver.call('setEdgeFilter', { field: 'similarity', min });
+      appliedThreshold = min;
+    } catch (error) {
+      if (version !== filterVersion) return;
+      view.setStatus(`Could not filter similarity relationships: ${String(error)}`);
+    }
+  }
+
+  const view = mountGarphieldView(frame, {
+    status: (graph) => similarityStatus(graph, threshold()),
+    sync: applyFilter,
+  });
+
+  function scheduleFilter() {
+    if (filterFrame !== 0) return;
+    filterFrame = requestAnimationFrame(() => {
+      filterFrame = 0;
+      const graph = view.graph();
+      if (!graph || !view.isActive()) return;
+      view.setStatus(similarityStatus(graph, threshold()));
+      void applyFilter(view);
+    });
+  }
+
+  output.value = similarityThresholdLabel(input.value);
+  input.addEventListener('input', () => {
+    output.value = similarityThresholdLabel(input.value);
+    scheduleFilter();
+  });
+  window.addEventListener(
+    'pagehide',
+    () => {
+      if (filterFrame !== 0) cancelAnimationFrame(filterFrame);
+    },
+    { once: true },
+  );
+</script>

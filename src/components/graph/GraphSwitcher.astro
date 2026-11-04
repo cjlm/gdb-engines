@@ -1,0 +1,117 @@
+---
+import {
+  GRAPH_VIEWS,
+  graphViewCanonical,
+  graphViewPageDescription,
+  graphViewPath,
+} from '../../lib/graph-views.mjs';
+
+interface Props {
+  activeView: string;
+  databaseCount: number;
+}
+
+const { activeView, databaseCount } = Astro.props;
+---
+
+<nav class="model-switcher" aria-label="Graph views">
+  {GRAPH_VIEWS.map((view) => (
+    <a
+      href={graphViewPath(view.id)}
+      class:list={['model-button', activeView === view.id && 'active']}
+      data-view={view.id}
+      data-document={view.document}
+      data-description={view.modelDescription}
+      data-mobile-description={view.mobileDescription}
+      data-page-title={view.title}
+      data-page-description={graphViewPageDescription(view, databaseCount)}
+      data-canonical={graphViewCanonical(view.id)}
+      aria-current={activeView === view.id ? 'page' : undefined}
+      aria-label={view.shortLabel ? view.label : undefined}
+    >
+      {view.shortLabel ? (
+        <>
+          <span class="model-full-label">{view.label}</span>
+          <span class="model-short-label" aria-hidden="true">{view.shortLabel}</span>
+        </>
+      ) : (
+        view.label
+      )}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .model-switcher {
+    display: flex;
+    padding: 0.15rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    flex: 0 0 auto;
+  }
+
+  .model-button {
+    border: 0;
+    border-radius: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+
+  .model-button.active {
+    background: var(--color-background);
+    color: var(--color-text);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  .model-short-label {
+    display: none;
+  }
+
+  .model-button:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 48rem) {
+    .model-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 0.5rem;
+      padding: 0.15rem 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .model-button {
+      justify-content: center;
+      min-height: 2rem;
+      padding: 0.35rem 0.4rem;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .model-full-label {
+      display: none;
+    }
+
+    .model-short-label {
+      display: inline;
+    }
+
+    .model-button.active {
+      background: color-mix(in srgb, var(--color-brand-accent) 14%, transparent);
+      color: var(--color-brand-accent);
+      box-shadow: none;
+    }
+  }
+</style>

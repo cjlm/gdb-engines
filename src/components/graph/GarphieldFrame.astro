@@ -1,0 +1,33 @@
+---
+import { DEFAULT_GRAPH_VIEW, graphView } from '../../lib/graph-views.mjs';
+
+interface Props {
+  viewId: string;
+  title: string;
+  chrome?: string;
+  edgeWidthScale?: number;
+}
+
+const { viewId, title, chrome, edgeWidthScale } = Astro.props;
+// The default view's frame is marked current before the page script takes over.
+const active = viewId === DEFAULT_GRAPH_VIEW;
+const { document } = graphView(viewId);
+if (!document) throw new Error(`Graph view "${viewId}" has no Garphield document to embed.`);
+---
+
+<iframe
+  class:list={['garphield-frame visualization-view', active && 'active']}
+  data-graph-view={viewId}
+  data-document={document}
+  data-edge-width-scale={edgeWidthScale}
+  data-chrome={chrome}
+  title={title}
+  loading="eager"
+  aria-hidden={active ? 'false' : 'true'}
+  tabindex={active ? undefined : '-1'}></iframe>
+
+<style>
+  .garphield-frame {
+    border: 0;
+  }
+</style>

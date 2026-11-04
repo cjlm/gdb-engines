@@ -1,16 +1,15 @@
 ---
 import GraphPage from '../graph.astro';
-
-type GraphView = 'query-languages' | 'similarity' | 'timeline' | 'lineage';
+import { GRAPH_VIEWS } from '../../lib/graph-views.mjs';
 
 export function getStaticPaths() {
-  return (['query-languages', 'similarity', 'timeline', 'lineage'] as const).map((view) => ({
-    params: { view },
-    props: { initialView: view },
+  return GRAPH_VIEWS.map(({ id }) => ({
+    params: { view: id },
+    props: { initialView: id },
   }));
 }
 
-const { initialView } = Astro.props as { initialView: GraphView };
+const { initialView } = Astro.props as { initialView: string };
 ---
 
 <GraphPage initialView={initialView} />

@@ -1,0 +1,146 @@
+---
+import { getCollection } from 'astro:content';
+import LineageMap from '../LineageMap.astro';
+import { buildFamilies } from '../../lib/lineage';
+
+const lineageFamilies = buildFamilies(await getCollection('databases'));
+// Two-stop histories (a single rename or derivative) read best as small multiples in a grid;
+// anything longer gets the full width.
+const isCompactFamily = (family: (typeof lineageFamilies)[number]) => family.stations.length === 2;
+const branchingFamilies = lineageFamilies.filter((family) => !isCompactFamily(family));
+const compactFamilies = lineageFamilies.filter((family) => isCompactFamily(family));
+---
+
+<section
+  id="lineage-view"
+  class="lineage-view visualization-view"
+  data-graph-view="lineage"
+  aria-label="Graph database lineage"
+  aria-hidden="true"
+  data-family-count={lineageFamilies.length}
+>
+  {branchingFamilies.map((family) => (
+    <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
+      <h2 id={`lineage-${family.id}`}>{family.title}</h2>
+      <LineageMap family={family} mobileVertical />
+    </section>
+  ))}
+  <div class="lineage-compact">
+    {compactFamilies.map((family) => (
+      <section class="lineage-family" id={family.id} aria-labelledby={`lineage-${family.id}`}>
+        <h2 id={`lineage-${family.id}`}>{family.title}</h2>
+        <LineageMap family={family} maxWidth={300} mobileVertical />
+      </section>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { registerGraphView, setViewStatus } from './view-registry';
+
+  const lineageView = document.querySelector('#lineage-view');
+  if (!(lineageView instanceof HTMLElement)) {
+    throw new Error('Lineage view: #lineage-view is missing from the page.');
+  }
+  const compactLayout = window.matchMedia('(max-width: 48rem)');
+
+  // A /graph/lineage/#family link opens the view scrolled to that family.
+  function scrollToFamily(view: HTMLElement) {
+    const hash = window.location.hash.slice(1);
+    const target = hash ? view.querySelector(`[id="${CSS.escape(hash)}"]`) : null;
+    if (!(target instanceof HTMLElement)) return;
+    if (compactLayout.matches) {
+      target.scrollIntoView({ block: 'start' });
+    } else {
+      view.scrollTop = target.offsetTop;
+    }
+  }
+
+  setViewStatus('lineage', `${lineageView.dataset.familyCount} families`);
+  registerGraphView('lineage', {
+    activate() {},
+    shown() {
+      scrollToFamily(lineageView);
+    },
+  });
+</script>
+
+<style>
+  .lineage-view {
+    overflow-y: auto;
+    padding: 0.25rem 1.25rem 1.5rem;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .lineage-family {
+    padding-block: 1rem 0.5rem;
+  }
+
+  .lineage-family + .lineage-family,
+  .lineage-compact {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .lineage-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    column-gap: 1.5rem;
+  }
+
+  .lineage-compact .lineage-family {
+    border-top: 0;
+  }
+
+  /* A two-stop map already names both engines; the heading stays for screen readers and links. */
+  .lineage-compact h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .lineage-family h2 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 48rem) {
+    .lineage-view.active {
+      position: relative;
+      height: auto;
+      overflow: visible;
+      padding: 0 0.75rem 0.75rem;
+      border-radius: inherit;
+    }
+
+    .lineage-family {
+      padding-block: 1rem;
+      scroll-margin-top: calc(var(--header-height) + 10rem);
+    }
+
+    .lineage-family h2 {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .lineage-compact {
+      display: block;
+    }
+
+    .lineage-compact .lineage-family + .lineage-family {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lineage-compact h2 {
+      position: static;
+      width: auto;
+      height: auto;
+      clip-path: none;
+      white-space: normal;
+    }
+  }
+</style>

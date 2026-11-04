@@ -1,0 +1,109 @@
+<div id="similarity-control" data-graph-control="similarity" hidden>
+  <label class="similarity-threshold-control">
+    <span>Min similarity</span>
+    <input id="similarity-threshold" type="range" min="0.2" max="0.8" value="0.2" step="0.05" />
+    <output id="similarity-value" for="similarity-threshold">≥ 20%</output>
+  </label>
+</div>
+
+<style>
+  #similarity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+  }
+
+  #similarity-control[hidden] {
+    display: none;
+  }
+
+  .similarity-threshold-control {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  #similarity-threshold {
+    width: 7rem;
+    height: 1.25rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  #similarity-threshold::-webkit-slider-runnable-track {
+    height: 0.3125rem;
+    border: 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-border) 82%, var(--color-background));
+  }
+
+  #similarity-threshold::-moz-range-track {
+    height: 0.3125rem;
+    border: 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-border) 82%, var(--color-background));
+  }
+
+  #similarity-threshold::-webkit-slider-thumb {
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.34375rem;
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    -webkit-appearance: none;
+    background: var(--color-brand-accent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 34%, transparent);
+  }
+
+  #similarity-threshold::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 34%, transparent);
+  }
+
+  #similarity-threshold:focus-visible {
+    border-radius: 999px;
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 3px;
+  }
+
+  #similarity-value {
+    min-width: 3.25rem;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 48rem) {
+    #similarity-control {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    /* Keep the slider's row on the other Garphield view so switching does not move the graph. */
+    :global(.graph-stage:not([data-view-kind='page'])) #similarity-control[hidden] {
+      display: flex;
+      visibility: hidden;
+    }
+
+    .similarity-threshold-control {
+      width: 100%;
+      padding-inline: 0.25rem;
+    }
+
+    #similarity-threshold {
+      flex: 1;
+      min-width: 0;
+      height: 2.75rem;
+    }
+
+    #similarity-value {
+      min-width: 2.75rem;
+    }
+  }
+</style>
