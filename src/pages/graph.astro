@@ -67,6 +67,11 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       </div>
     </section>
 
+    <p class="graph-credit">
+      Network graphs drawn with
+      <a href={`${garphieldOrigin}/`}>Garphield</a>, a free network visualization tool.
+    </p>
+
     <noscript>
       <p class="graph-fallback">
         JavaScript is required for the interactive view. The underlying
@@ -89,7 +94,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       min-height: 100vh;
       padding: calc(var(--header-height) + 1.5rem) 0 1.25rem;
       display: grid;
-      grid-template-rows: auto minmax(34rem, 1fr);
+      grid-template-rows: auto minmax(34rem, 1fr) auto;
       gap: 0;
     }
 
@@ -200,6 +205,25 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       background: var(--color-background);
     }
 
+    .graph-credit {
+      width: min(calc(100% - 2.5rem), 92rem);
+      margin: 0.6rem auto 0;
+      color: var(--color-text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-align: right;
+    }
+
+    .graph-credit a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
+    .graph-credit a:hover {
+      color: var(--color-text);
+    }
+
     .graph-fallback {
       width: min(calc(100% - 2.5rem), 92rem);
       margin: 0 auto;
@@ -250,10 +274,16 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       }
 
       .graph-stage,
+      .graph-credit,
       .graph-fallback {
         width: calc(100% - 2rem);
         min-width: 0;
         order: 1;
+      }
+
+      .graph-credit {
+        margin-top: -0.4rem;
+        text-align: left;
       }
 
       .graph-stage {
