@@ -6,7 +6,7 @@ slug = "surrealdb"
 
 [[claims]]
 field = "protocols"
-value = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)"]
+value = ["HTTP/REST", "WebSocket", "GraphQL (HTTP)", "gRPC"]
 confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-03"
@@ -17,21 +17,28 @@ notes = "GraphQL, previously behind an experimental flag, became stable and enab
   title = "RPC protocol | SurrealDB Docs"
   quote = "It is used internally by our client SDKs, and is served over WebSocket, HTTP and"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
+
+  [[claims.sources]]
+  url = "https://surrealdb.com/docs/reference/rest-api/rpc-protocol"
+  title = "RPC protocol | SurrealDB Docs"
+  quote = "The server also serves the RPC protocol over gRPC, as the"
+  verified = "matched"
+  checked = "2026-11-04"
 
   [[claims.sources]]
   url = "https://surrealdb.com/docs/reference/rest-api/http-protocol"
   title = "HTTP protocol"
   quote = "The GraphQL endpoint enables use of GraphQL queries to interact with your data."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
   [[claims.sources]]
   url = "https://surrealdb.com/blog/introducing-surrealdb-3-0--the-future-of-ai-agent-memory"
   title = "Introducing SurrealDB 3.0 - the future of AI agent memory | Blog | SurrealDB"
   quote = "Previously gated behind an experimental flag, the GraphQL interface has undergone a comprehensive overhaul to meet real-world requirements"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "license"
@@ -46,7 +53,7 @@ notes = "Corrects the catalogue's 'BSL-1.1' (the SPDX id for the unrelated Boost
   title = "LICENSE - surrealdb/surrealdb"
   quote = "The Business Source License (this document, or the \"License\") is not an Open Source license. However, the Licensed Work will eventually be made available under an Open Source License, as stated in this License."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "released"
@@ -61,7 +68,7 @@ notes = "Refines the catalogue's year-only '2022'. SurrealDB's 2021 beta was a p
   title = "Dreaming of something better | Blog | SurrealDB"
   quote = "Today we are very, very excited to announce that SurrealDB is now in open beta to the world - SurrealDB 1.0-beta!"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +83,7 @@ notes = "Confirms the current value."
   title = "Dreaming of something better | Blog | SurrealDB"
   quote = "the decision was made to re-build using Rust, in order to enforce data-sharing guarantees"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "embeddable"
@@ -91,4 +98,4 @@ notes = "The README says SurrealDB can run embedded in-app and in the browser vi
   title = "SurrealDB README"
   quote = "Given that it’s a single Rust binary, SurrealDB can run embedded (in‐app), in the browser (via WebAssembly), in the edge, self-hosted as single backend node, or in a distributed cluster in the cloud."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
