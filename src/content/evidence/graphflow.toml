@@ -17,7 +17,7 @@ notes = "Corrected from current value Apache-2.0: the repository's actual LICENS
   title = "graphflow/graphflow-columnar-techniques LICENSE"
   quote = "Unless otherwise specified directly in a source code file, the below license applies to all source code in this repository."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -31,8 +31,8 @@ notes = "Graphflow was first demonstrated as a prototype active graph database a
   url = "https://researchr.org/publication/KankanamgeSMCS17"
   title = "Graphflow: An Active Graph Database - researchr publication"
   quote = "Proceedings of the 2017 ACM International Conference on Management of Data, SIGMOD Conference 2017, Chicago, IL, USA, May 14-19, 2017"
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,4 +47,4 @@ notes = "The rejected quote had been tidied to 'in memory' with a space. The PDF
   title = "Building an On-Disk Columnar Store for Graph Database Management Systems (VLDB 2021)"
   quote = "We integrated our columnar techniques into GraphflowDB, an inmemory GDBMS written in Java."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"

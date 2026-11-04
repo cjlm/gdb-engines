@@ -17,14 +17,14 @@ notes = "Bolt is the primary driver protocol; the transactional HTTP API on port
   title = "Bolt Protocol - Bolt Protocol"
   quote = "Bolt is an application protocol for the execution of database queries via a database query language, such as Cypher."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://neo4j.com/docs/http-api/current/"
   title = "Introduction - HTTP API"
   quote = "By default, the API uses port 7474 for HTTP and port 7473 for HTTPS."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Matches current value. Neo4j's own history page dates the open-source 1
   title = "Neo4j Open Source Project"
   quote = "Neo4j 1.0 released as open source and commercial packages"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Matches current value. Neo4j's own docs name Java as the primary implem
   title = "What is Neo4j? - Getting Started"
   quote = "Neo4j is written in Java and Scala. You can check the source code on GitHub."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — neo4j/neo4j"
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

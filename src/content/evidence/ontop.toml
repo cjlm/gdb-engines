@@ -17,7 +17,7 @@ notes = "Ontop only exposes a standard SPARQL 1.1 HTTP endpoint (e.g. /sparql); 
   title = "Interact with an Ontop SPARQL Endpoint | Ontop"
   quote = "You can use POST or GET requests carrying the SPARQL query to evaluate (as per SPARQL HTTP protocol)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,14 +32,14 @@ notes = "Confirms the current value."
   title = "The Virtual Knowledge Graph System Ontop"
   quote = "Ontop started in 2009, only one year after the first version of the SPARQL specification had been standardized"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/ontop/ontop"
   title = "ontop/ontop"
   quote = "Copyright (C) 2009 - 2025 Free University of Bozen-Bolzano"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Confirms the current value."
   title = "ontop/ontop"
   quote = "Currently, we use Maven 3.6+ and Java 11 to build the project."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — ontop/ontop"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

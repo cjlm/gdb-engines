@@ -17,14 +17,14 @@ notes = "SPARQL Protocol served over HTTP at /sparql; JDBC and ODBC drivers also
   title = "16.2.3. SPARQL Web Services & APIs"
   quote = "Virtuoso uses the pre-assigned endpoints \"/sparql\" and \"/SPARQL\" as the defaults for exposing its REST based SPARQL Web Services."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.openlinksw.com/virtuoso/virtuosodriverjdbc/"
   title = "7.4. Virtuoso Driver for JDBC"
   quote = "The Virtuoso Drivers for JDBC are available in \"jar\" file formats for JDBC 1.x, JDBC 2.x and JDBC 3.x specifications."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Confirmed by the LICENSE file itself; matches the current catalogue val
   title = "LICENSE"
   quote = "Note that the only valid version of the GPL license as far as this project is concerned is the original GNU General Public License Version 2, dated June 1991."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "OpenLink's own project history confirms the first Virtuoso release ship
   title = "History of Virtuoso"
   quote = "Thus, in the fall of 1998 the first release of the Virtuoso VDBMS Engine was unveiled."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "OpenLink's own FAQ confirms built-in engine functions are written in C;
   title = "OpenLink Universal Integration Middleware - Frequently Asked Questions about the Virtuoso Product Family"
   quote = "Virtuoso can extend SQL by import Java and .NET classes and functions as well as build-in SQL functions written in C."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

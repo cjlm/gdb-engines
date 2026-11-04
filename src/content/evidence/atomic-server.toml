@@ -17,14 +17,14 @@ notes = "REST/HTTP is used for one-off resource fetches; the WebSocket protocol 
   title = "API - Atomic Data Docs"
   quote = "All Atomic Data resources have a unique URL, which can be fetched using HTTP."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.atomicdata.dev/websockets"
   title = "Atomic Data WebSocket Protocol — sync, real-time collaboration, and offline-first"
   quote = "The WebSocket protocol is the primary communication channel for Atomic Data synchronization."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Corrected from 2020-09. The project's own roadmap page dates AtomicServ
   title = "Strategy, history and roadmap - Atomic Data Docs"
   quote = "AtomicServer (2020-08). The server (using the same atomic_lib as the CLI) should be a fast, lightweight server that must be easy to set-up. Functions as a graph database with no dependencies."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,22 +54,22 @@ notes = "Confirmed; no change from current value."
   title = "Strategy, history and roadmap - Atomic Data Docs"
   quote = "atomic_lib is the place where most logic resides. Written in Rust."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
 value = "MIT"
 confidence = "high"
-method = "api"
-checked = "2026-08-02"
-notes = "SPDX identifier as classified by GitHub from the repository licence file."
+method = "repo"
+checked = "2026-11-03"
+notes = "GitHub no longer classifies the licence file (NOASSERTION), so this cites the LICENSE file itself at a fixed commit."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/ontola/atomic-server/license"
-  title = "GitHub licence API — ontola/atomic-server"
-  quote = "\"spdx_id\": \"MIT\""
+  url = "https://raw.githubusercontent.com/ontola/atomic-server/46d02239b3c1594613c165713ac022d845c76fba/LICENSE"
+  title = "ontola/atomic-server LICENSE"
+  quote = "MIT License\n\nCopyright (c) 2020 Joep Meindertsma"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

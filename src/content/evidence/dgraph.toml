@@ -17,21 +17,21 @@ notes = "DQL runs over HTTP on 8080 and gRPC on 9080 (same payload, two transpor
   title = "Endpoints | Dgraph Documentation"
   quote = "You can interact with Dgraph using HTTP on port 8080 (plus optional port offset) or gRPC on port 9080"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
   title = "/graphql endpoint | Dgraph Documentation"
   quote = "Dgraph serves the corresponding spec-compliant GraphQL API at the HTTP endpoint /graphql"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.dgraph.io/graphql/graphql-clients/endpoint/"
   title = "/graphql endpoint | Dgraph Documentation"
   quote = "GraphQL requests can be sent via HTTP POST or HTTP GET requests."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -46,14 +46,15 @@ notes = "Refined from year-only '2015': Dgraph's own historical README documents
   title = "README.md"
   quote = "`MVP launch - Dec 2015 - Branch v0.1`\nThis is a minimum viable product, alpha release of DGraph."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://discuss.dgraph.io/t/releasing-dgraph-1-0-production-ready-graph-database-dgraph-blog/2037"
   title = "Releasing Dgraph 1.0: Production-Ready Graph Database - Dgraph Blog - Blog - Discuss Dgraph"
   quote = "Dgraph started around end-August, picked up steam in mid-October, and v0.1 was released in early-December, 2015."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260611145512/https://discuss.dgraph.io/t/releasing-dgraph-1-0-production-ready-graph-database-dgraph-blog/2037"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -68,7 +69,7 @@ notes = "Matches current value; stated directly in the project's own README."
   title = "README.md"
   quote = "Dgraph is written using the Go Programming Language."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -83,7 +84,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — hypermodeinc/dgraph"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

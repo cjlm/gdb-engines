@@ -17,21 +17,21 @@ notes = "RDF4J REST API serves W3C SPARQL query/update and Graph Store HTTP Prot
   title = "Using the RDF4J REST API — GraphDB 11.4 documentation"
   quote = "This RDF4J REST API support also includes support for W3C standard SPARQL query and update endpoints; this is described further below."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://graphdb.ontotext.com/documentation/11.4/sql-access-over-jdbc.html"
   title = "SQL access over JDBC — GraphDB 11.4 documentation"
   quote = "This support is based on the Apache Calcite protocol and on performing optimizations and mappings."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://graphdb.ontotext.com/documentation/11.4/graphql.html"
   title = "GraphQL — GraphDB 11.4 documentation"
   quote = "Usage of GraphQL is done through GraphQL endpoints which provide API access to a repository’s data."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,7 +46,7 @@ notes = "Confirms current value. As of GraphDB 11.0.0 even the Free edition requ
   title = "Graphwise GraphDB | Semantic Graph Database (redirected from ontotext.com/products/graphdb/)"
   quote = "Starting with GraphDB 11.0.0, all editions, including GraphDB Free, require a valid license."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -61,7 +61,7 @@ notes = "Confirms current value. GraphDB began as OWLIM; a public OWLIM v2.8 ann
   title = "Fw: OWLIM (OWL Semantic Repository) v2.8 released — www-rdf-interest mailing list"
   quote = "Ontotext is happy to announce ver. 2.8 of its OWLIM semantic repository,"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,14 +76,14 @@ notes = "Confirms current value. GraphDB is packaged as a Storage and Inference 
   title = "Requirements — GraphDB documentation"
   quote = "Java SE Development Kit 21 (not required for GraphDB Free desktop installation)"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://graphwise.ai/components/graphdb/"
   title = "Graphwise GraphDB | Semantic Graph Database (redirected from ontotext.com/products/graphdb/)"
   quote = "For a server environment, we recommend the platform independent GraphDB distribution, which requires separate Java installation."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "vendor"
@@ -98,14 +98,14 @@ notes = "Ontotext merged with Semantic Web Company in October 2024 to form Graph
   title = "Semantic Web Company and Ontotext Merge to Create Knowledge Graph and AI Powerhouse Graphwise | Ontotext"
   quote = "Semantic Web Company and Ontotext today announced that the two companies have merged to become the leading Graph AI provider, Graphwise."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://graphwise.ai/faq/"
   title = "FAQ | Graphwise"
   quote = "The product brands, GraphDB and PoolParty, will continue to be used – they are strong and well known."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
@@ -120,7 +120,7 @@ notes = "ontotext.com/products/graphdb/ still resolves but now 301-redirects to 
   title = "Graphwise GraphDB | Semantic Graph Database"
   quote = "Graphwise GraphDB is an enterprise-grade semantic graph database that supports RDF and SPARQL—providing a highly scalable foundation to link fragmented business data and power real-time AI insights."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -134,7 +134,7 @@ checked = "2026-09-23"
   title = "FAQ - GraphDB documentation"
   quote = "OWLIM is the former name of GraphDB"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -148,7 +148,7 @@ checked = "2026-09-23"
   title = "FAQ - GraphDB documentation"
   quote = "OWLIM is the former name of GraphDB"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.eclipse-rdf4j.relation"
@@ -162,7 +162,7 @@ checked = "2026-09-23"
   title = "Architecture and components - GraphDB documentation"
   quote = "GraphDB is a plugin SAIL component for the RDF4J framework."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

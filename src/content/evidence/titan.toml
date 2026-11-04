@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — thinkaurelius/titan"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -31,7 +31,7 @@ checked = "2026-09-23"
   title = "GitHub languages API — thinkaurelius/titan"
   quote = "\"Java\": 4132325"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -45,7 +45,7 @@ checked = "2026-09-23"
   title = "JanusGraph connects the past and future of Titan"
   quote = "JanusGraph is a fork of the popular open source project Titan, originally released in 2012 by Aurelius, and subsequently acquired by DataStax."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

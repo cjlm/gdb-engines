@@ -1,9 +1,9 @@
 name = "TerminusDB"
-vendor = "DFRNT"
-previous_vendors = ["TerminusDB"]
+vendor = "Gettier"
+previous_vendors = ["TerminusDB", "DFRNT"]
 slug = "terminusdb"
 description = "A graph database and document store that builds knowledge graphs from JSON documents. Uses git-like delta encoding with an append-only layered data model, enabling version control and collaboration workflows."
-url = "https://terminusdb.org/"
+url = "https://terminusdb.com/"
 github_url = "https://github.com/terminusdb/terminusdb"
 license = "Apache-2.0"
 implementation_language = "Prolog"

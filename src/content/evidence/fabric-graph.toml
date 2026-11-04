@@ -17,7 +17,7 @@ notes = "Queries run through a common execution layer with a REST-based GQL quer
   title = "How graph in Microsoft Fabric works - Microsoft Fabric | Microsoft Learn"
   quote = "REST-based execution: Runs queries programmatically by using the GQL query API."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Confirms current value; no source states 'proprietary' outright, but Fa
   title = "What is graph in Microsoft Fabric? - Microsoft Fabric | Microsoft Learn"
   quote = "Graph uses the same capacity units (CUs) as other workloads in Microsoft Fabric. You don't need to purchase a separate graph-specific license or SKU."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,14 +47,14 @@ notes = "Confirms current value; public preview rollout began 1 October 2025, an
   title = "FabCon Vienna: Build data-rich agents on an enterprise-ready foundation | Microsoft Fabric Blog"
   quote = "Graph will roll out in various Fabric regions starting on October 1, 2025."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://community.fabric.microsoft.com/t5/Real-Time-Intelligence/Fabric-Graph-is-now-in-Public-Preview/m-p/4847021"
   title = "Fabric Graph is now in Public Preview! - Microsoft Fabric Community"
   quote = "Graph lets you model and explore relationships across your organizational data, unlocking powerful insights for scenarios like fraud detection, supply chain optimization, and customer 360° views"
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — nicia-ai/typegraph"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Confirms the current value; the npm registry shows the first published 
   title = "@nicia-ai/typegraph npm registry metadata"
   quote = "\"0.1.0\":\"2026-02-08T20:07:22.334Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms the current value; README describes it as TypeScript-first and
   title = "typegraph README.md"
   quote = "TypeScript-first embedded knowledge graph library."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

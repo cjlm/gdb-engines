@@ -6,40 +6,47 @@ slug = "rushdb"
 
 [[claims]]
 field = "protocols"
-value = ["HTTP/REST"]
+value = ["HTTP/REST", "Bolt", "PostgreSQL wire"]
 confidence = "high"
-method = "vendor-docs"
-checked = "2026-07-31"
-notes = "Python and TypeScript SDKs are thin wrappers over the REST API; default endpoint is https://api.rushdb.com/api/v1, configurable via host/port/protocol."
+method = "repo"
+checked = "2026-11-03"
+notes = "RushDB 3.x serves its JSON API and Cypher over HTTP, Cypher over Bolt for Neo4j drivers, and SQL over the PostgreSQL wire protocol."
 
   [[claims.sources]]
   url = "https://www.npmjs.com/package/@rushdb/javascript-sdk"
   title = "@rushdb/javascript-sdk v1.19.1"
   quote = "Default URL is \"https://api.rushdb.com/api/v1\". See SDK Configuration for more options."
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/rush-db/rushdb/main/docs/docs/connect/index.mdx"
-  title = "RushDB — Connect"
-  quote = "For application code, use the TypeScript SDK, Python SDK, or JSON REST API."
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/0d12fcdcc5b315056f93cf086dfa8817a075aca7/README.md"
+  title = "rush-db/rushdb README"
+  quote = "**Cypher** over HTTP, or over Bolt with the Neo4j drivers"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/0d12fcdcc5b315056f93cf086dfa8817a075aca7/README.md"
+  title = "rush-db/rushdb README"
+  quote = "**SQL** over the PostgreSQL wire protocol, with `psql` or any PostgreSQL\ndriver."
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
-value = "Elastic-2.0"
+value = "Apache-2.0"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
-notes = "Confirms current value. The repo's own per-path license table puts the database core (platform/core) under Elastic License 2.0; only the SDKs/docs/website are Apache-2.0."
+checked = "2026-11-03"
+notes = "RushDB 3.x relicensed the project under Apache-2.0; the Elastic License 2.0 applied to the 2.x platform."
 
   [[claims.sources]]
-  url = "https://raw.githubusercontent.com/rush-db/rushdb/main/README.md"
+  url = "https://raw.githubusercontent.com/rush-db/rushdb/0d12fcdcc5b315056f93cf086dfa8817a075aca7/README.md"
   title = "Readme"
-  quote = "| platform/core           | Elastic License 2.0 |\n| platform/dashboard      | Elastic License 2.0 |\n| docs                    | Apache 2.0"
+  quote = "One Rust\nbinary, one data directory, Apache-2.0."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,36 +61,22 @@ notes = "Confirms current value. No public announcement predating the repo was f
   title = "rushdb"
   quote = "\"created_at\": \"2024-12-15T09:12:00Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
-value = "TypeScript"
+value = "Rust"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
-notes = "Confirms current value. GitHub byte-count shows TypeScript is overwhelmingly dominant over the remaining config/tooling languages."
+checked = "2026-11-03"
+notes = "RushDB 3.x, the current version on main, is a Rust rewrite; 2.x was the TypeScript/Neo4j stack. GitHub reports Rust as the primary language."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/rush-db/rushdb/languages"
-  title = "languages"
-  quote = "\"TypeScript\": 2799251,\n  \"EJS\": 37387,\n  \"CSS\": 15352"
+  url = "https://api.github.com/repos/rush-db/rushdb"
+  title = "GitHub repository API — rush-db/rushdb"
+  quote = "\"language\": \"Rust\""
   verified = "matched"
-  checked = "2026-08-02"
-
-[[claims]]
-field = "lineage.neo4j.relation"
-value = "based-on"
-confidence = "high"
-method = "repo"
-checked = "2026-09-23"
-
-  [[claims.sources]]
-  url = "https://github.com/rush-db/rushdb"
-  title = "rush-db/rushdb"
-  quote = "Neo4j under the hood"
-  verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

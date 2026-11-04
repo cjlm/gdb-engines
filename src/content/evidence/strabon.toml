@@ -17,14 +17,14 @@ notes = "Extends RDF4J (Sesame) and is deployed as a Java servlet WAR on Tomcat 
   title = "Strabon"
   quote = "Strabon is a spatiotemporal RDF store. You can use it to store linked geospatial data that changes over time and pose queries using two popular extensions of SPARQL."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/AI-team-UoA/Strabon"
   title = "AI-team-UoA/Strabon"
   quote = "Deploy the endpoint by placing the .war file that was created inside the webapps folder of your Tomcat installation, e.g.:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — AI-team-UoA/Strabon"
   quote = "\"spdx_id\": \"MPL-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Strabon is built by extending the Java-based Sesame/RDF4J framework; ma
   title = "Strabon"
   quote = "Strabon is built by extending the well-known RDF store Sesame (now called RDF4J) and extends RDF4J’s components to manage thematic, spatial and temporal data that is stored in the backend RDBMS."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -69,7 +69,7 @@ notes = "Strabon's own publications page lists its earliest paper (naming Strabo
   title = "Strabon - Publications"
   quote = "In Proceedings of 3rd International workshop on Semantic Sensor Networks 2010, in conjunction with ISWC 2010, November 2010, Shanghai, China."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.eclipse-rdf4j.relation"
@@ -83,7 +83,7 @@ checked = "2026-09-23"
   title = "Strabon"
   quote = "Strabon is built by extending the well-known RDF store Sesame (now called RDF4J)"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

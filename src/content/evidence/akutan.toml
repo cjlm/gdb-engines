@@ -17,14 +17,14 @@ notes = "Akutan's API server source (http.go) registers a real client-facing HTT
   title = "akutan/README.md at master · eBay/akutan"
   quote = "listens on localhost for gRPC requests on port 9987 and for HTTP requests on"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/eBay/akutan/blob/master/src/github.com/ebay/akutan/api/impl/http.go"
   title = "http.go · eBay/akutan"
   quote = "New returns a new instance of the API server, this exposes both an HTTP & gRPC API for consumers of the Akutan system to use."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — eBay/akutan"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Confirms current value. eBay's engineering blog announced the public op
   title = "Beam: A Distributed Knowledge Graph Store"
   quote = "We're excited to announce the public release of Beam, a distributed knowledge graph store, under the Apache 2.0 open source license."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirms current value. Stated directly in the project README and corro
   title = "README.md"
   quote = "It's written in [Go](https://golang.org/). You'll need v1.11.5 or newer."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -83,14 +83,14 @@ checked = "2026-09-23"
   title = "eBay/akutan"
   quote = "the project was renamed to Akutan in July 2019"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.i-programmer.info/news/84/12751.html"
   title = "Ebay Open Sources Beam - I Programmer"
   quote = "Beam can be used to store RDF-like data and supports SPARQL-like querying."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

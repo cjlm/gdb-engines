@@ -17,21 +17,21 @@ notes = "Gremlin API is WebSocket (confirmed by the 101-upgrade error path in th
   title = "Frequently asked questions - Azure Cosmos DB for Apache Gremlin | Microsoft Learn"
   quote = "A Gremlin connection is made through a WebSocket connection."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://learn.microsoft.com/en-us/rest/api/cosmos-db/"
   title = "Azure Cosmos DB REST API Reference"
   quote = "The Azure Cosmos DB REST API provides programmatic access to Azure Cosmos DB resources to create, query, and delete databases, document collections, and documents."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://learn.microsoft.com/en-us/azure/cosmos-db/sdk-connection-modes"
   title = "SQL SDK Connectivity Modes - Azure Cosmos DB | Microsoft Learn"
   quote = "Additionally, it offers an efficient TCP protocol, which is also RESTful in its communication model and uses TLS for initial authentication and encrypting traffic, called direct mode."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,14 +46,14 @@ notes = "Confirms the current value. Cosmos DB is a closed-source, commercially 
   title = "Azure Cosmos DB | Microsoft Azure"
   quote = "Azure Cosmos DB is a fully managed, cloud-native NoSQL database designed to deliver ultra-low latency and elastic scalability at a global scale."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://dbdb.io/db/cosmos-db/revisions/10"
   title = "Cosmos DB · Database of Databases"
   quote = "Written in C++ Supported Languages C#, Go, Java, JavaScript, Python Operating System Windows License Proprietary"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -68,14 +68,14 @@ notes = "Corrected from 2017-05. That date is Cosmos DB's rebrand/GA, but Micros
   title = "Azure: New DocumentDB NoSQL Service, New Search Service, New SQL AlwaysOn VM Template, and more"
   quote = "I’m excited to announce the preview of our new DocumentDB service - a NoSQL document database service designed for scalable and high performance modern applications."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://azure.microsoft.com/en-us/blog/a-technical-overview-of-azure-cosmos-db/"
   title = "A technical overview of Azure Cosmos DB"
   quote = "Azure Cosmos DB started as “Project Florence” in late 2010, which eventually grew into Azure DocumentDB before expanding and blossoming into its current form."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -90,7 +90,7 @@ notes = "No primary Microsoft source discloses the implementation language of th
   title = "Cosmos DB · Database of Databases"
   quote = "Written in C++ Supported Languages C#, Go, Java, JavaScript, Python Operating System Windows License Proprietary"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -104,7 +104,7 @@ checked = "2026-09-23"
   title = "Dear DocumentDB customers, welcome to Azure Cosmos DB!"
   quote = "we decided to make Cosmos DB generally available to external developers in 2015 in the form of Azure DocumentDB"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

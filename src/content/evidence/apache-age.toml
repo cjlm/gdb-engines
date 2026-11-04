@@ -17,7 +17,7 @@ notes = "PostgreSQL extension; clients connect over the standard Postgres wire p
   title = "Apache AGE"
   quote = "PostgreSQL, a popular relational database, can also function as a graph database through the use of an extension called Apache AGE."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Corrects the catalogue's '2021-04'. The PostgreSQL.org announcement sho
   title = "PostgreSQL: Announcing AGE, a multi-model graph database extension for PostgreSQL"
   quote = "AGE, a multi-model graph database extension for PostgreSQL has been announced. AGE is the successor to AgensGraph."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms the current value."
   title = "Is age a trusted extension? · apache/age · Discussion #1631 · GitHub"
   quote = "AGE is not a Trusted Language Extension as it is written in C."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -62,7 +62,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — apache/age"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.agensgraph.relation"
@@ -76,7 +76,7 @@ checked = "2026-09-23"
   title = "apache/age"
   quote = "AGE is an acronym for A Graph Extension and is inspired by Bitnine's AgensGraph, a multi-model database fork of PostgreSQL."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

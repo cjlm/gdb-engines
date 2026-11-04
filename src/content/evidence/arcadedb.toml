@@ -17,14 +17,14 @@ notes = "ArcadeDB also ships MongoDB BSON-protocol and TinkerPop Gremlin plugins
   title = "API & Integration :: ArcadeDB Documentation"
   quote = "Reach ArcadeDB through the wire protocol that suits your tooling. The same database speaks Neo4j BOLT, the PostgreSQL wire protocol, HTTP/JSON, gRPC, and the Model Context Protocol — so your existing drivers, BI tools, and AI agents just connect."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://arcadedb.com/client-server.html"
   title = "Distributed Graph Database Server"
   quote = "ArcadeDB also speaks the MongoDB BSON protocol on port 27017 and the Redis protocol on port 6379."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Confirms current value. First official release tagged 21.9.1, published
   title = "21.9.1"
   quote = "This is the first official release for ArcadeDB!"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Confirms current value. README describes the engine as low-level Java, 
   title = "Readme"
   quote = "It's written in LLJ: Low Level Java - still Java21+ but only using low level APIs to leverage advanced"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — ArcadeData/arcadedb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.orientdb.relation"
@@ -84,7 +84,7 @@ notes = "Self-described 'conceptual fork': a new engine that reuses OrientDB's S
   title = "ArcadeData/arcadedb"
   quote = "ArcadeDB reuses OrientDB's SQL engine (heavily modified) and some utility classes."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

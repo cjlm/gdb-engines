@@ -17,21 +17,21 @@ notes = "Core queries use Redis RESP (port 6379) with experimental, not-producti
   title = "FalkorDB/FalkorDB"
   quote = "You can call FalkorDB's commands from any Redis client. Here are several methods:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/integration/bolt-support.html"
   title = "BOLT protocol support | FalkorDB Docs"
   quote = "FalkorDB provides an experimental support for querying using BOLT drivers. We intend to extend the support in the future versions, the current version is not meant to be used in production."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/integration/"
   title = "Integration | FalkorDB Docs"
   quote = "FalkorDB supports multiple integration paths including a REST API, Bolt protocol (experimental), Kafka Connect sink, Apache Jena for RDF/SPARQL, Spring Data for Java applications, Snowflake native app"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,14 +46,14 @@ notes = "Matches current value. FalkorDB's repository LICENSE.txt is the Server 
   title = "LICENSE.txt"
   quote = "Server Side Public License\n                     VERSION 1, OCTOBER 16, 2018"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/design/"
   title = "The FalkorDB Design | FalkorDB Docs"
   quote = "FalkorDB is published under the Server Side Public License v1 (SSPLv1)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -68,7 +68,7 @@ notes = "Refined from year-only '2018'. FalkorDB is a 2023 fork/rebrand of Redis
   title = "On the release of RedisGraph v1.0 Preview | Redis"
   quote = "Nearly two years after starting development, we reached a major milestone with the release of RedisGraph v1.0 today."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -83,14 +83,14 @@ notes = "Matches current value, true of both the original RedisGraph codebase an
   title = "On the release of RedisGraph v1.0 Preview | Redis"
   quote = "It is implemented purely in C, and has been tested on Linux and OS X distros."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.falkordb.com/design/"
   title = "The FalkorDB Design | FalkorDB Docs"
   quote = "Bringing new graph capabilities to Redis through a native C implementation with an emphasis on performance, FalkorDB is now available as an open source project."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

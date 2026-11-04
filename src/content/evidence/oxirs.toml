@@ -17,7 +17,7 @@ notes = "oxirs-fuseki serves SPARQL 1.1/1.2 over HTTP (Fuseki-compatible), and o
   title = "cool-japan/oxirs"
   quote = "Expose both SPARQL 1.2 and GraphQL endpoints from the same dataset"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — cool-japan/oxirs"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "Corrected from 2026-01 (which is the v0.1.0 'Initial Production Release
   title = "oxirs-core"
   quote = "\"num\":\"0.1.0-alpha.1\",\"dl_path\":\"/api/v1/crates/oxirs-core/0.1.0-alpha.1/download\",\"readme_path\":\"/api/v1/crates/oxirs-core/0.1.0-alpha.1/readme\",\"updated_at\":\"2025-10-04T12:47:34.935811Z\",\"created_at\":\"2025-09-30T08:21:33.772532Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "Confirms current value; the project describes itself as Rust-native and
   title = "cool-japan/oxirs"
   quote = "Rust-native, modular platform for Semantic Web, SPARQL 1.2, GraphQL, and AI-augmented reasoning"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

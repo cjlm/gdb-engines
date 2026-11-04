@@ -191,7 +191,7 @@
             "kind": "Database",
             "type": "Property Graph",
             "category": "Emerging",
-            "status": "active"
+            "status": "inactive"
           },
           {
             "id": "db:bigquery-graph",
@@ -317,7 +317,7 @@
             "kind": "Database",
             "type": "Property Graph",
             "category": "Established",
-            "status": "active"
+            "status": "deprecated"
           },
           {
             "id": "db:dgraph",
@@ -1019,7 +1019,7 @@
             "kind": "Database",
             "type": "Property Graph",
             "category": "Emerging",
-            "status": "active"
+            "status": "inactive"
           },
           {
             "id": "db:prometheux",
@@ -2594,6 +2594,21 @@
           {
             "source": "db:rushdb",
             "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "language:SQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "language:Gremlin",
             "relationship": "supports"
           },
           {

@@ -17,14 +17,14 @@ notes = "Primarily an embedded Tinkerpop3 library; can also be loaded into Greml
   title = "Home · lambdazen/bitsy Wiki · GitHub"
   quote = "Bitsy is a small, fast, embeddable, durable in-memory graph database that implements Apache Tinkerpop."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/lambdazen/bitsy/wiki"
   title = "Home · lambdazen/bitsy Wiki · GitHub"
   quote = "You can run Bitsy in the Gremlin Server as follows:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — lambdazen/bitsy"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Refined the current year-only value: Bitsy 1.0 was announced on the Gre
   title = "Announcing Bitsy 1.0 version"
   quote = "I am happy to announce the 1.0 version of the Bitsy graph database. The released version supports Tinkerpop/Blueprints 2.3.0."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirms current value; Bitsy is a Maven/Java project distributed on Ma
   title = "README.md"
   quote = "The project **build time requirement** is [Apache Maven](https://maven.apache.org/), at least version 3.9 and Java 21.\nThe project **run time requirement is Java 8**."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

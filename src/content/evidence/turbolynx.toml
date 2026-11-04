@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — turbolynx-dslab/TurboLynx"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Corrected from '2025' to '2025-12': the project's own CHANGELOG dates v
   title = "TurboLynx CHANGELOG.md"
   quote = "Initial public release. State of the codebase at the time of the VLDB 2026\npaper submission"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms the current value; README states the engine core is C++17, and
   title = "TurboLynx README.md"
   quote = "Fast, scalable OLAP graph database in C++17."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

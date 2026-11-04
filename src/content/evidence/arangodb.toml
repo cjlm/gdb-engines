@@ -16,15 +16,15 @@ notes = "VelocyStream (VST) binary protocol was removed in 3.12; HTTP/REST is no
   url = "https://docs.arango.ai/arangodb/stable/develop/http-api/"
   title = "HTTP API Documentation | Arango Documentation"
   quote = "All interactions with a server are ultimately carried out via this HTTP API."
-  verified = "unreachable"
-  checked = "2026-08-02"
+  verified = "matched"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/arangodb/arangojs/main/README.md"
   title = "ArangoDB JavaScript Driver"
   quote = "If the server responded with a non-2xx status code, this `NetworkError` will be an `HttpError` with a `code` property indicating the HTTP status code of the response"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Corrected from BSL-1.1: the repository's LICENSE file is the Business S
   title = "LICENSE"
   quote = "Business Source License 1.1\n\nTerms\n\nThe Licensor hereby grants you the right to copy, modify, create derivative"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Matches current value. ArangoDB began as AvocadoDB; a third-party blog 
   title = "AvocadoDB « Another Word For It"
   quote = "We recently started a new open source project – a nosql database called AvocadoDB."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Matches current value; confirmed directly in the project's own README."
   title = "README"
   quote = "ArangoDB is written in C++ and can handle even very large datasets efficiently."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -83,14 +83,14 @@ checked = "2026-09-23"
   title = "ArangoDB - Wikipedia"
   quote = "Later, they changed the name to ArangoDB."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://dbdb.io/db/arangodb"
   title = "ArangoDB - Database of Databases"
   quote = "It was originally named AvocadoDB. Later to avoid legal issues, the name was changed to ArangoDB in May 2012."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
@@ -104,5 +104,50 @@ notes = "The README's getting-started path is to run the arangod server (or a Do
   url = "https://raw.githubusercontent.com/arangodb/arangodb/devel/README.md"
   title = "ArangoDB README"
   quote = "Start the server `arangod` if the installer did not do it for you."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "features.binary_protocol"
+value = 0
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "ArangoDB 3.12 removed VelocyStream, its only binary protocol; clients now talk HTTP."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.12/incompatible-changes-in-3-12/"
+  title = "Incompatible changes in ArangoDB 3.12"
+  quote = "asynchronous binary protocol VelocyStream is no longer supported."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "features.operating_on_windows"
+value = 0.5
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Native Windows packages were dropped in 3.12; Windows users run the official Docker image, which the rubric scores 0.5."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.12/incompatible-changes-in-3-12/"
+  title = "Incompatible changes in ArangoDB 3.12"
+  quote = "The native platform support for the Windows and macOS operating systems has been removed"
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "features.testing_in_memory_version"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "The in-memory MMFiles engine was removed in 3.7, leaving RocksDB as the only storage engine."
+
+  [[claims.sources]]
+  url = "https://docs.arangodb.com/3.12/release-notes/version-3.7/incompatible-changes-in-3-7/"
+  title = "Incompatible changes in ArangoDB 3.7"
+  quote = "In ArangoDB 3.7, the only available storage engine is the RocksDB storage engine"
   verified = "matched"
   checked = "2026-11-03"

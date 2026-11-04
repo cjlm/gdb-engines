@@ -17,14 +17,14 @@ notes = "Official TSL docs describe three protocol types: Syn/Asyn (native binar
   title = "Message Passing Protocols"
   quote = "Three types of protocols are supported in GE: synchronous protocols, asynchronous protocols, and HTTP protocols."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://microsoft.github.io/GraphEngine/docs/manual/TSL/MPProtocol.html"
   title = "Message Passing Protocols"
   quote = "An HTTP protocol is a synchronous remote call. It is the RESTful version of Syn protocol."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,14 +39,14 @@ notes = "Adds the month: Microsoft Research's Trinity project (renamed Graph Eng
   title = "Microsoft quietly delivers first preview of Graph Engine | ZDNET"
   quote = "Microsoft Research's Project Trinity is now available for public testing in the form of Graph Engine 1.0 public preview."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.microsoft.com/en-us/research/project/trinity/"
   title = "Trinity - Microsoft Research"
   quote = "We are very pleased to announce that the Graph Engine 1.0 preview has finally been released to the public."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -61,7 +61,7 @@ notes = "Confirms current value; the project builds and ships as .NET/NuGet pack
   title = "README.md (microsoft/GraphEngine)"
   quote = "You can find the built NuGet packages `build/GraphEngine**._version_.nupkg` in\nthe `build` folder."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -76,7 +76,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — microsoft/GraphEngine"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "previous_names"
@@ -90,14 +90,14 @@ checked = "2026-09-23"
   title = "Microsoft Graph Engine - Microsoft Research"
   quote = "Microsoft Graph Engine, previously known as Trinity, is a distributed, in-memory, large graph processing engine."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://microsoft.github.io/GraphEngine/support.html"
   title = "Graph Engine Support"
   quote = "The previous name of Graph Engine is Trinity."
   verified = "unreachable"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

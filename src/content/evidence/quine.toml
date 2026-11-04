@@ -17,14 +17,15 @@ notes = "Cypher and admin operations go through the /api/v2/ JSON REST API; a se
   title = "REST API - Streaming Graph for Data Pipelines"
   quote = "This page describes the conventions every endpoint shares — URL shape, request and response format, error envelope, and common query parameters."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://quine.io/learn/standing-queries/wiretap/"
   title = "Standing Query Wiretap - Streaming Graph for Data Pipelines"
   quote = "The standing query wiretap enables observing a standing query's results in real time over a WebSocket connection."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260607172327/https://quine.io/learn/standing-queries/wiretap/"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +40,7 @@ notes = "Confirmed directly from the repository's LICENSE file. SPDX has no comb
   title = "thatdot/quine LICENSE"
   quote = "MIT License with Commons Clause\n\nCopyright © 2014 Ryan Wright; © 2019 thatDot, Inc."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +55,7 @@ notes = "Confirmed via thatDot's own announcement of Quine's public open-source 
   title = "Announcing Open Source Release of Quine Streaming Graph"
   quote = "We at thatDot are pleased to announce that today the release of Quine, our streaming graph for event processing, as an open source project."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +70,7 @@ notes = "Confirmed; no change from current value."
   title = "Download - Streaming Graph for Data Pipelines"
   quote = "Quine is written in Scala and released as open source."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

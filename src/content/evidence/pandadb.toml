@@ -17,21 +17,21 @@ notes = "Server source shows the panda:// listener is built on a proprietary RPC
   title = "PandaRpcClient.scala — grapheco/pandadb-v0.3"
   quote = "import net.neoremind.kraps.rpc.netty.HippoRpcEnvFactory\nimport net.neoremind.kraps.rpc.{RpcAddress, RpcEnvClientConfig}\nimport org.neo4j.driver.v1.exceptions.SessionExpiredException"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/grapheco/pandadb-v0.3/master/server/src/main/scala/cn/pandadb/server/rpc/PandaRpcServer.scala"
   title = "PandaRpcServer.scala — grapheco/pandadb-v0.3"
   quote = "class PandaEndpoint(override val rpcEnv: HippoRpcEnv) extends RpcEndpoint with LazyLogging {"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/grapheco/pandadb-java-driver/ce5ae3c2e0b2f9a9c004ef7410074f8544ba709a/README.md"
   title = "PandaDB-Java-Driver"
   quote = "pandadb-java-driver can easily switch to neo4j driver or pandadb driver, all the user needs to do is change the connection schema to `bolt` or `panda`."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,7 +46,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — grapheco/pandadb-v0.3"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -61,7 +61,7 @@ notes = "Confirms current value. The catalogued pandadb-v0.3 repo is a rewrite o
   title = "grapheco/pandadb"
   quote = "PandaDB-2019 is an open source product licensed under GPLv3."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Confirms current value. The build is a Scala/Maven project using the sc
   title = "pom.xml"
   quote = "<maven.compiler.target>1.8</maven.compiler.target>\n        <scala.version>2.12.8</scala.version>\n        <scala.binary.version>2.12</scala.binary.version>\n        <scala.compat.version>2.12</scala.compat.version>"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.neo4j.relation"
@@ -91,14 +91,14 @@ notes = "PandaDB modifies Neo4j's storage structure and query engine rather than
   title = "grapheco/pandadb-v0.1"
   quote = "PandaDB (+Neo4j-3.5.6-BLOB)"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/grapheco/pandadb-v0.1"
   title = "grapheco/pandadb-v0.1"
   quote = "bin/neo4j console`: start a PandaDB server"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

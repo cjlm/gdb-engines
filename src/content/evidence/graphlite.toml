@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — GraphLite-AI/GraphLite"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "CHANGELOG's first dated entry is v0.0.1 on 2025-11-16, one day after th
   title = "GraphLite-AI/GraphLite CHANGELOG.md"
   quote = "## [0.0.1] - 2025-11-16\n\n### Added\n\n#### Core Features\n- **ISO GQL Query Engine** - Full implementation of ISO GQL standard based on OpenGQL grammar"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "Confirms current value; README build prerequisites and GitHub's languag
   title = "GraphLite-AI/GraphLite README.md"
   quote = "Before building GraphLite, you need to install Rust and a C compiler/linker."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,14 +17,14 @@ notes = "Foxx microservice installed inside ArangoDB; exposes a Swagger/OpenAPI-
   title = "RecallGraph/RecallGraph"
   quote = "API documentation is also available directly in the Swagger console once the service is installed (accessed through ArangoDB's web UI)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/RecallGraph/RecallGraph"
   title = "RecallGraph/RecallGraph"
   quote = "It is a Foxx Microservice for ArangoDB that features VCS-like semantics in many parts of its interface, and is backed by a transactional event tracker."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — RecallGraph/RecallGraph"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "First tagged release v0.0.1 was published 29 Apr 2019 as a pre-release;
   title = "Releases · RecallGraph/RecallGraph · GitHub"
   quote = "This is a pre-release, meant only for exploring and understanding the service."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/RecallGraph/RecallGraph/tags"
   title = "Tags · RecallGraph/RecallGraph · GitHub"
   quote = "Merge pull request #3 from adityamukho/tests"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Confirms current value; RecallGraph is a Foxx Microservice for ArangoDB
   title = "RecallGraph/RecallGraph"
   quote = "It is a Foxx Microservice for ArangoDB that features _VCS-like_ semantics in many parts of its interface"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.arangodb.relation"
@@ -91,7 +91,7 @@ notes = "Built as an ArangoDB Foxx microservice."
   title = "RecallGraph/RecallGraph"
   quote = "It is a Foxx Microservice for ArangoDB"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,14 +17,14 @@ notes = "REST++ and GSQL servers both speak HTTP; as of 4.1 self-managed install
   title = "REST Endpoints :: TigerGraph DB"
   quote = "To submit a request, send an HTTP request to the REST++ server or the GSQL server."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.tigergraph.com/tigergraph-server/4.2/installation/change-port"
   title = "Changing Ports :: TigerGraph DB"
   quote = "Use the GSQL server (port 14240) for API requests on self-managed systems."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "TigerGraph's own subscription agreement licenses the software as propri
   title = "Software Subscription Agreement - TigerGraph"
   quote = "TigerGraph’s proprietary software program(s) in object code only and Software Updates made available by TigerGraph under this Agreement."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "TigerGraph (formerly GraphSQL, founded 2012) emerged from stealth and r
   title = "TigerGraph Emerges With $31M in Series A Funding, Introduces Real-Time Graph Platform"
   quote = "TigerGraph today made announcements including its emergence from stealth, securing of $31M in Series A funding, general availability of TigerGraph -- the world's first and only native parallel graph database platform for enterprise applications"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "TigerGraph's own architecture documentation states its core storage and
   title = "Internal Architecture :: TigerGraph DB"
   quote = "The core components (GSE and GPE) are implemented in C++ for optimal performance."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

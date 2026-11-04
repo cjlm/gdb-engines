@@ -18,7 +18,7 @@ notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent c
   quote = "Delivered as an HTTPS API, Fauna offers token-based authentication and eliminates connection pooling or session management."
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20250618121636/https://fauna.com/"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.fauna.com/fauna/current/"
@@ -26,14 +26,14 @@ notes = "Custom FQL delivered over an HTTPS API with token auth, no persistent c
   quote = "The Fauna service will be ending on May 30, 2025."
   verified = "matched-archive"
   archive_url = "http://web.archive.org/web/20250614072336/https://docs.fauna.com/fauna/current/"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/fauna/fauna-js/main/README.md"
   title = "Fauna JavaScript driver"
   quote = "The HTTP/2 session idle timeout is the time, in milliseconds, that an HTTP/2 session will remain open after there is no more pending communication."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -48,14 +48,14 @@ notes = "Corrected from 'Proprietary': that was accurate while FaunaDB was Fauna
   title = "LICENSE.txt"
   quote = "FaunaDB is licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this software except in compliance with the License."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.theregister.com/software/2025/03/24/faunadb-shutters-but-hints-at-open-source-future/"
   title = "FaunaDB shuts down but hints at open source future"
   quote = "FaunaDB said it plans to release an open-source version of its core database technology."
   verified = "unreachable"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -69,9 +69,8 @@ notes = "Confirms current value; Fauna's own launch announcement describes the d
   url = "https://fauna.com/blog/welcome-to-the-jungle"
   title = "Welcome to the Jungle"
   quote = "Fauna is production-ready and available now in managed beta in the cloud, on-premises, and in hybrid deployments."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20250615031449/https://fauna.com/blog/welcome-to-the-jungle"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -86,7 +85,7 @@ notes = "Confirms current value; the open-sourced repository is 99.2% Scala per 
   title = "GitHub - fauna/faunadb"
   quote = "FaunaDB runs on the JVM and requires a JDK version 17 installed. Fauna uses sbt as its build tool."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
@@ -101,14 +100,14 @@ notes = "fauna.com no longer belongs to the database company: the plain-http sit
   title = "Fauna | The Distributed Serverless Database"
   quote = "The Fauna service will be ending on May 30, 2025. For more information, read the announcement ."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://faunarobotics.com/news/fauna-robotics-joins-amazon"
   title = "Fauna Robotics joins Amazon"
   quote = "Fauna Robotics has officially joined Amazon. We will continue selling Sprout Creator Edition robots, supporting existing customers, and building for the future as Fauna Robotics, an Amazon company."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "status"
@@ -123,7 +122,7 @@ notes = "Fauna Inc. sunset the hosted database service on May 30, 2025 and has n
   title = "Fauna | The Distributed Serverless Database"
   quote = "The Fauna service will be ending on May 30, 2025. For more information, read the announcement ."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "MAGE is an in-database graph engine (ported from Apache AGE) inside Yug
   title = "YugabyteDB: The Data Backbone for Thousands of Agents | Yugabyte"
   quote = "You connect to it the way you connect to any Postgres instance. Your ORM, your driver, and your extensions work unchanged."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,14 +32,14 @@ notes = "Matches current value; MAGE is a renamed, embedded port of Apache AGE (
   title = "What's new in the YugabyteDB v2026.1 STS release series"
   quote = "Allows users to load the renamed Apache AGE extension as `mage` in YugabyteDB."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/apache/age/master/LICENSE"
   title = "LICENSE (apache/age)"
   quote = "TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "Matches current value; introduced as a technical preview in the Yugabyt
   title = "What's new in the YugabyteDB v2026.1 STS release series"
   quote = "Adds support for Apache AGE graph extension to enable graph database capabilities."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://www.yugabyte.com/blog/a-postgresql-database-for-every-agent/"
   title = "A PostgreSQL Database for Every Agent"
   quote = "YugabyteDB MAGE (technical preview): A shared, multi-tenant graph engine so agents can reason over connected data without crossing tenant boundaries."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Matches current value; Apache AGE, of which MAGE is a renamed port, is 
   title = "Is age a trusted extension? · apache/age · Discussion #1631"
   quote = "AGE is not a Trusted Language Extension as it is written in C."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.apache-age.relation"
@@ -90,7 +90,7 @@ checked = "2026-09-23"
   title = "[YSQL] Rename Apache AGE extension to mage"
   quote = "Rename Apache AGE extension to mage"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

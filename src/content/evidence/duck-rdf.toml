@@ -16,7 +16,7 @@ checked = "2026-08-26"
   title = "GitHub license API — nonodename/duck_rdf"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-26"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -30,21 +30,21 @@ checked = "2026-08-26"
   title = "Duck RDF v1.0.0 release"
   quote = "\"published_at\": \"2025-08-10T23:39:50Z\""
   verified = "matched"
-  checked = "2026-08-26"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
 value = "C++"
 confidence = "high"
 method = "api"
-checked = "2026-08-26"
+checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/nonodename/duck_rdf/languages"
-  title = "Duck RDF languages — GitHub API"
-  quote = "\"C++\": 207673"
+  url = "https://api.github.com/repos/nonodename/duck_rdf"
+  title = "GitHub repository API — nonodename/duck_rdf"
+  quote = "\"language\": \"C++\""
   verified = "matched"
-  checked = "2026-08-26"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

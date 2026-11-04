@@ -17,7 +17,7 @@ notes = "ByteDance-internal system; the VLDB paper describes Gremlin as the quer
   title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
   quote = "ByteGraph uses Gremlin [7] as the query language as most of the applications built on ByteGraph are based on navigational queries."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Confirms current value; ByteGraph has no public repository and the auth
   title = "ByteGraph: A High-Performance Distributed Graph Database in ByteDance"
   quote = "We discuss some implementation details of ByteGraph in this Section. We will also open source ByteGraph in due course."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "Corrected from the current value of 2022, which is the VLDB paper's pub
   title = "字节跳动自研万亿级图数据库 & 图计算实践"
   quote = "我们在 18 年 8 月份，开始从第一行代码开始踏上图数据库的漫漫征程，从解决一个最核心的抖音社交关系问题入手"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "Confirms current value, though ByteGraph is split across two layers: By
   title = "字节跳动自研万亿级图数据库 & 图计算实践"
   quote = "从上述描述可以看出，bgkv 的性能和内存使用效率是非常关键的，因此 采用 C++ 编写。"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

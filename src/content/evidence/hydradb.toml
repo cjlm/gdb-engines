@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — hydra-db/hydradb"
   quote = "\"spdx_id\": \"AGPL-3.0\""
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Repository creation date; the earliest tag is v0.1.0."
   title = "hydra-db/hydradb (GitHub API repository metadata)"
   quote = "\"created_at\": \"2026-07-03T05:34:15Z\""
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "The README describes it as a distributed graph database written in Rust
   title = "README.md"
   quote = "object-store-native distributed graph database written in Rust"
   verified = "matched"
-  checked = "2026-11-01"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

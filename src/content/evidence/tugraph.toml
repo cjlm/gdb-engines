@@ -17,21 +17,21 @@ notes = "REST on port 7070; Bolt (Neo4j protocol, partial feature support) on po
   title = "Tugraph Running — TuGraph documentation"
   quote = "The Port on which the REST server listens. The default port is 7070."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/5.bolt-client.html"
   title = "Bolt client — TuGraph documentation"
   quote = "TuGraph implements Neo4j’s bolt protocol, you can use Neo4j’s client to access TuGraph."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://tugraph-db.readthedocs.io/en/latest/7.client-tools/8.rpc-api.html"
   title = "RPC API — TuGraph documentation"
   quote = "brpc is an industrial-grade RPC framework written in C++. Based on brpc, TuGraph provides rich RPC APIs."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -45,9 +45,8 @@ notes = "Adds the month: Ant Group open-sourced TuGraph at the World Artificial 
   url = "https://www.businesswire.com/news/home/20220903005014/en/Ant-Group-Makes-Trusted-AI-Solutions-More-Accessible-to-Support-Industrial-Collaboration-in-Digital-Economy"
   title = "Ant Group Makes Trusted AI Solutions More Accessible to Support Industrial Collaboration in Digital Economy"
   quote = "As part of the actions, Ant Group has also made TuGraph open source for global developers on Github."
-  verified = "matched-archive"
-  archive_url = "http://web.archive.org/web/20250725043114/https://www.businesswire.com/news/home/20220903005014/en/Ant-Group-Makes-Trusted-AI-Solutions-More-Accessible-to-Support-Industrial-Collaboration-in-Digital-Economy"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,14 +61,14 @@ notes = "Confirms current value; core is C++ with a C++/Python stored-procedure 
   title = "README.md (TuGraph-family/tugraph-db)"
   quote = "Full-Text/Primary/Secondary Index support\n- OpenCypher query API\n- Stored procedure with C++/Python API"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://api.github.com/repos/TuGraph-family/tugraph-db"
   title = "TuGraph-family/tugraph-db (GitHub API repository resource)"
   quote = "\"language\": \"C++\",\n  \"has_issues\": true,\n  \"has_projects\": true,\n  \"has_downloads\": false,\n  \"has_wiki\": true,"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -84,7 +83,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — TuGraph-family/tugraph-db"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

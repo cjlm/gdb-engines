@@ -9,15 +9,15 @@ field = "protocols"
 value = ["PostgreSQL wire"]
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-07-31"
+checked = "2026-11-03"
 notes = "SQL/PGQ (GRAPH_TABLE) is core PostgreSQL SQL syntax executed like any other query over the standard Postgres wire protocol; no separate transport."
 
   [[claims.sources]]
-  url = "https://www.postgresql.org/docs/devel/queries-graph.html"
-  title = "PostgreSQL: Documentation: devel: 7.9. Graph Queries"
+  url = "https://web.archive.org/web/20260903051849/https://www.postgresql.org/docs/devel/queries-graph.html"
+  title = "PostgreSQL: Documentation: devel: 7.9. Graph Queries (archived 2026-09-03)"
   quote = "The graph query part happens inside the GRAPH_TABLE construct. As far as the rest of the query is concerned, this acts like a table function in that it produces a computed table as output."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,22 +32,22 @@ notes = "Confirms current value. SQL/PGQ is a built-in feature of core PostgreSQ
   title = "PostgreSQL: License"
   quote = "PostgreSQL is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
 value = "2026-03"
 confidence = "medium"
 method = "web"
-checked = "2026-08-02"
-notes = "Date the SQL/PGQ patch was committed to PostgreSQL master, not a stable release: the feature is absent from the PostgreSQL 18 release notes and CREATE PROPERTY GRAPH has no page in the current documentation, so it ships in a future major version."
+checked = "2026-11-03"
+notes = "Date the SQL/PGQ patch was committed to PostgreSQL master, not a stable release. It was reverted on 2026-09-07 before PostgreSQL 19 shipped (see the status claim), so no release ever carried it."
 
   [[claims.sources]]
   url = "https://www.postgresql.org/message-id/E1w247I-0000Tk-2Y%40gemulon.postgresql.org"
   title = "pgsql-committers: SQL Property Graph Queries (SQL/PGQ)"
   quote = "Subject: pgsql: SQL Property Graph Queries (SQL/PGQ) Date: 2026-03-16"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "Confirms current value."
   title = "PostgreSQL: Documentation: 16: 38.10. C-Language Functions"
   quote = "Although the PostgreSQL backend is written in C, it is possible to write extensions in C++ if these guidelines are followed:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
@@ -76,5 +76,27 @@ notes = "SQL/PGQ is a feature of the PostgreSQL server, and PostgreSQL docs stat
   url = "https://www.postgresql.org/docs/current/tutorial-arch.html"
   title = "PostgreSQL Documentation: Architectural Fundamentals"
   quote = "In database jargon, PostgreSQL uses a client/server model."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "status"
+value = "inactive"
+confidence = "high"
+method = "repo"
+checked = "2026-11-03"
+notes = "The release management team raised unresolved design issues before the PostgreSQL 19 release, and the feature was reverted from the development branch on 2026-09-07. It has not shipped in any PostgreSQL release."
+
+  [[claims.sources]]
+  url = "https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=2b9e1aff4d3d933ae8ee377fef22c2af9c7797e8"
+  title = "postgresql.git commit 2b9e1af: Revert SQL Property Graph Queries (SQL/PGQ)"
+  quote = "Revert SQL Property Graph Queries (SQL/PGQ)"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.postgresql.org/message-id/CAAKRu_bEtjWYWhYxSo0o_t3DaZYRQd5PkC0abA0g9Mp4%2BovH0w%40mail.gmail.com"
+  title = "pgsql-hackers: Re: PGQ catalog representation and pg_dump support"
+  quote = "The RMT has been spending time looking at the current state of PGQ"
   verified = "matched"
   checked = "2026-11-03"

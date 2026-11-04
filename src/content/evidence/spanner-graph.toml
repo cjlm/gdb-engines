@@ -17,14 +17,14 @@ notes = "Client libraries and the RPC API run over gRPC; a REST API is also offe
   title = "Spanner Graph queries overview"
   quote = "You can use the Google Cloud console, Google Cloud CLI, client libraries, the REST API, or the RPC API to run a Spanner Graph query."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://cloud.google.com/spanner/docs/api-libraries-overview"
   title = "Overview of APIs, client libraries, and ORM drivers | Spanner | Google Cloud Documentation"
   quote = "The Spanner client libraries are available in multiple languages and are built on gRPC."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "No LICENSE file or source repository exists; a Wikipedia comparison tab
   title = "Graph database - Wikipedia"
   quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Google's own launch blog post is dated August 1, 2024, matching the cur
   title = "Announcing Spanner Graph | Google Cloud Blog"
   quote = "Today, we are thrilled to announce Spanner Graph, a groundbreaking offering that unites purpose-built graph database capabilities with Spanner, our always-on, globally consistent, and virtually unlimited-scale database."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "No public source tree exists for this managed feature. A Wikipedia comp
   title = "Graph database - Wikipedia"
   quote = "Proprietary C++ A horizontally scalable, multi-model database that provides a native graph experience on top of Spanner"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

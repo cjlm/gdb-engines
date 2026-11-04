@@ -17,7 +17,7 @@ notes = "GUN's own gun.js source opens a WebSocket to each configured peer; the 
   title = "gun.js (raw source)"
   quote = "var url = peer.url.replace(/^http/, 'ws');\n\t\t\t\tvar wire = peer.wire = new opt.WebSocket(url);"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,14 +32,14 @@ notes = "Corrected from MIT. GUN is triple-licensed under the reader's choice of
   title = "amark/gun README"
   quote = "Designed with ♥ by Mark Nadal, the GUN team, and many amazing contributors.\n\nOpenly licensed under [Zlib / MIT / Apache 2.0](https://github.com/amark/gun/blob/master/LICENSE.md)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/amark/gun/master/LICENSE.md"
   title = "amark/gun LICENSE.md"
   quote = "This software is provided 'as-is', without any express or implied\nwarranty. In no event will the authors be held liable for any damages\narising from the use of this software."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Confirmed via GUN's own README history section; kept as year-only since
   title = "amark/gun README"
   quote = "[GUN](https://gun.eco) was created by [Mark Nadal](https://twitter.com/marknadal) in 2014 after he had spent 4 years trying to get his collaborative web app to scale up with traditional databases."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirmed; no change from current value."
   title = "GUN (graph database)"
   quote = "GUN (also known as Graph Universe Node, gun.js, and gunDB) is an open source, offline-first, real-time, decentralized, graph database written in JavaScript for the web browser."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

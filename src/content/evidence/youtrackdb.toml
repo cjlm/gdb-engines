@@ -17,14 +17,14 @@ notes = "Server mode exposes Gremlin Server on port 8182 (default WebSocket chan
   title = "JetBrains/youtrackdb"
   quote = "You can use both Gremlin query language for your queries and TinkerPop API out of the box."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/JetBrains/youtrackdb"
   title = "JetBrains/youtrackdb"
   quote = "To install YouTrackDB as an embedded database, add the following dependency to your Maven project:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — JetBrains/youtrackdb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,29 +54,29 @@ notes = "Corrects current value of 2024-02: that date is the GitHub repo's creat
   title = "[orientdb] Re: OrientDB is under sunset - long live YouTrackDB"
   quote = "I am glad to announce that the YouTrack team is working on a binary-compatible fork of OrientDB, YouTrackDB"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://medium.com/@youtrackdb/long-road-ahead-6d648141a190"
   title = "Long road ahead"
   quote = "Thankfully for the YouTrack project, the OrientDB project has a new chance in its bumpy life to be reborn as the YouTrackDB project."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "api"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "Matches current value; Java accounts for the overwhelming majority of the repository's code by byte count."
 
   [[claims.sources]]
-  url = "https://api.github.com/repos/JetBrains/youtrackdb/languages"
-  title = "JetBrains/youtrackdb languages (GitHub API)"
-  quote = "\"Java\":34522232,\"Python\":1003675"
+  url = "https://api.github.com/repos/JetBrains/youtrackdb"
+  title = "GitHub repository API — JetBrains/youtrackdb"
+  quote = "\"language\": \"Java\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.orientdb.relation"
@@ -90,14 +90,14 @@ checked = "2026-09-23"
   title = "YouTrackDB development - JetBrains Internship"
   quote = "The YouTrack team forked OrientDB code, but it wants to keep OrientDB's initial goals."
   verified = "unreachable"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://medium.com/@youtrackdb/long-road-ahead-6d648141a190"
   title = "Long road ahead - YouTrackDB"
   quote = "Thankfully for the YouTrack project, the OrientDB project has a new chance in its bumpy life to be reborn as the YouTrackDB project."
-  verified = "matched"
-  checked = "2026-09-23"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "Installed with CREATE EXTENSION and called as a SQL set-returning funct
   title = "pg_ladybug README"
   quote = "Cypher query support as a PostgreSQL extension."
   verified = "matched"
-  checked = "2026-09-22"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "LICENSE is the PostgreSQL License text; GitHub reports it as PostgreSQL
   title = "pg_ladybug LICENSE"
   quote = "Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and without a written agreement is hereby granted"
   verified = "matched"
-  checked = "2026-09-22"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "No tagged releases. Repository created 2026-07-25; announced alongside 
   title = "LadybugDB/pg_ladybug — GitHub API"
   quote = "\"created_at\": \"2026-07-25T03:57:45Z\""
   verified = "matched"
-  checked = "2026-09-22"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -61,7 +61,7 @@ checked = "2026-09-22"
   title = "pg_ladybug languages — GitHub API"
   quote = "\"C\": 86024"
   verified = "matched"
-  checked = "2026-09-22"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.ladybugdb.relation"
@@ -75,7 +75,7 @@ checked = "2026-09-23"
   title = "LadybugDB/pg_ladybug"
   quote = "embeds the Ladybug graph engine via its C API"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "The HTTP API is a superset of the Sesame 2.0 HTTP protocol and includes
   title = "AllegroGraph 9.0.2 HTTP Protocol"
   quote = "The protocol described here is compatible (is a superset of) with the Sesame 2.0 HTTP protocol and the W3C SPARQL protocol(SPARQL endpoint)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Franz's own end-user license agreement describes AllegroGraph as a prop
   title = "Franz Inc. Commercial End User License Agreement AllegroGraph Server Edition"
   quote = "Franz’s Allegrograph Server Edition proprietary computer software product"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,14 +47,14 @@ notes = "Franz first made AllegroGraph available at the end of 2004; confirms cu
   title = "AllegroGraph · Database of Databases"
   quote = "The first version of AllegroGraph was made available at the end of 2004 by Franz Inc.."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://en.wikipedia.org/wiki/AllegroGraph"
   title = "AllegroGraph"
   quote = "The first version of AllegroGraph was made available at the end of 2004."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Franz built AllegroGraph on top of its own Allegro Common Lisp platform
   title = "AllegroGraph"
   quote = "It also develops Allegro Common Lisp, an implementation of Common Lisp, a dialect of Lisp (programming language). The functionality of AllegroGraph is made available through Java, Python, Common Lisp and other APIs."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

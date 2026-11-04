@@ -17,7 +17,7 @@ notes = "Rya's web.rya WAR exposes ad-hoc /loadrdf and /queryrdf endpoints (plus
   title = "README.md"
   quote = "The War sets up a Web REST endpoint at `http://server/web.rya/queryrdf` that allows GET requests with queries."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — apache/rya"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,14 +47,14 @@ notes = "Confirms the current value. Rya was built starting in 2010 but was rest
   title = "Rya Incubation Status - Apache Incubator"
   quote = "2016-10-28 First Apache Incubator Release for Rya (version 3.2.10)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://cwiki.apache.org/confluence/display/INCUBATOR/RyaProposal"
   title = "RyaProposal - INCUBATOR - Apache Software Foundation"
   quote = "From its inception, the project operated with an Apache-style license, but it was open to mostly US government-related projects only."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "Confirms the current value; GitHub reports Java as the repository's pri
   title = "apache/rya (GitHub API repository object)"
   quote = "\"watchers_count\": 115,\n  \"language\": \"Java\",\n  \"has_issues\": false,"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

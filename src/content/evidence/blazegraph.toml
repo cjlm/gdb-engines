@@ -17,14 +17,14 @@ notes = "Default HTTP/SPARQL service at http://localhost:9999/blazegraph/; also 
   title = "blazegraph/database"
   quote = "Blazegraph™ DB is a ultra high-performance graph database supporting Blueprints and RDF/SPARQL APIs."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/blazegraph/database"
   title = "blazegraph/database"
   quote = "You can setup an http or https reverse proxy configuration that has authentication and forward requests to the local Blazegraph instance (typically running on localhost:9999)."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — blazegraph/database"
   quote = "\"spdx_id\": \"GPL-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "Confirms current value. Bigdata (Blazegraph's original name) was under 
   title = "Blazegraph (powered by bigdata) download | SourceForge.net"
   quote = "Related Categories Java Database Engines Servers, Java Distributed Computing Software, Java Graph Databases Registered 2007-03-21"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/blazegraph/database/wiki/About_Blazegraph"
   title = "About_Blazegraph · blazegraph/database Wiki · GitHub"
   quote = "The Blazegraph™ open source platform has been under continuous development since 2006."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "Confirms current value."
   title = "About_Blazegraph · blazegraph/database Wiki · GitHub"
   quote = "Blazegraph™ is a standards-based, high-performance, scalable, open-source graph database. Written entirely in Java, the platform supports Blueprints and RDF/ SPARQL 1.1 family of specifications, including Query, Update, Basic Federated Query, and Service Description."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -16,8 +16,8 @@ notes = "This entry now represents Ultipa Powerhouse v5, whose official product 
   url = "https://www.ultipa.com/docs/v5/graph-database"
   title = "Powerhouse (v5) - Ultipa Graph Database"
   quote = "Full-fledged API/SDKs enabling seamless application development, supporting Java, Go, Python, NodeJS, C#, and RESTful API."
-  verified = "unreachable"
-  checked = "2026-08-26"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -30,8 +30,8 @@ checked = "2026-08-26"
   url = "https://www.ultipa.com/docs/v5/graph-database"
   title = "Powerhouse (v5) - Ultipa Graph Database"
   quote = "Ultipa Powerhouse (v5), implemented in C++, introduces a novel hybrid architecture"
-  verified = "unreachable"
-  checked = "2026-08-26"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -45,8 +45,8 @@ notes = "Confirms the current value; no source repository or open licence exists
   url = "http://web.archive.org/web/20260421232305/https://www.ultipa.com/docs/v5.3/operations-and-maintenance/license"
   title = "License - Operations & Maintenance"
   quote = "The use of Ultipa requires licenses. Ultipa Powerhouse v5 offers two licenses:"
-  verified = "unreachable"
-  checked = "2026-08-26"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

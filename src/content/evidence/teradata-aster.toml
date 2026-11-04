@@ -17,7 +17,7 @@ notes = "Closed-source commercial product; the Wikipedia comparison table lists 
   title = "Graph database - Wikipedia"
   quote = "Proprietary Java , SQL , Python , C++ , R Massive parallel processing (MPP) database incorporating patented engines supporting native SQL, MapReduce, and graph data storage and manipulation"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "The SQL-GR graph engine was announced with Aster Discovery Platform 6 o
   title = "Teradata Aster Discovery Platform Liberates Data Scientists Around the World"
   quote = "The innovations in the Aster Discovery Platform include Teradata Aster SQL-GR™, a graph engine"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

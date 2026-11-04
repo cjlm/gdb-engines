@@ -17,14 +17,14 @@ notes = "Fuseki exposes the SPARQL 1.1 Query/Update and Graph Store protocols ov
   title = "Apache Jena - Apache Jena Fuseki"
   quote = "Fuseki provides the SPARQL 1.1 protocols for query and update as well as the SPARQL Graph Store protocol."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://jena.apache.org/documentation/fuseki2/fuseki-server-protocol.html"
   title = "Apache Jena - Fuseki HTTP Administration Protocol"
   quote = "This page describes the HTTP Protocol used to control an Fuseki server via its administrative interface."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Fuseki's first preview release predates the current value's 2011-12 dat
   title = "Apache Jena"
   quote = "The first SPARQL Server called Fuseki was mentioned on 12 October 2010 (and with a reference on 9 October 2010 on jena-devel@lists.sourceforge.net) as a preview release for a SPARQL 1.1 server."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Fuseki ships as a module of the Java-based Jena framework; confirms cur
   title = "[ANNOUNCE] Apache Jena 2.11.0 Released"
   quote = "Apache Jena is Java-based framework for building Semantic Web and Linked Data applications with RDF and SPARQL."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — apache/jena"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.joseki.relation"
@@ -84,7 +84,7 @@ notes = "Joseki was Jena's earlier RDF and SPARQL server (first beta 2002)."
   title = "Joseki: The Jena RDF Server - SourceForge"
   quote = "Joseki is replaced by Apache Jena Fuseki."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

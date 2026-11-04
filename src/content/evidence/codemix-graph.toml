@@ -17,7 +17,7 @@ notes = "Confirmed by both the vendor page's license section and the GitHub READ
   title = "@codemix/graph"
   quote = "This package is licensed under the MIT license."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Package's first npm publish (0.0.2) and repo creation both date to Apri
   title = "@codemix/graph npm registry metadata"
   quote = "\"time\":{\"created\":\"2026-04-08T19:37:38.563Z\",\"modified\":\"2026-04-10T16:53:53.858Z\",\"0.0.2\":\"2026-04-08T19:37:38.909Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "README describes the engine as TypeScript-first; matches current value.
   title = "codemix/graph"
   quote = "A fully type-safe, TypeScript-first in-memory property graph database with a Cypher-like query language"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

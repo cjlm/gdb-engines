@@ -17,14 +17,14 @@ notes = "DozerDB is Neo4j Community compiled from source with the plugin dropped
   title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
   quote = "The packaged distribution is Neo4j Community compiled from source with the DozerDB plugin already in lib/ and the classpath configured, with nothing extra to wire up."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://dozerdb.org/"
   title = "DozerDB - Free, Open Graph Database. Enterprise Features for Neo4j Community Edition"
   quote = "Open http://localhost:7474 and log in with neo4j/neo4j, and you'll be prompted to set a new password."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — DozerDB/dozerdb-plugin"
   quote = "\"spdx_id\": \"GPL-3.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,22 +54,22 @@ notes = "No tagged releases are published through the GitHub API, so this rests 
   title = "GitHub repository API — DozerDB/dozerdb-plugin"
   quote = "\"created_at\":\"2023-07-29T01:06:42Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
 value = "Java"
 confidence = "high"
 method = "repo"
-checked = "2026-08-02"
+checked = "2026-11-03"
 notes = "It is a Neo4j plugin built as a Java uber-jar; matches current value."
 
   [[claims.sources]]
-  url = "https://github.com/DozerDB/dozerdb-plugin"
-  title = "DozerDB/dozerdb-plugin"
-  quote = "Please ensure you use java 17 or above when working on the plugin."
+  url = "https://raw.githubusercontent.com/DozerDB/dozerdb-plugin/5a64eac185947211557243c0bbad8001b69ef360/pom.xml"
+  title = "dozerdb-plugin pom.xml"
+  quote = "<java.version>21</java.version>"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.neo4j.relation"
@@ -84,7 +84,7 @@ notes = "A plugin distributed with Neo4j Community Edition rather than a fork of
   title = "DozerDB"
   quote = "DozerDB is a free, GPL-licensed plugin that extends Neo4j® Community Edition with production-grade capabilities for demanding deployments."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

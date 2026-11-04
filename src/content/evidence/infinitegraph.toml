@@ -25,7 +25,7 @@ notes = "Confirms current value Proprietary; matches Objectivity's paid licensin
   title = "InfiniteGraph"
   quote = "Source: Proprietary, with open-source extensions, integrated components, and third-party connectors."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -40,7 +40,7 @@ notes = "Confirms current value 2010-05; Objectivity's own press release, dated 
   title = "Objectivity, Inc. Launches InfiniteGraph Business Unit"
   quote = "This new graph database, of which a beta version was released today, will provide the ultimate combination of simplicity and distributed scalability and empower organizations to rapidly find, present, and leverage all of the information and relationships in their data."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -55,7 +55,7 @@ notes = "Language is genuinely split: an academic survey (Kolomicenko, 'Analysis
   title = "InfiniteGraph"
   quote = "InfiniteGraph is a distributed graph database implemented in Java and C++ and is from a class of NOSQL"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
@@ -70,7 +70,7 @@ notes = "Vendor Objectivity Inc ceased trading in late 2023 and the live product
   title = "InfiniteGraph Product Page | Objectivity"
   quote = "Advanced Graph Database and Analytics for Enterprises and Government"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "status"
@@ -85,7 +85,7 @@ notes = "InfiniteGraph’s vendor Objectivity, Inc. ceased operating in late 202
   title = "Objectivity/DB — Wikipedia"
   quote = "Objectivity, Inc. ceased in late 2023."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.objectivity-db.relation"
@@ -99,4 +99,4 @@ checked = "2026-09-23"
   title = "Marrying objects with graphs: Interview with Darren Wood"
   quote = "It took the high performance distributed data engine from Objectivity/DB and married it to a graph management and analysis platform"
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"

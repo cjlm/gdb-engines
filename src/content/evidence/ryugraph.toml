@@ -17,7 +17,7 @@ notes = "Confirms current value. RyuGraph is a fork of Kuzu (also MIT) created b
   title = "License"
   quote = "MIT License\n\nCopyright (c) 2022-2025 Kùzu Inc.\nCopyright (c) 2025 Predictable Labs, Inc."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -32,14 +32,15 @@ notes = "Confirms current value. RyuGraph's repo was created the same week Kuzu'
   title = "ryugraph"
   quote = "\"created_at\": \"2025-10-13T20:27:49Z\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://blog.ryugraph.io/posts/introducing-predictable-labs-and-ryugraph"
   title = "A New Chapter: Introducing Predictable Labs, Inc. and RyuGraph"
   quote = "the Kuzu Github repository was archived on October 10, 2025. This marked the end of the Kuzu team's work on the project as they moved on to new pursuits."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "matched-archive"
+  archive_url = "http://web.archive.org/web/20260513125043/https://blog.ryugraph.io/posts/introducing-predictable-labs-and-ryugraph"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +55,7 @@ notes = "Confirms current value. Inherited from the Kuzu codebase it forked; C++
   title = "languages"
   quote = "\"C++\": 8289851,\n  \"Cypher\": 2194025,\n  \"Python\": 574771"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.kuzu.relation"
@@ -68,7 +69,7 @@ checked = "2026-09-23"
   title = "predictable-labs/ryugraph"
   quote = "RyuGraph is a fork of Kuzu, which was originally developed by Kuzu Inc."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

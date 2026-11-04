@@ -17,14 +17,14 @@ notes = "Aggregator exposes a GraphQueryAggregatorService via Apache Thrift; the
   title = "rpc/thrift/succinct_graph.thrift"
   quote = "Entry point to prepare a cluster.  Performs the following in parallel:"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/amplab/zipg/vldb15-linkbench/client/py/preamble.py"
   title = "client/py/preamble.py"
   quote = "from thrift import Thrift\nfrom thrift.transport import TSocket\nfrom thrift.transport import TTransport\nfrom thrift.protocol import TBinaryProtocol"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -39,7 +39,7 @@ notes = "Matches current value; first public documentation is the SIGMOD 2017 pa
   title = "ZipG: A Memory-efficient Graph Store for Interactive Queries"
   quote = "SIGMOD ’17, May 14–19, 2017, Chicago, IL, USA."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Corrects current value of Java: the core graph store (SuccinctGraph, Gr
   title = "ZipG: A Memory-efficient Graph Store for Interactive Queries"
   quote = "We have implemented ZipG on top of Succinct using roughly 4000 lines of C++ code, as well as a package running atop Apache Spark in Scala."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "github_url"
@@ -69,7 +69,7 @@ notes = "pdclab/zipg returns 404, as does anuragkh/zipg (the account its own REA
   title = "GitHub - amplab/zipg: A Memory-efficient Graph Store for Interactive Queries"
   quote = "ZipG is a distributed graph store that serves queries on compressed graphs."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

@@ -17,7 +17,7 @@ notes = "Disagrees with draft: dropped HTTP/REST — the only documented client 
   title = "Cray® Graph Engine User Guide (3.1UP00) S-3014"
   quote = "The CGE graphical user interface, which acts as a SPARQL 1.1 end point."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "Closed-source Cray/HPE hardware-bundled product, confirmed by contempor
   title = "Cray cozies up to enterprises with analytics supercomputer"
   quote = "There's also a proprietary Cray Graph Engine built on top of a native implementation of the Simple Linux Utility for Resource Management (SLURM) job-scheduler."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "Corrected from current value of 2016: Cray's own user guide release his
   title = "Cray Graph Engine User Guide (2.5.UP00) S-3014"
   quote = "Publication Number Date CGE Release S-3010 March 2015 Beta release S-3010 March 2016 1.0.UP00"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "Matches current value; the engine's back end was a C++ (Coarray C++) ap
   title = "Porting the Urika-GD Graph Analytic Database to the XC30/40 Platform"
   quote = "The back end query engine of CGE is written as a distributed application using Coarray C++ as the underlying distribution mechanism."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

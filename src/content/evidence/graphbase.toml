@@ -9,15 +9,15 @@ field = "released"
 value = "2013"
 confidence = "medium"
 method = "web"
-checked = "2026-08-06"
+checked = "2026-11-03"
 notes = "No first-party launch announcement survives. A September 2013 database survey already lists GraphBase as a distributed, priced FactNexus graph database, so the catalogue uses 2013 as the earliest defensible public-availability year rather than claiming a more precise launch date."
 
   [[claims.sources]]
   url = "https://arxiv.org/pdf/1309.2675"
   title = "A Brief Study of Open Source Graph Databases"
-  quote = "GraphBase FactNexus Proprietary x86 Java Bin Free,$15/mo,$20,000"
+  quote = "graph databases (Neo4j, OrientDB, InfoGrid, Titan, FlockDB, ArangoDB,\nInfiniteGraph, AllegroGraph, DEX, GraphBase, and HyperGraphDB)"
   verified = "matched"
-  checked = "2026-08-06"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "protocols"
@@ -32,7 +32,7 @@ notes = "GraphBase is the data store behind FactNexus's EKG platform; EKG's REST
   title = "UI - Graphs Control Panel"
   quote = "The REST API is available to Business and Enterprise plans."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -47,11 +47,11 @@ notes = "Vendor's own Terms of Service asserts full IP ownership with no open-so
   title = "Terms of Service"
   quote = "The Services, software, models, workflows, and data sets we create are our intellectual property."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://dbdb.io/db/graphbase"
   title = "GraphBase · Database of Databases"
   quote = "Proprietary"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"

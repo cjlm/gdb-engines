@@ -9,7 +9,7 @@ field = "protocols"
 value = ["Bolt"]
 confidence = "high"
 method = "repo"
-checked = "2026-07-31"
+checked = "2026-11-03"
 notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server binary is a sibling crate that serves a loaded graph over the Neo4j Bolt v5 wire protocol on port 7687."
 
   [[claims.sources]]
@@ -17,14 +17,14 @@ notes = "Core engine is an embedded Rust/Python library; the kglite-bolt-server 
   title = "kglite documentation"
   quote = "Bolt and MCP protocol servers are standalone Rust binaries that wrap the same engine."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
-  url = "https://github.com/kkollsga/kglite"
+  url = "https://raw.githubusercontent.com/kkollsga/kglite/373d51e7d2d16047dbfcd75c648aa5ea55c39341/README.md"
   title = "kkollsga/kglite"
-  quote = "The interactive shell, Bolt-server, and MCP-server binaries are sibling Rust crates wrapping the same engine."
+  quote = "The shell, Bolt-server, and\nMCP-server binaries are sibling crates wrapping it."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — kkollsga/kglite"
   quote = "\"spdx_id\": \"MIT\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -54,7 +54,7 @@ notes = "Corrects current value 2025-03: PyPI's own package metadata shows the f
   title = "kglite 0.11.0 JSON API - PyPI"
   quote = "\"filename\":\"kglite-0.11.0-cp310-abi3-macosx_10_12_x86_64.whl\",\"has_sig\":false,\"md5_digest\":\"9aae5f6708c544a9cb4d98a82e6a3227\",\"packagetype\":\"bdist_wheel\",\"python_version\":\"cp310\",\"requires_python\":\">=3.10\",\"size\":12355629,\"upload_time\":\"2026-06-17T19:46:20\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -69,7 +69,7 @@ notes = "The published wheel declares a Rust implementation alongside its Python
   title = "PyPI JSON API — kglite"
   quote = "\"Programming Language :: Rust\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

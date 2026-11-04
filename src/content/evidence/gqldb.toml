@@ -15,8 +15,8 @@ checked = "2026-08-26"
   url = "https://www.ultipa.com/products/gqldb"
   title = "GQLDB - AI-Native Graph Database with ISO GQL Standard - Ultipa"
   quote = "Standalone server mode with both gRPC and REST APIs. Connect from any language with high-performance remote access."
-  verified = "unreachable"
-  checked = "2026-08-26"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -30,8 +30,8 @@ notes = "The vendor offers a restricted free Community Edition for personal and 
   url = "https://www.ultipa.com/products/gqldb-community"
   title = "GQLDB Community Edition - Free ISO GQL Graph Database - Ultipa"
   quote = "Free to use for personal and non-commercial purposes. No license key required."
-  verified = "unreachable"
-  checked = "2026-08-26"
+  verified = "matched"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
@@ -45,5 +45,20 @@ notes = "Ultipa's GQLDB product page lists an Embedded deployment that runs dire
   url = "https://www.ultipa.com/products/gqldb"
   title = "Ultipa GQLDB"
   quote = "Run directly in your application process with zero external dependencies."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "lineage.ultipa.relation"
+value = "successor"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Ultipa's documentation index presents GQLDB as Ultipa Graph v6, alongside the separate Ultipa Graph v5 docs."
+
+  [[claims.sources]]
+  url = "https://www.ultipa.com/docs"
+  title = "Ultipa Documentation"
+  quote = "GQLDB (Ultipa Graph v6)"
   verified = "matched"
   checked = "2026-11-03"

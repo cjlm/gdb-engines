@@ -17,14 +17,14 @@ notes = "Document/REST API and GraphQL are both served over HTTP on the default 
   title = "README.md · terminusdb/terminusdb"
   quote = "Use REST API as a proper graph query language with deep link discovery, path queries and linked data"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://github.com/terminusdb/terminusdb/blob/main/README.md"
   title = "README.md · terminusdb/terminusdb"
   quote = "Use GraphQL as a proper graph query language with deep link discovery and path queries"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -38,8 +38,8 @@ notes = "TerminusDB's own launch announcement was published October 1, 2019, ref
   url = "https://medium.com/terminusdb/today-we-release-terminusdb-the-database-for-data-people-36cfd3f81d3f"
   title = "TerminusDB — the database for data people."
   quote = "The development of Terminus has been a nine-year labour of love, devotion, frustration and pain. You can imagine how delighted we are to release TerminusDB to the world."
-  verified = "matched"
-  checked = "2026-08-02"
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "TerminusDB's own internals documentation states the query engine is wri
   title = "TerminusDB Internals"
   quote = "TerminusDB is built around a datalog engine written in Prolog with a very fast and memory-efficient immutable graph storage layer optimised for version control."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -69,37 +69,44 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — terminusdb/terminusdb"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "url"
-value = "https://terminusdb.org/"
+value = "https://terminusdb.com/"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
-notes = "terminusdb.com is unreachable (confirmed via direct fetch: connection failure/522, no HTTP response). terminusdb.org is the current, actively maintained project site run by DFRNT, with docs, blog, and release notes."
+checked = "2026-11-03"
+notes = "terminusdb.org now redirects to terminusdb.com, which serves the project site again."
 
   [[claims.sources]]
-  url = "https://terminusdb.org/"
-  title = "TerminusDB, Document Graph Database with Git-for-data"
-  quote = "TerminusDB is the Open Source Knowledge Graph Database with Git-like Version Control combining JSON and RDF with high precision temporal reasoning."
+  url = "https://terminusdb.com/"
+  title = "TerminusDB"
+  quote = "TerminusDB is the open-source knowledge graph database with git-like version control for graphs and vectors."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "vendor"
-value = "DFRNT"
+value = "Gettier"
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-08-02"
-notes = "Confirms the catalogue's existing DFRNT attribution is current. DFRNT took over stewardship of the open-source TerminusDB project in 2025."
+checked = "2026-11-03"
+notes = "DFRNT, which took over TerminusDB in 2025, has renamed itself Gettier."
 
   [[claims.sources]]
-  url = "https://terminusdb.org/docs/what-is-dfrnt/"
-  title = "What is DFRNT Hub?"
-  quote = "DFRNT is the company that provides commercial hosting, enterprise support, and a comprehensive user interface for TerminusDB."
+  url = "https://terminusdb.com/docs/cloud/"
+  title = "TerminusDB Cloud"
+  quote = "Gettier, the team maintaining TerminusDB since 2025, hosts TerminusDB data products as a managed service"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://dfrnt.com/"
+  title = "DFRNT"
+  quote = "DFRNT is now Gettier."
+  verified = "unreachable"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"

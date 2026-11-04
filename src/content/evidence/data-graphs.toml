@@ -17,7 +17,7 @@ notes = "REST API served from api.datagraphs.io; supports JSON-LD content negoti
   title = "Data Graphs API docs"
   quote = "The Data Graphs API is a REST API that allows you to interact with your data, letting you query, retrieve, filter, facet, and sort Concepts from your Datasets."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -32,7 +32,7 @@ notes = "No open-source license found; vendor site describes a proprietary engin
   title = "Graph Database - Data Graphs"
   quote = "Proprietary query algorithm Graph indexes encoded in hyper-dense bitmaps. Query results generated using bitmap intersection, not graph-walking."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -47,7 +47,7 @@ notes = "Vendor's own launch announcement confirms the current value."
   title = "Launching Data Graphs - Our new Knowledge Graph product"
   quote = "We are very proud to announce the launch of our latest SaaS product: Data Graphs!"
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -62,4 +62,4 @@ notes = "Vendor site states the engine is built in Rust; matches current value."
   title = "Graph Database - Data Graphs"
   quote = "Built in Rust Ultra-low memory footprint. Compiles natively for any target: cloud, on-prem, mobile, edge devices."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"

@@ -17,21 +17,21 @@ notes = "Both the DSE driver's execute_graph() and, in the current DSE 6.9 relea
   title = "DataStax Enterprise Python Driver - DSE Graph Queries"
   quote = "The DSE driver executes graph queries over the Cassandra native protocol."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.datastax.com/en/developer/java-driver-dse/1.4/manual/native_protocol/index.html"
   title = "Java Driver for DataStax Enterprise - Native protocol"
   quote = "The native protocol defines the format of the binary messages exchanged between the driver and DSE over TCP."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
   [[claims.sources]]
   url = "https://docs.datastax.com/en/dse/6.9/managing/tools/dse/gremlin-console.html"
   title = "dse gremlin-console | DataStax Enterprise | DataStax Docs"
   quote = "Port number of the DSE database port, default is 9042."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "license"
@@ -46,7 +46,7 @@ notes = "DataStax Enterprise is distributed under a commercial subscription agre
   title = "Enterprise Agreement"
   quote = "The Software is licensed, not sold. As between the parties, all intellectual property rights in the Software shall remain with DataStax or its licensors."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "released"
@@ -61,7 +61,7 @@ notes = "Corrected from the catalogue's year-only '2016' to month precision: Dat
   title = "DataStax adds graph databases to enterprise Cassandra product set | TechCrunch"
   quote = "it was clear it wanted to add graph database functionality to its DataStax Enterprise product, and today it achieved that goal when it announced the release of DataStax Enterprise Graph."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "implementation_language"
@@ -76,7 +76,7 @@ notes = "DataStax Enterprise nodes run as Java virtual machines on top of Apache
   title = "Architecture in brief | DataStax Enterprise | DataStax Docs"
   quote = "Nodes store your data. They are the basic database infrastructure component. Technically, they are Java virtual machines running an instance of the DSE software."
   verified = "matched"
-  checked = "2026-08-02"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "lineage.titan.relation"
@@ -90,7 +90,7 @@ checked = "2026-09-23"
   title = "DataStax adds graph databases to enterprise Cassandra product set | TechCrunch"
   quote = "The new graph database is built on top of the open source Titan graph database, which was originally developed by Aurelius."
   verified = "matched"
-  checked = "2026-09-23"
+  checked = "2026-11-03"
 
 [[claims]]
 field = "embeddable"
@@ -104,5 +104,34 @@ notes = "DSE docs describe a self-managed distributed database cluster that clie
   url = "https://docs.datastax.com/en/dse/6.9/architecture/database-architecture/architecture-introduction.html"
   title = "DataStax Enterprise Architecture"
   quote = "Your client applications can send read and write requests to any node in the cluster."
+  verified = "matched"
+  checked = "2026-11-03"
+
+[[claims]]
+field = "status"
+value = "deprecated"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "IBM withdrew DataStax Enterprise 6.x from marketing on 2025-10-31; it remains supported until 2027-12-31, with extended support to 2031. IBM's DataStax product page now lists Astra DB, Hyper-Converged Database and Langflow, not DSE. DSE Graph is still documented for DSE 6.9, so the product is wound down rather than gone."
+
+  [[claims.sources]]
+  url = "https://www.ibm.com/support/pages/ibm-datastax-enterprise6x"
+  title = "IBM DataStax Enterprise 6.x — Product lifecycle"
+  quote = "Withdrawn from Market 31-Oct-2025"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://www.ibm.com/support/pages/ibm-datastax-enterprise6x"
+  title = "IBM DataStax Enterprise 6.x — Product lifecycle"
+  quote = "Transition to Extended/Sustained or End of Support 31-Dec-2027"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://community.ibm.com/community/user/blogs/datastax-pm-team-datastax-pm-team/2025/10/02/ibm-datastax"
+  title = "IBM DataStax — IBM Community"
+  quote = "DataStax Enterprise will be a component of the IBM watsonx.data Premium offering."
   verified = "matched"
   checked = "2026-11-03"
