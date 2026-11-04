@@ -17,7 +17,7 @@ notes = "All SDKs (Rust, TypeScript, Go, Python) and curl alike send queries as 
   title = "HelixDB HTTP API"
   quote = "The HelixDB HTTP API accepts operation-tree queries at POST /v2/query"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "released"
@@ -32,14 +32,14 @@ notes = "Matches current value. The founders' Show HN post announcing the first 
   title = "Show HN: HelixDB, Open-Source Hybrid Graph-Vector Database | Hacker News"
   quote = "We're super excited to release the first version of our Graph Database!"
   verified = "unreachable"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
   [[claims.sources]]
   url = "https://hn.algolia.com/api/v1/items/43155338"
   title = "Item 43155338 - Hacker News API (Algolia)"
   quote = "\"created_at\":\"2025-02-24T02:44:03.000Z\",\"created_at_i\":1740365043,\"id\":43155338,\"options\":[],\"parent_id\":null,\"points\":4,\"story_id\":43155338,\"text\":\"Hey HN!<p>A friend and I have been working on HelixDB, a graph-vector database, part-time at university."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "implementation_language"
@@ -54,7 +54,7 @@ notes = "Matches current value; the founders state directly that HelixDB is writ
   title = "HelixDB – Open-source vector-graph database for AI applications (Rust) | Hacker News"
   quote = "It’s written in Rust and our initial focus is on supporting RAG."
   verified = "unreachable"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "license"
@@ -69,7 +69,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — HelixDB/helix-db"
   quote = "\"spdx_id\": \"Apache-2.0\""
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
 
 [[claims]]
 field = "embeddable"
@@ -84,4 +84,26 @@ notes = "HelixDB documents an embedded mode in which the SDK opens the database 
   title = "Embedded database - HelixDB docs"
   quote = "Embedded clients execute operation-tree requests without HTTP. The process opens a writer or read-only handle against memory, disk, or S3-compatible object storage."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-04"
+
+[[claims]]
+field = "query_languages"
+value = ["HelixQL", "openCypher"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-03"
+notes = "Cypher is a partial profile of openCypher served at POST /v2/cypher; MERGE, variable-length paths and UNION are rejected, and Bolt is not supported. HelixQL is deprecated in HelixDB v2 in favour of a Rust DSL and stays listed for existing projects."
+
+  [[claims.sources]]
+  url = "https://docs.helix-db.com/database/helix-db/query-guides/cypher"
+  title = "Query HelixDB with Cypher"
+  quote = "Cypher support is a profile of openCypher, not full compatibility."
+  verified = "matched"
+  checked = "2026-11-04"
+
+  [[claims.sources]]
+  url = "https://github.com/HelixDB/hql-v1-docs/blob/main/README.md"
+  title = "HelixQL (Legacy) Docs"
+  quote = "HelixQL is deprecated in HelixDB v2. Queries are now written with the Rust DSL."
+  verified = "matched"
+  checked = "2026-11-04"

@@ -2177,6 +2177,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:helixdb",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:hgraphdb",
             "target": "language:Gremlin",
             "relationship": "supports"
