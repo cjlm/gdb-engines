@@ -403,7 +403,7 @@
           {
             "id": "db:faunadb",
             "label": "FaunaDB",
-            "image": "https://gdb-engines.com/logos/faunadb.png",
+            "image": "https://gdb-engines.com/logos/faunadb.svg",
             "kind": "Database",
             "type": "Multiple",
             "category": "Emerging",
@@ -691,7 +691,7 @@
           {
             "id": "db:kowari",
             "label": "Kowari",
-            "image": "https://gdb-engines.com/logos/kowari.png",
+            "image": "https://gdb-engines.com/logos/mulgara.png",
             "kind": "Database",
             "type": "RDF",
             "category": "Emerging",
@@ -781,7 +781,7 @@
           {
             "id": "db:memgql",
             "label": "MemGQL",
-            "image": "https://gdb-engines.com/logos/memgql.png",
+            "image": "https://gdb-engines.com/logos/memgraph.png",
             "kind": "Database",
             "type": "Multiple",
             "category": "Emerging",

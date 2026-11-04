@@ -21,6 +21,7 @@ const databases = await Promise.all(
     return {
       slug: String(data.slug),
       name: String(data.name),
+      logo: data.icon ? String(data.icon) : `${data.slug}.png`,
       type: String(data.type),
       kind: String(data.kind ?? "database"),
       category: String(data.category),
@@ -104,7 +105,7 @@ function databaseNode(database) {
   return {
     id: `db:${database.slug}`,
     label: database.name,
-    image: `${SITE_ORIGIN}/logos/${encodeURIComponent(database.slug)}.png`,
+    image: `${SITE_ORIGIN}/logos/${encodeURIComponent(database.logo)}`,
   };
 }
 
