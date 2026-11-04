@@ -26,8 +26,13 @@ pnpm-debug.log*
 .idea/
 .cache
 public/logos/*
+!public/logos/bytegraph.png
+!public/logos/cray-graph-engine.png
+!public/logos/data-graphs.png
 !public/logos/faunadb.svg
 !public/logos/objectivity-db.png
+!public/logos/sparkledb.png
+!public/logos/teradata-aster.png
 
 # Local dev gallery for OG image inspection
 public/og-gallery.html

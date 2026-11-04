@@ -25,3 +25,14 @@ test("committed graph documents match the catalogue and name themselves", async 
     assert.deepEqual(document.config.current?.state.dataset, { kind: "file", name });
   }
 });
+
+test("graph nodes use a database's catalogue icon before its slug", async () => {
+  const committed = await readFile("public/graphs/databases-languages.gfd", "utf8");
+  const nodes = JSON.parse(committed).datasets[0].graph.nodes;
+  const logoOf = (slug) => nodes.find((node) => node.id === `db:${slug}`).image;
+
+  assert.match(logoOf("faunadb"), /\/logos\/faunadb\.svg$/);
+  assert.match(logoOf("memgql"), /\/logos\/memgraph\.png$/);
+  assert.match(logoOf("kowari"), /\/logos\/mulgara\.png$/);
+  assert.match(logoOf("neo4j"), /\/logos\/neo4j\.png$/);
+});
