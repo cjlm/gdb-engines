@@ -251,16 +251,7 @@ export function buildLinkMaps(ranking: RankingFile): {
   return { typeSlug, kindSlug, licenseTierSlug, queryLanguageSlug, implementationLanguageSlug, overallRank, overallDelta1m };
 }
 
-/**
- * Canonical query-language labels, so variant spellings resolve to the same ranking board and badge.
- * `openCypher` → `Cypher`; `ISO GQL` → `GQL` (the ISO/IEC 39075 standard name). This is the single
- * normalization point for query-language labels; keep it in sync with the rankings collector.
- */
-const QUERY_LANGUAGE_ALIASES: Record<string, string> = {
-  openCypher: 'Cypher',
-  'ISO GQL': 'GQL',
-};
-export const canonicalQueryLanguage = (s: string): string => QUERY_LANGUAGE_ALIASES[s] ?? s;
+export { canonicalQueryLanguage } from './query-languages.mjs';
 
 export interface EngineRanking { board: Board; rank: number; }
 

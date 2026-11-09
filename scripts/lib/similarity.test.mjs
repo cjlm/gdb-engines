@@ -106,3 +106,13 @@ test('a single-word engine name in a description does not make two engines read 
   const pair = scorePairs(databases).find((p) => p.source === 'fork-a' && p.target === 'fork-b');
   assert.equal(pair.description, 0);
 });
+
+test('Cypher and openCypher count as the same query language', () => {
+  const databases = [
+    ...background,
+    engine('opencypher', { queryLanguages: ['openCypher'] }),
+    engine('cypher', { queryLanguages: ['Cypher'] }),
+    engine('same', { queryLanguages: ['openCypher'] }),
+  ];
+  assert.equal(score(databases, 'opencypher', 'cypher'), score(databases, 'opencypher', 'same'));
+});

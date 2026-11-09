@@ -17,6 +17,8 @@
  * catalogue descriptions read, and only then by slug.
  */
 
+import { canonicalQueryLanguage } from '../../src/lib/query-languages.mjs';
+
 const FIELDS = ['type', 'kind', 'embeddable', 'implementation', 'query', 'protocol'];
 
 /** The tokens an engine contributes per field, or null for a field it doesn't record. */
@@ -26,7 +28,9 @@ export function fieldTokens(database) {
     kind: [database.kind],
     embeddable: typeof database.embeddable === 'boolean' ? [String(database.embeddable)] : null,
     implementation: database.implementationLanguage ? [database.implementationLanguage] : null,
-    query: database.queryLanguages.length > 0 ? database.queryLanguages : null,
+    query: database.queryLanguages.length > 0
+      ? database.queryLanguages.map(canonicalQueryLanguage)
+      : null,
     protocol: database.protocols.length > 0 ? database.protocols : null,
   };
   const out = {};
