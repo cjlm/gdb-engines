@@ -17,7 +17,7 @@ notes = "SPDX identifier as classified by GitHub from the repository licence fil
   title = "GitHub licence API — hydra-db/hydradb"
   quote = "\"spdx_id\": \"AGPL-3.0\""
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "released"
@@ -32,7 +32,7 @@ notes = "Repository creation date; the earliest tag is v0.1.0."
   title = "hydra-db/hydradb (GitHub API repository metadata)"
   quote = "\"created_at\": \"2026-07-03T05:34:15Z\""
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "implementation_language"
@@ -47,7 +47,7 @@ notes = "The README describes it as a distributed graph database written in Rust
   title = "README.md"
   quote = "object-store-native distributed graph database written in Rust"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "embeddable"
@@ -62,11 +62,26 @@ notes = "HydraDB runs as query/indexer nodes over object storage, reached via Bo
   title = "HydraDB README"
   quote = "It combines durable graph storage on SlateDB with snapshot-consistent OpenCypher queries, GraphBLAS traversal, Neo4j-compatible Bolt connectivity, and an HTTPS query API."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/hydra-db/hydradb/main/README.md"
   title = "HydraDB README"
   quote = "The following starts a single plaintext development node backed by a local directory."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-09"
+notes = "Neo4j drivers over Bolt 5.x, or a typed JSON and streaming NDJSON HTTP API."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/hydra-db/hydradb/main/README.md"
+  title = "README.md"
+  quote = "Applications can use Neo4j drivers over Bolt 5.x or the typed JSON and streaming NDJSON HTTP API."
+  verified = "matched"
+  checked = "2026-11-09"

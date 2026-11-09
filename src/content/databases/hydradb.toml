@@ -10,6 +10,7 @@ type = "Property Graph"
 kind = "database"
 embeddable = false
 query_languages = ["openCypher"]
+protocols = ["Bolt", "HTTP/REST"]
 released = "2026-07"
 category = "Emerging"
 gdotv_support = false

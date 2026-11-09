@@ -17,14 +17,14 @@ notes = "gRPC, with a co-located Arrow Flight endpoint, is the sole client proto
   title = "Launch Notes — Rocketgraph 2.6.1 documentation"
   quote = "Removed the REST API from the Python library, server, and documentation."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
   [[claims.sources]]
   url = "https://docs.rocketgraph.com/launch_notes/index.html"
   title = "Launch Notes — Rocketgraph 2.6.1 documentation"
   quote = "Improved stability and performance of connection between Python client and xgtd server by switching to using gRPC instead of REST as the default communication protocol."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "license"
@@ -39,7 +39,7 @@ notes = "Confirms current value; xGT is sold as commercial software (free trial,
   title = "Rocketgraphai/pyxgt"
   quote = "This process requires subscribing to the Rocketgraph xGT product"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "released"
@@ -54,14 +54,14 @@ notes = "Corrected from current value 2018-12: press coverage places the public 
   title = "Startup Trovares Brings HPC to Graph Analytics"
   quote = "Along with the launch of its xGT graph analytics tool, Seattle-based Trovares announced the close of a Series A funding round."
   verified = "unreachable"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
   [[claims.sources]]
   url = "https://siliconangle.com/2019/04/17/trovares-reels-2m-high-performance-graph-analytics-engine/"
   title = "Trovares reels in $2M for high-performance graph analytics engine - SiliconANGLE"
   quote = "a property graph analytics company started by the co-founder and former chief executive of Cray Inc., has raised $2 million to launch a new graph analytics engine"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
 
 [[claims]]
 field = "embeddable"
@@ -76,4 +76,26 @@ notes = "Rocketgraph xGT is a server; the Python package is a client that talks 
   title = "pyxgt README"
   quote = "Two pieces: a Rocketgraph server, and the Python client you talk to it with."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-09"
+
+[[claims]]
+field = "implementation_language"
+value = "C++"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-09"
+notes = "The xgtd server is a C++ daemon; the Python package is only the client."
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/getting_started/server.html"
+  title = "Server — Rocketgraph documentation"
+  quote = "The xGT server, written in C++ for scalability and performance, is typically run on a large-memory platform."
+  verified = "matched"
+  checked = "2026-11-09"
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/sysadmin_guide/on-premises.html"
+  title = "Installing xGT — Rocketgraph documentation"
+  quote = "The xGT server (xgtd) is a C++ daemon and does not require Python to run."
+  verified = "matched"
+  checked = "2026-11-09"
