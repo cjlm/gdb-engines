@@ -1,0 +1,19 @@
+name = "Relate"
+vendor = "Neo4j Inc"
+slug = "relate"
+description = "An embedded, in-memory property graph database written in Rust by Neo4j for AI agent memory and sandboxes, released as an experimental Neo4j Labs project. Keeps a graph in memory, in a directory or in a single file, made durable by a write-ahead log and Parquet checkpoints. Speaks Cypher 25 with vector and full-text search in the same query, and can optionally serve Bolt, HTTP and MCP."
+ai_roles = ["agent-memory"]
+url = "https://relatedb.ai"
+github_url = "https://github.com/relatedb/relate"
+license = "Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+query_languages = ["Cypher", "openCypher"]
+protocols = ["Bolt", "HTTP/REST"]
+kind = "embedded"
+released = "2026-11"
+category = "Emerging"
+gdotv_support = false
+
+[lineage.neo4j]
+relation = "inspired-by"

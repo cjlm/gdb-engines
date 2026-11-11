@@ -1,0 +1,78 @@
+# Sources for values in src/content/databases/relate.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "relate"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-11"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/press-releases/announcing-relate-by-neo4j/"
+  title = "New In-Memory Database Purpose-Built for AI Agents — Neo4j press release"
+  quote = "released as open source under the Apache 2.0 license"
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "released"
+value = "2026-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-11"
+notes = "Repository created 2026-11-04; v0.1.0 tagged 2026-11-09; announced at NODES 2026 on 2026-11-11."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/blog/news/meet-relate-by-neo4j-an-embedded-database-for-ai-agents/"
+  title = "Meet Relate by Neo4j: An Embedded Database for AI Agents"
+  quote = "Today, at NODES 2026, we’re launching Relate by Neo4j"
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-11-11"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/relatedb/relate/languages"
+  title = "relate languages — GitHub API"
+  quote = "\"Rust\":"
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-11"
+notes = "Primarily in-process; `relate serve` adds Bolt, the HTTP Query API v2 and MCP over streamable HTTP."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/relatedb/relate/main/README.md"
+  title = "relate README"
+  quote = "an optional one-process server speaking\nBolt, HTTP, and MCP"
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "lineage.neo4j.relation"
+value = "inspired-by"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-11"
+notes = "A new Rust codebase by Neo4j, not a fork of the Java engine; targets compatibility with Neo4j's Cypher surface and drivers."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/blog/news/meet-relate-by-neo4j-an-embedded-database-for-ai-agents/"
+  title = "Meet Relate by Neo4j: An Embedded Database for AI Agents"
+  quote = "Relate is a new Rust implementation, built on twenty years of Neo4j graph experience."
+  verified = "matched"
+  checked = "2026-11-11"
