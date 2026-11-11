@@ -1,0 +1,14 @@
+name = "AterDB"
+vendor = "Ater Technologies"
+slug = "aterdb"
+description = "A proprietary database built on a modified PostgreSQL engine that runs Cypher graph queries natively over relational storage, from SQL through a g4pg.run() function or over the Bolt protocol. Graph queries can use full-text and vector indexes, and the engine replaces PostgreSQL's process-per-connection model with asynchronous dispatch. Announced in November 2026 with a hosted demo and no public download."
+ai_roles = ["agent-memory", "graphrag"]
+url = "https://ater.tech/blog/introducing-aterdb"
+license = "Proprietary"
+type = "Property Graph"
+query_languages = ["Cypher", "SQL"]
+protocols = ["PostgreSQL wire", "Bolt"]
+kind = "database"
+released = "2026-11"
+category = "Emerging"
+gdotv_support = false

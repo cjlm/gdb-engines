@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/aterdb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "aterdb"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-11-11"
+notes = "No source or licence published; the vendor's GitHub organisation (Ater-Technologies) has no public repositories. Only the related pg_jitter JIT project is open source."
+
+  [[claims.sources]]
+  url = "https://ater.tech/about"
+  title = "About | Ater Technologies"
+  quote = "© 2026 Ater Technologies, Inc. All rights reserved."
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "released"
+value = "2026-11"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-11"
+notes = "Announcement post dated 2026-11-09."
+
+  [[claims.sources]]
+  url = "https://ater.tech/blog/introducing-aterdb"
+  title = "Introducing AterDB | Ater Technologies"
+  quote = "Graph is the first workload we’re opening up for exploration."
+  verified = "matched"
+  checked = "2026-11-11"
+
+[[claims]]
+field = "protocols"
+value = ["PostgreSQL wire", "Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-11"
+notes = "Graph queries run from ordinary PostgreSQL sessions or over Bolt."
+
+  [[claims.sources]]
+  url = "https://ater.tech/blog/introducing-aterdb"
+  title = "Introducing AterDB | Ater Technologies"
+  quote = "They can be executed from SQL sessions, fusing graph and relational workloads, as well as through Bolt (neo4j-compatible) protocol."
+  verified = "matched"
+  checked = "2026-11-11"
