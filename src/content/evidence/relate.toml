@@ -76,3 +76,25 @@ notes = "A new Rust codebase by Neo4j, not a fork of the Java engine; targets co
   quote = "Relate is a new Rust implementation, built on twenty years of Neo4j graph experience."
   verified = "matched"
   checked = "2026-11-11"
+
+[[claims]]
+field = "query_languages"
+value = ["Cypher", "openCypher", "GQL"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-11"
+notes = "GQL coverage comes through Cypher 25, Neo4j's GQL-aligned dialect, as with the Neo4j entry. The repository reports openCypher TCK and Neo4j Cypher suite results but publishes no separate GQL conformance results, hence medium."
+
+  [[claims.sources]]
+  url = "https://neo4j.com/press-releases/announcing-relate-by-neo4j/"
+  title = "New In-Memory Database Purpose-Built for AI Agents — Neo4j press release"
+  quote = "Relate is 100% openCypher and more than 97% GQL compliant out of the box."
+  verified = "matched"
+  checked = "2026-11-11"
+
+  [[claims.sources]]
+  url = "https://neo4j.com/blog/news/meet-relate-by-neo4j-an-embedded-database-for-ai-agents/"
+  title = "Meet Relate by Neo4j: An Embedded Database for AI Agents"
+  quote = "Relate runs more than 30k test scenarios for openCypher, Cypher 25 and GQL"
+  verified = "matched"
+  checked = "2026-11-11"
