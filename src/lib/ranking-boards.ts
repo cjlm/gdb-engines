@@ -156,8 +156,8 @@ interface SegmentDefinition {
 
 const SEGMENTS: SegmentDefinition[] = [
   {
-    // Rendered by its own page, src/pages/rankings/knowledge-graph.astro, which adds tabs per
-    // kind of knowledge graph and the capability matrix.
+    // Rendered through KnowledgeGraphBoard, which adds each engine's kind and capabilities and a
+    // filter per kind of knowledge graph.
     slug: 'knowledge-graph',
     title: 'Knowledge Graph Databases, Ranked Monthly',
     h1: 'Knowledge Graph Databases, Ranked Monthly',
