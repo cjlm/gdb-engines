@@ -1,16 +1,21 @@
-name = "Tentris"
-vendor = "DICE Research Group, Paderborn University"
+name = "TentrisDB"
+vendor = "Tentris GmbH"
 slug = "tentris"
-description = "An RDF triple store that represents knowledge graphs as sparse tensors using a hypertrie data structure. Evaluates SPARQL queries via Einstein summation for worst-case optimal joins. Available as both a research prototype and a commercial edition."
-url = "https://tentris.dice-research.org/"
-github_url = "https://github.com/tentris"
+aliases = ["Tentris"]
+description = "TentrisDB is an RDF graph database optimized for large-scale graph analytics using worst-case optimal joins and a compressed monolithic index."
+url = "https://tentris.com/"
+github_url = "https://github.com/tentris/tentris"
 license = "Proprietary"
 implementation_language = "C++"
 type = "RDF"
 embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
-released = "2020"
-category = "Emerging"
+released = "2025-07"
+category = "Growing"
 gdotv_support = true
 gdotv_url = "https://gdotv.com/tentris-ide-graph-visualization-tool/"
+
+[lineage.tentris-research-project]
+name = "Tentris (research prototype)"
+relation = "based-on"
