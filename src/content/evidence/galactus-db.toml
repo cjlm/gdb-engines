@@ -1,0 +1,80 @@
+# Sources for values in src/content/databases/galactus-db.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "galactus-db"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "Bolt is the only client protocol. The optional Prometheus endpoint (GET /metrics and GET /health) reports on the server and takes no queries."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/integrations/bolt"
+  title = "Connect with a Galactus DB driver | Galactus DB"
+  quote = "Bolt 4.4 and, from 1.1.0, Bolt 5.0 to 5.4. The server picks the newest version the client offers"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "Closed source, distributed as a container image. The Community edition is free and needs no key; Commercial and Enterprise are licensed per core. Only the client drivers are open source (Apache-2.0)."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/legal/licence-terms"
+  title = "Galactus DB Licence Terms | Galactus DB"
+  quote = "You must not share, resell or sublicense a key, use it on more instances or cores than it names, remove or work around the licence checks, or decompile the software except where the law gives you that right regardless of these terms."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/licensing"
+  title = "Licences and editions | Galactus DB"
+  quote = "Community is free for any use, including production and business use."
+
+[[claims]]
+field = "released"
+value = "2026-09"
+confidence = "high"
+method = "api"
+checked = "2026-11-16"
+notes = "The public image repository was created on 2026-09-15 and its first tag, 0.1.0-preview.1, was pushed the same day."
+
+  [[claims.sources]]
+  url = "https://hub.docker.com/v2/repositories/ianknowles/galactus-db/"
+  title = "Docker Hub API: ianknowles/galactus-db"
+  quote = "\"date_registered\":\"2026-09-15T14:16:44.231334Z\""
+
+  [[claims.sources]]
+  url = "https://hub.docker.com/v2/repositories/ianknowles/galactus-db/tags/0.1.0-preview.1"
+  title = "Docker Hub API: ianknowles/galactus-db tag 0.1.0-preview.1"
+  quote = "\"tag_last_pushed\":\"2026-09-15T14:17:33.330575Z\""
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "The server is one statically linked Rust binary."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/blog/galactus-db-image-size"
+  title = "A graph database that packs light | Galactus DB"
+  quote = "The database ships as a statically linked Rust binary in a scratch container."
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "A standalone server that clients reach over Bolt. No in-process library is offered; the Station desktop app runs the server on the user's computer, but that is an application, not a library to embed."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "Pull the database and Explorer images from Docker Hub. Both run as separate services; you only need Docker with Compose."
