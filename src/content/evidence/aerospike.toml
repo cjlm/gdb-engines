@@ -32,7 +32,7 @@ value = "Apache-2.0"
 confidence = "high"
 method = "repo"
 checked = "2026-08-02"
-notes = "Corrected from AGPL-3.0, which appears to reflect the core Aerospike Database (Community Edition), not the graph product. Aerospike Graph Service (AGS), the engine behind Aerospike Graph, is Apache-2.0 licensed; note the catalogue's github_url (aerospike/aerospike-server) points to the core database repo rather than AGS's own repo (aerospike/aerospike-graph-service)."
+notes = "Corrected from AGPL-3.0, which appears to reflect the core Aerospike Database (Community Edition), not the graph product. Aerospike Graph Service (AGS), the engine behind Aerospike Graph, is Apache-2.0 licensed. The catalogue links to AGS's own repo (aerospike/aerospike-graph-service), not the core database repo (aerospike/aerospike-server)."
 
   [[claims.sources]]
   url = "https://raw.githubusercontent.com/aerospike/aerospike-graph-service/3.x-dev/README.md"
