@@ -482,6 +482,15 @@
             "status": "deprecated"
           },
           {
+            "id": "db:galactus-db",
+            "label": "Galactus DB",
+            "image": "https://gdb-engines.com/logos/galactus-db.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:galaxybase",
             "label": "GalaxyBase",
             "image": "https://gdb-engines.com/logos/galaxybase.png",
@@ -2119,6 +2128,16 @@
           {
             "source": "db:gaffer",
             "target": "language:Custom API",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:galactus-db",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:galactus-db",
+            "target": "language:SQL",
             "relationship": "supports"
           },
           {
