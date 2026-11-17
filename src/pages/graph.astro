@@ -136,7 +136,9 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
 
     .graph-stage {
       width: min(calc(100% - 2.5rem), 92rem);
-      min-height: 34rem;
+      /* Tall enough that a connected graph isn't squashed on a wide laptop screen, but never
+         taller than the screen below the site header. */
+      min-height: max(34rem, min(55vw, calc(100svh - var(--header-height) - 2rem)));
       margin: 0 auto;
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
