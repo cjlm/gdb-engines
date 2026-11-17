@@ -1,7 +1,8 @@
 {
   "libraries": {
     "ANTLR": {
-      "group": "Parsing"
+      "group": "Parsing",
+      "logo": "libraries/antlr.png"
     },
     "Accumulo": {
       "group": "Storage"
@@ -48,7 +49,8 @@
       "logo": "libraries/apachecassandra.svg"
     },
     "DataFusion": {
-      "group": "Columnar & compute"
+      "group": "Columnar & compute",
+      "logo": "libraries/datafusion.png"
     },
     "DuckDB": {
       "group": "Host database",
@@ -62,7 +64,8 @@
       "group": "Vector"
     },
     "GraphBLAS": {
-      "group": "Graph & RDF frameworks"
+      "group": "Graph & RDF frameworks",
+      "logo": "libraries/graphblas.png"
     },
     "HBase": {
       "group": "Storage",
@@ -72,7 +75,8 @@
       "group": "Storage"
     },
     "Lance": {
-      "group": "Columnar & compute"
+      "group": "Columnar & compute",
+      "logo": "libraries/lance.png"
     },
     "LevelDB": {
       "group": "Storage"
@@ -109,7 +113,8 @@
       "logo": "libraries/redis.svg"
     },
     "Roaring bitmaps": {
-      "group": "Runtime"
+      "group": "Runtime",
+      "logo": "libraries/roaring.png"
     },
     "RocksDB": {
       "group": "Storage",
@@ -120,7 +125,8 @@
       "logo": "libraries/sqlite.svg"
     },
     "SimSIMD": {
-      "group": "Vector"
+      "group": "Vector",
+      "logo": "libraries/unum.png"
     },
     "Tantivy": {
       "group": "Search"
@@ -130,7 +136,8 @@
       "logo": "libraries/tikv.svg"
     },
     "USearch": {
-      "group": "Vector"
+      "group": "Vector",
+      "logo": "libraries/unum.png"
     },
     "VelocityDB": {
       "group": "Storage"
@@ -154,13 +161,16 @@
       "logo": "libraries/grpc.svg"
     },
     "nom": {
-      "group": "Parsing"
+      "group": "Parsing",
+      "logo": "libraries/nom.png"
     },
     "pest": {
-      "group": "Parsing"
+      "group": "Parsing",
+      "logo": "libraries/pest.png"
     },
     "petgraph": {
-      "group": "Graph & RDF frameworks"
+      "group": "Graph & RDF frameworks",
+      "logo": "libraries/petgraph.png"
     },
     "redb": {
       "group": "Storage"

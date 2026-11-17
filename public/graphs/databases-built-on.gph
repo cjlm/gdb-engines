@@ -846,6 +846,7 @@
           {
             "id": "library:ANTLR",
             "label": "ANTLR",
+            "image": "https://gdb-engines.com/logos/libraries/antlr.png",
             "kind": "Library",
             "group": "Parsing"
           },
@@ -932,6 +933,7 @@
           {
             "id": "library:DataFusion",
             "label": "DataFusion",
+            "image": "https://gdb-engines.com/logos/libraries/datafusion.png",
             "kind": "Library",
             "group": "Columnar & compute"
           },
@@ -958,6 +960,7 @@
           {
             "id": "library:GraphBLAS",
             "label": "GraphBLAS",
+            "image": "https://gdb-engines.com/logos/libraries/graphblas.png",
             "kind": "Library",
             "group": "Graph & RDF frameworks"
           },
@@ -977,6 +980,7 @@
           {
             "id": "library:Lance",
             "label": "Lance",
+            "image": "https://gdb-engines.com/logos/libraries/lance.png",
             "kind": "Library",
             "group": "Columnar & compute"
           },
@@ -1047,6 +1051,7 @@
           {
             "id": "library:Roaring bitmaps",
             "label": "Roaring bitmaps",
+            "image": "https://gdb-engines.com/logos/libraries/roaring.png",
             "kind": "Library",
             "group": "Runtime"
           },
@@ -1067,6 +1072,7 @@
           {
             "id": "library:SimSIMD",
             "label": "SimSIMD",
+            "image": "https://gdb-engines.com/logos/libraries/unum.png",
             "kind": "Library",
             "group": "Vector"
           },
@@ -1086,6 +1092,7 @@
           {
             "id": "library:USearch",
             "label": "USearch",
+            "image": "https://gdb-engines.com/logos/libraries/unum.png",
             "kind": "Library",
             "group": "Vector"
           },
@@ -1131,18 +1138,21 @@
           {
             "id": "library:nom",
             "label": "nom",
+            "image": "https://gdb-engines.com/logos/libraries/nom.png",
             "kind": "Library",
             "group": "Parsing"
           },
           {
             "id": "library:pest",
             "label": "pest",
+            "image": "https://gdb-engines.com/logos/libraries/pest.png",
             "kind": "Library",
             "group": "Parsing"
           },
           {
             "id": "library:petgraph",
             "label": "petgraph",
+            "image": "https://gdb-engines.com/logos/libraries/petgraph.png",
             "kind": "Library",
             "group": "Graph & RDF frameworks"
           },
@@ -2359,7 +2369,8 @@
           "kind": "algorithm",
           "id": "degree"
         },
-        "resultType": "num"
+        "resultType": "num",
+        "intensity": 0.5
       },
       {
         "channel": "image",
@@ -2398,7 +2409,8 @@
               "kind": "algorithm",
               "id": "degree"
             },
-            "resultType": "num"
+            "resultType": "num",
+            "intensity": 0.5
           },
           {
             "channel": "image",

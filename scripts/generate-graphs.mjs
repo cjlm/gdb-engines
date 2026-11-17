@@ -280,7 +280,8 @@ async function builtOnDocument() {
     layout: "force",
     edgeGradient: true,
     bindings: [
-      sizeByDegree,
+      // A few libraries have dozens of links; full degree sizing lets them cover their neighbours.
+      { ...sizeByDegree, intensity: 0.5 },
       imageByUrl,
       {
         channel: "color",
