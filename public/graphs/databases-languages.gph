@@ -158,6 +158,15 @@
             "status": "active"
           },
           {
+            "id": "db:aterdb",
+            "label": "AterDB",
+            "image": "https://gdb-engines.com/logos/aterdb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:atomic-server",
             "label": "Atomic Server",
             "image": "https://gdb-engines.com/logos/atomic-server.png",
@@ -1148,6 +1157,15 @@
             "status": "inactive"
           },
           {
+            "id": "db:relate",
+            "label": "Relate",
+            "image": "https://gdb-engines.com/logos/relate.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:relationalai",
             "label": "RelationalAI",
             "image": "https://gdb-engines.com/logos/relationalai.png",
@@ -1302,11 +1320,11 @@
           },
           {
             "id": "db:tentris",
-            "label": "Tentris",
+            "label": "TentrisDB",
             "image": "https://gdb-engines.com/logos/tentris.png",
             "kind": "Database",
             "type": "RDF",
-            "category": "Emerging",
+            "category": "Growing",
             "status": "active"
           },
           {
@@ -1814,6 +1832,16 @@
           {
             "source": "db:astraeadb",
             "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:aterdb",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:aterdb",
+            "target": "language:SQL",
             "relationship": "supports"
           },
           {
@@ -2579,6 +2607,21 @@
           {
             "source": "db:redstore",
             "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
