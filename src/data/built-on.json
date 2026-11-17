@@ -2,6 +2,7 @@
   "libraries": {
     "ANTLR": "Parsing",
     "Accumulo": "Storage",
+    "Aerospike": "Host database",
     "Apache Arrow": "Columnar & compute",
     "Apache Arrow Flight": "Distributed",
     "Apache Hadoop": "Columnar & compute",
@@ -52,14 +53,19 @@
   "engines": {
     "aerospike": [
       {
+        "library": "Aerospike",
+        "relation": "host",
+        "evidence": "host (catalogue description: built on Aerospike's key-value store)"
+      },
+      {
         "library": "Apache Spark",
         "relation": "uses",
-        "evidence": "org.apache.spark:spark-core_2.12 (aerospike-graph-bulk-loader/pom.xml)"
+        "evidence": "org.apache.spark:spark-core_2.12 (aerospike-graph-olap/pom.xml)"
       },
       {
         "library": "Apache TinkerPop",
         "relation": "uses",
-        "evidence": "gremlinpython (graph-service-mcp/pyproject.toml)"
+        "evidence": "org.apache.tinkerpop:gremlin-core (aerospike-graph-gremlin/pom.xml)"
       }
     ],
     "agensgraph": [
@@ -138,7 +144,7 @@
       {
         "library": "gRPC",
         "relation": "uses",
-        "evidence": "io.grpc:grpc-stub (grpc-client/pom.xml)"
+        "evidence": "io.grpc:grpc-stub (grpc/pom.xml)"
       }
     ],
     "astraeadb": [
@@ -160,7 +166,7 @@
       {
         "library": "gRPC",
         "relation": "uses",
-        "evidence": "google.golang.org/grpc (go/astraeadb/go.mod)"
+        "evidence": "tonic (crates/astraea-server/Cargo.toml)"
       }
     ],
     "atomic-server": [
@@ -173,11 +179,6 @@
         "library": "Wasmtime",
         "relation": "uses",
         "evidence": "wasmtime (server/Cargo.toml)"
-      },
-      {
-        "library": "gRPC",
-        "relation": "uses",
-        "evidence": "tonic (server/Cargo.toml)"
       },
       {
         "library": "redb",
@@ -228,17 +229,17 @@
       {
         "library": "Lucene",
         "relation": "uses",
-        "evidence": "org.apache.lucene:lucene-core (bigdata-core-test/pom.xml)"
+        "evidence": "org.apache.lucene:lucene-core (bigdata-core/pom.xml)"
       },
       {
         "library": "RDF4J / Sesame",
         "relation": "uses",
-        "evidence": "org.openrdf.sesame:sesame-queryresultio-sparqljson (bigdata-core-test/pom.xml)"
+        "evidence": "org.openrdf.sesame (bigdata-core/pom.xml)"
       },
       {
         "library": "ZooKeeper",
         "relation": "uses",
-        "evidence": "org.apache.zookeeper:zookeeper (bigdata-core-test/pom.xml)"
+        "evidence": "org.apache.zookeeper:zookeeper (bigdata-core/pom.xml)"
       }
     ],
     "cogdb": [
@@ -482,7 +483,7 @@
       {
         "library": "RocksDB",
         "relation": "uses",
-        "evidence": "org.rocksdb:rocksdbjni (interactive_engine/data-load-tool/pom.xml)"
+        "evidence": "rocksdb (interactive_engine/executor/store/groot/src/db/storage/rocksdb.rs)"
       },
       {
         "library": "ZooKeeper",
@@ -643,7 +644,7 @@
       {
         "library": "petgraph",
         "relation": "uses",
-        "evidence": "petgraph (crates/kglite-py/Cargo.toml)"
+        "evidence": "petgraph (crates/kglite/Cargo.toml)"
       }
     ],
     "kuzu": [
@@ -704,17 +705,17 @@
       {
         "library": "Apache Arrow",
         "relation": "uses",
-        "evidence": "arrow (crates/lance-csr-python/Cargo.toml)"
+        "evidence": "arrow (crates/lance-csr/Cargo.toml)"
       },
       {
         "library": "DataFusion",
         "relation": "uses",
-        "evidence": "datafusion (crates/lance-csr-python/Cargo.toml)"
+        "evidence": "datafusion (crates/lance-csr/Cargo.toml)"
       },
       {
         "library": "Lance",
         "relation": "uses",
-        "evidence": "lance (crates/lance-csr-python/Cargo.toml)"
+        "evidence": "lance (crates/lance-csr/Cargo.toml)"
       },
       {
         "library": "nom",
@@ -762,7 +763,7 @@
       {
         "library": "ANTLR",
         "relation": "uses",
-        "evidence": "antlr (licenses/third-party/antlr)"
+        "evidence": "antlr (src/query/CMakeLists.txt)"
       },
       {
         "library": "Apache Arrow",
@@ -820,7 +821,7 @@
       {
         "library": "LevelDB",
         "relation": "uses",
-        "evidence": "leveldb (.gitmodules)"
+        "evidence": "leveldb backs the WAL (src/CMakeLists.txt)"
       },
       {
         "library": "Parquet",
@@ -830,7 +831,7 @@
       {
         "library": "SQLite",
         "relation": "uses",
-        "evidence": "sqlite (.gitmodules)"
+        "evidence": "sqlite (extension/fts/src/fts_sqlite.cc)"
       }
     ],
     "nodedb": [
@@ -956,7 +957,7 @@
       {
         "library": "Oxigraph crates",
         "relation": "uses",
-        "evidence": "oxigraph (testsuite/Cargo.toml)"
+        "evidence": "oxigraph (crates/oxilite-core/Cargo.toml)"
       },
       {
         "library": "SQLite",
@@ -1027,7 +1028,7 @@
       {
         "library": "RocksDB",
         "relation": "uses",
-        "evidence": "rocksdb (rocksdb-windows/vcpkg.json)"
+        "evidence": "rocksdb (Parliament/KbCore/StringToId.cpp)"
       }
     ],
     "pg-ladybug": [
@@ -1050,11 +1051,6 @@
       }
     ],
     "pggraph": [
-      {
-        "library": "Apache Arrow",
-        "relation": "uses",
-        "evidence": "pyarrow (sandbox/playground/requirements.txt)"
-      },
       {
         "library": "PostgreSQL",
         "relation": "host",
@@ -1114,7 +1110,7 @@
       {
         "library": "Oxigraph crates",
         "relation": "uses",
-        "evidence": "oxigraph (raphtory-rdf-tests/Cargo.toml)"
+        "evidence": "oxigraph (raphtory-rdf/Cargo.toml)"
       },
       {
         "library": "Parquet",
@@ -1277,20 +1273,15 @@
       {
         "library": "ANTLR",
         "relation": "uses",
-        "evidence": "org.antlr:antlr4-runtime (gql-gremlin/pom.xml)"
+        "evidence": "org.antlr:antlr4-runtime (gremlin-language/pom.xml)"
       },
       {
         "library": "Apache TinkerPop",
         "relation": "uses",
-        "evidence": "gremlin (.skills/tinker-review/package.json)"
+        "evidence": "TinkerGraph is the tinkergraph-gremlin module of apache/tinkerpop"
       }
     ],
     "titan": [
-      {
-        "library": "ANTLR",
-        "relation": "uses",
-        "evidence": "org.antlr:antlr-runtime (titan-es/pom.xml)"
-      },
       {
         "library": "Apache Hadoop",
         "relation": "uses",
@@ -1330,11 +1321,6 @@
         "library": "Lucene",
         "relation": "uses",
         "evidence": "org.apache.lucene:lucene-core (titan-lucene/pom.xml)"
-      },
-      {
-        "library": "RDF4J / Sesame",
-        "relation": "uses",
-        "evidence": "org.openrdf.sesame:sesame-rio-n3 (titan-hadoop-parent/pom.xml)"
       }
     ],
     "tugraph": [
@@ -1411,29 +1397,9 @@
     ],
     "yugabytedb-mage": [
       {
-        "library": "Apache Kafka",
-        "relation": "uses",
-        "evidence": "org.apache.kafka:kafka-clients (java/yb-cdc/pom.xml)"
-      },
-      {
-        "library": "Apache Spark",
-        "relation": "uses",
-        "evidence": "org.apache.spark:spark-core_2.11 (java/yb-loadtester/pom.xml)"
-      },
-      {
-        "library": "PostgreSQL",
-        "relation": "uses",
-        "evidence": "PostgreSQL (src/odyssey/CMakeLists.txt)"
-      },
-      {
         "library": "YugabyteDB",
         "relation": "host",
         "evidence": "host (catalogue description)"
-      },
-      {
-        "library": "gRPC",
-        "relation": "uses",
-        "evidence": "google.golang.org/grpc (managed/node-agent/go.mod)"
       }
     ]
   }

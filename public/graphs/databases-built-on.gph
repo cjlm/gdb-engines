@@ -856,6 +856,12 @@
             "group": "Storage"
           },
           {
+            "id": "library:Aerospike",
+            "label": "Aerospike",
+            "kind": "Library",
+            "group": "Host database"
+          },
+          {
             "id": "library:Apache Arrow",
             "label": "Apache Arrow",
             "kind": "Library",
@@ -1135,6 +1141,11 @@
         "links": [
           {
             "source": "db:aerospike",
+            "target": "library:Aerospike",
+            "relationship": "host"
+          },
+          {
+            "source": "db:aerospike",
             "target": "library:Apache Spark",
             "relationship": "uses"
           },
@@ -1236,11 +1247,6 @@
           {
             "source": "db:atomic-server",
             "target": "library:Wasmtime",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:atomic-server",
-            "target": "library:gRPC",
             "relationship": "uses"
           },
           {
@@ -2010,11 +2016,6 @@
           },
           {
             "source": "db:pggraph",
-            "target": "library:Apache Arrow",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:pggraph",
             "target": "library:PostgreSQL",
             "relationship": "host"
           },
@@ -2220,11 +2221,6 @@
           },
           {
             "source": "db:titan",
-            "target": "library:ANTLR",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:titan",
             "target": "library:Apache Hadoop",
             "relationship": "uses"
           },
@@ -2261,11 +2257,6 @@
           {
             "source": "db:titan",
             "target": "library:Lucene",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:titan",
-            "target": "library:RDF4J / Sesame",
             "relationship": "uses"
           },
           {
@@ -2330,28 +2321,8 @@
           },
           {
             "source": "db:yugabytedb-mage",
-            "target": "library:Apache Kafka",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:yugabytedb-mage",
-            "target": "library:Apache Spark",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:yugabytedb-mage",
-            "target": "library:PostgreSQL",
-            "relationship": "uses"
-          },
-          {
-            "source": "db:yugabytedb-mage",
             "target": "library:YugabyteDB",
             "relationship": "host"
-          },
-          {
-            "source": "db:yugabytedb-mage",
-            "target": "library:gRPC",
-            "relationship": "uses"
           }
         ]
       }
