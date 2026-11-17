@@ -18,5 +18,4 @@ category = "Emerging"
 gdotv_support = false
 
 [lineage.brahmand]
-name = "Brahmand"
 relation = "fork"

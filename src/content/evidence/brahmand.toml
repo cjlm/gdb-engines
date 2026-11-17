@@ -1,0 +1,77 @@
+# Sources for values in src/content/databases/brahmand.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "brahmand"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/darshanDevrai/brahmand/main/README.md"
+  title = "brahmand README"
+  quote = "Brahmand is licensed under the Apache License, Version 2.0."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "released"
+value = "2025-05"
+confidence = "high"
+method = "api"
+checked = "2026-11-17"
+notes = "Repository created and v0.0.1 published on 2025-05-28. Last release v0.0.4 and last commit on 2025-09-18."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/darshanDevrai/brahmand/releases/tags/v0.0.1"
+  title = "brahmand v0.0.1 release — GitHub API"
+  quote = "2025-05-28"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "api"
+checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/darshanDevrai/brahmand/languages"
+  title = "brahmand languages — GitHub API"
+  quote = "\"Rust\":"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "protocols"
+value = ["HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-17"
+notes = "The server exposes a single POST /query route; there is no Bolt support."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/darshanDevrai/brahmand/main/brahmand/src/server/mod.rs"
+  title = "brahmand server/mod.rs"
+  quote = ".route(\"/query\", post(query_handler))"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "query_languages"
+value = ["Cypher"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://www.brahmanddb.com/introduction/intro"
+  title = "What is brahmand? | Brahmand"
+  quote = "Industry-standard Cypher syntax for intuitive, expressive property-graph querying."
+  verified = "matched"
+  checked = "2026-11-17"

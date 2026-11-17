@@ -230,6 +230,15 @@
             "status": "inactive"
           },
           {
+            "id": "db:brahmand",
+            "label": "Brahmand",
+            "image": "https://gdb-engines.com/logos/brahmand.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
             "id": "db:brightstardb",
             "label": "BrightstarDB",
             "image": "https://gdb-engines.com/logos/brightstardb.png",
@@ -1905,6 +1914,11 @@
           {
             "source": "db:blazegraph",
             "target": "language:Gremlin",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:brahmand",
+            "target": "language:Cypher",
             "relationship": "supports"
           },
           {
