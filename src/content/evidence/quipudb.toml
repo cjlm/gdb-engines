@@ -1,0 +1,50 @@
+# Sources for values in src/content/databases/quipudb.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "quipudb"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "medium"
+method = "web"
+checked = "2026-11-16"
+notes = "Internal Netflix system; no source, download or licence has been published."
+
+  [[claims.sources]]
+  url = "https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf"
+  title = "Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale"
+  quote = "persisted to QuipuDB, our homegrown RDF graph database"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "released"
+value = "2026-10"
+confidence = "medium"
+method = "web"
+checked = "2026-11-16"
+notes = "First public mention, in the Netflix TechBlog post of 2026-10-16. Not released; the date marks when it was made public knowledge."
+
+  [[claims.sources]]
+  url = "https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf"
+  title = "Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale"
+  quote = "Oct 16, 2026"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "query_languages"
+value = ["SPARQL"]
+confidence = "medium"
+method = "web"
+checked = "2026-11-16"
+notes = "The post says the ontology is queried with SPARQL and the graph is stored in QuipuDB; it doesn't describe QuipuDB's query interface separately."
+
+  [[claims.sources]]
+  url = "https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf"
+  title = "Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale"
+  quote = "RDF for the data model, OWL for the ontology, SHACL for validation, and SPARQL for querying"
+  verified = "matched"
+  checked = "2026-11-17"

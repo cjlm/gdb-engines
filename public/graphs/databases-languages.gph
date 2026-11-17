@@ -257,6 +257,15 @@
             "status": "inactive"
           },
           {
+            "id": "db:clickgraph",
+            "label": "ClickGraph",
+            "image": "https://gdb-engines.com/logos/clickgraph.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:codemix-graph",
             "label": "CodeMix Graph",
             "image": "https://gdb-engines.com/logos/codemix-graph.png",
@@ -1081,6 +1090,15 @@
             "image": "https://gdb-engines.com/logos/quine.png",
             "kind": "Database",
             "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:quipudb",
+            "label": "QuipuDB",
+            "image": "https://gdb-engines.com/logos/quipudb.png",
+            "kind": "Database",
+            "type": "RDF",
             "category": "Emerging",
             "status": "active"
           },
@@ -1910,6 +1928,16 @@
             "relationship": "supports"
           },
           {
+            "source": "db:clickgraph",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:clickgraph",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:codemix-graph",
             "target": "language:Gremlin",
             "relationship": "supports"
@@ -2567,6 +2595,11 @@
           {
             "source": "db:quine",
             "target": "language:Gremlin",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:quipudb",
+            "target": "language:SPARQL",
             "relationship": "supports"
           },
           {

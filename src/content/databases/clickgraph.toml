@@ -1,0 +1,22 @@
+name = "ClickGraph"
+vendor = "Gene Zhang"
+slug = "clickgraph"
+description = "A graph query engine that translates Cypher into ClickHouse SQL, mapping existing tables to nodes and edges through a YAML schema so nothing is copied into a separate store. Serves the Bolt protocol and HTTP, and can also run in-process on chDB, where it accepts writes. Developed from a fork of Brahmand; the same codebase ships DeltaGraph, which targets Databricks SQL warehouses."
+ai_roles = ["graphrag"]
+url = "https://genezhang.github.io/clickgraph/"
+github_url = "https://github.com/genezhang/clickgraph"
+icon = "clickgraph.png"
+license = "Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+query_languages = ["Cypher", "openCypher"]
+protocols = ["Bolt", "HTTP/REST"]
+kind = "query-engine"
+embeddable = true
+released = "2025-11"
+category = "Emerging"
+gdotv_support = false
+
+[lineage.brahmand]
+name = "Brahmand"
+relation = "fork"
