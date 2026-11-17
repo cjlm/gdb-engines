@@ -8,6 +8,7 @@ import test from "node:test";
 const generatedDocuments = [
   ["databases-languages.gph", "Databases × query languages"],
   ["databases-similarity.gph", "Database similarity"],
+  ["databases-built-on.gph", "Databases × what they are built on"],
 ];
 
 test("committed graph documents match the catalogue and name themselves", async () => {

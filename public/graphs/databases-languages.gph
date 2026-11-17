@@ -2963,7 +2963,7 @@
         "layout": "force",
         "labels": true,
         "tapered": false,
-        "edgeGradient": false,
+        "edgeGradient": true,
         "theme": "light",
         "bindings": [
           {
