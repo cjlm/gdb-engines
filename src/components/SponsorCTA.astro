@@ -15,10 +15,10 @@ interface Props {
 
 const { compact = false } = Astro.props;
 ---
-<aside class:list={['sponsor-cta', compact && 'sponsor-cta--compact']} aria-label="Sponsor GDB-Engines">
+<aside class:list={['credit-cta', compact && 'credit-cta--compact']} aria-label="Sponsor GDB-Engines">
   {compact ? (
     <>
-      <span class="sponsor-cta__copy">
+      <span class="credit-cta__copy">
         <strong>Independent graph database research.</strong>{' '}
         Sponsorship keeps GDB-Engines running.
       </span>
@@ -26,14 +26,14 @@ const { compact = false } = Astro.props;
     </>
   ) : (
     <>
-      <span class="sponsor-cta__copy">
+      <span class="credit-cta__copy">
         <strong>GDB-Engines provides an independent, evidence-led view of the graph
         database landscape.</strong>
         Sponsorship helps sustain the project – and connects vendors with users
         trying to tell their
         <span
-          class="sponsor-cta__pair"
-          data-sponsor-pairs={JSON.stringify(pairings)}
+          class="credit-cta__pair"
+          data-credit-pairs={JSON.stringify(pairings)}
         >GQL from their GraphQL</span>.
       </span>
       <a href="/sponsors/">Get in touch <span aria-hidden="true">→</span></a>
@@ -42,15 +42,15 @@ const { compact = false } = Astro.props;
 </aside>
 
 <script is:inline>
-  for (const element of document.querySelectorAll('[data-sponsor-pairs]')) {
-    const pairings = JSON.parse(element.dataset.sponsorPairs ?? '[]');
+  for (const element of document.querySelectorAll('[data-credit-pairs]')) {
+    const pairings = JSON.parse(element.dataset.creditPairs ?? '[]');
     const pairing = pairings[Math.floor(Math.random() * pairings.length)];
     if (typeof pairing === 'string') element.textContent = pairing;
   }
 </script>
 
 <style>
-  .sponsor-cta {
+  .credit-cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,18 +71,18 @@ const { compact = false } = Astro.props;
     color: var(--color-text-secondary);
   }
 
-  .sponsor-cta strong {
+  .credit-cta strong {
     color: var(--color-text);
   }
 
-  .sponsor-cta--compact {
+  .credit-cta--compact {
     max-width: none;
     margin: 0;
     padding: 0.7rem 0.75rem 0.7rem 0.85rem;
     font-size: 0.8rem;
   }
 
-  .sponsor-cta a {
+  .credit-cta a {
     flex: 0 0 auto;
     padding: 0.42rem 0.7rem;
     border-radius: 0.4rem;
@@ -92,22 +92,22 @@ const { compact = false } = Astro.props;
     text-decoration: none;
   }
 
-  .sponsor-cta a:hover {
+  .credit-cta a:hover {
     filter: brightness(1.06);
   }
 
-  .sponsor-cta--compact a {
+  .credit-cta--compact a {
     white-space: nowrap;
   }
 
   @media (max-width: 32rem) {
-    .sponsor-cta {
+    .credit-cta {
       align-items: flex-start;
       flex-direction: column;
       gap: 0.65rem;
     }
 
-    .sponsor-cta--compact {
+    .credit-cta--compact {
       align-items: center;
       flex-direction: row;
     }

@@ -12,25 +12,25 @@ const { sponsor, placement } = Astro.props;
  * on the light-only/dark-only logo imgs.
  */
 ---
-<aside class="sponsor-slot" data-sponsor-bar aria-label="Sponsored">
-  <a class="sponsor-slot__tag" href="/sponsors/" title="About sponsorship on GDB-Engines">Sponsored</a>
-  <a class="sponsor-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
+<aside class="credit-slot" data-credit-bar aria-label="Sponsored">
+  <a class="credit-slot__tag" href="/sponsors/" title="About sponsorship on GDB-Engines">Sponsored</a>
+  <a class="credit-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
      rel="noopener noreferrer sponsored" data-outbound="sponsor" data-placement={placement}>
-    <span class="sponsor-slot__lead">
-      <span class="sponsor-slot__label">GDB-Engines is sponsored by</span>
-      <span class="sponsor-slot__logo">
+    <span class="credit-slot__lead">
+      <span class="credit-slot__label">GDB-Engines is sponsored by</span>
+      <span class="credit-slot__logo">
         <img class="light-only" src={sponsor.logo.light} alt={sponsor.name} height="22" />
         <img class="dark-only" src={sponsor.logo.dark} alt={sponsor.name} height="22" />
       </span>
     </span>
-    <span class="sponsor-slot__blurb">{sponsor.tagline}</span>
-    <span class="sponsor-slot__more">Learn more <span class="sponsor-slot__arrow" aria-hidden="true">→</span></span>
+    <span class="credit-slot__blurb">{sponsor.tagline}</span>
+    <span class="credit-slot__more">Learn more <span class="credit-slot__arrow" aria-hidden="true">→</span></span>
   </a>
-  <a class="sponsor-slot__about" href="/sponsors/">Our sponsors</a>
+  <a class="credit-slot__about" href="/sponsors/">Our sponsors</a>
 </aside>
 
 <style>
-  .sponsor-slot {
+  .credit-slot {
     display: flex;
     align-items: stretch;
     border: 1px solid var(--color-border);
@@ -45,7 +45,7 @@ const { sponsor, placement } = Astro.props;
       0 0.4rem 1.5rem -0.25rem color-mix(in srgb, var(--color-brand-accent) var(--sponsor-glow), transparent);
   }
 
-  .sponsor-slot__body {
+  .credit-slot__body {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -56,23 +56,23 @@ const { sponsor, placement } = Astro.props;
     color: var(--color-text);
     transition: background-color 120ms ease;
   }
-  .sponsor-slot__body:hover { background-color: var(--color-surface); }
+  .credit-slot__body:hover { background-color: var(--color-surface); }
 
-  .sponsor-slot__lead {
+  .credit-slot__lead {
     display: flex;
     align-items: center;
     gap: 0.6rem;
     flex-shrink: 0;
   }
-  .sponsor-slot__label {
+  .credit-slot__label {
     color: var(--color-text-tertiary);
     font-size: 0.8125rem;
     white-space: nowrap;
   }
-  .sponsor-slot__logo { display: flex; align-items: center; }
-  .sponsor-slot__logo img { height: 22px; width: auto; }
+  .credit-slot__logo { display: flex; align-items: center; }
+  .credit-slot__logo img { height: 22px; width: auto; }
 
-  .sponsor-slot__blurb {
+  .credit-slot__blurb {
     flex: 1;
     padding-left: 0.9rem;
     border-left: 1px solid var(--color-border);
@@ -81,32 +81,32 @@ const { sponsor, placement } = Astro.props;
     line-height: 1.45;
   }
 
-  .sponsor-slot__more {
+  .credit-slot__more {
     flex-shrink: 0;
     color: var(--color-brand-accent);
     font-size: 0.8125rem;
     font-weight: 600;
     white-space: nowrap;
   }
-  .sponsor-slot__arrow { display: inline-block; transition: transform 120ms ease; }
-  .sponsor-slot__body:hover .sponsor-slot__arrow { transform: translateX(3px); }
+  .credit-slot__arrow { display: inline-block; transition: transform 120ms ease; }
+  .credit-slot__body:hover .credit-slot__arrow { transform: translateX(3px); }
   @media (prefers-reduced-motion: reduce) {
-    .sponsor-slot__arrow { transition: none; }
+    .credit-slot__arrow { transition: none; }
   }
 
-  .sponsor-slot__tag,
-  .sponsor-slot__about {
+  .credit-slot__tag,
+  .credit-slot__about {
     color: var(--color-text-tertiary);
     text-decoration: none;
     transition: color 120ms ease, background-color 120ms ease;
   }
-  .sponsor-slot__tag:hover,
-  .sponsor-slot__about:hover {
+  .credit-slot__tag:hover,
+  .credit-slot__about:hover {
     color: var(--color-text);
     background: var(--color-surface);
   }
 
-  .sponsor-slot__about {
+  .credit-slot__about {
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -116,7 +116,7 @@ const { sponsor, placement } = Astro.props;
     white-space: nowrap;
   }
 
-  .sponsor-slot__tag {
+  .credit-slot__tag {
     display: none;
     align-items: center;
     padding: 0.4rem 0.6rem;
@@ -130,32 +130,32 @@ const { sponsor, placement } = Astro.props;
     transform: rotate(180deg);
   }
 
-  .sponsor-slot__tag:focus-visible,
-  .sponsor-slot__about:focus-visible,
-  .sponsor-slot__body:focus-visible {
+  .credit-slot__tag:focus-visible,
+  .credit-slot__about:focus-visible,
+  .credit-slot__body:focus-visible {
     outline: 2px solid var(--color-brand-accent);
     outline-offset: -2px;
   }
 
   @media (max-width: 45rem) {
-    .sponsor-slot__tag { display: flex; }
-    .sponsor-slot__about,
-    .sponsor-slot__label { display: none; }
-    .sponsor-slot__body { gap: 0.75rem; padding: 0.75rem 1rem; }
-    .sponsor-slot__blurb { padding-left: 0; border-left: 0; }
+    .credit-slot__tag { display: flex; }
+    .credit-slot__about,
+    .credit-slot__label { display: none; }
+    .credit-slot__body { gap: 0.75rem; padding: 0.75rem 1rem; }
+    .credit-slot__blurb { padding-left: 0; border-left: 0; }
   }
 
   @media (max-width: 32rem) {
-    .sponsor-slot__body {
+    .credit-slot__body {
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-areas: 'lead more' 'blurb blurb';
       gap: 0.35rem 0.75rem;
       padding: 0.65rem 0.85rem;
     }
-    .sponsor-slot__lead { grid-area: lead; }
-    .sponsor-slot__logo img { height: 20px; }
-    .sponsor-slot__more { grid-area: more; }
-    .sponsor-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
+    .credit-slot__lead { grid-area: lead; }
+    .credit-slot__logo img { height: 20px; }
+    .credit-slot__more { grid-area: more; }
+    .credit-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
   }
 </style>
