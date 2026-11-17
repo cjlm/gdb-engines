@@ -89,7 +89,7 @@ const datasetJsonLd = JSON.stringify({
 
   <h1 class="sr-only">Graph Database Comparison — {databases.length}+ Engines</h1>
 
-  <div class:list={['mobile-sponsor-pane', headerSponsor && 'mobile-sponsor-pane--sponsored']}>
+  <div class:list={['mobile-credit-pane', headerSponsor && 'mobile-credit-pane--filled']}>
     {headerSponsor
       ? <SponsorSlot sponsor={headerSponsor} placement="header" />
       : <SponsorCTA compact />}
@@ -373,7 +373,7 @@ const datasetJsonLd = JSON.stringify({
 </Layout>
 
 <style>
-  .mobile-sponsor-pane {
+  .mobile-credit-pane {
     display: none;
   }
 
@@ -388,7 +388,7 @@ const datasetJsonLd = JSON.stringify({
   }
 
   @media (max-width: 39rem) {
-    .mobile-sponsor-pane {
+    .mobile-credit-pane {
       display: block;
       padding: calc(var(--header-height) + 0.75rem) 0.75rem 0.75rem;
     }
@@ -399,16 +399,16 @@ const datasetJsonLd = JSON.stringify({
   }
 
   /* A live sponsor's bar sits above the table at every width. */
-  .mobile-sponsor-pane :global(.sponsor-slot) {
+  .mobile-credit-pane :global(.credit-slot) {
     margin: 0;
   }
 
-  .mobile-sponsor-pane--sponsored {
+  .mobile-credit-pane--filled {
     display: block;
     padding: calc(var(--header-height) + 0.75rem) 0.75rem 0.75rem;
   }
 
-  .mobile-sponsor-pane--sponsored + .comparison-stage {
+  .mobile-credit-pane--filled + .comparison-stage {
     padding-top: 0;
   }
 </style>

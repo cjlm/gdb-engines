@@ -46,7 +46,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
         <h1>Graph Database Map</h1>
         <p id="model-description">{currentView.modelDescription}</p>
       </div>
-      <div class="graph-sponsor"><SponsorCTA compact /></div>
+      <div class="graph-credit"><SponsorCTA compact /></div>
     </section>
 
     <section class="graph-stage" aria-label="Interactive graph visualization">
@@ -129,7 +129,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       line-height: 1.55;
     }
 
-    .graph-intro :global(.sponsor-cta) {
+    .graph-intro :global(.credit-cta) {
       max-width: none;
       margin: 0;
     }
@@ -249,7 +249,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       }
 
       .graph-heading,
-      .graph-sponsor {
+      .graph-credit {
         width: calc(100% - 2rem);
         margin-inline: auto;
       }
@@ -258,7 +258,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
         order: 0;
       }
 
-      .graph-sponsor {
+      .graph-credit {
         order: 2;
       }
 
