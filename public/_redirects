@@ -56,3 +56,7 @@
 # The sponsorship pitch moved into /sponsors/, which also lists current sponsors.
 /sponsor            /sponsors/                      301
 /sponsor/           /sponsors/                      301
+
+# Garphield renamed its project format from .gfd to .gph; keep old download links working.
+/graphs/databases-languages.gfd /graphs/databases-languages.gph 301
+/graphs/databases-similarity.gfd /graphs/databases-similarity.gph 301

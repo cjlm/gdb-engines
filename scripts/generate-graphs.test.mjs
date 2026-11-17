@@ -6,8 +6,9 @@ import { join } from "node:path";
 import test from "node:test";
 
 const generatedDocuments = [
-  ["databases-languages.gfd", "Databases × query languages"],
-  ["databases-similarity.gfd", "Database similarity"],
+  ["databases-languages.gph", "Databases × query languages"],
+  ["databases-similarity.gph", "Database similarity"],
+  ["databases-built-on.gph", "Databases × what they are built on"],
 ];
 
 test("committed graph documents match the catalogue and name themselves", async () => {
@@ -27,7 +28,7 @@ test("committed graph documents match the catalogue and name themselves", async 
 });
 
 test("graph nodes use a database's catalogue icon before its slug", async () => {
-  const committed = await readFile("public/graphs/databases-languages.gfd", "utf8");
+  const committed = await readFile("public/graphs/databases-languages.gph", "utf8");
   const nodes = JSON.parse(committed).datasets[0].graph.nodes;
   const logoOf = (slug) => nodes.find((node) => node.id === `db:${slug}`).image;
 

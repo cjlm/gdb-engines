@@ -158,6 +158,15 @@
             "status": "active"
           },
           {
+            "id": "db:aterdb",
+            "label": "AterDB",
+            "image": "https://gdb-engines.com/logos/aterdb.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:atomic-server",
             "label": "Atomic Server",
             "image": "https://gdb-engines.com/logos/atomic-server.png",
@@ -221,6 +230,15 @@
             "status": "inactive"
           },
           {
+            "id": "db:brahmand",
+            "label": "Brahmand",
+            "image": "https://gdb-engines.com/logos/brahmand.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
             "id": "db:brightstardb",
             "label": "BrightstarDB",
             "image": "https://gdb-engines.com/logos/brightstardb.png",
@@ -246,6 +264,15 @@
             "type": "Property Graph",
             "category": "Emerging",
             "status": "inactive"
+          },
+          {
+            "id": "db:clickgraph",
+            "label": "ClickGraph",
+            "image": "https://gdb-engines.com/logos/clickgraph.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
           },
           {
             "id": "db:codemix-graph",
@@ -1076,6 +1103,15 @@
             "status": "active"
           },
           {
+            "id": "db:quipudb",
+            "label": "QuipuDB",
+            "image": "https://gdb-engines.com/logos/quipudb.png",
+            "kind": "Database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
             "id": "db:raphtory",
             "label": "Raphtory",
             "image": "https://gdb-engines.com/logos/raphtory.png",
@@ -1146,6 +1182,15 @@
             "type": "RDF",
             "category": "Emerging",
             "status": "inactive"
+          },
+          {
+            "id": "db:relate",
+            "label": "Relate",
+            "image": "https://gdb-engines.com/logos/relate.png",
+            "kind": "Database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
           },
           {
             "id": "db:relationalai",
@@ -1302,11 +1347,11 @@
           },
           {
             "id": "db:tentris",
-            "label": "Tentris",
+            "label": "TentrisDB",
             "image": "https://gdb-engines.com/logos/tentris.png",
             "kind": "Database",
             "type": "RDF",
-            "category": "Emerging",
+            "category": "Growing",
             "status": "active"
           },
           {
@@ -1817,6 +1862,16 @@
             "relationship": "supports"
           },
           {
+            "source": "db:aterdb",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:aterdb",
+            "target": "language:SQL",
+            "relationship": "supports"
+          },
+          {
             "source": "db:atomic-server",
             "target": "language:Custom API",
             "relationship": "supports"
@@ -1862,6 +1917,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:brahmand",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
             "source": "db:brightstardb",
             "target": "language:SPARQL",
             "relationship": "supports"
@@ -1879,6 +1939,16 @@
           {
             "source": "db:chronograph",
             "target": "language:Gremlin",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:clickgraph",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:clickgraph",
+            "target": "language:openCypher",
             "relationship": "supports"
           },
           {
@@ -2542,6 +2612,11 @@
             "relationship": "supports"
           },
           {
+            "source": "db:quipudb",
+            "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
             "source": "db:raphtory",
             "target": "language:GraphQL",
             "relationship": "supports"
@@ -2579,6 +2654,21 @@
           {
             "source": "db:redstore",
             "target": "language:SPARQL",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:Cypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:openCypher",
+            "relationship": "supports"
+          },
+          {
+            "source": "db:relate",
+            "target": "language:GQL",
             "relationship": "supports"
           },
           {
@@ -2920,7 +3010,7 @@
         "layout": "force",
         "labels": true,
         "tapered": false,
-        "edgeGradient": false,
+        "edgeGradient": true,
         "theme": "light",
         "bindings": [
           {

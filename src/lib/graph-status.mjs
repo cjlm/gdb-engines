@@ -19,6 +19,16 @@ export function queryLanguageStatus(graph) {
   );
 }
 
+/** Status line for the built-on graph: databases, libraries and dependencies. */
+export function builtOnStatus(graph) {
+  const databases = countDatabases(graph);
+  const libraries = graph.nodes.length - databases;
+  return (
+    `${databases} databases · ${libraries} libraries and hosts · ` +
+    `${graph.links.length} dependencies`
+  );
+}
+
 /** Status line for the similarity graph at a minimum similarity threshold. */
 export function similarityStatus(graph, threshold) {
   const pairs = countSimilarLinks(graph, threshold);

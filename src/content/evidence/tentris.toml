@@ -17,7 +17,7 @@ notes = "Serves /sparql, /stream, /update, and /graph-store HTTP endpoints imple
   title = "SPARQL Endpoints - Tentris Beta Documentation"
   quote = "Tentris implements the SPARQL 1.1 Protocol and the SPARQL 1.1 Graph Store HTTP Protocol. It makes the following endpoints available."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-13"
 
 [[claims]]
 field = "license"
@@ -32,22 +32,22 @@ notes = "Today's Tentris (tentris/tentris, run by Tentris GmbH) is a distinct pr
   title = "dice-group/tentris-research-project"
   quote = "the commercial version of Tentris, but a research prototype that focuses on aspects presented in papers. For a reliable, SPARQL feature-complete, and well-tested edition, see the commercial edition at"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-13"
 
 [[claims]]
 field = "released"
-value = "2020"
-confidence = "medium"
-method = "vendor-docs"
-checked = "2026-08-02"
-notes = "The first public description of Tentris is the ISWC 2020 paper, accompanied by the first public pre-built binaries (v1.0.4); matches current value."
+value = "2025-07"
+confidence = "high"
+method = "repo"
+checked = "2026-11-13"
+notes = "First public release of TentrisDB, tagged v0.19.1 (v0.19.1-beta), published 2025-07-16. The ISWC 2020 paper and its binaries belong to the research prototype (dice-group/tentris-research-project), a distinct product."
 
   [[claims.sources]]
-  url = "https://tentris.dice-research.org/"
-  title = "ISWC 2020 Paper: Tentris – A Tensor-Based Triple Store"
-  quote = "Alexander Bigerl, Felix Conrads, Charlotte Behning, Mohamed Ahmed Sherif, Muhammad Saleem and Axel-Cyrille Ngonga Ngomo (2020) Tentris – A Tensor-Based Triple Store. In: The Semantic Web – ISWC 2020"
+  url = "https://github.com/tentris/tentris/releases/tag/v0.19.1"
+  title = "v0.19.1-beta"
+  quote = "This is the first public release of Tentris."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-13"
 
 [[claims]]
 field = "implementation_language"
@@ -62,7 +62,7 @@ notes = "The commercial repository (tentris/tentris) publishes only packaging sc
   title = "dice-group/tentris-research-project"
   quote = "Building was tested with Clang 17 & 19. As C++ standard template library, only"
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-13"
 
 [[claims]]
 field = "embeddable"
@@ -77,4 +77,26 @@ notes = "The Tentris Python package offers a native TentrisStore that embeds Ten
   title = "Python - Tentris Documentation"
   quote = "With the native TentrisStore , Tentris is embedded in Python applications."
   verified = "matched"
-  checked = "2026-11-03"
+  checked = "2026-11-13"
+
+[[claims]]
+field = "lineage.tentris-research-project.relation"
+value = "based-on"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-13"
+notes = "TentrisDB uses the hypertrie index and the worst-case optimal join engine that the Tentris papers describe. The research prototype (dice-group/tentris-research-project, DICE Research Group, Paderborn University) implements those papers and stays a separate project."
+
+  [[claims.sources]]
+  url = "https://docs.tentris.io/research.html"
+  title = "Data Indexing and Query Engine - Tentris Documentation"
+  quote = "For information about our index and query engine, please refer to the following peer-reviewed publications. Bigerl et al. \"Tentris – A Tensor-Based Triple Store\" (International Semantic Web Conference 2020)"
+  verified = "matched"
+  checked = "2026-11-13"
+
+  [[claims.sources]]
+  url = "https://github.com/dice-group/tentris-research-project"
+  title = "dice-group/tentris-research-project"
+  quote = "the commercial version of Tentris, but a research prototype that focuses on aspects presented in papers. For a reliable, SPARQL feature-complete, and well-tested edition, see the commercial edition at"
+  verified = "matched"
+  checked = "2026-11-13"

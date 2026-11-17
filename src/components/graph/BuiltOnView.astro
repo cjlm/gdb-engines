@@ -1,0 +1,17 @@
+---
+import GarphieldFrame from './GarphieldFrame.astro';
+---
+
+<GarphieldFrame
+  viewId="built-on"
+  title="Graph databases linked to the libraries and hosts they are built on"
+/>
+
+<script>
+  import { builtOnStatus } from '../../lib/graph-status.mjs';
+  import { mountGarphieldView } from './garphield-frame';
+
+  const frame = document.querySelector<HTMLIFrameElement>('[data-graph-view="built-on"]');
+  if (!frame) throw new Error('Built-on view: its iframe is missing from the page.');
+  mountGarphieldView(frame, { status: builtOnStatus });
+</script>

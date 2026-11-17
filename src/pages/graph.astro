@@ -6,6 +6,7 @@ import GraphSwitcher from '../components/graph/GraphSwitcher.astro';
 import SimilarityControls from '../components/graph/SimilarityControls.astro';
 import QueryLanguagesView from '../components/graph/QueryLanguagesView.astro';
 import SimilarityView from '../components/graph/SimilarityView.astro';
+import BuiltOnView from '../components/graph/BuiltOnView.astro';
 import TimelineView from '../components/graph/TimelineView.astro';
 import LineageView from '../components/graph/LineageView.astro';
 import { getDatabaseCount } from '../lib/database-count';
@@ -45,7 +46,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
         <h1>Graph Database Map</h1>
         <p id="model-description">{currentView.modelDescription}</p>
       </div>
-      <div class="graph-sponsor"><SponsorCTA compact /></div>
+      <div class="graph-credit"><SponsorCTA compact /></div>
     </section>
 
     <section class="graph-stage" aria-label="Interactive graph visualization">
@@ -62,6 +63,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       <div class="visualization-views">
         <QueryLanguagesView />
         <SimilarityView />
+        <BuiltOnView />
         <TimelineView />
         <LineageView />
       </div>
@@ -75,8 +77,9 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     <noscript>
       <p class="graph-fallback">
         JavaScript is required for the interactive view. The underlying
-        <a href="/graphs/databases-languages.gfd">query-language graph</a> and
-        <a href="/graphs/databases-similarity.gfd">similarity graph</a> are
+        <a href="/graphs/databases-languages.gph">query-language graph</a>,
+        <a href="/graphs/databases-similarity.gph">similarity graph</a> and
+        <a href="/graphs/databases-built-on.gph">built-on graph</a> are
         available as structured Garphield documents.
       </p>
     </noscript>
@@ -126,14 +129,16 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       line-height: 1.55;
     }
 
-    .graph-intro :global(.sponsor-cta) {
+    .graph-intro :global(.credit-cta) {
       max-width: none;
       margin: 0;
     }
 
     .graph-stage {
       width: min(calc(100% - 2.5rem), 92rem);
-      min-height: 34rem;
+      /* Tall enough that a connected graph isn't squashed on a wide laptop screen, but never
+         taller than the screen below the site header. */
+      min-height: max(34rem, min(55vw, calc(100svh - var(--header-height) - 2rem)));
       margin: 0 auto;
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
@@ -244,7 +249,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       }
 
       .graph-heading,
-      .graph-sponsor {
+      .graph-credit {
         width: calc(100% - 2rem);
         margin-inline: auto;
       }
@@ -253,7 +258,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
         order: 0;
       }
 
-      .graph-sponsor {
+      .graph-credit {
         order: 2;
       }
 

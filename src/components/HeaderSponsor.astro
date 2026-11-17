@@ -10,7 +10,7 @@ const { sponsor } = Astro.props;
 
 /**
  * Compact "Sponsored by [logo]" mention in the site header. On pages with a sponsor bar
- * ([data-sponsor-bar]) it stays hidden while the bar is in view and fades in once the bar
+ * ([data-credit-bar]) it stays hidden while the bar is in view and fades in once the bar
  * scrolls under the header; on pages without one it shows from the start. Its box is
  * always laid out at wide widths, so showing it never moves anything else in the header.
  *
@@ -19,7 +19,7 @@ const { sponsor } = Astro.props;
  */
 ---
 <a
-  class="header-sponsor"
+  class="header-credit"
   href={placementLink(sponsor.link, 'header')}
   target="_blank"
   rel="noopener noreferrer sponsored"
@@ -27,8 +27,8 @@ const { sponsor } = Astro.props;
   data-placement="header"
   aria-label={`Sponsored by ${sponsor.name}`}
 >
-  <span class="header-sponsor__label">Sponsored by</span>
-  <span class="header-sponsor__logo">
+  <span class="header-credit__label">Sponsored by</span>
+  <span class="header-credit__logo">
     <img class="light-only" src={sponsor.logo.light} alt="" height="16" />
     <img class="dark-only" src={sponsor.logo.dark} alt="" height="16" />
   </span>
@@ -36,12 +36,12 @@ const { sponsor } = Astro.props;
 
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
-  const bar = document.querySelector('[data-sponsor-bar]');
+  const bar = document.querySelector('[data-credit-bar]');
 
   if (header && bar) {
     const headerHeight = header.getBoundingClientRect().height;
     const observer = new IntersectionObserver(
-      ([entry]) => header.toggleAttribute('data-sponsor-bar-out', !entry?.isIntersecting),
+      ([entry]) => header.toggleAttribute('data-credit-bar-out', !entry?.isIntersecting),
       { rootMargin: `-${Math.round(headerHeight)}px 0px 0px 0px` },
     );
     observer.observe(bar);
@@ -49,7 +49,7 @@ const { sponsor } = Astro.props;
 </script>
 
 <style>
-  .header-sponsor {
+  .header-credit {
     display: none;
     flex: 0 0 auto;
     align-items: center;
@@ -73,13 +73,13 @@ const { sponsor } = Astro.props;
   /* Shown only where the header has room for it beside the labelled navigation; the
      homepage header also carries the search field, so it waits until 72rem. */
   @media (min-width: 56rem) {
-    :global(.site-header:not(:has(.search-container))) .header-sponsor {
+    :global(.site-header:not(:has(.search-container))) .header-credit {
       display: inline-flex;
     }
   }
 
   @media (min-width: 72.0625rem) {
-    .header-sponsor {
+    .header-credit {
       display: inline-flex;
     }
   }
@@ -87,18 +87,18 @@ const { sponsor } = Astro.props;
   /* The page summary shares the left group with the mention's reserved box. Rather than
      truncate it to an ellipsis, it waits for the widths where both fit in full. */
   @media (max-width: 75rem) {
-    :global(.site-header:has(.header-sponsor) .database-summary) {
+    :global(.site-header:has(.header-credit) .database-summary) {
       display: none;
     }
   }
 
   @media (max-width: 88rem) {
-    :global(.site-header:has(.header-sponsor):has(.search-container) .database-summary) {
+    :global(.site-header:has(.header-credit):has(.search-container) .database-summary) {
       display: none;
     }
   }
 
-  :global(body:not(:has([data-sponsor-bar]))) .header-sponsor {
+  :global(body:not(:has([data-credit-bar]))) .header-credit {
     opacity: 1;
     visibility: visible;
     transition:
@@ -107,7 +107,7 @@ const { sponsor } = Astro.props;
       background-color 120ms ease;
   }
 
-  :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
+  :global(.site-header[data-credit-bar-out]) .header-credit {
     opacity: 1;
     visibility: visible;
     transition:
@@ -117,22 +117,22 @@ const { sponsor } = Astro.props;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .header-sponsor,
-    :global(.site-header[data-sponsor-bar-out]) .header-sponsor {
+    .header-credit,
+    :global(.site-header[data-credit-bar-out]) .header-credit {
       transition: none;
     }
   }
 
-  .header-sponsor:hover {
+  .header-credit:hover {
     background-color: var(--color-surface);
   }
 
-  .header-sponsor:focus-visible {
+  .header-credit:focus-visible {
     outline: 2px solid var(--color-brand-accent);
     outline-offset: 2px;
   }
 
-  .header-sponsor__label {
+  .header-credit__label {
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -141,12 +141,12 @@ const { sponsor } = Astro.props;
     white-space: nowrap;
   }
 
-  .header-sponsor__logo {
+  .header-credit__logo {
     display: flex;
     align-items: center;
   }
 
-  .header-sponsor__logo img {
+  .header-credit__logo img {
     height: 16px;
     width: auto;
   }

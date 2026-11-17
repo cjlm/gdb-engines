@@ -33,6 +33,8 @@ public/logos/*
 !public/logos/objectivity-db.png
 !public/logos/sparkledb.png
 !public/logos/teradata-aster.png
+# Library logos for the Built on graph (Simple Icons, CC0; gRPC and TiKV from CNCF artwork)
+!public/logos/libraries/
 
 # Local dev gallery for OG image inspection
 public/og-gallery.html

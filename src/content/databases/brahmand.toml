@@ -1,0 +1,16 @@
+name = "Brahmand"
+vendor = "Darshan Devrai"
+slug = "brahmand"
+description = "A stateless graph query layer for ClickHouse, written in Rust, that translates Cypher into ClickHouse SQL and leaves all storage and execution to ClickHouse. Queries are sent to an HTTP endpoint. Development stopped in September 2025 at version 0.0.4; ClickGraph continues it as a fork."
+url = "https://www.brahmanddb.com/"
+github_url = "https://github.com/darshanDevrai/brahmand"
+license = "Apache-2.0"
+implementation_language = "Rust"
+type = "Property Graph"
+query_languages = ["Cypher"]
+protocols = ["HTTP/REST"]
+kind = "query-engine"
+released = "2025-05"
+category = "Emerging"
+status = "inactive"
+gdotv_support = false

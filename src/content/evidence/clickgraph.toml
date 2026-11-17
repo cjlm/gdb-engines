@@ -1,0 +1,114 @@
+# Sources for values in src/content/databases/clickgraph.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "clickgraph"
+
+[[claims]]
+field = "license"
+value = "Apache-2.0"
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "ClickGraph is licensed under the Apache License, Version 2.0."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "released"
+value = "2025-11"
+confidence = "high"
+method = "api"
+checked = "2026-11-16"
+notes = "Forked from Brahmand on 2025-10-10; first release v0.1.0 published 2025-11-02."
+
+  [[claims.sources]]
+  url = "https://api.github.com/repos/genezhang/clickgraph/releases/tags/v0.1.0"
+  title = "clickgraph v0.1.0 release — GitHub API"
+  quote = "2025-11-02T19:43:25Z"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+notes = "GitHub's language bar shows Python first because of test and benchmark tooling; the engine, server and embedded library are Rust crates."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "A high-performance graph query engine for ClickHouse, written in Rust"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt", "HTTP/REST"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "**HTTP REST API** - Complete query execution with parameters and aggregations"
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "**Bolt Protocol v5.8** - Full Neo4j driver compatibility"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "embeddable"
+value = true
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "embedded mode runs in-process via chdb"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "lineage.brahmand.relation"
+value = "fork"
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+notes = "GitHub lists the repository as a fork of darshanDevrai/brahmand."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "This project is developed on a forked repo of [Brahmand](https://github.com/darshanDevrai/brahmand)"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "query_languages"
+value = ["Cypher", "openCypher"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-16"
+notes = "Passes all openCypher TCK read scenarios and targets Neo4j Cypher compatibility."
+
+  [[claims.sources]]
+  url = "https://raw.githubusercontent.com/genezhang/clickgraph/main/README.md"
+  title = "clickgraph README"
+  quote = "openCypher TCK: 402/402 read scenarios passing (100%)"
+  verified = "matched"
+  checked = "2026-11-17"
