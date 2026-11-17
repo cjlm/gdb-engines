@@ -53,14 +53,14 @@ const databases = await Promise.all(
   }),
 );
 
-function document(name, nodes, links, config) {
+function document(name, nodes, links, { edgeGradient = false, ...config }) {
   const current = {
     v: 1,
     dataset: { kind: "file", name },
     layout: config.layout,
     labels: true,
     tapered: false,
-    edgeGradient: false,
+    edgeGradient,
     theme: "light",
     bindings: config.bindings,
     filterStack: config.filterStack ?? [],
@@ -268,9 +268,11 @@ async function builtOnDocument() {
     })),
   ];
 
+  // Every link joins a database to a library, so tint it with both ends' colours.
   return document("Databases × what they are built on", nodes, links, {
     version: 1,
     layout: "force",
+    edgeGradient: true,
     bindings: [
       sizeByDegree,
       imageByUrl,
