@@ -858,12 +858,14 @@
           {
             "id": "library:Aerospike",
             "label": "Aerospike",
+            "image": "https://gdb-engines.com/logos/aerospike.png",
             "kind": "Library",
             "group": "Host database"
           },
           {
             "id": "library:Apache Arrow",
             "label": "Apache Arrow",
+            "image": "https://gdb-engines.com/logos/libraries/apachearrow.svg",
             "kind": "Library",
             "group": "Columnar & compute"
           },
@@ -876,30 +878,35 @@
           {
             "id": "library:Apache Hadoop",
             "label": "Apache Hadoop",
+            "image": "https://gdb-engines.com/logos/libraries/apachehadoop.svg",
             "kind": "Library",
             "group": "Columnar & compute"
           },
           {
             "id": "library:Apache Kafka",
             "label": "Apache Kafka",
+            "image": "https://gdb-engines.com/logos/libraries/apachekafka.svg",
             "kind": "Library",
             "group": "Distributed"
           },
           {
             "id": "library:Apache Solr",
             "label": "Apache Solr",
+            "image": "https://gdb-engines.com/logos/libraries/apachesolr.svg",
             "kind": "Library",
             "group": "Search"
           },
           {
             "id": "library:Apache Spark",
             "label": "Apache Spark",
+            "image": "https://gdb-engines.com/logos/libraries/apachespark.svg",
             "kind": "Library",
             "group": "Columnar & compute"
           },
           {
             "id": "library:Apache TinkerPop",
             "label": "Apache TinkerPop",
+            "image": "https://gdb-engines.com/logos/tinkergraph.png",
             "kind": "Library",
             "group": "Graph & RDF frameworks"
           },
@@ -918,6 +925,7 @@
           {
             "id": "library:Cassandra",
             "label": "Cassandra",
+            "image": "https://gdb-engines.com/logos/libraries/apachecassandra.svg",
             "kind": "Library",
             "group": "Storage"
           },
@@ -930,12 +938,14 @@
           {
             "id": "library:DuckDB",
             "label": "DuckDB",
+            "image": "https://gdb-engines.com/logos/libraries/duckdb.svg",
             "kind": "Library",
             "group": "Host database"
           },
           {
             "id": "library:Elasticsearch",
             "label": "Elasticsearch",
+            "image": "https://gdb-engines.com/logos/libraries/elasticsearch.svg",
             "kind": "Library",
             "group": "Search"
           },
@@ -954,6 +964,7 @@
           {
             "id": "library:HBase",
             "label": "HBase",
+            "image": "https://gdb-engines.com/logos/libraries/apachehbase.svg",
             "kind": "Library",
             "group": "Storage"
           },
@@ -978,6 +989,7 @@
           {
             "id": "library:Lucene",
             "label": "Lucene",
+            "image": "https://gdb-engines.com/logos/libraries/apachelucene.svg",
             "kind": "Library",
             "group": "Search"
           },
@@ -996,12 +1008,14 @@
           {
             "id": "library:Parquet",
             "label": "Parquet",
+            "image": "https://gdb-engines.com/logos/libraries/apacheparquet.svg",
             "kind": "Library",
             "group": "Columnar & compute"
           },
           {
             "id": "library:PostgreSQL",
             "label": "PostgreSQL",
+            "image": "https://gdb-engines.com/logos/libraries/postgresql.svg",
             "kind": "Library",
             "group": "Host database"
           },
@@ -1026,6 +1040,7 @@
           {
             "id": "library:Redis",
             "label": "Redis",
+            "image": "https://gdb-engines.com/logos/libraries/redis.svg",
             "kind": "Library",
             "group": "Host database"
           },
@@ -1038,12 +1053,14 @@
           {
             "id": "library:RocksDB",
             "label": "RocksDB",
+            "image": "https://gdb-engines.com/logos/libraries/rocksdb.svg",
             "kind": "Library",
             "group": "Storage"
           },
           {
             "id": "library:SQLite",
             "label": "SQLite",
+            "image": "https://gdb-engines.com/logos/libraries/sqlite.svg",
             "kind": "Library",
             "group": "Storage"
           },
@@ -1062,6 +1079,7 @@
           {
             "id": "library:TiKV",
             "label": "TiKV",
+            "image": "https://gdb-engines.com/logos/libraries/tikv.svg",
             "kind": "Library",
             "group": "Storage"
           },
@@ -1080,12 +1098,14 @@
           {
             "id": "library:Wasmtime",
             "label": "Wasmtime",
+            "image": "https://gdb-engines.com/logos/libraries/webassembly.svg",
             "kind": "Library",
             "group": "Runtime"
           },
           {
             "id": "library:YugabyteDB",
             "label": "YugabyteDB",
+            "image": "https://gdb-engines.com/logos/yugabytedb-mage.png",
             "kind": "Library",
             "group": "Host database"
           },
@@ -1104,6 +1124,7 @@
           {
             "id": "library:gRPC",
             "label": "gRPC",
+            "image": "https://gdb-engines.com/logos/libraries/grpc.svg",
             "kind": "Library",
             "group": "Distributed"
           },

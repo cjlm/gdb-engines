@@ -1,54 +1,173 @@
 {
   "libraries": {
-    "ANTLR": "Parsing",
-    "Accumulo": "Storage",
-    "Aerospike": "Host database",
-    "Apache Arrow": "Columnar & compute",
-    "Apache Arrow Flight": "Distributed",
-    "Apache Hadoop": "Columnar & compute",
-    "Apache Kafka": "Distributed",
-    "Apache Solr": "Search",
-    "Apache Spark": "Columnar & compute",
-    "Apache TinkerPop": "Graph & RDF frameworks",
-    "Badger": "Storage",
-    "Berkeley DB JE": "Storage",
-    "Cassandra": "Storage",
-    "DataFusion": "Columnar & compute",
-    "DuckDB": "Host database",
-    "Elasticsearch": "Search",
-    "Faiss": "Vector",
-    "GraphBLAS": "Graph & RDF frameworks",
-    "HBase": "Storage",
-    "LMDB": "Storage",
-    "Lance": "Columnar & compute",
-    "LevelDB": "Storage",
-    "Lucene": "Search",
-    "MapDB": "Storage",
-    "Oxigraph crates": "Graph & RDF frameworks",
-    "Parquet": "Columnar & compute",
-    "PostgreSQL": "Host database",
-    "RDF4J / Sesame": "Graph & RDF frameworks",
-    "Raft": "Distributed",
-    "Raptor / Redland": "Graph & RDF frameworks",
-    "Redis": "Host database",
-    "Roaring bitmaps": "Runtime",
-    "RocksDB": "Storage",
-    "SQLite": "Storage",
-    "SimSIMD": "Vector",
-    "Tantivy": "Search",
-    "TiKV": "Storage",
-    "USearch": "Vector",
-    "VelocityDB": "Storage",
-    "Wasmtime": "Runtime",
-    "YugabyteDB": "Host database",
-    "ZooKeeper": "Distributed",
-    "chumsky": "Parsing",
-    "gRPC": "Distributed",
-    "nom": "Parsing",
-    "pest": "Parsing",
-    "petgraph": "Graph & RDF frameworks",
-    "redb": "Storage",
-    "sled": "Storage"
+    "ANTLR": {
+      "group": "Parsing"
+    },
+    "Accumulo": {
+      "group": "Storage"
+    },
+    "Aerospike": {
+      "group": "Host database",
+      "logo": "aerospike.png"
+    },
+    "Apache Arrow": {
+      "group": "Columnar & compute",
+      "logo": "libraries/apachearrow.svg"
+    },
+    "Apache Arrow Flight": {
+      "group": "Distributed"
+    },
+    "Apache Hadoop": {
+      "group": "Columnar & compute",
+      "logo": "libraries/apachehadoop.svg"
+    },
+    "Apache Kafka": {
+      "group": "Distributed",
+      "logo": "libraries/apachekafka.svg"
+    },
+    "Apache Solr": {
+      "group": "Search",
+      "logo": "libraries/apachesolr.svg"
+    },
+    "Apache Spark": {
+      "group": "Columnar & compute",
+      "logo": "libraries/apachespark.svg"
+    },
+    "Apache TinkerPop": {
+      "group": "Graph & RDF frameworks",
+      "logo": "tinkergraph.png"
+    },
+    "Badger": {
+      "group": "Storage"
+    },
+    "Berkeley DB JE": {
+      "group": "Storage"
+    },
+    "Cassandra": {
+      "group": "Storage",
+      "logo": "libraries/apachecassandra.svg"
+    },
+    "DataFusion": {
+      "group": "Columnar & compute"
+    },
+    "DuckDB": {
+      "group": "Host database",
+      "logo": "libraries/duckdb.svg"
+    },
+    "Elasticsearch": {
+      "group": "Search",
+      "logo": "libraries/elasticsearch.svg"
+    },
+    "Faiss": {
+      "group": "Vector"
+    },
+    "GraphBLAS": {
+      "group": "Graph & RDF frameworks"
+    },
+    "HBase": {
+      "group": "Storage",
+      "logo": "libraries/apachehbase.svg"
+    },
+    "LMDB": {
+      "group": "Storage"
+    },
+    "Lance": {
+      "group": "Columnar & compute"
+    },
+    "LevelDB": {
+      "group": "Storage"
+    },
+    "Lucene": {
+      "group": "Search",
+      "logo": "libraries/apachelucene.svg"
+    },
+    "MapDB": {
+      "group": "Storage"
+    },
+    "Oxigraph crates": {
+      "group": "Graph & RDF frameworks"
+    },
+    "Parquet": {
+      "group": "Columnar & compute",
+      "logo": "libraries/apacheparquet.svg"
+    },
+    "PostgreSQL": {
+      "group": "Host database",
+      "logo": "libraries/postgresql.svg"
+    },
+    "RDF4J / Sesame": {
+      "group": "Graph & RDF frameworks"
+    },
+    "Raft": {
+      "group": "Distributed"
+    },
+    "Raptor / Redland": {
+      "group": "Graph & RDF frameworks"
+    },
+    "Redis": {
+      "group": "Host database",
+      "logo": "libraries/redis.svg"
+    },
+    "Roaring bitmaps": {
+      "group": "Runtime"
+    },
+    "RocksDB": {
+      "group": "Storage",
+      "logo": "libraries/rocksdb.svg"
+    },
+    "SQLite": {
+      "group": "Storage",
+      "logo": "libraries/sqlite.svg"
+    },
+    "SimSIMD": {
+      "group": "Vector"
+    },
+    "Tantivy": {
+      "group": "Search"
+    },
+    "TiKV": {
+      "group": "Storage",
+      "logo": "libraries/tikv.svg"
+    },
+    "USearch": {
+      "group": "Vector"
+    },
+    "VelocityDB": {
+      "group": "Storage"
+    },
+    "Wasmtime": {
+      "group": "Runtime",
+      "logo": "libraries/webassembly.svg"
+    },
+    "YugabyteDB": {
+      "group": "Host database",
+      "logo": "yugabytedb-mage.png"
+    },
+    "ZooKeeper": {
+      "group": "Distributed"
+    },
+    "chumsky": {
+      "group": "Parsing"
+    },
+    "gRPC": {
+      "group": "Distributed",
+      "logo": "libraries/grpc.svg"
+    },
+    "nom": {
+      "group": "Parsing"
+    },
+    "pest": {
+      "group": "Parsing"
+    },
+    "petgraph": {
+      "group": "Graph & RDF frameworks"
+    },
+    "redb": {
+      "group": "Storage"
+    },
+    "sled": {
+      "group": "Storage"
+    }
   },
   "engines": {
     "aerospike": [

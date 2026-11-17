@@ -136,9 +136,11 @@ function bipartiteDocument() {
     })),
   );
 
+  // Every link joins a database to a language, so tint it with both ends' colours.
   return document("Databases × query languages", nodes, links, {
     version: 1,
     layout: "force",
+    edgeGradient: true,
     bindings: [
       sizeByDegree,
       imageByUrl,
@@ -260,12 +262,16 @@ async function builtOnDocument() {
         status: database.status,
       };
     }),
-    ...[...libraryNames].sort().map((library) => ({
-      id: `library:${library}`,
-      label: library,
-      kind: "Library",
-      group: libraries[library],
-    })),
+    ...[...libraryNames].sort().map((library) => {
+      const { group, logo } = libraries[library];
+      return {
+        id: `library:${library}`,
+        label: library,
+        ...(logo && { image: `${SITE_ORIGIN}/logos/${logo}` }),
+        kind: "Library",
+        group,
+      };
+    }),
   ];
 
   // Every link joins a database to a library, so tint it with both ends' colours.
