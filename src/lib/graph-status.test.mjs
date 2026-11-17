@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  builtOnStatus,
   countSimilarLinks,
   queryLanguageStatus,
   similarityStatus,
@@ -62,4 +63,15 @@ test('threshold label rounds to a whole percentage', () => {
   assert.equal(similarityThresholdLabel(0.35), '≥ 35%');
   assert.equal(similarityThresholdLabel('0.554'), '≥ 55%');
   assert.equal(similarityThresholdLabel('0.555'), '≥ 56%');
+});
+
+test('built-on status counts databases, libraries and dependencies', () => {
+  const graph = {
+    nodes: [{ id: 'db:arangodb' }, { id: 'db:recallgraph' }, { id: 'library:RocksDB' }],
+    links: [
+      { source: 'db:arangodb', target: 'library:RocksDB' },
+      { source: 'db:recallgraph', target: 'db:arangodb' },
+    ],
+  };
+  assert.equal(builtOnStatus(graph), '2 databases · 1 libraries and hosts · 2 dependencies');
 });

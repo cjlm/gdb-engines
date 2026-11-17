@@ -13,7 +13,13 @@ import {
 test('views keep their published order and URLs', () => {
   assert.deepEqual(
     GRAPH_VIEWS.map((view) => graphViewPath(view.id)),
-    ['/graph/query-languages/', '/graph/similarity/', '/graph/timeline/', '/graph/lineage/'],
+    [
+      '/graph/query-languages/',
+      '/graph/similarity/',
+      '/graph/built-on/',
+      '/graph/timeline/',
+      '/graph/lineage/',
+    ],
   );
   assert.equal(DEFAULT_GRAPH_VIEW, 'query-languages');
   assert.equal(graphViewCanonical('lineage'), 'https://gdb-engines.com/graph/lineage/');
@@ -34,7 +40,7 @@ test('every view has unique id and the copy the page and switcher need', () => {
 test('only the Garphield views name a document, and those documents exist', async () => {
   const { existsSync } = await import('node:fs');
   const documents = GRAPH_VIEWS.filter((view) => view.document).map((view) => view.id);
-  assert.deepEqual(documents, ['query-languages', 'similarity']);
+  assert.deepEqual(documents, ['query-languages', 'similarity', 'built-on']);
   for (const view of GRAPH_VIEWS.filter((candidate) => candidate.document)) {
     assert.ok(existsSync(`public${view.document}`), view.document);
   }

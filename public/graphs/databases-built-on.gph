@@ -1,0 +1,2444 @@
+{
+  "info": {
+    "version": 1,
+    "name": "Databases × what they are built on"
+  },
+  "datasets": [
+    {
+      "id": "main",
+      "graph": {
+        "directed": false,
+        "multigraph": false,
+        "graph": {
+          "name": "Databases × what they are built on"
+        },
+        "nodes": [
+          {
+            "id": "db:aerospike",
+            "label": "Aerospike Graph",
+            "image": "https://gdb-engines.com/logos/aerospike.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:agensgraph",
+            "label": "AgensGraph",
+            "image": "https://gdb-engines.com/logos/agensgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:apache-age",
+            "label": "Apache AGE",
+            "image": "https://gdb-engines.com/logos/apache-age.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:apache-hugegraph",
+            "label": "Apache HugeGraph",
+            "image": "https://gdb-engines.com/logos/apache-hugegraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:apache-jena-fuseki",
+            "label": "Apache Jena Fuseki",
+            "image": "https://gdb-engines.com/logos/apache-jena-fuseki.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:apache-rya",
+            "label": "Apache Rya",
+            "image": "https://gdb-engines.com/logos/apache-rya.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:arangodb",
+            "label": "ArangoDB",
+            "image": "https://gdb-engines.com/logos/arangodb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:arcadedb",
+            "label": "ArcadeDB",
+            "image": "https://gdb-engines.com/logos/arcadedb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:astraeadb",
+            "label": "AstraeaDB",
+            "image": "https://gdb-engines.com/logos/astraeadb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:atomic-server",
+            "label": "Atomic Server",
+            "image": "https://gdb-engines.com/logos/atomic-server.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:bighorn",
+            "label": "Bighorn",
+            "image": "https://gdb-engines.com/logos/bighorn.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:bitsy",
+            "label": "Bitsy",
+            "image": "https://gdb-engines.com/logos/bitsy.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:blazegraph",
+            "label": "BlazeGraph",
+            "image": "https://gdb-engines.com/logos/blazegraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Established",
+            "status": "inactive"
+          },
+          {
+            "id": "db:cogdb",
+            "label": "CogDB",
+            "image": "https://gdb-engines.com/logos/cogdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:cozodb",
+            "label": "CozoDB",
+            "image": "https://gdb-engines.com/logos/cozodb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Growing",
+            "status": "inactive"
+          },
+          {
+            "id": "db:dgraph",
+            "label": "Dgraph",
+            "image": "https://gdb-engines.com/logos/dgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:dozerdb",
+            "label": "DozerDB",
+            "image": "https://gdb-engines.com/logos/dozerdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:duck-rdf",
+            "label": "Duck RDF",
+            "image": "https://gdb-engines.com/logos/duck-rdf.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:duckgql",
+            "label": "DuckGQL",
+            "image": "https://gdb-engines.com/logos/duckgql.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:duckpgq",
+            "label": "DuckPGQ",
+            "image": "https://gdb-engines.com/logos/duckpgq.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:eclipse-rdf4j",
+            "label": "Eclipse RDF4J",
+            "image": "https://gdb-engines.com/logos/eclipse-rdf4j.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:falkordblite",
+            "label": "FalkorDBLite",
+            "image": "https://gdb-engines.com/logos/falkordblite.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:fluree",
+            "label": "Fluree",
+            "image": "https://gdb-engines.com/logos/fluree.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:frogql",
+            "label": "froGQL",
+            "image": "https://gdb-engines.com/logos/frogql.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:gaffer",
+            "label": "Gaffer",
+            "image": "https://gdb-engines.com/logos/gaffer.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Established",
+            "status": "deprecated"
+          },
+          {
+            "id": "db:google-cayley",
+            "label": "Google Cayley",
+            "image": "https://gdb-engines.com/logos/google-cayley.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:grafeo",
+            "label": "Grafeo",
+            "image": "https://gdb-engines.com/logos/grafeo.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:graphlite",
+            "label": "GraphLite",
+            "image": "https://gdb-engines.com/logos/graphlite.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:graphqlite",
+            "label": "GraphQLite",
+            "image": "https://gdb-engines.com/logos/graphqlite.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:graphscope",
+            "label": "GraphScope",
+            "image": "https://gdb-engines.com/logos/graphscope.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:grust",
+            "label": "Grust",
+            "image": "https://gdb-engines.com/logos/grust.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:halyard",
+            "label": "Halyard",
+            "image": "https://gdb-engines.com/logos/halyard.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:helixdb",
+            "label": "HelixDB",
+            "image": "https://gdb-engines.com/logos/helixdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:hgraphdb",
+            "label": "HGraphDB",
+            "image": "https://gdb-engines.com/logos/hgraphdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:hydradb",
+            "label": "HydraDB",
+            "image": "https://gdb-engines.com/logos/hydradb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:hypergraphdb",
+            "label": "HyperGraphDB",
+            "image": "https://gdb-engines.com/logos/hypergraphdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:janusgraph",
+            "label": "JanusGraph",
+            "image": "https://gdb-engines.com/logos/janusgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:kglite",
+            "label": "KGLite",
+            "image": "https://gdb-engines.com/logos/kglite.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:kuzu",
+            "label": "Kuzu",
+            "image": "https://gdb-engines.com/logos/kuzu.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "deprecated"
+          },
+          {
+            "id": "db:ladybugdb",
+            "label": "LadybugDB",
+            "image": "https://gdb-engines.com/logos/ladybugdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:lance-csr",
+            "label": "lance-csr",
+            "image": "https://gdb-engines.com/logos/lance-csr.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:lance-graph",
+            "label": "Lance Graph",
+            "image": "https://gdb-engines.com/logos/lance-graph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:loradb",
+            "label": "LoraDB",
+            "image": "https://gdb-engines.com/logos/loradb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:marmotta-kiwi",
+            "label": "Apache Marmotta KiWi",
+            "image": "https://gdb-engines.com/logos/marmotta-kiwi.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:memgraph",
+            "label": "Memgraph",
+            "image": "https://gdb-engines.com/logos/memgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:millenniumdb",
+            "label": "MillenniumDB",
+            "image": "https://gdb-engines.com/logos/millenniumdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:nebulagraph",
+            "label": "NebulaGraph",
+            "image": "https://gdb-engines.com/logos/nebulagraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:neo4j",
+            "label": "Neo4j",
+            "image": "https://gdb-engines.com/logos/neo4j.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:neug",
+            "label": "NeuG",
+            "image": "https://gdb-engines.com/logos/neug.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:nodedb",
+            "label": "NodeDB",
+            "image": "https://gdb-engines.com/logos/nodedb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:nornicdb",
+            "label": "NornicDB",
+            "image": "https://gdb-engines.com/logos/nornicdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:omnigraph",
+            "label": "OmniGraph",
+            "image": "https://gdb-engines.com/logos/omnigraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:ongdb",
+            "label": "ONgDB",
+            "image": "https://gdb-engines.com/logos/ongdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:ontop",
+            "label": "Ontop",
+            "image": "https://gdb-engines.com/logos/ontop.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:orientdb",
+            "label": "OrientDB",
+            "image": "https://gdb-engines.com/logos/orientdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Enterprise",
+            "status": "active"
+          },
+          {
+            "id": "db:oxigraph",
+            "label": "Oxigraph",
+            "image": "https://gdb-engines.com/logos/oxigraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:oxilite",
+            "label": "oxilite",
+            "image": "https://gdb-engines.com/logos/oxilite.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:oxirs",
+            "label": "OxiRS",
+            "image": "https://gdb-engines.com/logos/oxirs.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:pandadb",
+            "label": "PandaDB",
+            "image": "https://gdb-engines.com/logos/pandadb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:parliament",
+            "label": "Parliament",
+            "image": "https://gdb-engines.com/logos/parliament.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:pg-ladybug",
+            "label": "pg_ladybug",
+            "image": "https://gdb-engines.com/logos/pg-ladybug.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:pg-petgraph",
+            "label": "pg_petgraph",
+            "image": "https://gdb-engines.com/logos/pg-petgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:pggraph",
+            "label": "pgGraph",
+            "image": "https://gdb-engines.com/logos/pggraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:qlever",
+            "label": "QLever",
+            "image": "https://gdb-engines.com/logos/qlever.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:quine",
+            "label": "Quine",
+            "image": "https://gdb-engines.com/logos/quine.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:raphtory",
+            "label": "Raphtory",
+            "image": "https://gdb-engines.com/logos/raphtory.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:recallgraph",
+            "label": "RecallGraph",
+            "image": "https://gdb-engines.com/logos/recallgraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "deprecated"
+          },
+          {
+            "id": "db:redisgraph-falkordb",
+            "label": "FalkorDB",
+            "image": "https://gdb-engines.com/logos/redisgraph-falkordb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:relate",
+            "label": "Relate",
+            "image": "https://gdb-engines.com/logos/relate.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:rushdb",
+            "label": "RushDB",
+            "image": "https://gdb-engines.com/logos/rushdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:ryugraph",
+            "label": "RyuGraph",
+            "image": "https://gdb-engines.com/logos/ryugraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:selene-db",
+            "label": "selene-db",
+            "image": "https://gdb-engines.com/logos/selene-db.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:strabon",
+            "label": "Strabon",
+            "image": "https://gdb-engines.com/logos/strabon.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "RDF",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:surrealdb",
+            "label": "SurrealDB",
+            "image": "https://gdb-engines.com/logos/surrealdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Multiple",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:tinkergraph",
+            "label": "TinkerGraph",
+            "image": "https://gdb-engines.com/logos/tinkergraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:titan",
+            "label": "Titan",
+            "image": "https://gdb-engines.com/logos/titan.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "deprecated"
+          },
+          {
+            "id": "db:tugraph",
+            "label": "TuGraph",
+            "image": "https://gdb-engines.com/logos/tugraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Established",
+            "status": "active"
+          },
+          {
+            "id": "db:turbolynx",
+            "label": "TurboLynx",
+            "image": "https://gdb-engines.com/logos/turbolynx.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:turingdb",
+            "label": "TuringDB",
+            "image": "https://gdb-engines.com/logos/turingdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:typedb",
+            "label": "TypeDB",
+            "image": "https://gdb-engines.com/logos/typedb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Other",
+            "category": "Growing",
+            "status": "active"
+          },
+          {
+            "id": "db:velocitygraph",
+            "label": "VelocityGraph",
+            "image": "https://gdb-engines.com/logos/velocitygraph.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "inactive"
+          },
+          {
+            "id": "db:youtrackdb",
+            "label": "YouTrackDB",
+            "image": "https://gdb-engines.com/logos/youtrackdb.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "db:yugabytedb-mage",
+            "label": "YugabyteDB MAGE",
+            "image": "https://gdb-engines.com/logos/yugabytedb-mage.png",
+            "kind": "Database",
+            "group": "Graph database",
+            "type": "Property Graph",
+            "category": "Emerging",
+            "status": "active"
+          },
+          {
+            "id": "library:ANTLR",
+            "label": "ANTLR",
+            "kind": "Library",
+            "group": "Parsing"
+          },
+          {
+            "id": "library:Accumulo",
+            "label": "Accumulo",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Apache Arrow",
+            "label": "Apache Arrow",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:Apache Arrow Flight",
+            "label": "Apache Arrow Flight",
+            "kind": "Library",
+            "group": "Distributed"
+          },
+          {
+            "id": "library:Apache Hadoop",
+            "label": "Apache Hadoop",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:Apache Kafka",
+            "label": "Apache Kafka",
+            "kind": "Library",
+            "group": "Distributed"
+          },
+          {
+            "id": "library:Apache Solr",
+            "label": "Apache Solr",
+            "kind": "Library",
+            "group": "Search"
+          },
+          {
+            "id": "library:Apache Spark",
+            "label": "Apache Spark",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:Apache TinkerPop",
+            "label": "Apache TinkerPop",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:Badger",
+            "label": "Badger",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Berkeley DB JE",
+            "label": "Berkeley DB JE",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Cassandra",
+            "label": "Cassandra",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:DataFusion",
+            "label": "DataFusion",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:DuckDB",
+            "label": "DuckDB",
+            "kind": "Library",
+            "group": "Host database"
+          },
+          {
+            "id": "library:Elasticsearch",
+            "label": "Elasticsearch",
+            "kind": "Library",
+            "group": "Search"
+          },
+          {
+            "id": "library:Faiss",
+            "label": "Faiss",
+            "kind": "Library",
+            "group": "Vector"
+          },
+          {
+            "id": "library:GraphBLAS",
+            "label": "GraphBLAS",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:HBase",
+            "label": "HBase",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:LMDB",
+            "label": "LMDB",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Lance",
+            "label": "Lance",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:LevelDB",
+            "label": "LevelDB",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Lucene",
+            "label": "Lucene",
+            "kind": "Library",
+            "group": "Search"
+          },
+          {
+            "id": "library:MapDB",
+            "label": "MapDB",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Oxigraph crates",
+            "label": "Oxigraph crates",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:Parquet",
+            "label": "Parquet",
+            "kind": "Library",
+            "group": "Columnar & compute"
+          },
+          {
+            "id": "library:PostgreSQL",
+            "label": "PostgreSQL",
+            "kind": "Library",
+            "group": "Host database"
+          },
+          {
+            "id": "library:RDF4J / Sesame",
+            "label": "RDF4J / Sesame",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:Raft",
+            "label": "Raft",
+            "kind": "Library",
+            "group": "Distributed"
+          },
+          {
+            "id": "library:Raptor / Redland",
+            "label": "Raptor / Redland",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:Redis",
+            "label": "Redis",
+            "kind": "Library",
+            "group": "Host database"
+          },
+          {
+            "id": "library:Roaring bitmaps",
+            "label": "Roaring bitmaps",
+            "kind": "Library",
+            "group": "Runtime"
+          },
+          {
+            "id": "library:RocksDB",
+            "label": "RocksDB",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:SQLite",
+            "label": "SQLite",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:SimSIMD",
+            "label": "SimSIMD",
+            "kind": "Library",
+            "group": "Vector"
+          },
+          {
+            "id": "library:Tantivy",
+            "label": "Tantivy",
+            "kind": "Library",
+            "group": "Search"
+          },
+          {
+            "id": "library:TiKV",
+            "label": "TiKV",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:USearch",
+            "label": "USearch",
+            "kind": "Library",
+            "group": "Vector"
+          },
+          {
+            "id": "library:VelocityDB",
+            "label": "VelocityDB",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:Wasmtime",
+            "label": "Wasmtime",
+            "kind": "Library",
+            "group": "Runtime"
+          },
+          {
+            "id": "library:YugabyteDB",
+            "label": "YugabyteDB",
+            "kind": "Library",
+            "group": "Host database"
+          },
+          {
+            "id": "library:ZooKeeper",
+            "label": "ZooKeeper",
+            "kind": "Library",
+            "group": "Distributed"
+          },
+          {
+            "id": "library:chumsky",
+            "label": "chumsky",
+            "kind": "Library",
+            "group": "Parsing"
+          },
+          {
+            "id": "library:gRPC",
+            "label": "gRPC",
+            "kind": "Library",
+            "group": "Distributed"
+          },
+          {
+            "id": "library:nom",
+            "label": "nom",
+            "kind": "Library",
+            "group": "Parsing"
+          },
+          {
+            "id": "library:pest",
+            "label": "pest",
+            "kind": "Library",
+            "group": "Parsing"
+          },
+          {
+            "id": "library:petgraph",
+            "label": "petgraph",
+            "kind": "Library",
+            "group": "Graph & RDF frameworks"
+          },
+          {
+            "id": "library:redb",
+            "label": "redb",
+            "kind": "Library",
+            "group": "Storage"
+          },
+          {
+            "id": "library:sled",
+            "label": "sled",
+            "kind": "Library",
+            "group": "Storage"
+          }
+        ],
+        "links": [
+          {
+            "source": "db:aerospike",
+            "target": "library:Apache Spark",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:aerospike",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:agensgraph",
+            "target": "library:PostgreSQL",
+            "relationship": "host"
+          },
+          {
+            "source": "db:apache-age",
+            "target": "library:PostgreSQL",
+            "relationship": "host"
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "library:Raft",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:apache-hugegraph",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:apache-jena-fuseki",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:apache-rya",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:arangodb",
+            "target": "library:Faiss",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:arangodb",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:arcadedb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "library:Apache Arrow Flight",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:astraeadb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "library:Wasmtime",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "library:redb",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:atomic-server",
+            "target": "library:sled",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bighorn",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bighorn",
+            "target": "library:DuckDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bighorn",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bighorn",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bighorn",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:bitsy",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:blazegraph",
+            "target": "library:ZooKeeper",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cogdb",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cozodb",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cozodb",
+            "target": "library:SQLite",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cozodb",
+            "target": "library:TiKV",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cozodb",
+            "target": "library:pest",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:cozodb",
+            "target": "library:sled",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:dgraph",
+            "target": "library:Badger",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:dgraph",
+            "target": "library:Raft",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:dgraph",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:dozerdb",
+            "target": "db:neo4j",
+            "relationship": "host"
+          },
+          {
+            "source": "db:duck-rdf",
+            "target": "library:DuckDB",
+            "relationship": "host"
+          },
+          {
+            "source": "db:duck-rdf",
+            "target": "library:Raptor / Redland",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:duckgql",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:duckgql",
+            "target": "library:DuckDB",
+            "relationship": "host"
+          },
+          {
+            "source": "db:duckpgq",
+            "target": "library:DuckDB",
+            "relationship": "host"
+          },
+          {
+            "source": "db:eclipse-rdf4j",
+            "target": "library:LMDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:falkordblite",
+            "target": "library:Redis",
+            "relationship": "host"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:Raft",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:SQLite",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:USearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:fluree",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:frogql",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:gaffer",
+            "target": "library:Accumulo",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:gaffer",
+            "target": "library:Apache Hadoop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:gaffer",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:gaffer",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:google-cayley",
+            "target": "library:LevelDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:google-cayley",
+            "target": "library:SQLite",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grafeo",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grafeo",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphlite",
+            "target": "library:nom",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphlite",
+            "target": "library:petgraph",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphlite",
+            "target": "library:sled",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphqlite",
+            "target": "library:SQLite",
+            "relationship": "host"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:Apache Hadoop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:ZooKeeper",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:graphscope",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grust",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grust",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grust",
+            "target": "library:Redis",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:grust",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:halyard",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:helixdb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:helixdb",
+            "target": "library:Tantivy",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:helixdb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hgraphdb",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hgraphdb",
+            "target": "library:HBase",
+            "relationship": "host"
+          },
+          {
+            "source": "db:hydradb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hydradb",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hydradb",
+            "target": "library:PostgreSQL",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hypergraphdb",
+            "target": "library:Berkeley DB JE",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hypergraphdb",
+            "target": "library:LMDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:hypergraphdb",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Apache Hadoop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Apache Solr",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Berkeley DB JE",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Elasticsearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:HBase",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:janusgraph",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kglite",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kglite",
+            "target": "library:petgraph",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kuzu",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kuzu",
+            "target": "library:DuckDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kuzu",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kuzu",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:kuzu",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ladybugdb",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-csr",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-csr",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-csr",
+            "target": "library:Lance",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-csr",
+            "target": "library:nom",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "library:Lance",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:lance-graph",
+            "target": "library:nom",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:loradb",
+            "target": "library:pest",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:marmotta-kiwi",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:Tantivy",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:memgraph",
+            "target": "library:USearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:millenniumdb",
+            "target": "library:Raptor / Redland",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nebulagraph",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:neo4j",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:neug",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:neug",
+            "target": "library:LevelDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:neug",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:neug",
+            "target": "library:SQLite",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:Wasmtime",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nodedb",
+            "target": "library:redb",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nornicdb",
+            "target": "library:Badger",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:nornicdb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "library:Lance",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:omnigraph",
+            "target": "library:pest",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ongdb",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ontop",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ontop",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:orientdb",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:orientdb",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxigraph",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxigraph",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxigraph",
+            "target": "library:chumsky",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxilite",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxilite",
+            "target": "library:SQLite",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:DuckDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Raft",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Redis",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Tantivy",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:Wasmtime",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:oxirs",
+            "target": "library:petgraph",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:pandadb",
+            "target": "library:Elasticsearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:pandadb",
+            "target": "library:TiKV",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:parliament",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:pg-ladybug",
+            "target": "library:PostgreSQL",
+            "relationship": "host"
+          },
+          {
+            "source": "db:pg-petgraph",
+            "target": "library:PostgreSQL",
+            "relationship": "host"
+          },
+          {
+            "source": "db:pg-petgraph",
+            "target": "library:petgraph",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:pggraph",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:pggraph",
+            "target": "library:PostgreSQL",
+            "relationship": "host"
+          },
+          {
+            "source": "db:pggraph",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:qlever",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:quine",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:quine",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:quine",
+            "target": "library:MapDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:quine",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:LMDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:Oxigraph crates",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:raphtory",
+            "target": "library:pest",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:recallgraph",
+            "target": "db:arangodb",
+            "relationship": "host"
+          },
+          {
+            "source": "db:redisgraph-falkordb",
+            "target": "library:GraphBLAS",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:redisgraph-falkordb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:redisgraph-falkordb",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:relate",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:relate",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:DataFusion",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:Raft",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:Tantivy",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:USearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:rushdb",
+            "target": "library:redb",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "library:DuckDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:ryugraph",
+            "target": "library:SimSIMD",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:selene-db",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:selene-db",
+            "target": "library:pest",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:strabon",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:surrealdb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:surrealdb",
+            "target": "library:Wasmtime",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:surrealdb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:tinkergraph",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:tinkergraph",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Apache Hadoop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Apache Solr",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Apache TinkerPop",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Berkeley DB JE",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Cassandra",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Elasticsearch",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:HBase",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:titan",
+            "target": "library:RDF4J / Sesame",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:tugraph",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:tugraph",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:turbolynx",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:turingdb",
+            "target": "library:Apache Arrow",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:turingdb",
+            "target": "library:Faiss",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:turingdb",
+            "target": "library:Parquet",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:typedb",
+            "target": "library:RocksDB",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:typedb",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:velocitygraph",
+            "target": "library:VelocityDB",
+            "relationship": "host"
+          },
+          {
+            "source": "db:youtrackdb",
+            "target": "library:ANTLR",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:youtrackdb",
+            "target": "library:Lucene",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:youtrackdb",
+            "target": "library:Roaring bitmaps",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:yugabytedb-mage",
+            "target": "library:Apache Kafka",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:yugabytedb-mage",
+            "target": "library:Apache Spark",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:yugabytedb-mage",
+            "target": "library:PostgreSQL",
+            "relationship": "uses"
+          },
+          {
+            "source": "db:yugabytedb-mage",
+            "target": "library:YugabyteDB",
+            "relationship": "host"
+          },
+          {
+            "source": "db:yugabytedb-mage",
+            "target": "library:gRPC",
+            "relationship": "uses"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "version": 1,
+    "layout": "force",
+    "bindings": [
+      {
+        "channel": "size",
+        "source": {
+          "kind": "algorithm",
+          "id": "degree"
+        },
+        "resultType": "num"
+      },
+      {
+        "channel": "image",
+        "source": {
+          "kind": "field",
+          "id": "image"
+        },
+        "resultType": "cat"
+      },
+      {
+        "channel": "color",
+        "source": {
+          "kind": "field",
+          "id": "group"
+        },
+        "resultType": "cat"
+      }
+    ],
+    "current": {
+      "version": 1,
+      "state": {
+        "v": 1,
+        "dataset": {
+          "kind": "file",
+          "name": "Databases × what they are built on"
+        },
+        "layout": "force",
+        "labels": true,
+        "tapered": false,
+        "edgeGradient": false,
+        "theme": "light",
+        "bindings": [
+          {
+            "channel": "size",
+            "source": {
+              "kind": "algorithm",
+              "id": "degree"
+            },
+            "resultType": "num"
+          },
+          {
+            "channel": "image",
+            "source": {
+              "kind": "field",
+              "id": "image"
+            },
+            "resultType": "cat"
+          },
+          {
+            "channel": "color",
+            "source": {
+              "kind": "field",
+              "id": "group"
+            },
+            "resultType": "cat"
+          }
+        ],
+        "filterStack": [],
+        "selection": {
+          "primary": null,
+          "set": [],
+          "target": null
+        },
+        "camera": null,
+        "panel": {
+          "bottomOpen": false,
+          "bottom": 240,
+          "floating": false
+        }
+      },
+      "playerIndex": null
+    }
+  }
+}

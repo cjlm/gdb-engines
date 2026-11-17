@@ -6,6 +6,7 @@ import GraphSwitcher from '../components/graph/GraphSwitcher.astro';
 import SimilarityControls from '../components/graph/SimilarityControls.astro';
 import QueryLanguagesView from '../components/graph/QueryLanguagesView.astro';
 import SimilarityView from '../components/graph/SimilarityView.astro';
+import BuiltOnView from '../components/graph/BuiltOnView.astro';
 import TimelineView from '../components/graph/TimelineView.astro';
 import LineageView from '../components/graph/LineageView.astro';
 import { getDatabaseCount } from '../lib/database-count';
@@ -62,6 +63,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       <div class="visualization-views">
         <QueryLanguagesView />
         <SimilarityView />
+        <BuiltOnView />
         <TimelineView />
         <LineageView />
       </div>
@@ -75,8 +77,9 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
     <noscript>
       <p class="graph-fallback">
         JavaScript is required for the interactive view. The underlying
-        <a href="/graphs/databases-languages.gph">query-language graph</a> and
-        <a href="/graphs/databases-similarity.gph">similarity graph</a> are
+        <a href="/graphs/databases-languages.gph">query-language graph</a>,
+        <a href="/graphs/databases-similarity.gph">similarity graph</a> and
+        <a href="/graphs/databases-built-on.gph">built-on graph</a> are
         available as structured Garphield documents.
       </p>
     </noscript>

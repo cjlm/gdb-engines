@@ -4,6 +4,7 @@ import { parse } from "smol-toml";
 import { nearest, scorePairs } from "./lib/similarity.mjs";
 
 const SOURCE_DIR = "src/content/databases";
+const BUILT_ON_PATH = "src/data/built-on.json";
 // `--out <dir>` writes somewhere else, so a check can compare without touching tracked files.
 const outIndex = process.argv.indexOf("--out");
 const OUTPUT_DIR = outIndex === -1 ? "public/graphs" : process.argv[outIndex + 1];
@@ -211,10 +212,82 @@ function similarityDocument() {
   });
 }
 
+async function builtOnDocument() {
+  const { libraries, engines } = JSON.parse(await readFile(BUILT_ON_PATH, "utf8"));
+  const bySlug = new Map(databases.map((database) => [database.slug, database]));
+  const known = (slug) => {
+    const database = bySlug.get(slug);
+    if (!database) {
+      throw new Error(`${BUILT_ON_PATH}: "${slug}" is not a catalogue slug.`);
+    }
+    return database;
+  };
+
+  const links = [];
+  const engineIds = new Set();
+  const libraryNames = new Set();
+  for (const [slug, uses] of Object.entries(engines)) {
+    known(slug);
+    engineIds.add(slug);
+    for (const use of uses) {
+      let target;
+      if (use.engine) {
+        known(use.engine);
+        engineIds.add(use.engine);
+        target = `db:${use.engine}`;
+      } else {
+        if (!libraries[use.library]) {
+          throw new Error(
+            `${BUILT_ON_PATH}: ${slug} uses "${use.library}", which is not in "libraries".`,
+          );
+        }
+        libraryNames.add(use.library);
+        target = `library:${use.library}`;
+      }
+      links.push({ source: `db:${slug}`, target, relationship: use.relation });
+    }
+  }
+
+  const nodes = [
+    ...[...engineIds].sort().map((slug) => {
+      const database = bySlug.get(slug);
+      return {
+        ...databaseNode(database),
+        kind: "Database",
+        group: "Graph database",
+        type: database.type,
+        category: database.category,
+        status: database.status,
+      };
+    }),
+    ...[...libraryNames].sort().map((library) => ({
+      id: `library:${library}`,
+      label: library,
+      kind: "Library",
+      group: libraries[library],
+    })),
+  ];
+
+  return document("Databases × what they are built on", nodes, links, {
+    version: 1,
+    layout: "force",
+    bindings: [
+      sizeByDegree,
+      imageByUrl,
+      {
+        channel: "color",
+        source: { kind: "field", id: "group" },
+        resultType: "cat",
+      },
+    ],
+  });
+}
+
 await mkdir(OUTPUT_DIR, { recursive: true });
 const outputs = [
   ["databases-languages.gph", bipartiteDocument()],
   ["databases-similarity.gph", similarityDocument()],
+  ["databases-built-on.gph", await builtOnDocument()],
 ];
 for (const [filename, graph] of outputs) {
   await writeFile(
