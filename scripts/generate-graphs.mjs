@@ -213,8 +213,8 @@ function similarityDocument() {
 
 await mkdir(OUTPUT_DIR, { recursive: true });
 const outputs = [
-  ["databases-languages.gfd", bipartiteDocument()],
-  ["databases-similarity.gfd", similarityDocument()],
+  ["databases-languages.gph", bipartiteDocument()],
+  ["databases-similarity.gph", similarityDocument()],
 ];
 for (const [filename, graph] of outputs) {
   await writeFile(

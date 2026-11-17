@@ -15,7 +15,7 @@ export const GRAPH_VIEWS = [
     description: 'Explore graph databases through the query languages they support.',
     modelDescription: 'Databases linked via query languages supported.',
     mobileDescription: 'Databases linked via query languages supported.',
-    document: '/graphs/databases-languages.gfd',
+    document: '/graphs/databases-languages.gph',
   },
   {
     id: 'similarity',
@@ -27,7 +27,7 @@ export const GRAPH_VIEWS = [
       'runs embedded, implementation language, query languages and protocols, with rarer ' +
       'shared traits counting for more, and every fork to its parent.',
     mobileDescription: 'Databases linked to their nearest catalog peers.',
-    document: '/graphs/databases-similarity.gfd',
+    document: '/graphs/databases-similarity.gph',
   },
   {
     id: 'timeline',
