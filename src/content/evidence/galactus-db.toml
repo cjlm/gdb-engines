@@ -1,0 +1,756 @@
+# Sources for values in src/content/databases/galactus-db.toml.
+# Written by scripts/import-research.mjs and scripts/verify-quotes.mjs — edit values in the
+# catalogue entry, not here; scripts/check-evidence.mjs fails the build if the two disagree.
+
+slug = "galactus-db"
+
+[[claims]]
+field = "protocols"
+value = ["Bolt"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "Bolt is the only client protocol. The optional Prometheus endpoint (GET /metrics and GET /health) reports on the server and takes no queries."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/integrations/bolt"
+  title = "Connect with a Galactus DB driver | Galactus DB"
+  quote = "Bolt 4.4 and, from 1.1.0, Bolt 5.0 to 5.4. The server picks the newest version the client offers"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "license"
+value = "Proprietary"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "Closed source, distributed as a container image. The Community edition is free and needs no key; Commercial and Enterprise are licensed per core. Only the client drivers are open source (Apache-2.0)."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/legal/licence-terms"
+  title = "Galactus DB Licence Terms | Galactus DB"
+  quote = "You must not share, resell or sublicense a key, use it on more instances or cores than it names, remove or work around the licence checks, or decompile the software except where the law gives you that right regardless of these terms."
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/licensing"
+  title = "Licences and editions | Galactus DB"
+  quote = "Community is free for any use, including production and business use."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "released"
+value = "2026-09"
+confidence = "high"
+method = "api"
+checked = "2026-11-16"
+notes = "The public image repository was created on 2026-09-15 and its first tag, 0.1.0-preview.1, was pushed the same day."
+
+  [[claims.sources]]
+  url = "https://hub.docker.com/v2/repositories/ianknowles/galactus-db/"
+  title = "Docker Hub API: ianknowles/galactus-db"
+  quote = "\"date_registered\":\"2026-09-15T14:16:44.231334Z\""
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://hub.docker.com/v2/repositories/ianknowles/galactus-db/tags/0.1.0-preview.1"
+  title = "Docker Hub API: ianknowles/galactus-db tag 0.1.0-preview.1"
+  quote = "\"tag_last_pushed\":\"2026-09-15T14:17:33.330575Z\""
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "implementation_language"
+value = "Rust"
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "The server is one statically linked Rust binary."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/blog/galactus-db-image-size"
+  title = "A graph database that packs light | Galactus DB"
+  quote = "The database ships as a statically linked Rust binary in a scratch container."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "embeddable"
+value = false
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-16"
+notes = "A standalone server that clients reach over Bolt. No in-process library is offered; the Station desktop app runs the server on the user's computer, but that is an application, not a library to embed."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "Pull the database and Explorer images from Docker Hub. Both run as separate services; you only need Docker with Compose."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.active_development"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Release 2.5.0 came out on 2026-11-15 and the Docker guide names it as the newest release."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "This tag tracks the newest release (currently 2.5.0)."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.commercial_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. The Enterprise edition includes support from the Galactus team."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/pricing"
+  title = "Pricing and editions | Galactus DB"
+  quote = "Everything in Commercial, plus replicas on other servers and support from the Galactus team."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.live_community"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. No public issue tracker, forum or engine repository exists to measure; only the client drivers are public. Nothing on the site states a community size, so there is nothing to quote."
+
+[[claims]]
+field = "features.open_source"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. The engine is closed source and licensed under proprietary terms; only the client drivers are Apache-2.0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/legal/licence-terms"
+  title = "Galactus DB Licence Terms | Galactus DB"
+  quote = "You must not share, resell or sublicense a key, use it on more instances or cores than it names, remove or work around the licence checks, or decompile the software"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.pricing"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Per-core term prices are published in USD, EUR and GBP."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/licensing"
+  title = "Licences and editions | Galactus DB"
+  quote = "Commercial term totals per core, per instance, for one, two, three or five years"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.trendiness"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Public since 2026-09, with no Google Trends data or public repository to measure, which the rubric scores 0. There is nothing on the vendor site to quote."
+
+[[claims]]
+field = "features.containerization"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Images are published on Docker Hub for ARM64 and AMD64."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "The release tags contain both architectures, so Docker selects the matching image for your container host."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.work_as_dedicated_instance"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Runs as a standalone server container, with Explorer as a separate service."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "Pull the database and Explorer images from Docker Hub. Both run as separate services"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.work_as_embedded"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Runs only as a server reached over Bolt; no in-process library is offered."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs"
+  title = "Galactus DB documentation | Galactus DB"
+  quote = "Deploy Galactus DB with container images, connect your applications over Bolt, and query connected data with Cypher."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.testing_in_memory_version"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. The Volatile storage engine keeps the whole graph in memory with no persistent storage, for disposable tests."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/storage"
+  title = "Storage engines | Galactus DB"
+  quote = "Volatile The whole graph and indexes None Disposable tests"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.operating_on_linux"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Both server and Explorer images target 64-bit Linux."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/docker"
+  title = "Docker deployment | Galactus DB"
+  quote = "Both images target 64-bit Linux containers"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.operating_on_windows"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Station, the desktop app, runs the database on Windows. Ambiguous: the server image itself is Linux only, so counting the server alone would score 0.5."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/station"
+  title = "Galactus DB Station | Galactus DB"
+  quote = "Galactus DB Station is a desktop app for Windows, macOS and Linux. It runs Galactus DB on your computer"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.saas_offering"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Galactus Cloud is a hosted service, currently in beta."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/cloud"
+  title = "Galactus Cloud: hosted Galactus DB | Galactus DB"
+  quote = "Galactus Cloud is in beta"
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/cloud"
+  title = "Galactus Cloud: hosted Galactus DB | Galactus DB"
+  quote = "A dedicated server for your graphs, ready in minutes."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.automatic_updates"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. On Galactus Cloud the vendor installs updates in a maintenance window. Ambiguous: the self-hosted server has no automatic updates, so scoring it alone would give 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/legal/cloud-terms"
+  title = "Galactus Cloud Terms of Service | Galactus DB"
+  quote = "We install Galactus DB updates and renewed licences in a maintenance window"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.client_side_caching"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Not claimed by the vendor, and no page describes a client-side cache, so there is nothing to quote."
+
+[[claims]]
+field = "features.data_versioning_support"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Not claimed by the vendor. Snapshot reads and change streams exist but no page describes versioned data or history queries, so there is nothing to quote."
+
+[[claims]]
+field = "features.live_backups"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. gdb.dump hot-dumps a database while it serves reads and writes (from 1.6.4)."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/backups"
+  title = "Backup, restore and transfer | Galactus DB"
+  quote = "gdb.dumpToBackup() run alongside reads and writes"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.cluster_rebalancing"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or rebalancing, so there is nothing to quote."
+
+[[claims]]
+field = "features.data_distribution"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or partitioning, so there is nothing to quote."
+
+[[claims]]
+field = "features.high_availability"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. A replica can be kept on another server as a standby and promoted to writable with PROMOTE. Ambiguous: promotion is manual and there is no automatic failover (the Cloud terms say so for hosted deployments), so a rubric requiring automatic failover would score 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/replicas"
+  title = "Replica databases | Galactus DB"
+  quote = "Use it to serve reads and reports, as a standby"
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/replicas"
+  title = "Replica databases | Galactus DB"
+  quote = "PROMOTE turns a replica into an ordinary database. It stops following and accepts writes."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.query_distribution"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Queries run on the single server that holds the database; replicas must be addressed by name and are not routed to."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/replicas"
+  title = "Replica databases | Galactus DB"
+  quote = "Driver routing: replicas are not advertised to drivers' routing. Address a replica by its database name."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.replication_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Read-only replicas on the same instance or another server follow the source's change stream."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/replicas"
+  title = "Replica databases | Galactus DB"
+  quote = "A replica is a read-only copy of another database: on the same instance from version 1.4.0, and on another instance from version 1.6.5."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.data_types_defined"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Lists, maps, points, temporal values and exact decimals are documented types."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/types"
+  title = "Spatial, temporal and decimal values | Galactus DB"
+  quote = "Points, temporal values and exact decimals can be stored, queried, indexed where supported, and encoded over Bolt. The value overview covers scalars, lists and maps."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.logging_auditing"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. JSON logs with a threshold set by GDB_LOG."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/configuration"
+  title = "Server configuration | Galactus DB"
+  quote = "JSON log threshold: debug, info, warn, error, critical"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.object_graph_mapper"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Not claimed by the vendor; the drivers documentation describes no object-graph mapper, so there is nothing to quote."
+
+[[claims]]
+field = "features.reactive_programming"
+value = 0
+confidence = "low"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Not claimed by the vendor; no page describes a reactive driver API, so there is nothing to quote."
+
+[[claims]]
+field = "features.documentation_up_to_date"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. The documentation names 2.5.0, the current release."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs"
+  title = "Galactus DB documentation | Galactus DB"
+  quote = "The current release, Galactus DB 2.5.0, is published on Docker Hub"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.binary_protocol"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Clients connect over Bolt."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/integrations/bolt"
+  title = "Connect with a Galactus DB driver | Galactus DB"
+  quote = "Version 0.2 speaks Bolt 5.0 to 5.4 with a Bolt 4.4 fallback"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.cli"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Clients connect over Bolt through a driver, Explorer or Station; no shell is shipped (the docs describe gdb.cypher.import as doing server-side what cypher-shell -f does client-side)."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs"
+  title = "Galactus DB documentation | Galactus DB"
+  quote = "Deploy Galactus DB with container images, connect your applications over Bolt, and query connected data with Cypher."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.gui"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Explorer is a browser workbench and Station a desktop app."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/explorer"
+  title = "Galactus DB Explorer | Galactus DB"
+  quote = "Explorer is the web workbench for Galactus DB."
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/station"
+  title = "Galactus DB Station | Galactus DB"
+  quote = "Galactus DB Station is a desktop app for Windows, macOS and Linux."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.multi_database"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. SQL tables with typed rows are held as node properties, alongside vector, full-text and spatial indexes."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/tables"
+  title = "Tables and SQL | Galactus DB"
+  quote = "A node property can hold a TABLE : typed rows with a primary key, indexes and constraints, read and changed with SQL."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.graph_native_data"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Index-free adjacency in a storage engine built for graphs."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/"
+  title = "Graph database with SQL tables and vector search | Galactus DB"
+  quote = "It has true index-free adjacency: every node points straight at its relationships"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.rest_api"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Bolt is the only client protocol; the optional Prometheus endpoint takes no queries."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs"
+  title = "Galactus DB documentation | Galactus DB"
+  quote = "Deploy Galactus DB with container images, connect your applications over Bolt, and query connected data with Cypher."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.query_language"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Cypher (a read/write subset with extensions), plus SQL for tables."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/cypher"
+  title = "Cypher query language | Galactus DB"
+  quote = "GDB implements a read/write subset of Cypher, plus documented extensions such as element indexes and shared uniqueness."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.granular_locking"
+value = 0
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Writes to a database run one at a time and readers never wait for them, so there are no object-level locks."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/transactions"
+  title = "Transactions and concurrency | Galactus DB"
+  quote = "A write statement or an open write transaction has exclusive access for writing, so other writers wait for it to finish, in the order they arrived."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.multiple_isolation_levels"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Read committed for single statements, and one snapshot from BEGIN to COMMIT in a read transaction (repeatable read)."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/transactions#snapshot-reads"
+  title = "Transactions and concurrency | Galactus DB"
+  quote = "reads one snapshot from BEGIN to COMMIT : every statement sees the database as it was when the transaction began (repeatable read)."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.read_committed_transaction"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. A read sees the last committed state and never uncommitted writes."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/transactions"
+  title = "Transactions and concurrency | Galactus DB"
+  quote = "It reads the last committed state, and never a transaction's uncommitted writes."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.transaction_support"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Atomic statements and explicit multi-statement transactions."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/transactions"
+  title = "Transactions and concurrency | Galactus DB"
+  quote = "Each updating statement is atomic: it succeeds as a whole or rolls back. Use an explicit driver transaction when several statements must commit together."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.constraints"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Uniqueness, existence, node key and property type constraints."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/indexes/constraints"
+  title = "Constraints and shared uniqueness | Galactus DB"
+  quote = "A uniqueness constraint guarantees no two nodes with a given label share a value for a property."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.schema_support"
+value = 0.5
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Tables are declared with typed columns, primary keys, CHECK constraints and ALTER TABLE; the graph itself is constrained rather than declared. Lowered from 1 in review."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/tables/definitions"
+  title = "Table definitions | Galactus DB"
+  quote = "Primary key id INTEGER PRIMARY KEY, or PRIMARY KEY (a, b); its columns are NOT NULL"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.secondary_indexes"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Property, range, composite, relationship, full-text, vector, point and spatial shape indexes."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/indexes"
+  title = "Indexes and constraints | Galactus DB"
+  quote = "Relevance-ranked text search over a string property Full-text index"
+  verified = "matched"
+  checked = "2026-11-17"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/indexes"
+  title = "Indexes and constraints | Galactus DB"
+  quote = "Nearest-neighbour over embedding vectors Vector index"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.server_side_procedures"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. A built-in procedure library (graph algorithms, APOC utilities, scheduling, backup, administration) runs in the server and is called with CALL. Ambiguous: users cannot define their own procedures, so a rubric requiring user-defined procedures would score 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/reference/procedures"
+  title = "Procedure directory | Galactus DB"
+  quote = "gdb.dijkstra, gdb.astar, gdb.pageRank, gdb.degree Live graph algorithms"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.triggers"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Subscriptions with selectors are trigger queues that deliver named label, property and relationship changes to consumers. Ambiguous: they deliver events and run no code in the server, so a rubric requiring server-side trigger code would score 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/subscriptions"
+  title = "Subscriptions | Galactus DB"
+  quote = "With selectors it is a trigger queue that delivers only the label, label-property and relationship changes it names."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.authentication"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Users and passwords, with TLS on the Bolt port."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/authentication"
+  title = "Users, roles and database permissions | Galactus DB"
+  quote = "the server accepts TLS on the Bolt port, for native Bolt and for Bolt over WebSocket"
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.authorization"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. Roles and grants per database and graph."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/operations/authentication"
+  title = "Users, roles and database permissions | Galactus DB"
+  quote = "The analyst can read the whole analytics graph, but cannot write it, read another database without a grant, or administer users."
+  verified = "matched"
+  checked = "2026-11-17"
+
+[[claims]]
+field = "features.data_encryption"
+value = 1
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-17"
+notes = "Vendor self-assessed in PR #144. On Galactus Cloud disks and backups are encrypted at rest; TLS is available on every connection. Ambiguous: the self-hosted server has no documented at-rest encryption, so scoring it alone would give 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/legal/data-processing"
+  title = "Galactus Cloud Data Processing Agreement | Galactus DB"
+  quote = "disks are encrypted at rest with AES-256; backups are encrypted at rest in S3 and transferred over TLS."
+  verified = "matched"
+  checked = "2026-11-17"
