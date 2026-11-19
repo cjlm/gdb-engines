@@ -329,16 +329,30 @@ notes = "Vendor self-assessed in PR #144. gdb.dump hot-dumps a database while it
 
 [[claims]]
 field = "features.cluster_rebalancing"
-value = 0
+value = 1
 confidence = "medium"
 method = "vendor-docs"
 checked = "2026-11-19"
-notes = "Vendor self-assessed. Not supported. In Nebula Cluster (early access) an administrator adds a server to a running cluster and takes one out with statements; copies are not moved or balanced between servers automatically."
+notes = "Vendor self-assessed. In Nebula Cluster a database's copies are moved between servers while the cluster serves: a server is added and given a copy, follows every write, is given a vote once it has caught up, and an old server is then taken out. It is done by an administrator's statements; the cluster does not move copies by itself, so a rubric requiring automatic rebalancing would score 0. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image."
 
   [[claims.sources]]
   url = "https://galactusdb.com/nebula"
   title = "Nebula Cluster: a graph database that stays up | Galactus DB"
-  quote = "Add a server to a running cluster with three statements"
+  quote = "Add a server to a running cluster with three statements: it is given a copy, follows every write, and is given a vote once it has caught up. Take one out with one statement."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "You can add a server to a running cluster and take one out."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
   verified = "matched"
   checked = "2026-11-19"
 
