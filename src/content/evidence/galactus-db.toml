@@ -330,26 +330,61 @@ notes = "Vendor self-assessed in PR #144. gdb.dump hot-dumps a database while it
 [[claims]]
 field = "features.cluster_rebalancing"
 value = 0
-confidence = "low"
+confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or rebalancing, so there is nothing to quote."
+checked = "2026-11-19"
+notes = "Vendor self-assessed. Not supported. In Nebula Cluster (early access) an administrator adds a server to a running cluster and takes one out with statements; copies are not moved or balanced between servers automatically."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Add a server to a running cluster with three statements"
+  verified = "matched"
+  checked = "2026-11-19"
 
 [[claims]]
 field = "features.data_distribution"
 value = 0
-confidence = "low"
+confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or partitioning, so there is nothing to quote."
+checked = "2026-11-19"
+notes = "Vendor self-assessed. No sharding. In Nebula Cluster (early access) every server holds a full copy of the database: the data is replicated between servers, not partitioned across them."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Three servers hold your data."
+  verified = "matched"
+  checked = "2026-11-19"
 
 [[claims]]
 field = "features.high_availability"
 value = 1
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A replica can be kept on another server as a standby and promoted to writable with PROMOTE. Ambiguous: promotion is manual and there is no automatic failover (the Cloud terms say so for hosted deployments), so a rubric requiring automatic failover would score 0."
+checked = "2026-11-19"
+notes = "Vendor self-assessed. Two mechanisms. In the released product a replica can be kept on another server as a standby and promoted to writable with PROMOTE, which is a manual step. Nebula Cluster adds automatic failover: three or more servers hold the database and choose a new leader between themselves when one is lost. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "When one is lost, another takes over within seconds and every acknowledged write is still there."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "In a cluster the servers settle it between themselves: a write was accepted 2.6 seconds after we killed the leader."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-19"
 
   [[claims.sources]]
   url = "https://galactusdb.com/docs/operations/replicas"
@@ -367,18 +402,39 @@ notes = "Vendor self-assessed in PR #144. A replica can be kept on another serve
 
 [[claims]]
 field = "features.query_distribution"
-value = 0
+value = 1
 confidence = "medium"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. Queries run on the single server that holds the database; replicas must be addressed by name and are not routed to."
+checked = "2026-11-19"
+notes = "Vendor self-assessed. In Nebula Cluster every server takes any request over plain Bolt and the cluster assigns it to the right server: a write that reaches a server which does not lead is carried to the leader, and a read is answered by the server it reached once that server has caught up with the cluster. No routing driver is involved. Each server holds a full copy, so a query is assigned to a server, not to a shard (see data_distribution). Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image; in the released single-server product queries run on the one server and replicas are addressed by name, which would score 0."
 
   [[claims.sources]]
-  url = "https://galactusdb.com/docs/operations/replicas"
-  title = "Replica databases | Galactus DB"
-  quote = "Driver routing: replicas are not advertised to drivers' routing. Address a replica by its database name."
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Point your application at any server, or at all of them behind a load balancer."
   verified = "matched"
-  checked = "2026-11-17"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "A write that reaches a server which does not lead is carried to the leader and answered on the same connection."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "A read runs on the server you are connected to."
+  verified = "matched"
+  checked = "2026-11-19"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-19"
 
 [[claims]]
 field = "features.replication_support"
