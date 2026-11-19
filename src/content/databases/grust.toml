@@ -9,6 +9,7 @@ type = "Property Graph"
 kind = "library"
 embeddable = true
 query_languages = ["Custom API"]
+kg_capabilities = ["Graph algorithms"]
 released = "2026-05"
 category = "Emerging"
 gdotv_support = false

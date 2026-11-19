@@ -1,0 +1,735 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import BookCredit from '../components/BookCredit.astro';
+import EngineList from '../components/EngineList.astro';
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import { loadRankings } from '../lib/rankings';
+import { buildBoards } from '../lib/ranking-boards';
+import { loadSponsors, sponsorFor } from '../lib/sponsors';
+import { kgKindsOf, type KgKind } from '../lib/knowledge-graph';
+
+const databases = await getCollection('databases');
+const catalogue = new Map(databases.map(({ data }) => [data.slug, data]));
+const ranking = await loadRankings();
+const board = ranking
+  ? buildBoards(ranking, databases.map(({ data }) => data))
+      .find((b) => b.slug === 'knowledge-graph')
+  : undefined;
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
+const updated = ranking
+  ? new Date(ranking.generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+  : null;
+const updatedNote = updated ? `, updated ${updated}` : '';
+
+const ranked = board?.engines ?? [];
+const ofKind = (kind: KgKind) => (slug: string) => {
+  const db = catalogue.get(slug);
+  return db ? kgKindsOf(db).includes(kind) : false;
+};
+const maps = (slug: string) => catalogue.get(slug)?.kg_capabilities.includes('R2RML mapping');
+const semantic = ranked.filter((e) => ofKind('semantic')(e.slug));
+const property = ranked.filter((e) => ofKind('property-graph')(e.slug));
+const virtual = ranked.filter((e) => ofKind('virtual')(e.slug));
+/** Virtual engines that take the mapping language the section describes. */
+const virtualByMapping = virtual.filter((e) => maps(e.slug));
+const EXAMPLES = 4;
+
+const turtle = `# Ontology
+:Company rdfs:subClassOf :Organisation .
+:acquired rdfs:range :Company .
+
+# Facts
+:Microsoft a :Company ;
+    skos:altLabel "MSFT" ;
+    :acquired :GitHub .`;
+const cypher = `CREATE (m:Company {name: 'Microsoft'}),
+       (g:Company {name: 'GitHub'}),
+       (m)-[:ACQUIRED {year: 2018}]->(g)`;
+
+const canonical = 'https://gdb-engines.com/knowledge-graph/';
+const title = 'What Is a Knowledge Graph? Six Things the Term Means';
+const description =
+  'Knowledge graph has no single agreed definition. The term covers ontology-backed RDF graphs, ' +
+  "virtual graphs, property graphs, GraphRAG, agent memory and Google's search panel. " +
+  'How to tell them apart.';
+
+const faq = [
+  {
+    q: 'Is a knowledge graph a graph database?',
+    a:
+      "No. A graph database is one place to keep a knowledge graph's facts. The vocabulary " +
+      'that names things and the ontology that says how they relate are data a team writes, ' +
+      'whichever engine stores them.',
+  },
+  {
+    q: 'Is a knowledge graph the same as a vector database?',
+    a:
+      'No. A vector database finds things that are similar. A knowledge graph records how ' +
+      'things are related and why. The two are often used together: vector search retrieves ' +
+      'candidates, and the graph connects and explains them.',
+  },
+  {
+    q: 'Should a knowledge graph use RDF or a property graph?',
+    a:
+      'Use RDF if the graph has to share meaning across systems or organisations, or if a ' +
+      'reasoner should work over an ontology. Its standards (RDFS, OWL, SKOS, SHACL, SPARQL) ' +
+      'cover every layer. Use a property graph if the work is mostly traversal and analytics ' +
+      'inside one application and the schema can live in code. Several engines support both, ' +
+      'natively or through an extension.',
+  },
+];
+
+const articleJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  url: canonical,
+  publisher: { '@type': 'Organization', name: 'GDB-Engines', url: 'https://gdb-engines.com' },
+  citation: [
+    {
+      '@type': 'Book',
+      name: 'Ontology Pipeline: A Framework for Knowledge Engineering',
+      author: { '@type': 'Person', name: 'Jessica Talisman' },
+      publisher: 'Technics Publications',
+      url: 'https://technicspub.com/ontology-pipeline/',
+    },
+    {
+      '@type': 'ScholarlyArticle',
+      name: 'Knowledge Graphs',
+      url: 'https://arxiv.org/abs/2003.02320',
+    },
+  ],
+});
+const faqJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+});
+const breadcrumbJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gdb-engines.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Knowledge Graph', item: canonical },
+  ],
+});
+---
+<Layout
+  title={`${title} — GDB-Engines`}
+  description={description}
+  canonical={canonical}
+  ogType="article"
+  jsonLd={[articleJsonLd, faqJsonLd, breadcrumbJsonLd]}
+>
+  <SiteHeader sponsor={headerSponsor} />
+  <main class="kg-guide">
+    <header class="kg-intro">
+      <nav class="breadcrumb"><a href="/">GDB-Engines</a> &rsaquo; Knowledge graph</nav>
+      <h1>What is a knowledge graph?</h1>
+
+      <p class="answer">
+        A knowledge graph is a graph of facts stored together with a description of what the facts
+        mean: what kinds of thing exist, what each is called and how they may relate. That
+        description is what separates it from a graph database with data in it. Beyond this there
+        is no agreed definition (Hogan et al.'s
+        <a href="https://arxiv.org/abs/2003.02320" rel="noopener">survey</a> collects several), and
+        the name is in use for six different things.
+      </p>
+
+      {board && (
+        <p class="to-ranking">
+          Choosing software? The
+          <a href="/rankings/knowledge-graph/">knowledge graph ranking</a> lists
+          {board.engines.length} engines by kind and capability{updatedNote}.
+        </p>
+      )}
+    </header>
+
+    <nav class="toc" aria-labelledby="toc-heading">
+      <p id="toc-heading" class="toc-heading">On this page</p>
+      <ol>
+        <li><a href="#example">One fact, as a knowledge graph</a></li>
+        <li><a href="#meanings">Meanings of the term</a></li>
+        <li><a href="#pipeline">The order of work</a></li>
+        <li><a href="#parts">The parts, and which a database supplies</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#book">Where to read more</a></li>
+      </ol>
+    </nav>
+
+    <div class="kg-body">
+      <section id="example">
+        <h2>One fact, as a knowledge graph</h2>
+        <p>
+          Take a single fact: Microsoft acquired GitHub. As plain graph data it is two nodes and an
+          edge. A knowledge graph adds a second layer above it, which says that Microsoft is a
+          company, that a company is a kind of organisation, and that whatever gets acquired is a
+          company.
+        </p>
+
+        <figure class="layers">
+          <svg viewBox="0 0 360 208" role="img" aria-labelledby="layers-title layers-desc">
+            <title id="layers-title">The fact and the ontology above it</title>
+            <desc id="layers-desc">
+              In the facts layer, Microsoft acquired GitHub. In the ontology layer, a company is a
+              kind of organisation. Microsoft is stated to be a company. That GitHub is a company
+              is inferred.
+            </desc>
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto"
+              >
+                <path class="arrow-head" d="M0 0 10 5 0 10z" />
+              </marker>
+              <marker
+                id="arrow-inferred"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto"
+              >
+                <path class="arrow-head inferred" d="M0 0 10 5 0 10z" />
+              </marker>
+            </defs>
+
+            <line class="divider" x1="0" y1="108" x2="360" y2="108" />
+            <text class="layer" x="0" y="12">Ontology</text>
+            <text class="layer" x="0" y="128">Facts</text>
+
+            <line class="edge" x1="228" y1="44" x2="127" y2="44" marker-end="url(#arrow)" />
+            <text class="edge-label" x="177" y="36" text-anchor="middle">is a kind of</text>
+            <line class="edge" x1="110" y1="166" x2="244" y2="67" marker-end="url(#arrow)" />
+            <text class="edge-label" x="138" y="143" text-anchor="end">is a</text>
+            <line
+              class="edge inferred"
+              x1="312"
+              y1="166"
+              x2="296"
+              y2="67"
+              marker-end="url(#arrow-inferred)"
+            />
+            <text class="edge-label inferred" x="298" y="143" text-anchor="end">
+              is a (inferred)
+            </text>
+            <line class="edge" x1="136" y1="186" x2="253" y2="186" marker-end="url(#arrow)" />
+            <text class="edge-label" x="194" y="178" text-anchor="middle">acquired</text>
+
+            <rect class="node class" x="1" y="24" width="124" height="40" rx="6" />
+            <text class="node-label" x="63" y="49" text-anchor="middle">Organisation</text>
+            <rect class="node class" x="228" y="24" width="104" height="40" rx="6" />
+            <text class="node-label" x="280" y="49" text-anchor="middle">Company</text>
+            <rect class="node" x="20" y="166" width="116" height="40" rx="20" />
+            <text class="node-label" x="78" y="191" text-anchor="middle">Microsoft</text>
+            <rect class="node" x="256" y="166" width="96" height="40" rx="20" />
+            <text class="node-label" x="304" y="191" text-anchor="middle">GitHub</text>
+          </svg>
+          <figcaption>
+            Solid arrows were entered by someone. The dashed arrow was not: it follows from the
+            ontology.
+          </figcaption>
+        </figure>
+
+        <p>
+          In RDF, the data model of the W3C's semantic web standards, both layers are statements in
+          the same graph. In Turtle, with prefixes left out:
+        </p>
+        <pre><code set:text={turtle} /></pre>
+        <p>
+          Nothing in it says what GitHub is. Because <code>:acquired</code> has the range
+          <code>:Company</code>, a reasoner concludes that GitHub is a company, and therefore an
+          organisation. The <code>skos:altLabel</code> line records "MSFT" as another name for the
+          same thing, so data that arrives saying MSFT can be matched to this node.
+        </p>
+        <p>A property graph database holds the same fact like this, in Cypher:</p>
+        <pre><code set:text={cypher} /></pre>
+        <p>
+          The relationship carries a property of its own, the year, which RDF 1.1 needs reification
+          to express. <code>Company</code>, though, is a label and no more. That a company is an
+          organisation, or that <code>ACQUIRED</code> must point at one, is a rule kept in the
+          application that writes the data. Whether the meaning sits in the graph or in the code
+          around it is the main thing that separates the meanings below.
+        </p>
+      </section>
+
+      <section id="meanings">
+        <h2>Meanings of the term</h2>
+        <p>
+          Three of them differ in how the graph is modelled and stored. Two are uses that grew up
+          around language models. One is the product that made the term familiar.
+        </p>
+
+        <h3>1. A semantic knowledge graph</h3>
+        <p>
+          The strictest sense, and the one the Turtle above belongs to. Terms come from a controlled
+          vocabulary, usually published in
+          <a href="https://www.w3.org/TR/skos-reference/" rel="noopener">SKOS</a>. Classes and
+          relations are defined in an ontology written in
+          <a href="https://www.w3.org/TR/rdf-schema/" rel="noopener">RDF Schema</a> or
+          <a href="https://www.w3.org/TR/owl2-overview/" rel="noopener">OWL</a>. Facts are
+          <a href="https://www.w3.org/TR/rdf11-concepts/" rel="noopener">RDF</a> triples, queried
+          with <a href="https://www.w3.org/TR/sparql11-overview/" rel="noopener">SPARQL</a>. A
+          reasoner derives what the ontology implies, and
+          <a href="https://www.w3.org/TR/shacl/" rel="noopener">SHACL</a> shapes check that the data
+          fits the model. Every layer is a W3C standard, so software from another organisation can
+          read both the data and its meaning.
+        </p>
+        {semantic.length > 0 && (
+          <p class="engines">
+            The ranking counts an engine as semantic when it answers SPARQL 1.1 itself. The most
+            popular are <EngineList engines={semantic.slice(0, EXAMPLES)} />.
+            <a href="/rankings/knowledge-graph/#semantic">All {semantic.length} of them</a>.
+          </p>
+        )}
+
+        <h3>2. A virtual knowledge graph</h3>
+        <p>
+          The same semantic model, laid over data that stays where it is. Mappings, usually written
+          in <a href="https://www.w3.org/TR/r2rml/" rel="noopener">R2RML</a>, translate each graph
+          query into SQL against the source databases at run time, so nothing is copied. The price
+          is query speed, which depends on the sources underneath. Property graph vendors now offer
+          the same arrangement without RDF: <a href="/db/puppygraph/">PuppyGraph</a> and
+          <a href="/db/neo4j/">Neo4j</a>'s Virtual Graph run graph queries over tables in a
+          warehouse or lake.
+        </p>
+        {virtual.length > 0 && (
+          <p class="engines">
+            {virtualByMapping.length > 0 && (
+              <>
+                The most popular engines that take R2RML mappings are
+                <EngineList engines={virtualByMapping.slice(0, EXAMPLES)} />.
+              </>
+            )}
+            <a href="/rankings/knowledge-graph/#virtual">All {virtual.length} virtual engines</a>.
+          </p>
+        )}
+
+        <h3>3. A property graph called a knowledge graph</h3>
+        <p>
+          Graph database vendors use the term for connected business data stored as labelled nodes
+          and relationships with properties, as in the Cypher above. The facts are there. The
+          vocabulary and the ontology live in application code, or in a schema that only that
+          database reads. Some vendors close part of the gap themselves: Neo4j Labs' neosemantics
+          imports RDF and validates against SHACL. Neo4j draws the line between the store and the
+          knowledge in it when it answers
+          <a
+            href="https://neo4j.com/blog/knowledge-graph/knowledge-graph-vs-graph-database/"
+            rel="noopener"
+          >whether a knowledge graph is a graph database</a>.
+        </p>
+        {property.length > 0 && (
+          <p class="engines">
+            The ranking lists a property graph database when its makers present it for knowledge
+            graphs. The most popular are <EngineList engines={property.slice(0, EXAMPLES)} />.
+            <a href="/rankings/knowledge-graph/#property-graph">All {property.length} of them</a>.
+          </p>
+        )}
+
+        <h3>4. A graph extracted by a language model</h3>
+        <p>
+          Since Microsoft Research published
+          <a href="https://arxiv.org/abs/2404.16130" rel="noopener">GraphRAG</a> in 2024, the term
+          also covers entities and relations that a language model pulls out of documents and that
+          a retrieval system uses to ground its answers. Such a graph is quick to build and usually
+          has no vocabulary or ontology behind it, so "MSFT", "Microsoft" and "Microsoft
+          Corporation" can come out as three nodes. Under the strict definition it becomes a
+          knowledge graph once those names are reconciled to one term and its relations are typed
+          by an ontology.
+        </p>
+        {ranking && (
+          <p class="engines">
+            The <a href="/rankings/graph-databases-graphrag-knowledge-grounding/">GraphRAG
+            ranking</a> lists the engines used for it.
+          </p>
+        )}
+
+        <h3>5. Agent memory</h3>
+        <p>
+          A graph that an AI agent writes as it works, so that it can recall later what it learned
+          and when. Zep's
+          <a href="https://arxiv.org/abs/2501.13956" rel="noopener">temporal knowledge graph</a>,
+          for one, records the period over which each fact held. Like an extracted graph, it is
+          built by a model and has no model agreed in advance.
+        </p>
+        {ranking && (
+          <p class="engines">
+            The <a href="/rankings/graph-databases-agent-memory/">agent memory ranking</a> lists
+            the engines used for it.
+          </p>
+        )}
+
+        <h3>6. Google's Knowledge Graph</h3>
+        <p>
+          The panel of facts beside search results. Google
+          <a
+            href="https://blog.google/products/search/introducing-knowledge-graph-things-not/"
+            rel="noopener"
+          >introduced it in 2012</a> as "things, not strings", and it is where most people first
+          met the term. It is one company's product, so nothing in the ranking corresponds to it.
+        </p>
+      </section>
+
+      <section id="pipeline">
+        <h2>The order of work</h2>
+        <p>
+          Jessica Talisman's <a href="#book"><cite>Ontology Pipeline</cite></a> sets out an order of
+          work drawn from librarians' practice and the
+          <a
+            href="https://www.niso.org/publications/ansiniso-z3919-2005-r2010"
+            rel="noopener"
+          >ANSI/NISO Z39.19</a> standard for controlled vocabularies. Each stage prepares the
+          material for the next. The examples are ours, taken from the graph above.
+        </p>
+        <table class="parts stages">
+          <thead>
+            <tr><th>Stage</th><th>What it adds</th><th>In the example</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1. Controlled vocabulary</th>
+              <td>One agreed, unambiguous term for each thing</td>
+              <td>"Microsoft" everywhere, never "MSFT" in one source and "Microsoft Corp." in the
+                next</td>
+            </tr>
+            <tr>
+              <th scope="row">2. Metadata standards</th>
+              <td>What each term is about and where it came from</td>
+              <td class="none">Not shown</td>
+            </tr>
+            <tr>
+              <th scope="row">3. Taxonomy</th>
+              <td>The terms arranged broad to narrow, parent and child</td>
+              <td>Company sits under Organisation</td>
+            </tr>
+            <tr>
+              <th scope="row">4. Thesaurus</th>
+              <td>Synonyms, related terms and matches to other vocabularies</td>
+              <td>"MSFT" is another label for Microsoft</td>
+            </tr>
+            <tr>
+              <th scope="row">5. Ontology</th>
+              <td>Formal classes, properties and logic, so a machine can reason</td>
+              <td>Whatever is acquired is a Company</td>
+            </tr>
+            <tr>
+              <th scope="row">6. Knowledge graph</th>
+              <td>The ontology populated with real instance data</td>
+              <td>Microsoft acquired GitHub</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          A database enters at the last stage. Most "best knowledge graph database" lists start
+          there, which is why they end up comparing products built for different jobs.
+        </p>
+      </section>
+
+      <section id="parts">
+        <h2>The parts, and which a database supplies</h2>
+        <p>
+          A knowledge graph needs a vocabulary, an ontology, somewhere to keep the facts and a way
+          to query them. The other parts are chosen per project. The vocabulary and the ontology
+          are data a team writes, so no engine supplies them, and the
+          <a href="/rankings/knowledge-graph/">ranking</a> checks each engine's documentation only
+          for the parts in the last column.
+        </p>
+        <table class="parts">
+          <thead>
+            <tr><th>Part</th><th>What it does</th><th>Column in the ranking</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group"><th colspan="3" scope="rowgroup">Every knowledge graph has</th></tr>
+            <tr>
+              <th scope="row">Vocabulary</th>
+              <td>Names the world: a taxonomy and thesaurus, usually in SKOS</td>
+              <td class="none">None. It is data.</td>
+            </tr>
+            <tr>
+              <th scope="row">Ontology</th>
+              <td>Defines classes and relations, in RDFS or OWL 2</td>
+              <td class="none">None. It is data.</td>
+            </tr>
+            <tr>
+              <th scope="row">Knowledge base</th>
+              <td>Stores the facts: a triple store or a labelled property graph</td>
+              <td>Kind</td>
+            </tr>
+            <tr>
+              <th scope="row">Query language</th>
+              <td>Reads the graph: SPARQL for RDF; Cypher, GQL or Gremlin for property graphs</td>
+              <td>SPARQL 1.1</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="group"><th colspan="3" scope="rowgroup">Chosen per project</th></tr>
+            <tr>
+              <th scope="row">Reasoner</th>
+              <td>Derives the facts the ontology implies</td>
+              <td>RDFS reasoning, OWL reasoning</td>
+            </tr>
+            <tr>
+              <th scope="row">Validation</th>
+              <td>Checks data against the model</td>
+              <td>SHACL validation</td>
+            </tr>
+            <tr>
+              <th scope="row">Data virtualisation</th>
+              <td>Reads relational sources as a graph</td>
+              <td>R2RML mapping</td>
+            </tr>
+            <tr>
+              <th scope="row">Vector retrieval</th>
+              <td>Similarity search over embeddings</td>
+              <td>Vector search</td>
+            </tr>
+            <tr>
+              <th scope="row">Graph algorithms</th>
+              <td>Structural and network analytics</td>
+              <td>Graph algorithms</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          Parts adapted from the knowledge graph architecture in <cite>Ontology Pipeline</cite>.
+        </p>
+      </section>
+
+      <section id="questions">
+        <h2>Questions</h2>
+        {faq.map(({ q, a }) => (
+          <>
+            <h3>{q}</h3>
+            <p>{a}</p>
+          </>
+        ))}
+      </section>
+
+      <section id="book">
+        <BookCredit />
+        <p class="further">
+          See Hogan et al., <a href="https://arxiv.org/abs/2003.02320" rel="noopener">"Knowledge
+          Graphs"</a> (2020), for a survey of definitions from the research side. To compare
+          engines, start with the <a href="/rankings/knowledge-graph/">knowledge graph ranking</a>,
+          {ranking && <>the <a href="/rankings/rdf/">RDF ranking</a> or </>}
+          <a href="/compare/rdf-triplestores/">RDF triplestores compared</a>.
+        </p>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Mark the section being read in the table of contents.
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>('.toc a')].map((link) => [
+      link.hash.slice(1),
+      link,
+    ]),
+  );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        for (const link of links.values()) link.removeAttribute('aria-current');
+        links.get(entry.target.id)?.setAttribute('aria-current', 'true');
+      }
+    },
+    { rootMargin: '-20% 0px -70% 0px' },
+  );
+  for (const id of links.keys()) {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  }
+</script>
+
+<style>
+  /* One column on phones; from 64rem the contents sit in a sticky column beside the text. */
+  .kg-guide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'intro' 'toc' 'body';
+    max-width: 78ch;
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 1.5rem) 1.25rem 3rem;
+  }
+  .kg-intro { grid-area: intro; }
+  .kg-body { grid-area: body; min-width: 0; }
+  .toc { grid-area: toc; }
+  @media (min-width: 64rem) {
+    .kg-guide {
+      max-width: calc(72ch + 16rem);
+      grid-template-columns: minmax(0, 72ch) 13rem;
+      grid-template-areas: 'intro toc' 'body toc';
+      grid-template-rows: auto 1fr;
+      column-gap: 3rem;
+    }
+    .toc {
+      position: sticky;
+      top: calc(var(--header-height) + 1.5rem);
+      align-self: start;
+      margin-top: 2.6rem;
+    }
+  }
+
+  .kg-guide :is(p, ol, ul, pre, figure, table) { margin-block: 0 1rem; }
+  .breadcrumb { font-size: 0.85rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
+  .breadcrumb a { color: var(--color-text-secondary); text-decoration: none; }
+  h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 0.75rem; color: var(--color-text); }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 0.5rem; color: var(--color-text); }
+  h3 { font-size: 1.05rem; margin: 1.6rem 0 0.3rem; color: var(--color-text); }
+  p, li { line-height: 1.65; color: var(--color-text); }
+  a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-brand-accent);
+    text-underline-offset: 2px;
+  }
+  .answer { font-size: 1.08rem; }
+  .to-ranking {
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+  .toc {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-surface);
+    margin-bottom: 1.5rem;
+  }
+  .toc-heading {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .toc ol {
+    display: grid;
+    gap: 0.15rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+    font-size: 0.9rem;
+  }
+  .toc li { counter-increment: toc; }
+  .toc a {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    color: var(--color-text-secondary);
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .toc a::before {
+    content: counter(toc);
+    min-width: 1ch;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .toc a:hover { color: var(--color-text); }
+  .toc a[aria-current] {
+    background: var(--color-background);
+    color: var(--color-brand-accent);
+    font-weight: 600;
+  }
+  .toc a[aria-current]::before { color: var(--color-brand-accent); }
+  @media (min-width: 64rem) {
+    .toc { margin-bottom: 0; background: transparent; border: 0; padding: 0; }
+    .toc a[aria-current] { background: var(--color-surface); }
+  }
+
+  .layers {
+    margin-inline: 0;
+    padding: 1rem 1rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+  .layers svg { display: block; width: 100%; max-width: 26rem; height: auto; margin: 0 auto; }
+  .layers figcaption {
+    margin-top: 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .layers text { font-family: inherit; fill: var(--color-text); }
+  .layers .layer {
+    fill: var(--color-text-tertiary);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .layers .node-label { font-size: 14px; font-weight: 500; }
+  .layers .edge-label { fill: var(--color-text-secondary); font-size: 12px; }
+  .layers .node { fill: var(--color-background); stroke: var(--color-text-tertiary); }
+  .layers .node.class { fill: var(--color-surface); }
+  .layers .divider { stroke: var(--color-border); stroke-dasharray: 2 4; }
+  .layers .edge { stroke: var(--color-text-secondary); stroke-width: 1.25; }
+  .layers .arrow-head { fill: var(--color-text-secondary); }
+  .layers .edge.inferred { stroke: var(--color-brand-accent); stroke-dasharray: 5 4; }
+  .layers .arrow-head.inferred,
+  .layers .edge-label.inferred { fill: var(--color-brand-accent); }
+
+  pre {
+    overflow-x: auto;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-surface);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+  code { font-family: var(--font-mono); font-size: 0.9em; }
+  pre code { font-size: inherit; color: var(--color-text); }
+
+  .engines { color: var(--color-text-secondary); font-size: 0.95rem; }
+  .engines a { white-space: nowrap; }
+
+  /* The global table rules suit the full-width ranking boards: one line per cell and a header
+     that sticks below the site header. Prose in a text column needs neither. */
+  .parts { margin-top: 0; font-size: 0.9rem; }
+  .parts :is(th, td) {
+    padding: 0.5rem 0.9rem 0.5rem 0;
+    white-space: normal;
+    vertical-align: top;
+    line-height: 1.45;
+    color: var(--color-text);
+  }
+  .parts thead th { position: static; background: none; }
+  .parts tbody th { font-weight: 600; }
+  .parts .group th {
+    padding-top: 1.1rem;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .parts td.none { color: var(--color-text-tertiary); }
+  @media (min-width: 40rem) {
+    .parts th:first-child { width: 11rem; }
+    .parts :is(th, td):last-child { width: 13rem; }
+    .stages th:first-child { width: 13rem; }
+    .stages :is(th, td):last-child { width: 16rem; }
+  }
+  .note, .further { font-size: 0.9rem; color: var(--color-text-secondary); }
+</style>

@@ -77,3 +77,19 @@ notes = "TinkerPop reference docs describe the embedded JVM mode where graphs su
   quote = "TinkerGraph is a single machine, in-memory (with optional persistence), graph engine that provides both OLTP and OLAP functionality."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "TinkerPop ships vertex programs (PageRank, peer pressure clustering, connected components, shortest path) that run on TinkerGraph via TinkerGraphComputer. SPARQL left out: TinkerPop's sparql-gremlin module 'currently supports translation of the SPARQL 1.0 specification', with SPARQL 1.1 coverage described as on-going. No reasoning, SHACL, R2RML or vector search."
+
+  [[claims.sources]]
+  url = "https://tinkerpop.apache.org/docs/current/reference/"
+  title = "TinkerPop Reference Documentation"
+  quote = "PageRank is perhaps the most popular OLAP-oriented graph algorithm."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

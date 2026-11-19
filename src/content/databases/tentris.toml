@@ -11,6 +11,7 @@ type = "RDF"
 embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2025-07"
 category = "Growing"
 gdotv_support = true

@@ -11,6 +11,7 @@ type = "RDF"
 embeddable = true
 query_languages = ["SPARQL", "iTQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST", "Native binary"]
+kg_capabilities = ["RDFS reasoning"]
 released = "2006"
 category = "Emerging"
 status = "inactive"

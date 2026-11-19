@@ -63,3 +63,19 @@ notes = "Transwarp describes StellarDB as a distributed graph database whose dat
   quote = "Transwarp StellarDB is a distributed graph database built for enterprise-level graph applications, which quickly finds correlations between data and provides powerful algorithm analysis capabilities."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "Built-in distributed algorithm library. No vector or RDF/SPARQL features found on the product page."
+
+  [[claims.sources]]
+  url = "https://www.transwarp.io/product/stellardb/"
+  title = "Transwarp StellarDB"
+  quote = "Rich built-in algorithm library, dozens of out-of-the-box graph algorithms, optimized distributed parallel graph algorithm, industry leading 10 million-class subgraph computing efficiency."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

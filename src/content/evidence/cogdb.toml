@@ -85,3 +85,19 @@ notes = "The README says CogDB is imported into the Python application and needs
   quote = "There is no server to run and no setup overhead. You simply import it into your Python application."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "Queried via its own Torque API, not SPARQL. Traversal includes BFS/DFS but no graph algorithm library."
+
+  [[claims.sources]]
+  url = "https://github.com/arun1729/cog"
+  title = "arun1729/cog README"
+  quote = "CogDB supports word embeddings with SIMD-optimized similarity search powered by SimSIMD"
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-01"

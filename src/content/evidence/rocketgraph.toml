@@ -99,3 +99,19 @@ notes = "The xgtd server is a C++ daemon; the Python package is only the client.
   quote = "The xGT server (xgtd) is a C++ daemon and does not require Python to run."
   verified = "matched"
   checked = "2026-11-09"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "xGT whole-graph algorithms: Louvain clustering, PageRank, SCC, WCC (invoked via CALL in TQL/openCypher). No vector index or semantic features found."
+
+  [[claims.sources]]
+  url = "https://docs.rocketgraph.com/user_ref/graphanalytics/call.html"
+  title = "Calling Algorithms - xGT documentation"
+  quote = "xGT supports the following whole graph algorithms:"
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"

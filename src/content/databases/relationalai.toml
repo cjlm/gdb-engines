@@ -10,6 +10,7 @@ type = "Other"
 embeddable = false
 query_languages = ["Rel", "SQL"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Graph algorithms"]
 released = "2022"
 category = "Growing"
 gdotv_support = false

@@ -92,3 +92,19 @@ notes = "Oxigraph is a Rust library with Python bindings and a WebAssembly JS pa
   quote = "WebAssembly is used to package Oxigraph into a NodeJS compatible NPM package."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "high"
+method = "repo"
+checked = "2026-11-01"
+notes = "No built-in reasoning, SHACL, R2RML, vector index or graph algorithms. Reasoning/SHACL are added by downstream projects (e.g. oxilite, OxiRS)."
+
+  [[claims.sources]]
+  url = "https://github.com/oxigraph/oxigraph"
+  title = "oxigraph/oxigraph README"
+  quote = "Most implementations are nearly fully conformant with the latest recommendations (1.1 for RDF, SPARQL and JSON-LD) with preliminary support for 1.2 RDF and SPARQL drafts."
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

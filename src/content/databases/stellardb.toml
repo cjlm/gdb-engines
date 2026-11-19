@@ -9,6 +9,7 @@ type = "Property Graph"
 embeddable = false
 query_languages = ["openCypher", "SQL"]
 protocols = ["Thrift"]
+kg_capabilities = ["Graph algorithms"]
 category = "Emerging"
 gdotv_support = false
 released = "2018-05"
