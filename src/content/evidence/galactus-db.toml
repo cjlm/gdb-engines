@@ -330,7 +330,7 @@ notes = "Vendor self-assessed in PR #144. gdb.dump hot-dumps a database while it
 [[claims]]
 field = "features.cluster_rebalancing"
 value = 1
-confidence = "medium"
+confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-19"
 notes = "Vendor self-assessed. In Nebula Cluster a database's copies are moved between servers while the cluster serves: a server is added and given a copy, follows every write, is given a vote once it has caught up, and an old server is then taken out. It is done by an administrator's statements; the cluster does not move copies by itself, so a rubric requiring automatic rebalancing would score 0. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image."
@@ -359,7 +359,7 @@ notes = "Vendor self-assessed. In Nebula Cluster a database's copies are moved b
 [[claims]]
 field = "features.data_distribution"
 value = 0
-confidence = "medium"
+confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-19"
 notes = "Vendor self-assessed. No sharding. In Nebula Cluster (early access) every server holds a full copy of the database: the data is replicated between servers, not partitioned across them."
@@ -417,7 +417,7 @@ notes = "Vendor self-assessed. Two mechanisms. In the released product a replica
 [[claims]]
 field = "features.query_distribution"
 value = 1
-confidence = "medium"
+confidence = "high"
 method = "vendor-docs"
 checked = "2026-11-19"
 notes = "Vendor self-assessed. In Nebula Cluster every server takes any request over plain Bolt and the cluster assigns it to the right server: a write that reaches a server which does not lead is carried to the leader, and a read is answered by the server it reached once that server has caught up with the cluster. No routing driver is involved. Each server holds a full copy, so a query is assigned to a server, not to a shard (see data_distribution). Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image; in the released single-server product queries run on the one server and replicas are addressed by name, which would score 0."
