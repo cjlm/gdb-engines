@@ -15,6 +15,8 @@ interface Props {
 const spec = loadChartSpec(Astro.props.id);
 ---
 <figure class="blog-chart">
+  {spec.type === 'echarts' && <ChartECharts spec={spec} />}
+  {spec.type === 'embed' && <ChartEmbed spec={spec} />}
   {spec.legend && spec.legend.length > 0 && (
     <ul class="blog-chart-legend">
       {spec.legend.map((item) => (
@@ -30,8 +32,6 @@ const spec = loadChartSpec(Astro.props.id);
       ))}
     </ul>
   )}
-  {spec.type === 'echarts' && <ChartECharts spec={spec} />}
-  {spec.type === 'embed' && <ChartEmbed spec={spec} />}
   {spec.notes && spec.notes.length > 0 && (
     <ol class="blog-chart-notes">
       {spec.notes.map((note) => <li>{note}</li>)}
@@ -79,27 +79,23 @@ const spec = loadChartSpec(Astro.props.id);
     --chart-rule: var(--color-border);
     --chart-grid: #ececec;
     --chart-accent: var(--color-brand-accent);
-    --chart-c1: #2a78d6;
-    --chart-c2: #e0612f;
+    --chart-c1: var(--color-brand-accent);
+    --chart-c2: var(--color-text-secondary);
     margin: 2.5rem 0;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) .blog-chart {
       --chart-grid: #2c2c2c;
-      --chart-c1: #4a94ee;
-      --chart-c2: #dd6630;
     }
   }
 
   :root[data-theme='dark'] .blog-chart {
     --chart-grid: #2c2c2c;
-    --chart-c1: #4a94ee;
-    --chart-c2: #dd6630;
   }
 
   .blog-chart-legend {
-    margin: 0 0 0.75rem;
+    margin: 0.75rem 0 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
