@@ -12,6 +12,10 @@
 export const BLOG_CHART_IDS = [
   'ai-coauthorship-monthly',
   'ai-coauthorship-repos',
+  'eifrem-ontology',
+  'eifrem-audiences',
+  'relate-first-days',
+  'relate-adrs',
 ] as const;
 export type BlogChartId = (typeof BLOG_CHART_IDS)[number];
 

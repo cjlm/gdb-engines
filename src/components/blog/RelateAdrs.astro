@@ -1,0 +1,158 @@
+---
+/**
+ * Relate's architecture decision records, by the day each first appeared in public history.
+ * Placed in a blog post with <figure data-chart="relate-adrs"></figure>.
+ */
+import { loadBlogData } from '../../lib/blog-data';
+import { adrBars, type AdrData } from '../../lib/relate-charts';
+
+const data = loadBlogData<AdrData>('relate-adrs');
+const bars = adrBars(data.days);
+const first = bars[0]!;
+const last = bars.at(-1)!;
+const later = bars.slice(1);
+const perDay = later.length ? Math.round(((last.total - first.total) / later.length) * 10) / 10 : 0;
+const dayLabel = (date: string) =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+const step = 100 / bars.length;
+const tipSide = (index: number) => (index < 2 ? 'top-right' : index > bars.length - 3 ? 'top-left' : 'top');
+---
+<figure class="relate-adrs">
+  <div
+    class="relate-adrs-plot"
+    role="group"
+    aria-label={`Bar chart: Relate decision records by the day they first appeared in public history. ${first.added} arrived with the first public commit on ${dayLabel(first.date)}; ${last.total - first.added} more followed by ${dayLabel(last.date)}.`}
+  >
+    {bars.map((bar, index) => (
+      <span
+        class="relate-adrs-bar"
+        style={`left: ${index * step + step * 0.15}%; width: ${step * 0.7}%; height: ${bar.height}%`}
+        tabindex="0"
+        role="tooltip"
+        aria-label={`${dayLabel(bar.date)}: ${bar.added} new, ${bar.total} in total`}
+        data-microtip-position={tipSide(index)}
+        data-microtip-size="medium"
+      >
+        <span class="relate-adrs-value" aria-hidden="true">{bar.added}</span>
+      </span>
+    ))}
+  </div>
+  <div class="relate-adrs-xaxis" aria-hidden="true">
+    {bars.map((bar, index) => (index % 2 === 0 || index === bars.length - 1) && (
+      <span style={`left: ${index * step + step / 2}%`}>{dayLabel(bar.date)}</span>
+    ))}
+  </div>
+  <figcaption>
+    New architecture decision records per day in Relate's public repository, {data.repository}.
+    {first.added} of them arrived with the first public commit on {dayLabel(first.date)}, written
+    over the previous ten weeks of private development; about {perDay} a day have followed, for
+    {last.total} by {dayLabel(last.date)}. Dated by the commit that first added each file.
+  </figcaption>
+  <details class="relate-adrs-data">
+    <summary>Data table</summary>
+    <div class="relate-adrs-table">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col" class="is-number">New records</th>
+            <th scope="col" class="is-number">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bars.map((bar) => (
+            <tr>
+              <th scope="row">{dayLabel(bar.date)}</th>
+              <td class="is-number">{bar.added}</td>
+              <td class="is-number">{bar.total}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<style>
+  .relate-adrs {
+    margin: 2.5rem 0;
+  }
+
+  .relate-adrs-plot {
+    position: relative;
+    height: clamp(9rem, 30vw, 12rem);
+    margin-top: 1.25rem;
+    border-bottom: 1px solid var(--color-text-tertiary);
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .relate-adrs-plot .relate-adrs-bar[role~='tooltip'] {
+    position: absolute;
+    bottom: 0;
+    min-height: 2px;
+    border-radius: 4px 4px 0 0;
+    background: var(--color-brand-accent);
+    cursor: default;
+  }
+
+  .relate-adrs-plot .relate-adrs-bar[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .relate-adrs-value {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -0.2rem);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .relate-adrs-xaxis {
+    position: relative;
+    height: 1.25rem;
+    margin-top: 0.4rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .relate-adrs-xaxis span {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .relate-adrs figcaption {
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .relate-adrs-data {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .relate-adrs-data summary {
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+  }
+
+  .relate-adrs-table {
+    overflow-x: auto;
+  }
+
+  .relate-adrs-table table {
+    margin-top: 0.75rem;
+  }
+
+  .relate-adrs-table .is-number {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+</style>

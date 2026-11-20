@@ -1,0 +1,277 @@
+---
+/**
+ * Every commit from the first 11 days of public history of Neo4j (2007) and Relate (2026).
+ * Placed in a blog post with <figure data-chart="relate-first-days"></figure>.
+ */
+import { loadBlogData } from '../../lib/blog-data';
+import {
+  FIRST_DAYS,
+  aiCounts,
+  dayX,
+  dotDiameter,
+  dotY,
+  type CommitAi,
+  type FirstDaysCommit,
+  type FirstDaysData,
+  type FirstDaysProject,
+} from '../../lib/relate-charts';
+
+const data = loadBlogData<FirstDaysData>('relate-first-days');
+const projects: FirstDaysProject[] = [data.neo4j, data.relate];
+const relate = aiCounts(data.relate.commits);
+const formatNumber = (value: number) => value.toLocaleString('en-US');
+const formatDate = (date: string) =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+const AI_LABELS: Record<CommitAi, string> = {
+  main: 'AI trailer on the commit',
+  branch: 'AI trailer only on the pull-request branch',
+  none: 'no AI trailer',
+  bot: 'release bot',
+  unknown: 'pull request not found',
+  pre: 'before AI coding tools',
+};
+const tooltip = (project: FirstDaysProject, commit: FirstDaysCommit) =>
+  `${project.name}, ${commit.time}, ${commit.author}: ${formatNumber(commit.lines)} lines added, ` +
+  `${formatNumber(commit.files)} ${commit.files === 1 ? 'file' : 'files'}, ${AI_LABELS[commit.ai]}`;
+const tipSide = (x: number) => (x < 15 ? 'top-right' : x > 85 ? 'top-left' : 'top');
+const days = Array.from({ length: FIRST_DAYS + 1 }, (_, day) => day);
+const median = (values: number[]) => {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid]! : Math.round((sorted[mid - 1]! + sorted[mid]!) / 2);
+};
+---
+<figure class="first-days">
+  <ul class="first-days-legend" aria-hidden="true">
+    <li><i class="first-days-swatch is-main"></i>AI trailer on the commit</li>
+    <li><i class="first-days-swatch is-branch"></i>AI trailer only on the pull-request branch</li>
+    <li><i class="first-days-swatch is-none"></i>No AI trailer</li>
+    <li><i class="first-days-swatch is-other"></i>Release bot, or 2007</li>
+  </ul>
+  <div
+    class="first-days-rows"
+    role="group"
+    aria-label={`Dot timeline: every commit in the first ${FIRST_DAYS} public days of Neo4j and Relate, placed by time and sized by lines added. Neo4j has ${data.neo4j.commits.length} commits; Relate has ${relate.commits}, ${relate.ai} of them AI-assisted.`}
+  >
+    {projects.map((project) => (
+      <div class="first-days-row">
+        <div class="first-days-name">
+          <strong>{project.name}</strong>
+          <span>from {formatDate(project.start)}</span>
+          <span>{formatNumber(project.commits.length)} commits</span>
+        </div>
+        <div class="first-days-plot">
+          {days.map((day) => (
+            <span class="first-days-gridline" style={`left: ${dayX(day)}%`} aria-hidden="true"></span>
+          ))}
+          {project.commits.map((commit, index) => {
+            const x = dayX(commit.day);
+            const size = dotDiameter(commit.lines);
+            return (
+              <span
+                class={`first-days-dot is-${commit.ai}`}
+                style={`left: ${x}%; top: ${dotY(index)}%; width: ${size}px; height: ${size}px`}
+                tabindex="0"
+                role="tooltip"
+                aria-label={tooltip(project, commit)}
+                data-microtip-position={tipSide(x)}
+                data-microtip-size="medium"
+              ></span>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+    <div class="first-days-row" aria-hidden="true">
+      <span></span>
+      <div class="first-days-xaxis">
+        {days.map((day) => <span style={`left: ${dayX(day)}%`}>{day === FIRST_DAYS ? `${day} days` : day}</span>)}
+      </div>
+    </div>
+  </div>
+  <figcaption>
+    Each dot is one commit, placed by time since the project's first public commit (the opening
+    snapshot itself is left out) and sized by lines added. Neo4j's history is {data.neo4j.history};
+    Relate's is its {data.relate.history}. Relate merges each pull request as one squashed commit,
+    which keeps or drops the agent's co-author trailer depending on the merge message, so a commit
+    counts as AI-assisted if it or any commit on its pull-request branch carries the trailer:
+    {formatNumber(relate.ai)} of {formatNumber(relate.commits)} ({relate.aiPct}%). Trailers are
+    added by default by most coding agents and are easy to remove, so this is a lower bound.
+    Neither history is day one: Neo4j imported about seven years of private work, Relate about ten
+    weeks.
+  </figcaption>
+  <details class="first-days-data">
+    <summary>Data table</summary>
+    <div class="first-days-table">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col" class="is-number">Commits</th>
+            <th scope="col" class="is-number">AI-assisted</th>
+            <th scope="col" class="is-number">Median lines added</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((project) => {
+            const counts = aiCounts(project.commits);
+            return (
+              <tr>
+                <th scope="row">{project.name}, from {formatDate(project.start)}</th>
+                <td class="is-number">{formatNumber(counts.commits)}</td>
+                <td class="is-number">{formatNumber(counts.ai)}</td>
+                <td class="is-number">{formatNumber(median(project.commits.map((c) => c.lines)))}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<style>
+  .first-days {
+    margin: 2.5rem 0;
+  }
+
+  .first-days-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+  }
+
+  .first-days-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .first-days-swatch {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+  }
+
+  .first-days-row {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 8rem) minmax(0, 1fr);
+    column-gap: 0.75rem;
+    align-items: center;
+  }
+
+  .first-days-name {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .first-days-name strong {
+    color: var(--color-text);
+    font-size: 0.875rem;
+  }
+
+  .first-days-plot {
+    position: relative;
+    height: clamp(6rem, 18vw, 8rem);
+    margin: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .first-days-gridline {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dashed var(--color-border);
+  }
+
+  .first-days-swatch.is-main,
+  .first-days-plot .first-days-dot.is-main[role~='tooltip'] {
+    background: var(--color-brand-accent);
+  }
+
+  .first-days-swatch.is-branch,
+  .first-days-plot .first-days-dot.is-branch[role~='tooltip'] {
+    background: var(--color-brand-accent);
+    box-shadow: 0 0 0 1.5px var(--color-text);
+  }
+
+  .first-days-swatch.is-none,
+  .first-days-plot .first-days-dot.is-none[role~='tooltip'] {
+    background: color-mix(in srgb, var(--color-brand-accent) 30%, transparent);
+  }
+
+  .first-days-swatch.is-other,
+  .first-days-plot .first-days-dot.is-bot[role~='tooltip'],
+  .first-days-plot .first-days-dot.is-unknown[role~='tooltip'],
+  .first-days-plot .first-days-dot.is-pre[role~='tooltip'] {
+    background: color-mix(in srgb, var(--color-text-tertiary) 60%, transparent);
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .first-days-plot .first-days-dot[role~='tooltip'] {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
+  }
+
+  .first-days-plot .first-days-dot[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .first-days-xaxis {
+    position: relative;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .first-days-xaxis span {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .first-days figcaption {
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .first-days-data {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .first-days-data summary {
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+  }
+
+  .first-days-table {
+    overflow-x: auto;
+  }
+
+  .first-days-table table {
+    margin-top: 0.75rem;
+  }
+
+  .first-days-table .is-number {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+</style>

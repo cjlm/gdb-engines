@@ -1,0 +1,13 @@
+---
+/**
+ * How often Emil Eifrem's talks mention ontology and its neighbouring terms.
+ * Placed in a blog post with <figure data-chart="eifrem-ontology"></figure>.
+ */
+import EifremTerms from './EifremTerms.astro';
+import { ONTOLOGY_CHART } from '../../lib/relate-charts';
+---
+<EifremTerms
+  config={ONTOLOGY_CHART}
+  label="Bar charts, one per term: mentions per 1,000 words of ontology, semantics and RDF, knowledge graph, GraphRAG and context graph in Emil Eifrem's talks, by half-year, 2017 to 2026."
+  caption="Ontology went from absent, to mocked, to central. “Semantics & RDF” counts semantic, semantics, semantic web or layer, RDF, OWL, triple store and SPARQL."
+/>

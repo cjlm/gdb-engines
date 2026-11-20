@@ -1,0 +1,13 @@
+---
+/**
+ * How often Emil Eifrem's talks mention developers, the enterprise and startups.
+ * Placed in a blog post with <figure data-chart="eifrem-audiences"></figure>.
+ */
+import EifremTerms from './EifremTerms.astro';
+import { AUDIENCE_CHART } from '../../lib/relate-charts';
+---
+<EifremTerms
+  config={AUDIENCE_CHART}
+  label="Bar charts, one per audience: mentions per 1,000 words of developers, enterprise and startups in Emil Eifrem's talks, by half-year, 2017 to 2026."
+  caption="Who he talks about. Counts “developer(s)”; “enterprise”, “Global 2000” and “Fortune”; and “startup(s)”. Hosts ask about startups and developers too."
+/>

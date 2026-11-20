@@ -4,6 +4,10 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import AiCoauthorshipMonthly from '../../components/blog/AiCoauthorshipMonthly.astro';
 import AiCoauthorshipRepos from '../../components/blog/AiCoauthorshipRepos.astro';
+import EifremAudiences from '../../components/blog/EifremAudiences.astro';
+import EifremOntology from '../../components/blog/EifremOntology.astro';
+import RelateAdrs from '../../components/blog/RelateAdrs.astro';
+import RelateFirstDays from '../../components/blog/RelateFirstDays.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
 import { hasBlogCharts, splitPostHtml, type BlogChartId } from '../../lib/blog-charts';
 import '../../styles/global.css';
@@ -23,6 +27,10 @@ interface Props {
 const CHARTS: Record<BlogChartId, typeof AiCoauthorshipMonthly> = {
   'ai-coauthorship-monthly': AiCoauthorshipMonthly,
   'ai-coauthorship-repos': AiCoauthorshipRepos,
+  'eifrem-ontology': EifremOntology,
+  'eifrem-audiences': EifremAudiences,
+  'relate-first-days': RelateFirstDays,
+  'relate-adrs': RelateAdrs,
 };
 
 const { post } = Astro.props;
