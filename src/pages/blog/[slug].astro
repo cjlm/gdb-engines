@@ -488,34 +488,37 @@ const postJsonLd = JSON.stringify({
   .blog-prose li + li {
     margin-top: 0.45rem;
   }
-  /* Asides: a tinted note set off from the argument, marked by a small asterisk badge that sits
-     on the top edge, like a footnote that came up for air. */
+  /* Asides: a tinted note set off from the argument. The site's graph mark sits on the top-right
+     corner, on a disc of page colour that breaks the dashed border, as if the note hangs off it. */
   .blog-prose aside {
+    --aside-mark: url('/graph-icon-light.svg');
     position: relative;
     margin: 2.25rem 0 1.75rem;
-    padding: 1.15rem 1.15rem 1rem;
+    padding: 1.15rem 2.6rem 1rem 1.15rem;
     border: 1px dashed color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
     border-radius: 1rem;
     background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
     font-size: 0.9375rem;
     line-height: 1.6;
   }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .blog-prose aside {
+      --aside-mark: url('/graph-icon-dark.svg');
+    }
+  }
+  :root[data-theme='dark'] .blog-prose aside {
+    --aside-mark: url('/graph-icon-dark.svg');
+  }
   .blog-prose aside::before {
-    content: '✱';
+    content: '';
     position: absolute;
-    top: -0.8rem;
-    left: 1rem;
-    display: grid;
-    place-items: center;
-    width: 1.6rem;
-    height: 1.6rem;
-    border: 3px solid var(--color-background);
+    top: -1.1rem;
+    right: 0.9rem;
+    width: 2.2rem;
+    height: 2.2rem;
     border-radius: 50%;
-    background: var(--color-brand-accent);
-    color: var(--color-background);
-    font-size: 0.75rem;
-    line-height: 1;
-    transform: rotate(-12deg);
+    background: var(--aside-mark) center / 1.7rem no-repeat, var(--color-background);
+    transform: rotate(14deg);
   }
   .blog-prose aside > p {
     margin: 0;
