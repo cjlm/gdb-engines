@@ -17,11 +17,11 @@ const run = (html) => {
   return linkEngineMentions(html, engines, extras, new Set(['Traverse']));
 };
 
-test('the first mention of each engine becomes a link with a card beside it', () => {
-  const { html, linked } = run('<p>Neo4j is old. Neo4j is big.</p><p>Neo4j again.</p>');
+test('every mention of an engine becomes a link with its own card beside it', () => {
+  const { html, linked } = run('<p>Neo4j is old. Neo4j is big.</p>');
   assert.match(html, /^<p><span class="db-mention-wrap"><a class="db-mention" href="\/db\/neo4j\/" aria-describedby="c1">Neo4j<\/a><span class="db-card" id="c1"/);
-  assert.match(html, / is old\. Neo4j is big\.<\/p><p>Neo4j again\.<\/p>$/);
-  assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }]);
+  assert.match(html, /aria-describedby="c2">Neo4j<\/a><span class="db-card" id="c2"/);
+  assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }, { slug: 'neo4j', text: 'Neo4j' }]);
 });
 
 test('aliases match, and the longest name wins at the same place', () => {
@@ -39,9 +39,8 @@ test('nothing in headings, quotes, code, figures or asides changes', () => {
 
 test('a link to an engine profile gets the logo and card and keeps its text', () => {
   const { html, linked } = run('<p>See <a href="https://gdb-engines.com/db/kuzu/">this one</a>, then Kuzu.</p>');
-  assert.deepEqual(linked, [{ slug: 'kuzu', text: 'this one' }]);
+  assert.deepEqual(linked, [{ slug: 'kuzu', text: 'this one' }, { slug: 'kuzu', text: 'Kuzu' }]);
   assert.match(html, /<a class="db-mention" aria-describedby="c1" href="\/db\/kuzu\/">this one<\/a><span class="db-card"/);
-  assert.match(html, /, then Kuzu\.<\/p>$/);
 });
 
 test('another link naming an engine keeps its target and gets the logo and card', () => {
@@ -51,16 +50,12 @@ test('another link naming an engine keeps its target and gets the logo and card'
   assert.match(html, /<a class="db-mention" aria-describedby="c3" href="https:\/\/falkordb.com\/lite">FalkorDBLite<\/a>/);
 });
 
-test('a link to an already decorated engine is left alone', () => {
-  assert.match(run('<p>Kuzu and <a href="/db/kuzu/">Kuzu again</a>.</p>').html, /and <a href="\/db\/kuzu\/">Kuzu again<\/a>\.<\/p>$/);
-});
-
 test('names that are ordinary words are never linked automatically', () => {
   assert.equal(run('<p>Traverse the graph.</p>').linked.length, 0);
 });
 
 test('the card escapes text, links the profile, ranking and website, and shows the logo', () => {
-  const engine = { slug: 'kuzu', name: 'Kuzu', summary: 'A "quoted" <db>', rank: 3, chips: ['Embedded', 'MIT'], website: 'https://kuzu.io' };
+  const engine = { slug: 'kuzu', name: 'Kuzu', summary: 'A "quoted" <db>', rank: 3, chips: ['Embedded', 'MIT'], since: 'Nov 2022', website: 'https://kuzu.io' };
   const card = mentionCardHtml(engine, { icon: { src: '/logos/kuzu.png', backfill: true }, cardId: 'm1', rankTotal: 158 });
   assert.match(card, /^<span class="db-card" id="m1">/);
   assert.match(card, /<a class="db-card-name" href="\/db\/kuzu\/">Kuzu<\/a>/);
@@ -68,9 +63,10 @@ test('the card escapes text, links the profile, ranking and website, and shows t
   assert.match(card, /<span class="db-card-chip">Embedded<\/span><span class="db-card-chip">MIT<\/span>/);
   assert.match(card, /A &quot;quoted&quot; &lt;db&gt;/);
   assert.match(card, /href="https:\/\/kuzu.io" rel="noopener" target="_blank">Website ↗/);
+  assert.match(card, /Website ↗<\/a><span class="db-card-since">Since Nov 2022<\/span><\/span><\/span>$/);
   assert.match(card, /database-logo--needs-backfill/);
   const bare = mentionCardHtml({ slug: 'k', name: 'K', summary: 's' }, { cardId: 'm2' });
-  assert.doesNotMatch(bare, /<img|db-card-rank|db-card-chips|Website/);
+  assert.doesNotMatch(bare, /<img|db-card-rank|db-card-chips|Website|Since/);
 });
 
 test('the card line is the first sentence, cut at a word', () => {

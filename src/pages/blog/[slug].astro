@@ -56,6 +56,13 @@ const licenseChip = (license: string | undefined): string | null => {
   if (tier === 'Permissive' || tier === 'Copyleft') return 'Open source';
   return tier === 'Proprietary' ? 'Proprietary' : license;
 };
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+/** "2007" stays "2007"; "2026-11" becomes "Nov 2026". */
+const releasedLabel = (released: unknown): string | undefined => {
+  const [year, month] = String(released ?? '').split('-');
+  if (!year) return undefined;
+  return month ? `${MONTHS[Number(month) - 1]} ${year}` : year;
+};
 const engines: LinkableEngine[] = databases.map((db) => ({
   slug: db.data.slug,
   name: db.data.name,
@@ -66,8 +73,8 @@ const engines: LinkableEngine[] = databases.map((db) => ({
     TYPE_LABELS[db.data.type] ?? null,
     KIND_LABELS[db.data.kind] ?? db.data.kind,
     licenseChip(db.data.license),
-    db.data.released ? `Since ${String(db.data.released).slice(0, 4)}` : null,
   ].filter((chip): chip is string => Boolean(chip)),
+  since: releasedLabel(db.data.released),
   website: db.data.url,
 }));
 const renderedHtml = post.rendered?.html ?? '';
@@ -448,7 +455,13 @@ const postJsonLd = JSON.stringify({
   }
   .blog-prose .db-card-links {
     display: flex;
+    align-items: baseline;
     gap: 1rem;
+  }
+  .blog-prose .db-card-since {
+    margin-left: auto;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
   }
   .blog-prose .db-card .db-card-link {
     color: var(--color-brand-accent);

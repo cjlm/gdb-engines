@@ -1,6 +1,6 @@
 /**
- * Links the first prose mention of each catalogue engine in a blog post to its profile, with the
- * engine's logo and a hover card.
+ * Links every prose mention of a catalogue engine in a blog post to its profile, with the engine's
+ * logo and a hover card.
  *
  * Runs on a post's rendered HTML. Nothing inside a heading, quote, code, figure or aside changes.
  * Matching follows src/lib/blog-mentions.ts: the name or an alias, case-sensitive, as a whole
@@ -11,7 +11,7 @@
  * - a link to an engine's profile (`/db/<slug>/`) gets the logo and card;
  * - any other link whose text names an engine (a link to its website, say) keeps its target and
  *   gets the logo before the name and the card beside it.
- * Each engine is decorated once, at its first appearance.
+ * Every appearance is decorated.
  */
 
 export interface LinkableEngine {
@@ -24,6 +24,8 @@ export interface LinkableEngine {
   rank?: number;
   /** Short facts shown as chips: model, form, licence, year. */
   chips?: string[];
+  /** When it was first released, shown as "Since …" in the card's corner. */
+  since?: string;
   /** The engine's own website, linked from the card. */
   website?: string;
 }
@@ -79,11 +81,12 @@ export function mentionCardHtml(engine: LinkableEngine, extras: MentionExtras): 
   const website = engine.website
     ? `<a class="db-card-link" href="${escapeHtml(engine.website)}" rel="noopener" target="_blank">Website ↗</a>`
     : '';
+  const since = engine.since ? `<span class="db-card-since">Since ${escapeHtml(engine.since)}</span>` : '';
   return `<span class="db-card" id="${escapeHtml(extras.cardId)}">` +
     `<span class="db-card-head">${logoHtml(extras.icon, 28, 'db-card-logo')}<a class="db-card-name" href="${profile}">${escapeHtml(engine.name)}</a>${rank}</span>` +
     (chips ? `<span class="db-card-chips">${chips}</span>` : '') +
     `<span class="db-card-desc">${escapeHtml(engine.summary)}</span>` +
-    `<span class="db-card-links"><a class="db-card-link" href="${profile}">Profile →</a>${website}</span>` +
+    `<span class="db-card-links"><a class="db-card-link" href="${profile}">Profile →</a>${website}${since}</span>` +
     `</span>`;
 }
 
@@ -94,14 +97,14 @@ function decorateOpenTag(tag: string, cardId: string): string {
   return tag.replace(/^<a\b/, `<a class="db-mention" aria-describedby="${escapeHtml(cardId)}"`);
 }
 
-interface Pending {
+interface Candidate {
   engine: LinkableEngine;
   pattern: RegExp | null;
 }
 
 /**
- * Decorate the first appearance of each engine. Returns the new HTML and the engines decorated,
- * in order of appearance.
+ * Decorate every appearance of each engine. Returns the new HTML and the mentions decorated, in
+ * order of appearance.
  */
 export function linkEngineMentions(
   html: string,
@@ -109,17 +112,16 @@ export function linkEngineMentions(
   extrasFor: (engine: LinkableEngine) => MentionExtras,
   skipNames: ReadonlySet<string> = new Set(),
 ): { html: string; linked: MentionLink[] } {
-  const pending: Pending[] = engines.map((engine) => ({ engine, pattern: namePattern(engine, skipNames) }));
-  const bySlug = new Map(pending.map((p) => [p.engine.slug, p]));
+  const candidates: Candidate[] = engines.map((engine) => ({ engine, pattern: namePattern(engine, skipNames) }));
+  const bySlug = new Map(candidates.map((p) => [p.engine.slug, p]));
   const linked: MentionLink[] = [];
-  const take = (p: Pending, text: string) => {
-    pending.splice(pending.indexOf(p), 1);
+  const take = (p: Candidate, text: string) => {
     linked.push({ slug: p.engine.slug, text });
     return extrasFor(p.engine);
   };
   const firstMatch = (text: string) => {
-    let best: { p: Pending; index: number; match: string } | null = null;
-    for (const p of pending) {
+    let best: { p: Candidate; index: number; match: string } | null = null;
+    for (const p of candidates) {
       const m = p.pattern?.exec(text);
       if (m && (!best || m.index < best.index || (m.index === best.index && m[0].length > best.match.length))) {
         best = { p, index: m.index, match: m[0] };
@@ -133,13 +135,13 @@ export function linkEngineMentions(
     const profileSlug = open.match(PROFILE_HREF)?.[1];
     if (profileSlug) {
       const p = bySlug.get(profileSlug);
-      if (!p || !pending.includes(p)) return plain;
+      if (!p) return plain;
       const extras = take(p, inner.replace(/<[^>]+>/g, ''));
       const anchor = decorateOpenTag(open, extras.cardId).replace(PROFILE_HREF, `href="/db/${profileSlug}/"`) +
         logoHtml(extras.icon, 14, 'db-mention-logo') + inner + close;
       return wrap(anchor, mentionCardHtml(p.engine, extras));
     }
-    // Another link: decorate it when its plain text names a pending engine, keeping its target.
+    // Another link: decorate it when its plain text names an engine, keeping its target.
     if (inner.includes('<')) return plain;
     const best = firstMatch(inner);
     if (!best) return plain;
@@ -175,7 +177,7 @@ export function linkEngineMentions(
       out.push(part);
       continue;
     }
-    if (skipStack.length || !pending.length || !part.trim()) {
+    if (skipStack.length || !candidates.length || !part.trim()) {
       out.push(part);
       continue;
     }
