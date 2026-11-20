@@ -9,8 +9,8 @@ import { prepareGarphieldDocument, setEmbedAccent } from './garphield-document.m
 async function load(node: HTMLElement, frame: HTMLIFrameElement, source: unknown): Promise<void> {
   const embedUrl = new URL('/embed', node.dataset.garphieldOrigin ?? 'https://garphield.com');
   setEmbedAccent(embedUrl);
-  // The toolbar and search, without the overview panel, which covers too much of a post-width frame.
-  embedUrl.searchParams.set('chrome', 'toolbar,search');
+  // Only the toolbar: the overview panel and search box crowd a post-width frame.
+  embedUrl.searchParams.set('chrome', 'toolbar');
   const driver = createGarphield(frame, { embedUrl, timeoutMs: 30_000 });
   await driver.ready();
   await driver.setTheme({ colorScheme: effectiveTheme() });
