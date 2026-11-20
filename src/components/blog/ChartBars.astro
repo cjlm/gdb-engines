@@ -1,0 +1,88 @@
+---
+/** Vertical bars on one linear scale, with a value label above each bar. */
+import { barHeight, slot, tipSide, type BarsSpec } from '../../lib/blog-charts';
+
+interface Props {
+  spec: BarsSpec;
+}
+
+const { spec } = Astro.props;
+const max = Math.max(0, ...spec.bars.map((bar) => bar.value));
+const count = spec.bars.length;
+---
+<div class="chart-bars">
+  <div class="chart-bars-plot" role="group" aria-label={spec.ariaLabel}>
+    {spec.bars.map((bar, index) => {
+      const { left, width } = slot(index, count);
+      return (
+        <span
+          class="chart-bars-bar"
+          style={`left: ${left}%; width: ${width}%; height: ${barHeight(bar.value, max)}%`}
+          tabindex="0"
+          role="tooltip"
+          aria-label={bar.tooltip}
+          data-microtip-position={tipSide(left)}
+          data-microtip-size="medium"
+        >
+          {bar.valueLabel && <span class="chart-bars-value" aria-hidden="true">{bar.valueLabel}</span>}
+        </span>
+      );
+    })}
+  </div>
+  <div class="chart-bars-xaxis" aria-hidden="true">
+    {spec.xLabels.map((label) => {
+      const { left, width } = slot(label.index, count);
+      return <span style={`left: ${left + width / 2}%`}>{label.label}</span>;
+    })}
+  </div>
+</div>
+
+<style>
+  .chart-bars-plot {
+    position: relative;
+    height: clamp(9rem, 30vw, 12rem);
+    margin-top: 1.25rem;
+    border-bottom: 1px solid var(--color-text-tertiary);
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .chart-bars-plot .chart-bars-bar[role~='tooltip'] {
+    position: absolute;
+    bottom: 0;
+    min-height: 2px;
+    border-radius: 4px 4px 0 0;
+    background: var(--color-brand-accent);
+    cursor: default;
+  }
+
+  .chart-bars-plot .chart-bars-bar[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .chart-bars-value {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -0.2rem);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chart-bars-xaxis {
+    position: relative;
+    height: 1.25rem;
+    margin-top: 0.4rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .chart-bars-xaxis span {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+</style>
