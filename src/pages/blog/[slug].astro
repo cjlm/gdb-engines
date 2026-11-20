@@ -7,11 +7,8 @@ import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
 import { hasBlogCharts, splitPostHtml } from '../../lib/blog-charts';
 import { LINK_ONLY_NAMES } from '../../lib/blog-mentions';
 import {
-  decorateProfileLinks,
   engineSummary,
   linkEngineMentions,
-  linkedProfileSlugs,
-  mentionLinkHtml,
   type LinkableEngine,
   type MentionExtras,
 } from '../../lib/db-mentions';
@@ -71,10 +68,12 @@ const engines: LinkableEngine[] = databases.map((db) => ({
     licenseChip(db.data.license),
     db.data.released ? `Since ${String(db.data.released).slice(0, 4)}` : null,
   ].filter((chip): chip is string => Boolean(chip)),
+  website: db.data.url,
 }));
 const renderedHtml = post.rendered?.html ?? '';
-const { linked } = linkEngineMentions(renderedHtml, engines, () => '', LINK_ONLY_NAMES);
-const linkedSlugs = new Set([...linked.map((m) => m.slug), ...linkedProfileSlugs(renderedHtml)]);
+// First pass finds which engines the post mentions, so logos are fetched only for those.
+const { linked } = linkEngineMentions(renderedHtml, engines, () => ({ cardId: '' }), LINK_ONLY_NAMES);
+const linkedSlugs = new Set(linked.map((m) => m.slug));
 const logos = await buildFaviconMap(databases.filter((db) => linkedSlugs.has(db.data.slug)));
 let cardCount = 0;
 const extrasFor = (engine: LinkableEngine): MentionExtras => {
@@ -86,11 +85,7 @@ const extrasFor = (engine: LinkableEngine): MentionExtras => {
     rankTotal: overallRanks.size || undefined,
   };
 };
-const html = decorateProfileLinks(
-  linkEngineMentions(renderedHtml, engines, (engine, text) => mentionLinkHtml(engine, text, extrasFor(engine)), LINK_ONLY_NAMES).html,
-  engines,
-  extrasFor,
-);
+const html = linkEngineMentions(renderedHtml, engines, extrasFor, LINK_ONLY_NAMES).html;
 // Rendered from HTML so engine links and charts can sit between paragraphs.
 const parts = html ? (hasBlogCharts(html) ? splitPostHtml(html, post.id) : [{ type: 'html' as const, html }]) : null;
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
@@ -161,17 +156,26 @@ const postJsonLd = JSON.stringify({
 
 <script>
   // Keep each engine card on screen: open it leftward near the right edge, below near the top.
+  // Placement is worked out once per visit, so the card does not jump while it is open.
   const place = (event: Event) => {
-    const link = (event.target as Element | null)?.closest?.('a.db-mention');
-    const card = link?.querySelector<HTMLElement>('.db-card');
-    if (!link || !card) return;
-    card.classList.remove('db-card--end', 'db-card--below');
+    const wrap = (event.target as Element | null)?.closest?.('.db-mention-wrap');
+    const card = wrap?.querySelector<HTMLElement>('.db-card');
+    if (!wrap || !card || wrap.classList.contains('is-placed')) return;
+    wrap.classList.remove('is-end', 'is-below');
     const rect = card.getBoundingClientRect();
-    if (rect.right > window.innerWidth - 8) card.classList.add('db-card--end');
-    if (rect.top < 72) card.classList.add('db-card--below');
+    if (rect.right > window.innerWidth - 8) wrap.classList.add('is-end');
+    if (rect.top < 72) wrap.classList.add('is-below');
+    wrap.classList.add('is-placed');
+  };
+  const reset = (event: Event) => {
+    const wrap = (event.target as Element | null)?.closest?.('.db-mention-wrap');
+    const next = (event as MouseEvent | FocusEvent).relatedTarget as Node | null;
+    if (wrap && !(next && wrap.contains(next))) wrap.classList.remove('is-placed');
   };
   document.addEventListener('mouseover', place);
   document.addEventListener('focusin', place);
+  document.addEventListener('mouseout', reset);
+  document.addEventListener('focusout', reset);
 </script>
 
 <style is:global>
@@ -267,37 +271,54 @@ const postJsonLd = JSON.stringify({
   .blog-prose a:hover {
     text-decoration-color: var(--color-brand-accent);
   }
-  .blog-prose a.db-mention {
+  .blog-prose .db-mention-wrap {
     position: relative;
+  }
+  .blog-prose a.db-mention {
     text-decoration-style: dotted;
   }
   .blog-prose .db-mention-logo {
     margin: -0.15em 0.25em 0 0.05em;
     transition: transform 0.15s ease;
   }
-  .blog-prose a.db-mention:hover .db-mention-logo,
-  .blog-prose a.db-mention:focus-visible .db-mention-logo {
+  .blog-prose .db-mention-wrap:hover .db-mention-logo,
+  .blog-prose .db-mention-wrap:focus-within .db-mention-logo {
     transform: scale(1.45) rotate(-4deg);
   }
-  /* Absolutely positioned, so the link's underline does not reach inside the card. */
+  /* Invisible bridge over the gap, so the pointer can move from the name into the card. */
+  .blog-prose .db-mention-wrap:hover::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: 100%;
+    height: 0.9rem;
+  }
+  .blog-prose .db-mention-wrap.is-below:hover::before {
+    top: 100%;
+    bottom: auto;
+  }
+  /* Absolutely positioned, so the text's underline does not reach inside the card. */
   .blog-prose .db-card {
     position: absolute;
     left: 0;
-    bottom: calc(100% + 0.6rem);
+    bottom: calc(100% + 0.7rem);
     z-index: 30;
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
     width: 18rem;
     max-width: calc(100vw - 2rem);
-    padding: 0.8rem 0.9rem 0.7rem;
+    padding: 0.8rem 0.9rem 0.75rem;
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
     background: var(--color-background);
     box-shadow: 0 10px 28px -12px rgb(0 0 0 / 35%), 0 2px 6px -2px rgb(0 0 0 / 12%);
     color: var(--color-text);
     font-size: 0.8125rem;
+    font-weight: 400;
     line-height: 1.45;
+    text-align: left;
     white-space: normal;
     pointer-events: none;
     opacity: 0;
@@ -306,59 +327,86 @@ const postJsonLd = JSON.stringify({
     transform-origin: bottom left;
     transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.3, 1.4, 0.6, 1), visibility 0s linear 0.18s;
   }
+  /* The pointer: an outline triangle with a background triangle over it, both outside the card. */
+  .blog-prose .db-card::before,
   .blog-prose .db-card::after {
     content: '';
     position: absolute;
-    left: 1rem;
-    bottom: -0.4rem;
-    width: 0.7rem;
-    height: 0.7rem;
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-background);
-    transform: rotate(45deg);
-    /* Only the half outside the card shows, so the pointer never covers the text. */
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    left: 0.85rem;
+    border: solid transparent;
+    pointer-events: none;
   }
-  .blog-prose .db-card.db-card--end {
-    left: auto;
-    right: 0;
-    transform-origin: bottom right;
+  .blog-prose .db-card::before {
+    top: calc(100% + 1px);
+    border-width: 8px 8px 0;
+    border-top-color: var(--color-border);
   }
-  .blog-prose .db-card.db-card--end::after {
-    left: auto;
-    right: 1rem;
+  .blog-prose .db-card::after {
+    top: 100%;
+    margin-left: 1px;
+    border-width: 7px 7px 0;
+    border-top-color: var(--color-background);
   }
-  .blog-prose .db-card.db-card--below {
-    top: calc(100% + 0.6rem);
-    bottom: auto;
-    transform-origin: top left;
-  }
-  .blog-prose .db-card.db-card--below::after {
-    top: -0.4rem;
-    bottom: auto;
-    transform: rotate(225deg);
-  }
-  .blog-prose a.db-mention:hover .db-card,
-  .blog-prose a.db-mention:focus-visible .db-card {
+  .blog-prose .db-mention-wrap:hover .db-card,
+  .blog-prose .db-mention-wrap:focus-within .db-card {
+    pointer-events: auto;
     opacity: 1;
     visibility: visible;
     transform: none;
     transition-delay: 0s;
+  }
+  .blog-prose .is-end .db-card {
+    left: auto;
+    right: 0;
+    transform-origin: bottom right;
+  }
+  .blog-prose .is-end .db-card::before,
+  .blog-prose .is-end .db-card::after {
+    left: auto;
+    right: 0.85rem;
+  }
+  .blog-prose .is-end .db-card::after {
+    margin: 0 1px 0 0;
+  }
+  .blog-prose .is-below .db-card {
+    top: calc(100% + 0.7rem);
+    bottom: auto;
+    transform-origin: top left;
+  }
+  .blog-prose .is-below .db-card::before {
+    top: auto;
+    bottom: calc(100% + 1px);
+    border-width: 0 8px 8px;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-border);
+  }
+  .blog-prose .is-below .db-card::after {
+    top: auto;
+    bottom: 100%;
+    border-width: 0 7px 7px;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-background);
+  }
+  .blog-prose .db-card a {
+    text-decoration: none;
   }
   .blog-prose .db-card-head {
     display: flex;
     align-items: center;
     gap: 0.55rem;
   }
-  .blog-prose .db-card-name {
+  .blog-prose .db-card .db-card-name {
     flex: 1;
+    color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
-  .blog-prose .db-card-rank {
+  .blog-prose .db-card .db-card-name:hover {
+    color: var(--color-brand-accent);
+  }
+  .blog-prose .db-card .db-card-rank {
     padding: 0.15rem 0.5rem;
     border-radius: 999px;
     background: var(--color-brand-accent);
@@ -388,18 +436,25 @@ const postJsonLd = JSON.stringify({
   .blog-prose .db-card-desc {
     color: var(--color-text-secondary);
   }
-  .blog-prose .db-card-more {
+  .blog-prose .db-card-links {
+    display: flex;
+    gap: 1rem;
+  }
+  .blog-prose .db-card .db-card-link {
     color: var(--color-brand-accent);
     font-family: var(--font-mono);
     font-size: 0.6875rem;
+  }
+  .blog-prose .db-card .db-card-link:hover {
+    text-decoration: underline;
   }
   @media (prefers-reduced-motion: reduce) {
     .blog-prose .db-card,
     .blog-prose .db-mention-logo {
       transition: none;
     }
-    .blog-prose a.db-mention:hover .db-mention-logo,
-    .blog-prose a.db-mention:focus-visible .db-mention-logo {
+    .blog-prose .db-mention-wrap:hover .db-mention-logo,
+    .blog-prose .db-mention-wrap:focus-within .db-mention-logo {
       transform: none;
     }
   }
