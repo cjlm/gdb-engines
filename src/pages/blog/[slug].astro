@@ -489,15 +489,17 @@ const postJsonLd = JSON.stringify({
     margin-top: 0.45rem;
   }
   /* Asides: a tinted note set off from the argument. The site's graph mark sits on the top-right
-     corner, on a disc of page colour that breaks the dashed border, as if the note hangs off it. */
+     corner, in a small bubble of the aside's own fill and border, as if the note hangs off a node. */
   .blog-prose aside {
     --aside-mark: url('/graph-icon-light.svg');
+    --aside-border: color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
+    --aside-background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
     position: relative;
     margin: 2.25rem 0 1.75rem;
     padding: 1.15rem 2.6rem 1rem 1.15rem;
-    border: 1px dashed color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
+    border: 1px dashed var(--aside-border);
     border-radius: 1rem;
-    background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
+    background: var(--aside-background);
     font-size: 0.9375rem;
     line-height: 1.6;
   }
@@ -516,8 +518,9 @@ const postJsonLd = JSON.stringify({
     right: 0.9rem;
     width: 2.2rem;
     height: 2.2rem;
+    border: 1px dashed var(--aside-border);
     border-radius: 50%;
-    background: var(--aside-mark) center / 1.7rem no-repeat, var(--color-background);
+    background: var(--aside-mark) center / 1.5rem no-repeat, var(--aside-background);
     transform: rotate(14deg);
   }
   .blog-prose aside > p {
