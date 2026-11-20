@@ -2,7 +2,10 @@
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import AiCoauthorshipMonthly from '../../components/blog/AiCoauthorshipMonthly.astro';
+import AiCoauthorshipRepos from '../../components/blog/AiCoauthorshipRepos.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
+import { hasBlogCharts, splitPostHtml, type BlogChartId } from '../../lib/blog-charts';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -17,8 +20,16 @@ interface Props {
   post: BlogPost;
 }
 
+const CHARTS: Record<BlogChartId, typeof AiCoauthorshipMonthly> = {
+  'ai-coauthorship-monthly': AiCoauthorshipMonthly,
+  'ai-coauthorship-repos': AiCoauthorshipRepos,
+};
+
 const { post } = Astro.props;
 const { Content } = await render(post);
+// A post that places charts is rendered from its HTML so the charts can sit between paragraphs.
+const html = post.rendered?.html ?? '';
+const parts = hasBlogCharts(html) ? splitPostHtml(html, post.id) : null;
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
 const ogImage = `https://gdb-engines.com/og/blog/${post.id}.png`;
 const publishedTime = post.data.date.toISOString();
@@ -68,7 +79,15 @@ const postJsonLd = JSON.stringify({
       </div>
 
       <div class="blog-prose">
-        <Content />
+        {parts ? (
+          parts.map((part) => {
+            if (part.type === 'html') return <Fragment set:html={part.html} />;
+            const Chart = CHARTS[part.id];
+            return <Chart />;
+          })
+        ) : (
+          <Content />
+        )}
       </div>
 
       <footer class="blog-post-footer">

@@ -1,0 +1,607 @@
+---
+/**
+ * Scatter of declared AI share, one dot per repository, in two views: against commit volume,
+ * and against the year of the repository's first commit.
+ * Placed in a blog post with <figure data-chart="ai-coauthorship-repos"></figure>.
+ */
+import { getCollection } from 'astro:content';
+import DatabaseLogo from '../DatabaseLogo.astro';
+import { loadBlogData } from '../../lib/blog-data';
+import { buildFaviconMap } from '../../lib/favicon-map';
+import {
+  AGE_X_TICKS,
+  AGE_Y_TICKS,
+  SCATTER_MIN_COMMITS,
+  SCATTER_X_TICKS,
+  SCATTER_Y_TICKS,
+  ageScale,
+  ageX,
+  ageY,
+  scatterX,
+  scatterY,
+  type RepoRow,
+  type AiCoauthorshipData,
+} from '../../lib/ai-coauthorship-chart';
+
+const data = loadBlogData<AiCoauthorshipData>('ai-coauthorship');
+
+const formatNumber = (value: number) => value.toLocaleString('en-US');
+
+/** The repository is more than the catalogue entry: apache/tinkerpop is the whole framework. */
+const DISPLAY_NAMES = new Map([['tinkergraph', 'Apache TinkerPop']]);
+/** Labelled first, and the only labels tried on a narrow plot, besides the high-share repos. */
+const PRIORITY = new Set([
+  'neo4j',
+  'surrealdb',
+  'arangodb',
+  'memgraph',
+  'arcadedb',
+  'typedb',
+  'apache-age',
+  'dgraph',
+  'ladybugdb',
+]);
+/** Its history includes PostgreSQL's, so its first commit says nothing about its age. */
+const NOT_IN_AGE_VIEW = new Set(['agensgraph']);
+const HIGH_SHARE = 50;
+
+const catalogue = await getCollection('databases');
+const names = new Map(catalogue.map(({ data: entry }) => [entry.slug, entry.name]));
+const faviconMap = await buildFaviconMap(catalogue);
+
+const repos = (data.repos as RepoRow[])
+  .filter((repo) => repo.commits >= SCATTER_MIN_COMMITS)
+  .toSorted((left, right) => right.aiPct - left.aiPct || right.commits - left.commits);
+const ageRepos = repos.filter((repo) => !NOT_IN_AGE_VIEW.has(repo.slug));
+const maxCommits = Math.max(...repos.map((repo) => repo.commits));
+
+const entries = repos.map((repo) => {
+  const name = DISPLAY_NAMES.get(repo.slug) ?? names.get(repo.slug) ?? repo.repo;
+  return {
+    ...repo,
+    name,
+    logo: names.has(repo.slug) ? (faviconMap[repo.slug] ?? null) : null,
+    // Rank 1 labels are tried first and at every width; rank 2 only on a wide plot.
+    labelRank: repo.aiPct >= HIGH_SHARE || PRIORITY.has(repo.slug) ? 1 : 2,
+    accessibleName:
+      `${name}, ${repo.repo}, ${repo.vendor}: ${repo.aiPct}% declared AI, ` +
+      `${formatNumber(repo.aiCommits)} of ${formatNumber(repo.commits)} commits, ` +
+      `first commit ${repo.firstYear}`,
+    href: names.has(repo.slug) ? `/db/${repo.slug}/` : `https://github.com/${repo.repo}`,
+  };
+});
+
+const median = (values: number[]) => {
+  const sorted = values.toSorted((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[middle]! : (sorted[middle - 1]! + sorted[middle]!) / 2;
+};
+const medianShare = (rows: RepoRow[], keep: (repo: RepoRow) => boolean) =>
+  Math.round(median(rows.filter(keep).map((repo) => repo.aiPct)) * 10) / 10;
+const withAnyAi = repos.filter((repo) => repo.aiCommits > 0).length;
+const overHalf = repos.filter((repo) => repo.aiPct > HIGH_SHARE).length;
+const eras = {
+  old: medianShare(ageRepos, (repo) => repo.firstYear < 2015),
+  middle: medianShare(ageRepos, (repo) => repo.firstYear >= 2015 && repo.firstYear <= 2022),
+  recent: medianShare(ageRepos, (repo) => repo.firstYear >= 2023),
+};
+
+const tickLabel = (value: number) => (value >= 1000 ? `${value / 1000}k` : String(value));
+const views = [
+  {
+    id: 'volume',
+    title: 'By commits',
+    xTitle: 'Commits in the last 12 months (log scale)',
+    summary:
+      `Scatter of ${repos.length} graph database repositories: commits in the last 12 months ` +
+      `against the share declaring AI help. ${withAnyAi} declare some; the median is ` +
+      `${medianShare(repos, () => true)}%; ${overHalf} are above half.`,
+    xTicks: SCATTER_X_TICKS.map((tick) => ({ at: scatterX(tick), label: tickLabel(tick) })),
+    yTicks: SCATTER_Y_TICKS.map((tick) => ({ at: scatterY(tick), label: `${tick}%`, base: tick === 0 })),
+    points: entries.map((entry) => ({
+      ...entry,
+      x: scatterX(entry.commits),
+      y: scatterY(entry.aiPct),
+      scale: 1,
+    })),
+  },
+  {
+    id: 'age',
+    title: 'By project age',
+    xTitle: 'Share of commits declaring AI (square-root scale)',
+    summary:
+      `Scatter of ${ageRepos.length} graph database repositories: year of the first commit ` +
+      `against the share declaring AI help, dots sized by commits. Median share ${eras.old}% ` +
+      `for repositories started before 2015, ${eras.middle}% for 2015 to 2022, ` +
+      `${eras.recent}% for 2023 on.`,
+    xTicks: AGE_X_TICKS.map((tick) => ({ at: ageX(tick), label: `${tick}%` })),
+    yTicks: AGE_Y_TICKS.map((tick) => ({ at: ageY(tick - 0.5), label: String(tick), base: false })),
+    points: entries
+      .filter((entry) => !NOT_IN_AGE_VIEW.has(entry.slug))
+      .map((entry) => ({
+        ...entry,
+        x: ageX(entry.aiPct),
+        y: ageY(entry.firstYear),
+        scale: ageScale(entry.commits, maxCommits),
+      })),
+  },
+];
+/** Tooltips open away from the nearest edges so they stay inside the plot. */
+const tipClasses = (x: number, y: number) => [
+  x < 30 ? 'tip-start' : x > 70 ? 'tip-end' : 'tip-middle',
+  y < 30 ? 'tip-below' : 'tip-above',
+];
+const sizeStyle = (scale: number) =>
+  scale === 1 ? '' : `--point-size: calc(var(--age-max-size) * ${scale});`;
+---
+<figure class="ai-scatter" data-ai-scatter>
+  <div class="ai-scatter-toggle" role="group" aria-label="Chart view" data-toggle hidden>
+    {views.map((view, index) => (
+      <button type="button" data-show={view.id} aria-pressed={index === 0 ? 'true' : 'false'}>
+        {view.title}
+      </button>
+    ))}
+  </div>
+  {views.map((view, index) => (
+    <div class="ai-scatter-view" data-view={view.id} hidden={index !== 0}>
+      <div class="ai-scatter-frame">
+        <div class="ai-scatter-yaxis" aria-hidden="true">
+          {view.yTicks.map((tick) => (
+            <span style={`top: ${tick.at}%`}>{tick.label}</span>
+          ))}
+        </div>
+        <div class="ai-scatter-plot" role="group" aria-label={view.summary}>
+          <svg class="ai-scatter-grid" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            {view.yTicks.map((tick) => (
+              <line class:list={['ai-gridline', tick.base && 'is-baseline']} x1="0" x2="100" y1={tick.at} y2={tick.at} />
+            ))}
+            {view.xTicks.map((tick) => (
+              <line class="ai-gridline" x1={tick.at} x2={tick.at} y1="0" y2="100" />
+            ))}
+          </svg>
+          <svg class="ai-scatter-leaders" aria-hidden="true"></svg>
+          {view.points.map((point, pointIndex) => (
+            <a
+              class="ai-scatter-point"
+              href={point.href}
+              style={`left: ${point.x}%; top: ${point.y}%; ${sizeStyle(point.scale)}`}
+              data-point={pointIndex}
+              data-label-rank={point.labelRank}
+              aria-label={point.accessibleName}
+            >
+              <span class:list={['ai-scatter-tip', ...tipClasses(point.x, point.y)]} aria-hidden="true">
+                <span class="ai-scatter-tip-head">
+                  {point.logo && <DatabaseLogo src={point.logo} size={20} loading="lazy" />}
+                  <strong>{point.name}</strong>
+                </span>
+                <span>{point.repo}</span>
+                <span>{point.vendor}</span>
+                <span>
+                  {point.aiPct}% declared AI · {formatNumber(point.aiCommits)} of{' '}
+                  {formatNumber(point.commits)} commits
+                </span>
+                <span>First commit {point.firstYear}</span>
+              </span>
+            </a>
+          ))}
+          {view.points.map((point, pointIndex) => (
+            <span
+              class="ai-scatter-label"
+              style={sizeStyle(point.scale)}
+              data-label={pointIndex}
+              aria-hidden="true"
+              hidden
+            >
+              {point.name}
+            </span>
+          ))}
+        </div>
+        <div class="ai-scatter-xaxis" aria-hidden="true">
+          {view.xTicks.map((tick) => (
+            <span style={`left: ${tick.at}%`}>{tick.label}</span>
+          ))}
+        </div>
+        <p class="ai-scatter-xtitle" aria-hidden="true">{view.xTitle}</p>
+      </div>
+    </div>
+  ))}
+  <figcaption>
+    The {repos.length} repositories with at least {SCATTER_MIN_COMMITS} commits in the 12 months
+    to 16 November 2026. Most declare a little; {overHalf} declare more than half. The big
+    vendors' public repositories declare little, though Neo4j's looks like a sync from an
+    internal repository. Trailers are added by default by most coding agents, are easy to
+    remove, and are often dropped by squash merges, so every share here is a lower bound.
+    Hover or focus a dot for details. By project age, newer repositories declare more: the
+    median share is {eras.old}% for repositories started before 2015, {eras.middle}% for 2015 to
+    2022 and {eras.recent}% for 2023 on. Dot size there shows commits in the last 12 months. The
+    year is the repository's first commit, which can postdate the project when its history was
+    imported or migrated. Forks of Kuzu (LadybugDB) date from their first own commit, and GFQL
+    from the first commit to its engine directory. AgensGraph is left out of the age view
+    because its history includes PostgreSQL's.
+  </figcaption>
+  <details class="ai-chart-data">
+    <summary>Data table</summary>
+    <div class="ai-chart-table">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Engine</th>
+            <th scope="col">Repository</th>
+            <th scope="col">Vendor</th>
+            <th scope="col" class="is-number">First commit</th>
+            <th scope="col" class="is-number">Commits</th>
+            <th scope="col" class="is-number">Declared AI</th>
+            <th scope="col">Tools named</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.map((entry) => (
+            <tr>
+              <th scope="row">{entry.name}</th>
+              <td>{entry.repo}</td>
+              <td>{entry.vendor}</td>
+              <td class="is-number">{entry.firstYear}</td>
+              <td class="is-number">{formatNumber(entry.commits)}</td>
+              <td class="is-number">{entry.aiPct}%</td>
+              <td>{entry.aiTools || '–'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<script>
+  import { placeLabels, type Point } from '../../lib/ai-coauthorship-chart';
+
+  /** Below this plot width only rank-1 labels are tried. */
+  const WIDE_PLOT = 480;
+
+  /** Label as many dots as fit, priority repos first, with leaders for lifted labels. */
+  function layout(plot: HTMLElement): void {
+    const leaders = plot.querySelector<SVGSVGElement>('.ai-scatter-leaders');
+    if (!leaders) return;
+    const marks = [...plot.querySelectorAll<HTMLElement>('[data-point]')];
+    const labels = [...plot.querySelectorAll<HTMLElement>('[data-label]')];
+    const width = plot.clientWidth;
+    const height = plot.clientHeight;
+    const sizes = marks.map((mark) => mark.offsetWidth);
+    const centres: Point[] = marks.map((mark) => ({
+      x: (parseFloat(mark.style.left) / 100) * width,
+      y: (parseFloat(mark.style.top) / 100) * height,
+    }));
+    const maxRank = width >= WIDE_PLOT ? 2 : 1;
+    const ranks = marks.map((mark) => Number(mark.dataset.labelRank));
+    const labelSizes = labels.map((label, index) => {
+      if (ranks[index]! > maxRank) return null;
+      label.hidden = false;
+      return { width: label.offsetWidth, height: label.offsetHeight };
+    });
+    const order = ranks
+      .map((rank, index) => ({ rank, index }))
+      .filter(({ rank }) => rank <= maxRank)
+      .toSorted((left, right) => left.rank - right.rank)
+      .map(({ index }) => index);
+    const area = { left: -8, right: width + 8, top: -8, bottom: height + 8 };
+    const placements = placeLabels(centres, sizes, labelSizes, order, area);
+    const lines: string[] = [];
+    labels.forEach((label, index) => {
+      const placement = placements[index];
+      label.hidden = !placement;
+      if (!placement) return;
+      const centre = centres[index]!;
+      const half = sizes[index]! / 2;
+      const direction = placement.side === 'below' ? 1 : -1;
+      label.dataset.side = placement.side;
+      label.style.left = `${centre.x}px`;
+      label.style.top = `${centre.y + direction * placement.lift}px`;
+      if (placement.lift > 0) {
+        const start = centre.y + direction * half;
+        const end = start + direction * placement.lift;
+        lines.push(`<line x1="${centre.x}" y1="${start}" x2="${centre.x}" y2="${end}" />`);
+      }
+    });
+    leaders.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    leaders.innerHTML = lines.join('');
+  }
+
+  function wireToggle(figure: HTMLElement): void {
+    const toggle = figure.querySelector<HTMLElement>('[data-toggle]');
+    if (!toggle) return;
+    const buttons = [...toggle.querySelectorAll<HTMLButtonElement>('[data-show]')];
+    const views = [...figure.querySelectorAll<HTMLElement>('[data-view]')];
+    toggle.hidden = false;
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        for (const other of buttons) other.setAttribute('aria-pressed', String(other === button));
+        for (const view of views) view.hidden = view.dataset.view !== button.dataset.show;
+      });
+    }
+  }
+
+  for (const figure of document.querySelectorAll<HTMLElement>('[data-ai-scatter]')) {
+    wireToggle(figure);
+    for (const plot of figure.querySelectorAll<HTMLElement>('.ai-scatter-plot')) {
+      // A hidden view has no size; the observer lays it out when it is first shown.
+      let lastWidth = -1;
+      new ResizeObserver(() => {
+        if (plot.clientWidth === 0 || plot.clientWidth === lastWidth) return;
+        lastWidth = plot.clientWidth;
+        layout(plot);
+      }).observe(plot);
+    }
+  }
+</script>
+
+<style>
+  .ai-scatter {
+    --point-size: 8px;
+    --age-max-size: 16px;
+    margin: 2.5rem 0;
+  }
+
+  .ai-scatter-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-scatter-toggle[hidden] {
+    display: none;
+  }
+
+  .ai-scatter-toggle button {
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    cursor: pointer;
+  }
+
+  .ai-scatter-toggle button:hover {
+    color: var(--color-text);
+  }
+
+  .ai-scatter-toggle button[aria-pressed='true'] {
+    border-color: var(--color-brand-accent);
+    color: var(--color-brand-accent);
+  }
+
+  .ai-scatter-toggle button:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .ai-scatter-frame {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 0.25rem;
+  }
+
+  .ai-scatter-yaxis,
+  .ai-scatter-xaxis {
+    position: relative;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
+
+  .ai-scatter-yaxis span {
+    position: absolute;
+    right: 0.35rem;
+    transform: translateY(-50%);
+  }
+
+  .ai-scatter-plot {
+    position: relative;
+    height: clamp(19rem, 62vw, 27rem);
+    margin: 0.75rem 0.75rem 0 0;
+  }
+
+  .ai-scatter-grid,
+  .ai-scatter-leaders {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .ai-gridline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .ai-gridline.is-baseline {
+    stroke: var(--color-text-tertiary);
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+
+  .ai-scatter-leaders :global(line) {
+    stroke: var(--color-text-tertiary);
+    stroke-width: 1;
+  }
+
+  .ai-scatter-point {
+    position: absolute;
+    z-index: 1;
+    width: var(--point-size);
+    height: var(--point-size);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-shadow: 0 0 0 1.5px var(--color-background);
+    text-decoration: none;
+    transform: translate(-50%, -50%);
+  }
+
+  /* A larger invisible hit area than the dot itself. */
+  .ai-scatter-point::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+  }
+
+  .ai-scatter-point:hover,
+  .ai-scatter-point:focus {
+    z-index: 4;
+    box-shadow:
+      0 0 0 1.5px var(--color-background),
+      0 0 0 3px var(--color-text);
+    outline: none;
+  }
+
+  .ai-scatter-tip {
+    position: absolute;
+    display: none;
+    width: max-content;
+    max-width: 16rem;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    background: var(--color-background);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-align: left;
+    pointer-events: none;
+  }
+
+  .ai-scatter-point:hover .ai-scatter-tip,
+  .ai-scatter-point:focus .ai-scatter-tip {
+    display: grid;
+  }
+
+  /* The post's prose styles frame every image; not the logo in a tooltip. */
+  .ai-scatter-tip :global(img) {
+    border: 0;
+  }
+
+  .ai-scatter-tip-head {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+    margin-bottom: 0.125rem;
+  }
+
+  .ai-scatter-tip strong {
+    color: var(--color-text);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .ai-scatter-tip.tip-above {
+    bottom: calc(100% + 8px);
+  }
+
+  .ai-scatter-tip.tip-below {
+    top: calc(100% + 8px);
+  }
+
+  .ai-scatter-tip.tip-start {
+    left: -8px;
+  }
+
+  .ai-scatter-tip.tip-end {
+    right: -8px;
+  }
+
+  .ai-scatter-tip.tip-middle {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ai-scatter-label {
+    position: absolute;
+    z-index: 2;
+    color: var(--color-text-secondary);
+    font-size: 0.6875rem;
+    line-height: 0.875rem;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .ai-scatter-label[data-side='right'] {
+    transform: translate(calc(var(--point-size) / 2 + 3px), -50%);
+  }
+
+  .ai-scatter-label[data-side='left'] {
+    transform: translate(calc(-100% - var(--point-size) / 2 - 3px), -50%);
+  }
+
+  .ai-scatter-label[data-side='above'] {
+    transform: translate(-50%, calc(-100% - var(--point-size) / 2 - 1px));
+  }
+
+  .ai-scatter-label[data-side='below'] {
+    transform: translate(-50%, calc(var(--point-size) / 2 + 1px));
+  }
+
+  .ai-scatter-xaxis {
+    grid-column: 2;
+    height: 1rem;
+    margin: 0.6rem 0.75rem 0 0;
+  }
+
+  .ai-scatter-xaxis span {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  .ai-scatter-xtitle {
+    grid-column: 2;
+    margin: 0.35rem 0 0;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .ai-scatter figcaption {
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .ai-chart-data {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .ai-chart-data summary {
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+  }
+
+  .ai-chart-table {
+    overflow-x: auto;
+  }
+
+  .ai-chart-table table {
+    margin-top: 0.75rem;
+  }
+
+  .ai-chart-table .is-number {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  @media (max-width: 30rem) {
+    .ai-scatter {
+      --point-size: 7px;
+      --age-max-size: 13px;
+    }
+
+    .ai-scatter-frame {
+      grid-template-columns: 2rem minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,285 @@
+---
+/**
+ * Monthly share of graph database commits that declare AI help.
+ * Placed in a blog post with <figure data-chart="ai-coauthorship-monthly"></figure>.
+ */
+import { loadBlogData } from '../../lib/blog-data';
+import {
+  MONTHLY_HEIGHT,
+  MONTHLY_WIDTH,
+  MONTHLY_Y_MAX,
+  MONTHLY_Y_TICKS,
+  monthLabel,
+  monthlyChart,
+  totals,
+  type MonthRow,
+  type AiCoauthorshipData,
+} from '../../lib/ai-coauthorship-chart';
+
+const data = loadBlogData<AiCoauthorshipData>('ai-coauthorship');
+
+const formatNumber = (value: number) => value.toLocaleString('en-US');
+const rows = data.monthly as MonthRow[];
+const repoCount = data.repos.length;
+const chart = monthlyChart(rows);
+const all = totals(rows);
+const first = rows[0]!;
+const last = rows.at(-1)!;
+const lastPoint = chart.points.at(-1)!;
+const partial = (row: MonthRow) => (row === first ? ' (from 16 Nov)' : row === last ? ' (to 16 Nov)' : '');
+const tooltip = (row: MonthRow) =>
+  `${monthLabel(row.month)}${partial(row)}: ${row.aiPct}% declared AI, ` +
+  `${formatNumber(row.aiCommits)} of ${formatNumber(row.commits)} commits`;
+const tickY = (tick: number) => 100 - (tick / MONTHLY_Y_MAX) * 100;
+const summary =
+  `Line chart: share of graph database commits declaring AI help, by month, from ` +
+  `${first.aiPct}% in ${monthLabel(first.month)} to ${last.aiPct}% in ${monthLabel(last.month)}.`;
+/** Label every other month, plus the last, so labels fit at phone width. */
+const showMonth = (index: number) => index % 2 === 0 || index === rows.length - 1;
+---
+<figure class="ai-monthly">
+  <div class="ai-monthly-frame">
+    <div class="ai-monthly-yaxis" aria-hidden="true">
+      {MONTHLY_Y_TICKS.map((tick) => (
+        <span style={`top: ${tickY(tick)}%`}>{tick}%</span>
+      ))}
+    </div>
+    <div class="ai-monthly-plot" role="group" aria-label={summary}>
+      <svg
+        viewBox={`0 0 ${MONTHLY_WIDTH} ${MONTHLY_HEIGHT}`}
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {MONTHLY_Y_TICKS.map((tick) => (
+          <line
+            class:list={['ai-gridline', tick === 0 && 'is-baseline']}
+            x1="0"
+            x2={MONTHLY_WIDTH}
+            y1={(tickY(tick) / 100) * MONTHLY_HEIGHT}
+            y2={(tickY(tick) / 100) * MONTHLY_HEIGHT}
+          />
+        ))}
+        <path class="ai-monthly-area" d={chart.area} />
+        <path class="ai-monthly-line" d={chart.line} />
+      </svg>
+      {rows.map((row, index) => {
+        const point = chart.points[index]!;
+        return (
+          <span
+            class:list={['ai-monthly-point', row === last && 'is-partial']}
+            style={`left: ${point.x}%; top: ${point.y}%`}
+            tabindex="0"
+            role="tooltip"
+            aria-label={tooltip(row)}
+            data-microtip-position={point.x < 20 ? 'top-right' : point.x > 80 ? 'top-left' : 'top'}
+            data-microtip-size="medium"
+          ></span>
+        );
+      })}
+      <span
+        class="ai-monthly-end"
+        style={`left: ${lastPoint.x}%; top: ${lastPoint.y}%`}
+        aria-hidden="true"
+      >{last.aiPct}%</span>
+    </div>
+    <div class="ai-monthly-xaxis" aria-hidden="true">
+      {rows.map((row, index) => {
+        const [year, month] = row.month.split('-');
+        const label = monthLabel(row.month).slice(0, 3);
+        return showMonth(index) ? (
+          <span style={`left: ${chart.points[index]!.x}%`}>
+            {label}
+            {(index === 0 || month === '01') && <small>{year}</small>}
+          </span>
+        ) : null;
+      })}
+    </div>
+  </div>
+  <figcaption>
+    Share of commits declaring AI help, by month, across the {repoCount} open-source graph
+    database repositories in the catalogue with commits in the last 12 months.
+    {formatNumber(all.aiCommits)} of {formatNumber(all.commits)} commits ({all.aiPct}%) in the
+    12 months to 16 November 2026; 93% of them name Claude. In 2024 the same repositories had
+    none. Declared means an AI co-author trailer, an Assisted-by line, or an agent as the
+    author; bots and merge commits are left out. YugabyteDB MAGE counts only commits to its
+    graph extension folder, and Aerospike Graph counts its graph service repository. Forks can
+    include upstream commits: AgensGraph's include merged PostgreSQL commits. For GFQL, only
+    commits touching its graph engine (graphistry/compute/gfql) in the PyGraphistry repo count.
+    November 2025 starts on the 16th and November 2026 ends on the 16th.
+  </figcaption>
+  <details class="ai-chart-data">
+    <summary>Data table</summary>
+    <div class="ai-chart-table">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col" class="is-number">Commits</th>
+            <th scope="col" class="is-number">Declaring AI</th>
+            <th scope="col" class="is-number">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <th scope="row">{monthLabel(row.month)}{partial(row)}</th>
+              <td class="is-number">{formatNumber(row.commits)}</td>
+              <td class="is-number">{formatNumber(row.aiCommits)}</td>
+              <td class="is-number">{row.aiPct}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<style>
+  .ai-monthly {
+    margin: 2.5rem 0;
+  }
+
+  .ai-monthly-frame {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 0.25rem;
+  }
+
+  .ai-monthly-yaxis,
+  .ai-monthly-xaxis {
+    position: relative;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
+
+  .ai-monthly-yaxis span {
+    position: absolute;
+    right: 0.35rem;
+    transform: translateY(-50%);
+  }
+
+  .ai-monthly-plot {
+    position: relative;
+    height: clamp(11rem, 36vw, 15rem);
+    margin: 0.5rem 2.75rem 0 0.5rem;
+  }
+
+  .ai-monthly-plot svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .ai-gridline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .ai-gridline.is-baseline {
+    stroke: var(--color-text-tertiary);
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+
+  .ai-monthly-area {
+    fill: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  .ai-monthly-line {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .ai-monthly-plot .ai-monthly-point[role~='tooltip'] {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-sizing: content-box;
+    transform: translate(-50%, -50%);
+    cursor: default;
+  }
+
+  .ai-monthly-plot .ai-monthly-point.is-partial[role~='tooltip'] {
+    background: var(--color-background);
+    border-color: var(--color-brand-accent);
+    width: 0.35rem;
+    height: 0.35rem;
+  }
+
+  .ai-monthly-plot .ai-monthly-point[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .ai-monthly-end {
+    position: absolute;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    transform: translate(0.6rem, -50%);
+    white-space: nowrap;
+  }
+
+  .ai-monthly-xaxis {
+    grid-column: 2;
+    height: 2rem;
+    margin: 0.5rem 2.75rem 0 0.5rem;
+  }
+
+  .ai-monthly-xaxis span {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+  }
+
+  .ai-monthly-xaxis small {
+    font-size: 0.625rem;
+  }
+
+  .ai-monthly figcaption {
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .ai-chart-data {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .ai-chart-data summary {
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+  }
+
+  .ai-chart-table {
+    overflow-x: auto;
+  }
+
+  .ai-chart-table table {
+    margin-top: 0.75rem;
+  }
+
+  .ai-chart-table .is-number {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+</style>

@@ -1,0 +1,4 @@
+# Chart data is synced from data/ in the private cjlm/gdb-engines-blog repo at build time.
+# See scripts/sync-blog.mjs. Do not commit synced JSON here.
+*.json
+!.gitkeep
