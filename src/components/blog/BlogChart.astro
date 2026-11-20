@@ -26,7 +26,7 @@ const spec = loadChartSpec(Astro.props.id);
           {(item.sizes ?? [10]).map((size) => (
             <i
               class:list={['blog-chart-swatch', item.ring && 'is-ring']}
-              style={`--swatch: var(--chart-${item.color}); --swatch-size: ${size}px; opacity: ${item.opacity ?? 1}`}
+              style={`--swatch: ${item.color.startsWith('#') ? item.color : `var(--chart-${item.color})`}; --swatch-size: ${size}px; opacity: ${item.opacity ?? 1}`}
             ></i>
           ))}
           {item.label}

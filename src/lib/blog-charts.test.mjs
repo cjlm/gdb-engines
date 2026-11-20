@@ -38,3 +38,9 @@ test('embeds are limited to pages of this site', () => {
   assert.throws(() => parseChartSpec({ ...embed, src: 'https://example.com/' }, 'x'), /only pages of this site/);
   assert.throws(() => parseChartSpec({ ...embed, src: '//example.com/' }, 'x'), /only pages of this site/);
 });
+
+test('legend colours are theme names or fixed hex colours, nothing else', () => {
+  const embed = { version: 1, type: 'embed', ariaLabel: 'a', caption: 'c', height: 500, src: '/graph/' };
+  assert.equal(parseChartSpec({ ...embed, legend: [{ label: 'A', color: 'c1' }, { label: 'B', color: '#1b9e77' }] }, 'x').type, 'embed');
+  assert.throws(() => parseChartSpec({ ...embed, legend: [{ label: 'A', color: 'red; background: url(x)' }] }, 'x'), /legend colour/);
+});

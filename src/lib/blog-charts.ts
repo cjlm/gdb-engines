@@ -57,7 +57,8 @@ export interface TableSpec {
 /** A legend entry drawn above the chart: a swatch in a theme colour and its label. */
 export interface LegendItem {
   label: string;
-  /** Theme colour name, as in "token:<name>". */
+  /** Theme colour name, as in "token:<name>", or a fixed "#rrggbb" for colours the chart itself
+   * picks (Garphield's categorical palette, say). */
   color: string;
   opacity?: number;
   /** Outline the swatch in the ink colour. */
@@ -143,7 +144,9 @@ export function parseChartSpec(raw: unknown, id: string): ChartSpec {
     throw new Error(`[blog] ${where} embeds "${String(spec.src)}"; only pages of this site ("/...") can be embedded.`);
   }
   for (const item of spec.legend ?? []) {
-    if (!/^[a-z0-9]+$/.test(item.color)) throw new Error(`[blog] ${where} has a legend colour "${item.color}"; use a theme colour name.`);
+    if (!/^([a-z0-9]+|#[0-9a-f]{6})$/i.test(item.color)) {
+      throw new Error(`[blog] ${where} has a legend colour "${item.color}"; use a theme colour name or #rrggbb.`);
+    }
   }
   if (spec.type === 'garphield' && !Array.isArray(spec.document?.datasets?.[0]?.graph?.nodes)) {
     throw new Error(`[blog] ${where} has no Garphield graph to draw.`);
