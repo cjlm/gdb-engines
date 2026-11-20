@@ -108,9 +108,20 @@ export interface EmbedSpec extends BaseSpec {
   link?: { href: string; label: string };
 }
 
-export type ChartSpec = EChartsSpec | EmbedSpec;
+/**
+ * A network drawn by the hosted Garphield embed (garphield.com), from a Garphield document
+ * (`{info, datasets: [{id, graph: {nodes, links}}], config}`) carried in the spec.
+ */
+export interface GarphieldSpec extends BaseSpec {
+  type: 'garphield';
+  document: { datasets: { graph: { nodes: unknown[]; links: unknown[] } }[] } & Record<string, unknown>;
+  height: number;
+  mobileHeight?: number;
+}
 
-const CHART_TYPES = ['echarts', 'embed'] as const;
+export type ChartSpec = EChartsSpec | EmbedSpec | GarphieldSpec;
+
+const CHART_TYPES = ['echarts', 'embed', 'garphield'] as const;
 const SPEC_DIR = resolve(process.cwd(), 'src', 'data', 'blog-charts');
 
 /**
@@ -133,6 +144,9 @@ export function parseChartSpec(raw: unknown, id: string): ChartSpec {
   }
   for (const item of spec.legend ?? []) {
     if (!/^[a-z0-9]+$/.test(item.color)) throw new Error(`[blog] ${where} has a legend colour "${item.color}"; use a theme colour name.`);
+  }
+  if (spec.type === 'garphield' && !Array.isArray(spec.document?.datasets?.[0]?.graph?.nodes)) {
+    throw new Error(`[blog] ${where} has no Garphield graph to draw.`);
   }
   if (spec.type === 'echarts' && (typeof spec.option !== 'object' || spec.option === null)) {
     throw new Error(`[blog] ${where} has no ECharts option.`);

@@ -24,6 +24,10 @@ test('every mention of an engine becomes a link with its own card beside it', ()
   assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }, { slug: 'neo4j', text: 'Neo4j' }]);
 });
 
+test('mentions inside asides are decorated', () => {
+  assert.deepEqual(run('<aside><p>Kuzu</p></aside>').linked.map((m) => m.slug), ['kuzu']);
+});
+
 test('aliases match, and the longest name wins at the same place', () => {
   assert.deepEqual(run('<p>KuzuDB and Neo4j Aura.</p>').linked.map((m) => m.slug), ['kuzu', 'neo4j-aura']);
 });
@@ -32,8 +36,8 @@ test('matches whole words only, case-sensitive', () => {
   assert.equal(run('<p>neo4j-like and Neo4jX and neo4j</p>').linked.length, 0);
 });
 
-test('nothing in headings, quotes, code, figures or asides changes', () => {
-  const html = '<h2>Neo4j</h2><blockquote><p>Neo4j</p></blockquote><aside>Neo4j</aside><p><code>Neo4j</code></p><figure>Neo4j</figure>';
+test('nothing in headings, quotes, code or figures changes', () => {
+  const html = '<h2>Neo4j</h2><blockquote><p>Neo4j</p></blockquote><p><code>Neo4j</code></p><figure>Neo4j</figure>';
   assert.equal(run(html).html, html);
 });
 

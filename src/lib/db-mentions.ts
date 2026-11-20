@@ -2,7 +2,7 @@
  * Links every prose mention of a catalogue engine in a blog post to its profile, with the engine's
  * logo and a hover card.
  *
- * Runs on a post's rendered HTML. Nothing inside a heading, quote, code, figure or aside changes.
+ * Runs on a post's rendered HTML. Nothing inside a heading, quote, code or figure changes.
  * Matching follows src/lib/blog-mentions.ts: the name or an alias, case-sensitive, as a whole
  * word; names that are also ordinary words (the caller passes LINK_ONLY_NAMES) only count when
  * the post links the engine's profile itself.
@@ -50,7 +50,7 @@ export interface MentionLink {
 }
 
 /** Elements whose content is never decorated. */
-const SKIP_TAGS = new Set(['code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'figure', 'aside', 'script', 'style']);
+const SKIP_TAGS = new Set(['code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'figure', 'script', 'style']);
 const PROFILE_HREF = /href="(?:https:\/\/gdb-engines\.com)?\/db\/([a-z0-9-]+)\/"/;
 
 const escapeRegExp = (text: string): string => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

@@ -1,0 +1,43 @@
+---
+/** A network from a blog chart spec, drawn by the hosted Garphield embed once it scrolls near. */
+import type { GarphieldSpec } from '../../lib/blog-charts';
+
+interface Props {
+  spec: GarphieldSpec;
+}
+
+const { spec } = Astro.props;
+const json = JSON.stringify(spec.document).replace(/</g, '\\u003c');
+const origin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com';
+---
+<div
+  class="blog-garphield"
+  data-garphield-origin={origin}
+  style={`--chart-height: ${spec.height}px; --chart-mobile-height: ${spec.mobileHeight ?? spec.height}px`}
+>
+  <iframe title={spec.ariaLabel}></iframe>
+  <script type="application/json" set:html={json} />
+</div>
+
+<script>
+  import { mountBlogGarphield } from '../../lib/blog-garphield';
+
+  for (const node of document.querySelectorAll<HTMLElement>('.blog-garphield')) mountBlogGarphield(node);
+</script>
+
+<style>
+  .blog-garphield iframe {
+    display: block;
+    width: 100%;
+    height: var(--chart-height);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-background);
+  }
+
+  @media (max-width: 560px) {
+    .blog-garphield iframe {
+      height: var(--chart-mobile-height);
+    }
+  }
+</style>

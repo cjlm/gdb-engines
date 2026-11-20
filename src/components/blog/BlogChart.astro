@@ -7,6 +7,7 @@
 import { loadChartSpec } from '../../lib/blog-charts';
 import ChartECharts from './ChartECharts.astro';
 import ChartEmbed from './ChartEmbed.astro';
+import ChartGarphield from './ChartGarphield.astro';
 
 interface Props {
   id: string;
@@ -17,6 +18,7 @@ const spec = loadChartSpec(Astro.props.id);
 <figure class="blog-chart">
   {spec.type === 'echarts' && <ChartECharts spec={spec} />}
   {spec.type === 'embed' && <ChartEmbed spec={spec} />}
+  {spec.type === 'garphield' && <ChartGarphield spec={spec} />}
   {spec.legend && spec.legend.length > 0 && (
     <ul class="blog-chart-legend">
       {spec.legend.map((item) => (

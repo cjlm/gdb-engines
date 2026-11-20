@@ -488,6 +488,32 @@ const postJsonLd = JSON.stringify({
   .blog-prose li + li {
     margin-top: 0.45rem;
   }
+  /* Asides: a tinted note set off from the argument, labelled so it reads as a digression. */
+  .blog-prose aside {
+    margin: 1.75rem 0;
+    padding: 0.9rem 1.1rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 22%, var(--color-border));
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--color-brand) 9%, var(--color-background));
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .blog-prose aside::before {
+    content: 'Aside';
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .blog-prose aside > p {
+    margin: 0;
+  }
+  .blog-prose aside > p + p {
+    margin-top: 0.75rem;
+  }
   .blog-prose blockquote {
     margin-left: 0;
     padding-left: 1.25rem;
