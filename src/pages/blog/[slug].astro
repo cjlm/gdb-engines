@@ -1,10 +1,22 @@
 ---
-import { render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import BlogChart from '../../components/blog/BlogChart.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
 import { hasBlogCharts, splitPostHtml } from '../../lib/blog-charts';
+import { LINK_ONLY_NAMES } from '../../lib/blog-mentions';
+import {
+  decorateProfileLinks,
+  engineSummary,
+  linkEngineMentions,
+  linkedProfileSlugs,
+  mentionLinkHtml,
+  mentionLogoHtml,
+  type LinkableEngine,
+} from '../../lib/db-mentions';
+import { buildFaviconMap } from '../../lib/favicon-map';
+import { needsLightLogoBackfill } from '../../lib/logo-appearance';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -21,9 +33,30 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-// A post that places charts is rendered from its HTML so the charts can sit between paragraphs.
-const html = post.rendered?.html ?? '';
-const parts = hasBlogCharts(html) ? splitPostHtml(html, post.id) : null;
+// The first prose mention of each catalogue engine links to its profile, with its logo and a
+// one-line tooltip. Logos are looked up only for the engines this post mentions.
+const databases = await getCollection('databases');
+const engines: LinkableEngine[] = databases.map((db) => ({
+  slug: db.data.slug,
+  name: db.data.name,
+  aliases: db.data.aliases,
+  summary: engineSummary(db.data.description),
+}));
+const renderedHtml = post.rendered?.html ?? '';
+const { linked } = linkEngineMentions(renderedHtml, engines, () => '', LINK_ONLY_NAMES);
+const linkedSlugs = new Set([...linked.map((m) => m.slug), ...linkedProfileSlugs(renderedHtml)]);
+const logos = await buildFaviconMap(databases.filter((db) => linkedSlugs.has(db.data.slug)));
+const iconFor = (engine: LinkableEngine) => {
+  const src = logos[engine.slug];
+  return src ? { src, backfill: needsLightLogoBackfill(src) } : undefined;
+};
+const html = decorateProfileLinks(
+  linkEngineMentions(renderedHtml, engines, (engine, text) => mentionLinkHtml(engine, text, iconFor(engine)), LINK_ONLY_NAMES).html,
+  engines,
+  (engine) => mentionLogoHtml(iconFor(engine)),
+);
+// Rendered from HTML so engine links and charts can sit between paragraphs.
+const parts = html ? (hasBlogCharts(html) ? splitPostHtml(html, post.id) : [{ type: 'html' as const, html }]) : null;
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
 const ogImage = `https://gdb-engines.com/og/blog/${post.id}.png`;
 const publishedTime = post.data.date.toISOString();
@@ -182,6 +215,44 @@ const postJsonLd = JSON.stringify({
   }
   .blog-prose a:hover {
     text-decoration-color: var(--color-brand-accent);
+  }
+  .blog-prose a.db-mention {
+    position: relative;
+    text-decoration-style: dotted;
+  }
+  .blog-prose .db-mention-logo {
+    margin: -0.15em 0.25em 0 0.05em;
+  }
+  .blog-prose a.db-mention::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.4rem);
+    z-index: 20;
+    width: max-content;
+    max-width: min(18rem, 80vw);
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.3rem;
+    background: var(--color-text);
+    color: var(--color-background);
+    font-family: var(--font-body, inherit);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+  }
+  .blog-prose a.db-mention:hover::after,
+  .blog-prose a.db-mention:focus-visible::after {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose a.db-mention::after {
+      transition: none;
+    }
   }
   .blog-prose ul,
   .blog-prose ol {
