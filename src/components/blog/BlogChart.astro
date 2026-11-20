@@ -1,0 +1,103 @@
+---
+/**
+ * A chart placed in a blog post by <figure data-chart="id"></figure>. Loads the synced spec and
+ * draws it with the generic renderer for its type; caption, notes and data table come from the
+ * spec too.
+ */
+import { loadChartSpec } from '../../lib/blog-charts';
+import ChartBars from './ChartBars.astro';
+import ChartDotStrip from './ChartDotStrip.astro';
+import ChartLine from './ChartLine.astro';
+import ChartSmallMultiples from './ChartSmallMultiples.astro';
+
+interface Props {
+  id: string;
+}
+
+const spec = loadChartSpec(Astro.props.id);
+---
+<figure class="blog-chart">
+  {spec.type === 'line' && <ChartLine spec={spec} />}
+  {spec.type === 'bars' && <ChartBars spec={spec} />}
+  {spec.type === 'small-multiples' && <ChartSmallMultiples spec={spec} />}
+  {spec.type === 'dot-strip' && <ChartDotStrip spec={spec} />}
+  {spec.notes && spec.notes.length > 0 && (
+    <ol class="blog-chart-notes">
+      {spec.notes.map((note) => <li>{note}</li>)}
+    </ol>
+  )}
+  <figcaption>{spec.caption}</figcaption>
+  {spec.table && (
+    <details class="blog-chart-data">
+      <summary>Data table</summary>
+      <div class="blog-chart-table">
+        <table>
+          <thead>
+            <tr>
+              {spec.table.columns.map((column) => (
+                <th scope="col" class:list={[column.numeric && 'is-number']}>{column.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {spec.table.rows.map((row) => (
+              <tr>
+                {row.map((cell, index) =>
+                  index === 0 ? (
+                    <th scope="row">{cell}</th>
+                  ) : (
+                    <td class:list={[spec.table?.columns[index]?.numeric && 'is-number']}>{cell}</td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  )}
+</figure>
+
+<style>
+  .blog-chart {
+    margin: 2.5rem 0;
+  }
+
+  .blog-chart-notes {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .blog-chart figcaption {
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .blog-chart-data {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .blog-chart-data summary {
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+  }
+
+  .blog-chart-table {
+    overflow-x: auto;
+  }
+
+  .blog-chart-table table {
+    margin-top: 0.75rem;
+  }
+
+  .blog-chart-table .is-number {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+</style>

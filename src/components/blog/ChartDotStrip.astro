@@ -1,0 +1,162 @@
+---
+/** Rows of dots along a shared x axis, each dot sized and styled by the spec, with a legend. */
+import { tipSide, type DotStripSpec } from '../../lib/blog-charts';
+
+interface Props {
+  spec: DotStripSpec;
+}
+
+const { spec } = Astro.props;
+const xOf = (value: number) => Math.round((Math.min(spec.xMax, Math.max(0, value)) / spec.xMax) * 10_000) / 100;
+---
+<div class="chart-dots">
+  <ul class="chart-dots-legend" aria-hidden="true">
+    {spec.legend.map((item) => (
+      <li><i class={`chart-dots-swatch is-${item.style}`}></i>{item.label}</li>
+    ))}
+  </ul>
+  <div role="group" aria-label={spec.ariaLabel}>
+    {spec.rows.map((row) => (
+      <div class="chart-dots-row">
+        <div class="chart-dots-name">
+          <strong>{row.title}</strong>
+          {row.lines?.map((line) => <span>{line}</span>)}
+        </div>
+        <div class="chart-dots-plot">
+          {spec.xLabels.map((label) => (
+            <span class="chart-dots-gridline" style={`left: ${xOf(label.value)}%`} aria-hidden="true"></span>
+          ))}
+          {row.dots.map((dot) => {
+            const x = xOf(dot.x);
+            return (
+              <span
+                class={`chart-dots-dot is-${dot.style}`}
+                style={`left: ${x}%; top: ${dot.y}%; width: ${dot.size}px; height: ${dot.size}px`}
+                tabindex="0"
+                role="tooltip"
+                aria-label={dot.tooltip}
+                data-microtip-position={tipSide(x)}
+                data-microtip-size="medium"
+              ></span>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+    <div class="chart-dots-row" aria-hidden="true">
+      <span></span>
+      <div class="chart-dots-xaxis">
+        {spec.xLabels.map((label) => <span style={`left: ${xOf(label.value)}%`}>{label.label}</span>)}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chart-dots-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+  }
+
+  .chart-dots-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .chart-dots-swatch {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+  }
+
+  .chart-dots-row {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 8rem) minmax(0, 1fr);
+    column-gap: 0.75rem;
+    align-items: center;
+  }
+
+  .chart-dots-name {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .chart-dots-name strong {
+    color: var(--color-text);
+    font-size: 0.875rem;
+  }
+
+  .chart-dots-plot {
+    position: relative;
+    height: clamp(6rem, 18vw, 8rem);
+    margin: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .chart-dots-gridline {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dashed var(--color-border);
+  }
+
+  .chart-dots-swatch.is-solid,
+  .chart-dots-plot .chart-dots-dot.is-solid[role~='tooltip'] {
+    background: var(--color-brand-accent);
+  }
+
+  .chart-dots-swatch.is-ring,
+  .chart-dots-plot .chart-dots-dot.is-ring[role~='tooltip'] {
+    background: var(--color-brand-accent);
+    box-shadow: 0 0 0 1.5px var(--color-text);
+  }
+
+  .chart-dots-swatch.is-faint,
+  .chart-dots-plot .chart-dots-dot.is-faint[role~='tooltip'] {
+    background: color-mix(in srgb, var(--color-brand-accent) 30%, transparent);
+  }
+
+  .chart-dots-swatch.is-muted,
+  .chart-dots-plot .chart-dots-dot.is-muted[role~='tooltip'] {
+    background: color-mix(in srgb, var(--color-text-tertiary) 60%, transparent);
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .chart-dots-plot .chart-dots-dot[role~='tooltip'] {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
+  }
+
+  .chart-dots-plot .chart-dots-dot[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .chart-dots-xaxis {
+    position: relative;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .chart-dots-xaxis span {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+</style>

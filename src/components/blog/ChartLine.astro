@@ -1,0 +1,174 @@
+---
+/** A single-series line with a shaded area, evenly spaced points and a y axis. */
+import { LINE_HEIGHT, LINE_WIDTH, lineGeometry, tipSide, type LineSpec } from '../../lib/blog-charts';
+
+interface Props {
+  spec: LineSpec;
+}
+
+const { spec } = Astro.props;
+const geometry = lineGeometry(spec.points.map((p) => p.value), spec.yMax);
+const tickY = (tick: number) => 100 - (tick / spec.yMax) * 100;
+const last = geometry.points.at(-1);
+---
+<div class="chart-line">
+  <div class="chart-line-yaxis" aria-hidden="true">
+    {spec.yTicks.map((tick) => <span style={`top: ${tickY(tick)}%`}>{tick}{spec.yUnit ?? ''}</span>)}
+  </div>
+  <div class="chart-line-plot" role="group" aria-label={spec.ariaLabel}>
+    <svg viewBox={`0 0 ${LINE_WIDTH} ${LINE_HEIGHT}`} preserveAspectRatio="none" aria-hidden="true">
+      {spec.yTicks.map((tick) => (
+        <line
+          class:list={['chart-gridline', tick === 0 && 'is-baseline']}
+          x1="0"
+          x2={LINE_WIDTH}
+          y1={(tickY(tick) / 100) * LINE_HEIGHT}
+          y2={(tickY(tick) / 100) * LINE_HEIGHT}
+        />
+      ))}
+      <path class="chart-line-area" d={geometry.area} />
+      <path class="chart-line-path" d={geometry.line} />
+    </svg>
+    {spec.points.map((point, index) => {
+      const at = geometry.points[index]!;
+      return (
+        <span
+          class:list={['chart-line-point', point.hollow && 'is-hollow']}
+          style={`left: ${at.x}%; top: ${at.y}%`}
+          tabindex="0"
+          role="tooltip"
+          aria-label={point.tooltip}
+          data-microtip-position={tipSide(at.x)}
+          data-microtip-size="medium"
+        ></span>
+      );
+    })}
+    {spec.endLabel && last && (
+      <span class="chart-line-end" style={`left: ${last.x}%; top: ${last.y}%`} aria-hidden="true">{spec.endLabel}</span>
+    )}
+  </div>
+  <div class="chart-line-xaxis" aria-hidden="true">
+    {spec.xLabels.map((label) => (
+      <span style={`left: ${geometry.points[label.index]?.x ?? 0}%`}>
+        {label.label}
+        {label.sub && <small>{label.sub}</small>}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .chart-line {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 0.25rem;
+  }
+
+  .chart-line-yaxis,
+  .chart-line-xaxis {
+    position: relative;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+  }
+
+  .chart-line-yaxis span {
+    position: absolute;
+    right: 0.35rem;
+    transform: translateY(-50%);
+  }
+
+  .chart-line-plot {
+    position: relative;
+    height: clamp(11rem, 36vw, 15rem);
+    margin: 0.5rem 2.75rem 0 0.5rem;
+  }
+
+  .chart-line-plot svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .chart-gridline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .chart-gridline.is-baseline {
+    stroke: var(--color-text-tertiary);
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+
+  .chart-line-area {
+    fill: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  .chart-line-path {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Outranks microtip's [aria-label][role~='tooltip'] { position: relative }. */
+  .chart-line-plot .chart-line-point[role~='tooltip'] {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    box-sizing: content-box;
+    transform: translate(-50%, -50%);
+    cursor: default;
+  }
+
+  .chart-line-plot .chart-line-point.is-hollow[role~='tooltip'] {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-color: var(--color-brand-accent);
+    background: var(--color-background);
+  }
+
+  .chart-line-plot .chart-line-point[role~='tooltip']:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
+  }
+
+  .chart-line-end {
+    position: absolute;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    transform: translate(0.6rem, -50%);
+    white-space: nowrap;
+  }
+
+  .chart-line-xaxis {
+    grid-column: 2;
+    height: 2rem;
+    margin: 0.5rem 2.75rem 0 0.5rem;
+  }
+
+  .chart-line-xaxis span {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+  }
+
+  .chart-line-xaxis small {
+    font-size: 0.625rem;
+  }
+</style>
