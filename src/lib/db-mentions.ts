@@ -12,8 +12,26 @@ export interface LinkableEngine {
   slug: string;
   name: string;
   aliases?: string[];
-  /** One short line shown in the tooltip. */
+  /** One short line shown in the card. */
   summary: string;
+  /** Overall rank on GDB-Engines, when ranked. */
+  rank?: number;
+  /** Short facts shown as chips: model, form, licence, year. */
+  chips?: string[];
+}
+
+export interface MentionIcon {
+  src: string;
+  backfill: boolean;
+}
+
+/** What a link carries besides its text: the inline logo and the hover card. */
+export interface MentionExtras {
+  icon?: MentionIcon;
+  /** Unique id for the card, so the link can point to it with aria-describedby. */
+  cardId: string;
+  /** How many engines are ranked, for "#3 of 158". */
+  rankTotal?: number;
 }
 
 /** Elements whose text is never linked. */
@@ -108,13 +126,13 @@ const PROFILE_LINK = /<a href="(?:https:\/\/gdb-engines\.com)?\/db\/([a-z0-9-]+)
 export function decorateProfileLinks(
   html: string,
   engines: LinkableEngine[],
-  logoHtml: (engine: LinkableEngine) => string,
+  extras: (engine: LinkableEngine) => MentionExtras,
 ): string {
   const bySlug = new Map(engines.map((engine) => [engine.slug, engine]));
   return html.replace(PROFILE_LINK, (tag, slug: string) => {
     const engine = bySlug.get(slug);
     if (!engine) return tag;
-    return `<a class="db-mention" href="/db/${slug}/" data-tip="${escapeAttr(`${engine.name}: ${engine.summary}`)}">${logoHtml(engine)}`;
+    return mentionOpenTag(engine, extras(engine));
   });
 }
 
@@ -130,18 +148,33 @@ export function engineSummary(description: string, maxLength = 140): string {
   return line;
 }
 
-/** The logo markup for an engine, sized for running text; empty when the logo is unknown. */
-export function mentionLogoHtml(icon?: { src: string; backfill: boolean }): string {
+function logoHtml(icon: MentionIcon | undefined, size: number, className: string): string {
   if (!icon) return '';
-  return `<span class="database-logo db-mention-logo${icon.backfill ? ' database-logo--needs-backfill' : ''}" style="--database-logo-size: 14px" aria-hidden="true">` +
-    `<img src="${escapeAttr(icon.src)}" alt="" width="14" height="14" loading="lazy" decoding="async"></span>`;
+  return `<span class="database-logo ${className}${icon.backfill ? ' database-logo--needs-backfill' : ''}" style="--database-logo-size: ${size}px" aria-hidden="true">` +
+    `<img src="${escapeAttr(icon.src)}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async"></span>`;
 }
 
-/** Default link markup: the engine's logo (when known), the matched text and a tooltip. */
-export function mentionLinkHtml(
-  engine: LinkableEngine,
-  text: string,
-  icon?: { src: string; backfill: boolean },
-): string {
-  return `<a class="db-mention" href="/db/${engine.slug}/" data-tip="${escapeAttr(`${engine.name}: ${engine.summary}`)}">${mentionLogoHtml(icon)}${text}</a>`;
+/** The hover card: logo, name, rank, chips and a one-line description. */
+export function mentionCardHtml(engine: LinkableEngine, extras: MentionExtras): string {
+  const rank = engine.rank
+    ? `<span class="db-card-rank" title="Overall GDB-Engines ranking">#${engine.rank}${extras.rankTotal ? `<small> of ${extras.rankTotal}</small>` : ''}</span>`
+    : '';
+  const chips = (engine.chips ?? []).map((chip) => `<span class="db-card-chip">${escapeAttr(chip)}</span>`).join('');
+  return `<span class="db-card" id="${escapeAttr(extras.cardId)}" role="tooltip">` +
+    `<span class="db-card-head">${logoHtml(extras.icon, 28, 'db-card-logo')}<span class="db-card-name">${escapeAttr(engine.name)}</span>${rank}</span>` +
+    (chips ? `<span class="db-card-chips">${chips}</span>` : '') +
+    `<span class="db-card-desc">${escapeAttr(engine.summary)}</span>` +
+    `<span class="db-card-more">View profile →</span>` +
+    `</span>`;
+}
+
+/** Opening tag of a mention link, followed by its inline logo and hover card. */
+function mentionOpenTag(engine: LinkableEngine, extras: MentionExtras): string {
+  return `<a class="db-mention" href="/db/${engine.slug}/" aria-describedby="${escapeAttr(extras.cardId)}">` +
+    `${mentionCardHtml(engine, extras)}${logoHtml(extras.icon, 14, 'db-mention-logo')}`;
+}
+
+/** Link markup for an automatic mention. */
+export function mentionLinkHtml(engine: LinkableEngine, text: string, extras: MentionExtras): string {
+  return `${mentionOpenTag(engine, extras)}${text}</a>`;
 }

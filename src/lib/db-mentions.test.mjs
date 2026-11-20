@@ -48,19 +48,24 @@ test('the tooltip line is the first sentence, cut at a word', () => {
   assert.ok(long.length <= 40 && long.endsWith('…'));
 });
 
-test('link markup escapes the tooltip and includes the icon when known', () => {
-  const html = mentionLinkHtml({ slug: 'kuzu', name: 'Kuzu', summary: 'A "quoted" <db>' }, 'Kuzu', { src: '/logos/kuzu.png', backfill: true });
-  assert.match(html, /href="\/db\/kuzu\/"/);
-  assert.match(html, /data-tip="Kuzu: A &quot;quoted&quot; &lt;db&gt;"/);
+test('link markup carries a logo, a described-by card with rank and chips, all escaped', () => {
+  const engine = { slug: 'kuzu', name: 'Kuzu', summary: 'A "quoted" <db>', rank: 3, chips: ['Embedded', 'MIT'] };
+  const html = mentionLinkHtml(engine, 'Kuzu', { icon: { src: '/logos/kuzu.png', backfill: true }, cardId: 'm1', rankTotal: 158 });
+  assert.match(html, /^<a class="db-mention" href="\/db\/kuzu\/" aria-describedby="m1">/);
+  assert.match(html, /<span class="db-card" id="m1" role="tooltip">/);
+  assert.match(html, /#3<small> of 158<\/small>/);
+  assert.match(html, /<span class="db-card-chip">Embedded<\/span><span class="db-card-chip">MIT<\/span>/);
+  assert.match(html, /A &quot;quoted&quot; &lt;db&gt;/);
   assert.match(html, /database-logo--needs-backfill/);
-  assert.match(html, /<img src="\/logos\/kuzu.png"/);
-  assert.doesNotMatch(mentionLinkHtml({ slug: 'k', name: 'K', summary: 's' }, 'K'), /<img/);
+  assert.match(html, />Kuzu<\/a>$/);
+  const bare = mentionLinkHtml({ slug: 'k', name: 'K', summary: 's' }, 'K', { cardId: 'm2' });
+  assert.doesNotMatch(bare, /<img|db-card-rank|db-card-chips/);
 });
 
 test('existing profile links get the tooltip and logo, unknown slugs are untouched', () => {
   const html = '<p><a href="https://gdb-engines.com/db/kuzu/">Kuzu</a> and <a href="/db/nope/">x</a></p>';
   assert.deepEqual(linkedProfileSlugs(html), ['kuzu', 'nope']);
-  const out = decorateProfileLinks(html, engines, () => '<i></i>');
-  assert.match(out, /<a class="db-mention" href="\/db\/kuzu\/" data-tip="Kuzu: An embedded graph database."><i><\/i>Kuzu<\/a>/);
+  const out = decorateProfileLinks(html, engines, () => ({ cardId: 'c1' }));
+  assert.match(out, /<a class="db-mention" href="\/db\/kuzu\/" aria-describedby="c1"><span class="db-card" id="c1"[^]*?<\/span>Kuzu<\/a>/);
   assert.match(out, /<a href="\/db\/nope\/">x<\/a>/);
 });

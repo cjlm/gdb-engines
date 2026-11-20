@@ -12,9 +12,12 @@ import {
   linkEngineMentions,
   linkedProfileSlugs,
   mentionLinkHtml,
-  mentionLogoHtml,
   type LinkableEngine,
+  type MentionExtras,
 } from '../../lib/db-mentions';
+import { buildOverallRankMap } from '../../lib/comparisons';
+import { licenseTier } from '../../lib/license-tier';
+import { loadRankings } from '../../lib/rankings';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { needsLightLogoBackfill } from '../../lib/logo-appearance';
 import '../../styles/global.css';
@@ -34,26 +37,59 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 // The first prose mention of each catalogue engine links to its profile, with its logo and a
-// one-line tooltip. Logos are looked up only for the engines this post mentions.
+// hover card (rank, model, form, licence, year, one line of description). Logos are looked up
+// only for the engines this post mentions.
 const databases = await getCollection('databases');
+const overallRanks = buildOverallRankMap(await loadRankings());
+const KIND_LABELS: Record<string, string> = {
+  database: 'Server',
+  embedded: 'Embedded',
+  extension: 'Extension',
+  'query-engine': 'Query engine',
+  library: 'Library',
+};
+const TYPE_LABELS: Record<string, string> = {
+  'Property Graph': 'Property graph',
+  RDF: 'RDF',
+  Multiple: 'LPG + RDF',
+};
+const licenseChip = (license: string | undefined): string | null => {
+  if (!license) return null;
+  const tier = licenseTier(license);
+  if (tier === 'Permissive' || tier === 'Copyleft') return 'Open source';
+  return tier === 'Proprietary' ? 'Proprietary' : license;
+};
 const engines: LinkableEngine[] = databases.map((db) => ({
   slug: db.data.slug,
   name: db.data.name,
   aliases: db.data.aliases,
   summary: engineSummary(db.data.description),
+  rank: overallRanks.get(db.data.slug),
+  chips: [
+    TYPE_LABELS[db.data.type] ?? null,
+    KIND_LABELS[db.data.kind] ?? db.data.kind,
+    licenseChip(db.data.license),
+    db.data.released ? `Since ${String(db.data.released).slice(0, 4)}` : null,
+  ].filter((chip): chip is string => Boolean(chip)),
 }));
 const renderedHtml = post.rendered?.html ?? '';
 const { linked } = linkEngineMentions(renderedHtml, engines, () => '', LINK_ONLY_NAMES);
 const linkedSlugs = new Set([...linked.map((m) => m.slug), ...linkedProfileSlugs(renderedHtml)]);
 const logos = await buildFaviconMap(databases.filter((db) => linkedSlugs.has(db.data.slug)));
-const iconFor = (engine: LinkableEngine) => {
+let cardCount = 0;
+const extrasFor = (engine: LinkableEngine): MentionExtras => {
   const src = logos[engine.slug];
-  return src ? { src, backfill: needsLightLogoBackfill(src) } : undefined;
+  cardCount += 1;
+  return {
+    icon: src ? { src, backfill: needsLightLogoBackfill(src) } : undefined,
+    cardId: `db-card-${cardCount}`,
+    rankTotal: overallRanks.size || undefined,
+  };
 };
 const html = decorateProfileLinks(
-  linkEngineMentions(renderedHtml, engines, (engine, text) => mentionLinkHtml(engine, text, iconFor(engine)), LINK_ONLY_NAMES).html,
+  linkEngineMentions(renderedHtml, engines, (engine, text) => mentionLinkHtml(engine, text, extrasFor(engine)), LINK_ONLY_NAMES).html,
   engines,
-  (engine) => mentionLogoHtml(iconFor(engine)),
+  extrasFor,
 );
 // Rendered from HTML so engine links and charts can sit between paragraphs.
 const parts = html ? (hasBlogCharts(html) ? splitPostHtml(html, post.id) : [{ type: 'html' as const, html }]) : null;
@@ -122,6 +158,21 @@ const postJsonLd = JSON.stringify({
     </article>
   </main>
 </Layout>
+
+<script>
+  // Keep each engine card on screen: open it leftward near the right edge, below near the top.
+  const place = (event: Event) => {
+    const link = (event.target as Element | null)?.closest?.('a.db-mention');
+    const card = link?.querySelector<HTMLElement>('.db-card');
+    if (!link || !card) return;
+    card.classList.remove('db-card--end', 'db-card--below');
+    const rect = card.getBoundingClientRect();
+    if (rect.right > window.innerWidth - 8) card.classList.add('db-card--end');
+    if (rect.top < 72) card.classList.add('db-card--below');
+  };
+  document.addEventListener('mouseover', place);
+  document.addEventListener('focusin', place);
+</script>
 
 <style is:global>
   .blog-post {
@@ -222,36 +273,134 @@ const postJsonLd = JSON.stringify({
   }
   .blog-prose .db-mention-logo {
     margin: -0.15em 0.25em 0 0.05em;
+    transition: transform 0.15s ease;
   }
-  .blog-prose a.db-mention::after {
-    content: attr(data-tip);
+  .blog-prose a.db-mention:hover .db-mention-logo,
+  .blog-prose a.db-mention:focus-visible .db-mention-logo {
+    transform: scale(1.45) rotate(-4deg);
+  }
+  /* Absolutely positioned, so the link's underline does not reach inside the card. */
+  .blog-prose .db-card {
     position: absolute;
     left: 0;
-    bottom: calc(100% + 0.4rem);
-    z-index: 20;
-    width: max-content;
-    max-width: min(18rem, 80vw);
-    padding: 0.45rem 0.6rem;
-    border-radius: 0.3rem;
-    background: var(--color-text);
-    color: var(--color-background);
-    font-family: var(--font-body, inherit);
+    bottom: calc(100% + 0.6rem);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: 18rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.8rem 0.9rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-background);
+    box-shadow: 0 10px 28px -12px rgb(0 0 0 / 35%), 0 2px 6px -2px rgb(0 0 0 / 12%);
+    color: var(--color-text);
     font-size: 0.8125rem;
-    line-height: 1.4;
+    line-height: 1.45;
     white-space: normal;
     pointer-events: none;
     opacity: 0;
-    transform: translateY(2px);
-    transition: opacity 0.12s ease, transform 0.12s ease;
+    visibility: hidden;
+    transform: translateY(4px) scale(0.97);
+    transform-origin: bottom left;
+    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.3, 1.4, 0.6, 1), visibility 0s linear 0.18s;
   }
-  .blog-prose a.db-mention:hover::after,
-  .blog-prose a.db-mention:focus-visible::after {
+  .blog-prose .db-card::after {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    bottom: -0.4rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+    transform: rotate(45deg);
+    /* Only the half outside the card shows, so the pointer never covers the text. */
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .blog-prose .db-card.db-card--end {
+    left: auto;
+    right: 0;
+    transform-origin: bottom right;
+  }
+  .blog-prose .db-card.db-card--end::after {
+    left: auto;
+    right: 1rem;
+  }
+  .blog-prose .db-card.db-card--below {
+    top: calc(100% + 0.6rem);
+    bottom: auto;
+    transform-origin: top left;
+  }
+  .blog-prose .db-card.db-card--below::after {
+    top: -0.4rem;
+    bottom: auto;
+    transform: rotate(225deg);
+  }
+  .blog-prose a.db-mention:hover .db-card,
+  .blog-prose a.db-mention:focus-visible .db-card {
     opacity: 1;
+    visibility: visible;
     transform: none;
+    transition-delay: 0s;
+  }
+  .blog-prose .db-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .blog-prose .db-card-name {
+    flex: 1;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .blog-prose .db-card-rank {
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .blog-prose .db-card-rank small {
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  .blog-prose .db-card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .blog-prose .db-card-chip {
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.6875rem;
+  }
+  .blog-prose .db-card-desc {
+    color: var(--color-text-secondary);
+  }
+  .blog-prose .db-card-more {
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
   }
   @media (prefers-reduced-motion: reduce) {
-    .blog-prose a.db-mention::after {
+    .blog-prose .db-card,
+    .blog-prose .db-mention-logo {
       transition: none;
+    }
+    .blog-prose a.db-mention:hover .db-mention-logo,
+    .blog-prose a.db-mention:focus-visible .db-mention-logo {
+      transform: none;
     }
   }
   .blog-prose ul,
