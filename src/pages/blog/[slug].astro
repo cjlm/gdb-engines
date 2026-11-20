@@ -488,25 +488,34 @@ const postJsonLd = JSON.stringify({
   .blog-prose li + li {
     margin-top: 0.45rem;
   }
-  /* Asides: a tinted note set off from the argument, labelled so it reads as a digression. */
+  /* Asides: a tinted note set off from the argument, marked by a small asterisk badge that sits
+     on the top edge, like a footnote that came up for air. */
   .blog-prose aside {
-    margin: 1.75rem 0;
-    padding: 0.9rem 1.1rem 1rem;
-    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 22%, var(--color-border));
-    border-radius: 0.9rem;
-    background: color-mix(in srgb, var(--color-brand) 9%, var(--color-background));
+    position: relative;
+    margin: 2.25rem 0 1.75rem;
+    padding: 1.15rem 1.15rem 1rem;
+    border: 1px dashed color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
     font-size: 0.9375rem;
     line-height: 1.6;
   }
   .blog-prose aside::before {
-    content: 'Aside';
-    display: block;
-    margin-bottom: 0.35rem;
-    color: var(--color-brand-accent);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    content: '✱';
+    position: absolute;
+    top: -0.8rem;
+    left: 1rem;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 3px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+    font-size: 0.75rem;
+    line-height: 1;
+    transform: rotate(-12deg);
   }
   .blog-prose aside > p {
     margin: 0;
