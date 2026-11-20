@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-const { barHeight, hasBlogCharts, lineGeometry, parseChartSpec, slot, splitPostHtml, tipSide } = await import(
+const { hasBlogCharts, parseChartSpec, splitPostHtml } = await import(
   './blog-charts.ts'
 );
 
@@ -23,35 +23,18 @@ test('a marker id that is not a slug fails with the post id', () => {
 });
 
 test('specs need a known version and type, an aria label and a caption', () => {
-  const ok = { version: 1, type: 'bars', ariaLabel: 'a', caption: 'c', bars: [], xLabels: [] };
-  assert.equal(parseChartSpec(ok, 'x').type, 'bars');
+  const ok = { version: 1, type: 'echarts', ariaLabel: 'a', caption: 'c', height: 300, option: {} };
+  assert.equal(parseChartSpec(ok, 'x').type, 'echarts');
   assert.throws(() => parseChartSpec(null, 'x'), /not a JSON object/);
   assert.throws(() => parseChartSpec({ ...ok, version: 2 }, 'x'), /version 2/);
   assert.throws(() => parseChartSpec({ ...ok, type: 'pie' }, 'x'), /unknown type "pie"/);
   assert.throws(() => parseChartSpec({ ...ok, caption: '' }, 'x'), /caption/);
+  assert.throws(() => parseChartSpec({ ...ok, option: null }, 'x'), /no ECharts option/);
 });
 
-test('bars scale to the max and never go negative', () => {
-  assert.equal(barHeight(5, 10), 50);
-  assert.equal(barHeight(-1, 10), 0);
-  assert.equal(barHeight(3, 0), 0);
-});
-
-test('slots are evenly spaced with a gap', () => {
-  assert.deepEqual(slot(0, 10), { left: 1.5, width: 7 });
-  assert.deepEqual(slot(9, 10), { left: 91.5, width: 7 });
-});
-
-test('line points span the width and clamp to the y range', () => {
-  const g = lineGeometry([0, 30, 12.5], 25);
-  assert.deepEqual(g.points, [{ x: 0, y: 100 }, { x: 50, y: 0 }, { x: 100, y: 50 }]);
-  assert.match(g.line, /^M/);
-  assert.match(g.area, /^M/);
-  assert.deepEqual(lineGeometry([7], 25).points, [{ x: 0, y: 72 }]);
-});
-
-test('tooltips flip near the edges', () => {
-  assert.equal(tipSide(5), 'top-right');
-  assert.equal(tipSide(50), 'top');
-  assert.equal(tipSide(95), 'top-left');
+test('embeds are limited to pages of this site', () => {
+  const embed = { version: 1, type: 'embed', ariaLabel: 'a', caption: 'c', height: 500 };
+  assert.equal(parseChartSpec({ ...embed, src: '/graph/timeline/' }, 'x').type, 'embed');
+  assert.throws(() => parseChartSpec({ ...embed, src: 'https://example.com/' }, 'x'), /only pages of this site/);
+  assert.throws(() => parseChartSpec({ ...embed, src: '//example.com/' }, 'x'), /only pages of this site/);
 });

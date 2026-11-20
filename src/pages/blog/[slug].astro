@@ -162,9 +162,16 @@ const postJsonLd = JSON.stringify({
     const card = wrap?.querySelector<HTMLElement>('.db-card');
     if (!wrap || !card || wrap.classList.contains('is-placed')) return;
     wrap.classList.remove('is-end', 'is-below');
-    const rect = card.getBoundingClientRect();
-    if (rect.right > window.innerWidth - 8) wrap.classList.add('is-end');
+    card.style.removeProperty('--card-shift');
+    const edge = 8;
+    const width = document.documentElement.clientWidth;
+    let rect = card.getBoundingClientRect();
+    if (rect.right > width - edge) wrap.classList.add('is-end');
     if (rect.top < 72) wrap.classList.add('is-below');
+    rect = card.getBoundingClientRect();
+    // On narrow screens neither side may fit: slide the card back on screen.
+    const shift = rect.left < edge ? edge - rect.left : Math.min(0, width - edge - rect.right);
+    if (shift) card.style.setProperty('--card-shift', `${Math.round(shift)}px`);
     wrap.classList.add('is-placed');
   };
   const reset = (event: Event) => {
@@ -304,7 +311,6 @@ const postJsonLd = JSON.stringify({
     left: 0;
     bottom: calc(100% + 0.7rem);
     z-index: 30;
-    display: flex;
     flex-direction: column;
     gap: 0.55rem;
     width: 18rem;
@@ -320,19 +326,18 @@ const postJsonLd = JSON.stringify({
     line-height: 1.45;
     text-align: left;
     white-space: normal;
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(4px) scale(0.97);
+    /* Not displayed while closed, so closed cards never widen the page on narrow screens. */
+    display: none;
+    translate: var(--card-shift, 0) 0;
     transform-origin: bottom left;
-    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.3, 1.4, 0.6, 1), visibility 0s linear 0.18s;
+    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.3, 1.4, 0.6, 1), display 0.18s allow-discrete;
   }
   /* The pointer: an outline triangle with a background triangle over it, both outside the card. */
   .blog-prose .db-card::before,
   .blog-prose .db-card::after {
     content: '';
     position: absolute;
-    left: 0.85rem;
+    left: calc(0.85rem - var(--card-shift, 0px));
     border: solid transparent;
     pointer-events: none;
   }
@@ -349,11 +354,16 @@ const postJsonLd = JSON.stringify({
   }
   .blog-prose .db-mention-wrap:hover .db-card,
   .blog-prose .db-mention-wrap:focus-within .db-card {
-    pointer-events: auto;
+    display: flex;
     opacity: 1;
-    visibility: visible;
     transform: none;
-    transition-delay: 0s;
+  }
+  @starting-style {
+    .blog-prose .db-mention-wrap:hover .db-card,
+    .blog-prose .db-mention-wrap:focus-within .db-card {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
   }
   .blog-prose .is-end .db-card {
     left: auto;
@@ -363,7 +373,7 @@ const postJsonLd = JSON.stringify({
   .blog-prose .is-end .db-card::before,
   .blog-prose .is-end .db-card::after {
     left: auto;
-    right: 0.85rem;
+    right: calc(0.85rem + var(--card-shift, 0px));
   }
   .blog-prose .is-end .db-card::after {
     margin: 0 1px 0 0;
