@@ -11,7 +11,7 @@
  * - a link to an engine's profile (`/db/<slug>/`) gets the logo and card;
  * - any other link whose text names an engine (a link to its website, say) keeps its target and
  *   gets the logo before the name and the card beside it.
- * Each engine is decorated once, at its first appearance. Text inside an element marked
+ * Each engine is decorated at its first appearance in each h2 section. Text inside an element marked
  * `data-no-mention` (a pun on a name, say) is never decorated.
  */
 
@@ -104,8 +104,8 @@ interface Candidate {
 }
 
 /**
- * Decorate the first appearance of each engine. Returns the new HTML and the engines decorated,
- * in order of appearance.
+ * Decorate the first appearance of each engine in each h2 section. Returns the new HTML and the
+ * mentions decorated, in order of appearance.
  */
 export function linkEngineMentions(
   html: string,
@@ -113,8 +113,9 @@ export function linkEngineMentions(
   extrasFor: (engine: LinkableEngine) => MentionExtras,
   skipNames: ReadonlySet<string> = new Set(),
 ): { html: string; linked: MentionLink[] } {
-  const candidates: Candidate[] = engines.map((engine) => ({ engine, pattern: namePattern(engine, skipNames) }));
-  const bySlug = new Map(candidates.map((p) => [p.engine.slug, p]));
+  const all: Candidate[] = engines.map((engine) => ({ engine, pattern: namePattern(engine, skipNames) }));
+  const candidates: Candidate[] = [...all];
+  const bySlug = new Map(all.map((p) => [p.engine.slug, p]));
   const linked: MentionLink[] = [];
   const take = (p: Candidate, text: string) => {
     candidates.splice(candidates.indexOf(p), 1);
@@ -160,6 +161,8 @@ export function linkEngineMentions(
     const part = parts[i] ?? '';
     if (part.startsWith('<')) {
       const tag = part.match(/^<\/?\s*([a-zA-Z0-9-]+)/)?.[1]?.toLowerCase();
+      // Each h2 section starts afresh, so an engine is linked again where a new section mentions it.
+      if (tag === 'h2' && !part.startsWith('</')) candidates.splice(0, candidates.length, ...all);
       if (tag === 'a' && !part.startsWith('</') && !skipStack.length) {
         // Collect the whole link and decide on it as a unit.
         let j = i + 1;

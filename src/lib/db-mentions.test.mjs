@@ -24,6 +24,11 @@ test('the first mention of each engine becomes a link with a card beside it', ()
   assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }]);
 });
 
+test('a new h2 section links an engine again', () => {
+  const { linked } = run('<p>Kuzu.</p><p>Kuzu.</p><h2 id="x">Next</h2><p>Kuzu.</p>');
+  assert.equal(linked.length, 2);
+});
+
 test('text marked data-no-mention is left alone', () => {
   const { html, linked } = run('<p>We all <span data-no-mention>Kuzu</span> to it. Then Kuzu.</p>');
   assert.match(html, /<span data-no-mention>Kuzu<\/span> to it\. Then <span class="db-mention-wrap">/);
