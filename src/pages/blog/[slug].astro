@@ -580,12 +580,13 @@ const postJsonLd = JSON.stringify({
   }
   /* Wide enough for the contents, a bleeding figure and the gaps between them. */
   @media (min-width: 92rem) {
+    /* Clear of the 8rem a bleeding figure takes, plus a gap. */
     .blog-toc {
       position: absolute;
       top: 0;
       bottom: 0;
-      right: calc(100% + 3rem);
-      width: 13rem;
+      right: calc(100% + 10.5rem);
+      width: 12rem;
       margin: 0;
     }
     .blog-toc-details {
@@ -679,6 +680,18 @@ const postJsonLd = JSON.stringify({
     color: var(--color-brand-accent);
     font-weight: 600;
   }
+  /* Quotations from files (decision records, AGENTS.md) are set in the mono face, so a reader can
+     tell what a person said from what a repository says. */
+  .blog-prose q.file {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    font-style: normal;
+  }
+  .blog-prose q.file::before,
+  .blog-prose q.file::after {
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+  }
   /* A word that oozes: soft blur, a slow wobble and a faint green glow. */
   .blog-prose .slop {
     display: inline-block;
@@ -713,6 +726,43 @@ const postJsonLd = JSON.stringify({
   .blog-prose .post-figure figcaption {
     color: var(--color-text-secondary);
     font-size: 0.875rem;
+  }
+  /* A row of mascot tiles: four across, two across on phones. */
+  .blog-prose .mascots {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .blog-prose .mascots figure {
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+    justify-items: center;
+  }
+  .blog-prose .mascots img,
+  .blog-prose .mascots .archie-tile {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.6rem;
+    object-fit: cover;
+  }
+  .blog-prose .mascots .archie-tile {
+    display: grid;
+    place-items: center;
+    background: var(--color-surface);
+  }
+  .blog-prose .mascots .archie-tile svg {
+    width: 80%;
+  }
+  .blog-prose .mascots figcaption {
+    font-size: 0.8125rem;
+  }
+  @media (max-width: 40rem) {
+    .blog-prose .mascots {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   /* Embedded pages and networks bleed a little past the text column on wide screens. */
   .blog-prose .blog-chart:has(.blog-garphield, .blog-embed) {

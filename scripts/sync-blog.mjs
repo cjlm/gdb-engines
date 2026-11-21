@@ -22,7 +22,10 @@ const LOCAL_ROOT = process.env.BLOG_CONTENT_DIR
 const SYNCS = [
   { label: 'post', source: process.env.BLOG_PATH ?? 'posts', ext: '.md', target: resolve(process.cwd(), 'src', 'content', 'blog') },
   { label: 'chart spec', source: 'charts', ext: '.json', target: resolve(process.cwd(), 'src', 'data', 'blog-charts') },
+  // Illustrations a post places with <img src="/blog-images/<name>.webp">.
+  { label: 'image', source: 'images', ext: '.webp', target: resolve(process.cwd(), 'public', 'blog-images') },
 ];
+const OPTIONAL_SOURCES = new Set(['charts', 'images']);
 
 function resetTarget({ target, ext }) {
   if (existsSync(target)) {
@@ -39,8 +42,8 @@ async function fetchFromGitHub({ source, ext, target }, token) {
   const res = await fetch(listUrl, {
     headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json', 'user-agent': 'gdb-engines-build' },
   });
-  // A repo without a charts/ folder is normal; a missing posts/ folder is reported like any failure.
-  if (res.status === 404 && source === 'charts') return 0;
+  // A repo without charts/ or images/ is normal; a missing posts/ folder is reported like any failure.
+  if (res.status === 404 && OPTIONAL_SOURCES.has(source)) return 0;
   if (!res.ok) {
     console.warn(`[blog] GitHub list of ${source}/ failed: ${res.status} ${await res.text()}`);
     return 0;
@@ -57,7 +60,7 @@ async function fetchFromGitHub({ source, ext, target }, token) {
       console.warn(`[blog] fetch failed for ${source}/${entry.name}: ${raw.status}`);
       continue;
     }
-    writeFileSync(join(target, entry.name), await raw.text());
+    writeFileSync(join(target, entry.name), Buffer.from(await raw.arrayBuffer()));
     count += 1;
   }
   return count;
@@ -66,7 +69,7 @@ async function fetchFromGitHub({ source, ext, target }, token) {
 function copyFromSibling({ source, ext, target }) {
   const dir = join(LOCAL_ROOT, source);
   if (!existsSync(dir)) {
-    if (source !== 'charts') console.warn(`[blog] no token and no sibling checkout at ${dir}; blog will be empty.`);
+    if (!OPTIONAL_SOURCES.has(source)) console.warn(`[blog] no token and no sibling checkout at ${dir}; blog will be empty.`);
     return 0;
   }
   let count = 0;

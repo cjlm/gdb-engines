@@ -1,5 +1,9 @@
 ---
-/** A page of this site, such as the graph timeline, framed inside a blog post. */
+/**
+ * A page of this site, such as the graph timeline, framed inside a blog post. The frame ignores
+ * scrolling and dragging until the reader clicks it, so scrolling the post never gets caught in
+ * the embed; moving the pointer out (or pressing Escape) hands scrolling back to the post.
+ */
 import type { EmbedSpec } from '../../lib/blog-charts';
 
 interface Props {
@@ -9,9 +13,31 @@ interface Props {
 const { spec } = Astro.props;
 ---
 <div class="blog-embed" style={`--chart-height: ${spec.height}px; --chart-mobile-height: ${spec.mobileHeight ?? spec.height}px`}>
-  <iframe src={spec.src} title={spec.ariaLabel} loading="lazy"></iframe>
+  <div class="blog-embed-frame">
+    <iframe src={spec.src} title={spec.ariaLabel} loading="lazy"></iframe>
+    <button class="blog-embed-shield" type="button" aria-label={`Explore: ${spec.ariaLabel}`}>
+      <span>Click to explore</span>
+    </button>
+  </div>
   {spec.link && <a class="blog-embed-link" href={spec.link.href}>{spec.link.label} →</a>}
 </div>
+
+<script>
+  for (const frame of document.querySelectorAll<HTMLElement>('.blog-embed-frame')) {
+    const shield = frame.querySelector('button');
+    const iframe = frame.querySelector('iframe');
+    if (!shield || !iframe) continue;
+    const release = () => frame.classList.remove('is-active');
+    shield.addEventListener('click', () => {
+      frame.classList.add('is-active');
+      iframe.focus();
+    });
+    frame.addEventListener('pointerleave', release);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') release();
+    });
+  }
+</script>
 
 <style>
   .blog-embed {
@@ -19,12 +45,52 @@ const { spec } = Astro.props;
     gap: 0.5rem;
   }
 
+  .blog-embed-frame {
+    position: relative;
+  }
+
   .blog-embed iframe {
+    display: block;
     width: 100%;
     height: var(--chart-height);
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
     background: var(--color-background);
+  }
+
+  .blog-embed-shield {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0 1rem;
+    border: 0;
+    border-radius: 0.75rem;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .blog-embed-shield span {
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .blog-embed-shield:hover span,
+  .blog-embed-shield:focus-visible span {
+    opacity: 1;
+    transform: none;
+  }
+
+  .blog-embed-frame.is-active .blog-embed-shield {
+    display: none;
   }
 
   .blog-embed-link {
@@ -35,6 +101,18 @@ const { spec } = Astro.props;
   @media (max-width: 560px) {
     .blog-embed iframe {
       height: var(--chart-mobile-height);
+    }
+
+    /* No hover on touch screens: keep the hint visible. */
+    .blog-embed-shield span {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-embed-shield span {
+      transition: none;
     }
   }
 </style>

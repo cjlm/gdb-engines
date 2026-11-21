@@ -1,0 +1,3 @@
+# Synced at build time from the private blog repo by scripts/sync-blog.mjs.
+# Never commit the images themselves.
+*.webp
