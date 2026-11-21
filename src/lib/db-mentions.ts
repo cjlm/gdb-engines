@@ -1,6 +1,6 @@
 /**
- * Links every prose mention of a catalogue engine in a blog post to its profile, with the engine's
- * logo and a hover card.
+ * Links the first prose mention of each catalogue engine in a blog post to its profile, with the
+ * engine's logo and a hover card.
  *
  * Runs on a post's rendered HTML. Nothing inside a heading, quote, code or figure changes.
  * Matching follows src/lib/blog-mentions.ts: the name or an alias, case-sensitive, as a whole
@@ -11,7 +11,8 @@
  * - a link to an engine's profile (`/db/<slug>/`) gets the logo and card;
  * - any other link whose text names an engine (a link to its website, say) keeps its target and
  *   gets the logo before the name and the card beside it.
- * Every appearance is decorated.
+ * Each engine is decorated once, at its first appearance. Text inside an element marked
+ * `data-no-mention` (a pun on a name, say) is never decorated.
  */
 
 export interface LinkableEngine {
@@ -103,8 +104,8 @@ interface Candidate {
 }
 
 /**
- * Decorate every appearance of each engine. Returns the new HTML and the mentions decorated, in
- * order of appearance.
+ * Decorate the first appearance of each engine. Returns the new HTML and the engines decorated,
+ * in order of appearance.
  */
 export function linkEngineMentions(
   html: string,
@@ -116,6 +117,7 @@ export function linkEngineMentions(
   const bySlug = new Map(candidates.map((p) => [p.engine.slug, p]));
   const linked: MentionLink[] = [];
   const take = (p: Candidate, text: string) => {
+    candidates.splice(candidates.indexOf(p), 1);
     linked.push({ slug: p.engine.slug, text });
     return extrasFor(p.engine);
   };
@@ -135,7 +137,7 @@ export function linkEngineMentions(
     const profileSlug = open.match(PROFILE_HREF)?.[1];
     if (profileSlug) {
       const p = bySlug.get(profileSlug);
-      if (!p) return plain;
+      if (!p || !candidates.includes(p)) return plain;
       const extras = take(p, inner.replace(/<[^>]+>/g, ''));
       const anchor = decorateOpenTag(open, extras.cardId).replace(PROFILE_HREF, `href="/db/${profileSlug}/"`) +
         logoHtml(extras.icon, 14, 'db-mention-logo') + inner + close;
@@ -166,8 +168,14 @@ export function linkEngineMentions(
         i = j;
         continue;
       }
-      if (tag && SKIP_TAGS.has(tag) && !part.endsWith('/>')) {
-        if (part.startsWith('</')) {
+      const closing = part.startsWith('</');
+      // Track skipped elements by tag; inside one, same-named children are tracked too, so a
+      // nested </span> cannot close a data-no-mention <span> early.
+      const skips = closing
+        ? skipStack.includes(tag ?? '')
+        : SKIP_TAGS.has(tag ?? '') || /\sdata-no-mention\b/.test(part) || skipStack.includes(tag ?? '');
+      if (tag && skips && !part.endsWith('/>')) {
+        if (closing) {
           const at = skipStack.lastIndexOf(tag);
           if (at >= 0) skipStack.splice(at, 1);
         } else {

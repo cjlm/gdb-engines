@@ -17,11 +17,21 @@ const run = (html) => {
   return linkEngineMentions(html, engines, extras, new Set(['Traverse']));
 };
 
-test('every mention of an engine becomes a link with its own card beside it', () => {
-  const { html, linked } = run('<p>Neo4j is old. Neo4j is big.</p>');
+test('the first mention of each engine becomes a link with a card beside it', () => {
+  const { html, linked } = run('<p>Neo4j is old. Neo4j is big.</p><p>Neo4j again.</p>');
   assert.match(html, /^<p><span class="db-mention-wrap"><a class="db-mention" href="\/db\/neo4j\/" aria-describedby="c1">Neo4j<\/a><span class="db-card" id="c1"/);
-  assert.match(html, /aria-describedby="c2">Neo4j<\/a><span class="db-card" id="c2"/);
-  assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }, { slug: 'neo4j', text: 'Neo4j' }]);
+  assert.match(html, / is old\. Neo4j is big\.<\/p><p>Neo4j again\.<\/p>$/);
+  assert.deepEqual(linked, [{ slug: 'neo4j', text: 'Neo4j' }]);
+});
+
+test('text marked data-no-mention is left alone', () => {
+  const { html, linked } = run('<p>We all <span data-no-mention>Kuzu</span> to it. Then Kuzu.</p>');
+  assert.match(html, /<span data-no-mention>Kuzu<\/span> to it\. Then <span class="db-mention-wrap">/);
+  assert.equal(linked.length, 1);
+});
+
+test('a link to an already decorated engine is left alone', () => {
+  assert.match(run('<p>Kuzu and <a href="/db/kuzu/">Kuzu again</a>.</p>').html, /and <a href="\/db\/kuzu\/">Kuzu again<\/a>\.<\/p>$/);
 });
 
 test('mentions inside asides are decorated', () => {
@@ -43,8 +53,9 @@ test('nothing in headings, quotes, code or figures changes', () => {
 
 test('a link to an engine profile gets the logo and card and keeps its text', () => {
   const { html, linked } = run('<p>See <a href="https://gdb-engines.com/db/kuzu/">this one</a>, then Kuzu.</p>');
-  assert.deepEqual(linked, [{ slug: 'kuzu', text: 'this one' }, { slug: 'kuzu', text: 'Kuzu' }]);
+  assert.deepEqual(linked, [{ slug: 'kuzu', text: 'this one' }]);
   assert.match(html, /<a class="db-mention" aria-describedby="c1" href="\/db\/kuzu\/">this one<\/a><span class="db-card"/);
+  assert.match(html, /, then Kuzu\.<\/p>$/);
 });
 
 test('another link naming an engine keeps its target and gets the logo and card', () => {

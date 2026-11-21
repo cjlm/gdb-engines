@@ -24,3 +24,12 @@
   font-display: swap;
   src: url('/fonts/ibm-plex-mono-latin.woff2') format('woff2');
 }
+
+/* Petrona italic, variable font, weights 300–600 (SIL OFL); used for quotations. */
+@font-face {
+  font-family: 'Petrona';
+  font-style: italic;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/petrona-italic-latin.woff2') format('woff2');
+}

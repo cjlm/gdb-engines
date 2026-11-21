@@ -95,6 +95,13 @@ const extrasFor = (engine: LinkableEngine): MentionExtras => {
 const html = linkEngineMentions(renderedHtml, engines, extrasFor, LINK_ONLY_NAMES).html;
 // Rendered from HTML so engine links and charts can sit between paragraphs.
 const parts = html ? (hasBlogCharts(html) ? splitPostHtml(html, post.id) : [{ type: 'html' as const, html }]) : null;
+// Contents: the post's h2 and h3 headings, shown once a post has three or more sections.
+const headings = [...(html ?? '').matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h\1>/g)].map((m) => ({
+  depth: Number(m[1]),
+  id: m[2] ?? '',
+  text: (m[3] ?? '').replace(/<[^>]+>/g, '').trim(),
+}));
+const showContents = headings.filter((h) => h.depth === 2).length >= 3;
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
 const ogImage = `https://gdb-engines.com/og/blog/${post.id}.png`;
 const publishedTime = post.data.date.toISOString();
@@ -143,6 +150,19 @@ const postJsonLd = JSON.stringify({
         <div class="blog-dotline" aria-hidden="true"></div>
       </div>
 
+      <div class="blog-body">
+      {showContents && (
+        <nav class="blog-toc" aria-label="Contents">
+          <details class="blog-toc-details">
+            <summary>Contents</summary>
+            <ol>
+              {headings.map((h) => (
+                <li class:list={[h.depth === 3 && 'is-sub']}><a href={`#${h.id}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </details>
+        </nav>
+      )}
       <div class="blog-prose">
         {parts ? (
           parts.map((part) =>
@@ -151,6 +171,7 @@ const postJsonLd = JSON.stringify({
         ) : (
           <Content />
         )}
+      </div>
       </div>
 
       <footer class="blog-post-footer">
@@ -186,6 +207,37 @@ const postJsonLd = JSON.stringify({
     const next = (event as MouseEvent | FocusEvent).relatedTarget as Node | null;
     if (wrap && !(next && wrap.contains(next))) wrap.classList.remove('is-placed');
   };
+  // Each aside's mark sits at its own angle.
+  for (const aside of document.querySelectorAll<HTMLElement>('.blog-prose aside')) {
+    aside.style.setProperty('--aside-tilt', `${Math.round(Math.random() * 70 - 35)}deg`);
+  }
+
+  // Contents: open beside the post on wide screens, and mark the section being read.
+  const contents = document.querySelector<HTMLDetailsElement>('.blog-toc-details');
+  if (contents) {
+    const wide = matchMedia('(min-width: 92rem)');
+    const sync = () => { contents.open = wide.matches; };
+    sync();
+    wide.addEventListener('change', sync);
+    const links = new Map(
+      [...contents.querySelectorAll<HTMLAnchorElement>('a')].map((a) => [a.hash.slice(1), a]),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          for (const a of links.values()) a.removeAttribute('aria-current');
+          links.get(entry.target.id)?.setAttribute('aria-current', 'true');
+        }
+      },
+      { rootMargin: '0px 0px -70% 0px' },
+    );
+    for (const id of links.keys()) {
+      const heading = document.getElementById(id);
+      if (heading) observer.observe(heading);
+    }
+  }
+
   document.addEventListener('mouseover', place);
   document.addEventListener('focusin', place);
   document.addEventListener('mouseout', reset);
@@ -488,6 +540,67 @@ const postJsonLd = JSON.stringify({
   .blog-prose li + li {
     margin-top: 0.45rem;
   }
+  /* Contents: a quiet list in the left margin on wide screens, a collapsed "Contents" disclosure
+     above the post otherwise. */
+  .blog-body {
+    position: relative;
+  }
+  .blog-toc {
+    margin: 0 0 2rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .blog-toc summary {
+    width: fit-content;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .blog-toc ol {
+    margin: 0.75rem 0 0;
+    padding: 0 0 0 0.75rem;
+    border-left: 1px solid var(--color-border);
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .blog-toc li.is-sub {
+    padding-left: 0.75rem;
+  }
+  .blog-toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .blog-toc a:hover,
+  .blog-toc a[aria-current] {
+    color: var(--color-brand-accent);
+  }
+  /* Wide enough for the contents, a bleeding figure and the gaps between them. */
+  @media (min-width: 92rem) {
+    .blog-toc {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(100% + 3rem);
+      width: 13rem;
+      margin: 0;
+    }
+    .blog-toc-details {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
+    .blog-toc summary {
+      pointer-events: none;
+      list-style: none;
+    }
+    .blog-toc summary::-webkit-details-marker {
+      display: none;
+    }
+  }
+
   /* Asides: a tinted note set off from the argument. The site's graph mark sits on the top-right
      corner, in a small bubble of the aside's own fill and border, as if the note hangs off a node. */
   .blog-prose aside {
@@ -521,7 +634,20 @@ const postJsonLd = JSON.stringify({
     border: 1px dashed var(--aside-border);
     border-radius: 50%;
     background: var(--aside-mark) center / 1.5rem no-repeat, var(--aside-background);
-    transform: rotate(14deg);
+    /* --aside-tilt is set per aside by the page script, so each mark sits at its own angle. */
+    transform: rotate(var(--aside-tilt, 14deg));
+  }
+  .blog-prose aside:hover::before {
+    animation: aside-mark-turn 9s linear infinite;
+  }
+  @keyframes aside-mark-turn {
+    from { transform: rotate(var(--aside-tilt, 14deg)); }
+    to { transform: rotate(calc(var(--aside-tilt, 14deg) + 360deg)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose aside:hover::before {
+      animation: none;
+    }
   }
   .blog-prose aside > p {
     margin: 0;
@@ -529,11 +655,86 @@ const postJsonLd = JSON.stringify({
   .blog-prose aside > p + p {
     margin-top: 0.75rem;
   }
+  /* Quotations are set in Petrona italic, a little larger than the body, so quoted voices read
+     as a different speaker from the article. */
   .blog-prose blockquote {
     margin-left: 0;
     padding-left: 1.25rem;
-    border-left: 2px solid var(--color-border);
+    border-left: 2px solid color-mix(in srgb, var(--color-brand-accent) 55%, var(--color-border));
+    color: var(--color-text);
+    font-family: var(--font-quote);
+    font-size: 1.1875rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .blog-prose q {
+    font-family: var(--font-quote);
+    font-size: 1.08em;
+    font-style: italic;
+    quotes: '“' '”' '‘' '’';
+  }
+  .blog-prose q::before,
+  .blog-prose q::after {
+    color: var(--color-brand-accent);
+    font-weight: 600;
+  }
+  /* A word that oozes: soft blur, a slow wobble and a faint green glow. */
+  .blog-prose .slop {
+    display: inline-block;
+    color: color-mix(in srgb, #5fbf6a 55%, var(--color-text));
+    text-shadow: 0 0 0.35em color-mix(in srgb, #5fbf6a 55%, transparent);
+    filter: blur(0.3px);
+    animation: slop-ooze 3.2s ease-in-out infinite;
+    transform-origin: 50% 0;
+  }
+  @keyframes slop-ooze {
+    0%, 100% { transform: skewX(0deg) scaleY(1); letter-spacing: 0; }
+    35% { transform: skewX(-4deg) scaleY(1.08); letter-spacing: 0.02em; }
+    70% { transform: skewX(3deg) scaleY(0.96); letter-spacing: -0.01em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose .slop {
+      animation: none;
+    }
+  }
+  /* Illustrations written into a post (figure.post-figure): centred, with a caption like a chart's. */
+  .blog-prose .post-figure {
+    margin: 2rem 0;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+  .blog-prose .post-figure svg {
+    max-width: 100%;
+    height: auto;
+    shape-rendering: crispEdges;
+  }
+  .blog-prose .post-figure figcaption {
     color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+  /* Embedded pages and networks bleed a little past the text column on wide screens. */
+  .blog-prose .blog-chart:has(.blog-garphield, .blog-embed) {
+    margin-inline: calc(50% - min(50vw - 1.25rem, 29rem));
+  }
+  /* Inline engine logos: in dark mode a low-contrast mark gets a small, crisp tile, with no ring
+     or shadow around it. */
+  :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill {
+    padding: 1px;
+    box-shadow: none;
+  }
+  :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill img {
+    filter: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill {
+      padding: 1px;
+      box-shadow: none;
+    }
+    :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill img {
+      filter: none;
+    }
   }
   .blog-prose code {
     padding: 0.1rem 0.25rem;

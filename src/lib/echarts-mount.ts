@@ -5,13 +5,21 @@
  * resolved against the theme (src/lib/echarts-option.ts) and redrawn when the theme changes or the
  * chart is resized.
  */
-import { LineChart, ScatterChart } from 'echarts/charts';
-import { GraphicComponent, GridComponent, MarkAreaComponent, MarkLineComponent, TitleComponent, TooltipComponent } from 'echarts/components';
+import { HeatmapChart, LineChart, ScatterChart } from 'echarts/charts';
+import {
+  GraphicComponent,
+  GridComponent,
+  MarkAreaComponent,
+  MarkLineComponent,
+  TitleComponent,
+  TooltipComponent,
+  VisualMapComponent,
+} from 'echarts/components';
 import { graphic, init, use, type ECharts } from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { resolveOption, scaleSymbolSizes, tipFormatter, type ResolveContext } from './echarts-option';
 
-use([LineChart, ScatterChart, GridComponent, TooltipComponent, TitleComponent, MarkLineComponent, MarkAreaComponent, GraphicComponent, SVGRenderer]);
+use([HeatmapChart, VisualMapComponent, LineChart, ScatterChart, GridComponent, TooltipComponent, TitleComponent, MarkLineComponent, MarkAreaComponent, GraphicComponent, SVGRenderer]);
 
 interface Mounted {
   node: HTMLElement;
