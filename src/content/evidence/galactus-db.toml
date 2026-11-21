@@ -329,27 +329,104 @@ notes = "Vendor self-assessed in PR #144. gdb.dump hot-dumps a database while it
 
 [[claims]]
 field = "features.cluster_rebalancing"
-value = 0
-confidence = "low"
+value = 1
+confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or rebalancing, so there is nothing to quote."
+checked = "2026-11-20"
+notes = "Vendor self-assessed. In Nebula Cluster the cluster moves copies of databases between servers by itself while they serve: a server that is added and enabled is given copies until the servers are even, a server that is drained is emptied, and a lost server's copies are made again on other servers after a grace period. When a sharded database is given more shards, its properties are evened out over them. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image; the released single-server product has no cluster to rebalance and would score 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Add a server and enable it, and copies move onto it until the servers are even."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/servers"
+  title = "Servers | Galactus DB"
+  quote = "When one server holds at least two more copies than another, a copy is moved."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/property-shards"
+  title = "Property shards | Galactus DB"
+  quote = "The database's properties are then evened out over all of them, a part at a time, while it is read and written."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-20"
 
 [[claims]]
 field = "features.data_distribution"
-value = 0
-confidence = "low"
+value = 1
+confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A database lives on one server and scales out with read-only replicas, not shards. No page discusses sharding or partitioning, so there is nothing to quote."
+checked = "2026-11-20"
+notes = "Vendor self-assessed. Nebula Cluster shards a database's property values across groups of servers (property shards), so that a database can be larger than one server's disk. Only the property values are sharded: the graph's structure and its indexes stay together on one group of servers, each of which holds a full copy of them. Property shards are a preview in Nebula 3.0.0-alpha.1, turned on by a setting. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image. A rubric that requires the structure to be sharded too, or a generally released feature, would score 0."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/property-shards"
+  title = "Property shards | Galactus DB"
+  quote = "Property shards spread them over groups of servers, so that a database can be larger than one server's disk while its structure and every index stay together."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/property-shards"
+  title = "Property shards | Galactus DB"
+  quote = "Each property shard is a group of servers with its own leader, placed, repaired and moved by the cluster like a database."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/property-shards"
+  title = "Property shards | Galactus DB"
+  quote = "Property shards are a preview in Nebula 3.0.0-alpha.1"
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-20"
 
 [[claims]]
 field = "features.high_availability"
 value = 1
 confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. A replica can be kept on another server as a standby and promoted to writable with PROMOTE. Ambiguous: promotion is manual and there is no automatic failover (the Cloud terms say so for hosted deployments), so a rubric requiring automatic failover would score 0."
+checked = "2026-11-20"
+notes = "Vendor self-assessed. Two mechanisms. In the released product a replica can be kept on another server as a standby and promoted to writable with PROMOTE, which is a manual step. Nebula Cluster adds automatic failover: three or more servers hold the database and choose a new leader between themselves when one is lost. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image."
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "When one is lost, another takes over within seconds and every acknowledged write is still there."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "In a cluster the servers settle it between themselves: a write was accepted 2.6 seconds after we killed the leader."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-20"
 
   [[claims.sources]]
   url = "https://galactusdb.com/docs/operations/replicas"
@@ -367,18 +444,46 @@ notes = "Vendor self-assessed in PR #144. A replica can be kept on another serve
 
 [[claims]]
 field = "features.query_distribution"
-value = 0
-confidence = "medium"
+value = 1
+confidence = "high"
 method = "vendor-docs"
-checked = "2026-11-17"
-notes = "Vendor self-assessed in PR #144. Queries run on the single server that holds the database; replicas must be addressed by name and are not routed to."
+checked = "2026-11-20"
+notes = "Vendor self-assessed. In Nebula Cluster every server takes any request over plain Bolt and the cluster assigns it to the right server: a write that reaches a server which does not lead is carried to the leader, and a read is answered by the server it reached once that server has caught up with the cluster. No routing driver is involved. On a database with property shards, the server that runs the statement reads the properties it needs from the shards that hold them and returns one result. A statement is not split to run in parallel on several servers. Nebula Cluster is in early access from 19 November 2026, by arrangement with the vendor, and is not in the public image; in the released single-server product queries run on the one server and replicas are addressed by name, which would score 0."
 
   [[claims.sources]]
-  url = "https://galactusdb.com/docs/operations/replicas"
-  title = "Replica databases | Galactus DB"
-  quote = "Driver routing: replicas are not advertised to drivers' routing. Address a replica by its database name."
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Point your application at any server, or at all of them behind a load balancer."
   verified = "matched"
-  checked = "2026-11-17"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "A write that reaches a server which does not lead is carried to the leader and answered on the same connection."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/connect"
+  title = "Connect applications | Galactus DB"
+  quote = "A read sees every write acknowledged before it, on whichever server it runs."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/docs/nebula/property-shards"
+  title = "Property shards | Galactus DB"
+  quote = "A statement that reads a property of many rows asks for them a few hundred rows at a time."
+  verified = "matched"
+  checked = "2026-11-20"
+
+  [[claims.sources]]
+  url = "https://galactusdb.com/nebula"
+  title = "Nebula Cluster: a graph database that stays up | Galactus DB"
+  quote = "Nebula Cluster is in early access."
+  verified = "matched"
+  checked = "2026-11-20"
 
 [[claims]]
 field = "features.replication_support"
