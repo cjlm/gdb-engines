@@ -17,6 +17,7 @@ import { licenseTier } from '../../lib/license-tier';
 import { loadRankings } from '../../lib/rankings';
 import { buildFaviconMap } from '../../lib/favicon-map';
 import { needsLightLogoBackfill } from '../../lib/logo-appearance';
+import { loadSponsors, sponsorFor } from '../../lib/sponsors';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -33,6 +34,7 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const headerSponsor = sponsorFor(await loadSponsors(), 'header');
 // The first prose mention of each catalogue engine links to its profile, with its logo and a
 // hover card (rank, model, form, licence, year, one line of description). Logos are looked up
 // only for the engines this post mentions.
@@ -133,7 +135,7 @@ const postJsonLd = JSON.stringify({
   noindex={post.data.unlisted}
   jsonLd={[postJsonLd]}
 >
-  <SiteHeader />
+  <SiteHeader sponsor={headerSponsor} />
   <main class="blog-post">
     <article>
       <div class="blog-post-header">
