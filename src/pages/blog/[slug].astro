@@ -130,6 +130,7 @@ const postJsonLd = JSON.stringify({
   ogImage={ogImage}
   ogType="article"
   publishedTime={publishedTime}
+  noindex={post.data.unlisted}
   jsonLd={[postJsonLd]}
 >
   <SiteHeader />
@@ -631,28 +632,36 @@ const postJsonLd = JSON.stringify({
   :root[data-theme='dark'] .blog-prose aside {
     --aside-mark: url('/graph-icon-dark.svg');
   }
-  .blog-prose aside::before {
+  .blog-prose aside::before,
+  .blog-prose aside::after {
     content: '';
     position: absolute;
     top: -1.1rem;
     right: 0.9rem;
     width: 2.2rem;
     height: 2.2rem;
-    border: 1px dashed var(--aside-border);
     border-radius: 50%;
-    background: var(--aside-mark) center / 1.5rem no-repeat, var(--aside-background);
-    /* --aside-tilt is set per aside by the page script, so each mark sits at its own angle. */
-    transform: rotate(var(--aside-tilt, 14deg));
   }
-  .blog-prose aside:hover::before {
-    animation: aside-mark-turn 9s linear infinite;
+  .blog-prose aside::before {
+    border: 1px dashed var(--aside-border);
+    background: var(--aside-background);
+  }
+  /* The mark itself: --aside-tilt is set per aside by the page script, so each sits at its own
+     angle. It turns while the aside is hovered and stays where it stopped. */
+  .blog-prose aside::after {
+    background: var(--aside-mark) center / 1.5rem no-repeat;
+    transform: rotate(var(--aside-tilt, 14deg));
+    animation: aside-mark-turn 9s linear infinite paused;
+  }
+  .blog-prose aside:hover::after {
+    animation-play-state: running;
   }
   @keyframes aside-mark-turn {
     from { transform: rotate(var(--aside-tilt, 14deg)); }
     to { transform: rotate(calc(var(--aside-tilt, 14deg) + 360deg)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .blog-prose aside:hover::before {
+    .blog-prose aside::after {
       animation: none;
     }
   }
@@ -698,22 +707,38 @@ const postJsonLd = JSON.stringify({
     color: var(--color-text-tertiary);
     font-weight: 400;
   }
-  /* A word that oozes: soft blur, a slow wobble and a faint green glow. */
+  /* "claudeslop": a Claude Code style spinner before the word and a slow shimmer across it.
+     Neither changes the word's size, so the rest of the line stays still. */
   .blog-prose .slop {
-    display: inline-block;
-    color: color-mix(in srgb, #5fbf6a 55%, var(--color-text));
-    text-shadow: 0 0 0.35em color-mix(in srgb, #5fbf6a 55%, transparent);
-    filter: blur(0.3px);
-    animation: slop-ooze 3.2s ease-in-out infinite;
-    transform-origin: 50% 0;
+    background: linear-gradient(90deg, #d97757 0%, #f0b8a0 40%, #d97757 60%, #d97757 100%) 0 0 / 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slop-shimmer 2.4s linear infinite;
   }
-  @keyframes slop-ooze {
-    0%, 100% { transform: skewX(0deg) scaleY(1); letter-spacing: 0; }
-    35% { transform: skewX(-4deg) scaleY(1.08); letter-spacing: 0.02em; }
-    70% { transform: skewX(3deg) scaleY(0.96); letter-spacing: -0.01em; }
+  .blog-prose .slop::before {
+    content: '✻';
+    display: inline-block;
+    width: 1.1em;
+    color: #d97757;
+    -webkit-text-fill-color: #d97757;
+    animation: slop-spin 1.2s steps(1) infinite;
+  }
+  @keyframes slop-shimmer {
+    from { background-position: 100% 0; }
+    to { background-position: -50% 0; }
+  }
+  @keyframes slop-spin {
+    0% { content: '·'; }
+    16% { content: '✢'; }
+    33% { content: '✳'; }
+    50% { content: '✶'; }
+    66% { content: '✻'; }
+    83% { content: '✽'; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .blog-prose .slop {
+    .blog-prose .slop,
+    .blog-prose .slop::before {
       animation: none;
     }
   }
@@ -813,10 +838,11 @@ const postJsonLd = JSON.stringify({
   .blog-prose .blog-chart:has(.blog-garphield, .blog-embed) {
     margin-inline: calc(50% - min(50vw - 1.25rem, 29rem));
   }
-  /* Inline engine logos: in dark mode a low-contrast mark gets a small, crisp tile, with no ring
-     or shadow around it. */
+  /* Inline engine logos: in dark mode a low-contrast mark keeps its light tile, but the tile is
+     rounded to sit inside the logo's own edge, with no ring or shadow, so no light border shows. */
   :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill {
-    padding: 1px;
+    padding: 0;
+    border-radius: 30%;
     box-shadow: none;
   }
   :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill img {
@@ -824,7 +850,8 @@ const postJsonLd = JSON.stringify({
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill {
-      padding: 1px;
+      padding: 0;
+      border-radius: 30%;
       box-shadow: none;
     }
     :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill img {

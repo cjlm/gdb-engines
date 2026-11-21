@@ -1,6 +1,7 @@
 ---
 /** A network from a blog chart spec, drawn by the hosted Garphield embed once it scrolls near. */
 import type { GarphieldSpec } from '../../lib/blog-charts';
+import ClickToExplore from './ClickToExplore.astro';
 
 interface Props {
   spec: GarphieldSpec;
@@ -15,7 +16,9 @@ const origin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garphield.com
   data-garphield-origin={origin}
   style={`--chart-height: ${spec.height}px; --chart-mobile-height: ${spec.mobileHeight ?? spec.height}px`}
 >
-  <iframe title={spec.ariaLabel}></iframe>
+  <ClickToExplore label={spec.ariaLabel}>
+    <iframe title={spec.ariaLabel}></iframe>
+  </ClickToExplore>
   <script type="application/json" set:html={json} />
 </div>
 
