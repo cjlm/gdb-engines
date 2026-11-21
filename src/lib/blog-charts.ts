@@ -7,13 +7,13 @@
  *
  * Each id names a spec, charts/<id>.json in the private blog repo, synced into
  * src/data/blog-charts/ by scripts/sync-blog.mjs. A spec carries everything the chart shows:
- * values, labels, tooltips, caption, notes and data table. This repo only has the generic
- * renderers that draw a spec as given (src/components/blog/), so no post's data or reasoning
- * lives here. A marker without a valid spec fails the build.
+ * the chart's ECharts option (values, labels, tooltips), its caption, notes and data table, or a
+ * page of this site to embed. This repo only has the generic renderers that draw a spec as given
+ * (src/components/blog/), so no post's data or reasoning lives here. A marker without a valid
+ * spec fails the build.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { area, curveMonotoneX, line } from 'd3-shape';
 
 export type PostPart = { type: 'html'; html: string } | { type: 'chart'; id: string };
 
@@ -54,6 +54,19 @@ export interface TableSpec {
   rows: string[][];
 }
 
+/** A legend entry drawn above the chart: a swatch in a theme colour and its label. */
+export interface LegendItem {
+  label: string;
+  /** Theme colour name, as in "token:<name>", or a fixed "#rrggbb" for colours the chart itself
+   * picks (Garphield's categorical palette, say). */
+  color: string;
+  opacity?: number;
+  /** Outline the swatch in the ink colour. */
+  ring?: boolean;
+  /** Draw several dots of these diameters in pixels, for a size key. */
+  sizes?: number[];
+}
+
 interface BaseSpec {
   version: 1;
   /** Screen-reader summary of the whole chart. */
@@ -61,55 +74,55 @@ interface BaseSpec {
   caption: string;
   /** Numbered notes shown under the plot; markers in the plot refer to them by number. */
   notes?: string[];
+  legend?: LegendItem[];
   table?: TableSpec;
 }
 
-export interface LineSpec extends BaseSpec {
-  type: 'line';
-  yMax: number;
-  yTicks: number[];
-  yUnit?: string;
-  /** Evenly spaced points, left to right. */
-  points: { value: number; tooltip: string; hollow?: boolean }[];
-  xLabels: { index: number; label: string; sub?: string }[];
-  /** Label beside the last point. */
-  endLabel?: string;
+/**
+ * An ECharts option, drawn in the page's colours. It is plain JSON, so a few placeholders stand in
+ * for what JSON cannot hold; the renderer (src/lib/echarts-mount.ts) resolves them:
+ * - "token:<name>" or "token:<name>/<alpha>": a theme colour (accent, ink, ink2, ink3, rule,
+ *   bg, grid, c1, c2; see BlogChart.astro), re-read when the theme changes;
+ * - "font:<heading|body|mono>": the site's font stacks;
+ * - {"__map": {...}, "__default": ""}: a formatter that looks the value up;
+ * - {"__number": true}: a formatter that groups digits ("12,345");
+ * - {"__gradient": [[offset, colour], ...]}: a top-to-bottom gradient.
+ * With `tooltip.useTip`, a data item's `tip` (HTML written by the blog repo) is its tooltip.
+ */
+export interface EChartsSpec extends BaseSpec {
+  type: 'echarts';
+  option: Record<string, unknown>;
+  /** Height in pixels on wide screens, and on screens up to 560px wide. */
+  height: number;
+  mobileHeight?: number;
+  /** Width the dot sizes were laid out at; narrower charts scale `symbolSize` down to match. */
+  scaleToWidth?: number;
 }
 
-export interface BarsSpec extends BaseSpec {
-  type: 'bars';
-  bars: { value: number; valueLabel?: string; tooltip: string }[];
-  xLabels: { index: number; label: string }[];
+/** A page of this site shown in a frame, such as the graph timeline. */
+export interface EmbedSpec extends BaseSpec {
+  type: 'embed';
+  /** Site-relative path, starting with "/". */
+  src: string;
+  height: number;
+  mobileHeight?: number;
+  link?: { href: string; label: string };
 }
 
-export interface SmallMultiplesSpec extends BaseSpec {
-  type: 'small-multiples';
-  /** Slots per row; bars sit at an index, and missing indexes are left blank. */
-  columns: number;
-  /** One scale for every row. */
-  max: number;
-  rows: { name: string; bars: { index: number; value: number; tooltip: string; marker?: string }[] }[];
-  xLabels: { index: number; label: string }[];
+/**
+ * A network drawn by the hosted Garphield embed (garphield.com), from a Garphield document
+ * (`{info, datasets: [{id, graph: {nodes, links}}], config}`) carried in the spec.
+ */
+export interface GarphieldSpec extends BaseSpec {
+  type: 'garphield';
+  document: { datasets: { graph: { nodes: unknown[]; links: unknown[] } }[] } & Record<string, unknown>;
+  height: number;
+  mobileHeight?: number;
 }
 
-export type DotStyle = 'solid' | 'ring' | 'faint' | 'muted';
+export type ChartSpec = EChartsSpec | EmbedSpec | GarphieldSpec;
 
-export interface DotStripSpec extends BaseSpec {
-  type: 'dot-strip';
-  xMax: number;
-  xLabels: { value: number; label: string }[];
-  legend: { style: DotStyle; label: string }[];
-  rows: {
-    title: string;
-    lines?: string[];
-    /** x on the 0..xMax axis; y in percent of the row; size in pixels. */
-    dots: { x: number; y: number; size: number; style: DotStyle; tooltip: string }[];
-  }[];
-}
-
-export type ChartSpec = LineSpec | BarsSpec | SmallMultiplesSpec | DotStripSpec;
-
-const CHART_TYPES = ['line', 'bars', 'small-multiples', 'dot-strip'] as const;
+const CHART_TYPES = ['echarts', 'embed', 'garphield'] as const;
 const SPEC_DIR = resolve(process.cwd(), 'src', 'data', 'blog-charts');
 
 /**
@@ -127,6 +140,20 @@ export function parseChartSpec(raw: unknown, id: string): ChartSpec {
     throw new Error(`[blog] ${where} has unknown type "${String(spec.type)}"; known types: ${CHART_TYPES.join(', ')}.`);
   }
   if (!spec.ariaLabel || !spec.caption) throw new Error(`[blog] ${where} needs an ariaLabel and a caption.`);
+  if (spec.type === 'embed' && !(typeof spec.src === 'string' && spec.src.startsWith('/') && !spec.src.startsWith('//'))) {
+    throw new Error(`[blog] ${where} embeds "${String(spec.src)}"; only pages of this site ("/...") can be embedded.`);
+  }
+  for (const item of spec.legend ?? []) {
+    if (!/^([a-z0-9]+|#[0-9a-f]{6})$/i.test(item.color)) {
+      throw new Error(`[blog] ${where} has a legend colour "${item.color}"; use a theme colour name or #rrggbb.`);
+    }
+  }
+  if (spec.type === 'garphield' && !Array.isArray(spec.document?.datasets?.[0]?.graph?.nodes)) {
+    throw new Error(`[blog] ${where} has no Garphield graph to draw.`);
+  }
+  if (spec.type === 'echarts' && (typeof spec.option !== 'object' || spec.option === null)) {
+    throw new Error(`[blog] ${where} has no ECharts option.`);
+  }
   return spec as ChartSpec;
 }
 
@@ -145,44 +172,4 @@ export function loadChartSpec(id: string): ChartSpec {
     );
   }
   return parseChartSpec(JSON.parse(readFileSync(file, 'utf8')), id);
-}
-
-const round = (value: number) => Math.round(value * 100) / 100;
-
-/** Bar height as a share of the scale, in percent. */
-export function barHeight(value: number, max: number): number {
-  return max > 0 ? round((Math.max(0, value) / max) * 100) : 0;
-}
-
-/** A slot's left edge and width in percent, for `count` evenly spaced slots with a gap. */
-export function slot(index: number, count: number): { left: number; width: number } {
-  const step = 100 / count;
-  return { left: round(index * step + step * 0.15), width: round(step * 0.7) };
-}
-
-export const LINE_WIDTH = 600;
-export const LINE_HEIGHT = 200;
-
-export interface LineGeometry {
-  line: string;
-  area: string;
-  /** Each point in percent from the left and top of the plot. */
-  points: { x: number; y: number }[];
-}
-
-/** Paths in a LINE_WIDTH x LINE_HEIGHT viewBox, and point positions in percent. */
-export function lineGeometry(values: number[], yMax: number): LineGeometry {
-  const xOf = (i: number) => (values.length > 1 ? (i / (values.length - 1)) * LINE_WIDTH : 0);
-  const yOf = (v: number) => LINE_HEIGHT - (Math.min(yMax, Math.max(0, v)) / yMax) * LINE_HEIGHT;
-  const coords = values.map((v, i) => [xOf(i), yOf(v)] as [number, number]);
-  return {
-    line: line().curve(curveMonotoneX)(coords) ?? '',
-    area: area().curve(curveMonotoneX).y0(LINE_HEIGHT)(coords) ?? '',
-    points: coords.map(([x, y]) => ({ x: round((x / LINE_WIDTH) * 100), y: round((y / LINE_HEIGHT) * 100) })),
-  };
-}
-
-/** Microtip side for a mark at x percent, so tooltips stay inside the plot. */
-export function tipSide(x: number): 'top' | 'top-left' | 'top-right' {
-  return x < 15 ? 'top-right' : x > 85 ? 'top-left' : 'top';
 }

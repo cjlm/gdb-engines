@@ -1,0 +1,88 @@
+---
+/**
+ * Wraps a framed embed (an iframe) so it ignores scrolling, dragging and wheel zoom until the
+ * reader clicks it; scrolling the post never gets caught in the frame. Moving the pointer out,
+ * or pressing Escape, hands the wheel back to the post.
+ */
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+<div class="click-to-explore">
+  <slot />
+  <button class="click-to-explore-shield" type="button" aria-label={`Explore: ${label}`}>
+    <span>Click to explore</span>
+  </button>
+</div>
+
+<script>
+  for (const frame of document.querySelectorAll<HTMLElement>('.click-to-explore')) {
+    const shield = frame.querySelector('button');
+    if (!shield) continue;
+    const release = () => frame.classList.remove('is-active');
+    shield.addEventListener('click', () => {
+      frame.classList.add('is-active');
+      frame.querySelector('iframe')?.focus();
+    });
+    frame.addEventListener('pointerleave', release);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') release();
+    });
+  }
+</script>
+
+<style>
+  .click-to-explore {
+    position: relative;
+  }
+
+  .click-to-explore-shield {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0.75rem;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .click-to-explore-shield span {
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .click-to-explore-shield:hover span,
+  .click-to-explore-shield:focus-visible span {
+    opacity: 1;
+    transform: none;
+  }
+
+  .click-to-explore.is-active .click-to-explore-shield {
+    display: none;
+  }
+
+  /* No hover on touch screens: keep the hint visible. */
+  @media (hover: none) {
+    .click-to-explore-shield span {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .click-to-explore-shield span {
+      transition: none;
+    }
+  }
+</style>

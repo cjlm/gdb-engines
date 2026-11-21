@@ -5,10 +5,9 @@
  * spec too.
  */
 import { loadChartSpec } from '../../lib/blog-charts';
-import ChartBars from './ChartBars.astro';
-import ChartDotStrip from './ChartDotStrip.astro';
-import ChartLine from './ChartLine.astro';
-import ChartSmallMultiples from './ChartSmallMultiples.astro';
+import ChartECharts from './ChartECharts.astro';
+import ChartEmbed from './ChartEmbed.astro';
+import ChartGarphield from './ChartGarphield.astro';
 
 interface Props {
   id: string;
@@ -17,10 +16,24 @@ interface Props {
 const spec = loadChartSpec(Astro.props.id);
 ---
 <figure class="blog-chart">
-  {spec.type === 'line' && <ChartLine spec={spec} />}
-  {spec.type === 'bars' && <ChartBars spec={spec} />}
-  {spec.type === 'small-multiples' && <ChartSmallMultiples spec={spec} />}
-  {spec.type === 'dot-strip' && <ChartDotStrip spec={spec} />}
+  {spec.type === 'echarts' && <ChartECharts spec={spec} />}
+  {spec.type === 'embed' && <ChartEmbed spec={spec} />}
+  {spec.type === 'garphield' && <ChartGarphield spec={spec} />}
+  {spec.legend && spec.legend.length > 0 && (
+    <ul class="blog-chart-legend">
+      {spec.legend.map((item) => (
+        <li>
+          {(item.sizes ?? [10]).map((size) => (
+            <i
+              class:list={['blog-chart-swatch', item.ring && 'is-ring']}
+              style={`--swatch: ${item.color.startsWith('#') ? item.color : `var(--chart-${item.color})`}; --swatch-size: ${size}px; opacity: ${item.opacity ?? 1}`}
+            ></i>
+          ))}
+          {item.label}
+        </li>
+      ))}
+    </ul>
+  )}
   {spec.notes && spec.notes.length > 0 && (
     <ol class="blog-chart-notes">
       {spec.notes.map((note) => <li>{note}</li>)}
@@ -59,8 +72,58 @@ const spec = loadChartSpec(Astro.props.id);
 </figure>
 
 <style>
+  /* Chart colours, read by src/lib/echarts-mount.ts as "token:<name>". */
   .blog-chart {
+    --chart-bg: var(--color-background);
+    --chart-ink: var(--color-text);
+    --chart-ink2: var(--color-text-secondary);
+    --chart-ink3: var(--color-text-tertiary);
+    --chart-rule: var(--color-border);
+    --chart-grid: #ececec;
+    --chart-accent: var(--color-brand-accent);
+    --chart-c1: var(--color-brand-accent);
+    --chart-c2: var(--color-text-secondary);
     margin: 2.5rem 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .blog-chart {
+      --chart-grid: #2c2c2c;
+    }
+  }
+
+  :root[data-theme='dark'] .blog-chart {
+    --chart-grid: #2c2c2c;
+  }
+
+  .blog-chart-legend {
+    margin: 0.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    list-style: none;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .blog-chart-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .blog-chart-swatch {
+    width: var(--swatch-size);
+    height: var(--swatch-size);
+    flex: none;
+    border-radius: 50%;
+    background: var(--swatch);
+  }
+
+  .blog-chart-swatch.is-ring {
+    box-shadow: 0 0 0 1.5px var(--chart-ink);
   }
 
   .blog-chart-notes {

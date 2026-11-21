@@ -34,6 +34,16 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
   description={graphViewPageDescription(currentView, databaseCount)}
   canonical={graphViewCanonical(initialView)}
 >
+  {/* ?embed frames one view inside another page of this site (a blog post): no header or
+      controls, and links open in the page around it. */}
+  <script is:inline>
+    if (new URLSearchParams(location.search).has('embed')) {
+      document.documentElement.classList.add('is-embed');
+      const base = document.createElement('base');
+      base.target = '_top';
+      document.head.append(base);
+    }
+  </script>
   <SiteHeader sponsor={headerSponsor} />
 
   <main
@@ -234,6 +244,28 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       margin: 0 auto;
       padding: 1rem;
       border: 1px solid var(--color-border);
+    }
+
+    :global(html.is-embed) :global(.site-header),
+    :global(html.is-embed) .graph-intro,
+    :global(html.is-embed) .graph-status-row,
+    :global(html.is-embed) .graph-credit,
+    :global(html.is-embed) :global(.timeline-mobile-hint) {
+      display: none !important;
+    }
+
+    :global(html.is-embed) .graph-page {
+      min-height: 0;
+      padding: 0;
+      display: block;
+    }
+
+    :global(html.is-embed) .graph-stage {
+      width: 100%;
+      min-height: 100vh;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     @media (max-width: 48rem) {

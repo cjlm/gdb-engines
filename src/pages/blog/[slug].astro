@@ -1,10 +1,22 @@
 ---
-import { render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import BlogChart from '../../components/blog/BlogChart.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
 import { hasBlogCharts, splitPostHtml } from '../../lib/blog-charts';
+import { LINK_ONLY_NAMES } from '../../lib/blog-mentions';
+import {
+  engineSummary,
+  linkEngineMentions,
+  type LinkableEngine,
+  type MentionExtras,
+} from '../../lib/db-mentions';
+import { buildOverallRankMap } from '../../lib/comparisons';
+import { licenseTier } from '../../lib/license-tier';
+import { loadRankings } from '../../lib/rankings';
+import { buildFaviconMap } from '../../lib/favicon-map';
+import { needsLightLogoBackfill } from '../../lib/logo-appearance';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -21,9 +33,75 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-// A post that places charts is rendered from its HTML so the charts can sit between paragraphs.
-const html = post.rendered?.html ?? '';
-const parts = hasBlogCharts(html) ? splitPostHtml(html, post.id) : null;
+// The first prose mention of each catalogue engine links to its profile, with its logo and a
+// hover card (rank, model, form, licence, year, one line of description). Logos are looked up
+// only for the engines this post mentions.
+const databases = await getCollection('databases');
+const overallRanks = buildOverallRankMap(await loadRankings());
+const KIND_LABELS: Record<string, string> = {
+  database: 'Server',
+  embedded: 'Embedded',
+  extension: 'Extension',
+  'query-engine': 'Query engine',
+  library: 'Library',
+};
+const TYPE_LABELS: Record<string, string> = {
+  'Property Graph': 'Property graph',
+  RDF: 'RDF',
+  Multiple: 'LPG + RDF',
+};
+const licenseChip = (license: string | undefined): string | null => {
+  if (!license) return null;
+  const tier = licenseTier(license);
+  if (tier === 'Permissive' || tier === 'Copyleft') return 'Open source';
+  return tier === 'Proprietary' ? 'Proprietary' : license;
+};
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+/** "2007" stays "2007"; "2026-11" becomes "Nov 2026". */
+const releasedLabel = (released: unknown): string | undefined => {
+  const [year, month] = String(released ?? '').split('-');
+  if (!year) return undefined;
+  return month ? `${MONTHS[Number(month) - 1]} ${year}` : year;
+};
+const engines: LinkableEngine[] = databases.map((db) => ({
+  slug: db.data.slug,
+  name: db.data.name,
+  aliases: db.data.aliases,
+  summary: engineSummary(db.data.description),
+  rank: overallRanks.get(db.data.slug),
+  chips: [
+    TYPE_LABELS[db.data.type] ?? null,
+    KIND_LABELS[db.data.kind] ?? db.data.kind,
+    licenseChip(db.data.license),
+  ].filter((chip): chip is string => Boolean(chip)),
+  since: releasedLabel(db.data.released),
+  website: db.data.url,
+}));
+const renderedHtml = post.rendered?.html ?? '';
+// First pass finds which engines the post mentions, so logos are fetched only for those.
+const { linked } = linkEngineMentions(renderedHtml, engines, () => ({ cardId: '' }), LINK_ONLY_NAMES);
+const linkedSlugs = new Set(linked.map((m) => m.slug));
+const logos = await buildFaviconMap(databases.filter((db) => linkedSlugs.has(db.data.slug)));
+let cardCount = 0;
+const extrasFor = (engine: LinkableEngine): MentionExtras => {
+  const src = logos[engine.slug];
+  cardCount += 1;
+  return {
+    icon: src ? { src, backfill: needsLightLogoBackfill(src) } : undefined,
+    cardId: `db-card-${cardCount}`,
+    rankTotal: overallRanks.size || undefined,
+  };
+};
+const html = linkEngineMentions(renderedHtml, engines, extrasFor, LINK_ONLY_NAMES).html;
+// Rendered from HTML so engine links and charts can sit between paragraphs.
+const parts = html ? (hasBlogCharts(html) ? splitPostHtml(html, post.id) : [{ type: 'html' as const, html }]) : null;
+// Contents: the post's h2 and h3 headings, shown once a post has three or more sections.
+const headings = [...(html ?? '').matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h\1>/g)].map((m) => ({
+  depth: Number(m[1]),
+  id: m[2] ?? '',
+  text: (m[3] ?? '').replace(/<[^>]+>/g, '').trim(),
+}));
+const showContents = headings.filter((h) => h.depth === 2).length >= 3;
 const canonical = `https://gdb-engines.com/blog/${post.id}/`;
 const ogImage = `https://gdb-engines.com/og/blog/${post.id}.png`;
 const publishedTime = post.data.date.toISOString();
@@ -52,6 +130,7 @@ const postJsonLd = JSON.stringify({
   ogImage={ogImage}
   ogType="article"
   publishedTime={publishedTime}
+  noindex={post.data.unlisted}
   jsonLd={[postJsonLd]}
 >
   <SiteHeader />
@@ -72,6 +151,19 @@ const postJsonLd = JSON.stringify({
         <div class="blog-dotline" aria-hidden="true"></div>
       </div>
 
+      <div class="blog-body">
+      {showContents && (
+        <nav class="blog-toc" aria-label="Contents">
+          <details class="blog-toc-details">
+            <summary>Contents</summary>
+            <ol>
+              {headings.map((h) => (
+                <li class:list={[h.depth === 3 && 'is-sub']}><a href={`#${h.id}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </details>
+        </nav>
+      )}
       <div class="blog-prose">
         {parts ? (
           parts.map((part) =>
@@ -81,6 +173,7 @@ const postJsonLd = JSON.stringify({
           <Content />
         )}
       </div>
+      </div>
 
       <footer class="blog-post-footer">
         <a href="/blog/"><span aria-hidden="true">←</span> All posts</a>
@@ -89,6 +182,74 @@ const postJsonLd = JSON.stringify({
     </article>
   </main>
 </Layout>
+
+<script>
+  // Keep each engine card on screen: open it leftward near the right edge, below near the top.
+  // Placement is worked out once per visit, so the card does not jump while it is open.
+  const place = (event: Event) => {
+    const wrap = (event.target as Element | null)?.closest?.('.db-mention-wrap');
+    const card = wrap?.querySelector<HTMLElement>('.db-card');
+    if (!wrap || !card || wrap.classList.contains('is-placed')) return;
+    wrap.classList.remove('is-end', 'is-below');
+    card.style.removeProperty('--card-shift');
+    const edge = 8;
+    const width = document.documentElement.clientWidth;
+    let rect = card.getBoundingClientRect();
+    if (rect.right > width - edge) wrap.classList.add('is-end');
+    if (rect.top < 72) wrap.classList.add('is-below');
+    rect = card.getBoundingClientRect();
+    // On narrow screens neither side may fit: slide the card back on screen.
+    const shift = rect.left < edge ? edge - rect.left : Math.min(0, width - edge - rect.right);
+    if (shift) card.style.setProperty('--card-shift', `${Math.round(shift)}px`);
+    wrap.classList.add('is-placed');
+  };
+  const reset = (event: Event) => {
+    const wrap = (event.target as Element | null)?.closest?.('.db-mention-wrap');
+    const next = (event as MouseEvent | FocusEvent).relatedTarget as Node | null;
+    if (wrap && !(next && wrap.contains(next))) wrap.classList.remove('is-placed');
+  };
+  // Decision-record links say which record they open.
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('.blog-prose a[href*="/docs/adr/"]')) {
+    const number = link.pathname.match(/\/docs\/adr\/(\d{4})-/)?.[1];
+    if (number && !link.title) link.title = `ADR-${number}`;
+  }
+
+  // Each aside's mark sits at its own angle.
+  for (const aside of document.querySelectorAll<HTMLElement>('.blog-prose aside')) {
+    aside.style.setProperty('--aside-tilt', `${Math.round(Math.random() * 70 - 35)}deg`);
+  }
+
+  // Contents: open beside the post on wide screens, and mark the section being read.
+  const contents = document.querySelector<HTMLDetailsElement>('.blog-toc-details');
+  if (contents) {
+    const wide = matchMedia('(min-width: 92rem)');
+    const sync = () => { contents.open = wide.matches; };
+    sync();
+    wide.addEventListener('change', sync);
+    const links = new Map(
+      [...contents.querySelectorAll<HTMLAnchorElement>('a')].map((a) => [a.hash.slice(1), a]),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          for (const a of links.values()) a.removeAttribute('aria-current');
+          links.get(entry.target.id)?.setAttribute('aria-current', 'true');
+        }
+      },
+      { rootMargin: '0px 0px -70% 0px' },
+    );
+    for (const id of links.keys()) {
+      const heading = document.getElementById(id);
+      if (heading) observer.observe(heading);
+    }
+  }
+
+  document.addEventListener('mouseover', place);
+  document.addEventListener('focusin', place);
+  document.addEventListener('mouseout', reset);
+  document.addEventListener('focusout', reset);
+</script>
 
 <style is:global>
   .blog-post {
@@ -183,6 +344,202 @@ const postJsonLd = JSON.stringify({
   .blog-prose a:hover {
     text-decoration-color: var(--color-brand-accent);
   }
+  .blog-prose .db-mention-wrap {
+    position: relative;
+  }
+  .blog-prose a.db-mention {
+    text-decoration-style: dotted;
+  }
+  .blog-prose .db-mention-logo {
+    margin: -0.15em 0.25em 0 0.05em;
+    transition: transform 0.15s ease;
+  }
+  .blog-prose .db-mention-wrap:hover .db-mention-logo,
+  .blog-prose .db-mention-wrap:focus-within .db-mention-logo {
+    transform: scale(1.45) rotate(-4deg);
+  }
+  /* Invisible bridge over the gap, so the pointer can move from the name into the card. */
+  .blog-prose .db-mention-wrap:hover::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: 100%;
+    height: 0.9rem;
+  }
+  .blog-prose .db-mention-wrap.is-below:hover::before {
+    top: 100%;
+    bottom: auto;
+  }
+  /* Absolutely positioned, so the text's underline does not reach inside the card. */
+  .blog-prose .db-card {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.7rem);
+    z-index: 30;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: 18rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.8rem 0.9rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-background);
+    box-shadow: 0 10px 28px -12px rgb(0 0 0 / 35%), 0 2px 6px -2px rgb(0 0 0 / 12%);
+    color: var(--color-text);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.45;
+    text-align: left;
+    white-space: normal;
+    /* Not displayed while closed, so closed cards never widen the page on narrow screens. */
+    display: none;
+    translate: var(--card-shift, 0) 0;
+    transform-origin: bottom left;
+    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.3, 1.4, 0.6, 1), display 0.18s allow-discrete;
+  }
+  /* The pointer: an outline triangle with a background triangle over it, both outside the card. */
+  .blog-prose .db-card::before,
+  .blog-prose .db-card::after {
+    content: '';
+    position: absolute;
+    left: calc(0.85rem - var(--card-shift, 0px));
+    border: solid transparent;
+    pointer-events: none;
+  }
+  .blog-prose .db-card::before {
+    top: calc(100% + 1px);
+    border-width: 8px 8px 0;
+    border-top-color: var(--color-border);
+  }
+  .blog-prose .db-card::after {
+    top: 100%;
+    margin-left: 1px;
+    border-width: 7px 7px 0;
+    border-top-color: var(--color-background);
+  }
+  .blog-prose .db-mention-wrap:hover .db-card,
+  .blog-prose .db-mention-wrap:focus-within .db-card {
+    display: flex;
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    .blog-prose .db-mention-wrap:hover .db-card,
+    .blog-prose .db-mention-wrap:focus-within .db-card {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
+  }
+  .blog-prose .is-end .db-card {
+    left: auto;
+    right: 0;
+    transform-origin: bottom right;
+  }
+  .blog-prose .is-end .db-card::before,
+  .blog-prose .is-end .db-card::after {
+    left: auto;
+    right: calc(0.85rem + var(--card-shift, 0px));
+  }
+  .blog-prose .is-end .db-card::after {
+    margin: 0 1px 0 0;
+  }
+  .blog-prose .is-below .db-card {
+    top: calc(100% + 0.7rem);
+    bottom: auto;
+    transform-origin: top left;
+  }
+  .blog-prose .is-below .db-card::before {
+    top: auto;
+    bottom: calc(100% + 1px);
+    border-width: 0 8px 8px;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-border);
+  }
+  .blog-prose .is-below .db-card::after {
+    top: auto;
+    bottom: 100%;
+    border-width: 0 7px 7px;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-background);
+  }
+  .blog-prose .db-card a {
+    text-decoration: none;
+  }
+  .blog-prose .db-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .blog-prose .db-card .db-card-name {
+    flex: 1;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .blog-prose .db-card .db-card-name:hover {
+    color: var(--color-brand-accent);
+  }
+  .blog-prose .db-card .db-card-rank {
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .blog-prose .db-card-rank small {
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  .blog-prose .db-card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .blog-prose .db-card-chip {
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.6875rem;
+  }
+  .blog-prose .db-card-desc {
+    color: var(--color-text-secondary);
+  }
+  .blog-prose .db-card-links {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .blog-prose .db-card-since {
+    margin-left: auto;
+    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+  }
+  .blog-prose .db-card .db-card-link {
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+  .blog-prose .db-card .db-card-link:hover {
+    text-decoration: underline;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose .db-card,
+    .blog-prose .db-mention-logo {
+      transition: none;
+    }
+    .blog-prose .db-mention-wrap:hover .db-mention-logo,
+    .blog-prose .db-mention-wrap:focus-within .db-mention-logo {
+      transform: none;
+    }
+  }
   .blog-prose ul,
   .blog-prose ol {
     padding-left: 1.25rem;
@@ -190,11 +547,288 @@ const postJsonLd = JSON.stringify({
   .blog-prose li + li {
     margin-top: 0.45rem;
   }
+  /* Contents: a quiet list in the left margin on wide screens, a collapsed "Contents" disclosure
+     above the post otherwise. */
+  .blog-body {
+    position: relative;
+  }
+  .blog-toc {
+    margin: 0 0 2rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .blog-toc summary {
+    width: fit-content;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .blog-toc ol {
+    margin: 0.75rem 0 0;
+    padding: 0 0 0 0.75rem;
+    border-left: 1px solid var(--color-border);
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .blog-toc li.is-sub {
+    padding-left: 0.75rem;
+  }
+  .blog-toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .blog-toc a:hover,
+  .blog-toc a[aria-current] {
+    color: var(--color-brand-accent);
+  }
+  /* Wide enough for the contents, a bleeding figure and the gaps between them. */
+  @media (min-width: 92rem) {
+    /* Clear of the 8rem a bleeding figure takes, plus a gap. */
+    .blog-toc {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(100% + 10.5rem);
+      width: 12rem;
+      margin: 0;
+    }
+    .blog-toc-details {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
+    .blog-toc summary {
+      pointer-events: none;
+      list-style: none;
+    }
+    .blog-toc summary::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  /* Asides: a tinted note set off from the argument. The site's graph mark sits on the top-right
+     corner, in a small bubble of the aside's own fill and border, as if the note hangs off a node. */
+  .blog-prose aside {
+    --aside-mark: url('/graph-icon-light.svg');
+    --aside-border: color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
+    --aside-background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
+    position: relative;
+    margin: 2.25rem 0 1.75rem;
+    padding: 1.15rem 2.6rem 1rem 1.15rem;
+    border: 1px dashed var(--aside-border);
+    border-radius: 1rem;
+    background: var(--aside-background);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .blog-prose aside {
+      --aside-mark: url('/graph-icon-dark.svg');
+    }
+  }
+  :root[data-theme='dark'] .blog-prose aside {
+    --aside-mark: url('/graph-icon-dark.svg');
+  }
+  .blog-prose aside::before,
+  .blog-prose aside::after {
+    content: '';
+    position: absolute;
+    top: -1.1rem;
+    right: 0.9rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+  }
+  .blog-prose aside::before {
+    border: 1px dashed var(--aside-border);
+    background: var(--aside-background);
+  }
+  /* The mark itself: --aside-tilt is set per aside by the page script, so each sits at its own
+     angle. It turns while the aside is hovered and stays where it stopped. */
+  .blog-prose aside::after {
+    background: var(--aside-mark) center / 1.5rem no-repeat;
+    transform: rotate(var(--aside-tilt, 14deg));
+    animation: aside-mark-turn 9s linear infinite paused;
+  }
+  .blog-prose aside:hover::after {
+    animation-play-state: running;
+  }
+  @keyframes aside-mark-turn {
+    from { transform: rotate(var(--aside-tilt, 14deg)); }
+    to { transform: rotate(calc(var(--aside-tilt, 14deg) + 360deg)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose aside::after {
+      animation: none;
+    }
+  }
+  .blog-prose aside > p {
+    margin: 0;
+  }
+  .blog-prose aside > p + p {
+    margin-top: 0.75rem;
+  }
+  /* Quotations are set in Petrona italic, a little larger than the body, so quoted voices read
+     as a different speaker from the article. */
   .blog-prose blockquote {
     margin-left: 0;
     padding-left: 1.25rem;
-    border-left: 2px solid var(--color-border);
+    border-left: 2px solid color-mix(in srgb, var(--color-brand-accent) 55%, var(--color-border));
+    color: var(--color-text);
+    font-family: var(--font-quote);
+    font-size: 1.1875rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .blog-prose q {
+    font-family: var(--font-quote);
+    font-size: 1.08em;
+    font-style: italic;
+    quotes: '“' '”' '‘' '’';
+  }
+  .blog-prose q::before,
+  .blog-prose q::after {
+    color: var(--color-brand-accent);
+    font-weight: 600;
+  }
+  /* Quotations from files (decision records, AGENTS.md) are set in the mono face, so a reader can
+     tell what a person said from what a repository says. */
+  .blog-prose q.file {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    font-style: normal;
+  }
+  .blog-prose q.file::before,
+  .blog-prose q.file::after {
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+  }
+  /* "claudeslop": a Claude Code style spinner before the word and a slow shimmer across it.
+     Neither changes the word's size, so the rest of the line stays still. */
+  .blog-prose .slop {
+    background: linear-gradient(90deg, #d97757 0%, #f0b8a0 40%, #d97757 60%, #d97757 100%) 0 0 / 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slop-shimmer 2.4s linear infinite;
+  }
+  .blog-prose .slop::before {
+    content: '✻';
+    display: inline-block;
+    width: 1.1em;
+    color: #d97757;
+    -webkit-text-fill-color: #d97757;
+    animation: slop-spin 1.2s steps(1) infinite;
+  }
+  @keyframes slop-shimmer {
+    from { background-position: 100% 0; }
+    to { background-position: -50% 0; }
+  }
+  @keyframes slop-spin {
+    0% { content: '·'; }
+    16% { content: '✢'; }
+    33% { content: '✳'; }
+    50% { content: '✶'; }
+    66% { content: '✻'; }
+    83% { content: '✽'; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-prose .slop,
+    .blog-prose .slop::before {
+      animation: none;
+    }
+  }
+  /* Illustrations written into a post (figure.post-figure): centred, with a caption like a chart's. */
+  .blog-prose .post-figure {
+    margin: 2rem 0;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+  .blog-prose .post-figure svg {
+    max-width: 100%;
+    height: auto;
+    shape-rendering: crispEdges;
+  }
+  .blog-prose .post-figure figcaption {
     color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+  /* Links to Relate's decision records carry a small document mark. */
+  .blog-prose a[href*='/docs/adr/']::before {
+    content: '';
+    display: inline-block;
+    width: 0.72em;
+    height: 0.86em;
+    margin: 0 0.22em -0.06em 0.05em;
+    background: currentColor;
+    opacity: 0.75;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M1 1.5A1.5 1.5 0 0 1 2.5 0H8l4 4v8.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 1 12.5zM7.5 1v3.5H11M3.5 7.5h5M3.5 10h5' fill='none' stroke='black' stroke-width='1.3'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M1 1.5A1.5 1.5 0 0 1 2.5 0H8l4 4v8.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 1 12.5zM7.5 1v3.5H11M3.5 7.5h5M3.5 10h5' fill='none' stroke='black' stroke-width='1.3'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .blog-prose .post-figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  /* A row of mascot tiles: four across, two across on phones. */
+  .blog-prose .mascots {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .blog-prose .mascots figure {
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+    justify-items: center;
+  }
+  .blog-prose .mascots img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.6rem;
+    object-fit: cover;
+  }
+  .blog-prose .mascots img.on-surface {
+    background: var(--color-surface);
+  }
+  .blog-prose .mascots figcaption {
+    font-size: 0.8125rem;
+  }
+  @media (max-width: 40rem) {
+    .blog-prose .mascots {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  /* Embedded pages and networks bleed a little past the text column on wide screens. */
+  .blog-prose .blog-chart:has(.blog-garphield, .blog-embed) {
+    margin-inline: calc(50% - min(50vw - 1.25rem, 29rem));
+  }
+  /* Inline engine logos: in dark mode a low-contrast mark keeps its light tile, but the tile is
+     rounded to sit inside the logo's own edge, with no ring or shadow, so no light border shows. */
+  :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill {
+    padding: 0;
+    border-radius: 30%;
+    box-shadow: none;
+  }
+  :root[data-theme='dark'] .blog-prose .db-mention-logo.database-logo--needs-backfill img {
+    filter: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill {
+      padding: 0;
+      border-radius: 30%;
+      box-shadow: none;
+    }
+    :root:not([data-theme='light']) .blog-prose .db-mention-logo.database-logo--needs-backfill img {
+      filter: none;
+    }
   }
   .blog-prose code {
     padding: 0.1rem 0.25rem;

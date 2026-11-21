@@ -1,3 +1,4 @@
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import astroAgentAnnotate from 'astro-agent-annotate';
@@ -14,6 +15,14 @@ const homepageDate = gitDate('src/content/databases', 'src/pages/index.astro') ?
 // Rankings, and the rank block on every comparison page, change when a new snapshot lands.
 const rankingDate = (await loadRankings())?.generatedAt?.slice(0, 10) ?? buildDate;
 const latest = (...dates) => dates.filter(Boolean).sort().at(-1);
+// Unlisted blog posts (frontmatter `unlisted: true`) stay out of the sitemap. The posts are
+// synced into src/content/blog before the build, so their frontmatter can be read here.
+const unlistedPosts = new Set(
+  (existsSync('src/content/blog') ? readdirSync('src/content/blog') : [])
+    .filter((file) => file.endsWith('.md'))
+    .filter((file) => /^unlisted:\s*true\s*$/m.test(readFileSync(`src/content/blog/${file}`, 'utf8').split(/^---$/m)[1] ?? ''))
+    .map((file) => `/blog/${file.replace(/\.md$/, '')}/`),
+);
 
 export default defineConfig({
   output: 'static',
@@ -37,9 +46,10 @@ export default defineConfig({
     // Self-gates to `astro dev`; the production build is untouched.
     astroAgentAnnotate(),
     sitemap({
-      // /compare/custom/ is noindex and /graph/ canonicalises to /graph/query-languages/;
-      // listing either in a sitemap is a contradictory signal.
-      filter: (page) => !page.includes('/compare/custom/') && new URL(page).pathname !== '/graph/',
+      // /compare/custom/ and unlisted posts are noindex, and /graph/ canonicalises to
+      // /graph/query-languages/; listing any of them in a sitemap is a contradictory signal.
+      filter: (page) =>
+        !page.includes('/compare/custom/') && new URL(page).pathname !== '/graph/' && !unlistedPosts.has(new URL(page).pathname),
       // Report an honest per-page lastmod so unchanged pages don't claim freshness
       // on every rebuild (which trains Google to ignore lastmod entirely).
       serialize(item) {

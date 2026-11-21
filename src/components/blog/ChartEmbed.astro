@@ -1,0 +1,48 @@
+---
+/**
+ * A page of this site, such as the graph timeline, framed inside a blog post, behind a
+ * click-to-explore shield.
+ */
+import type { EmbedSpec } from '../../lib/blog-charts';
+import ClickToExplore from './ClickToExplore.astro';
+
+interface Props {
+  spec: EmbedSpec;
+}
+
+const { spec } = Astro.props;
+---
+<div class="blog-embed" style={`--chart-height: ${spec.height}px; --chart-mobile-height: ${spec.mobileHeight ?? spec.height}px`}>
+  <ClickToExplore label={spec.ariaLabel}>
+    <iframe src={spec.src} title={spec.ariaLabel} loading="lazy"></iframe>
+  </ClickToExplore>
+  {spec.link && <a class="blog-embed-link" href={spec.link.href}>{spec.link.label} →</a>}
+</div>
+
+<style>
+  .blog-embed {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .blog-embed iframe {
+    display: block;
+    width: 100%;
+    height: var(--chart-height);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-background);
+  }
+
+  .blog-embed-link {
+    justify-self: end;
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 560px) {
+    .blog-embed iframe {
+      height: var(--chart-mobile-height);
+    }
+  }
+
+</style>

@@ -15,7 +15,7 @@ import { buildBoards, getEngineRanks } from '../../lib/ranking-boards';
 import { isOpenSource, licenseSchema } from '../../lib/license-tier';
 import { databaseDates } from '../../lib/content-dates.mjs';
 import { mentionsByEngine } from '../../lib/blog-mentions';
-import { blogPosts, formatBlogDate } from '../../lib/blog';
+import { listedBlogPosts, formatBlogDate } from '../../lib/blog';
 import { pregeneratedPairs, pregeneratedPairList, buildOverallRankMap, pairSlug, resolveRoundup, MIN_ROUNDUP_MEMBERS } from '../../lib/comparisons';
 import { loadGithubStars, formatGithubStars } from '../../lib/github-stars';
 import { loadStarHistory, starSeries } from '../../lib/star-history';
@@ -122,7 +122,7 @@ export async function getStaticPaths() {
 
   const modifiedDates = databaseDates();
   const mentions = mentionsByEngine(
-    (await blogPosts()).map((post) => ({ id: post.id, body: post.body ?? '', title: post.data.title, date: post.data.date })),
+    (await listedBlogPosts()).map((post) => ({ id: post.id, body: post.body ?? '', title: post.data.title, date: post.data.date })),
     databases.map((d) => ({ slug: d.data.slug, name: d.data.name, aliases: d.data.aliases })),
   );
 

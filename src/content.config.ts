@@ -188,6 +188,9 @@ const blog = defineCollection({
     date: z.coerce.date(),
     author: z.string().min(1).default('GDB-Engines'),
     draft: z.boolean().default(false),
+    // Published at its URL but left out of the blog index, RSS, sitemap and engine pages, and
+    // marked noindex: for sharing a post by link before announcing it.
+    unlisted: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
   }),
 });

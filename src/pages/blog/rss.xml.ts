@@ -27,7 +27,7 @@ function postHtml(post: CollectionEntry<'blog'>): string {
 }
 
 export const GET: APIRoute = async () => {
-  const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  const posts = (await getCollection('blog', ({ data }) => !data.draft && !data.unlisted))
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   const items = posts.map((post) => {

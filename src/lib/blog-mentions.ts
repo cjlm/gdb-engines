@@ -6,7 +6,8 @@
  * ordinary words count only as a link, so "traverse the graph" does not list Traverse.
  */
 export const LINK_ONLY_NAMES = new Set([
-  'Gaffer', 'GUN', 'Neptune', 'Parliament', 'Quine', 'TAO', 'Titan', 'Traverse', 'Virtuoso', 'Weaver',
+  'Gaffer', 'Graph Engine', 'GUN', 'Neptune', 'Parliament', 'Quine', 'TAO', 'Titan', 'Traverse', 'Virtuoso',
+  'Weaver',
 ]);
 
 export interface MentionablePost {

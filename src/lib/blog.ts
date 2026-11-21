@@ -8,6 +8,11 @@ export async function blogPosts(): Promise<BlogPost[]> {
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+/** Public posts that are also listed: everything a reader can reach without the link. */
+export async function listedBlogPosts(): Promise<BlogPost[]> {
+  return (await blogPosts()).filter((post) => !post.data.unlisted);
+}
+
 export function formatBlogDate(date: Date): string {
   return date.toLocaleDateString('en-CA', {
     day: 'numeric',

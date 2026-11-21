@@ -1,0 +1,38 @@
+---
+/** An ECharts chart from a blog chart spec, drawn in the browser by src/lib/echarts-mount.ts. */
+import type { EChartsSpec } from '../../lib/blog-charts';
+
+interface Props {
+  spec: EChartsSpec;
+}
+
+const { spec } = Astro.props;
+const json = JSON.stringify(spec.option).replace(/</g, '\\u003c');
+---
+<div
+  class="blog-echart"
+  data-echart
+  data-scale-to-width={spec.scaleToWidth}
+  role="img"
+  aria-label={spec.ariaLabel}
+  style={`--chart-height: ${spec.height}px; --chart-mobile-height: ${spec.mobileHeight ?? spec.height}px`}
+>
+  <script type="application/json" set:html={json} />
+</div>
+
+<script>
+  import '../../lib/echarts-mount';
+</script>
+
+<style>
+  .blog-echart {
+    width: 100%;
+    height: var(--chart-height);
+  }
+
+  @media (max-width: 560px) {
+    .blog-echart {
+      height: var(--chart-mobile-height);
+    }
+  }
+</style>
