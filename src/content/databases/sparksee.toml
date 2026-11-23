@@ -9,6 +9,7 @@ implementation_language = "C++"
 type = "Property Graph"
 embeddable = true
 query_languages = ["openCypher"]
+kg_capabilities = ["Graph algorithms"]
 released = "2008"
 category = "Established"
 gdotv_support = false

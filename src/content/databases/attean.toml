@@ -11,6 +11,7 @@ kind = "library"
 embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2014-09"
 category = "Emerging"
 gdotv_support = false

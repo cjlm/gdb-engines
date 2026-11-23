@@ -10,6 +10,7 @@ kind = "embedded"
 embeddable = true
 query_languages = ["SPARQL", "LINQ"]
 protocols = ["HTTP/REST", "SPARQL Protocol"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2012-02"
 category = "Emerging"
 status = "inactive"

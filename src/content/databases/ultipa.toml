@@ -9,6 +9,7 @@ type = "Property Graph"
 embeddable = false
 query_languages = ["GQL", "UQL"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 category = "Growing"
 gdotv_support = true
 

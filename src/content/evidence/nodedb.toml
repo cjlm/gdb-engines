@@ -113,3 +113,27 @@ notes = "NodeDB's README says the engine embeds on device and in the browser (No
   quote = "Durable, queryable, access-guarded memory for AI agents that runs where the agent runs — embedded on device, offline-capable, and syncing to a distributed server when connected."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Vector search", "Graph algorithms"]
+confidence = "high"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "No SPARQL, reasoning, SHACL or R2RML. Graph engine ships 13 native algorithms (PageRank, WCC, etc. via GRAPH ALGO). Pre-1.0 public preview."
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/storage-engines/vector"
+  title = "Vector Engine - NodeDB"
+  quote = "It uses a custom HNSW index with multiple quantization levels and hardware-accelerated distance math."
+  supports = "Vector search"
+  verified = "matched"
+  checked = "2026-11-03"
+
+  [[claims.sources]]
+  url = "https://nodedb.dev/docs/storage-engines/graph"
+  title = "Graph Engine - NodeDB"
+  quote = "Sub-millisecond multi-hop traversals, 13 native algorithms, Cypher-subset pattern matching, and GraphRAG fusion."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-03"

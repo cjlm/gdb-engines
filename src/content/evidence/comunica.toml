@@ -85,3 +85,19 @@ notes = "Comunica is a JavaScript library that runs inside Node.js applications 
   quote = "Comunica can run in both Node.js JavaScript applications, and as client-side applications in Web browsers."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["SPARQL 1.1"]
+confidence = "medium"
+method = "vendor-docs"
+checked = "2026-11-01"
+notes = "The supported-specifications page now lists SPARQL 1.2 Query Language/Update (a superset of SPARQL 1.1) rather than naming 1.1 directly, hence medium. Entailment regimes listed as not supported. The official comunica-feature-reasoning repo was archived on 27 May 2026, so reasoning is not listed. No SHACL, R2RML, vector or graph algorithms."
+
+  [[claims.sources]]
+  url = "https://comunica.dev/docs/query/advanced/specifications/"
+  title = "Comunica – Supported specifications"
+  quote = "SPARQL 1.2 Query Language"
+  supports = "SPARQL 1.1"
+  verified = "matched"
+  checked = "2026-11-01"

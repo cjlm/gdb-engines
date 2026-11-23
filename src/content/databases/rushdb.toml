@@ -9,6 +9,7 @@ implementation_language = "Rust"
 type = "Property Graph"
 query_languages = ["Custom API", "SQL", "Cypher", "Gremlin"]
 protocols = ["HTTP/REST", "Bolt", "PostgreSQL wire"]
+kg_capabilities = ["Vector search"]
 kind = "database"
 embeddable = false
 released = "2024-12"

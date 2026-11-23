@@ -10,6 +10,7 @@ type = "Property Graph"
 kind = "embedded"
 embeddable = true
 query_languages = ["openCypher"]
+kg_capabilities = ["Vector search", "Graph algorithms"]
 released = "2025-10"
 category = "Emerging"
 status = "inactive"

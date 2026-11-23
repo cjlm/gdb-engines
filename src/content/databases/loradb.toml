@@ -11,6 +11,7 @@ kind = "embedded"
 embeddable = true
 query_languages = ["Cypher"]
 protocols = ["HTTP/REST"]
+kg_capabilities = ["Vector search"]
 released = "2026-04"
 category = "Emerging"
 gdotv_support = false

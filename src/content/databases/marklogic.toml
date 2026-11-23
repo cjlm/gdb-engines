@@ -10,6 +10,7 @@ type = "Multiple"
 embeddable = false
 query_languages = ["SPARQL", "XQuery", "SQL"]
 protocols = ["HTTP/REST", "SPARQL Protocol", "JDBC/ODBC", "PostgreSQL wire", "Native binary"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning", "OWL reasoning", "Vector search"]
 released = "2001"
 category = "Enterprise"
 gdotv_support = true

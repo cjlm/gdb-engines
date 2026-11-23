@@ -10,6 +10,7 @@ type = "RDF"
 embeddable = true
 query_languages = ["SPARQL"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
+kg_capabilities = ["SPARQL 1.1"]
 released = "2010-10"
 category = "Emerging"
 status = "inactive"

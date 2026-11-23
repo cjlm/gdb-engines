@@ -11,6 +11,7 @@ type = "RDF"
 embeddable = true
 query_languages = ["SPARQL", "Gremlin"]
 protocols = ["SPARQL Protocol", "HTTP/REST"]
+kg_capabilities = ["SPARQL 1.1", "RDFS reasoning"]
 released = "2007"
 category = "Established"
 status = "inactive"

@@ -70,3 +70,19 @@ notes = "Grust is a Rust library API used from application code, shipping a dete
   quote = "`grust-ladybug` embeds LadybugDB directly through the Rust `lbug` 0.20.4 crate."
   verified = "matched"
   checked = "2026-11-03"
+
+[[claims]]
+field = "kg_capabilities"
+value = ["Graph algorithms"]
+confidence = "medium"
+method = "repo"
+checked = "2026-11-01"
+notes = "The grust-algorithms crate (in the same workspace, enabled via the \"algorithms\" facade feature) provides BFS, weighted shortest paths, components, PageRank, DFS, multi-source BFS and topological order, callable from Cypher CALL."
+
+  [[claims.sources]]
+  url = "https://github.com/querygraph/grust"
+  title = "querygraph/grust README"
+  quote = "components, PageRank, DFS, multi-source BFS and topological order."
+  supports = "Graph algorithms"
+  verified = "matched"
+  checked = "2026-11-01"
