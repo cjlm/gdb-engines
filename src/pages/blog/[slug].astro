@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import BlogChart from '../../components/blog/BlogChart.astro';
+import BlogSiteBox from '../../components/blog/BlogSiteBox.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
 import { hasBlogCharts, splitPostHtml } from '../../lib/blog-charts';
 import { LINK_ONLY_NAMES } from '../../lib/blog-mentions';
@@ -176,6 +177,8 @@ const postJsonLd = JSON.stringify({
         )}
       </div>
       </div>
+
+      <BlogSiteBox />
 
       <footer class="blog-post-footer">
         <a href="/blog/"><span aria-hidden="true">←</span> All posts</a>

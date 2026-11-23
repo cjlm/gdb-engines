@@ -1,0 +1,135 @@
+---
+import { getDatabaseCount } from '../../lib/database-count';
+
+/**
+ * Closes every blog post: what GDB-Engines is, where to go next on the site, and an invitation
+ * to write for the blog. The summary reuses the site's own wording (header tagline, About page,
+ * meta description), and the links follow the primary navigation.
+ */
+const databaseCount = await getDatabaseCount();
+const links = [
+  { href: '/', label: 'Comparison table' },
+  { href: '/rankings/', label: 'Rankings' },
+  { href: '/compare/', label: 'Comparisons' },
+  { href: '/graph/query-languages/', label: 'Graph explorer' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/about/', label: 'About' },
+];
+const writeHref = 'mailto:contact@gdb-engines.com?subject=Writing%20for%20GDB%20Engines';
+---
+<aside class="site-box" aria-labelledby="site-box-title">
+  <h2 id="site-box-title" class="site-box-title">
+    <img src="/graph-icon-light.svg" alt="" class="site-box-logo light-only" width="22" height="22" />
+    <img src="/graph-icon-dark.svg" alt="" class="site-box-logo dark-only" width="22" height="22" />
+    GDB-Engines is…
+  </h2>
+  <p class="site-box-summary">
+    The go-to resource for graph technology details: an open source comparison of
+    {databaseCount}+ graph databases, query engines, extensions, and embedded libraries. Compare
+    them side-by-side on features, licenses, and query languages, and follow monthly popularity
+    rankings covering every active engine in the catalog.
+  </p>
+  <ul class="site-box-links">
+    {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+  </ul>
+  <div class="site-box-write">
+    <p>
+      <strong>Do you want to write for GDB-Engines?</strong> We pay for human-written articles
+      like this one.
+    </p>
+    <a class="site-box-button" href={writeHref}>Get in touch <span aria-hidden="true">→</span></a>
+  </div>
+</aside>
+
+<style>
+  .site-box {
+    margin-top: 3.5rem;
+    padding: 1.4rem 1.5rem 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 38%, var(--color-border));
+    border-radius: 0.75rem;
+    background: linear-gradient(
+      110deg,
+      color-mix(in srgb, var(--color-brand) 20%, var(--color-surface)),
+      color-mix(in srgb, var(--color-brand) 7%, var(--color-background))
+    );
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .site-box-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  .site-box-logo {
+    flex: 0 0 auto;
+  }
+  .site-box-summary {
+    margin-top: 0.75rem;
+  }
+  .site-box-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    list-style: none;
+  }
+  .site-box-links a {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 0.8125rem;
+    text-decoration: none;
+  }
+  .site-box-links a:hover,
+  .site-box-links a:focus-visible {
+    border-color: var(--color-brand-accent);
+    color: var(--color-brand-accent);
+  }
+  .site-box-write {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px dotted color-mix(in srgb, var(--color-brand-accent) 38%, var(--color-border));
+  }
+  .site-box-write strong {
+    color: var(--color-text);
+  }
+  .site-box-button {
+    flex: 0 0 auto;
+    padding: 0.42rem 0.75rem;
+    border-radius: 0.4rem;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .site-box-button:hover {
+    color: var(--color-background);
+    filter: brightness(1.06);
+  }
+  @media (max-width: 32rem) {
+    .site-box {
+      padding: 1.2rem 1.1rem 1.1rem;
+    }
+    .site-box-write {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>
