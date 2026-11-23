@@ -37,6 +37,11 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const headerSponsor = sponsorFor(await loadSponsors(), 'header');
+/** Authors' profile links, by the name their posts carry. */
+const AUTHOR_URLS: Record<string, string> = {
+  'Christian Miles': 'https://www.linkedin.com/in/christian-miles/',
+};
+const authorUrl = AUTHOR_URLS[post.data.author];
 // The first prose mention of each catalogue engine links to its profile, with its logo and a
 // hover card (rank, model, form, licence, year, one line of description). Logos are looked up
 // only for the engines this post mentions.
@@ -118,6 +123,7 @@ const postJsonLd = JSON.stringify({
   author: {
     '@type': 'Person',
     name: post.data.author,
+    ...(authorUrl ? { url: authorUrl } : {}),
   },
   publisher: {
     '@type': 'Organization',
@@ -152,7 +158,9 @@ const postJsonLd = JSON.stringify({
             {formatBlogDate(post.data.date)}
           </time>
           <span aria-hidden="true">·</span>
-          <span>{post.data.author}</span>
+          {authorUrl
+            ? <a class="blog-post-author" href={authorUrl} rel="author">{post.data.author}</a>
+            : <span>{post.data.author}</span>}
           {post.data.draft && <span class="draft-badge">Draft</span>}
         </p>
         <div class="blog-dotline" aria-hidden="true"></div>
