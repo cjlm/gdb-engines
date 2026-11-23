@@ -6,10 +6,10 @@ const { sponsor, placement } = Astro.props;
 
 /**
  * Sponsor bar. It always reads as a sentence ("GDB-Engines is sponsored by [logo]", then
- * the tagline); wide screens add an "Our sponsors" link to /sponsors/ at the end. Narrow
- * screens keep the sentence too: a bare "Sponsored" tag beside a page's content read as
- * if that page were sponsored. Visibility is toggled on these wrappers, never on the
- * light-only/dark-only logo imgs.
+ * the tagline); wide bars add an "Our sponsors" link to /sponsors/ at the end. Narrow bars
+ * keep the sentence too: a bare "Sponsored" tag beside a page's content read as if that
+ * page were sponsored. Breakpoints are container queries on the bar's own width.
+ * Visibility is toggled on these wrappers, never on the light-only/dark-only logo imgs.
  */
 ---
 <aside class="credit-slot" data-credit-bar aria-label="Sponsored">
@@ -37,6 +37,9 @@ const { sponsor, placement } = Astro.props;
     margin: 0 0 1.25rem;
     overflow: hidden;
     background-color: var(--color-background);
+    /* Layout follows the bar's own width, not the viewport's: the blog column is
+       narrow even on desktop. */
+    container-type: inline-size;
     /* Soft brand-tinted glow so the unit stands out from page content; static, and on
        the box only, never the logo. */
     box-shadow:
@@ -119,24 +122,26 @@ const { sponsor, placement } = Astro.props;
     outline-offset: -2px;
   }
 
-  @media (max-width: 45rem) {
+  /* Too narrow for one row without squeezing the tagline into a tall column: the
+     sentence takes the first row, the tagline and "Learn more" the second. */
+  @container (max-width: 52rem) {
     .credit-slot__about { display: none; }
-    .credit-slot__label { font-size: 0.75rem; }
-    .credit-slot__body { gap: 0.75rem; padding: 0.75rem 1rem; }
-    .credit-slot__blurb { padding-left: 0; border-left: 0; }
-  }
-
-  @media (max-width: 32rem) {
     .credit-slot__body {
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-areas: 'lead lead' 'blurb more';
-      gap: 0.35rem 0.75rem;
-      padding: 0.65rem 0.85rem;
+      gap: 0.4rem 1rem;
+      padding: 0.75rem 1rem;
     }
     .credit-slot__lead { grid-area: lead; }
-    .credit-slot__logo img { height: 20px; }
     .credit-slot__more { grid-area: more; align-self: end; }
-    .credit-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
+    .credit-slot__blurb { grid-area: blurb; padding-left: 0; border-left: 0; }
+  }
+
+  @container (max-width: 32rem) {
+    .credit-slot__label { font-size: 0.75rem; }
+    .credit-slot__body { gap: 0.35rem 0.75rem; padding: 0.65rem 0.85rem; }
+    .credit-slot__logo img { height: 20px; }
+    .credit-slot__blurb { font-size: 0.8125rem; }
   }
 </style>
