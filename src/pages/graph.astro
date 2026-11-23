@@ -260,9 +260,12 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       display: block;
     }
 
+    /* The status row is hidden here, so the views need the one remaining row to themselves;
+       left in the stage's two-row grid they fall into the `auto` row and clip the timeline. */
     :global(html.is-embed) .graph-stage {
       width: 100%;
       min-height: 100vh;
+      grid-template-rows: minmax(0, 1fr);
       border: 0;
       border-radius: 0;
       box-shadow: none;
