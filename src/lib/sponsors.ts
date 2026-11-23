@@ -8,8 +8,8 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-export type Placement = 'header' | 'ranking-banner' | 'compare-banner' | 'sponsors-page';
-const PLACEMENTS: ReadonlySet<string> = new Set(['header', 'ranking-banner', 'compare-banner', 'sponsors-page']);
+export type Placement = 'header' | 'ranking-banner' | 'compare-banner' | 'blog-banner' | 'sponsors-page';
+const PLACEMENTS: ReadonlySet<string> = new Set(['header', 'ranking-banner', 'compare-banner', 'blog-banner', 'sponsors-page']);
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const DAY_MS = 86_400_000;
 
