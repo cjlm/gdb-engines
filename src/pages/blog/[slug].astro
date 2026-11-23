@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import SponsorSlot from '../../components/SponsorSlot.astro';
 import BlogChart from '../../components/blog/BlogChart.astro';
 import BlogSiteBox from '../../components/blog/BlogSiteBox.astro';
 import { blogPosts, formatBlogDate, type BlogPost } from '../../lib/blog';
@@ -138,6 +139,9 @@ const postJsonLd = JSON.stringify({
 >
   <SiteHeader sponsor={headerSponsor} />
   <main class="blog-post">
+    {/* The site sponsor's bar, above every post's title on all screen sizes; the
+        header's compact credit stays hidden until it scrolls away. */}
+    {headerSponsor && <SponsorSlot sponsor={headerSponsor} placement="blog-banner" />}
     <article>
       <div class="blog-post-header">
         <a class="blog-section-link" href="/blog/">GDB-Engines Blog</a>
