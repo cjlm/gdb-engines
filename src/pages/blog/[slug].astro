@@ -626,6 +626,40 @@ const postJsonLd = JSON.stringify({
     }
   }
 
+  /* Footnotes: a superscript button opens the note in a native popover over the text, so readers
+     never leave their place; it closes on Escape or a click elsewhere. Markup in a post:
+     <sup class="footnote-ref"><button type="button" popovertarget="fn-x" aria-label="Footnote 1">1</button></sup>
+     <span class="footnote" id="fn-x" popover>…</span> */
+  .blog-prose .footnote-ref button {
+    padding: 0 0.15em;
+    border: 0;
+    background: none;
+    color: var(--color-brand-accent);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .blog-prose .footnote-ref button:hover,
+  .blog-prose .footnote-ref button:focus-visible {
+    text-decoration: underline;
+  }
+  .blog-prose .footnote[popover] {
+    max-width: min(32rem, calc(100vw - 2rem));
+    margin: auto;
+    padding: 1rem 1.15rem;
+    border: 1px dashed color-mix(in srgb, var(--color-brand-accent) 45%, var(--color-border));
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-brand) 8%, var(--color-background));
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
+  }
+  .blog-prose .footnote[popover]::backdrop {
+    background: rgb(0 0 0 / 0.15);
+  }
+
   /* Asides: a tinted note set off from the argument. The site's graph mark sits on the top-right
      corner, in a small bubble of the aside's own fill and border, as if the note hangs off a node. */
   .blog-prose aside {
