@@ -5,15 +5,14 @@ interface Props { sponsor: Sponsor; placement: Placement; }
 const { sponsor, placement } = Astro.props;
 
 /**
- * Sponsor bar. Wide screens read as a sentence ("GDB-Engines is sponsored by [logo]",
- * then the tagline) with an "Our sponsors" link to /sponsors/ at the end. At 45rem and
- * below there is no room for the sentence, so a vertical "Sponsored" tag (also linking
- * to /sponsors/) labels the unit instead. Visibility is toggled on these wrappers, never
- * on the light-only/dark-only logo imgs.
+ * Sponsor bar. It always reads as a sentence ("GDB-Engines is sponsored by [logo]", then
+ * the tagline); wide screens add an "Our sponsors" link to /sponsors/ at the end. Narrow
+ * screens keep the sentence too: a bare "Sponsored" tag beside a page's content read as
+ * if that page were sponsored. Visibility is toggled on these wrappers, never on the
+ * light-only/dark-only logo imgs.
  */
 ---
 <aside class="credit-slot" data-credit-bar aria-label="Sponsored">
-  <a class="credit-slot__tag" href="/sponsors/" title="About sponsorship on GDB-Engines">Sponsored</a>
   <a class="credit-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
      rel="noopener noreferrer sponsored" data-outbound="sponsor" data-placement={placement}>
     <span class="credit-slot__lead">
@@ -94,13 +93,11 @@ const { sponsor, placement } = Astro.props;
     .credit-slot__arrow { transition: none; }
   }
 
-  .credit-slot__tag,
   .credit-slot__about {
     color: var(--color-text-tertiary);
     text-decoration: none;
     transition: color 120ms ease, background-color 120ms ease;
   }
-  .credit-slot__tag:hover,
   .credit-slot__about:hover {
     color: var(--color-text);
     background: var(--color-surface);
@@ -116,21 +113,6 @@ const { sponsor, placement } = Astro.props;
     white-space: nowrap;
   }
 
-  .credit-slot__tag {
-    display: none;
-    align-items: center;
-    padding: 0.4rem 0.6rem;
-    border-right: 1px solid var(--color-border);
-    background: var(--color-surface);
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-
-  .credit-slot__tag:focus-visible,
   .credit-slot__about:focus-visible,
   .credit-slot__body:focus-visible {
     outline: 2px solid var(--color-brand-accent);
@@ -138,9 +120,8 @@ const { sponsor, placement } = Astro.props;
   }
 
   @media (max-width: 45rem) {
-    .credit-slot__tag { display: flex; }
-    .credit-slot__about,
-    .credit-slot__label { display: none; }
+    .credit-slot__about { display: none; }
+    .credit-slot__label { font-size: 0.75rem; }
     .credit-slot__body { gap: 0.75rem; padding: 0.75rem 1rem; }
     .credit-slot__blurb { padding-left: 0; border-left: 0; }
   }
@@ -149,13 +130,13 @@ const { sponsor, placement } = Astro.props;
     .credit-slot__body {
       display: grid;
       grid-template-columns: 1fr auto;
-      grid-template-areas: 'lead more' 'blurb blurb';
+      grid-template-areas: 'lead lead' 'blurb more';
       gap: 0.35rem 0.75rem;
       padding: 0.65rem 0.85rem;
     }
     .credit-slot__lead { grid-area: lead; }
     .credit-slot__logo img { height: 20px; }
-    .credit-slot__more { grid-area: more; }
+    .credit-slot__more { grid-area: more; align-self: end; }
     .credit-slot__blurb { grid-area: blurb; font-size: 0.8125rem; }
   }
 </style>
