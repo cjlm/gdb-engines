@@ -5,22 +5,21 @@ interface Props { sponsor: Sponsor; placement: Placement; }
 const { sponsor, placement } = Astro.props;
 
 /**
- * Sponsor bar. It always reads as a sentence ("GDB-Engines is sponsored by [logo]", then
- * the tagline); wide bars add an "Our sponsors" link to /sponsors/ at the end. Narrow bars
- * keep the sentence too: a bare "Sponsored" tag beside a page's content read as if that
- * page were sponsored. Breakpoints are container queries on the bar's own width.
- * Visibility is toggled on these wrappers, never on the light-only/dark-only logo imgs.
+ * Sponsor bar. A "GDB-Engines is proudly sponsored by:" line over a row of logo, tagline
+ * and a "Learn more" button; wide bars add an "Our sponsors" link to /sponsors/ at the end.
+ * Narrow bars keep the sentence too: a bare "Sponsored" tag beside a page's content read
+ * as if that page were sponsored. Breakpoints are container queries on the bar's own
+ * width. Visibility is toggled on these wrappers, never on the light-only/dark-only logo
+ * imgs.
  */
 ---
 <aside class="credit-slot" data-credit-bar aria-label="Sponsored">
   <a class="credit-slot__body" href={placementLink(sponsor.link, placement)} target="_blank"
      rel="noopener noreferrer sponsored" data-outbound="sponsor" data-placement={placement}>
-    <span class="credit-slot__lead">
-      <span class="credit-slot__label">GDB-Engines is sponsored by</span>
-      <span class="credit-slot__logo">
-        <img class="light-only" src={sponsor.logo.light} alt={sponsor.name} height="22" />
-        <img class="dark-only" src={sponsor.logo.dark} alt={sponsor.name} height="22" />
-      </span>
+    <span class="credit-slot__label">GDB-Engines is proudly sponsored by:</span>
+    <span class="credit-slot__logo">
+      <img class="light-only" src={sponsor.logo.light} alt={sponsor.name} height="34" />
+      <img class="dark-only" src={sponsor.logo.dark} alt={sponsor.name} height="34" />
     </span>
     <span class="credit-slot__blurb">{sponsor.tagline}</span>
     <span class="credit-slot__more">Learn more <span class="credit-slot__arrow" aria-hidden="true">→</span></span>
@@ -37,8 +36,6 @@ const { sponsor, placement } = Astro.props;
     margin: 0 0 1.25rem;
     overflow: hidden;
     background-color: var(--color-background);
-    /* Layout follows the bar's own width, not the viewport's: the blog column is
-       narrow even on desktop. */
     container-type: inline-size;
     /* Soft brand-tinted glow so the unit stands out from page content; static, and on
        the box only, never the logo. */
@@ -50,42 +47,42 @@ const { sponsor, placement } = Astro.props;
   .credit-slot__body {
     flex: 1;
     min-width: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'label label label' 'logo blurb more';
     align-items: center;
-    gap: 0.9rem;
-    padding: 0.7rem 1rem;
+    gap: 0.5rem 1.25rem;
+    padding: 0.75rem 1.1rem 0.9rem;
     text-decoration: none;
     color: var(--color-text);
     transition: background-color 120ms ease;
   }
   .credit-slot__body:hover { background-color: var(--color-surface); }
 
-  .credit-slot__lead {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-shrink: 0;
-  }
   .credit-slot__label {
+    grid-area: label;
     color: var(--color-text-tertiary);
     font-size: 0.8125rem;
-    white-space: nowrap;
   }
-  .credit-slot__logo { display: flex; align-items: center; }
-  .credit-slot__logo img { height: 22px; width: auto; }
+  .credit-slot__logo { grid-area: logo; display: flex; align-items: center; }
+  .credit-slot__logo img { height: 34px; width: auto; }
 
   .credit-slot__blurb {
-    flex: 1;
-    padding-left: 0.9rem;
-    border-left: 1px solid var(--color-border);
+    grid-area: blurb;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
     line-height: 1.45;
   }
 
   .credit-slot__more {
-    flex-shrink: 0;
-    color: var(--color-brand-accent);
+    grid-area: more;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 0.5rem;
+    background: var(--color-brand-accent);
+    color: var(--color-background);
     font-size: 0.8125rem;
     font-weight: 600;
     white-space: nowrap;
@@ -97,7 +94,14 @@ const { sponsor, placement } = Astro.props;
   }
 
   .credit-slot__about {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 1rem;
+    border-left: 1px solid var(--color-border);
     color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    white-space: nowrap;
     text-decoration: none;
     transition: color 120ms ease, background-color 120ms ease;
   }
@@ -106,42 +110,27 @@ const { sponsor, placement } = Astro.props;
     background: var(--color-surface);
   }
 
-  .credit-slot__about {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
-    font-size: 0.75rem;
-    white-space: nowrap;
-  }
-
   .credit-slot__about:focus-visible,
   .credit-slot__body:focus-visible {
     outline: 2px solid var(--color-brand-accent);
     outline-offset: -2px;
   }
 
-  /* Too narrow for one row without squeezing the tagline into a tall column: the
-     sentence takes the first row, the tagline and "Learn more" the second. */
   @container (max-width: 52rem) {
     .credit-slot__about { display: none; }
-    .credit-slot__body {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-areas: 'lead lead' 'blurb more';
-      gap: 0.4rem 1rem;
-      padding: 0.75rem 1rem;
-    }
-    .credit-slot__lead { grid-area: lead; }
-    .credit-slot__more { grid-area: more; align-self: end; }
-    .credit-slot__blurb { grid-area: blurb; padding-left: 0; border-left: 0; }
   }
 
+  /* Phones: the logo gets its own row, then the tagline beside the button. */
   @container (max-width: 32rem) {
+    .credit-slot__body {
+      grid-template-columns: 1fr auto;
+      grid-template-areas: 'label label' 'logo logo' 'blurb more';
+      gap: 0.5rem 0.75rem;
+      padding: 0.65rem 0.85rem 0.75rem;
+    }
     .credit-slot__label { font-size: 0.75rem; }
-    .credit-slot__body { gap: 0.35rem 0.75rem; padding: 0.65rem 0.85rem; }
-    .credit-slot__logo img { height: 20px; }
+    .credit-slot__logo img { height: 28px; }
     .credit-slot__blurb { font-size: 0.8125rem; }
+    .credit-slot__more { align-self: end; }
   }
 </style>
