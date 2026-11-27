@@ -1,7 +1,7 @@
 name = "Halyard"
 vendor = "Merck"
 slug = "halyard"
-description = "An RDF triple store built on Apache HBase and Hadoop using the Eclipse RDF4J framework. Distributes triple storage across an HBase cluster with support for named graphs and SPARQL 1.1 federation."
+description = "An RDF triple store built on Apache HBase and Hadoop using Eclipse RDF4J. Distributes triple storage across an HBase cluster with support for named graphs and SPARQL 1.1 federation."
 url = "https://merck.github.io/Halyard/"
 github_url = "https://github.com/Merck/Halyard"
 license = "Apache-2.0"

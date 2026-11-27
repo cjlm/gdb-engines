@@ -1,7 +1,7 @@
 name = "QuipuDB"
 vendor = "Netflix"
 slug = "quipudb"
-description = "An in-house distributed RDF quad store at Netflix, built on the redb embedded key-value store. Holds the knowledge graph behind Netflix's Observability Ontology, which is queried with SPARQL. Described in an October 2026 Netflix engineering post and not released outside the company."
+description = "An in-house distributed RDF quad store at Netflix, built on the redb embedded key-value store. Stores the knowledge graph behind Netflix's Observability Ontology, which is queried with SPARQL. Described in an October 2026 Netflix engineering post and not released outside the company."
 url = "https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf"
 icon = "quipudb.png"
 license = "Proprietary"

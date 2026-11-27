@@ -245,7 +245,7 @@ const breadcrumbJsonLd = JSON.stringify({
   ]
 });
 
-const title = `${db.data.name} — ${categoryLabel} | GDB-Engines`;
+const title = `${db.data.name}: ${categoryLabel} | GDB-Engines`;
 const description = db.data.description;
 const sourceCount = citedClaims.reduce((count, claim) => count + claim.sources.length, 0);
 const latestEvidenceCheck = citedClaims

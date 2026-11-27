@@ -33,7 +33,7 @@ test('every view has unique id and the copy the page and switcher need', () => {
       assert.equal(typeof view[field], 'string', `${view.id}.${field}`);
       assert.ok(view[field].length > 0, `${view.id}.${field}`);
     }
-    assert.match(view.title, / — GDB-Engines$/);
+    assert.match(view.title, / \| GDB-Engines$/);
   }
 });
 
