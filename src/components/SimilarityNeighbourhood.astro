@@ -127,7 +127,7 @@ const garphieldOrigin = import.meta.env.PUBLIC_GARPHIELD_ORIGIN ?? 'https://garp
       if (!id) return;
       const label = labels.get(id) ?? id;
       openLink.href = `/db/${encodeURIComponent(id.slice(3))}/`;
-      openLink.textContent = id === focus ? `${label} (this page)` : `Open ${label} →`;
+      openLink.textContent = id === focus ? `${label} (this page)` : `Open ${label}`;
       const unexpanded = expand(graph, shown, id).size > shown.size;
       expandButton.textContent = `Show ${label}'s peers`;
       expandButton.hidden = !unexpanded;

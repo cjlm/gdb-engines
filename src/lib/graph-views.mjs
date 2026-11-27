@@ -11,7 +11,7 @@ export const GRAPH_VIEWS = [
     id: 'query-languages',
     label: 'Query languages',
     shortLabel: 'Languages',
-    title: 'Graph database query language map — GDB-Engines',
+    title: 'Graph database query language map | GDB-Engines',
     description: 'Explore graph databases through the query languages they support.',
     modelDescription: 'Databases linked via query languages supported.',
     mobileDescription: 'Databases linked via query languages supported.',
@@ -20,7 +20,7 @@ export const GRAPH_VIEWS = [
   {
     id: 'similarity',
     label: 'Similarity',
-    title: 'Graph database similarity map — GDB-Engines',
+    title: 'Graph database similarity map | GDB-Engines',
     description: 'Explore graph databases linked to their nearest catalogue peers.',
     modelDescription:
       'Link each database to its four nearest catalog peers by data model, kind, whether it ' +
@@ -32,7 +32,7 @@ export const GRAPH_VIEWS = [
   {
     id: 'built-on',
     label: 'Built on',
-    title: 'What graph databases are built on — GDB-Engines',
+    title: 'What graph databases are built on | GDB-Engines',
     description:
       'Explore the storage engines, host databases and libraries that graph databases are ' +
       'built on.',
@@ -45,7 +45,7 @@ export const GRAPH_VIEWS = [
   {
     id: 'timeline',
     label: 'Timeline',
-    title: 'Graph database product timeline — GDB-Engines',
+    title: 'Graph database product timeline | GDB-Engines',
     description:
       'Explore when products in the graph database catalogue were first publicly released.',
     modelDescription:
@@ -58,7 +58,7 @@ export const GRAPH_VIEWS = [
   {
     id: 'lineage',
     label: 'Lineage',
-    title: 'Graph database lineage: forks, renames and successors — GDB-Engines',
+    title: 'Graph database lineage: forks, renames and successors | GDB-Engines',
     description:
       'Explore where graph databases came from: forks, rebrands and successors, each backed ' +
       'by a cited source.',

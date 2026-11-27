@@ -1,7 +1,7 @@
 name = "Gaffer"
 vendor = "GCHQ"
 slug = "gaffer"
-description = "A graph database framework with pluggable storage backends (Accumulo, HBase, Parquet). Developed by GCHQ for large-scale graph analysis with built-in timestamp management."
+description = "A graph database with pluggable storage backends (Accumulo, HBase, Parquet). Developed by GCHQ for large-scale graph analysis with built-in timestamp management."
 url = "https://github.com/gchq/Gaffer"
 github_url = "https://github.com/gchq/Gaffer"
 license = "Apache-2.0"

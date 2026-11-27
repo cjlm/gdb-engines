@@ -162,7 +162,7 @@ const datasetJsonLd = JSON.stringify({
                   <span class="icon-placeholder" />
                 );
               })()}
-              <a href={`/db/${db.data.slug}/`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(' → ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
+              <a href={`/db/${db.data.slug}/`} class="has-tooltip" aria-label={db.data.description + (db.data.previous_names?.length ? `\nPreviously: ${db.data.previous_names.join(', ')}` : '')} data-microtip-position="top-right" data-microtip-size="medium" role="tooltip">{db.data.name}</a>
               {db.data.url && (
                 <span class="db-links">
                   <a href={`${db.data.url}${db.data.url.includes('?') ? '&' : '?'}utm_source=gdb-engines&utm_medium=referral`} target="_blank" rel="noopener noreferrer" title={db.data.url} data-outbound="engine-site" data-db={db.data.slug}>
@@ -211,7 +211,7 @@ const datasetJsonLd = JSON.stringify({
           )}
           <td>
             {db.data.previous_vendors?.length ? (
-              <span class="has-tooltip" aria-label={`Previously: ${db.data.previous_vendors.join(' → ')}`} data-microtip-position="top" role="tooltip">
+              <span class="has-tooltip" aria-label={`Previously: ${db.data.previous_vendors.join(', ')}`} data-microtip-position="top" role="tooltip">
                 {db.data.vendor}
               </span>
             ) : (db.data.vendor ?? '-')}

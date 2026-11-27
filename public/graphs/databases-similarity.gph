@@ -2796,8 +2796,8 @@
             "similarity": 0.5288
           },
           {
-            "source": "db:bitsy",
-            "target": "db:codemix-graph",
+            "source": "db:codemix-graph",
+            "target": "db:tinkergraph",
             "similarity": 0.4692
           },
           {
@@ -3626,12 +3626,12 @@
             "similarity": 0.7367
           },
           {
-            "source": "db:eclipse-rdf4j",
+            "source": "db:apache-jena-fuseki",
             "target": "db:kowari",
             "similarity": 0.6125
           },
           {
-            "source": "db:apache-jena-fuseki",
+            "source": "db:eclipse-rdf4j",
             "target": "db:kowari",
             "similarity": 0.6125
           },
@@ -4181,7 +4181,7 @@
             "similarity": 0.6256
           },
           {
-            "source": "db:qlever",
+            "source": "db:gstore",
             "target": "db:quipudb",
             "similarity": 0.6438
           },
@@ -4191,7 +4191,7 @@
             "similarity": 0.6438
           },
           {
-            "source": "db:gstore",
+            "source": "db:qlever",
             "target": "db:quipudb",
             "similarity": 0.6438
           },
@@ -4531,7 +4531,7 @@
             "similarity": 0.5392
           },
           {
-            "source": "db:omnigraph",
+            "source": "db:agdb",
             "target": "db:typegraph",
             "similarity": 0.5288
           },

@@ -1,7 +1,7 @@
 name = "TinkerGraph"
 vendor = "Apache TinkerPop"
 slug = "tinkergraph"
-description = "A lightweight, in-memory property graph engine serving as the reference implementation of the Apache TinkerPop Gremlin graph computing framework."
+description = "A lightweight, in-memory property graph engine serving as the reference implementation of Apache TinkerPop Gremlin."
 url = "https://tinkerpop.apache.org"
 github_url = "https://github.com/apache/tinkerpop"
 license = "Apache-2.0"
