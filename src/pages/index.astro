@@ -211,7 +211,7 @@ const datasetJsonLd = JSON.stringify({
           )}
           <td>
             {db.data.previous_vendors?.length ? (
-              <span class="has-tooltip" aria-label={`Previously: ${db.data.previous_vendors.join(', ')}`} data-microtip-position="top" role="tooltip">
+              <span class="has-tooltip" aria-label={`Previously: ${db.data.previous_vendors.join(' → ')}`} data-microtip-position="top" role="tooltip">
                 {db.data.vendor}
               </span>
             ) : (db.data.vendor ?? '-')}
@@ -283,7 +283,7 @@ const datasetJsonLd = JSON.stringify({
                     : <span class="badge badge-query-lang">{lang}</span>;
                 })}
                 {db.data.query_languages.length > 3 && (
-                  <span class="badge badge-query-lang has-tooltip" aria-label={[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
+                  <span class="badge badge-query-lang has-tooltip" aria-label={[...db.data.query_languages].sort((a, b) => a.localeCompare(b)).slice(3).join(' → ')} data-microtip-position="top" role="tooltip">+{db.data.query_languages.length - 3}</span>
                 )}
               </div>
             ) : '-'}
@@ -295,7 +295,7 @@ const datasetJsonLd = JSON.stringify({
                   <span class="badge badge-protocol">{p}</span>
                 ))}
                 {db.data.protocols.length > 3 && (
-                  <span class="badge badge-protocol has-tooltip" aria-label={sortProtocols(db.data.protocols).slice(3).join(', ')} data-microtip-position="top" role="tooltip">+{db.data.protocols.length - 3}</span>
+                  <span class="badge badge-protocol has-tooltip" aria-label={sortProtocols(db.data.protocols).slice(3).join(' → ')} data-microtip-position="top" role="tooltip">+{db.data.protocols.length - 3}</span>
                 )}
               </div>
             ) : '-'}
