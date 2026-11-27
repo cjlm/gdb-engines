@@ -407,13 +407,13 @@ function hostname(value: string): string {
       {db.data.previous_names?.length > 0 && (
         <>
           <dt>Previous names</dt>
-          <dd>{db.data.previous_names.join(', ')}</dd>
+          <dd>{db.data.previous_names.join(' → ')}</dd>
         </>
       )}
       {db.data.previous_vendors?.length > 0 && (
         <>
           <dt>Previous vendors</dt>
-          <dd>{db.data.previous_vendors.join(', ')}</dd>
+          <dd>{db.data.previous_vendors.join(' → ')}</dd>
         </>
       )}
       <dt>Type</dt>
